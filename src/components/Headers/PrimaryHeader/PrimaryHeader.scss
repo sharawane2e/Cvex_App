@@ -1,0 +1,65 @@
+.primary-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #051c2c;
+  background-position: right;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 20vh;
+  min-height: 100px;
+}
+
+.header {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 360px;
+}
+
+.logo {
+  padding-left: 60px;
+}
+
+.banner-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+}
+
+.banner-title {
+  width: 100%;
+  display: inline-block;
+  font-weight: 600;
+  background-color: #fff;
+  color: #051c2c;
+  text-align: center;
+  -webkit-box-shadow: 0px 4px 9px 0px #00000029;
+  box-shadow: 0px 4px 9px 0px #00000029;
+}
+
+.banner-title h2 {
+  font-size: 20px;
+}
+
+.banner-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-right: 45px solid transparent;
+  border-bottom: 40px solid #2251ff;
+}
+
+/*# sourceMappingURL=PrimaryHeader.css.map */

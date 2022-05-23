@@ -1,0 +1,75 @@
+.welcome-main {
+    margin: auto;
+    margin-top: 100px;
+    width: 80%;
+  }
+  
+  .welcome-heading {
+    text-align: left;
+    font: normal normal bold 20px/26px Roboto;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+    margin: 0;
+  }
+  
+  .welcome-content {
+    text-align: left;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+  }
+  
+  .welcome-input {
+    margin-top: 20px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #B3B3B3;
+    opacity: 1;
+    width: 100%;
+    padding: 10px 20px;
+  
+    text-align: left;
+    font: normal normal normal 16px/24px Roboto;
+    letter-spacing: 0px;
+    opacity: 1;
+  }
+  
+  .welcome-input-error {
+    color: #B00020;
+    font: normal normal normal 16px/21px Roboto;
+  }
+  
+  .welcome-helpdesk {
+    margin-top: 60px;
+    text-align: left;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0px;
+    opacity: 1;
+  }
+  
+  .welcome-submit {
+    background-color: #1F66F6;
+    margin: auto;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 50px;
+    font: normal normal normal 16px/21px Roboto;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .welcome-link{
+    color:white;
+    text-decoration:none;
+    pointer-events: auto;
+  }
+
+  .cursor-block{
+    cursor: not-allowed;
+  }
+  .link-block{
+    pointer-events: none;
+  }
