@@ -8,14 +8,14 @@ import Link from "../Link/index";
 const Login = () => {
   const [password, setPassword] = useState("");
   {
-    console.log(password && !isPasswordValid(password));
+    console.log(password && !isPasswordValid(password) && password != "");
   }
   return (
     <>
       <PrimaryHeader />
       <div className="welcome-main">
         <h3 className="welcome-heading">
-          {startData.data.contentDetails.headingTxt}
+          {startData.data.contentDetails?.headingTxt}
         </h3>
         <p className="welcome-content">
           {startData.data.contentDetails.content}
@@ -43,18 +43,18 @@ const Login = () => {
         </div>
         <div
           className={
-            password && !isPasswordValid(password)
-              ? "welcome-submit cursor-block"
-              : "welcome-submit"
+            password && isPasswordValid(password) && password != ""
+              ? "welcome-submit"
+              : "welcome-submit cursor-block"
           }
           id={startData.data.contentDetails.submitBTnDetails.forwardInputId}
         >
           <Link
             href="/cvex-intro"
             className={
-              password && !isPasswordValid(password)
-                ? "welcome-link link-block"
-                : "welcome-link"
+              password && isPasswordValid(password) && password != ""
+                ? "welcome-link "
+                : "welcome-link link-block"
             }
           >
             {startData.data.contentDetails.submitBTnDetails.submitBTnTxt}
