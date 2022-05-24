@@ -1,11 +1,14 @@
 import { ReactComponent as Banner } from "../../../assets/svg/header_image.svg";
+// const Banner = require("./header_image.svg") as string;
+
 const PrimaryHeader = () => {
   return (
     <>
       <div
         className="primary-header"
         style={{
-          backgroundImage: `url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)`,
+          backgroundImage:
+            "url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)",
           backgroundRepeat: "no-repeat",
         }}
       >

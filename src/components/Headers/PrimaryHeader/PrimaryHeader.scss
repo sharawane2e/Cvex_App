@@ -1,3 +1,4 @@
+@import "../../../styles/partials/mixins.scss";
 .primary-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -48,6 +49,7 @@
 }
 
 .banner-title h2 {
+  @include space("padding", "all", 25px, 0px);
   font-size: 20px;
 }
 

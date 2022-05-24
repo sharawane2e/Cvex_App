@@ -1,12 +1,14 @@
-import React from "react";
 // import "./Sample.scss";
-import Logo from "../../../assets/svg/logo.svg";
+// import Logo from "../../../assets/svg/logo.svg";
 const Sample = () => {
   return (
     <>
       <div className="primary-header">
         <div className="logo">
-          <img src={Logo} alt="Mckinsey logo" />
+          <img
+            src={"https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg"}
+            alt="Mckinsey logo"
+          />
         </div>
         <div className="title">
           <h2>Customer Value Execution</h2>

@@ -7,7 +7,9 @@ import "./Login.scss";
 import Link from "../Link/index";
 const Login = () => {
   const [password, setPassword] = useState("");
-  {console.log(password && !isPasswordValid(password))}
+  {
+    console.log(password && !isPasswordValid(password));
+  }
   return (
     <>
       <PrimaryHeader />
@@ -40,11 +42,21 @@ const Login = () => {
           </a>
         </div>
         <div
-          className= {password && !isPasswordValid(password) ? 'welcome-submit cursor-block' : 'welcome-submit'  }
+          className={
+            password && !isPasswordValid(password)
+              ? "welcome-submit cursor-block"
+              : "welcome-submit"
+          }
           id={startData.data.contentDetails.submitBTnDetails.forwardInputId}
         >
-        
-          <Link href="/cvex-intro" className =  {password && !isPasswordValid(password) ? 'welcome-link link-block' : 'welcome-link'  } >
+          <Link
+            href="/cvex-intro"
+            className={
+              password && !isPasswordValid(password)
+                ? "welcome-link link-block"
+                : "welcome-link"
+            }
+          >
             {startData.data.contentDetails.submitBTnDetails.submitBTnTxt}
           </Link>
         </div>
