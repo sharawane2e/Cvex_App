@@ -3,7 +3,7 @@
 const Sample = () => {
   return (
     <>
-      <div className="primary-header">
+      <div className="secondary-header">
         <div className="logo">
           <img
             src={"https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg"}
