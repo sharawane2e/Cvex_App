@@ -5,7 +5,7 @@ export const isPasswordValid = (password: string) => {
   return password == passwordEnum.WelcomePassword;
 };
 
-export const isRouteValid = (password: string) => {
-  if (pageCode.Login) {
+export const isRouteValid = (routes: string) => {
+  if (pageCode.Login == "1") {
   }
 };

@@ -1,36 +1,32 @@
-.welcome-main {
+.main-container {
   margin: 0 auto;
   margin-top: 100px;
   width: 80%;
-}
-
-.welcome-heading {
-  text-align: left;
-  font: normal normal bold 20px/26px Roboto;
-  letter-spacing: 0px;
-  color: #000000;
-  margin-bottom: 15px;
-}
-
-.welcome-content {
-  text-align: left;
-  font: normal normal normal 16px/21px Roboto;
-  letter-spacing: 0px;
-  color: #000000;
-  margin-bottom: 30px;
-}
-
-.welcome-input {
-  margin-top: 20px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #b3b3b3;
-
-  width: 100%;
-  padding: 10px 20px;
-
-  text-align: left;
-  font: normal normal normal 16px/24px Roboto;
-  letter-spacing: 0px;
+  .title {
+    text-align: left;
+    font-size: 18px;
+    letter-spacing: 0px;
+    color: #000000;
+    margin-bottom: 15px;
+  }
+  .content-area {
+    p{
+      text-align: left;
+      font-size:  16px;
+      color: #000000;
+      margin-bottom: 30px;
+    }
+    .MuiFormControl-root {
+      input{
+          border: 1px solid #B3B3B3;
+          width: 100%;
+          padding: 5px 15px;
+          &::placeholder {
+            color: #8a8a8a;
+          }
+      }
+    }
+  }
 }
 
 .welcome-input-error {
@@ -47,29 +43,32 @@
     color: #2251ff;
   }
 }
-
-.welcome-submit {
-  background-color: #1f66f6;
-  margin: auto;
+.button-container{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.submitButton {
+  background-color: #1f66f6  !important;
+  margin: auto !important;
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 8px 50px;
+  padding: 8px 50px !important;
   font: normal normal normal 16px/21px Roboto;
-  color: #fff;
+  color: #fff !important  ;
   cursor: pointer;
 }
 
-.welcome-link {
-  color: white;
-  text-decoration: none;
-  pointer-events: auto;
-}
+// .welcome-link {
+//   color: white;
+//   text-decoration: none;
+//   pointer-events: auto;
+// }
 
 .cursor-block {
   cursor: not-allowed;
+  display: inline-block;
+  text-align: center;
 }
-.link-block {
+.submit-block {
   pointer-events: none;
 }

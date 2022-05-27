@@ -1,29 +1,22 @@
 @import "../../../styles/partials/mixins.scss";
 .primary-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: relative;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
   width: 100%;
   background-color: #051c2c;
   background-position: right;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   height: 20vh;
   min-height: 100px;
-}
+
 
 .header {
   position: absolute;
   bottom: -40px;
   left: 50%;
-  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  width: 360px;
+  width: 300px;
 }
 
 .logo {
@@ -35,6 +28,7 @@
   display: -ms-flexbox;
   display: flex;
   max-width: 100%;
+  height: 100%;
 }
 
 .banner-title {
@@ -49,8 +43,8 @@
 }
 
 .banner-title h2 {
-  @include space("padding", "all", 25px, 0px);
-  font-size: 20px;
+  @include space("padding", "all", 15px, 0px);
+  font-size: 18px;
 }
 
 .banner-title::after {
@@ -60,6 +54,7 @@
   left: 0;
   width: 0;
   height: 0;
-  border-right: 45px solid transparent;
-  border-bottom: 40px solid #2251ff;
+  border-right: 30px solid transparent;
+  border-bottom: 25px solid #2251ff;
+}
 }

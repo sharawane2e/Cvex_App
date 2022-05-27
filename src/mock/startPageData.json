@@ -16,7 +16,7 @@
       },
       "submitBTnDetails": {
         "submitBTnTxt": "Submit",
-        "forwardInputId": ""
+        "forwardInputId": "someID"
       }
     }
   }

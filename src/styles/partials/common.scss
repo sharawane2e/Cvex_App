@@ -4,4 +4,7 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+.container{
+  position: relative;
+}
 @import "../../components/Headers/PrimaryHeader/PrimaryHeader.scss";

@@ -1,5 +1,4 @@
 import { ReactComponent as Banner } from "../../../assets/svg/header_image.svg";
-// const Banner = require("./header_image.svg") as string;
 
 const PrimaryHeader = () => {
   return (

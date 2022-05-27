@@ -1,13 +1,49 @@
 import PrimaryHeader from "../Headers/PrimaryHeader/index";
-import introData from "../../mock/introData.json";
+import { jsonData as introData } from "../../mock/introData";
 import Parser from "html-react-parser";
-import "./index.scss";
-import Link from "../Link/index";
+import "./Introduction.scss";
+import CustomButton from "../UI/CustomButton";
+import { Footer } from "../Footer";
+import React, { useEffect, useState } from "react";
+import "../Login/Login.scss";
 
 type Props = {};
 export function Introduction(props: Props) {
+  const [jsonData, setJSONData] = useState<any>("");
+
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    );
+  }, []);
+
+
+  const handleClick = () => {
+    if (jsonData !== "") {
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+      // @ts-ignore
+      document.getElementById("A1").click();
+    }
+  }
+  // uncomment below code for mock json
+  // useEffect(() => {
+  //   setJSONData(introData.data.contentDetails.forwardBTnDetails.forwardInputId);
+  // }, []);
+
+
+  // const handleClick = () => {
+  //   if (jsonData !== "") {
+  //     // @ts-ignore
+  //     document.getElementById("someID").value = jsonData
+  //     // @ts-ignore
+  //     document.getElementById("navText").click();
+  //   }
+  // }
   return (
-    <div>
+    <>
       <PrimaryHeader />
       <div className="introduction-main">
         <h3 className="introduction-heading">
@@ -16,15 +52,18 @@ export function Introduction(props: Props) {
         <p className="introduction-content">
           {Parser(introData.data.contentDetails.content)}
         </p>
-        <div
-          className="introduction-submit"
-          id={introData.data.contentDetails.forwardBTnDetails.forwardInputId}
-        >
-          <Link href="/Thank-You" className="welcome-link">
-            {introData.data.contentDetails.forwardBTnDetails.forwardBTnTxt}
-          </Link>
-        </div>
       </div>
-    </div>
+      < Footer  >
+        <div className="button-container">
+          <div>
+            <CustomButton className="submitButton"
+              onClick={handleClick}>
+              {introData.data.contentDetails.forwardBTnDetails.forwardBTnTxt}
+            </CustomButton>
+          </div>
+        </div>
+      </ Footer>
+      {/* <input type="hidden" id="someID" /> */}
+    </>
   );
 }

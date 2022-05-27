@@ -9,10 +9,10 @@
     "contentDetails": {
       "contentImg": "src",
       "headingTxt": "Thanks",
-      "content": "<p>You have successfully completed the survey. You will receive the output in next 10 days</p>",
+      "content": "<p>You have successfully completed the survey. You will receive the output in next 10 days</p><br>",
       "contactDetails": {
         "contactHeading": "<p>Details of the CVEx team</p>",
-        "contactTxt": "<p>LEADERSHIP : Konstantin Pell, Thomas, Ternai, and Arian Meyer</p></br><p>For practical questions : Esther de Zeeuw</p>"
+        "contactTxt": "<p><strong>LEADERSHIP :</strong> Konstantin Pell, Thomas, Ternai, and Arian Meyer</p><p><strong>For practical questions :</strong> Esther de Zeeuw</p>"
       },
       "resultBTnDetails": {
         "resultBTnTxt": "Show Result",

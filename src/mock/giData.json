@@ -224,7 +224,7 @@
     ],
     "footerData": {
       "forwardTxt": "Next",
-      "forwardInputId": ""
+      "forwardInputId": "", "previousInputId": ""
     }
   }
 }

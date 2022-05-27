@@ -1,6 +1,6 @@
 // import "./Sample.scss";
 // import Logo from "../../../assets/svg/logo.svg";
-const Sample = () => {
+const SecondaryHeader = () => {
   return (
     <>
       <div className="secondary-header">
@@ -18,4 +18,4 @@ const Sample = () => {
   );
 };
 
-export default Sample;
+export default SecondaryHeader;
