@@ -1,0 +1,28 @@
+.MuiPaper-root {
+    background-color: #051C2C !important;
+}
+
+.MuiListItem-button {
+    color: #FFFFFF !important;
+    border-left: 4px solid #051C2C !important;
+    height: 75px !important;   
+}
+
+.MuiListItemText-root {
+    padding-left: 0px !important;
+}
+
+.MuiListItem-button.active {
+    background-color: #082336 !important;
+    color: #2251FF !important;
+    border-left: 4px solid #2251FF !important;
+}
+
+.MuiListItemIcon-root {
+    color: white !important;
+}
+
+// .appMenu{
+//     background: red;
+// }
+

@@ -1,0 +1,45 @@
+
+/* .MuiBox-root .css-0 {
+    display: flex !important;
+    justify-content: space-between !important;
+} */
+
+.topContainer {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.saveBtn, .submitBtn {
+    width: 140px;
+}
+
+.leftPanel {
+    width: 70% ;
+}
+
+.rightPanel {
+    width: 30% !important;
+    height: 100% !important;
+   
+}
+
+.css-eglki6-MuiLinearProgress-root {
+    height: 8px !important;
+    background-color: #F7F7F7 !important;
+}
+
+.css-5xe99f-MuiLinearProgress-bar1 {
+    background-color: #2251FF !important;
+}
+
+.MuiBox-root .css-70qvj9 {
+    position: relative;
+    width: 90%;
+    margin-top: 30px;
+    margin-left: 80px;
+}
+
+.MuiBox-root .css-pazuet {
+    position: absolute;
+    left: -40px;
+}

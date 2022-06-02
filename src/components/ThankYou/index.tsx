@@ -13,35 +13,36 @@ type Props = {};
 const ThankYou = (props: Props) => {
   const [jsonData, setJSONData] = useState<any>("");
 
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
-  //   );
-  // }, []);
-
-
-  // const handleClick = () => {
-  // if (jsonData !== "") {
-  //   // @ts-ignore
-  //   document.getElementById("navText").value =
-  //     jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-
-  // }
-  // }
   useEffect(() => {
-    setJSONData(thankyoupageData.data.contentDetails.resultBTnDetails.forwardInputId);
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    );
   }, []);
 
 
   const handleClick = () => {
     if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById("navText").value = jsonData
+      document.getElementById("navText").value =
+        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
       // @ts-ignore
-      document.getElementById("navText").click();
+      document.getElementById("forwardbutton").click();
     }
   }
+  // useEffect(() => {
+  //   setJSONData(thankyoupageData.data.contentDetails.resultBTnDetails.forwardInputId);
+  // }, []);
+
+
+  // const handleClick = () => {
+  //   if (jsonData !== "") {
+  //     // @ts-ignore
+  //     document.getElementById("navText").value = jsonData
+  //     // @ts-ignore
+  //     document.getElementById("navText").click();
+  //   }
+  // }
   return (
     <div>
       <PrimaryHeader />
@@ -51,15 +52,19 @@ const ThankYou = (props: Props) => {
 
           <h3 className="title">
             {thankyoupageData.data.contentDetails.headingTxt}
+            {/* {jsonData["data"]["contentDetails"]["headingTxt"]} */}
           </h3>
           <div className="content-area">
             {Parser(thankyoupageData.data.contentDetails.content)}
+            {/* {Parser(jsonData["data"]["contentDetails"]["content"])} */}
           </div>
         </div>
       </div>
       <div className="helpdesk">
         {Parser(thankyoupageData.data.contentDetails.contactDetails.contactHeading)}
         {Parser(thankyoupageData.data.contentDetails.contactDetails.contactTxt)}
+        {/* {Parser(jsonData["data"]["contentDetails"]["contactDetails"]["contactHeading"])}
+        {Parser(jsonData["data"]["contentDetails"]["contactDetails"]["contactTxt"])} */}
       </div>
       < Footer  >
         <div className="button-container">
@@ -67,11 +72,12 @@ const ThankYou = (props: Props) => {
             <CustomButton className="submitButton"
               onClick={handleClick}>
               {thankyoupageData.data.contentDetails.resultBTnDetails.resultBTnTxt}
+              {/* {jsonData["data"]["contentDetails"]["resultBTnDetails"]["resultBTnTxt"]} */}
             </CustomButton>
           </div>
         </div>
       </ Footer>
-      <input type="text" id="someID" />
+      {/* <input type="text" id="someID" /> */}
     </div>
   );
 };

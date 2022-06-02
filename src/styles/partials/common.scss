@@ -7,4 +7,22 @@
 .container{
   position: relative;
 }
+.submitButton {
+  background-color: #1f66f6  !important;
+  margin: auto !important;
+  padding: 8px 50px !important;
+  font: normal normal normal 16px/21px Roboto;
+  color: #fff !important  ;
+  cursor: pointer;
+  border-radius: 0!important;
+  &.previous-button{
+    margin-right: 10px !important;
+  }
+
+ }
+ .button-container{    
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
+}
 @import "../../components/Headers/PrimaryHeader/PrimaryHeader.scss";

@@ -1,9 +1,14 @@
-// import "./Sample.scss";
+import "./SecondaryHeader.scss";
 // import Logo from "../../../assets/svg/logo.svg";
+
 const SecondaryHeader = () => {
   return (
     <>
-      <div className="secondary-header">
+      <div className="secondary-header" style={{
+        backgroundImage:
+          "url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)",
+        backgroundRepeat: "no-repeat",
+      }}>
         <div className="logo">
           <img
             src={"https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg"}
@@ -11,7 +16,7 @@ const SecondaryHeader = () => {
           />
         </div>
         <div className="title">
-          <h2>Customer Value Execution</h2>
+          <h2>Customer Value Execution (CVEx) diagnostic</h2>
         </div>
       </div>
     </>

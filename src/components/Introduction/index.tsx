@@ -25,7 +25,7 @@ export function Introduction(props: Props) {
       document.getElementById("navText").value =
         jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
       // @ts-ignore
-      document.getElementById("A1").click();
+      document.getElementById("forwardbutton").click();
     }
   }
   // uncomment below code for mock json
@@ -48,9 +48,11 @@ export function Introduction(props: Props) {
       <div className="introduction-main">
         <h3 className="introduction-heading">
           {introData.data.contentDetails.headingTxt}
+          {/* {jsonData["data"]["contentDetails"]["headingTxt"]} */}
         </h3>
         <p className="introduction-content">
           {Parser(introData.data.contentDetails.content)}
+          {/* {Parser(jsonData["data"]["contentDetails"]["content"])} */}
         </p>
       </div>
       < Footer  >
@@ -59,6 +61,7 @@ export function Introduction(props: Props) {
             <CustomButton className="submitButton"
               onClick={handleClick}>
               {introData.data.contentDetails.forwardBTnDetails.forwardBTnTxt}
+              {/* {jsonData["data"]["contentDetails"]["forwardBTnDetails"]["forwardBTnTxt"]} */}
             </CustomButton>
           </div>
         </div>

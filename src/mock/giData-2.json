@@ -1,0 +1,230 @@
+{
+  "pageCode": { "page": 3 },
+  "data": {
+    "headerData": {
+      "title": "Customer Value Execution",
+      "logo": "src",
+      "banner": "src"
+    },
+    "rightData": [
+      {
+        "readdOnly": false,
+        "heading": "General Information",
+        "scrollPosition": "",
+        "questions": [
+          {
+            "questionName": "Geography*",
+            "questionName2": "Country*",
+            "type": "",
+            "placeholder": "Please select",
+            "placeholder2": "Please select",
+            "description": "",
+            "description2": "",
+            "questionId": "",
+            "questionId2": "",
+            "selectedId": "",
+            "selectedId2": "",
+            "error_id": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ],
+            "options2": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ],
+            "map": ""
+          },
+          {
+            "questionName": "City",
+            "type": "",
+            "placeholder": "Please select",
+            "description": "",
+            "questionId": "",
+            "selectedText": "",
+            "selectedId": "",
+            "error_id": ""
+          },
+          {
+            "questionName": "Economic status*",
+            "type": "",
+            "error_id": "",
+            "placeholder": "Please select",
+            "description": "",
+            "questionId": "",
+            "selectedId": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ]
+          },
+          {
+            "questionName": "Sector*",
+            "questionName2": "",
+            "type": "",
+            "placeholder": "Please select",
+            "placeholder2": "Please select",
+            "placeholder3": "Please select",
+            "description": "",
+            "description2": "",
+            "questionId": "",
+            "questionId2": "",
+            "questionId3": "",
+            "selectedId": "",
+            "error_id": "",
+            "selectedId2": "",
+            "selectedId3": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ],
+            "options2": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ],
+            "options3": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ],
+            "map": "",
+            "map2": ""
+          },
+          {
+            "questionName": "Business type*",
+            "type": "",
+            "error_id": "",
+            "placeholder": "Please select",
+            "description": "",
+            "questionId": "",
+            "selectedId": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ]
+          },
+          {
+            "questionName": "Major work type*",
+            "type": "",
+            "error_id": "",
+            "placeholder": "Please select",
+            "description": "",
+            "questionId": "",
+            "selectedId": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ]
+          },
+          {
+            "questionName": "Site*",
+            "type": "",
+            "error_id": "",
+            "placeholder": "Please select",
+            "description": "",
+            "questionId": "",
+            "selectedId": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ]
+          },
+          {
+            "questionName": "Year*",
+            "type": "",
+            "placeholder": "Please select",
+            "description": "",
+            "incrementyear": "",
+            "decreamentyear": "",
+            "questionId": "",
+            "selectedId": "",
+            "error_id": "",
+            "options": [
+              {
+                "optionName": "",
+                "optionId": ""
+              }
+            ]
+          },
+          {
+            "questionName": "Number of centers in the footprint",
+            "type": "",
+            "placeholder": "",
+            "description": "",
+            "questionId": "",
+            "selectedText": "",
+            "selectedId": "",
+            "afterText": "",
+            "maxLength": 28,
+            "maxRange": 9999999999999999,
+            "minRange": 0,
+            "decimalPlaces": 0
+          },
+          {
+            "questionName": "Size of call center (FTEs)",
+            "type": "",
+            "placeholder": "#",
+            "description": "",
+            "questionId": "",
+            "selectedText": "",
+            "selectedId": "",
+            "afterText": "",
+            "maxLength": 28,
+            "maxRange": 9999999999999999,
+            "minRange": 0,
+            "decimalPlaces": 0
+          },
+          {
+            "questionName": "Annual customer base",
+            "type": "",
+            "placeholder": "#",
+            "description": "",
+            "questionId": "",
+            "selectedText": "",
+            "selectedId": "",
+            "afterText": "",
+            "maxLength": 28,
+            "maxRange": 9999999999999999,
+            "minRange": 0,
+            "decimalPlaces": 10
+          },
+          {
+            "questionName": "Total revenue of the company",
+            "type": "",
+            "placeholder": "$",
+            "description": "",
+            "questionId": "",
+            "selectedText": "",
+            "selectedId": "",
+            "afterText": "",
+            "maxLength": 28,
+            "maxRange": 9999999999999999,
+            "minRange": 0,
+            "decimalPlaces": 10
+          }
+        ]
+      }
+    ],
+    "footerData": {
+      "forwardTxt": "Next",
+      "forwardInputId": "", "previousInputId": ""
+    }
+  }
+}

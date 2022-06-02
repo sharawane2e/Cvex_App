@@ -29,9 +29,8 @@
   }
 }
 
-.welcome-input-error {
+.input-error {
   color: #b00020;
-  font: normal normal normal 16px/21px Roboto;
 }
 
 .welcome-helpdesk {
@@ -48,15 +47,7 @@
   width: 100%;
   text-align: center;
 }
-.submitButton {
-  background-color: #1f66f6  !important;
-  margin: auto !important;
-  position: absolute;
-  padding: 8px 50px !important;
-  font: normal normal normal 16px/21px Roboto;
-  color: #fff !important  ;
-  cursor: pointer;
-}
+
 
 // .welcome-link {
 //   color: white;
