@@ -1,49 +1,138 @@
 .slider-container{
     display: inline-block;
     width: 100%;
-    .slider{
-        margin: 30px auto;
-        .MuiSlider-markLabel{
-            display:inline-block;
-            padding: 10px;
-            width: 130px;
-            text-align: center;
+    .slider-container-inner {
+        display: flex;
+        height: 145px;
+        .sliderOuter {
             background-color: #E1E1E1;
-            color: #2A2A2A;
-            font-weight: 600;
-            &.MuiSlider-markLabelActive{
-                font-weight: 500;
-                background: #2251FF;
-                color: #fff;
-            }
-        }
-        .MuiSlider-thumb{
-            background: url("../../../assets/svg/knob-active.svg");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: transparent!important;
-            -webkit-tap-highlight-color: transparent!important;
-            border-radius: 0%!important;
-            &::before{
-                box-shadow:none!important;
-            }
-            &:hover{
-                box-shadow:none!important;
-            }
-            &.MuifocusVisible{
-                box-shadow:none!important;
-            }
-            &.css-eg0mwd-MuiSlider-thumb.Mui-focusVisible {
-                box-shadow:none!important;
+            height: 5px;
+            width: 750px;
+            margin: auto;
+            .slider{
+                margin: 0px auto;
+                width: 83%;
+                .MuiSlider-colorPrimary {
+                    padding: 0px;
+                    position: relative;
                 }
-            }
-            .MuiSlider-markLabelActive ~ .MuiSlider-thumb{
-                // background: url("../../../assets/svg/knob-active.svg")
-            }
-            .css-1aznpnh-MuiSlider-root {
-                color: #CCCCCC;
-            }
+                .MuiSlider-colorPrimary span {
+                    &::after{
+                        position: absolute;
+                        top: -45px;
+                        left: -15px;
+                        height: 30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        background-color: #fff;
+                        border: 1px solid #2251ff;
+                        text-align: center;
+                        line-height: 30px;
+                        color: #2251ff;
+                    }
+                    &::before{
+                        
+                        position: absolute;
+                        top: -13px;
+                        left: 0px;
+                        height: 13px;
+                        width: 1px;
+                        background-color: #2251ff;
+                    }
+                }
+                .MuiSlider-colorPrimary span:nth-child(3)::after
+                {
+                    content: "1";
+                }
+                .MuiSlider-colorPrimary span:nth-child(3)::before {
+                    content: "";
+                }
+                .MuiSlider-colorPrimary span:nth-child(5)::after
+                {
+                    content: "2";
+                }
+                .MuiSlider-colorPrimary span:nth-child(5)::before
+                {
+                    content: "";
+                }
+                .MuiSlider-colorPrimary span:nth-child(7)::after
+                {
+                    content: "3";
+                }
+                .MuiSlider-colorPrimary span:nth-child(7)::before {
+                    content: "";
+                }
+                .MuiSlider-colorPrimary span:nth-child(9)::after
+                {
+                    content: "4";
+                }
+                .MuiSlider-colorPrimary span:nth-child(9)::before {
+                    content: "";
+                }
+                .MuiSlider-colorPrimary span:nth-child(11)::after
+                {
+                    content: "5";
+                }
+                .MuiSlider-colorPrimary span:nth-child(11)::before {
+                    content: "";
+                }
+                .MuiSlider-markLabel{
+                    display:inline-block;
+                    padding: 10px;
+                    width: 130px;
+                    text-align: center;
+                    background-color: #E1E1E1;
+                    color: #2A2A2A;
+                    font-weight: 600;
+                    &.MuiSlider-markLabelActive{
+                        font-weight: 500;
+                        background: #2251FF;
+                        color: #fff;
+                    }
+                }
+                .MuiSlider-thumb{
+                    background: url("../../../assets/svg/knob-active.svg");
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-color: transparent!important;
+                    -webkit-tap-highlight-color: transparent!important;
+                    border-radius: 0%!important;
+                    &::before{
+                        box-shadow:none!important;
+                        display: none !important;
+                    }
+                    &:hover{
+                        box-shadow:none!important;
+                    }
+                    &.MuifocusVisible{
+                        box-shadow:none!important;
+                    }
+                    &.css-eg0mwd-MuiSlider-thumb.Mui-focusVisible {
+                        box-shadow:none!important;
+                        }
+                    &::after {
+                        display: none;
+                    }
+                    }
+                    .MuiSlider-markLabelActive ~ .MuiSlider-thumb{
+                        // background: url("../../../assets/svg/knob-active.svg")
+                    }
+                    .css-1aznpnh-MuiSlider-root {
+                        color: #CCCCCC;
+                    }
+                }
         }
+    
+        .sliderRightPanel {
+            width: 20%;
+            border-left: 1px solid #E1E1E1;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
     }
 

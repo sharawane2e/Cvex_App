@@ -10,11 +10,10 @@
       "leftPanelOpen": "true",
       "currentScrollPos": "",
       "categories": [
-        { "optionName": "Introduction" },
         {
           "optionName": "Value strategy",
           "selectedId": "true",
-          "totalAnswered": "1",
+          "totalAnswered": "0",
           "outOfTxt": "/",
           "totalQues": "6"
         },
@@ -86,8 +85,8 @@
                 {
                   "subTitleTxt": "Channel value strategy (what)",
                   "tooltipText": "text",
-                  "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
-                  "bestPracticesTxt": "",
+                  "questionText": "",
+                  "bestPracticesTxt": "<p><strong>Best practice answer : </strong>The contact center is embedded in the strategy as a sales center (instead of a cost center) and is perceived and accepted as such by the rest of the organization. The contact center is acting as a profound sales center and is contributing to the overall sales target of the overall organization strategy.<p><br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -126,8 +125,8 @@
                 {
                   "subTitleTxt": "Operating model (how)",
                   "tooltipText": "text",
-                  "questionText": "Does the contact center have an operating model that is aligned across all functions?",
-                  "bestPracticesTxt": "",
+                  "questionText": "",
+                  "bestPracticesTxt": "<p><strong>Best practice answer :</strong> The operating model is fit for purpose and aligned with strategic priorities. The operating model enables flexibility of workforce (based on volumes) and optimal cost to serve. Elements such as mix of insourcing/outsourcing, opening times, etc. are strategically chosen. The contact center has embedded a culture of continuous innovation and improvement and feels responsible for innovations. Innovation improvements loop back into the wider organization.</p><br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -166,8 +165,8 @@
                 {
                   "subTitleTxt": "Network strategy (where)",
                   "tooltipText": "text",
-                  "questionText": "Does the contact center have a network and location strategy that defines the service and activities provided?",
-                  "bestPracticesTxt": "",
+                  "questionText": "",
+                  "bestPracticesTxt": "<p><strong>Best practice answer :</strong> The operating model is fit for purpose and aligned with strategic priorities. The operating model enables flexibility of workforce (based on volumes) and optimal cost to serve. Elements such as mix of insourcing/outsourcing, opening times, etc. are strategically chosen. The contact center has embedded a culture of continuous innovation and improvement and feels responsible for innovations. Innovation improvements loop back into the wider organization.</p><br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -213,7 +212,7 @@
                   "subTitleTxt": "Customer segmentation and target groups",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -253,7 +252,7 @@
                   "subTitleTxt": "Channel mix",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have an operating model that is aligned across all functions?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -293,7 +292,7 @@
                   "subTitleTxt": "Sales and service segment strategy",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have a network and location strategy that defines the service and activities provided?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -344,7 +343,7 @@
                   "subTitleTxt": "Sales and service (omnichannel) journeys",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -384,7 +383,7 @@
                   "subTitleTxt": "Touchpoint design",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have an operating model that is aligned across all functions?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -430,7 +429,7 @@
                   "subTitleTxt": "Omnichannel-integrated data layer",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -470,7 +469,7 @@
                   "subTitleTxt": "Cross-channel collaboration",
                   "tooltipText": "text",
                   "questionText": "Does the contact center have an operating model that is aligned across all functions?",
-                  "bestPracticesTxt": "",
+                  "bestPracticesTxt": "<br/>",
                   "bestPracticesDisable": "false",
                   "sliderOptions": {
                     "ratingDetails": {
@@ -516,12 +515,12 @@
       "previousBtn": {
         "quesCode": "",
         "previousDisabled": "false",
-        "previousBtnTxt": "Previous"
+        "previousBtnTxt": "Previous","previousInputId":""
       },
       "forwardBtn": {
         "quesCode": "",
         "forwardDisabled": "false",
-        "forwardBtntxt": "Forward"
+        "forwardBtntxt": "Forward","forwardInputId":""
       }
     }
   }

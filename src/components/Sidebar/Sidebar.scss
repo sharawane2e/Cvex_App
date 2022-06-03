@@ -1,27 +1,48 @@
-.MuiPaper-root {
-    background-color: #051C2C !important;
-}
+.sidebar{
+    
+    // .MuiListItem-button {
+    //     color: #FFFFFF !important;
+    // }
+    .listitem-container{
+        position: relative;
+        padding: 20px;
+        &.Mui-selected{
+        &::after{
+            content: "";
+            height: 100%;
+            width: 5px;
+            position: absolute;
+            background-color: #2251FF;
+            left: 0;
+        }}
+        .listItem{
+            color: #FFFFFF !important;
+        }
+        .listItem-option{
+            width: 90%;
+            color: #FFFFFF !important;
+        }
 
-.MuiListItem-button {
-    color: #FFFFFF !important;
-    border-left: 4px solid #051C2C !important;
-    height: 75px !important;   
+    }
+    .MuiListItem-button.active {
+        background-color: #082336 !important;
+        color: #2251FF !important;
+        border-left: 4px solid #2251FF !important;
+    }
+    
+    .MuiListItemIcon-root {
+        color: white !important;
+    }
+    // .sidebar-menu{
+    //     display: inline-block;
+    //     width: 100%;
+    //     height: calc(100vh - 100px);
+        
+    // }
+    .css-10hburv-MuiTypography-root {
+        font-size:14px!important;
+    }
 }
-
-.MuiListItemText-root {
-    padding-left: 0px !important;
-}
-
-.MuiListItem-button.active {
-    background-color: #082336 !important;
-    color: #2251FF !important;
-    border-left: 4px solid #2251FF !important;
-}
-
-.MuiListItemIcon-root {
-    color: white !important;
-}
-
 // .appMenu{
 //     background: red;
 // }

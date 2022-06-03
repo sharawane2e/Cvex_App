@@ -7,10 +7,12 @@ import Drawer from '@mui/material/Drawer';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import "./Sidebar.scss";
-
-
+import ListItemText from '@mui/material/ListItemText';
+import questionData from "../../mock/questionData.json";
 const SideBar = () => {
+  const listItems: any = questionData.data.leftPanel.categories
   const appMenuItems = [
     {
       name: 'Value strategy',
@@ -52,15 +54,26 @@ const SideBar = () => {
         },
       ],
     },
-  ]
+  ];
+  const ListItemsHandle = () => {
+    return listItems.map((listItem: any, index: any) => (
+
+      <ListItem selected={listItem.selectedId == "true" ? true : false} className={"listitem-container"} button key={index}>
+        <ListItemText className="listItem-option" primary={listItem.optionName} />
+        <ListItemText className="listItem" primary={listItem.totalAnswered} />
+        <ListItemText className="listItem" primary={listItem.outOfTxt} />
+        <ListItemText className="listItem" primary={listItem.totalQues} />
+      </ListItem>
+
+    ))
+  }
   return (
     <>
-      <List component="nav" className={'appMenu'} disablePadding>
-        {/* <AppMenuItem {...appMenuItems[0]} /> */}
-        {/* {appMenuItems.map((item, index) => (
-          <AppMenuItem {...item} key={index} />
-        ))} */}
-      </List>
+      <div className="sidebar">
+        <List>
+          <ListItemsHandle />
+        </List>
+      </div>
     </>
   )
 }

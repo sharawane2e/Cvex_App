@@ -1,0 +1,30 @@
+.accordBlock {
+    box-shadow: none !important;
+    
+    // border-top: 1px solid #C4C4C4 !important;
+    padding-bottom: 10px;
+    &::after{
+        display: none;
+    }
+    &::before{
+        display: none;
+    }
+    p{
+        font-size: 15px;
+    }
+    .bestpractices-text{
+        p{
+            font-size: 13px;
+        }
+    }
+}
+
+.accordHead {
+    background-color: #EFEFEF !important;
+    box-shadow: none !important;
+    color: #2A2A2A !important;
+}
+
+.accordDetail {
+    border-bottom: 1px solid #efefef!important;
+}

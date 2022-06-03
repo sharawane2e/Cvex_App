@@ -10,30 +10,51 @@ import "./progressBar.scss";
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
     <div className="progressbar-container">
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ width: '100%', mr: 1 }}>
+      <Box className="progressbar-innercontainer" sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box className="progressbar" sx={{ width: '100%', mr: 1 }}>
           <LinearProgress variant="determinate" {...props} />
         </Box>
-        <Box sx={{ minWidth: 35 }}>
-          <Typography variant="body2" color="text.secondary">{`${Math.round(
+        <Box className="progressbar-text" sx={{ minWidth: 35 }}>
+          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.answeredTxt}</Typography>
+          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.totalAnswered}</Typography>
+          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.ofTxt}</Typography>
+          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.totalQues}</Typography>
+          <Typography variant="body2" color="text.secondary">{`(${Math.round(
             props.value,
-          )}%`}</Typography>
+          )}%)`}</Typography>
         </Box>
       </Box>
     </div>
   );
 }
 
-const saveProgress = (event: any) => {
 
-}
-const submitProgress = (event: any) => {
-
-}
 
 export default function ProgressBar() {
   const [progress, setProgress] = useState(0);
+  const questionsData = questionData;
+  const [jsonData, setJSONData] = useState<any>("");
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    );
 
+  }, []);
+  const saveProgress = (event: any) => {
+    if (jsonData !== "") {
+
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData["data"]["progressBarData"]["saveBtn"]["SelectedInputId"]
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
+
+    }
+  }
+  const submitProgress = (event: any) => {
+
+  }
   const progressBarUpdate = () => {
     var chkBoxes = document.querySelectorAll(".progCheck");
     var checkedCnt = 0;
@@ -57,7 +78,7 @@ export default function ProgressBar() {
 
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <>
       <Box className='topContainer'>
         <Box className='leftPanel'>
           <LinearProgressWithLabel value={progress} />
@@ -81,7 +102,7 @@ export default function ProgressBar() {
           </div>
         </Box>
       </Box>
-      <Box>
+      <Box className='bottomContainer'>
         <Checkbox className='progCheck' onChange={() => progressBarUpdate()} />
         <Checkbox className='progCheck' onChange={() => progressBarUpdate()} />
         <Checkbox className='progCheck' onChange={() => progressBarUpdate()} />
@@ -89,14 +110,6 @@ export default function ProgressBar() {
         <Checkbox className='progCheck' onChange={() => progressBarUpdate()} />
         <Checkbox className='progCheck' onChange={() => progressBarUpdate()} />
       </Box>
-    </Box>
+    </>
   );
 }
-// useEffect(() => {
-//   const timer = setInterval(() => {
-//     setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-//   }, 800);
-//   return () => {
-//     clearInterval(timer);
-//   };
-// }, []);

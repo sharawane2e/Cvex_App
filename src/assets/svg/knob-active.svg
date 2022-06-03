@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="24" viewBox="0 0 17 24">
-  <g id="Group_216" data-name="Group 216" transform="translate(-769 -422)">
-    <rect id="Rectangle_80" fill="#2251FF" data-name="Rectangle 80" width="17" height="14" transform="translate(769 422)"/>
-    <path id="Polygon_1" fill="#2251FF"  data-name="Polygon 1" d="M8.5,0,17,10H0Z" transform="translate(786 446) rotate(180)" />
+  <g id="Group_141" data-name="Group 141" transform="translate(-769 -422)">
+    <path id="Path_11438" data-name="Path 11438" d="M0,0H17V14.606L8.531,24,0,14.606Z" transform="translate(769 422)" fill="#2251ff"/>
   </g>
 </svg>

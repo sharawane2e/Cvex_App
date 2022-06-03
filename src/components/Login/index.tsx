@@ -91,7 +91,8 @@ const Login = (props: any) => {
   //     document.getElementById("navText").value = jsonData;
   //     // @ts-ignore
   //     document.getElementById("forwardbutton").click();
-  //   
+
+  //   }
   // }
   return (
     <>

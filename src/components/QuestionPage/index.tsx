@@ -8,26 +8,40 @@ import SideBar from "../Sidebar";
 import { Footer } from "../Footer";
 import "./QuestionPage.scss";
 import CustomButton from "../UI/CustomButton";
+import CustomAccordion from "../UI/CustomAccordion";
+import questionData from "../../mock/questionData.json"
 const QuestionPage = () => {
     const [jsonData, setJSONData] = useState<any>("");
-    // useEffect(() => {
-    //     setJSONData(
-    //         // @ts-ignore
-    //         JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    //     );
+    const questionsData = questionData;
+    useEffect(() => {
+        setJSONData(
+            // @ts-ignore
+            JSON.parse(document.getElementById("jsonData")?.innerHTML)
+        );
 
-    // }, []);
-    const handleClick = (event: any) => {
+    }, []);
+
+    const nextHandleClick = (event: any) => {
         if (jsonData !== "") {
-
             // @ts-ignore
             document.getElementById("navText").value =
-                jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+                jsonData.data?.footerData?.forwardBtn?.forwardInputId
             // @ts-ignore
             document.getElementById("forwardbutton").click();
 
         }
     }
+
+    const previousHandleClick = (event: any) => {
+        if (jsonData !== "") {
+            // @ts-ignore
+            document.getElementById("navText").value =
+                jsonData.data?.footerData?.previousBtn?.previousInputId
+            // @ts-ignore
+            document.getElementById("forwardbutton").click();
+        }
+    }
+
     return (
         <>
             <SecondaryHeader />
@@ -36,27 +50,31 @@ const QuestionPage = () => {
                 <div className="right-panel">
                     <div>
                         <ProgressBar />
-                    </div>
-                    {/* <CustomSlider /> */}
-                    < Footer  >
-                        <div className="button-container">
-                            <div>
-                                <CustomButton className={"submitButton previous-button"}
-                                    onClick={(e: any) => handleClick(e)}>
-                                    {/* {generalData.data.footerData.previousTxt} */}
-                                    {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
-                                </CustomButton>
-                            </div>
-                            <div >
-                                <CustomButton className={"submitButton next-button"}
-                                    onClick={(e: any) => handleClick(e)}>
-                                    {/* {generalData.data.footerData.forwardTxt} */}
-                                    {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
-                                </CustomButton>
-                            </div>
+                        <div className="title"><h2>{questionsData.data.rightPanel.questionsData[0].capabilityTxt}</h2></div>
+                        <div className="question-container">
+                            <CustomAccordion />
+
                         </div>
-                    </ Footer>
+                    </div>
                 </div>
+                < Footer  >
+                    <div className="button-container">
+                        <div>
+                            <CustomButton className={"submitButton previous-button"}
+                                onClick={(e: any) => previousHandleClick(e)}>
+                                {questionsData.data.footerData.previousBtn.previousBtnTxt}
+                                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                            </CustomButton>
+                        </div>
+                        <div >
+                            <CustomButton className={"submitButton next-button"}
+                                onClick={(e: any) => nextHandleClick(e)}>
+                                {questionsData.data.footerData.forwardBtn.forwardBtntxt}
+                                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                            </CustomButton>
+                        </div>
+                    </div>
+                </ Footer>
             </div>
         </>
     )

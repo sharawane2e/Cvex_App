@@ -28,11 +28,11 @@ type AppMenuItemPropTypes = PropTypes.InferProps<typeof AppMenuItemPropTypes>
 type AppMenuItemPropsWithoutItems = Omit<AppMenuItemPropTypes, 'items'>
 
 // Improve child items declaration
-export type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
+type AppMenuItemProps = AppMenuItemPropsWithoutItems & {
   items?: AppMenuItemProps[]
 }
 
-const AppMenuItem: React.FC<AppMenuItemProps> = props => {
+const AppMenuItem = (props: AppMenuItemProps) => {
   const { name, link, Icon, items = [], } = props
   const isExpandable = items && items.length > 0
   const [open, setOpen] = React.useState(false)

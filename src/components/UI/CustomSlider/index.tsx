@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import "./Slider.scss"
+import "./Slider.scss";
+import Radio from '@mui/material/Radio';
 import questionData from "../../../mock/questionData.json";
+import { Typography } from '@mui/material';
 
 type SliderProps = {
     // disabled: Boolean;
@@ -24,23 +26,44 @@ const CustomSlider = (props: SliderProps) => {
     ratingData.forEach((el: any, index: any) => {
         // console.log(el)
     })
+
+    // const onSliderChange = (e: any, b: any) => {
+
+    // };
     return (
-        <div className="slider-container">
-            <Box className="slider" sx={{ width: 600 }}>
-                <Slider
-                    aria-label="Restricted values"
-                    defaultValue={defaultValueSelected}
-                    valueLabelFormat={valueLabelFormat}
-                    getAriaValueText={valuetext}
-                    valueLabelDisplay="on"
-                    marks={ratingData}
-                    min={1}
-                    max={5}
-                    track={false}
-                // disabled={true ? props.disabled : false}
-                />
-            </Box>
-        </div>
+        <>
+            <div className="slider-container">
+                <div className="slider-container-inner">
+                    <div className='sliderOuter'>
+                        <Box className="slider" >
+                            <Slider
+                                aria-label="Restricted values"
+                                defaultValue={defaultValueSelected}
+                                valueLabelFormat={valueLabelFormat}
+                                getAriaValueText={valuetext}
+                                valueLabelDisplay="off"
+                                marks={ratingData}
+                                min={1}
+                                max={5}
+                                track={false}
+                            // onChange={onSliderChange}
+                            // disabled={true ? props.disabled : false}
+                            />
+                        </Box>
+                    </div>
+                    <Box className='sliderRightPanel' sx={{ width: 300 }}>
+                        <Radio
+                            value="a"
+                            name="radio-buttons"
+                            inputProps={{ 'aria-label': 'A' }}
+                        />
+                        <Typography>
+                            Don't Know
+                    </Typography>
+                    </Box>
+                </div>
+            </div>
+        </>
     );
 }
 export default CustomSlider;
