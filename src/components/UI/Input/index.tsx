@@ -4,10 +4,11 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 
 import FormControl from '@mui/material/FormControl';
 type InputProps = {
-    id:any;
-    placeholder: string;
-    type: string;
-    onChange: any;
+  id: any;
+  placeholder: string;
+  type: string;
+  onChange: any;
+  className: string;
 };
 export function Inputbox(props: InputProps) {
   return (
@@ -18,6 +19,7 @@ export function Inputbox(props: InputProps) {
           id={props.id}
           type={props.type}
           onChange={props.onChange}
+          className={props.className}
         />
       </FormControl>
     </div>

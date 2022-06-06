@@ -108,6 +108,7 @@ const GI = () => {
     <>
       <PrimaryHeader />
       <div className="general-container">
+        {/* {jsonData?.data?.rightData.map((genData: any) => { */}
         {generalData?.data?.rightData.map((genData: any) => {
           return (
             <>
@@ -129,6 +130,7 @@ const GI = () => {
                             </Grid>
                             <Grid item xs={8} >
                               <Inputbox
+                                className=""
                                 id={genQues.questionId}
                                 placeholder={genQues.placeholder}
                                 type={genQues.type == "num" ? "number" : ""}

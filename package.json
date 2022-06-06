@@ -27,7 +27,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && yarn run build-dist",
+    "build-dist": "cd build && copy static\\js\\*.js main.js && copy static\\css\\*.css main.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

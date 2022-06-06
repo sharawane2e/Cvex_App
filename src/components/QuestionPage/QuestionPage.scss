@@ -1,3 +1,4 @@
+.question-wrapper{
 .main-container{
     display: flex;
     width: 100%;
@@ -5,7 +6,6 @@
     .left-panel{
         width: 280px;
         background-color: #051C2C;
-        border-top: 1px solid #c2c2c2;
     }
     .right-panel{
         width: calc(100% - 280px);
@@ -36,4 +36,5 @@
             }
         }
     }
+}
 }

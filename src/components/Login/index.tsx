@@ -17,13 +17,13 @@ const Login = (props: any) => {
   const errorElem: any = document.getElementById("input-error");
   const backpunchElem: any = document.getElementById("QPassword");
 
-  useEffect(() => {
-    setJSONData(
-      // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    );
+  // useEffect(() => {
+  //   setJSONData(
+  //     // @ts-ignore
+  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
+  //   );
 
-  }, []);
+  // }, []);
   errorMessage = jsonData?.data?.contentDetails?.Error;
   isInvalid = jsonData?.data?.contentDetails?.isInvalid;
 
@@ -45,72 +45,73 @@ const Login = (props: any) => {
     })
   });
 
-  const handleClick = () => {
-    if (jsonData !== "") {
+  // const handleClick = () => {
+  //   if (jsonData !== "") {
 
-      if (password) {
-        backpunchElem.value = password;
-        // if (inputElem.value == "") {
-        //   // @ts-ignore
-        //   // document.getElementById("QPassword").value = "";
-        // }
-        // if (isInvalid) {
-        //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
-        //   errorElem.innerHtml = errorMessage;
-        // }
-        // else {
-        //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
-        //   errorElem.innerHtml = errorMessage;
-        //   console.log(errorElem);
-        // }
-      }
+  //     if (password) {
+  //       backpunchElem.value = password;
+  //       // if (inputElem.value == "") {
+  //       //   // @ts-ignore
+  //       //   // document.getElementById("QPassword").value = "";
+  //       // }
+  //       // if (isInvalid) {
+  //       //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
+  //       //   errorElem.innerHtml = errorMessage;
+  //       // }
+  //       // else {
+  //       //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
+  //       //   errorElem.innerHtml = errorMessage;
+  //       //   console.log(errorElem);
+  //       // }
+  //     }
 
 
-      // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
+  //     // @ts-ignore
+  //     document.getElementById("navText").value =
+  //       jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+  //     // @ts-ignore
+  //     document.getElementById("forwardbutton").click();
 
-    }
-  }
+  //   }
+  // }
 
 
 
 
 
   // uncomment below code for mock json
-  // useEffect(() => {
-  //   setJSONData(startData.data.contentDetails.submitBTnDetails.forwardInputId);
-  // }, []);
+  useEffect(() => {
+    setJSONData(startData.data.contentDetails.submitBTnDetails.forwardInputId);
+  }, []);
 
 
-  // const handleClick = () => {
-  //   if (jsonData !== "") {
-  //     // @ts-ignore
-  //     document.getElementById("navText").value = jsonData;
-  //     // @ts-ignore
-  //     document.getElementById("forwardbutton").click();
+  const handleClick = () => {
+    if (jsonData !== "") {
+      // @ts-ignore
+      document.getElementById("navText").value = jsonData;
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
 
-  //   }
-  // }
+    }
+  }
   return (
     <>
       <PrimaryHeader />
       <div className="main-container">
         <h3 className="title">
-          {startData.data.contentDetails?.headingTxt}
-          {/* {jsonData["data"]["contentDetails"]["headingTxt"]} */}
+          {/* {startData.data.contentDetails?.headingTxt} */}
+          {jsonData.data?.contentDetails?.headingTxt}
         </h3>
         <div className="content-area">
           <p >
-            {startData.data.contentDetails.content}
-            {/* {jsonData["data"]["contentDetails"]["content"]} */}
+            {/* {startData.data.contentDetails.content} */}
+            {jsonData.data?.contentDetails?.content}
           </p>
           <Inputbox
+            className="startData.data.contentDetails.password.passwordInputId"
             id={startData.data.contentDetails.password.passwordInputId}
-            placeholder={startData.data.contentDetails.password.placeholder}
-            // placeholder={jsonData["data"]["contentDetails"]["password"]["placeholder"]}
+            // placeholder={startData.data.contentDetails.password.placeholder}
+            placeholder={jsonData.data?.contentDetails?.password?.placeholder}
             type="password"
             onChange={(e: any) => setPassword(e.target.value)}
           />
@@ -125,15 +126,15 @@ const Login = (props: any) => {
           >{isInvalid ? errorMessage : ""}
           </span>
           <div className="welcome-helpdesk">
-            {startData.data.contentDetails.helpdeskDetails.helpdeskTxt}
-            {/* {jsonData["data"]["contentDetails"]["helpdeskDetails"]["helpdeskTxt"]} */}
+            {/* {startData.data.contentDetails.helpdeskDetails.helpdeskTxt} */}
+            {jsonData.data?.contentDetails?.helpdeskDetails?.helpdeskTxt}
             <br />
             <a
-              href={`mailto:${startData.data.contentDetails.helpdeskDetails.mailTo}`}
-            // href={`mailto:${jsonData["data"]["contentDetails"]["helpdeskDetails"]["mailTo"]}`}
+              // href={`mailto:${startData.data.contentDetails.helpdeskDetails.mailTo}`}
+              href={`mailto:${jsonData.data?.contentDetails?.helpdeskDetails?.mailTo}`}
             >
-              {startData.data.contentDetails.helpdeskDetails.mailTo}
-              {/* {jsonData["data"]["contentDetails"]["helpdeskDetails"]["mailTo"]} */}
+              {/* {startData.data.contentDetails.helpdeskDetails.mailTo} */}
+              {jsonData.data?.contentDetails?.helpdeskDetails?.mailTo}
             </a>
           </div>
         </div>
@@ -161,8 +162,8 @@ const Login = (props: any) => {
             <div>
               <CustomButton className={"submitButton"}
                 onClick={handleClick}>
-                {startData.data.contentDetails.submitBTnDetails.submitBTnTxt}
-                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                {/* {startData.data.contentDetails.submitBTnDetails.submitBTnTxt} */}
+                {jsonData.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
               </CustomButton>
             </div>
           </div>

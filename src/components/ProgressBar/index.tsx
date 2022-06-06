@@ -34,23 +34,23 @@ export default function ProgressBar() {
   const [progress, setProgress] = useState(0);
   const questionsData = questionData;
   const [jsonData, setJSONData] = useState<any>("");
-  useEffect(() => {
-    setJSONData(
-      // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    );
+  // useEffect(() => {
+  //   setJSONData(
+  //     // @ts-ignore
+  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
+  //   );
 
-  }, []);
+  // }, []);
   const saveProgress = (event: any) => {
-    if (jsonData !== "") {
+    // if (jsonData !== "") {
 
-      // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData["data"]["progressBarData"]["saveBtn"]["SelectedInputId"]
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
+    //   // @ts-ignore
+    //   document.getElementById("navText").value =
+    //     jsonData["data"]["progressBarData"]["saveBtn"]["SelectedInputId"]
+    //   // @ts-ignore
+    //   document.getElementById("forwardbutton").click();
 
-    }
+    // }
   }
   const submitProgress = (event: any) => {
 

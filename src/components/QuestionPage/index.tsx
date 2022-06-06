@@ -13,13 +13,13 @@ import questionData from "../../mock/questionData.json"
 const QuestionPage = () => {
     const [jsonData, setJSONData] = useState<any>("");
     const questionsData = questionData;
-    useEffect(() => {
-        setJSONData(
-            // @ts-ignore
-            JSON.parse(document.getElementById("jsonData")?.innerHTML)
-        );
+    // useEffect(() => {
+    //     setJSONData(
+    //         // @ts-ignore
+    //         JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    //     );
 
-    }, []);
+    // }, []);
 
     const nextHandleClick = (event: any) => {
         if (jsonData !== "") {
@@ -43,14 +43,19 @@ const QuestionPage = () => {
     }
 
     return (
-        <>
+        <div className="question-wrapper">
             <SecondaryHeader />
             <div className="main-container">
                 <div className="left-panel"><SideBar /></div>
                 <div className="right-panel">
                     <div>
                         <ProgressBar />
-                        <div className="title"><h2>{questionsData.data.rightPanel.questionsData[0].capabilityTxt}</h2></div>
+                        <div className="title">
+                            <h2>
+                                {/* {jsonData.data.rightPanel.questionsData[0].capabilityTxt} */}
+                                {questionsData.data.rightPanel.questionsData[0].capabilityTxt}
+                            </h2>
+                        </div>
                         <div className="question-container">
                             <CustomAccordion />
 
@@ -76,7 +81,7 @@ const QuestionPage = () => {
                     </div>
                 </ Footer>
             </div>
-        </>
+        </div>
     )
 }
 

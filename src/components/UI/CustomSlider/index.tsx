@@ -1,20 +1,40 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import "./Slider.scss";
-import Radio from '@mui/material/Radio';
+// import Radio from '@mui/material/Radio';
 import questionData from "../../../mock/questionData.json";
 import { Typography } from '@mui/material';
-
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 type SliderProps = {
     // disabled: Boolean;
 };
 
 const CustomSlider = (props: SliderProps) => {
 
+    const [disableSlider, setDisableSlider] = useState<boolean>(false);
+    const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
+    // const [jsonData, setJSONData] = useState<any>("");
+
+    useEffect(() => {
+        setNoneSelectedVal(false)
+    }, [noneSelectedVal]);
+    // useEffect(() => {
+    //   setJSONData(
+    //     // @ts-ignore
+    //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    //   );
+    // }, []);
+
     const jsonData: any = questionData;
-    const ratingData: any = jsonData.data.rightPanel.questionsData[0].subHeadingText[0].subTitle[0].sliderOptions.ratingDetails.ratingOpt;
+    const ratingData: any = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]?.sliderOptions?.ratingDetails?.ratingOpt;
     const defaultValueSelected: any = jsonData.data.rightPanel.questionsData[0].subHeadingText[0].subTitle[0].sliderOptions.ratingDetails.defaultinputIdOpt;
+
+    const [selectedValue, setselectedValue] = useState<Number>(defaultValueSelected);
+
 
     function valuetext(value: number) {
         return `${value}`;
@@ -27,9 +47,18 @@ const CustomSlider = (props: SliderProps) => {
         // console.log(el)
     })
 
-    // const onSliderChange = (e: any, b: any) => {
-
-    // };
+    const handleChange = (event: any, b: any) => {
+        if (event.target.checked === true) {
+            setDisableSlider(true);
+        }
+        setNoneSelectedVal(event.target.checked)
+    };
+    const onSliderChange = (event: any, b: any) => {
+        if (disableSlider == true) {
+            setDisableSlider(false)
+        }
+        setselectedValue(event.target.value)
+    };
     return (
         <>
             <div className="slider-container">
@@ -46,21 +75,26 @@ const CustomSlider = (props: SliderProps) => {
                                 min={1}
                                 max={5}
                                 track={false}
-                            // onChange={onSliderChange}
-                            // disabled={true ? props.disabled : false}
+                                onChange={onSliderChange}
+                                className={disableSlider ? "knob-disabled" : ""}
                             />
                         </Box>
                     </div>
-                    <Box className='sliderRightPanel' sx={{ width: 300 }}>
-                        <Radio
-                            value="a"
-                            name="radio-buttons"
-                            inputProps={{ 'aria-label': 'A' }}
-                        />
-                        <Typography>
-                            Don't Know
-                    </Typography>
-                    </Box>
+                    <FormControl className='sliderRightPanel' sx={{ width: 300 }}>
+                        <RadioGroup
+                            row
+                            name="position"
+                        >
+                            <FormControlLabel
+                                value="bottom"
+                                control={<Radio />}
+                                label={jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]?.sliderOptions?.ratingDetails?.NAOptionTxt}
+                                labelPlacement="bottom"
+                                onChange={handleChange}
+                                checked={disableSlider ? true : false}
+                            />
+                        </RadioGroup>
+                    </FormControl>
                 </div>
             </div>
         </>

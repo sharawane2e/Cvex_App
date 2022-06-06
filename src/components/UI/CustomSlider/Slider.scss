@@ -91,13 +91,15 @@
                     }
                 }
                 .MuiSlider-thumb{
+                    width: 20px !important;
+                    height: 24px !important;
                     background: url("../../../assets/svg/knob-active.svg");
-                    background-size: contain;
+                    background-size: 65%;
                     background-repeat: no-repeat;
                     background-position: center;
-                    background-color: transparent!important;
-                    -webkit-tap-highlight-color: transparent!important;
-                    border-radius: 0%!important;
+                    background-color: transparent !important;
+                    -webkit-tap-highlight-color: transparent !important;
+                    border-radius: 50% !important;
                     &::before{
                         box-shadow:none!important;
                         display: none !important;
@@ -115,11 +117,22 @@
                         display: none;
                     }
                     }
-                    .MuiSlider-markLabelActive ~ .MuiSlider-thumb{
-                        // background: url("../../../assets/svg/knob-active.svg")
-                    }
                     .css-1aznpnh-MuiSlider-root {
                         color: #CCCCCC;
+                    }
+                    .knob-disabled{
+                        .MuiSlider-thumb{
+                        background: url("../../../assets/svg/knob.svg");
+                        background-size: 65%;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-color: transparent !important;
+                    }
+                    .MuiSlider-markLabel.MuiSlider-markLabelActive{
+                        background-color: #E1E1E1;
+                        color: #2A2A2A;
+                        font-weight: 600;
+                    }
                     }
                 }
         }

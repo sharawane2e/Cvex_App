@@ -11,37 +11,37 @@ type Props = {};
 export function Introduction(props: Props) {
   const [jsonData, setJSONData] = useState<any>("");
 
-  useEffect(() => {
-    setJSONData(
-      // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    );
-  }, []);
-
-
-  const handleClick = () => {
-    if (jsonData !== "") {
-      // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
-    }
-  }
-  // uncomment below code for mock json
   // useEffect(() => {
-  //   setJSONData(introData.data.contentDetails.forwardBTnDetails.forwardInputId);
+  //   setJSONData(
+  //     // @ts-ignore
+  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
+  //   );
   // }, []);
 
 
   // const handleClick = () => {
   //   if (jsonData !== "") {
   //     // @ts-ignore
-  //     document.getElementById("someID").value = jsonData
+  //     document.getElementById("navText").value =
+  //       jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
   //     // @ts-ignore
-  //     document.getElementById("navText").click();
+  //     document.getElementById("forwardbutton").click();
   //   }
   // }
+  // uncomment below code for mock json
+  useEffect(() => {
+    setJSONData(introData.data.contentDetails.forwardBTnDetails.forwardInputId);
+  }, []);
+
+
+  const handleClick = () => {
+    if (jsonData !== "") {
+      // @ts-ignore
+      document.getElementById("someID").value = jsonData
+      // @ts-ignore
+      document.getElementById("navText").click();
+    }
+  }
   return (
     <>
       <PrimaryHeader />
