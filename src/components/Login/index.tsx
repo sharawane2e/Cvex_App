@@ -17,11 +17,16 @@ const Login = (props: any) => {
   const errorElem: any = document.getElementById("input-error");
   const backpunchElem: any = document.getElementById("QPassword");
 
+  console.log(password)
+
   useEffect(() => {
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
+
 
   }, []);
   errorMessage = jsonData?.data?.contentDetails?.Error;
@@ -30,36 +35,54 @@ const Login = (props: any) => {
   document.addEventListener("DOMContentLoaded", function (event) {
     errorElem.innerHTML = errorMessage;
 
-    inputElem.addEventListener("keypress", function (event: any) {
+    // inputElem.addEventListener("keypress", function (event: any) {
 
-      if (event.key === "Enter") {
-        alert(event.key + " " + event.which);
-        event.preventDefault();
-      }
-    });
+    //   if (event.key === "Enter") {
+    //     alert(event.key + " " + event.which);
+    //     event.preventDefault();
+    //   }
+    // });
 
-    inputElem.addEventListener("keyup", function (event: any) {
-      if (event.target.value.trim() == "") {
-        event.target.value = "";
-      }
-    })
+    // inputElem.addEventListener("keyup", function (event: any) {
+    //   if (event.target.value.trim() == "") {
+    //     event.target.value = "";
+    //   }
+    // })
   });
 
   const handleClick = () => {
     if (jsonData !== "") {
+      console.log("handle cliecj hua")
 
-      if (password) {
-        backpunchElem.value = password;
-      }
+      // if (password) {
+      //   backpunchElem.value = password;
+      // }
 
 
       // @ts-ignore
       document.getElementById("navText").value =
-        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"];
+
+      // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
       document.getElementById("forwardbutton").click();
 
     }
+  }
+
+  const handleKeyUp = (e: any) => {
+    if (e.key == 'Enter') {
+      // e.preventDefault();
+      handleClick();
+
+    }
+  }
+
+  const handleOnChange = (e: any) => {
+    setPassword(e.target.value);
+    backpunchElem.value = e.target.value;
+
   }
 
   return (
@@ -80,7 +103,8 @@ const Login = (props: any) => {
             id={startData.data.contentDetails.password.passwordInputId}
             placeholder={jsonData.data?.contentDetails?.password?.placeholder}
             type="password"
-            onChange={(e: any) => setPassword(e.target.value)}
+            onChange={(e: any) => handleOnChange(e)}
+            onKeyUp={(e: any) => handleKeyUp(e)}
           />
 
           <span

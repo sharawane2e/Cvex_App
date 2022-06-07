@@ -14,8 +14,10 @@ export function Introduction(props: Props) {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById("jsonData")?.innerText)
     );
+    // @ts-ignore
+    console.log(JSON.parse(document.getElementById("jsonData")?.innerText))
   }, []);
 
 
@@ -47,12 +49,11 @@ export function Introduction(props: Props) {
       <PrimaryHeader />
       <div className="introduction-main">
         <h3 className="introduction-heading">
-          {/* {introData.data.contentDetails.headingTxt} */}
-          {jsonData?.data?.contentDetails?.headingTxt}
+          {jsonData?.data?.contentDetails?.headingTxt ? Parser(jsonData?.data?.contentDetails?.headingTxt) : null}
         </h3>
         <p className="introduction-content">
           {/* {Parser(introData.data.contentDetails.content)} */}
-          {jsonData?.data?.contentDetails?.content}
+          {jsonData?.data?.contentDetails?.content ? Parser(jsonData?.data?.contentDetails?.content) : null}
         </p>
       </div>
       < Footer  >
