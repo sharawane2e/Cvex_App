@@ -13,36 +13,36 @@ type Props = {};
 const ThankYou = (props: Props) => {
   const [jsonData, setJSONData] = useState<any>("");
 
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
-  //   );
-  // }, []);
-
-
-  // const handleClick = () => {
-  //   if (jsonData !== "") {
-  //     // @ts-ignore
-  //     document.getElementById("navText").value =
-  //       jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-  //     // @ts-ignore
-  //     document.getElementById("forwardbutton").click();
-  //   }
-  // }
   useEffect(() => {
-    setJSONData(thankyoupageData.data.contentDetails.resultBTnDetails.forwardInputId);
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    );
   }, []);
 
 
   const handleClick = () => {
     if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById("navText").value = jsonData
+      document.getElementById("navText").value =
+        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
       // @ts-ignore
       document.getElementById("forwardbutton").click();
     }
   }
+  // useEffect(() => {
+  //   setJSONData(thankyoupageData.data.contentDetails.resultBTnDetails.forwardInputId);
+  // }, []);
+
+
+  // const handleClick = () => {
+  //   if (jsonData !== "") {
+  //     // @ts-ignore
+  //     document.getElementById("navText").value = jsonData
+  //     // @ts-ignore
+  //     document.getElementById("forwardbutton").click();
+  //   }
+  // }
   return (
     <div>
       <PrimaryHeader />
@@ -77,7 +77,6 @@ const ThankYou = (props: Props) => {
           </div>
         </div>
       </ Footer>
-      {/* <input type="text" id="someID" /> */}
     </div>
   );
 };

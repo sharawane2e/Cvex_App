@@ -17,13 +17,13 @@ const Login = (props: any) => {
   const errorElem: any = document.getElementById("input-error");
   const backpunchElem: any = document.getElementById("QPassword");
 
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
-  //   );
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+    );
 
-  // }, []);
+  }, []);
   errorMessage = jsonData?.data?.contentDetails?.Error;
   isInvalid = jsonData?.data?.contentDetails?.isInvalid;
 
@@ -45,55 +45,55 @@ const Login = (props: any) => {
     })
   });
 
-  // const handleClick = () => {
-  //   if (jsonData !== "") {
+  const handleClick = () => {
+    if (jsonData !== "") {
 
-  //     if (password) {
-  //       backpunchElem.value = password;
-  //       // if (inputElem.value == "") {
-  //       //   // @ts-ignore
-  //       //   // document.getElementById("QPassword").value = "";
-  //       // }
-  //       // if (isInvalid) {
-  //       //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
-  //       //   errorElem.innerHtml = errorMessage;
-  //       // }
-  //       // else {
-  //       //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
-  //       //   errorElem.innerHtml = errorMessage;
-  //       //   console.log(errorElem);
-  //       // }
-  //     }
+      if (password) {
+        backpunchElem.value = password;
+        // if (inputElem.value == "") {
+        //   // @ts-ignore
+        //   // document.getElementById("QPassword").value = "";
+        // }
+        // if (isInvalid) {
+        //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
+        //   errorElem.innerHtml = errorMessage;
+        // }
+        // else {
+        //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
+        //   errorElem.innerHtml = errorMessage;
+        //   console.log(errorElem);
+        // }
+      }
 
 
-  //     // @ts-ignore
-  //     document.getElementById("navText").value =
-  //       jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-  //     // @ts-ignore
-  //     document.getElementById("forwardbutton").click();
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
 
-  //   }
-  // }
+    }
+  }
 
 
 
 
 
   // uncomment below code for mock json
-  useEffect(() => {
-    setJSONData(startData.data.contentDetails.submitBTnDetails.forwardInputId);
-  }, []);
+  // useEffect(() => {
+  //   setJSONData(startData.data.contentDetails.submitBTnDetails.forwardInputId);
+  // }, []);
 
 
-  const handleClick = () => {
-    if (jsonData !== "") {
-      // @ts-ignore
-      document.getElementById("navText").value = jsonData;
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
+  // const handleClick = () => {
+  //   if (jsonData !== "") {
+  //     // @ts-ignore
+  //     document.getElementById("navText").value = jsonData;
+  //     // @ts-ignore
+  //     document.getElementById("forwardbutton").click();
 
-    }
-  }
+  //   }
+  // }
   return (
     <>
       <PrimaryHeader />

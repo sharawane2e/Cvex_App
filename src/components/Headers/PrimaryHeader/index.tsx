@@ -15,15 +15,15 @@ const PrimaryHeader = () => {
         className="primary-header"
         style={{
           backgroundImage:
-            // "url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)",
-            `url(${jsonData?.data?.headerData?.banner})`,
+            "url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)",
+          // `url(${jsonData?.data?.headerData?.banner})`,
           backgroundRepeat: "no-repeat",
         }}
       >
         <div className="logo">
           <img
-            // src={"https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg"}
-            src={jsonData?.data?.headerData?.logo}
+            src={"https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg"}
+            // src={jsonData?.data?.headerData?.logo}
             alt="Mckinsey logo"
           />
         </div>

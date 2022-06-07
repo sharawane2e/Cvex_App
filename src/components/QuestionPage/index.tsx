@@ -13,13 +13,13 @@ import questionData from "../../mock/questionData.json"
 const QuestionPage = () => {
     const [jsonData, setJSONData] = useState<any>("");
     const questionsData = questionData;
-    // useEffect(() => {
-    //     setJSONData(
-    //         // @ts-ignore
-    //         JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    //     );
+    useEffect(() => {
+        setJSONData(
+            // @ts-ignore
+            JSON.parse(document.getElementById("jsonData")?.innerHTML)
+        );
 
-    // }, []);
+    }, []);
 
     const nextHandleClick = (event: any) => {
         if (jsonData !== "") {
@@ -52,8 +52,8 @@ const QuestionPage = () => {
                         <ProgressBar />
                         <div className="title">
                             <h2>
-                                {/* {jsonData.data.rightPanel.questionsData[0].capabilityTxt} */}
-                                {questionsData.data.rightPanel.questionsData[0].capabilityTxt}
+                                {jsonData?.data?.rightPanel?.questionsData[0]?.capabilityTxt}
+                                {/* {questionsData.data.rightPanel.questionsData[0].capabilityTxt} */}
                             </h2>
                         </div>
                         <div className="question-container">
@@ -67,15 +67,15 @@ const QuestionPage = () => {
                         <div>
                             <CustomButton className={"submitButton previous-button"}
                                 onClick={(e: any) => previousHandleClick(e)}>
-                                {questionsData.data.footerData.previousBtn.previousBtnTxt}
-                                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                                {/* {questionsData.data.footerData.previousBtn.previousBtnTxt} */}
+                                {jsonData?.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
                             </CustomButton>
                         </div>
                         <div >
                             <CustomButton className={"submitButton next-button"}
                                 onClick={(e: any) => nextHandleClick(e)}>
-                                {questionsData.data.footerData.forwardBtn.forwardBtntxt}
-                                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                                {/* {questionsData.data.footerData.forwardBtn.forwardBtntxt} */}
+                                {jsonData?.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
                             </CustomButton>
                         </div>
                     </div>

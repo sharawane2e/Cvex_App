@@ -12,12 +12,12 @@ import GI from "../components/GI";
 const Pages = () => {
     const [jsonData, setJSONData] = useState<any>(jsonData1);
     // comment below and render only one component at a time
-    // useEffect(() => {
-    //     setJSONData(
-    //         // @ts-ignore
-    //         JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    //     );
-    // }, []);
+    useEffect(() => {
+        setJSONData(
+            // @ts-ignore
+            JSON.parse(document.getElementById("jsonData")?.innerHTML)
+        );
+    }, []);
     // let jsonData = jsonData1;
     // setTimeout(function () {
     //   setJSONData(
@@ -28,21 +28,21 @@ const Pages = () => {
     // });
 
     // if (jsonData != "" || jsonData != undefined) {
-    // if (jsonData["pageCode"]["page"] == 1) {
-    // return <Login />;
-    // }
-    // if (jsonData["pageCode"]["page"] == 2) {
-    // return <Introduction />;
-    // }
-    // if (jsonData["pageCode"]["page"] == 3) {
-    //     return <GI />;
-    // }
-    // if (jsonData["pageCode"]["page"] == 4) {
-    return <QuestionPage />;
-    // }
-    // if (jsonData["pageCode"]["page"] == 5) {
-    //     return <ThankYou />;
-    // }
+    if (jsonData["pageCode"]["page"] == 1) {
+        return <Login />;
+    }
+    if (jsonData["pageCode"]["page"] == 2) {
+        return <Introduction />;
+    }
+    if (jsonData["pageCode"]["page"] == 3) {
+        return <GI />;
+    }
+    if (jsonData["pageCode"]["page"] == 4) {
+        return <QuestionPage />;
+    }
+    if (jsonData["pageCode"]["page"] == 5) {
+        return <ThankYou />;
+    }
     // }
 }
 export default Pages;
