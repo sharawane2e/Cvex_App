@@ -29,18 +29,23 @@ const Pages = () => {
 
     // if (jsonData != "" || jsonData != undefined) {
     if (jsonData["pageCode"]["page"] == 1) {
+        console.log("1")
         return <Login />;
     }
     if (jsonData["pageCode"]["page"] == 2) {
+        console.log("2")
         return <Introduction />;
     }
     if (jsonData["pageCode"]["page"] == 3) {
+        console.log("3")
         return <GI />;
     }
     if (jsonData["pageCode"]["page"] == 4) {
+        console.log("4")
         return <QuestionPage />;
     }
     if (jsonData["pageCode"]["page"] == 5) {
+        console.log("5")
         return <ThankYou />;
     }
     // }
