@@ -68,14 +68,14 @@ const QuestionPage = () => {
                             <CustomButton className={"submitButton previous-button"}
                                 onClick={(e: any) => previousHandleClick(e)}>
                                 {/* {questionsData.data.footerData.previousBtn.previousBtnTxt} */}
-                                {jsonData?.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
+                                {jsonData?.data?.footerData?.previousBtn?.previousBtnTxt}
                             </CustomButton>
                         </div>
                         <div >
                             <CustomButton className={"submitButton next-button"}
                                 onClick={(e: any) => nextHandleClick(e)}>
                                 {/* {questionsData.data.footerData.forwardBtn.forwardBtntxt} */}
-                                {jsonData?.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
+                                {jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt}
                             </CustomButton>
                         </div>
                     </div>

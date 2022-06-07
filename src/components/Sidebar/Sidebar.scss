@@ -7,6 +7,13 @@
         position: relative;
         padding: 20px;
         &.Mui-selected{
+
+            .listItem{
+                color: #2251FF;
+            }
+            .listItem-option{
+                color: #2251FF;
+            }
         &::after{
             content: "";
             height: 100%;
@@ -14,13 +21,15 @@
             position: absolute;
             background-color: #2251FF;
             left: 0;
-        }}
+        }
+        
+    }
         .listItem{
-            color: #FFFFFF !important;
+            color: #FFF;
         }
         .listItem-option{
             width: 90%;
-            color: #FFFFFF !important;
+            color: #FFF;
         }
 
     }
@@ -43,7 +52,4 @@
         font-size:14px!important;
     }
 }
-// .appMenu{
-//     background: red;
-// }
 

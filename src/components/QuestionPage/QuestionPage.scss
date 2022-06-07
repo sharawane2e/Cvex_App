@@ -13,16 +13,21 @@
         padding: 20px;
         .title{
             padding: 20px;
+            margin-bottom: 0;
             h2{
                 font-size: 18px;
             }
         }
         .question-container
-        {min-height: 600px;
+        {   
+            min-height: 600px;
             overflow-y: scroll;
             height: 600px;
-           
-
+            @media screen and (max-width:1200px){
+                min-height: 570px;
+                overflow-y: scroll;
+                height: 570px;
+            }
         }
     }
     .footer{
@@ -35,6 +40,12 @@
                 color: #2251FF !important;
             }
         }
+    }
+}
+@media screen and (max-width:1200px){
+    .submitButton {
+        padding: 4px 0px !important;
+        width: 100px;
     }
 }
 }

@@ -67,6 +67,7 @@
 .css-eglki6-MuiLinearProgress-root {
     height: 8px !important;
     background-color: #F7F7F7 !important;
+    margin-left: 15px;
 }
 
 .css-5xe99f-MuiLinearProgress-bar1 {
@@ -85,5 +86,13 @@
         display: flex;
         justify-content: SPACE-BETWEEN;
         width: 135px;
+    }
+}
+@media screen and (max-width:1200px){
+    .progressbar-text.css-pazuet {
+        width: 130px;
+    }
+    .css-eglki6-MuiLinearProgress-root {
+        margin-left: 20px;
     }
 }
