@@ -7,6 +7,7 @@ import "./Login.scss";
 import CustomButton from "../UI/CustomButton";
 import pageCode from "../../enums/pageCode";
 import { Footer } from "../Footer";
+import { getParsedData } from "../../utils/parserUtil";
 
 const Login = (props: any) => {
   const [password, setPassword] = useState("");
@@ -91,12 +92,12 @@ const Login = (props: any) => {
       <div className="main-container">
         <h3 className="title">
 
-          {jsonData.data?.contentDetails?.headingTxt}
+          {getParsedData(jsonData.data?.contentDetails?.headingTxt)}
         </h3>
         <div className="content-area">
           <p >
 
-            {jsonData.data?.contentDetails?.content}
+            {getParsedData(jsonData.data?.contentDetails?.content)}
           </p>
           <Inputbox
             className="startData.data.contentDetails.password.passwordInputId"
@@ -113,14 +114,14 @@ const Login = (props: any) => {
           </span>
           <div className="welcome-helpdesk">
 
-            {jsonData.data?.contentDetails?.helpdeskDetails?.helpdeskTxt}
+            {getParsedData(jsonData.data?.contentDetails?.helpdeskDetails?.helpdeskTxt)}
             <br />
             <a
 
-              href={`mailto:${jsonData.data?.contentDetails?.helpdeskDetails?.mailTo}`}
+              href={`mailto:${getParsedData(jsonData.data?.contentDetails?.helpdeskDetails?.mailTo)}`}
             >
 
-              {jsonData.data?.contentDetails?.helpdeskDetails?.mailTo}
+              {getParsedData(jsonData.data?.contentDetails?.helpdeskDetails?.mailTo)}
             </a>
           </div>
         </div>

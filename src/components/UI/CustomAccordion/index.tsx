@@ -44,8 +44,7 @@ export default function CustomAccordion() {
 
       {
         subHeadingTextArr.map((elm: any, index2: any) => {
-          var title = elm.subTitle;
-
+          let title = elm.subTitle;
           return (
             <>
               <Accordion key={index2} expanded={expanded === 'panel' + (index2)} className="accordBlock" onChange={handleChange('panel' + index2, index2)}>

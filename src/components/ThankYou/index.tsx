@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import "../Login/Login.scss";
 import "./ThankYou.scss";
 import { ReactComponent as ThankyouImage } from "../../assets/svg/thankyou_image.svg";
+import { getParsedData } from "../../utils/parserUtil";
 
 type Props = {};
 
@@ -30,19 +31,6 @@ const ThankYou = (props: Props) => {
       document.getElementById("forwardbutton").click();
     }
   }
-  // useEffect(() => {
-  //   setJSONData(thankyoupageData.data.contentDetails.resultBTnDetails.forwardInputId);
-  // }, []);
-
-
-  // const handleClick = () => {
-  //   if (jsonData !== "") {
-  //     // @ts-ignore
-  //     document.getElementById("navText").value = jsonData
-  //     // @ts-ignore
-  //     document.getElementById("forwardbutton").click();
-  //   }
-  // }
   return (
     <div>
       <PrimaryHeader />
@@ -51,28 +39,23 @@ const ThankYou = (props: Props) => {
           <ThankyouImage />
 
           <h3 className="title">
-            {/* {thankyoupageData.data.contentDetails.headingTxt} */}
-            {jsonData.data?.contentDetails?.headingTxt}
+            {getParsedData(jsonData.data?.contentDetails?.headingTxt)}
           </h3>
           <div className="content-area">
-            {/* {Parser(thankyoupageData.data.contentDetails.content)} */}
-            {Parser(jsonData.data?.contentDetails?.content)}
+            {getParsedData(jsonData.data?.contentDetails?.content)}
           </div>
         </div>
       </div>
       <div className="helpdesk">
-        {/* {Parser(thankyoupageData.data.contentDetails.contactDetails.contactHeading)}
-        {Parser(thankyoupageData.data.contentDetails.contactDetails.contactTxt)} */}
-        {Parser(jsonData?.data?.contentDetails?.contactDetails?.contactHeading)}
-        {Parser(jsonData?.data?.contentDetails?.contactDetails?.contactTxt)}
+        {getParsedData(jsonData?.data?.contentDetails?.contactDetails?.contactHeading)}
+        {getParsedData(jsonData?.data?.contentDetails?.contactDetails?.contactTxt)}
       </div>
       < Footer  >
         <div className="button-container">
           <div>
             <CustomButton className="submitButton"
               onClick={handleClick}>
-              {/* {thankyoupageData.data.contentDetails.resultBTnDetails.resultBTnTxt} */}
-              {jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt}
+              {getParsedData(jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)}
             </CustomButton>
           </div>
         </div>

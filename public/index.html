@@ -28,10 +28,562 @@
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
-<span id="jsonData" style="display: none;">
-{"pageCode": { "page": 2 },"data": {"headerData": {"title": "Customer Value Execution","logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg","banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"},"contentDetails": {"headingTxt": "Welcome to the Customer Value Execution (CVEx) diagnostic&lt;br&gt;&lt;br&gt;","content": "Thank you for participating in the online Customer Value Execution (CVEx) diagnostic. The goal of this CVEx diagnostic is to determine your organization's current CVEx maturity level, and to benchmark your organization's contact center against peer-companies in your industry. The diagnostic will take approximately 60-90 minutes of your time. The diagnostic will cover a first screen the enter the company details, followed by 52 questions on the CVEx sub-skills. Every question will include a best practice answer. Rate the company you are assessing against the best practice answer. The diagnostic is based on an evaluation scheme using concrete descriptions for calibration and transparency. Please select the most appropriate answer that reflects the current status within the organization. In case a question should not apply please select 'Don't know'.The results will be sent to you within 2-5 business days after you have completed the diagnostic. The results will include a benchmark of your high-level results against peer-companies in your industry. Please click on the button below to start the Customer Value Execution (CVEx) diagnostic.","submitBTnDetails": {"forwardBTnTxt": "Begin Assessment","forwardInputId": "A1"}}}}
-</span>
-<input id="forwardbutton" />
+  <span id="jsonData" style="display: none;">
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>CVEX EPR2.0</title>
+    <script defer="defer" src="/static/js/main.26327bae.js"></script>
+    <link href="/static/css/main.5e25b4f3.css" rel="stylesheet">
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+	<span id="jsonData" style="display:none">
+	{
+  "pageCode": { "page": 4 },
+  "data": {
+    "headerData": {
+      "title": "Customer Value Execution (CVEx) diagnostic",
+      "logo": "src",
+      "banner": "src"
+    },
+    "leftPanel": {
+      "leftPanelOpen": "true",
+      "currentScrollPos": "",
+      "categories": [
+        { "optionName": "Introduction" },
+        {
+          "optionName": "Value strategy",
+          "selectedId": "true",
+          "totalAnswered": "1",
+          "outOfTxt": "/",
+          "totalQues": "6"
+        },
+        {
+          "optionName": "Customer touchpoint design",
+          "selectedId": "false",
+          "totalAnswered": "0",
+          "outOfTxt": "/",
+          "totalQues": "6"
+        },
+        {
+          "optionName": "Governance & Steering",
+          "selectedId": "false",
+          "totalAnswered": "0",
+          "outOfTxt": "/",
+          "totalQues": "6"
+        },
+        {
+          "optionName": "Proposition and Campaigning",
+          "selectedId": "false",
+          "totalAnswered": "0",
+          "outOfTxt": "/",
+          "totalQues": "6"
+        },
+        {
+          "optionName": "Contact management",
+          "selectedId": "false",
+          "totalAnswered": "0",
+          "outOfTxt": "/",
+          "totalQues": "6"
+        }
+      ]
+    },
+    "progressBarData": {
+      "progressBarDetails": {
+        "indicators": {
+          "1": "Not Started",
+          "2": "In progress",
+          "3": "Completed"
+        },
+        "answeredTxt": "Answered",
+        "totalAnswered": "1",
+        "ofTxt": "of",
+        "totalQues": "6",
+        "bracketOne": "(",
+        "percentage": "%",
+        "bracketTwo": ")"
+      },
+      "saveBtn": {
+        "saveBtnTxt": "Save",
+        "SelectedInputId": ""
+      },
+      "submitBtn": {
+        "SelectedInputId": "",
+        "submitDisabled": "true",
+        "submitBtntxt": "Submit"
+      }
+    },
+    "rightPanel": {
+      "currentScrollPos": "",
+      "questionsData": [
+        {
+          "capabilityTxt": "Value strategy",
+          "subHeadingText": [
+            {
+              "skillTitle": "Sales and service strategy",
+              "groupAll": "true",
+              "subTitle": [
+                {
+                  "subTitleTxt": "Channel value strategy (what)",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                },
+                {
+                  "subTitleTxt": "Operating model (how)",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have an operating model that is aligned across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                      "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                },
+                {
+                  "subTitleTxt": "Network strategy (where)",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have a network and location strategy that defines the service and activities provided?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                }
+              ]
+            },
+            {
+              "skillTitle": "Customer segment and channel strategy",
+              "groupAll": "true",
+              "subTitle": [
+                {
+                  "subTitleTxt": "Customer segmentation and target groups",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                },
+                {
+                  "subTitleTxt": "Channel mix",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have an operating model that is aligned across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                },
+                {
+                  "subTitleTxt": "Sales and service segment strategy",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have a network and location strategy that defines the service and activities provided?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "capabilityTxt": "Customer touchpoint design",
+          "subHeadingText": [
+            {
+              "skillTitle": "Sales and service journey design",
+              "groupAll": "true",
+              "subTitle": [
+                {
+                  "subTitleTxt": "Sales and service (omnichannel) journeys",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                },
+                {
+                  "subTitleTxt": "Touchpoint design",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have an operating model that is aligned across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                }
+              ]
+            },
+            {
+              "skillTitle": "Omnichannel integration",
+              "groupAll": "true",
+              "subTitle": [
+                {
+                  "subTitleTxt": "Omnichannel-integrated data layer",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have a value strategy that defines the overall purpose (e.g. cost center or value center) and the role of sales across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                },
+                {
+                  "subTitleTxt": "Cross-channel collaboration",
+                  "tooltipText": "text",
+                  "questionText": "Does the contact center have an operating model that is aligned across all functions?",
+                  "bestPracticesTxt": "",
+                  "bestPracticesDisable": "false",
+                  "sliderOptions": {
+                    "ratingDetails": {
+                      "defaultinputIdOpt": "3",
+                      "SelectedInputId": "",
+                     "ratingOpt":  [{
+                        "value": 1,
+                        "label":"Disagree strongly"
+                    },
+                    {
+                        "value": 2,
+                        "label": "Disagree "
+                    },
+                    {
+                        "value": 3,
+                        "label": "Neutral"
+                    },
+                    {
+                        "value": 4,
+                        "label": "Agree"
+                    },
+                    {
+                        "value": 5,
+                        "label": "Agree strongly"
+                    }
+                  ],
+                      "NAOptionTxt": "Don't Know",
+                      "NAOptionInputId": ""
+                    }
+                  },
+                  "observationId": "",
+                  "obsplaceholder": "",
+                  "observationTxt": "",
+                  "observationDisable": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footerData": {
+      "previousBtn": {
+        "quesCode": "",
+        "previousDisabled": "false",
+        "previousBtnTxt": "Previous"
+      },
+      "forwardBtn": {
+        "quesCode": "",
+        "forwardDisabled": "false",
+        "forwardBtntxt": "Forward"
+      }
+    }
+  }
+}
+
+	</span>
+	<input id="forwardbutton" />
+</body>
+
+</html>
+  </span>
+  <input id="forwardbutton" />
 
   <!--
       This HTML file is a template.

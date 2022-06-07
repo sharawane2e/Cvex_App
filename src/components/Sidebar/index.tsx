@@ -13,7 +13,13 @@ type SideBarProps = {
 const SideBar = (props: SideBarProps) => {
   const listItems: any = questionData.data.leftPanel.categories
   const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
+  const [totalAnswered, setTotalAnswered] = useState(0);
+  const updateTotalAnswered = () => {
+    // setTotalAnswered
+  }
+  const updateTotalQuestions = () => {
 
+  }
   const ListItemsHandle = () => {
     return listItems.map((listItem: any, index: any) => (
 

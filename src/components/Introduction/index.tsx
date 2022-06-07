@@ -30,20 +30,6 @@ export function Introduction(props: Props) {
       document.getElementById("forwardbutton").click();
     }
   }
-  // uncomment below code for mock json
-  // useEffect(() => {
-  //   setJSONData(introData.data.contentDetails.forwardBTnDetails.forwardInputId);
-  // }, []);
-
-
-  // const handleClick = () => {
-  //   if (jsonData !== "") {
-  //     // @ts-ignore
-  //     document.getElementById("someID").value = jsonData
-  //     // @ts-ignore
-  //     document.getElementById("navText").click();
-  //   }
-  // }
   return (
     <>
       <PrimaryHeader />
@@ -60,8 +46,7 @@ export function Introduction(props: Props) {
           <div>
             <CustomButton className="submitButton"
               onClick={handleClick}>
-              {introData.data.contentDetails.forwardBTnDetails.forwardBTnTxt}
-              {/* {jsonData?.data?.contentDetails?.forwardBTnDetails?.forwardBTnTxt} */}
+              {getParsedData(jsonData?.data?.contentDetails?.forwardBTnDetails?.forwardBTnTxt)}
             </CustomButton>
           </div>
         </div>
