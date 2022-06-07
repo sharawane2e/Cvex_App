@@ -6,7 +6,7 @@ import CustomButton from "../UI/CustomButton";
 import { Footer } from "../Footer";
 import React, { useEffect, useState } from "react";
 import "../Login/Login.scss";
-
+import { getParsedData } from "../../utils/parserUtil"
 type Props = {};
 export function Introduction(props: Props) {
   const [jsonData, setJSONData] = useState<any>("");
@@ -49,11 +49,10 @@ export function Introduction(props: Props) {
       <PrimaryHeader />
       <div className="introduction-main">
         <h3 className="introduction-heading">
-          {jsonData?.data?.contentDetails?.headingTxt ? Parser(jsonData?.data?.contentDetails?.headingTxt) : null}
+          {getParsedData(jsonData?.data?.contentDetails?.headingTxt)}
         </h3>
         <p className="introduction-content">
-          {/* {Parser(introData.data.contentDetails.content)} */}
-          {jsonData?.data?.contentDetails?.content ? Parser(jsonData?.data?.contentDetails?.content) : null}
+          {getParsedData(jsonData?.data?.contentDetails?.content)}
         </p>
       </div>
       < Footer  >
