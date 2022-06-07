@@ -50,19 +50,6 @@ const Login = (props: any) => {
 
       if (password) {
         backpunchElem.value = password;
-        // if (inputElem.value == "") {
-        //   // @ts-ignore
-        //   // document.getElementById("QPassword").value = "";
-        // }
-        // if (isInvalid) {
-        //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
-        //   errorElem.innerHtml = errorMessage;
-        // }
-        // else {
-        //   errorMessage = document.getElementById("globalerror_error")?.innerHTML;
-        //   errorElem.innerHtml = errorMessage;
-        //   console.log(errorElem);
-        // }
       }
 
 
@@ -75,65 +62,40 @@ const Login = (props: any) => {
     }
   }
 
-
-
-
-
-  // uncomment below code for mock json
-  // useEffect(() => {
-  //   setJSONData(startData.data.contentDetails.submitBTnDetails.forwardInputId);
-  // }, []);
-
-
-  // const handleClick = () => {
-  //   if (jsonData !== "") {
-  //     // @ts-ignore
-  //     document.getElementById("navText").value = jsonData;
-  //     // @ts-ignore
-  //     document.getElementById("forwardbutton").click();
-
-  //   }
-  // }
   return (
     <>
       <PrimaryHeader />
       <div className="main-container">
         <h3 className="title">
-          {/* {startData.data.contentDetails?.headingTxt} */}
+
           {jsonData.data?.contentDetails?.headingTxt}
         </h3>
         <div className="content-area">
           <p >
-            {/* {startData.data.contentDetails.content} */}
+
             {jsonData.data?.contentDetails?.content}
           </p>
           <Inputbox
             className="startData.data.contentDetails.password.passwordInputId"
             id={startData.data.contentDetails.password.passwordInputId}
-            // placeholder={startData.data.contentDetails.password.placeholder}
             placeholder={jsonData.data?.contentDetails?.password?.placeholder}
             type="password"
             onChange={(e: any) => setPassword(e.target.value)}
           />
-          {/* <span
-          className="welcome-input-error"
-          style={{ opacity: password && !isPasswordValid(password) ? 1 : 0 }}
-        >
-          {startData.data.contentDetails.password.validationError}
-          </span> */}
+
           <span
             className="input-error" id="input-error"
           >{isInvalid ? errorMessage : ""}
           </span>
           <div className="welcome-helpdesk">
-            {/* {startData.data.contentDetails.helpdeskDetails.helpdeskTxt} */}
+
             {jsonData.data?.contentDetails?.helpdeskDetails?.helpdeskTxt}
             <br />
             <a
-              // href={`mailto:${startData.data.contentDetails.helpdeskDetails.mailTo}`}
+
               href={`mailto:${jsonData.data?.contentDetails?.helpdeskDetails?.mailTo}`}
             >
-              {/* {startData.data.contentDetails.helpdeskDetails.mailTo} */}
+
               {jsonData.data?.contentDetails?.helpdeskDetails?.mailTo}
             </a>
           </div>
@@ -162,7 +124,6 @@ const Login = (props: any) => {
             <div>
               <CustomButton className={"submitButton"}
                 onClick={handleClick}>
-                {/* {startData.data.contentDetails.submitBTnDetails.submitBTnTxt} */}
                 {jsonData.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
               </CustomButton>
             </div>

@@ -52,7 +52,7 @@ export function Introduction(props: Props) {
         </h3>
         <p className="introduction-content">
           {/* {Parser(introData.data.contentDetails.content)} */}
-          {Parser(jsonData?.data?.contentDetails?.content)}
+          {jsonData?.data?.contentDetails?.content}
         </p>
       </div>
       < Footer  >
@@ -60,8 +60,8 @@ export function Introduction(props: Props) {
           <div>
             <CustomButton className="submitButton"
               onClick={handleClick}>
-              {/* {introData.data.contentDetails.forwardBTnDetails.forwardBTnTxt} */}
-              {jsonData?.data?.contentDetails?.forwardBTnDetails?.forwardBTnTxt}
+              {introData.data.contentDetails.forwardBTnDetails.forwardBTnTxt}
+              {/* {jsonData?.data?.contentDetails?.forwardBTnDetails?.forwardBTnTxt} */}
             </CustomButton>
           </div>
         </div>
