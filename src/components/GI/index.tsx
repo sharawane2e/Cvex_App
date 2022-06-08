@@ -149,14 +149,19 @@ const GI = () => {
               {giInfo?.questions.map((genQues: any, index: number) => {
                 if (genQues.type === 'txt' || genQues.type === 'num') {
                   return genQues.type === 'txt' ? (
-                    <Grid item xs={12} md={6} className="inputCont">
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      className="inputCont"
+                      sx={{ borderBottom: '1px solid #c4c4c4' }}
+                    >
                       <Grid container>
                         <Grid item xs={4}>
                           <p>{genQues.optionName}</p>
                         </Grid>
                         <Grid item xs={8}>
                           <Inputbox
-                            // sx={{ p: 0 }}
                             className="inputField cutom-input-field"
                             id={genQues.questionId}
                             placeholder={genQues.placeholder}
@@ -174,7 +179,13 @@ const GI = () => {
                       {/* <Divider /> */}
                     </Grid>
                   ) : (
-                    <Grid item xs={12} md={6} className="inputCont">
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      className="inputCont"
+                      sx={{ borderBottom: '1px solid #c4c4c4' }}
+                    >
                       <Grid container>
                         <Grid item xs={4}>
                           <p>{genQues.optionName}</p>
@@ -200,7 +211,13 @@ const GI = () => {
                   );
                 } else if (genQues.type == 'dd' || genQues.type == 'year')
                   return (
-                    <Grid item xs={12} md={6} className="inputCont">
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      className="inputCont"
+                      sx={{ borderBottom: '1px solid #c4c4c4' }}
+                    >
                       <Grid container sx={{ alignItems: 'center' }}>
                         <Grid item xs={4}>
                           <p>{genQues.optionName} </p>
@@ -241,7 +258,13 @@ const GI = () => {
                 else if (genQues.type == 'sdd')
                   return (
                     <>
-                      <Grid item xs={12} md={6} className="inputCont">
+                      <Grid
+                        item
+                        xs={12}
+                        md={6}
+                        className="inputCont"
+                        sx={{ borderBottom: '1px solid #c4c4c4' }}
+                      >
                         <Grid container>
                           <Grid item xs={4}>
                             <p>{genQues.optionName} </p>
@@ -326,7 +349,13 @@ const GI = () => {
                 else if (genQues.type == 'ddd')
                   return (
                     <>
-                      <Grid item xs={12} md={6} className="inputCont">
+                      <Grid
+                        item
+                        xs={12}
+                        md={6}
+                        className="inputCont"
+                        sx={{ borderBottom: '1px solid #c4c4c4' }}
+                      >
                         <Grid container>
                           <Grid item xs={4}>
                             <p>{genQues.optionName} </p>
