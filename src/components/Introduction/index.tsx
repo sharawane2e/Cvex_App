@@ -17,7 +17,7 @@ export function Introduction(props: Props) {
       JSON.parse(document.getElementById("jsonData")?.innerText)
     );
     // @ts-ignore
-    console.log(JSON.parse(document.getElementById("jsonData")?.innerText))
+    //console.log(JSON.parse(document.getElementById("jsonData")?.innerText))
   }, []);
 
 
@@ -30,6 +30,7 @@ export function Introduction(props: Props) {
       document.getElementById("forwardbutton").click();
     }
   }
+  console.log(jsonData?.data?.contentDetails)
   return (
     <>
       <PrimaryHeader />
@@ -46,7 +47,7 @@ export function Introduction(props: Props) {
           <div>
             <CustomButton className="submitButton"
               onClick={handleClick}>
-              {getParsedData(jsonData?.data?.contentDetails?.forwardBTnDetails?.forwardBTnTxt)}
+              {getParsedData(jsonData?.data?.contentDetails?.submitBTnDetails?.forwardBTnTxt)}
             </CustomButton>
           </div>
         </div>

@@ -48,6 +48,7 @@ const GI = () => {
     setCountry(event.target.value);
   };
   const handleSector = (event: any, questionmap: any, questionoption2: any) => {
+    setServices([]);
     setSector(event.target.value);
     const selectedSector = getSddQ2Options(event, questionmap, questionoption2);
     setFilterService(selectedSector);
@@ -407,6 +408,9 @@ const GI = () => {
                                   className="inputField"
                                   value={services}
                                   multiple
+                                  renderValue={(selected) =>
+                                    selected.join(', ')
+                                  }
                                   onChange={(event) =>
                                     handleServices(
                                       event,
@@ -414,15 +418,12 @@ const GI = () => {
                                       genQues?.options3,
                                     )
                                   }
-                                  renderValue={(selected) =>
-                                    selected.join(', ')
-                                  }
                                 >
                                   {getFilterService?.map((element: any) => (
                                     <MenuItem
                                       value={element?.ddName}
                                       onClick={() =>
-                                        setServicesId(element?.ddId)
+                                         setServicesId(element?.ddId)
                                       }
                                     >
                                       <Checkbox
