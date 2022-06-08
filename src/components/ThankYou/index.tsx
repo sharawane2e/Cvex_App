@@ -52,7 +52,7 @@ const ThankYou = (props: Props) => {
       </div>
       < Footer  >
         <div className="button-container">
-          <div>
+          <div className="show-btn">
             <CustomButton className="submitButton"
               onClick={handleClick}>
               {getParsedData(jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)}
