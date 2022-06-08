@@ -55,7 +55,7 @@ const Login = (props: any) => {
       // @ts-ignore
       document.getElementById('navText').value =
         jsonData['data']['contentDetails']['submitBTnDetails'][
-        'forwardInputId'
+          'forwardInputId'
         ];
 
       // @ts-ignore
