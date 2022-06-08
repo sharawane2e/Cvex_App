@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import CustomSlider from '../UI/CustomSlider';
 import SecondaryHeader from '../Headers/SecondaryHeader';
 import ProgressBar from '../ProgressBar';
 import SideBar from '../Sidebar';
