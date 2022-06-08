@@ -34,7 +34,7 @@ const GI = () => {
 
   const giInfo = jsonData?.data?.rightData[0];
 
-  console.log(giInfo);
+  console.log(jsonData);
 
   const handlegeography = (
     event: any,
