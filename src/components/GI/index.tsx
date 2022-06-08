@@ -34,6 +34,8 @@ const GI = () => {
 
   const giInfo = jsonData?.data?.rightData[0];
 
+  console.log(giInfo);
+
   const handlegeography = (
     event: any,
     questionmap: any,
