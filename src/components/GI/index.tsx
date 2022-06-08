@@ -203,7 +203,7 @@ const GI = () => {
                     <Grid item xs={12} md={6} className="inputCont">
                       <Grid container sx={{ alignItems: 'center' }}>
                         <Grid item xs={4}>
-                          <p>{genQues.optionName}</p>
+                          <p>{genQues.optionName} </p>
                         </Grid>
                         <Grid item xs={8}>
                           <FormControl fullWidth>
@@ -217,7 +217,11 @@ const GI = () => {
                                 setState((state + 1) % 10);
                               }}
                             >
-                              <MenuItem disabled value="none">
+                              <MenuItem
+                                disabled
+                                value="none"
+                                className="selectItem"
+                              >
                                 <>{genQues.placeholder}</>
                               </MenuItem>
                               {genQues?.options?.map((elemnt: any) => (
@@ -261,12 +265,15 @@ const GI = () => {
                                 <MenuItem
                                   disabled
                                   value="none"
-                                  className="inputField cutom-input-field"
+                                  className="selectItem"
                                 >
                                   <>{genQues.placeholder}</>
                                 </MenuItem>
                                 {genQues?.options?.map((iteam: any) => (
-                                  <MenuItem value={iteam?.ddId}>
+                                  <MenuItem
+                                    value={iteam?.ddId}
+                                    className="selectItem"
+                                  >
                                     {iteam?.ddName}
                                   </MenuItem>
                                 ))}
@@ -297,14 +304,14 @@ const GI = () => {
                                 <MenuItem
                                   disabled
                                   value="none"
-                                  className="select-dropdown"
+                                  className="selectItem"
                                 >
                                   <>{genQues.placeholder}</>
                                 </MenuItem>
                                 {getFilterCountry.map((iteam: any) => (
                                   <MenuItem
                                     value={iteam?.ddId}
-                                    className="select-dropdown"
+                                    className="selectItem"
                                   >
                                     {iteam?.ddName}
                                   </MenuItem>
@@ -338,13 +345,17 @@ const GI = () => {
                                   )
                                 }
                               >
-                                <MenuItem disabled value="none">
+                                <MenuItem
+                                  disabled
+                                  value="none"
+                                  className="selectItem"
+                                >
                                   <>{genQues.placeholder}</>
                                 </MenuItem>
                                 {genQues?.options?.map((element: any) => (
                                   <MenuItem
                                     value={element?.ddId}
-                                    className="select-dropdown"
+                                    className="selectItem"
                                   >
                                     {element?.ddName}
                                   </MenuItem>
