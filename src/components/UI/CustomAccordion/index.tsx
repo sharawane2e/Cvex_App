@@ -59,6 +59,7 @@ export default function CustomAccordion() {
                   expandIcon={expanded == 'panel' + index2 ? <RemoveIcon /> : <AddIcon />}
                   aria-controls="panel1bh-content"
                   id="panel1bh-header"
+                  sx={{ m: 0, minHeight: 0 }}
                 >
                   <Typography sx={{ width: '33%', flexShrink: 0, fontWeight: 700 }}>
                     {elm.skillTitle}
