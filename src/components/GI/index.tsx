@@ -51,6 +51,7 @@ const GI = () => {
   };
   const handleSector = (event: any, questionmap: any, questionoption2: any) => {
     setSector(event.target.value);
+    setServices([]);
     const selectedSector = getSddQ2Options(event, questionmap, questionoption2);
     setFilterService(selectedSector);
   };
@@ -439,7 +440,7 @@ const GI = () => {
                         {getFilterService.length !== 0 ? (
                           <Grid container>
                             <Grid item xs={4}>
-                              <p>{genQues.optionName2}</p>
+                              <p className="gen-info">{genQues.optionName2}</p>
                             </Grid>
                             <Grid
                               item
@@ -504,7 +505,7 @@ const GI = () => {
                         {getFilterServiceData.length !== 0 ? (
                           <Grid container>
                             <Grid item xs={4}>
-                              <p>{genQues.optionName3}</p>
+                              <p className="gen-info">{genQues.optionName3}</p>
                             </Grid>
                             <Grid
                               item
@@ -581,7 +582,6 @@ const GI = () => {
                 onClick={undefined}
               >
                 {jsonData.data?.footerData?.previousTxt}
-                Pre
               </CustomButton>
               <CustomButton className={'submitButton'} onClick={undefined}>
                 {jsonData.data?.footerData?.forwardTxt}
