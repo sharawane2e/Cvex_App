@@ -34,8 +34,6 @@ const GI = () => {
 
   const giInfo = jsonData?.data?.rightData[0];
 
-  console.log(jsonData);
-
   const handlegeography = (
     event: any,
     questionmap: any,
@@ -186,7 +184,7 @@ const GI = () => {
                       xs={12}
                       md={6}
                       className="inputCont"
-                      sx={{ borderBottom: '1px solid #c4c4c4' }}
+                      sx={{ borderBottom: '1px solid #c4c4c4', pb: 1 }}
                     >
                       <Grid container>
                         <Grid item xs={4}>
@@ -456,7 +454,7 @@ const GI = () => {
                           ''
                         )}
 
-                        {false ? (
+                        {getFilterServiceData.length !== 0 ? (
                           <Grid container>
                             <Grid item xs={4}>
                               <p>{genQues.optionName3}</p>
