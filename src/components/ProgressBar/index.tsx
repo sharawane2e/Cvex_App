@@ -6,8 +6,15 @@ import Checkbox from "@mui/material/Checkbox";
 import CustomButton from "../UI/CustomButton";
 import questionData from "../../mock/questionData.json"
 import "./progressBar.scss";
+import { getParsedData } from '../../utils/parserUtil';
+import store from '../../redux/store';
+import { setProgressBar } from '../../redux/actions/QuestionPageAction';
 
-function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
+function LinearProgressWithLabel(props: LinearProgressProps & { value: number } & { jsonData: any }) {
+
+  const { dispatch } = store;
+
+  dispatch(setProgressBar("demo"));
   return (
     <div className="progressbar-container">
       <Box className="progressbar-innercontainer" sx={{ display: 'flex', alignItems: 'center' }}>
@@ -15,10 +22,10 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
           <LinearProgress variant="determinate" {...props} />
         </Box>
         <Box className="progressbar-text" sx={{ minWidth: 35 }}>
-          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.answeredTxt}</Typography>
-          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.totalAnswered}</Typography>
-          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.ofTxt}</Typography>
-          <Typography variant="body2" color="text.primary">{questionData.data.progressBarData.progressBarDetails.totalQues}</Typography>
+          <Typography variant="body2" color="text.primary">{getParsedData(props?.jsonData?.data?.progressBarData?.progressBarDetails?.answeredTxt)}</Typography>
+          <Typography variant="body2" color="text.primary">{props?.jsonData?.data?.progressBarData?.progressBarDetails?.totalAnswered}</Typography>
+          <Typography variant="body2" color="text.primary">{props?.jsonData?.data?.progressBarData?.progressBarDetails?.ofTxt}</Typography>
+          <Typography variant="body2" color="text.primary">{props?.jsonData?.data?.progressBarData?.progressBarDetails?.totalQues}</Typography>
           <Typography variant="body2" color="text.secondary">{`(${Math.round(
             props.value,
           )}%)`}</Typography>
@@ -34,23 +41,20 @@ export default function ProgressBar() {
   const [progress, setProgress] = useState(0);
   const questionsData = questionData;
   const [jsonData, setJSONData] = useState<any>("");
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     JSON.parse(document.getElementById("jsonData")?.innerHTML)
-  //   );
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById("jsonData")?.innerText)
+    );
 
-  // }, []);
-  const saveProgress = (event: any) => {
-    // if (jsonData !== "") {
-
-    //   // @ts-ignore
-    //   document.getElementById("navText").value =
-    //     jsonData["data"]["progressBarData"]["saveBtn"]["SelectedInputId"]
-    //   // @ts-ignore
-    //   document.getElementById("forwardbutton").click();
-
-    // }
+  }, []);
+  const saveProgress = (saveId: string) => {
+    // @ts-ignore
+    document.getElementById("navText").value = saveId;
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = false;
+    // @ts-ignore
+    document.getElementById("forwardbutton").click();
   }
   const submitProgress = (event: any) => {
 
@@ -81,22 +85,20 @@ export default function ProgressBar() {
     <>
       <Box className='topContainer'>
         <Box className='leftPanel'>
-          <LinearProgressWithLabel value={progress} />
+          <LinearProgressWithLabel value={progress} jsonData={jsonData} />
         </Box>
         <Box className='rightPanel'>
           <div className="button-container">
             <div>
               <CustomButton className={"submitButton previous-button"}
-                onClick={(e: any) => saveProgress(e)}>
-                {questionData.data.progressBarData.saveBtn.saveBtnTxt}
-                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                onClick={() => saveProgress(jsonData?.data?.progressBarData?.saveBtn?.saveId)}>
+                {getParsedData(jsonData?.data?.progressBarData?.saveBtn?.saveBtnTxt)}
               </CustomButton>
             </div>
             <div >
               <CustomButton className={"submitButton next-button"}
                 onClick={(e: any) => submitProgress(e)}>
-                {questionData.data.progressBarData.submitBtn.submitBtntxt}
-                {/* {jsonData["data"]["contentDetails"]["submitBTnDetails"]["submitBTnTxt"]} */}
+                {getParsedData(jsonData?.data?.progressBarData?.submitBtn?.submitBtntxt)}
               </CustomButton>
             </div>
           </div>
