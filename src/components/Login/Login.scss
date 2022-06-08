@@ -1,11 +1,12 @@
 .main-container {
   margin: 0 auto;
+  margin-top: 100px;
   // margin-top: 100px;
   width: 80%;
 
   .title {
     text-align: left;
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0px;
     color: #000000;
     margin-bottom: 15px;
@@ -14,7 +15,7 @@
   .content-area {
     p {
       text-align: left;
-      font-size: 16px;
+      font-size: 14px;
       color: #000000;
       margin-bottom: 30px;
     }
@@ -34,16 +35,22 @@
 }
 
 .input-error {
-  color: #b00020;
+  display: inline-block;
+  color: #ff0000;
+  font-size: 14px;
+  padding-top: 4px;
 }
 
 .welcome-helpdesk {
   margin-top: 60px;
   text-align: left;
-  font: normal normal normal 16px/21px Roboto;
   letter-spacing: 0px;
+  font-size: 14px;
 
   a {
+    display: block;
+    padding-top: 4px;
+    font-size: 12px;
     color: #2251ff;
   }
 }

@@ -1,35 +1,38 @@
-import PrimaryHeader from "../Headers/PrimaryHeader/index";
-import { jsonData as introData } from "../../mock/introData";
-import Parser from "html-react-parser";
-import "./Introduction.scss";
-import CustomButton from "../UI/CustomButton";
-import { Footer } from "../Footer";
-import React, { useEffect, useState } from "react";
-import "../Login/Login.scss";
-import { getParsedData } from "../../utils/parserUtil"
+import PrimaryHeader from '../Headers/PrimaryHeader/index';
+// import { jsonData as introData } from "../../mock/introData";
+// import Parser from "html-react-parser";
+import './Introduction.scss';
+import CustomButton from '../UI/CustomButton';
+import { Footer } from '../Footer';
+import React, { useEffect, useState } from 'react';
+import '../Login/Login.scss';
+import { getParsedData } from '../../utils/parserUtil';
 type Props = {};
 export function Introduction(props: Props) {
-  const [jsonData, setJSONData] = useState<any>("");
+  const [jsonData, setJSONData] = useState<any>('');
 
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerText)
+      JSON.parse(document.getElementById('jsonData')?.innerText),
     );
     // @ts-ignore
-    console.log(JSON.parse(document.getElementById("jsonData")?.innerText))
+    console.log(JSON.parse(document.getElementById('jsonData')?.innerText));
   }, []);
 
-
   const handleClick = () => {
-    if (jsonData !== "") {
+    if (jsonData !== '') {
       // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+      document.getElementById('navText').value =
+        jsonData['data']['contentDetails']['submitBTnDetails'][
+          'forwardInputId'
+        ];
       // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      document.getElementById('forwardbutton').disabled = false;
+      // @ts-ignore
+      document.getElementById('forwardbutton').click();
     }
-  }
+  };
   return (
     <>
       <PrimaryHeader />
@@ -41,16 +44,18 @@ export function Introduction(props: Props) {
           {getParsedData(jsonData?.data?.contentDetails?.content)}
         </p>
       </div>
-      < Footer  >
+      <Footer>
         <div className="button-container">
-          <div>
-            <CustomButton className="submitButton"
-              onClick={handleClick}>
-              {getParsedData(jsonData?.data?.contentDetails?.forwardBTnDetails?.forwardBTnTxt)}
-            </CustomButton>
-          </div>
+          <CustomButton
+            className="submitButton forword-btn"
+            onClick={handleClick}
+          >
+            {getParsedData(
+              jsonData?.data?.contentDetails?.submitBTnDetails?.forwardBTnTxt,
+            )}
+          </CustomButton>
         </div>
-      </ Footer>
+      </Footer>
     </>
   );
 }
