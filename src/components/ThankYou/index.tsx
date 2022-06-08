@@ -25,10 +25,10 @@ const ThankYou = (props: Props) => {
   const handleClick = () => {
     if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      // document.getElementById("navText").value =
+      //   jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+      // // @ts-ignore
+      // document.getElementById("forwardbutton").click();
     }
   }
   return (
