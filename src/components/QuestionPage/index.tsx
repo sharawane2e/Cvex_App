@@ -27,6 +27,8 @@ const QuestionPage = () => {
       document.getElementById('navText').value =
         jsonData.data?.footerData?.forwardBtn?.forwardInputId;
       // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
+      // @ts-ignore
       document.getElementById('forwardbutton').click();
     }
   };
@@ -36,6 +38,8 @@ const QuestionPage = () => {
       // @ts-ignore
       document.getElementById('navText').value =
         jsonData.data?.footerData?.previousBtn?.previousInputId;
+      // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
       document.getElementById('forwardbutton').click();
     }

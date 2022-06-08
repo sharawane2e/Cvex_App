@@ -1,51 +1,60 @@
-.question-wrapper{
-.main-container{
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 100px);
-    .left-panel{
-        width: 280px;
-        background-color: #051C2C;
-    }
-    .right-panel{
-        width: calc(100% - 280px);
-        position: relative;
-        padding: 20px;
-        .title{
+.question-wrapper {
+    .main-container {
+        display: flex;
+        width: 100%;
+        height: calc(100vh - 100px);
+
+        .left-panel {
+            width: 280px;
+            background-color: #051C2C;
+        }
+
+        .right-panel {
+            width: calc(100% - 280px);
+            position: relative;
             padding: 20px;
-            margin-bottom: 0;
-            h2{
-                font-size: 18px;
-            }
-        }
-        .question-container
-        {   
-            min-height: 600px;
             overflow-y: scroll;
-            height: 600px;
-            @media screen and (max-width:1200px){
-                min-height: 570px;
+
+            .title {
+                padding: 20px;
+                margin-bottom: 0;
+
+                h2 {
+                    font-size: 18px;
+                }
+            }
+
+            .question-container {
+                // min-height: 600px;
                 overflow-y: scroll;
-                height: 570px;
+                // height: 600px;
+
+                @media screen and (max-width:1200px) {
+                    min-height: 570px;
+                    overflow-y: scroll;
+                    height: 570px;
+                }
+            }
+        }
+
+        .footer {
+            .button-container {
+                justify-content: end;
+                padding: 0px 20px;
+
+                .previous-button {
+                    border: 1px solid #2251FF;
+                    background-color: #fff !important;
+                    color: #2251FF !important;
+                }
             }
         }
     }
-    .footer{
-        .button-container{
-            justify-content: end;
-            padding: 0px 20px;
-            .previous-button{
-                border:1px solid #2251FF;
-                background-color: #fff!important;
-                color: #2251FF !important;
-            }
+
+    @media screen and (max-width:1200px) {
+        .submitButton {
+            padding: 4px 0px !important;
+            width: 100px;
         }
     }
-}
-@media screen and (max-width:1200px){
-    .submitButton {
-        padding: 4px 0px !important;
-        width: 100px;
-    }
-}
 }
