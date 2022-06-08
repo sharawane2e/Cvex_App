@@ -1,5 +1,7 @@
 {
-  "pageCode": { "page": 4 },
+  "pageCode": {
+    "page": 4
+  },
   "data": {
     "headerData": {
       "title": "Customer Value Execution (CVEx) diagnostic",
@@ -92,27 +94,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -132,27 +135,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                      "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -172,27 +176,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -218,27 +223,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -258,27 +264,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -298,27 +305,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -349,27 +357,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -389,27 +398,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -435,27 +445,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -475,27 +486,28 @@
                     "ratingDetails": {
                       "defaultinputIdOpt": "3",
                       "SelectedInputId": "",
-                     "ratingOpt":  [{
-                        "value": 1,
-                        "label":"Disagree strongly"
-                    },
-                    {
-                        "value": 2,
-                        "label": "Disagree "
-                    },
-                    {
-                        "value": 3,
-                        "label": "Neutral"
-                    },
-                    {
-                        "value": 4,
-                        "label": "Agree"
-                    },
-                    {
-                        "value": 5,
-                        "label": "Agree strongly"
-                    }
-                  ],
+                      "ratingOpt": [
+                        {
+                          "value": 1,
+                          "label": "Disagree strongly"
+                        },
+                        {
+                          "value": 2,
+                          "label": "Disagree "
+                        },
+                        {
+                          "value": 3,
+                          "label": "Neutral"
+                        },
+                        {
+                          "value": 4,
+                          "label": "Agree"
+                        },
+                        {
+                          "value": 5,
+                          "label": "Agree strongly"
+                        }
+                      ],
                       "NAOptionTxt": "Don't Know",
                       "NAOptionInputId": ""
                     }
@@ -515,12 +527,14 @@
       "previousBtn": {
         "quesCode": "",
         "previousDisabled": "false",
-        "previousBtnTxt": "Previous","previousInputId":""
+        "previousBtnTxt": "Previous",
+        "previousInputId": ""
       },
       "forwardBtn": {
         "quesCode": "",
         "forwardDisabled": "false",
-        "forwardBtntxt": "Forward","forwardInputId":""
+        "forwardBtntxt": "Forward",
+        "forwardInputId": ""
       }
     }
   }
