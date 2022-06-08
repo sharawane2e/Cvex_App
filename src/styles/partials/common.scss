@@ -1,8 +1,9 @@
+@import "../../components/Headers/PrimaryHeader/PrimaryHeader.scss";
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif !important;
 }
 .container{
   position: relative;
@@ -48,4 +49,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #051C2C; 
 }
-@import "../../components/Headers/PrimaryHeader/PrimaryHeader.scss";
