@@ -31,7 +31,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
 
 
 export default function ProgressBar() {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(25);
   const questionsData = questionData;
   const [jsonData, setJSONData] = useState<any>("");
   // useEffect(() => {
