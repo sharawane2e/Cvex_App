@@ -16,12 +16,18 @@ export default function CustomAccordion() {
   const [expanded, setExpanded] = useState<string | false>(false);
   const [expandIconState, setExpandIconState] = useState(<AddIcon />);
   const [currClicked, setCurrCliked] = useState("");
+  const [jsonData, setJSONData] = useState<any>('');
+
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById('jsonData')?.innerText),
+    );
+  }, []);
 
 
-  const quesData = questionData.data.rightPanel.questionsData;
-  const subHeadingTextArr: any = quesData[0].subHeadingText; // Array with 2 objs
-  // console.log(subHeadingTextArr);
-  //   console.log(quesData);
+  const quesData = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText;
+
   const handleChange =
     (panel: string, idx: any) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
@@ -43,7 +49,7 @@ export default function CustomAccordion() {
     <>
 
       {
-        subHeadingTextArr.map((elm: any, index2: any) => {
+        quesData?.map((elm: any, index2: any) => {
           let title = elm.subTitle;
           return (
             <>
