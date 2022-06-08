@@ -11,6 +11,8 @@ import { Grid } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { Footer } from '../Footer';
 import CustomButton from '../UI/CustomButton';
+import { ReactComponent as InfoIocn } from '../../assets/svg/info-icon.svg';
+import Tooltip from '@mui/material/Tooltip';
 
 const GI = () => {
   const [state, setState] = useState(0);
@@ -132,7 +134,7 @@ const GI = () => {
       return true;
     }
   };
-
+  console.log(jsonData.data);
   return (
     <>
       <PrimaryHeader />
@@ -158,9 +160,16 @@ const GI = () => {
                     >
                       <Grid container>
                         <Grid item xs={4}>
-                          <p>{genQues.optionName}</p>
+                          <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid
+                          item
+                          xs={8}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <Tooltip title={genQues?.description} arrow>
+                            <InfoIocn className="info-icon" />
+                          </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
                             id={genQues.questionId}
@@ -188,9 +197,16 @@ const GI = () => {
                     >
                       <Grid container>
                         <Grid item xs={4}>
-                          <p>{genQues.optionName}</p>
+                          <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid
+                          item
+                          xs={8}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <Tooltip title={genQues?.description} arrow>
+                            <InfoIocn className="info-icon" />
+                          </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
                             id={genQues.questionId}
@@ -220,9 +236,16 @@ const GI = () => {
                     >
                       <Grid container sx={{ alignItems: 'center' }}>
                         <Grid item xs={4}>
-                          <p>{genQues.optionName} </p>
+                          <p className="gen-info">{genQues.optionName} </p>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid
+                          item
+                          xs={8}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <Tooltip title={genQues?.description} arrow>
+                            <InfoIocn className="info-icon" />
+                          </Tooltip>
                           <FormControl fullWidth>
                             <Select
                               sx={{ p: 0, borderRadius: 0, mb: 1 }}
@@ -267,9 +290,16 @@ const GI = () => {
                       >
                         <Grid container>
                           <Grid item xs={4}>
-                            <p>{genQues.optionName} </p>
+                            <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
-                          <Grid item xs={8}>
+                          <Grid
+                            item
+                            xs={8}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
+                            <Tooltip title={genQues?.description} arrow>
+                              <InfoIocn className="info-icon" />
+                            </Tooltip>
                             <FormControl fullWidth>
                               <Select
                                 sx={{ p: 0, borderRadius: 0, mb: 1 }}
@@ -305,9 +335,16 @@ const GI = () => {
                           </Grid>
 
                           <Grid item xs={4}>
-                            <p>{genQues.optionName2} </p>
+                            <p className="gen-info">{genQues.optionName2} </p>
                           </Grid>
-                          <Grid item xs={8}>
+                          <Grid
+                            item
+                            xs={8}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
+                            <Tooltip title={genQues?.description2} arrow>
+                              <InfoIocn className="info-icon" />
+                            </Tooltip>
                             <FormControl
                               sx={{
                                 width: '100%',
@@ -358,9 +395,14 @@ const GI = () => {
                       >
                         <Grid container>
                           <Grid item xs={4}>
-                            <p>{genQues.optionName} </p>
+                            <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
-                          <Grid item xs={8}>
+                          <Grid
+                            item
+                            xs={8}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
+                            <InfoIocn className="info-icon" />
                             <FormControl fullWidth>
                               <Select
                                 sx={{ mb: 1, borderRadius: 0 }}
@@ -399,7 +441,12 @@ const GI = () => {
                             <Grid item xs={4}>
                               <p>{genQues.optionName2}</p>
                             </Grid>
-                            <Grid item xs={8}>
+                            <Grid
+                              item
+                              xs={8}
+                              sx={{ display: 'flex', alignItems: 'center' }}
+                            >
+                              <InfoIocn className="info-icon" />
                               {/* {console.log(genQues)} */}
                               <FormControl fullWidth>
                                 <Select
@@ -459,7 +506,12 @@ const GI = () => {
                             <Grid item xs={4}>
                               <p>{genQues.optionName3}</p>
                             </Grid>
-                            <Grid item xs={8}>
+                            <Grid
+                              item
+                              xs={8}
+                              sx={{ display: 'flex', alignItems: 'center' }}
+                            >
+                              <InfoIocn className="info-icon" />
                               <FormControl fullWidth>
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
@@ -504,7 +556,40 @@ const GI = () => {
           </div>
         </div>
       </div>
-      <Footer>demo for footer {/* <CustomButton /> */}</Footer>
+      <Footer>
+        <div className="button-container">
+          {/* <div
+          className={
+            password && isPasswordValid(password) && password != ""
+              ? ""
+              : "cursor-block"
+          }
+        >
+          <CustomButton className={
+            password && isPasswordValid(password) && password != ""
+              ? "submitButton"
+              : "submitButton submit-block"
+          }
+            onClick={handleClick}>
+            {startData.data.contentDetails.submitBTnDetails.submitBTnTxt}
+          </CustomButton>
+        </div> */}
+          <div className="button-container">
+            <div className="button-inr-btn">
+              <CustomButton
+                className={'submitButton back-btn'}
+                onClick={undefined}
+              >
+                {jsonData.data?.footerData?.previousTxt}
+                Pre
+              </CustomButton>
+              <CustomButton className={'submitButton'} onClick={undefined}>
+                {jsonData.data?.footerData?.forwardTxt}
+              </CustomButton>
+            </div>
+          </div>
+        </div>
+      </Footer>
     </>
   );
 };

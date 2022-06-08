@@ -13,18 +13,16 @@ type InputProps = {
 };
 export function Inputbox(props: InputProps) {
   return (
-    <div>
-      <FormControl sx={{ width: '100%' }} variant="outlined">
-        <OutlinedInput
-          sx={{ p: 0, borderRadius: 0 }}
-          placeholder={props.placeholder}
-          id={props.id}
-          type={props.type}
-          onChange={props.onChange}
-          className={props.className}
-          onKeyUp={props.onKeyUp}
-        />
-      </FormControl>
-    </div>
+    <FormControl sx={{ width: '100%' }} variant="outlined">
+      <OutlinedInput
+        sx={{ p: 0, borderRadius: 0 }}
+        placeholder={props.placeholder}
+        id={props.id}
+        type={props.type}
+        onChange={props.onChange}
+        className={props.className}
+        onKeyUp={props.onKeyUp}
+      />
+    </FormControl>
   );
 }
