@@ -9,6 +9,7 @@
     }
     .right-panel{
         width: calc(100% - 280px);
+        overflow-y: scroll;
         position: relative;
         padding: 20px;
         .title{
