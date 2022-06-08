@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import "./Slider.scss";
-// import Radio from '@mui/material/Radio';
-import questionData from "../../../mock/questionData.json";
-import { Typography } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -25,23 +22,17 @@ const CustomSlider = (props: SliderProps) => {
 
 
     useEffect(() => {
-        console.log("Hello")
-        // @ts-ignore
-        //console.log(document.getElementById("jsonData"))
-
-        // setJSONData(
-        //     // @ts-ignore
-        //     JSON.parse(document.getElementById("jsonData")?.innerText)
-        // );
+        setJSONData(
+            // @ts-ignore
+            JSON.parse(document.getElementById("jsonData")?.innerText)
+        );
 
 
     }, []);
-
-    // const jsonData: any = questionData;
     const ratingData: any = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]?.sliderOptions?.ratingDetails?.ratingOpt;
     if (jsonData) {
         console.log("snoopdog")
-        console.log(jsonData)
+        console.log(ratingData)
     }
     const defaultValueSelected: any = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]?.sliderOptions?.ratingDetails?.defaultinputIdOpt;
 
@@ -54,7 +45,7 @@ const CustomSlider = (props: SliderProps) => {
 
     function valueLabelFormat(value: number) {
         // console.log(ratingData)
-        return ratingData.findIndex((ratingData: any) => ratingData.value === value) + 1;
+        return ratingData?.findIndex((ratingData: any) => ratingData.value === value) + 1;
     }
     // ratingData.forEach((el: any, index: any) => {
     //     // console.log(el)
@@ -72,6 +63,7 @@ const CustomSlider = (props: SliderProps) => {
             setDisableSlider(false)
         }
         setselectedValue(event.target.value)
+        console.log(selectedValue)
     };
     return (
         <>
@@ -81,9 +73,9 @@ const CustomSlider = (props: SliderProps) => {
                         <Box className="slider" >
                             <Slider
                                 aria-label="Restricted values"
-                                // defaultValue={defaultValueSelected}
-                                // valueLabelFormat={valueLabelFormat}
-                                // getAriaValueText={valuetext}
+                                defaultValue={defaultValueSelected}
+                                valueLabelFormat={valueLabelFormat}
+                                getAriaValueText={valuetext}
                                 valueLabelDisplay="off"
                                 marks={ratingData}
                                 min={1}

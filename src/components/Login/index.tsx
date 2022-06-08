@@ -53,7 +53,6 @@ const Login = (props: any) => {
 
   const handleClick = () => {
     if (jsonData !== "") {
-      console.log("handle cliecj hua")
 
       // if (password) {
       //   backpunchElem.value = password;
