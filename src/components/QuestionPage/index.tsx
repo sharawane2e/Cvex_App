@@ -66,8 +66,8 @@ const QuestionPage = () => {
           </div>
         </div>
         <Footer>
-          <div className="button-container">
-            <div>
+          <div className="button-container justi">
+            <div className='d-flex '>
               <CustomButton
                 className={'submitButton previous-button'}
                 onClick={(e: any) => previousHandleClick(e)}
