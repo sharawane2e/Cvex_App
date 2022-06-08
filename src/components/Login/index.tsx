@@ -5,7 +5,6 @@ import PrimaryHeader from '../Headers/PrimaryHeader/index';
 import { Inputbox } from '../UI/Input';
 import './Login.scss';
 import CustomButton from '../UI/CustomButton';
-import pageCode from '../../enums/pageCode';
 import { Footer } from '../Footer';
 import { getParsedData } from '../../utils/parserUtil';
 
