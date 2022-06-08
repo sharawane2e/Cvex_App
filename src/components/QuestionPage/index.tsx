@@ -9,6 +9,7 @@ import './QuestionPage.scss';
 import CustomButton from '../UI/CustomButton';
 import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';
+import { getParsedData } from '../../utils/parserUtil';
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
   // const questionsData = questionData;
@@ -52,7 +53,7 @@ const QuestionPage = () => {
             <ProgressBar />
             <div className="title">
               <h2>
-                {jsonData?.data?.rightPanel?.questionsData[0]?.capabilityTxt}
+                {getParsedData(jsonData?.data?.rightPanel?.questionsData[0]?.capabilityTxt)}
               </h2>
             </div>
             <div className="question-container">
@@ -67,7 +68,7 @@ const QuestionPage = () => {
                 className={'submitButton previous-button'}
                 onClick={(e: any) => previousHandleClick(e)}
               >
-                {jsonData?.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
+                {getParsedData(jsonData?.data?.footerData?.previousBtn?.previousBtnTxt)}
               </CustomButton>
             </div>
             <div>
@@ -75,7 +76,7 @@ const QuestionPage = () => {
                 className={'submitButton next-button'}
                 onClick={(e: any) => nextHandleClick(e)}
               >
-                {jsonData?.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
+                {getParsedData(jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt)}
               </CustomButton>
             </div>
           </div>
