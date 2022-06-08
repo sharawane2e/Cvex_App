@@ -30,12 +30,7 @@ const CustomSlider = (props: SliderProps) => {
 
     }, []);
     const ratingData: any = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]?.sliderOptions?.ratingDetails?.ratingOpt;
-    if (jsonData) {
-        console.log("snoopdog")
-        console.log(ratingData)
-    }
     const defaultValueSelected: any = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]?.sliderOptions?.ratingDetails?.defaultinputIdOpt;
-
     const [selectedValue, setselectedValue] = useState<Number>(defaultValueSelected);
 
 
@@ -44,7 +39,6 @@ const CustomSlider = (props: SliderProps) => {
     }
 
     function valueLabelFormat(value: number) {
-        // console.log(ratingData)
         return ratingData?.findIndex((ratingData: any) => ratingData.value === value) + 1;
     }
     // ratingData.forEach((el: any, index: any) => {
