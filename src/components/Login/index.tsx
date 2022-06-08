@@ -55,7 +55,7 @@ const Login = (props: any) => {
       // @ts-ignore
       document.getElementById('navText').value =
         jsonData['data']['contentDetails']['submitBTnDetails'][
-          'forwardInputId'
+        'forwardInputId'
         ];
 
       // @ts-ignore
@@ -77,7 +77,7 @@ const Login = (props: any) => {
   };
 
   return (
-    <>
+    <div className="login-container">
       <PrimaryHeader />
       <div className="main-container">
         <h3 className="title">
@@ -141,7 +141,7 @@ const Login = (props: any) => {
           </div>
         </div>
       </Footer>
-    </>
+    </div>
   );
 };
 
