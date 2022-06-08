@@ -14,7 +14,7 @@ const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
   // const questionsData = questionData;
   useEffect(() => {
-    console.log('questionpage is callled');
+   // console.log('questionpage is callled');
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
