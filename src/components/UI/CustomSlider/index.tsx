@@ -9,7 +9,9 @@ import FormControl from '@mui/material/FormControl';
 type SliderProps = {
     inputId: any,
     defaultValue: any,
-    sliderIndex: any;
+    sliderIndex: any,
+    NAOptionTxt: any,
+    NAoptionId: any;
 };
 
 const CustomSlider = (props: SliderProps) => {
@@ -121,17 +123,13 @@ const CustomSlider = (props: SliderProps) => {
                                 value="bottom"
                                 control={<Radio />}
                                 label={
-                                    jsonData?.data?.rightPanel?.questionsData[0]
-                                        ?.subHeadingText[0]?.subTitle[0]?.sliderOptions
-                                        ?.ratingDetails?.NAOptionTxt
+                                    props?.NAOptionTxt
                                 }
                                 labelPlacement="bottom"
                                 onChange={(event: any) =>
                                     handleChange(
                                         event,
-                                        jsonData?.data?.rightPanel?.questionsData[0]
-                                            ?.subHeadingText[0]?.subTitle[0]?.sliderOptions
-                                            ?.ratingDetails?.NAOptionInputId,
+                                        props?.NAoptionId
                                     )
                                 }
                                 checked={noneSelectedVal}
