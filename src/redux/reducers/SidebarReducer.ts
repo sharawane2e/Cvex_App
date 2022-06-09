@@ -1,22 +1,24 @@
-import { createReducer } from "@reduxjs/toolkit";
-import {
-    setSideBar
-} from "../actions/SideBarAction";
+import { createReducer } from '@reduxjs/toolkit';
+import { setSideBar } from '../actions/sideBarAction';
 
-const initialState: {
-  sidebartoggle: boolean;
-
-} = {
-  sidebartoggle: false,
+const initialState = {
+  sidebartoggle: true,
 };
 
-const filterReducer = createReducer(initialState, (builder) => {
-  builder.addCase(setSideBar, (state, action) => ({
-    ...state,
-    sidebartoggle: action.payload ,
-  }));
-
- 
+const SidebarReducer = createReducer(initialState, (builder) => {
+  // builder.addCase(setSideBar, (state, action) => ({
+  //   return {
+  //   ...state,
+  //   sidebartoggle: action.payload,
+  //   }
+  // }));
+  builder.addCase(setSideBar, (state, action) => {
+    return {
+      ...state,
+      sidebartoggle:
+        action.payload === undefined ? !state.sidebartoggle : !!action.payload,
+    };
+  });
 });
 
-export default filterReducer;
+export default SidebarReducer;

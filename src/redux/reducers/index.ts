@@ -1,23 +1,23 @@
-import { combineReducers } from "redux";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
-import QuestionPage from "./QuestionPageReducer";
-import sidebarReducer from "./SidebarReducer";
+import { combineReducers } from 'redux';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
+import QuestionPage from './QuestionPageReducer';
+import SidebarReducer from './SidebarReducer';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
-  whitelist: ["profile"],
+  whitelist: ['profile'],
 };
 
 const rootReducer = combineReducers({
-    question:QuestionPage,
-    sidebar:sidebarReducer,
-////   questions: questionReducer,
-//   filters: filterReducer,
-//   chart: chartReducer,
-//   tour: tourReducer,
-//   sidebar: sidebarReducer,
+  sidebar: SidebarReducer,
+  question: QuestionPage,
+  ////   questions: questionReducer,
+  //   filters: filterReducer,
+  //   chart: chartReducer,
+  //   tour: tourReducer,
+  //   sidebar: sidebarReducer,
   //question: persistReducer(persistConfig, QuestionPage),
 });
 

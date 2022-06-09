@@ -38,7 +38,7 @@ const SideBar = (props: SideBarProps) => {
     // @ts-ignore
     document.getElementById('forwardbutton').click();
   };
-  console.log('listItems', listItems);
+  //console.log('listItems', listItems);
 
   const ListItemsHandle = () => {
     return listItems?.map((listItem: any, index: any) => (
