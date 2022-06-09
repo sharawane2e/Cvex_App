@@ -2,7 +2,7 @@ import './SecondaryHeader.scss';
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as Hamburger } from '../../../assets/svg/hamburger.svg';
 import store, { RootState } from '../../../redux/store';
-import { setSideBar } from '../../../redux/actions/sideBarAction';
+import { setSideBar } from '../../../redux/actions/SideBarAction';
 import { ConstructionOutlined } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 // import Logo from "../../../assets/svg/logo.svg";
@@ -43,8 +43,8 @@ const SecondaryHeader = () => {
             {sidebartoggle ? (
               <Hamburger onClick={() => dispatch(setSideBar(false))} />
             ) : (
-              <Hamburger onClick={() => dispatch(setSideBar(true))} />
-            )}
+                <Hamburger onClick={() => dispatch(setSideBar(true))} />
+              )}
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}

@@ -3,14 +3,10 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import './accordion.scss';
-import questionData from '../../../mock/questionData.json';
-import { ConstructionOutlined } from '@mui/icons-material';
 import CustomSlider from '../CustomSlider';
-import Parser from 'html-react-parser';
 import { getParsedData } from '../../../utils/parserUtil';
 
 export default function CustomAccordion() {
@@ -18,32 +14,32 @@ export default function CustomAccordion() {
   const [expandIconState, setExpandIconState] = useState(<AddIcon />);
   const [currClicked, setCurrCliked] = useState('');
   const [jsonData, setJSONData] = useState<any>('');
-  // const questionsData = questionData;
+
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
   }, []);
-  //console.log('jsonData', jsonData);
+
 
   const quesData = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText;
 
   const handleChange =
     (panel: string, idx: any) =>
-    (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-      //   setExpandIconState(isExpanded ?  <RemoveIcon /> : <AddIcon />);
-      //   console.log(event.currentTarget);
-      setCurrCliked(panel);
-      //   console.log(currClicked);
-      //   {
-      //     quesData.map(function(ques, index) {
-      //         console.log(ques.capabilityTxt);
-      //         console.log(ques.subHeadingText);
-      //     })
-      //     }
-    };
+      (event: React.SyntheticEvent, isExpanded: boolean) => {
+        setExpanded(isExpanded ? panel : false);
+        //   setExpandIconState(isExpanded ?  <RemoveIcon /> : <AddIcon />);
+        //   console.log(event.currentTarget);
+        setCurrCliked(panel);
+        //   console.log(currClicked);
+        //   {
+        //     quesData.map(function(ques, index) {
+        //         console.log(ques.capabilityTxt);
+        //         console.log(ques.subHeadingText);
+        //     })
+        //     }
+      };
 
   return (
     <>
@@ -131,10 +127,61 @@ export default function CustomAccordion() {
                           return <CustomSlider inputId={el?.inputId} />;
                         },
                       )} */}
-                      {}
+                      { }
                       <CustomSlider
-                        inputId={elm3?.sliderOptions?.ratingDetails?.ratingOpt}
+                        inputId={elm3?.sliderOptions?.ratingDetails?.ratingOpt} sliderIndex={index3} defaultValue={elm3?.sliderOptions?.ratingDetails?.defaultinputIdOpt}
                       />
+                      {/* <div className="slider-container" id={index3}>
+                        <div className="slider-container-inner">
+                          <div className="sliderOuter">
+                            <Box className="slider">
+                              <Slider
+                                key={`slider-${defaultValueSelected}`}
+                                aria-label="Restricted values"
+                                defaultValue={elm3?.sliderOptions?.ratingDetails?.defaultinputIdOpt}
+                                valueLabelFormat={(value: any) => {
+                                  let ratingOptions = elm3?.sliderOptions?.ratingDetails?.ratingOpt;
+                                  console.log(
+                                    ratingOptions?.findIndex((ratingData: any) => ratingData.value === value) + 1
+                                  );
+                                  return (
+                                    ratingOptions?.findIndex((ratingData: any) => ratingData.value === value) + 1
+                                  );
+                                }}
+                                getAriaValueText={valuetext}
+                                valueLabelDisplay="off"
+                                marks={ratingData}
+                                min={1}
+                                max={5}
+                                track={false}
+                                onChange={(event: any, value: any) =>
+                                  onSliderChange(event, sliderChecked(event, elm3?.sliderOptions?.ratingDetails?.ratingOpt.inputId))
+                                }
+                                className={disableSlider ? 'knob-disabled' : ''}
+                              />
+                            </Box>
+                          </div>
+                          <FormControl className="sliderRightPanel" sx={{ width: 300 }}>
+                            <RadioGroup row name="position">
+                              <FormControlLabel
+                                value="bottom"
+                                control={<Radio />}
+                                label={
+                                  elm3?.sliderOptions?.ratingDetails?.NAOptionTxt
+                                }
+                                labelPlacement="bottom"
+                                onChange={(event: any) =>
+                                  handleChange1(
+                                    event,
+                                    elm3?.sliderOptions?.ratingDetails?.NAOptionInputId,
+                                  )
+                                }
+                                checked={noneSelectedVal}
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                        </div>
+                      </div> */}
                     </AccordionDetails>
                   </>
                 );
