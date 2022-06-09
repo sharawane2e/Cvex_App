@@ -1,12 +1,11 @@
 import PrimaryHeader from '../Headers/PrimaryHeader/index';
-// import { jsonData as introData } from "../../mock/introData";
-// import Parser from "html-react-parser";
 import './Introduction.scss';
 import CustomButton from '../UI/CustomButton';
 import { Footer } from '../Footer';
 import React, { useEffect, useState } from 'react';
 import '../Login/Login.scss';
 import { getParsedData } from '../../utils/parserUtil';
+
 type Props = {};
 export function Introduction(props: Props) {
   const [jsonData, setJSONData] = useState<any>('');
@@ -16,8 +15,6 @@ export function Introduction(props: Props) {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
-    // @ts-ignore
-    console.log(JSON.parse(document.getElementById('jsonData')?.innerText));
   }, []);
 
   const handleClick = () => {
@@ -33,6 +30,7 @@ export function Introduction(props: Props) {
       document.getElementById('forwardbutton').click();
     }
   };
+  console.log(jsonData?.data?.contentDetails);
   return (
     <>
       <PrimaryHeader />

@@ -57,9 +57,9 @@ const GI = () => {
     setFilterService(selectedSector);
   };
 
-  const handleEconomicStatus = (event:any) => {
+  const handleEconomicStatus = (event: any) => {
     setEconomicStatus(event.target.value);
-  }
+  };
 
   const handleServices = (
     event: any,
@@ -69,7 +69,7 @@ const GI = () => {
     const {
       target: { value },
     } = event;
-    console.log(event)
+    console.log(event);
     setServices(typeof value === 'string' ? value.split(',') : value);
 
     const selectedServices = getdddptions(
@@ -77,7 +77,7 @@ const GI = () => {
       questionmap,
       questionoption3,
     );
-    console.log("SelectedServices", selectedServices);
+    console.log('SelectedServices', selectedServices);
     setFilterServiceData(selectedServices);
     console.log(getFilterService);
     console.log(getFilterServiceData);
@@ -148,26 +148,27 @@ const GI = () => {
   const handlePrevClick = () => {
     if (jsonData !== '') {
       // @ts-ignore
-       document.getElementById("navText").value = jsonData?.data?.footerData?.previousInputId;
+      document.getElementById('navText').value =
+        jsonData?.data?.footerData?.previousInputId;
       // @ts-ignore
-      document.getElementById("forwardbutton").disabled = false;
+      document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      document.getElementById('forwardbutton').click();
     }
-  }
+  };
 
   const handleNextClick = () => {
     if (jsonData !== '') {
       // @ts-ignore
-       document.getElementById("navText").value = jsonData?.data?.footerData?.forwardInputId;
+      document.getElementById('navText').value =
+        jsonData?.data?.footerData?.forwardInputId;
       // @ts-ignore
-      document.getElementById("forwardbutton").disabled = false;
+      document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      document.getElementById('forwardbutton').click();
     }
   };
 
-  console.log(jsonData.data);
   return (
     <>
       <PrimaryHeader />
@@ -192,7 +193,11 @@ const GI = () => {
                       sx={{ borderBottom: '1px solid #c4c4c4' }}
                     >
                       <Grid container>
-                        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid
+                          item
+                          xs={4}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
                           <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
                         <Grid
@@ -205,11 +210,11 @@ const GI = () => {
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
-                            id={genQues.questionId+'_html'}
+                            id={genQues.questionId + '_html'}
                             placeholder={genQues.placeholder}
                             type={genQues.type == 'text' ? 'text' : ''}
                             value={genQues.selectedText}
-                            onChange={(e: any) =>{
+                            onChange={(e: any) => {
                               // (genQues.selectedText = e.target.value)
                               // // (setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...jsonData.rightData.questions,jsonData.rightData.questions[index].selectedText = e.target.value]}}))
                               // (
@@ -217,20 +222,33 @@ const GI = () => {
                               //     ? console.log('Valid Input')
                               //     : (e.target.value = ''),
                               // )
-                              const updatedQuestionsArray : any[] = [];
-                              jsonData.data.rightData.questions.forEach(function(CV:any){
-                                if(CV.questionId===genQues.questionId){
-                                  CV.selectedText = e.target.value;
-                                }
-                                updatedQuestionsArray.push(CV)
-                              })
+                              const updatedQuestionsArray: any[] = [];
+                              jsonData.data.rightData.questions.forEach(
+                                function (CV: any) {
+                                  if (CV.questionId === genQues.questionId) {
+                                    CV.selectedText = e.target.value;
+                                  }
+                                  updatedQuestionsArray.push(CV);
+                                },
+                              );
 
-                              setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
+                              setJSONData({
+                                ...jsonData,
+                                rightData: {
+                                  ...jsonData.rightData,
+                                  questions: [...updatedQuestionsArray],
+                                },
+                              });
+                              let element: any;
                               // @ts-ignore
-                              document.getElementById(genQues.questionId).value = e.target.value;
-                            }
-                              
-                            }
+                              // document.getElementById(
+                              //   genQues.questionId,
+                              // ).value = e.target.value;
+                              element = document.getElementById(
+                                `${genQues?.questionId}`,
+                              );
+                              element.value = e.target.value;
+                            }}
                           />
                         </Grid>
                       </Grid>
@@ -245,7 +263,11 @@ const GI = () => {
                       sx={{ borderBottom: '1px solid #c4c4c4', pb: 1 }}
                     >
                       <Grid container>
-                        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center'}}>
+                        <Grid
+                          item
+                          xs={4}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
                           <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
                         <Grid
@@ -258,7 +280,7 @@ const GI = () => {
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
-                            id={genQues.questionId+'_html'}
+                            id={genQues.questionId + '_html'}
                             placeholder={genQues.placeholder}
                             type={genQues.type == 'text' ? 'text' : ''}
                             // onChange={(e: any) =>
@@ -268,21 +290,33 @@ const GI = () => {
                             //       : (e.target.value = ''),
                             //   )
                             // }
-                            onChange={(e: any) =>{
-                              const updatedQuestionsArray : any[] = [];
-                              jsonData.data.rightData.questions.forEach(function(CV:any){
-                                if(CV.questionId===genQues.questionId){
-                                  CV.selectedText = e.target.value;
-                                }
-                                updatedQuestionsArray.push(CV)
-                              })
-
-                              setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
+                            onChange={(e: any) => {
+                              const updatedQuestionsArray: any[] = [];
+                              jsonData.data.rightData.questions.forEach(
+                                function (CV: any) {
+                                  if (CV.questionId === genQues.questionId) {
+                                    CV.selectedText = e.target.value;
+                                  }
+                                  updatedQuestionsArray.push(CV);
+                                },
+                              );
+                              let element: any;
+                              setJSONData({
+                                ...jsonData,
+                                rightData: {
+                                  ...jsonData.rightData,
+                                  questions: [...updatedQuestionsArray],
+                                },
+                              });
                               // @ts-ignore
-                              document.getElementById(genQues.questionId).value = e.target.value;
-                            }
-                              
-                            }
+                              // document.getElementById(
+                              //   genQues?.questionId,
+                              // )?.value = e.target.value;
+                              element = document.getElementById(
+                                `${genQues?.questionId}`,
+                              );
+                              element.value = e.target.value;
+                            }}
                           />
                         </Grid>
                       </Grid>
@@ -321,35 +355,33 @@ const GI = () => {
                               //   setState((state + 1) % 10);
                               // }}
                               // onChange={handleEconomicStatus}
-                                onChange={ (e) => {
-                    
-                                  const updatedQuestionsArray : any[] = [];
-                                  let dropdownId = "";
-                                  jsonData.data.rightData.questions.forEach(function(CV:any, idx:number){
-                                    if(CV.questionId==genQues.questionId){
-                                    //  console.log(CV)
-                                      CV.options.forEach((option:any) => {
-                                        if(option.ddName == e.target.value){
+                              onChange={(e) => {
+                                const updatedQuestionsArray: any[] = [];
+                                let dropdownId = '';
+                                jsonData.data.rightData.questions.forEach(
+                                  function (CV: any, idx: number) {
+                                    if (CV.questionId == genQues.questionId) {
+                                      //  console.log(CV)
+                                      CV.options.forEach((option: any) => {
+                                        if (option.ddName == e.target.value) {
                                           dropdownId = option.ddId;
                                           //console.log(option.ddId)
-                                          document.getElementById(option.ddId)?.click();
+                                          document
+                                            .getElementById(option.ddId)
+                                            ?.click();
                                         }
                                       });
                                     }
-                               
 
                                     // if(CV.options[idx].ddNa===genQues.options[idx].ddName){
                                     //   CV.selectedText = e.target.value;
                                     // }
                                     // updatedQuestionsArray.push(CV)
-                                  })
+                                  },
+                                );
 
-                                  // setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
-                          
-                                  
-                                }
-                                
-                              }
+                                // setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
+                              }}
                             >
                               <MenuItem
                                 disabled
@@ -383,7 +415,11 @@ const GI = () => {
                         sx={{ borderBottom: '1px solid #c4c4c4' }}
                       >
                         <Grid container>
-                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Grid
+                            item
+                            xs={4}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
                             <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
                           <Grid
@@ -428,7 +464,11 @@ const GI = () => {
                             </FormControl>
                           </Grid>
 
-                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Grid
+                            item
+                            xs={4}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
                             <p className="gen-info">{genQues.optionName2} </p>
                           </Grid>
                           <Grid
@@ -488,7 +528,11 @@ const GI = () => {
                         sx={{ borderBottom: '1px solid #c4c4c4' }}
                       >
                         <Grid container>
-                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Grid
+                            item
+                            xs={4}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
                             <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
                           <Grid
@@ -509,7 +553,6 @@ const GI = () => {
                                     genQues?.options2,
                                   )
                                 }
-                               
                               >
                                 <MenuItem
                                   disabled
@@ -560,12 +603,11 @@ const GI = () => {
                                     )
                                   }
                                 >
-                                  
                                   {getFilterService?.map((element: any) => (
                                     <MenuItem
                                       value={element?.ddName}
                                       onClick={() =>
-                                         setServicesId(element?.ddId)
+                                        setServicesId(element?.ddId)
                                       }
                                     >
                                       <Checkbox
@@ -622,12 +664,12 @@ const GI = () => {
                                   }
                                 >
                                   <MenuItem
-                                  disabled
-                                  value="none"
-                                  className="selectItem"
-                                >
-                                  <>{genQues.placeholder}</>
-                                </MenuItem>
+                                    disabled
+                                    value="none"
+                                    className="selectItem"
+                                  >
+                                    <>{genQues.placeholder}</>
+                                  </MenuItem>
                                   {getFilterServiceData?.map((element: any) => (
                                     <MenuItem
                                       value={element?.ddName}
@@ -685,7 +727,10 @@ const GI = () => {
               >
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton>
-              <CustomButton className={'submitButton'} onClick={handleNextClick}>
+              <CustomButton
+                className={'submitButton'}
+                onClick={handleNextClick}
+              >
                 {jsonData.data?.footerData?.forwardTxt}
               </CustomButton>
             </div>

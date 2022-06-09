@@ -1,3 +1,3 @@
-import Parser from "html-react-parser";
+import Parser from 'html-react-parser';
 
-export const getParsedData=(data:string)=>data ? Parser(data) : ""
+export const getParsedData = (data: any) => (data ? Parser(data) : '');
