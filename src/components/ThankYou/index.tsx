@@ -25,10 +25,10 @@ const ThankYou = (props: Props) => {
   const handleClick = () => {
     if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      // document.getElementById("navText").value =
+      //   jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
+      // // @ts-ignore
+      // document.getElementById("forwardbutton").click();
     }
   }
   return (
@@ -52,7 +52,7 @@ const ThankYou = (props: Props) => {
       </div>
       < Footer  >
         <div className="button-container">
-          <div>
+          <div className="show-btn">
             <CustomButton className="submitButton"
               onClick={handleClick}>
               {getParsedData(jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)}

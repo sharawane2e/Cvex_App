@@ -1,23 +1,28 @@
-.slider-container{
+.slider-container {
     display: inline-block;
     width: 100%;
+
     .slider-container-inner {
         display: flex;
         height: 145px;
+
         .sliderOuter {
             background-color: #E1E1E1;
             height: 5px;
             width: 750px;
             margin: auto;
-            .slider{
+
+            .slider {
                 margin: 0px auto;
                 width: 83%;
+
                 .MuiSlider-colorPrimary {
                     padding: 0px;
                     position: relative;
                 }
+
                 .MuiSlider-colorPrimary span {
-                    &::after{
+                    &::after {
                         position: absolute;
                         top: -45px;
                         left: -15px;
@@ -30,8 +35,9 @@
                         line-height: 30px;
                         color: #2251ff;
                     }
-                    &::before{
-                        
+
+                    &::before {
+
                         position: absolute;
                         top: -13px;
                         left: 0px;
@@ -40,39 +46,43 @@
                         background-color: #2251ff;
                     }
                 }
-                .MuiSlider-colorPrimary span:nth-child(3)::after
-                {
+
+                .MuiSlider-colorPrimary span:nth-child(3)::after {
                     content: "1";
                 }
+
                 .MuiSlider-colorPrimary span:nth-child(3)::before {
                     content: "";
                 }
-                .MuiSlider-colorPrimary span:nth-child(5)::after
-                {
+
+                .MuiSlider-colorPrimary span:nth-child(5)::after {
                     content: "2";
                 }
-                .MuiSlider-colorPrimary span:nth-child(5)::before
-                {
+
+                .MuiSlider-colorPrimary span:nth-child(5)::before {
                     content: "";
                 }
-                .MuiSlider-colorPrimary span:nth-child(7)::after
-                {
+
+                .MuiSlider-colorPrimary span:nth-child(7)::after {
                     content: "3";
                 }
+
                 .MuiSlider-colorPrimary span:nth-child(7)::before {
                     content: "";
                 }
-                .MuiSlider-colorPrimary span:nth-child(9)::after
-                {
+
+                .MuiSlider-colorPrimary span:nth-child(9)::after {
                     content: "4";
                 }
+
                 .MuiSlider-colorPrimary span:nth-child(9)::before {
                     content: "";
                 }
-                .MuiSlider-colorPrimary span:nth-child(11)::after
-                {
+
+                .MuiSlider-colorPrimary span:nth-child(11)::after {
                     content: "5";
                 }
+
                 .MuiSlider-colorPrimary span:nth-child(11)::before {
                     content: "";
                 }
@@ -96,7 +106,8 @@
                         color: #fff;
                     }
                 }
-                .MuiSlider-thumb{
+
+                .MuiSlider-thumb {
                     width: 20px !important;
                     height: 24px !important;
                     background: url("https://ui.e2eresearch.com/Mckinsey/assets/svg/knob-active.svg");
@@ -106,19 +117,24 @@
                     background-color: transparent !important;
                     -webkit-tap-highlight-color: transparent !important;
                     border-radius: 50% !important;
-                    &::before{
-                        box-shadow:none!important;
+
+                    &::before {
+                        box-shadow: none !important;
                         display: none !important;
                     }
-                    &:hover{
-                        box-shadow:none!important;
+
+                    &:hover {
+                        box-shadow: none !important;
                     }
-                    &.MuifocusVisible{
-                        box-shadow:none!important;
+
+                    &.MuifocusVisible {
+                        box-shadow: none !important;
                     }
+
                     &.css-eg0mwd-MuiSlider-thumb.Mui-focusVisible {
-                        box-shadow:none!important;
-                        }
+                        box-shadow: none !important;
+                    }
+
                     &::after {
                         display: none;
                     }
@@ -134,15 +150,16 @@
                         background-position: center;
                         background-color: transparent !important;
                     }
-                    .MuiSlider-markLabel.MuiSlider-markLabelActive{
+
+                    .MuiSlider-markLabel.MuiSlider-markLabelActive {
                         background-color: #E1E1E1;
                         color: #2A2A2A;
                         font-weight: 600;
                     }
-                    }
                 }
+            }
         }
-    
+
         .sliderRightPanel {
             width: 20%;
             border-left: 1px solid #E1E1E1;
@@ -152,6 +169,5 @@
             align-items: center;
         }
     }
-    
-    }
 
+}

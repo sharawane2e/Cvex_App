@@ -64,7 +64,8 @@
     }
 }
 
-.css-eglki6-MuiLinearProgress-root {
+.css-eglki6-MuiLinearProgress-root,
+.css-7p5u54 {
     height: 8px !important;
     background-color: #F7F7F7 !important;
     margin-left: 15px;
@@ -88,10 +89,12 @@
         width: 135px;
     }
 }
-@media screen and (max-width:1200px){
+
+@media screen and (max-width:1200px) {
     .progressbar-text.css-pazuet {
         width: 130px;
     }
+
     .css-eglki6-MuiLinearProgress-root {
         margin-left: 20px;
     }

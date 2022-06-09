@@ -56,6 +56,8 @@ const CustomSlider = (props: SliderProps) => {
     if (disableSlider == true) {
       setDisableSlider(false);
     }
+    console.log(disableSlider);
+    console.log(noneSelectedVal);
   };
 
   const sliderchecked = (event: any, inputId: any) => {

@@ -10,6 +10,7 @@ type InputProps = {
   onChange: any;
   className: string;
   onKeyUp?: any;
+  value?:string
 };
 export function Inputbox(props: InputProps) {
   return (
@@ -22,6 +23,7 @@ export function Inputbox(props: InputProps) {
         onChange={props.onChange}
         className={props.className}
         onKeyUp={props.onKeyUp}
+        value={props.value}
       />
     </FormControl>
   );

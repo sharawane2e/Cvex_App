@@ -48,7 +48,7 @@ export default function CustomAccordion() {
   return (
     <>
       {quesData?.map((elm: any, index2: any) => {
-        let title = elm?.subTitle;
+        let title = elm.subTitle;
         return (
           <>
             <Accordion
@@ -64,6 +64,7 @@ export default function CustomAccordion() {
                 }
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
+                sx={{ m: 0, minHeight: 0 }}
               >
                 <Typography
                   sx={{ width: '33%', flexShrink: 0, fontWeight: 700 }}
@@ -71,6 +72,37 @@ export default function CustomAccordion() {
                   {elm.skillTitle}
                 </Typography>
               </AccordionSummary>
+              {/* 
+                {
+                  title.map((elm3: any, index3: any) => {
+                    return (
+                      <>
+                        <AccordionDetails key={index3} className="accordDetail">
+                          <Typography sx={{ width: '33%', flexShrink: 0, fontWeight: 600 }}>
+                            {elm3.subTitleTxt}
+                          </Typography>
+
+                          <Typography className="question-text" sx={{ mt: "10px", flexShrink: 0 }}>
+                            {elm3.questionText}
+                          </Typography>
+                          <Typography className="bestpractices-text" sx={{ mt: "10px", flexShrink: 0 }}>
+                            {Parser(elm3.bestPracticesTxt)}
+                          </Typography>
+                          <CustomSlider />
+                        </AccordionDetails>
+                      </>
+                    )
+                  })
+                }
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography
+                  sx={{ width: '33%', flexShrink: 0, fontWeight: 700 }}
+                >
+                  {elm.skillTitle}
+                </Typography>
+              </AccordionSummary> */}
 
               {title.map((elm3: any, index3: any) => {
                 return (

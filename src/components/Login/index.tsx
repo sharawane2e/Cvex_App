@@ -5,7 +5,6 @@ import PrimaryHeader from '../Headers/PrimaryHeader/index';
 import { Inputbox } from '../UI/Input';
 import './Login.scss';
 import CustomButton from '../UI/CustomButton';
-import pageCode from '../../enums/pageCode';
 import { Footer } from '../Footer';
 import { getParsedData } from '../../utils/parserUtil';
 
@@ -56,7 +55,7 @@ const Login = (props: any) => {
       // @ts-ignore
       document.getElementById('navText').value =
         jsonData['data']['contentDetails']['submitBTnDetails'][
-          'forwardInputId'
+        'forwardInputId'
         ];
 
       // @ts-ignore
@@ -78,7 +77,7 @@ const Login = (props: any) => {
   };
 
   return (
-    <>
+    <div className="login-container">
       <PrimaryHeader />
       <div className="main-container">
         <h3 className="title">
@@ -142,7 +141,7 @@ const Login = (props: any) => {
           </div>
         </div>
       </Footer>
-    </>
+    </div>
   );
 };
 

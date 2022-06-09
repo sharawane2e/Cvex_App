@@ -17,7 +17,7 @@ const SideBar = (props: SideBarProps) => {
     document.getElementById("forwardbutton").disabled = true;
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById("jsonData")?.innerText)
     );
   }, []);
 
@@ -47,12 +47,10 @@ const SideBar = (props: SideBarProps) => {
     return listItems?.map((listItem: any, index: any) => (
 
       <ListItem onClick={() => { handleClick(listItem.selectedId) }} id={listItem.selectedId} selected={listItem.selectedId == currentSelectedItem ? true : false} className={"listitem-container"} button key={index}>
-        <ListItemButton >
-          <ListItemText className="listItem-option" primary={listItem.optionName} />
-          <ListItemText className="listItem" primary={listItem.totalAnswered} />
-          <ListItemText className="listItem" primary={listItem.outOfTxt} />
-          <ListItemText className="listItem" primary={listItem.totalQues} />
-        </ListItemButton>
+        <ListItemText className="listItem-option" primary={listItem.optionName} />
+        {/* <ListItemText className="listItem" primary={listItem.totalAnswered} />
+        <ListItemText className="listItem" primary={listItem.outOfTxt} />
+        <ListItemText className="listItem" primary={listItem.totalQues} /> */}
       </ListItem>
 
     ))
