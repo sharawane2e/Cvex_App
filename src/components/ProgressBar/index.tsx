@@ -11,13 +11,14 @@ import './progressBar.scss';
 import { getParsedData } from '../../utils/parserUtil';
 import store from '../../redux/store';
 import { setProgressBar } from '../../redux/actions/QuestionPageAction';
+import { useDispatch } from 'react-redux';
 
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number } & { jsonData: any },
 ) {
-  const { dispatch } = store;
+  const dispatch = useDispatch();
 
-  dispatch(setProgressBar('demo'));
+  // dispatch(setProgressBar('demo'));
   return (
     <div className="progressbar-container">
       <Box

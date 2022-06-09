@@ -52,15 +52,17 @@ const CustomSlider = (props: SliderProps) => {
     document.getElementById(inputId)?.click();
   };
 
-  const onSliderChange = (value: any, inputId: any) => {
+  const onSliderChange = (value: any, inputId: any, el: any) => {
+    let totalAnswered: any = [];
     if (disableSlider == true) {
       setDisableSlider(false);
     }
-    console.log(disableSlider);
-    console.log(noneSelectedVal);
+    totalAnswered.push(inputId);
+    console.log('totalAnswered', totalAnswered);
   };
 
   const sliderchecked = (event: any, inputId: any) => {
+    // debugger;
     let sliderId: any;
     inputId.map((el: any, index: any) => {
       const inputIdData = el?.inputId.split('_')[2];
@@ -70,9 +72,9 @@ const CustomSlider = (props: SliderProps) => {
         return currentID;
       }
     });
+
     const curentsliderId = sliderId.split('_')[2];
     let element: any;
-
     if (curentsliderId == event.target.value) {
       // @ts-ignore
       element = document.getElementById(`${sliderId}`);
@@ -99,7 +101,11 @@ const CustomSlider = (props: SliderProps) => {
                 max={5}
                 track={false}
                 onChange={(event: any, value: any) =>
-                  onSliderChange(event, sliderchecked(event, props?.inputId))
+                  onSliderChange(
+                    event,
+                    props?.inputId,
+                    sliderchecked(event, props?.inputId),
+                  )
                 }
                 className={disableSlider ? 'knob-disabled' : ''}
               />
