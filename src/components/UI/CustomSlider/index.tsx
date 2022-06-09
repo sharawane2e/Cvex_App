@@ -56,6 +56,8 @@ const CustomSlider = (props: SliderProps) => {
         setNoneSelectedVal(event.target.checked);
         document.getElementById(inputId)?.click();
         handleSliderValue("")
+        // @ts-ignore
+        // document.getElementById(props.NAoptionId).value =
     };
 
     const onSliderChange = (value: any, inputId: any) => {

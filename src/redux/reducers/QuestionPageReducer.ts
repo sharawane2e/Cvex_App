@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setProgressBar } from '../actions/QuestionPageAction';
+import { setProgressBar } from '../actions/ProgressBarAction';
 
 const initialState: {
   progressBar: any;
