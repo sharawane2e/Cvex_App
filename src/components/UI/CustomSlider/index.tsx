@@ -6,6 +6,9 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import { useDispatch } from 'react-redux';
+import { setAnswerCount } from '../../../redux/actions/ProgressBarAction';
+
 type SliderProps = {
     inputId: any,
     defaultValue: any,
@@ -18,6 +21,9 @@ const CustomSlider = (props: SliderProps) => {
     const [disableSlider, setDisableSlider] = useState<boolean>(false);
     const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(true);
     const [jsonData, setJSONData] = useState<any>('');
+    const [SelectedAnswer, setSelectedAnswer] = useState<any>([]);
+    const [answerCount, setAnswerCountdata] = useState<any>(0);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setDisableSlider(true);

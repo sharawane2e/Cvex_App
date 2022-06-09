@@ -10,14 +10,14 @@ import questionData from '../../mock/questionData.json';
 import './progressBar.scss';
 import { getParsedData } from '../../utils/parserUtil';
 import store from '../../redux/store';
-import { setProgressBar } from '../../redux/actions/QuestionPageAction';
-
+import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
+import { useDispatch } from 'react-redux';
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number } & { jsonData: any },
 ) {
-  const { dispatch } = store;
+  const dispatch = useDispatch();
 
-  dispatch(setProgressBar('demo'));
+  dispatch(setAnswerCount('demo'));
   return (
     <div className="progressbar-container">
       <Box
@@ -76,7 +76,7 @@ export default function ProgressBar() {
     // @ts-ignore
     document.getElementById('forwardbutton').click();
   };
-  const submitProgress = (event: any) => {};
+  const submitProgress = (event: any) => { };
   const progressBarUpdate = () => {
     var chkBoxes = document.querySelectorAll('.progCheck');
     var checkedCnt = 0;

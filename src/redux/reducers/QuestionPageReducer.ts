@@ -1,16 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setProgressBar } from '../actions/ProgressBarAction';
+import { setAnswerCount } from '../actions/ProgressBarAction';
 
 const initialState: {
-  progressBar: any;
+  answerCount: any;
 } = {
-  progressBar: '',
+  answerCount: 0,
 };
 
 const QuestionPage = createReducer(initialState, (builder) => {
-  builder.addCase(setProgressBar, (state, action) => ({
+  builder.addCase(setAnswerCount, (state, action) => ({
     ...state,
-    progressBar: action.payload,
+    answerCount: action.payload,
   }));
 });
 

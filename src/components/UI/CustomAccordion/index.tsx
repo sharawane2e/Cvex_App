@@ -22,23 +22,13 @@ export default function CustomAccordion() {
     );
   }, []);
 
-
   const quesData = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText;
 
   const handleChange =
     (panel: string, idx: any) =>
       (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
-        //   setExpandIconState(isExpanded ?  <RemoveIcon /> : <AddIcon />);
-        //   console.log(event.currentTarget);
         setCurrCliked(panel);
-        //   console.log(currClicked);
-        //   {
-        //     quesData.map(function(ques, index) {
-        //         console.log(ques.capabilityTxt);
-        //         console.log(ques.subHeadingText);
-        //     })
-        //     }
       };
 
   return (
@@ -68,37 +58,6 @@ export default function CustomAccordion() {
                   {elm.skillTitle}
                 </Typography>
               </AccordionSummary>
-              {/* 
-                {
-                  title.map((elm3: any, index3: any) => {
-                    return (
-                      <>
-                        <AccordionDetails key={index3} className="accordDetail">
-                          <Typography sx={{ width: '33%', flexShrink: 0, fontWeight: 600 }}>
-                            {elm3.subTitleTxt}
-                          </Typography>
-
-                          <Typography className="question-text" sx={{ mt: "10px", flexShrink: 0 }}>
-                            {elm3.questionText}
-                          </Typography>
-                          <Typography className="bestpractices-text" sx={{ mt: "10px", flexShrink: 0 }}>
-                            {Parser(elm3.bestPracticesTxt)}
-                          </Typography>
-                          <CustomSlider />
-                        </AccordionDetails>
-                      </>
-                    )
-                  })
-                }
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-              >
-                <Typography
-                  sx={{ width: '33%', flexShrink: 0, fontWeight: 700 }}
-                >
-                  {elm.skillTitle}
-                </Typography>
-              </AccordionSummary> */}
 
               {title.map((elm3: any, index3: any) => {
                 return (
