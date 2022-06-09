@@ -6,6 +6,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import { useDispatch } from 'react-redux';
+import { setAnswerCount } from '../../../redux/actions/QuestionPageAction';
 type SliderProps = {
   inputId: any;
 };
@@ -14,6 +16,9 @@ const CustomSlider = (props: SliderProps) => {
   const [disableSlider, setDisableSlider] = useState<boolean>(false);
   const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(true);
   const [jsonData, setJSONData] = useState<any>('');
+  const [SelectedAnswer, setSelectedAnswer] = useState<any>([]);
+  const [answerCount, setAnswerCountdata] = useState<any>(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setDisableSlider(true);
@@ -30,9 +35,6 @@ const CustomSlider = (props: SliderProps) => {
   const defaultValueSelected: any =
     jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]
       ?.sliderOptions?.ratingDetails?.defaultinputIdOpt;
-
-  const [selectedValue, setselectedValue] =
-    useState<Number>(defaultValueSelected);
 
   function valuetext(value: number) {
     return `${value}`;
@@ -52,17 +54,13 @@ const CustomSlider = (props: SliderProps) => {
     document.getElementById(inputId)?.click();
   };
 
-  const onSliderChange = (value: any, inputId: any, el: any) => {
-    let totalAnswered: any = [];
+  const onSliderChange = (event: any, inputId: any, el: any) => {
     if (disableSlider == true) {
       setDisableSlider(false);
     }
-    totalAnswered.push(inputId);
-    console.log('totalAnswered', totalAnswered);
   };
 
   const sliderchecked = (event: any, inputId: any) => {
-    // debugger;
     let sliderId: any;
     inputId.map((el: any, index: any) => {
       const inputIdData = el?.inputId.split('_')[2];
@@ -81,7 +79,34 @@ const CustomSlider = (props: SliderProps) => {
       element.checked = true;
     }
     setNoneSelectedVal(false);
+
+    sliderChecked(element.checked === true, inputId);
   };
+  //console.log(answerCount);
+
+  const sliderChecked = (elemntCheked: any, inputId: any) => {
+    let count = 0;
+    if (elemntCheked) {
+      // debugger;
+      setSelectedAnswer(inputId.length);
+      if (inputId.length > 0) {
+        setAnswerCountdata(answerCount + 1);
+        dispatch(setAnswerCount(answerCount + 1));
+        // count++;
+        //count = count + count;
+      }
+    }
+  };
+  // const dataArr: any = [];
+  // dataArr.push(SelectedAnswer);
+
+  // console.log('SelectedAnswer', dataArr);
+
+  const sliderClick = (inputId: any) => {
+    const curentID = sliderchecked('', inputId);
+    console.log(curentID);
+  };
+  // console.log(answerCount);
 
   return (
     <>
@@ -107,6 +132,7 @@ const CustomSlider = (props: SliderProps) => {
                     sliderchecked(event, props?.inputId),
                   )
                 }
+                onClick={() => sliderClick(props?.inputId)}
                 className={disableSlider ? 'knob-disabled' : ''}
               />
             </Box>

@@ -10,7 +10,7 @@ import questionData from '../../mock/questionData.json';
 import './progressBar.scss';
 import { getParsedData } from '../../utils/parserUtil';
 import store from '../../redux/store';
-import { setProgressBar } from '../../redux/actions/QuestionPageAction';
+import { setAnswerCount } from '../../redux/actions/QuestionPageAction';
 import { useDispatch } from 'react-redux';
 
 function LinearProgressWithLabel(

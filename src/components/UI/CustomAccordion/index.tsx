@@ -64,8 +64,6 @@ export default function CustomAccordion() {
               </AccordionSummary>
 
               {title.map((elm3: any, index3: any) => {
-                console.log(elm3);
-
                 return (
                   <>
                     <AccordionDetails key={index3} className="accordDetail">

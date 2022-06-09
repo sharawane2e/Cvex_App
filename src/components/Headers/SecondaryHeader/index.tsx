@@ -25,7 +25,6 @@ const SecondaryHeader = () => {
       dispatch(setSideBar(true));
     }
   };
-  console.log(sidebartoggle);
 
   return (
     <>
