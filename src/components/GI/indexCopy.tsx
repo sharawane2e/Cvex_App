@@ -43,105 +43,35 @@ const GI = () => {
     options?.forEach((element:any) => {
       if(element.ddId==selectedId){selectedDDName =  element.ddName}
     })
+    console.log(selectedId)
+    console.log(selectedDDName)
     return selectedDDName;
   }
 
+  // const handlegeography = (
+  //   event: any,
+  //   questionmap: any,
+  //   questionoption2: any,
+  // ) => {
+  //   setGeography(event.target.value);
+  //   const filterCountry = getSddQ2Options(event, questionmap, questionoption2);
+  //   setFilterCountry(filterCountry);
+  // };
 
-  const getselectedDDNameMulti = (options:any,selectedId:string) =>{
-    let selectedDDName:string[] = [];
-    let selectedIdArr = selectedId.split(',');
-
-    options.forEach(function(option:any){
-      if(selectedIdArr.indexOf(option.ddId)!= -1){
-        selectedDDName.push(option['ddName'])
-      }
-    })
-    
-    return selectedDDName;
-  }
-
-  const uncheckCheckboxes = (options:any[]) => {
-      options.forEach((currObj:any) => {
-        let elemId = currObj.ddId;
-        let elem = document.getElementById(elemId);
-        if(elem){
-          // @ts-ignore
-          elem.checked = false
-        }
-        
-      })
-   
-    
-  }
-
-  const checkCheckboxes = (ddIdsArr:any[]) => {
-    ddIdsArr.forEach((ddId:any) => {
-      let elemId = ddId;
-      let elem = document.getElementById(elemId);
-      if(elem){
-        // @ts-ignore
-        elem.checked = true
-      }
-    })
-  }
-
-  const mapContainsId = (map:any, selectedId:any) => {
-    selectedId = selectedId.split("_")[1];
-    console.log("SelectedId", selectedId);
-    const allMapIndex:string[] = [];
-    map.split("|").forEach((element:any) => {
-      allMapIndex.push(element.split(":")[0]);
-      // var currMapElm = element.split("|");
-      // if(selectedId == currMapElm.split(":")[0])
-      // {
-      //   return true;
-      // }
-    });
-
-    if(allMapIndex.indexOf(selectedId) != -1){
-      return true
-    }
-
-    return false;
-  }
-
-  const mapContainsId2 = (map:any, selectedId:any) => {
-    var selectedIdNumArr:string[] = [];
-    var selectedIdArr:string[] = selectedId.split(",");
-    let isCondition = false;
-    selectedIdArr.forEach((elm:any) => {
-      selectedIdNumArr.push(elm.split("_")[1]);
-    })
-    const allMapIndex:string[] = [];
-    map.split("|").forEach((element:any) => {
-      allMapIndex.push(element.split(":")[0]);
-    });
-
-    
-    selectedIdNumArr.forEach((currSelectedIdNum:string) => {
-      if(allMapIndex.indexOf(currSelectedIdNum) != -1){
-       
-        isCondition = true
-      }
-    }) 
-
-      return isCondition;
-    
-  }
 
   const handleCountry = (event: any) => {
     setCountry(event.target.value);
   };
-  // const handleSector = (event: any, questionmap: any, questionoption2: any) => {
-  //   setSector(event.target.value);
-  //   setServices([]);
-  //   const selectedSector = getSddQ2Options(event, questionmap, questionoption2);
-  //   setFilterService(selectedSector);
-  // };
-
-  const handleEconomicStatus = (event: any) => {
-    setEconomicStatus(event.target.value);
+  const handleSector = (event: any, questionmap: any, questionoption2: any) => {
+    setSector(event.target.value);
+    setServices([]);
+    const selectedSector = getSddQ2Options(event, questionmap, questionoption2);
+    setFilterService(selectedSector);
   };
+
+  const handleEconomicStatus = (event:any) => {
+    setEconomicStatus(event.target.value);
+  }
 
   const handleServices = (
     event: any,
@@ -151,7 +81,7 @@ const GI = () => {
     const {
       target: { value },
     } = event;
-    console.log(event);
+    console.log(event)
     setServices(typeof value === 'string' ? value.split(',') : value);
 
     const selectedServices = getdddptions(
@@ -159,7 +89,7 @@ const GI = () => {
       questionmap,
       questionoption3,
     );
-    console.log('SelectedServices', selectedServices);
+    console.log("SelectedServices", selectedServices);
     setFilterServiceData(selectedServices);
     console.log(getFilterService);
     console.log(getFilterServiceData);
@@ -170,62 +100,22 @@ const GI = () => {
     questionmap: any,
     questionoption2: any,
   ) => {
-    
-    let filteredData:string[] = [];
-    const DDIdArr:string[] = [];
-    const ddLabelArr = ddLabel.split(",");
-    if(ddLabelArr.length > 1)
-    {
-      ddLabelArr.forEach((elm:any) => {
-
-        let selectIquestion = elm.split('_')[1];
-        const mapQuesion = questionmap
-        .split('|')
-        .map((element: string) => element.split(':')[0]);
-
-
-      
-
-      const indexOfSelectIquestion = mapQuesion.indexOf(selectIquestion);
-      if(indexOfSelectIquestion != -1){
-        const joinedDDArr = questionmap.split("|")[indexOfSelectIquestion].split(":")[1];
-        joinedDDArr.split("-").forEach((CV:string)=>{DDIdArr.push(CV)})
-      }
-      
-      })
-
-      DDIdArr.forEach((ddId:any) => {
-        const filterIndex = filteredData.findIndex((x:any) => x.ddId ===ddId);
-        if(filterIndex==-1){
-          const returnedObj = questionoption2.filter((elm:any) => {
-            return ddId == elm.ddId;
-          })
-          console.log("returnedObj",returnedObj)
-          filteredData.push(...returnedObj)
-        }
-        
-      })
-      console.log(filteredData, "Filtered Data")
-      return filteredData;
+    let filteredData;
+    let selectIquestion = ddLabel.split('_')[1];
+    const mapQuesion = questionmap
+      .split('|')
+      .map((element: string) => element.split(':'));
+    const index = mapQuesion.findIndex((el: any) => el[0] == selectIquestion);
+    if (index === -1) {
+      filteredData = [];
+      setServices([]);
+    } else {
+      const optionsToRender = mapQuesion[index][1]?.split('-');
+      filteredData = questionoption2.filter((el: any) =>
+        optionsToRender.includes(el.ddId),
+      );
     }
-    else {
-      let selectIquestion = ddLabel.split('_')[1];
-      const mapQuesion = questionmap
-        .split('|')
-        .map((element: string) => element.split(':'));
-      const index = mapQuesion.findIndex((el: any) => el[0] == selectIquestion);
-      if (index === -1) {
-        filteredData = [];
-      } else {
-        const optionsToRender = mapQuesion[index][1]?.split('-');
-        filteredData = questionoption2.filter((el: any) =>
-          optionsToRender.includes(el.ddId),
-        );
-      }
-      console.log(ddLabel)
-      console.log(filteredData)
-      return filteredData;
-    }
+    return filteredData;
   };
 
   const getdddptions = (
@@ -233,6 +123,7 @@ const GI = () => {
     questionmap: any,
     questionoption3: any,
   ) => {
+    debugger;
 
     let filteredData;
     let selectIquestion = servicesId.split('_')[1];
@@ -249,7 +140,7 @@ const GI = () => {
         optionsToRender.includes(el.ddId),
       );
     }
-    // console.log(filteredData);
+    console.log(filteredData);
     return filteredData;
   };
 
@@ -269,24 +160,22 @@ const GI = () => {
   const handlePrevClick = () => {
     if (jsonData !== '') {
       // @ts-ignore
-      document.getElementById('navText').value =
-        jsonData?.data?.footerData?.previousInputId;
+       document.getElementById("navText").value = jsonData?.data?.footerData?.previousInputId;
       // @ts-ignore
-      document.getElementById('forwardbutton').disabled = false;
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
-      document.getElementById('forwardbutton').click();
+      document.getElementById("forwardbutton").click();
     }
-  };
+  }
 
   const handleNextClick = () => {
     if (jsonData !== '') {
       // @ts-ignore
-      document.getElementById('navText').value =
-        jsonData?.data?.footerData?.forwardInputId;
+       document.getElementById("navText").value = jsonData?.data?.footerData?.forwardInputId;
       // @ts-ignore
-      document.getElementById('forwardbutton').disabled = false;
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
-      document.getElementById('forwardbutton').click();
+      document.getElementById("forwardbutton").click();
     }
   };
 
@@ -314,11 +203,7 @@ const GI = () => {
                       sx={{ borderBottom: '1px solid #c4c4c4' }}
                     >
                       <Grid container>
-                        <Grid
-                          item
-                          xs={4}
-                          sx={{ display: 'flex', alignItems: 'center' }}
-                        >
+                        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
                           <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
                         <Grid
@@ -331,11 +216,11 @@ const GI = () => {
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
-                            id={genQues.questionId + '_html'}
+                            id={genQues.questionId+'_html'}
                             placeholder={genQues.placeholder}
                             type={genQues.type == 'text' ? 'text' : ''}
                             value={genQues.selectedText}
-                            onChange={(e: any) => {
+                            onChange={(e: any) =>{
                               // (genQues.selectedText = e.target.value)
                               // // (setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...jsonData.rightData.questions,jsonData.rightData.questions[index].selectedText = e.target.value]}}))
                               // (
@@ -343,9 +228,6 @@ const GI = () => {
                               //     ? console.log('Valid Input')
                               //     : (e.target.value = ''),
                               // )
-                              inputValidate(e.target.value.trim(), /^[A-Za-z ]+$/)
-                                  ? console.log('Valid Input')
-                                  : e.target.value = "";
                               const updatedQuestionsArray : any[] = [];
                               jsonData.data.rightData.questions.forEach(function(CV:any){
                                 if(CV.questionId===genQues.questionId){
@@ -354,23 +236,12 @@ const GI = () => {
                                 updatedQuestionsArray.push(CV)
                               })
 
-                              setJSONData({
-                                ...jsonData,
-                                rightData: {
-                                  ...jsonData.rightData,
-                                  questions: [...updatedQuestionsArray],
-                                },
-                              });
-                              let element: any;
+                              setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
                               // @ts-ignore
-                              // document.getElementById(
-                              //   genQues.questionId,
-                              // ).value = e.target.value;
-                              element = document.getElementById(
-                                `${genQues?.questionId}`,
-                              );
-                              element.value = e.target.value;
-                            }}
+                              document.getElementById(genQues.questionId).value = e.target.value;
+                            }
+                              
+                            }
                           />
                         </Grid>
                       </Grid>
@@ -385,11 +256,7 @@ const GI = () => {
                       sx={{ borderBottom: '1px solid #c4c4c4', pb: 1 }}
                     >
                       <Grid container>
-                        <Grid
-                          item
-                          xs={4}
-                          sx={{ display: 'flex', alignItems: 'center' }}
-                        >
+                        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center'}}>
                           <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
                         <Grid
@@ -402,7 +269,7 @@ const GI = () => {
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
-                            id={genQues.questionId + '_html'}
+                            id={genQues.questionId+'_html'}
                             placeholder={genQues.placeholder}
                             type={genQues.type == 'text' ? 'text' : ''}
                             value={genQues.selectedText}
@@ -414,10 +281,6 @@ const GI = () => {
                             //   )
                             // }
                             onChange={(e: any) =>{
-                              inputValidate(e.target.value.trim(), /^[0-9]+$/)
-                                  ? console.log('Valid Input')
-                                  : (e.target.value = "");
-
                               const updatedQuestionsArray : any[] = [];
                               jsonData.data.rightData.questions.forEach(function(CV:any){
                                 if(CV.questionId===genQues.questionId){
@@ -428,14 +291,10 @@ const GI = () => {
 
                               setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
                               // @ts-ignore
-                              // document.getElementById(
-                              //   genQues?.questionId,
-                              // )?.value = e.target.value;
-                              element = document.getElementById(
-                                `${genQues?.questionId}`,
-                              );
-                              element.value = e.target.value;
-                            }}
+                              document.getElementById(genQues.questionId).value = e.target.value;
+                            }
+                              
+                            }
                           />
                         </Grid>
                       </Grid>
@@ -538,11 +397,7 @@ const GI = () => {
                         sx={{ borderBottom: '1px solid #c4c4c4' }}
                       >
                         <Grid container>
-                          <Grid
-                            item
-                            xs={4}
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                          >
+                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
                             <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
                           <Grid
@@ -705,11 +560,7 @@ const GI = () => {
                         sx={{ borderBottom: '1px solid #c4c4c4' }}
                       >
                         <Grid container>
-                          <Grid
-                            item
-                            xs={4}
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                          >
+                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
                             <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
                           <Grid
@@ -727,16 +578,12 @@ const GI = () => {
                                   {
                                     let dropdownId = "";
                                     jsonData.data.rightData.questions.forEach((CV:any, idx:number)=>{
-                                      CV.selectedId2 = "";
-                                      CV.selectedId3 = "";
                                       if(CV.questionId==genQues.questionId){
                                         CV.options.forEach((option:any) => {
                                           if(option.ddName == event.target.value){
                                             dropdownId = option.ddId;
                                           
                                             document.getElementById(option.ddId)?.click();
-                                            uncheckCheckboxes(genQues.options2);
-                                            uncheckCheckboxes(genQues.options3);
                                           }
                                         });
                                       }
@@ -754,6 +601,7 @@ const GI = () => {
                                     setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
                                   }
                                 }
+                               
                               >
                                 <MenuItem
                                   disabled
@@ -775,7 +623,7 @@ const GI = () => {
                           </Grid>
                         </Grid>
 
-                        {(genQues.selectedId !== "" && mapContainsId(genQues.map, genQues.selectedId)) ? (
+                        {genQues.selectedId !== "" ? (
                           <Grid container>
                             <Grid item xs={4}>
                               <p className="gen-info">{genQues.optionName2}</p>
@@ -790,52 +638,45 @@ const GI = () => {
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
-                                  value={getselectedDDNameMulti(genQues.options2,genQues.selectedId2)} // genQues.selectedId2.split(", ")
-                                  multiple
+                                  value={"Helo"}
+                                  
                                   renderValue={(selected:any) =>{
-                                    // console.log(selected)
-                                    return selected.join(',')
-                                   // return ["hello",",hello2"]
+                                    console.log(selected)
+                                    return selected.join(', ')
                                   }
                                   }
                                   onChange={(event) =>
                                     {
-                                      uncheckCheckboxes(genQues.options2);
-                                      uncheckCheckboxes(genQues.options3);
-                                      let dropdownIdsArr:string[] = [];
+                                      let dropdownId = "";
                                       jsonData.data.rightData.questions.forEach((CV:any, idx:number)=>{
-                                        CV.selectedId3 = "";
                                         if(CV.questionId2==genQues.questionId2){
                                           CV.options2.forEach((option:any) => {
-                                            console.log(event.target.value);
-                                            const ddSelectedIndex = event.target.value.indexOf(option.ddName);
-                                              if( ddSelectedIndex != -1 ){
-                                                dropdownIdsArr.push(option.ddId);
+                                              if(option.ddName == event.target.value){
+                                                dropdownId = option.ddId;
+                                                document.getElementById(option.ddId)?.click();
                                               }
                                             });
-
-                                            checkCheckboxes(dropdownIdsArr)
                                           }
                                         })
-
                                         const updatedQuestionsArray : any[] = [];
                                         jsonData.data.rightData.questions.forEach(function(CV:any){
                                           if(CV.questionId2===genQues.questionId2){
-                                            
-                                            CV.selectedId2  = dropdownIdsArr.join();
-          
+                                            CV.selectedId2 = dropdownId;
                                           }
                                           updatedQuestionsArray.push(CV)
-                                          console.log(updatedQuestionsArray, "Array")
                                         })
-                                        
+
                                         setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
                                     }
                                   }
                                 >
-
-
-                                  {getSddQ2Options(genQues.selectedId,genQues.map,genQues.options2).map((element: any) => (
+                                  <MenuItem
+                                      value={"Demo"}
+                                     
+                                    >
+                                      </MenuItem>
+                                  
+                                  {genQues.options2.map((element: any) => (
                                     <MenuItem
                                       value={element?.ddName}
                                      
@@ -843,7 +684,8 @@ const GI = () => {
                                       <Checkbox
                                         value={element?.ddName}
                                         checked={
-                                          genQues.selectedId2.indexOf(element.ddId) != -1? true: false
+                                          //services.indexOf(element?.ddName) > -1
+                                          true
                                         }
                                         sx={{
                                           p: 0,
@@ -865,10 +707,11 @@ const GI = () => {
                               </FormControl>
                             </Grid>
                           </Grid>
-                        ) : null}
+                        ) : (
+                          ''
+                        )}
 
-
-                        {(genQues.selectedId2 !== "" && mapContainsId2(genQues.map2, genQues.selectedId2))? (
+                        {/* {genQues.selectedId2 !== "" ? (
                           <Grid container>
                             <Grid item xs={4}>
                               <p className="gen-info">{genQues.optionName3}</p>
@@ -883,44 +726,13 @@ const GI = () => {
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
-                                  value={getselectedDDNameMulti(genQues.options3,genQues.selectedId3)} // genQues.selectedId2.split(", ")
+                                  value={serviceOffer}
                                   multiple
                                   onChange={(event) =>
-                                    {
-                                      uncheckCheckboxes(genQues.options3);
-                                      let dropdownIdsArr:string[] = [];
-                                      jsonData.data.rightData.questions.forEach((CV:any, idx:number)=>{
-                                        if(CV.questionId3==genQues.questionId3){
-                                          CV.options3.forEach((option:any) => {
-                                            const ddSelectedIndex = event.target.value.indexOf(option.ddName);
-                                              if( ddSelectedIndex != -1 ){
-                                                dropdownIdsArr.push(option.ddId);
-                                                
-                                                document.getElementById(option.ddId)?.click();
-
-                                              }
-                                            });
-                                          }
-                                        })
-
-                                        const updatedQuestionsArray : any[] = [];
-                                        jsonData.data.rightData.questions.forEach(function(CV:any){
-                                          if(CV.questionId3===genQues.questionId3){
-                                            
-                                            CV.selectedId3  = dropdownIdsArr.join(",");
-          
-                                          }
-                      
-                                        })
-                                        
-                                        setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
-                                    }
+                                    handleServicesOffer(event)
                                   }
-                                  renderValue={(selected:any) =>{
-                                    // console.log(selected)
-                                    return selected.join(',')
-                                   //return ["hello",",hello2"]
-                                  }
+                                  renderValue={(selected) =>
+                                    selected.join(', ')
                                   }
                                 >
                                   <MenuItem
@@ -930,7 +742,7 @@ const GI = () => {
                                 >
                                   <>{genQues.placeholder}</>
                                 </MenuItem>
-                                  {getSddQ2Options(genQues.selectedId2,genQues.map2,genQues.options3).map((element: any) => (
+                                  {getFilterServiceData?.map((element: any) => (
                                     <MenuItem
                                       value={element?.ddName}
                                       //  onClick={() => setServicesId(element?.ddId)}
@@ -938,7 +750,9 @@ const GI = () => {
                                       <Checkbox
                                         value={element?.ddName}
                                         checked={
-                                          genQues.selectedId3.indexOf(element.ddId) != -1? true: false
+                                          serviceOffer.indexOf(
+                                            element?.ddName,
+                                          ) > -1
                                         }
                                       />
                                       <ListItemText primary={element?.ddName} />
@@ -950,7 +764,7 @@ const GI = () => {
                           </Grid>
                         ) : (
                           ''
-                        )}
+                        )} */}
                       </Grid>
                     </>
                   );
@@ -985,10 +799,7 @@ const GI = () => {
               >
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton>
-              <CustomButton
-                className={'submitButton'}
-                onClick={handleNextClick}
-              >
+              <CustomButton className={'submitButton'} onClick={handleNextClick}>
                 {jsonData.data?.footerData?.forwardTxt}
               </CustomButton>
             </div>
