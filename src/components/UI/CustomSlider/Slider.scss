@@ -19,6 +19,7 @@
                 .MuiSlider-colorPrimary {
                     padding: 0px;
                     position: relative;
+                    color: rgb(225 225 225);
                 }
 
                 .MuiSlider-colorPrimary span {
@@ -86,9 +87,8 @@
                 .MuiSlider-colorPrimary span:nth-child(11)::before {
                     content: "";
                 }
-
-                .MuiSlider-markLabel {
-                    display: flex;
+                .MuiSlider-markLabel{
+                    display:flex;
                     padding: 10px;
                     width: 130px;
                     align-items: center;
@@ -101,7 +101,7 @@
                     top: 15px;
                     height: 64px;
 
-                    &.MuiSlider-markLabelActive {
+                    &.MuiSlider-markLabelActive{
                         font-weight: 500;
                         background: #2251FF;
                         color: #fff;
@@ -139,15 +139,12 @@
                     &::after {
                         display: none;
                     }
-                }
-
-                .css-1aznpnh-MuiSlider-root,
-                .css-9cct2k {
-                    color: #CCCCCC;
-                }
-
-                .knob-disabled {
-                    .MuiSlider-thumb {
+                    }
+                    .css-1aznpnh-MuiSlider-root {
+                        color: #CCCCCC;
+                    }
+                    .knob-disabled{
+                        .MuiSlider-thumb{
                         background: url("https://ui.e2eresearch.com/Mckinsey/assets/svg/knob.svg");
                         background-size: 65%;
                         background-repeat: no-repeat;

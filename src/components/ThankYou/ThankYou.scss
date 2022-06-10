@@ -1,35 +1,57 @@
-.thankyou-container{
+.thankyou-container {
     width: 100%;
+    margin-top: 100px;
     text-align: center;
-    svg{
+
+    svg {
         height: 250px;
     }
-    .title{
+
+    .title {
 
         text-align: center;
     }
-    .content-area p{
+
+    .content-area p {
         text-align: center;
 
     }
 }
-.helpdesk{
+
+.helpdesk {
     width: 100%;
     background-color: #F1F1F1;
     text-align: center;
     padding: 30px;
-    p{
-        &:first-child{
+
+    p {
+        &:first-child {
             font-weight: 600;
             margin-bottom: 10px;
             font-size: 18px;
         }
-        &:nth-child(2){
+
+        &:nth-child(2) {
             font-size: 14px;
             margin-bottom: 10px;
         }
-        &:last-child{
+
+        &:last-child {
             font-size: 14px;
         }
     }
+}
+
+.show-btn {
+    button {
+        width: 200px !important;
+    }
+}
+
+.helpdesk {
+    margin-top: 40px;
+}
+
+.thankyou-container svg {
+    margin-bottom: 30px;
 }

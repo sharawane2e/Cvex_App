@@ -1,5 +1,3 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction } from '@reduxjs/toolkit';
 
-
-export const setSideBar = createAction<any>("SET_LET_SIDE_BAR");
-
+export const setSideBar = createAction<any>('SET_LEFT_SIDE_BAR');

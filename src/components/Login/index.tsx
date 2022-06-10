@@ -19,8 +19,6 @@ const Login = (props: any) => {
   const errorElem: any = document.getElementById('input-error');
   const backpunchElem: any = document.getElementById('QPassword');
 
-  console.log(password);
-
   useEffect(() => {
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = true;
@@ -34,20 +32,6 @@ const Login = (props: any) => {
 
   document.addEventListener('DOMContentLoaded', function (event) {
     errorElem.innerHTML = errorMessage;
-
-    // inputElem.addEventListener("keypress", function (event: any) {
-
-    //   if (event.key === "Enter") {
-    //     alert(event.key + " " + event.which);
-    //     event.preventDefault();
-    //   }
-    // });
-
-    // inputElem.addEventListener("keyup", function (event: any) {
-    //   if (event.target.value.trim() == "") {
-    //     event.target.value = "";
-    //   }
-    // })
   });
 
   const handleClick = () => {
@@ -55,7 +39,7 @@ const Login = (props: any) => {
       // @ts-ignore
       document.getElementById('navText').value =
         jsonData['data']['contentDetails']['submitBTnDetails'][
-        'forwardInputId'
+          'forwardInputId'
         ];
 
       // @ts-ignore

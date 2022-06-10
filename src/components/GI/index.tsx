@@ -139,9 +139,9 @@ const GI = () => {
   //   setFilterService(selectedSector);
   // };
 
-  const handleEconomicStatus = (event:any) => {
+  const handleEconomicStatus = (event: any) => {
     setEconomicStatus(event.target.value);
-  }
+  };
 
   const handleServices = (
     event: any,
@@ -151,7 +151,7 @@ const GI = () => {
     const {
       target: { value },
     } = event;
-    console.log(event)
+    console.log(event);
     setServices(typeof value === 'string' ? value.split(',') : value);
 
     const selectedServices = getdddptions(
@@ -159,7 +159,7 @@ const GI = () => {
       questionmap,
       questionoption3,
     );
-    console.log("SelectedServices", selectedServices);
+    console.log('SelectedServices', selectedServices);
     setFilterServiceData(selectedServices);
     console.log(getFilterService);
     console.log(getFilterServiceData);
@@ -269,22 +269,24 @@ const GI = () => {
   const handlePrevClick = () => {
     if (jsonData !== '') {
       // @ts-ignore
-       document.getElementById("navText").value = jsonData?.data?.footerData?.previousInputId;
+      document.getElementById('navText').value =
+        jsonData?.data?.footerData?.previousInputId;
       // @ts-ignore
-      document.getElementById("forwardbutton").disabled = false;
+      document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      document.getElementById('forwardbutton').click();
     }
-  }
+  };
 
   const handleNextClick = () => {
     if (jsonData !== '') {
       // @ts-ignore
-       document.getElementById("navText").value = jsonData?.data?.footerData?.forwardInputId;
+      document.getElementById('navText').value =
+        jsonData?.data?.footerData?.forwardInputId;
       // @ts-ignore
-      document.getElementById("forwardbutton").disabled = false;
+      document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      document.getElementById('forwardbutton').click();
     }
   };
 
@@ -312,7 +314,11 @@ const GI = () => {
                       sx={{ borderBottom: '1px solid #c4c4c4' }}
                     >
                       <Grid container>
-                        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Grid
+                          item
+                          xs={4}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
                           <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
                         <Grid
@@ -325,11 +331,11 @@ const GI = () => {
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
-                            id={genQues.questionId+'_html'}
+                            id={genQues.questionId + '_html'}
                             placeholder={genQues.placeholder}
                             type={genQues.type == 'text' ? 'text' : ''}
                             value={genQues.selectedText}
-                            onChange={(e: any) =>{
+                            onChange={(e: any) => {
                               // (genQues.selectedText = e.target.value)
                               // // (setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...jsonData.rightData.questions,jsonData.rightData.questions[index].selectedText = e.target.value]}}))
                               // (
@@ -348,12 +354,23 @@ const GI = () => {
                                 updatedQuestionsArray.push(CV)
                               })
 
-                              setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
+                              setJSONData({
+                                ...jsonData,
+                                rightData: {
+                                  ...jsonData.rightData,
+                                  questions: [...updatedQuestionsArray],
+                                },
+                              });
+                              let element: any;
                               // @ts-ignore
-                              document.getElementById(genQues.questionId).value = e.target.value;
-                            }
-                              
-                            }
+                              // document.getElementById(
+                              //   genQues.questionId,
+                              // ).value = e.target.value;
+                              element = document.getElementById(
+                                `${genQues?.questionId}`,
+                              );
+                              element.value = e.target.value;
+                            }}
                           />
                         </Grid>
                       </Grid>
@@ -368,7 +385,11 @@ const GI = () => {
                       sx={{ borderBottom: '1px solid #c4c4c4', pb: 1 }}
                     >
                       <Grid container>
-                        <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center'}}>
+                        <Grid
+                          item
+                          xs={4}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
                           <p className="gen-info">{genQues.optionName}</p>
                         </Grid>
                         <Grid
@@ -381,7 +402,7 @@ const GI = () => {
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
-                            id={genQues.questionId+'_html'}
+                            id={genQues.questionId + '_html'}
                             placeholder={genQues.placeholder}
                             type={genQues.type == 'text' ? 'text' : ''}
                             value={genQues.selectedText}
@@ -407,10 +428,14 @@ const GI = () => {
 
                               setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
                               // @ts-ignore
-                              document.getElementById(genQues.questionId).value = e.target.value;
-                            }
-                              
-                            }
+                              // document.getElementById(
+                              //   genQues?.questionId,
+                              // )?.value = e.target.value;
+                              element = document.getElementById(
+                                `${genQues?.questionId}`,
+                              );
+                              element.value = e.target.value;
+                            }}
                           />
                         </Grid>
                       </Grid>
@@ -513,7 +538,11 @@ const GI = () => {
                         sx={{ borderBottom: '1px solid #c4c4c4' }}
                       >
                         <Grid container>
-                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Grid
+                            item
+                            xs={4}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
                             <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
                           <Grid
@@ -676,7 +705,11 @@ const GI = () => {
                         sx={{ borderBottom: '1px solid #c4c4c4' }}
                       >
                         <Grid container>
-                          <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
+                          <Grid
+                            item
+                            xs={4}
+                            sx={{ display: 'flex', alignItems: 'center' }}
+                          >
                             <p className="gen-info">{genQues.optionName} </p>
                           </Grid>
                           <Grid
@@ -721,7 +754,6 @@ const GI = () => {
                                     setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
                                   }
                                 }
-                               
                               >
                                 <MenuItem
                                   disabled
@@ -953,7 +985,10 @@ const GI = () => {
               >
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton>
-              <CustomButton className={'submitButton'} onClick={handleNextClick}>
+              <CustomButton
+                className={'submitButton'}
+                onClick={handleNextClick}
+              >
                 {jsonData.data?.footerData?.forwardTxt}
               </CustomButton>
             </div>
