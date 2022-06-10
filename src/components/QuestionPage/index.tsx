@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import SecondaryHeader from '../Headers/SecondaryHeader';
 import ProgressBar from '../ProgressBar';
 import SideBar from '../Sidebar';
@@ -10,6 +8,8 @@ import CustomButton from '../UI/CustomButton';
 import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';
 import { getParsedData } from '../../utils/parserUtil';
+
+
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
   // const questionsData = questionData;
@@ -21,6 +21,15 @@ const QuestionPage = () => {
     );
   }, []);
 
+  const headingText = jsonData?.data?.rightPanel?.questionsData[0].subHeadingText
+  const progressData = () => {
+    return headingText?.map((element: any) => {
+      element.subTitle.map(() => {
+
+      })
+    })
+  }
+  progressData()
   const nextHandleClick = (event: any) => {
     if (jsonData !== '') {
       // @ts-ignore

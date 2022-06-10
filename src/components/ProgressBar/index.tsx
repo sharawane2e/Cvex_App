@@ -68,15 +68,18 @@ export default function ProgressBar() {
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
   }, []);
+
   const saveProgress = (saveId: string) => {
     // @ts-ignore
-    document.getElementById('navText').value = saveId;
+    document.getElementsByTagName('currentTab').value = saveId;
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = false;
     // @ts-ignore
     document.getElementById('forwardbutton').click();
   };
+
   const submitProgress = (event: any) => { };
+
   const progressBarUpdate = () => {
     var chkBoxes = document.querySelectorAll('.progCheck');
     var checkedCnt = 0;

@@ -8,40 +8,63 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useDispatch } from 'react-redux';
 import { setAnswerCount } from '../../../redux/actions/ProgressBarAction';
+import { FALSE } from 'node-sass';
 
 type SliderProps = {
     inputId: any,
     defaultValue: any,
     sliderIndex: any,
     NAOptionTxt: any,
-    NAoptionId: any;
+    NAoptionId: any,
+    selectedInputId: any;
 };
 
 const CustomSlider = (props: SliderProps) => {
     const [disableSlider, setDisableSlider] = useState<boolean>(false);
-    const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(true);
+    const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
     const [jsonData, setJSONData] = useState<any>('');
-    const [SelectedAnswer, setSelectedAnswer] = useState<any>([]);
+    const [selectedAnswer, setSelectedAnswer] = useState<any>([]);
     const [answerCount, setAnswerCountdata] = useState<any>(0);
     const dispatch = useDispatch();
 
+    let defaultValueSelected: any = props?.defaultValue;
+
+    const [selectedValue, setselectedValue] = useState<Number>(defaultValueSelected);
+
+    const ratingData: any =
+        jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]
+            ?.sliderOptions?.ratingDetails?.ratingOpt;
+
+    const selectedInputId = props?.selectedInputId;
+    const NAselectedInputId = props?.NAoptionId;
+    const backpunchsliderId = selectedInputId?.split('_')[2];
+    const backpunchsliderIdNA = NAselectedInputId?.split('_')[2];
+
+    const backpunchHandle = () => {
+        if (selectedInputId !== "") {
+            setDisableSlider(false)
+            if (backpunchsliderId == backpunchsliderIdNA) {
+            }
+        }
+        else {
+            setDisableSlider(true);
+            setNoneSelectedVal(false);
+        }
+    }
     useEffect(() => {
-        setDisableSlider(true);
-        setNoneSelectedVal(false);
+        if (selectedInputId == "") {
+            setDisableSlider(true);
+            setNoneSelectedVal(false);
+        }
+        else {
+            backpunchHandle()
+            optionNACheck()
+        }
         setJSONData(
             // @ts-ignore
             JSON.parse(document.getElementById('jsonData')?.innerText),
         );
     }, []);
-
-    const ratingData: any =
-        jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]
-            ?.sliderOptions?.ratingDetails?.ratingOpt;
-    let defaultValueSelected: any = props?.defaultValue;
-    const selectedInputId = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]
-        ?.sliderOptions?.ratingDetails?.SelectedInputId;
-    const [selectedValue, setselectedValue] =
-        useState<Number>(defaultValueSelected);
 
     function valuetext(value: number) {
         return `${value}`;
@@ -53,19 +76,28 @@ const CustomSlider = (props: SliderProps) => {
         );
     }
 
-    console.log(defaultValueSelected)
-
     const handleChange = (event: any, inputId: any) => {
         if (event.target.checked === true) {
             setDisableSlider(true);
+            if (selectedInputId !== "" && NAselectedInputId === selectedInputId) {
+                setNoneSelectedVal(true);
+            }
         }
         setNoneSelectedVal(event.target.checked);
         document.getElementById(inputId)?.click();
         handleSliderValue("")
-        // @ts-ignore
-        // document.getElementById(props.NAoptionId).value =
-    };
 
+    };
+    const optionNACheck = () => {
+        if (selectedInputId !== "" && NAselectedInputId === selectedInputId) {
+            setNoneSelectedVal(true);
+            setDisableSlider(true);
+            return true
+        }
+        else {
+            return false
+        }
+    };
     const onSliderChange = (value: any, inputId: any) => {
         if (disableSlider == true) {
             setDisableSlider(false);
@@ -89,7 +121,7 @@ const CustomSlider = (props: SliderProps) => {
             element = document.getElementById(`${sliderId}`);
             element.checked = true;
             // @ts-ignore
-            document.getElementById(`${selectedInputId}`).value = sliderId
+            document.getElementById(sliderId).click();
         }
         handleSliderValue(event.target.value)
         setNoneSelectedVal(false);
@@ -101,6 +133,7 @@ const CustomSlider = (props: SliderProps) => {
         }
     }
 
+
     return (
         <>
             <div className="slider-container" id={props.sliderIndex}>
@@ -110,7 +143,7 @@ const CustomSlider = (props: SliderProps) => {
                             <Slider
                                 key={`slider-${defaultValueSelected}`}
                                 aria-label="Restricted values"
-                                defaultValue={defaultValueSelected}
+                                defaultValue={selectedInputId !== "" ? backpunchsliderId == backpunchsliderIdNA ? defaultValueSelected : backpunchsliderId : defaultValueSelected}
                                 valueLabelFormat={valueLabelFormat}
                                 getAriaValueText={valuetext}
                                 valueLabelDisplay="off"

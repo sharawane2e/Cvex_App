@@ -7,11 +7,11 @@ const initialState: {
   answerCount: 0,
 };
 
-const QuestionPage = createReducer(initialState, (builder) => {
+const ProgressBarReducer = createReducer(initialState, (builder) => {
   builder.addCase(setAnswerCount, (state, action) => ({
     ...state,
     answerCount: action.payload,
   }));
 });
 
-export default QuestionPage;
+export default ProgressBarReducer;

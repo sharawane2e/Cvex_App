@@ -88,7 +88,7 @@ export default function CustomAccordion() {
                       )} */}
                       { }
                       <CustomSlider
-                        inputId={elm3?.sliderOptions?.ratingDetails?.ratingOpt} sliderIndex={index3} defaultValue={elm3?.sliderOptions?.ratingDetails?.defaultinputIdOpt} NAOptionTxt={elm3?.sliderOptions?.ratingDetails?.NAOptionTxt} NAoptionId={elm3?.sliderOptions?.ratingDetails?.NAOptionInputId}
+                        inputId={elm3?.sliderOptions?.ratingDetails?.ratingOpt} sliderIndex={index3} defaultValue={elm3?.sliderOptions?.ratingDetails?.defaultinputIdOpt} NAOptionTxt={elm3?.sliderOptions?.ratingDetails?.NAOptionTxt} NAoptionId={elm3?.sliderOptions?.ratingDetails?.NAOptionInputId} selectedInputId={elm3?.sliderOptions?.ratingDetails?.SelectedInputId}
                       />
                       {/* <div className="slider-container" id={index3}>
                         <div className="slider-container-inner">

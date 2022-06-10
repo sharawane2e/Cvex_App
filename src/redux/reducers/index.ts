@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
-import QuestionPage from './QuestionPageReducer';
+import ProgressBarReducer from './ProgressBarReducer';
 import SidebarReducer from './SidebarReducer';
 
 const persistConfig = {
@@ -12,7 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   sidebar: SidebarReducer,
-  question: QuestionPage,
+  progress: ProgressBarReducer,
   ////   questions: questionReducer,
   //   filters: filterReducer,
   //   chart: chartReducer,
