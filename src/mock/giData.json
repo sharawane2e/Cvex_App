@@ -1649,7 +1649,7 @@
             "placeholder": "$",
             "description": "Currency conversion using latest year average rate as per www.oanda.com",
             "questionId": "A15",
-            "selectedText": "",
+            "selectedText": "55",
             "selectedId": "A15",
             "afterText": "",
             "maxLength": 28,
