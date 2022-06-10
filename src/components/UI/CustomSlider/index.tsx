@@ -8,32 +8,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useDispatch } from 'react-redux';
 import { setAnswerCount } from '../../../redux/actions/ProgressBarAction';
-import { FALSE } from 'node-sass';
 
 type SliderProps = {
     inputId: any,
     defaultValue: any,
     sliderIndex: any,
+    subHeadingIndex: number
     NAOptionTxt: any,
     NAoptionId: any,
-    selectedInputId: any;
+    selectedInputId: any,
+    ratingData: any,
+    handleSliderChange: any
 };
 
 const CustomSlider = (props: SliderProps) => {
     const [disableSlider, setDisableSlider] = useState<boolean>(false);
     const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
-    const [jsonData, setJSONData] = useState<any>('');
-    const [selectedAnswer, setSelectedAnswer] = useState<any>([]);
-    const [answerCount, setAnswerCountdata] = useState<any>(0);
-    const dispatch = useDispatch();
 
     let defaultValueSelected: any = props?.defaultValue;
 
     const [selectedValue, setselectedValue] = useState<Number>(defaultValueSelected);
 
-    const ratingData: any =
-        jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText[0]?.subTitle[0]
-            ?.sliderOptions?.ratingDetails?.ratingOpt;
+    const ratingData: any = props?.ratingData;
 
     const selectedInputId = props?.selectedInputId;
     const NAselectedInputId = props?.NAoptionId;
@@ -60,10 +56,7 @@ const CustomSlider = (props: SliderProps) => {
             backpunchHandle()
             optionNACheck()
         }
-        setJSONData(
-            // @ts-ignore
-            JSON.parse(document.getElementById('jsonData')?.innerText),
-        );
+
     }, []);
 
     function valuetext(value: number) {
@@ -116,12 +109,12 @@ const CustomSlider = (props: SliderProps) => {
         });
         const curentsliderId = sliderId.split('_')[2];
         let element: any;
-
         if (curentsliderId == event.target.value) {
             element = document.getElementById(`${sliderId}`);
             element.checked = true;
             // @ts-ignore
             document.getElementById(sliderId).click();
+
         }
         handleSliderValue(event.target.value)
         setNoneSelectedVal(false);
@@ -143,7 +136,7 @@ const CustomSlider = (props: SliderProps) => {
                             <Slider
                                 key={`slider-${defaultValueSelected}`}
                                 aria-label="Restricted values"
-                                defaultValue={selectedInputId !== "" ? backpunchsliderId == backpunchsliderIdNA ? defaultValueSelected : backpunchsliderId : defaultValueSelected}
+                                value={selectedInputId !== "" ? backpunchsliderId == backpunchsliderIdNA ? defaultValueSelected : backpunchsliderId : defaultValueSelected}
                                 valueLabelFormat={valueLabelFormat}
                                 getAriaValueText={valuetext}
                                 valueLabelDisplay="off"
@@ -151,8 +144,16 @@ const CustomSlider = (props: SliderProps) => {
                                 min={1}
                                 max={5}
                                 track={false}
-                                onChange={(event: any, value: any) =>
+                                onChange={(event: any, value: any) => {
+                                    //console.log()
+                                    const sliderValue = ratingData[event.target.value - 1].inputId
+                                    //console.log(event)
                                     onSliderChange(event, sliderChecked(event, props?.inputId))
+                                    // console.log("slider change")
+                                    props.handleSliderChange(sliderValue, props?.sliderIndex, props?.subHeadingIndex)
+                                }
+
+
                                 }
                                 className={disableSlider ? 'knob-disabled' : ''}
                             />
