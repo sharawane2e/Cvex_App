@@ -488,7 +488,7 @@ export default function CustomAccordion(props: AccordionProps) {
                         aria-label="minimum height"
                         minRows={2}
                         placeholder={elm?.obsplaceholder}
-                        style={{ width: "100%", marginTop: 20, padding: 0 }}
+                        style={{ width: "100%", marginTop: 20, padding: 5 }}
                       />
                     </AccordionDetails>
                   </>
