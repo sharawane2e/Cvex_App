@@ -27,7 +27,7 @@ const QuestionPage = () => {
   dispatch(setQuestionPageData(jsonData))
   console.log(jsonData)
   const headingText =
-    jsonData?.data?.rightPanel?.questionsData[0].subHeadingText;
+    jsonData?.data?.rightPanel?.questionsData?.subHeadingText;
   const progressData = () => {
     return headingText?.map((element: any) => {
       element.subTitle.map((title: any) => {

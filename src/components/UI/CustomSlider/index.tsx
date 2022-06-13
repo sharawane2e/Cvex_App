@@ -95,17 +95,17 @@ const CustomSlider = (props: SliderProps) => {
 
   const sliderChecked = (event: any, inputId: any) => {
     let sliderId: any;
+    debugger
     inputId.map((el: any, index: any) => {
       const inputIdData = el?.inputId.split('_')[2];
       if (inputIdData == event.target.value) {
         const currentID: any = el?.inputId;
         sliderId = currentID;
-        console.log(currentID)
         return currentID;
       }
     });
     const curentsliderId = sliderId.split('_')[2];
-    let element: any;
+    // let element: any;
     if (curentsliderId == event.target.value) {
       //element = document.getElementById(`${sliderId}`);
       //element.checked = true;
@@ -131,7 +131,7 @@ const CustomSlider = (props: SliderProps) => {
               <Slider
                 key={`slider-${defaultValueSelected}`}
                 aria-label="Restricted values"
-                value={
+                defaultValue={
                   selectedInputId !== ''
                     ? backpunchsliderId == backpunchsliderIdNA
                       ? defaultValueSelected
