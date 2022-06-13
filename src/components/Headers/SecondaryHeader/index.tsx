@@ -42,8 +42,8 @@ const SecondaryHeader = () => {
             {sidebartoggle ? (
               <Hamburger onClick={() => dispatch(setSideBar(false))} />
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
