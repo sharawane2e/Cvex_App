@@ -1,0 +1,82 @@
+.login-container{
+    .main-container {
+      height: 80vh;
+      margin: 0 auto;
+      margin-top: 100px;
+      // margin-top: 100px;
+      width: 80%;
+    
+      .title {
+        text-align: left;
+        font-size: 16px;
+        letter-spacing: 0px;
+        color: #000000;
+        margin-bottom: 15px;
+      }
+    
+      .content-area {
+        p {
+          text-align: left;
+          font-size: 14px;
+          color: #000000;
+          margin-bottom: 30px;
+        }
+    
+        .MuiFormControl-root {
+          input {
+            border: 1px solid #B3B3B3;
+            width: 100%;
+            padding: 5px 15px;
+    
+            &::placeholder {
+              color: #8a8a8a;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .input-error {
+    display: inline-block;
+    color: #ff0000;
+    font-size: 14px;
+    padding-top: 4px;
+  }
+  
+  .welcome-helpdesk {
+    margin-top: 60px;
+    text-align: left;
+    letter-spacing: 0px;
+    font-size: 14px;
+  
+    a {
+      display: block;
+      padding-top: 4px;
+      font-size: 12px;
+      color: #2251ff;
+    }
+  }
+  
+  .button-container {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  
+  // .welcome-link {
+  //   color: white;
+  //   text-decoration: none;
+  //   pointer-events: auto;
+  // }
+  
+  .cursor-block {
+    cursor: not-allowed;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .submit-block {
+    pointer-events: none;
+  }
