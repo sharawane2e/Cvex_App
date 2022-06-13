@@ -42,12 +42,12 @@ export default function CustomAccordion(props: AccordionProps) {
   const handleSliderChange = (value: string, index: number, matchSubHeadingIndex: number) => {
     // const selectedInput = quesData['subHeadingIndex']?.subTitle[index]?.sliderOptions?.ratingDetails?.SelectedInputId;
 
-    const updatedSubHeadingText = JSON.parse(JSON.stringify([...jsonData.data.rightPanel.questionsData[0]["subHeadingText"]]));
+    const updatedSubHeadingText = JSON.parse(JSON.stringify([...jsonData.data.rightPanel.questionsData[0]?.subHeadingText]));
 
-    updatedSubHeadingText.forEach(function (subHeading: any, subHeadingIndex: number) {
+    updatedSubHeadingText.map(function (subHeading: any, subHeadingIndex: number) {
 
       if (subHeadingIndex == matchSubHeadingIndex) {
-        jsonData.data.rightPanel.questionsData[0]["subHeadingText"][subHeadingIndex].subTitle.forEach(function (subTitleEl: any, subTitleIndex: number) {
+        jsonData.data.rightPanel.questionsData[0]?.subHeadingText[subHeadingIndex].subTitle.forEach(function (subTitleEl: any, subTitleIndex: number) {
           if (subTitleIndex == index) {
             updatedSubHeadingText[subHeadingIndex].subTitle[subTitleIndex].sliderOptions.ratingDetails.SelectedInputId = value
           }
@@ -57,7 +57,11 @@ export default function CustomAccordion(props: AccordionProps) {
     })
     const updatedSubheading = updatedSubHeadingText[matchSubHeadingIndex];
     // //console.log(updatedSubHeadingText)
-    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText[matchSubHeadingIndex]] }] } } })
+    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
+    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [{ ...jsonData.data.rightPanel.questionsData[0].updatedSubHeadingText }] }] } } })
+    // Object.assign(jsonData, source)
+    // console.log(updatedSubHeadingText)
+    // console.log({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [{ ...jsonData.data.rightPanel.questionsData[0].updatedSubheading }] }] } } })
     setJSONData({
       "pageCode": {
         "page": 4
@@ -412,6 +416,15 @@ export default function CustomAccordion(props: AccordionProps) {
     })
     // console.log("updated", jsonData)
   }
+
+  const handleTextArea = (currentText: string, textAreaId: string) => {
+    // let textAreaElem = document.getElementById(textAreaId)
+    // if (text != "") {
+    // @ts-ignore
+    document.getElementById(textAreaId).value = currentText;
+    // }
+  }
+
   return (
     <>
       {quesData?.map((elm: any, index2: any) => {
@@ -487,8 +500,11 @@ export default function CustomAccordion(props: AccordionProps) {
                       <TextareaAutosize
                         aria-label="minimum height"
                         minRows={2}
-                        placeholder={elm?.obsplaceholder}
-                        style={{ width: "100%", marginTop: 20, padding: 5 }}
+                        defaultValue={elm3?.observationTxt}
+                        onChange={(event: any) =>
+                          (handleTextArea(event.target.value, elm3?.observationId))}
+                        placeholder={elm3?.obsplaceholder}
+                        style={{ width: "100%", marginTop: 20, padding: 5, resize: "none" }}
                       />
                     </AccordionDetails>
                   </>
