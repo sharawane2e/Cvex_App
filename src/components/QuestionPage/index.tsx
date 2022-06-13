@@ -77,9 +77,9 @@ const QuestionPage = () => {
         </div>
         <Footer>
           <div className="button-container justi">
-            <div className="d-flex ">
+            <div className="d-flex">
               <CustomButton
-                className={'submitButton previous-button'}
+                className={'submitButton previous-button '}
                 onClick={(e: any) => previousHandleClick(e)}
               >
                 {getParsedData(

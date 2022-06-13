@@ -1117,15 +1117,12 @@ const GI = () => {
               </CustomButton> */}
 
               <CustomButton
-                className="submitButton forword-btn"
+                className="submitButton  mar-right"
                 onClick={handlePrevClick}
               >
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton>
-              <CustomButton
-                className="submitButton forword-btn"
-                onClick={handleNextClick}
-              >
+              <CustomButton className="submitButton " onClick={handleNextClick}>
                 {jsonData.data?.footerData?.forwardTxt}
               </CustomButton>
             </div>
