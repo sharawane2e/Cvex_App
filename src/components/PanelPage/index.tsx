@@ -68,13 +68,13 @@ const Login = (props: any) => {
       <div className="main-container">
         <h3 className="title">
           {getParsedData(jsonData.data?.contentDetails?.headingTxt)}
-        </h3> 
+        </h3>
         <div className="content-area main-container">
-            <Box>
-                <Button variant="contained">Impact Calculator</Button>
-                <Button variant="contained">CVEx 1.0</Button>
-                <Button variant="contained">CVEx 2.0</Button>
-            </Box>
+          <Box>
+            <Button variant="contained">Impact Calculator</Button>
+            <Button variant="contained">CVEx 1.0</Button>
+            <Button variant="contained">CVEx 2.0</Button>
+          </Box>
         </div>
       </div>
       <Footer>

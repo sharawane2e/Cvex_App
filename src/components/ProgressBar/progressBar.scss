@@ -1,7 +1,4 @@
-/* .MuiBox-root .css-0 {
-    display: flex !important;
-    justify-content: space-between !important;
-} */
+
 
 .topContainer {
     // display: none;
@@ -46,20 +43,27 @@
         justify-content: end;
 
         .previous-button {
-            border: 1px solid #2B2B2B;
-            background-color: #fff !important;
-            color: #000 !important;
-            width: 120px;
+            border: 1px
+             solid #1f66f6;
+                background-color: #1f66f6 !important;
+                color: #ffffff !important;
+                width: 120px;
         }
 
         .next-button {
+            // width: 120px;
+            // border: 1px
+            // solid gray;
+            // background: gray !important;
+            // &.disabled {
+            //     background-color: #D9D9D9 !important;
+            //     color: #000 !important;
+            //     border: 1px solid #D0D0D0;
+            // }
             width: 120px;
-
-            &.disabled {
-                background-color: #D9D9D9 !important;
-                color: #000 !important;
-                border: 1px solid #D0D0D0;
-            }
+    border: 1px solid #e1e1e1;
+    background: #e1e1e1 !important;
+    color: #2a2a2a !important;
         }
     }
 }
@@ -98,4 +102,13 @@
     .css-eglki6-MuiLinearProgress-root {
         margin-left: 20px;
     }
+}
+.custom-text-area{
+    resize: none ;
+    padding: 10px !important;
+    width: 78% !important;
+    margin-left: 18px !important;
+    font-size: 13px;
+    height: 37px !important;
+    border: 1px solid #cdc6c6;
 }

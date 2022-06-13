@@ -39,13 +39,14 @@ const GI = () => {
   const giInfo = jsonData?.data?.rightData;
 
   const getselectedDDName = (options: any, selectedId: string) => {
-    let selectedDDName = "";
+    let selectedDDName = '';
     options?.forEach((element: any) => {
-      if (element.ddId == selectedId) { selectedDDName = element.ddName }
-    })
+      if (element.ddId == selectedId) {
+        selectedDDName = element.ddName;
+      }
+    });
     return selectedDDName;
-  }
-
+  };
 
   const getselectedDDNameMulti = (options: any, selectedId: string) => {
     let selectedDDName: string[] = [];
@@ -53,12 +54,12 @@ const GI = () => {
 
     options.forEach(function (option: any) {
       if (selectedIdArr.indexOf(option.ddId) != -1) {
-        selectedDDName.push(option['ddName'])
+        selectedDDName.push(option['ddName']);
       }
-    })
+    });
 
     return selectedDDName;
-  }
+  };
 
   const uncheckCheckboxes = (options: any[]) => {
     options.forEach((currObj: any) => {
@@ -66,13 +67,10 @@ const GI = () => {
       let elem = document.getElementById(elemId);
       if (elem) {
         // @ts-ignore
-        elem.checked = false
+        elem.checked = false;
       }
-
-    })
-
-
-  }
+    });
+  };
 
   const checkCheckboxes = (ddIdsArr: any[]) => {
     ddIdsArr.forEach((ddId: any) => {
@@ -80,17 +78,17 @@ const GI = () => {
       let elem = document.getElementById(elemId);
       if (elem) {
         // @ts-ignore
-        elem.checked = true
+        elem.checked = true;
       }
-    })
-  }
+    });
+  };
 
   const mapContainsId = (map: any, selectedId: any) => {
-    selectedId = selectedId.split("_")[1];
-    console.log("SelectedId", selectedId);
+    selectedId = selectedId.split('_')[1];
+    console.log('SelectedId', selectedId);
     const allMapIndex: string[] = [];
-    map.split("|").forEach((element: any) => {
-      allMapIndex.push(element.split(":")[0]);
+    map.split('|').forEach((element: any) => {
+      allMapIndex.push(element.split(':')[0]);
       // var currMapElm = element.split("|");
       // if(selectedId == currMapElm.split(":")[0])
       // {
@@ -99,35 +97,32 @@ const GI = () => {
     });
 
     if (allMapIndex.indexOf(selectedId) != -1) {
-      return true
+      return true;
     }
 
     return false;
-  }
+  };
 
   const mapContainsId2 = (map: any, selectedId: any) => {
     var selectedIdNumArr: string[] = [];
-    var selectedIdArr: string[] = selectedId.split(",");
+    var selectedIdArr: string[] = selectedId.split(',');
     let isCondition = false;
     selectedIdArr.forEach((elm: any) => {
-      selectedIdNumArr.push(elm.split("_")[1]);
-    })
-    const allMapIndex: string[] = [];
-    map.split("|").forEach((element: any) => {
-      allMapIndex.push(element.split(":")[0]);
+      selectedIdNumArr.push(elm.split('_')[1]);
     });
-
+    const allMapIndex: string[] = [];
+    map.split('|').forEach((element: any) => {
+      allMapIndex.push(element.split(':')[0]);
+    });
 
     selectedIdNumArr.forEach((currSelectedIdNum: string) => {
       if (allMapIndex.indexOf(currSelectedIdNum) != -1) {
-
-        isCondition = true
+        isCondition = true;
       }
-    })
+    });
 
     return isCondition;
-
-  }
+  };
 
   const handleCountry = (event: any) => {
     setCountry(event.target.value);
@@ -170,44 +165,40 @@ const GI = () => {
     questionmap: any,
     questionoption2: any,
   ) => {
-
     let filteredData: string[] = [];
     const DDIdArr: string[] = [];
-    const ddLabelArr = ddLabel.split(",");
+    const ddLabelArr = ddLabel.split(',');
     if (ddLabelArr.length > 1) {
       ddLabelArr.forEach((elm: any) => {
-
         let selectIquestion = elm.split('_')[1];
         const mapQuesion = questionmap
           .split('|')
           .map((element: string) => element.split(':')[0]);
 
-
-
-
         const indexOfSelectIquestion = mapQuesion.indexOf(selectIquestion);
         if (indexOfSelectIquestion != -1) {
-          const joinedDDArr = questionmap.split("|")[indexOfSelectIquestion].split(":")[1];
-          joinedDDArr.split("-").forEach((CV: string) => { DDIdArr.push(CV) })
+          const joinedDDArr = questionmap
+            .split('|')
+            [indexOfSelectIquestion].split(':')[1];
+          joinedDDArr.split('-').forEach((CV: string) => {
+            DDIdArr.push(CV);
+          });
         }
-
-      })
+      });
 
       DDIdArr.forEach((ddId: any) => {
         const filterIndex = filteredData.findIndex((x: any) => x.ddId === ddId);
         if (filterIndex == -1) {
           const returnedObj = questionoption2.filter((elm: any) => {
             return ddId == elm.ddId;
-          })
-          console.log("returnedObj", returnedObj)
-          filteredData.push(...returnedObj)
+          });
+          console.log('returnedObj', returnedObj);
+          filteredData.push(...returnedObj);
         }
-
-      })
-      console.log(filteredData, "Filtered Data")
+      });
+      console.log(filteredData, 'Filtered Data');
       return filteredData;
-    }
-    else {
+    } else {
       let selectIquestion = ddLabel.split('_')[1];
       const mapQuesion = questionmap
         .split('|')
@@ -221,8 +212,8 @@ const GI = () => {
           optionsToRender.includes(el.ddId),
         );
       }
-      console.log(ddLabel)
-      console.log(filteredData)
+      console.log(ddLabel);
+      console.log(filteredData);
       return filteredData;
     }
   };
@@ -232,7 +223,6 @@ const GI = () => {
     questionmap: any,
     questionoption3: any,
   ) => {
-
     let filteredData;
     let selectIquestion = servicesId.split('_')[1];
     const mapQuesion = questionmap
@@ -264,15 +254,12 @@ const GI = () => {
     //   return true;
     // }
 
-    let res = "";
-    
-    for(let i = 0; i < value.length; i++)
-    {
-        if(value[0] == " ")
-            return "";
-        
-        if(reg.test(value[i]))
-            res += value[i];
+    let res = '';
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[0] == ' ') return '';
+
+      if (reg.test(value[i])) res += value[i];
     }
 
     return res;
@@ -355,15 +342,20 @@ const GI = () => {
                               //     ? console.log('Valid Input')
                               //     : (e.target.value = ''),
                               // )
-                              e.target.value = inputValidate(e.target.value, /^[A-Za-z ]+$/);
+                              e.target.value = inputValidate(
+                                e.target.value,
+                                /^[A-Za-z ]+$/,
+                              );
 
                               const updatedQuestionsArray: any[] = [];
-                              jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                if (CV.questionId === genQues.questionId) {
-                                  CV.selectedText = e.target.value;
-                                }
-                                updatedQuestionsArray.push(CV)
-                              })
+                              jsonData.data.rightData.questions.forEach(
+                                function (CV: any) {
+                                  if (CV.questionId === genQues.questionId) {
+                                    CV.selectedText = e.target.value;
+                                  }
+                                  updatedQuestionsArray.push(CV);
+                                },
+                              );
 
                               setJSONData({
                                 ...jsonData,
@@ -388,70 +380,81 @@ const GI = () => {
                       {/* <Divider /> */}
                     </Grid>
                   ) : (
-                      <Grid
-                        item
-                        xs={12}
-                        md={6}
-                        className="inputCont"
-                        sx={{ borderBottom: '1px solid #c4c4c4', pb: 1 }}
-                      >
-                        <Grid container>
-                          <Grid
-                            item
-                            xs={4}
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                          >
-                            <p className="gen-info">{genQues.optionName}</p>
-                          </Grid>
-                          <Grid
-                            item
-                            xs={8}
-                            sx={{ display: 'flex', alignItems: 'center' }}
-                          >
-                            <Tooltip title={genQues?.description} arrow>
-                              <InfoIocn className="info-icon" />
-                            </Tooltip>
-                            <Inputbox
-                              className="inputField cutom-input-field"
-                              id={genQues.questionId + '_html'}
-                              placeholder={genQues.placeholder}
-                              type={genQues.type == 'text' ? 'text' : ''}
-                              value={genQues.selectedText}
-                              // onChange={(e: any) =>
-                              //   (genQues.selectedText = e.target.value)(
-                              //     inputValidate(e.target.value, /^[0-9]+$/)
-                              //       ? console.log('Valid Input')
-                              //       : (e.target.value = ''),
-                              //   )
-                              // }
-                              onChange={(e: any) => {
-                                e.target.value = inputValidate(e.target.value.trim(), /^[0-9]+$/);
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      className="inputCont"
+                      sx={{ borderBottom: '1px solid #c4c4c4', pb: 1 }}
+                    >
+                      <Grid container>
+                        <Grid
+                          item
+                          xs={4}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <p className="gen-info">{genQues.optionName}</p>
+                        </Grid>
+                        <Grid
+                          item
+                          xs={8}
+                          sx={{ display: 'flex', alignItems: 'center' }}
+                        >
+                          <Tooltip title={genQues?.description} arrow>
+                            <InfoIocn className="info-icon" />
+                          </Tooltip>
+                          <Inputbox
+                            className="inputField cutom-input-field"
+                            id={genQues.questionId + '_html'}
+                            placeholder={genQues.placeholder}
+                            type={genQues.type == 'text' ? 'text' : ''}
+                            value={genQues.selectedText}
+                            // onChange={(e: any) =>
+                            //   (genQues.selectedText = e.target.value)(
+                            //     inputValidate(e.target.value, /^[0-9]+$/)
+                            //       ? console.log('Valid Input')
+                            //       : (e.target.value = ''),
+                            //   )
+                            // }
+                            onChange={(e: any) => {
+                              e.target.value = inputValidate(
+                                e.target.value.trim(),
+                                /^[0-9]+$/,
+                              );
 
-                                const updatedQuestionsArray: any[] = [];
-                                jsonData.data.rightData.questions.forEach(function (CV: any) {
+                              const updatedQuestionsArray: any[] = [];
+                              jsonData.data.rightData.questions.forEach(
+                                function (CV: any) {
                                   if (CV.questionId === genQues.questionId) {
                                     CV.selectedText = e.target.value;
                                   }
-                                  updatedQuestionsArray.push(CV)
-                                })
+                                  updatedQuestionsArray.push(CV);
+                                },
+                              );
 
-                                setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-                                // @ts-ignore
-                                // document.getElementById(
-                                //   genQues?.questionId,
-                                // )?.value = e.target.value;
-                                let element: any;
-                                element = document.getElementById(
-                                  `${genQues?.questionId}`,
-                                );
-                                element.value = e.target.value;
-                              }}
-                            />
-                          </Grid>
+                              setJSONData({
+                                ...jsonData,
+                                rightData: {
+                                  ...jsonData.rightData,
+                                  questions: [...updatedQuestionsArray],
+                                },
+                              });
+                              // @ts-ignore
+                              // document.getElementById(
+                              //   genQues?.questionId,
+                              // )?.value = e.target.value;
+                              let element: any;
+                              element = document.getElementById(
+                                `${genQues?.questionId}`,
+                              );
+                              element.value = e.target.value;
+                            }}
+                          />
                         </Grid>
-                        {/* <Divider /> */}
                       </Grid>
-                    );
+                      {/* <Divider /> */}
+                    </Grid>
+                  );
                 } else if (genQues.type == 'dd' || genQues.type == 'year')
                   return (
                     <Grid
@@ -478,43 +481,48 @@ const GI = () => {
                               sx={{ p: 0, borderRadius: 0, mb: 1 }}
                               className="inputField cutom-input-field"
                               defaultValue="none"
-                              value={getselectedDDName(genQues.options, genQues.selectedId)}
+                              value={getselectedDDName(
+                                genQues.options,
+                                genQues.selectedId,
+                              )}
                               onChange={(e) => {
+                                let dropdownId = '';
+                                jsonData.data.rightData.questions.forEach(
+                                  (CV: any, idx: number) => {
+                                    if (CV.questionId == genQues.questionId) {
+                                      CV.options.forEach((option: any) => {
+                                        if (option.ddName == e.target.value) {
+                                          dropdownId = option.ddId;
 
-
-
-
-
-
-                                let dropdownId = "";
-                                jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
-                                  if (CV.questionId == genQues.questionId) {
-                                    CV.options.forEach((option: any) => {
-                                      if (option.ddName == e.target.value) {
-                                        dropdownId = option.ddId;
-
-                                        document.getElementById(option.ddId)?.click();
-                                      }
-                                    });
-                                  }
-                                })
+                                          document
+                                            .getElementById(option.ddId)
+                                            ?.click();
+                                        }
+                                      });
+                                    }
+                                  },
+                                );
 
                                 // setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
 
                                 const updatedQuestionsArray: any[] = [];
-                                jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                  if (CV.questionId === genQues.questionId) {
-                                    CV.selectedId = dropdownId;
-                                  }
-                                  updatedQuestionsArray.push(CV)
-                                })
+                                jsonData.data.rightData.questions.forEach(
+                                  function (CV: any) {
+                                    if (CV.questionId === genQues.questionId) {
+                                      CV.selectedId = dropdownId;
+                                    }
+                                    updatedQuestionsArray.push(CV);
+                                  },
+                                );
 
-                                setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-
-
-                              }
-
-                              }
+                                setJSONData({
+                                  ...jsonData,
+                                  rightData: {
+                                    ...jsonData.rightData,
+                                    questions: [...updatedQuestionsArray],
+                                  },
+                                });
+                              }}
                             >
                               <MenuItem
                                 disabled
@@ -567,36 +575,51 @@ const GI = () => {
                               <Select
                                 sx={{ p: 0, borderRadius: 0, mb: 1 }}
                                 displayEmpty={true}
-                                value={getselectedDDName(genQues.options, genQues.selectedId)}
+                                value={getselectedDDName(
+                                  genQues.options,
+                                  genQues.selectedId,
+                                )}
                                 defaultValue="none"
                                 className="inputField cutom-input-field"
                                 onChange={(event) => {
-                                  let dropdownId = "";
-                                  jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
-                                    if (CV.questionId == genQues.questionId) {
-                                      CV.options.forEach((option: any) => {
-                                        if (option.ddName == event.target.value) {
-                                          dropdownId = option.ddId;
+                                  let dropdownId = '';
+                                  jsonData.data.rightData.questions.forEach(
+                                    (CV: any, idx: number) => {
+                                      if (CV.questionId == genQues.questionId) {
+                                        CV.options.forEach((option: any) => {
+                                          if (
+                                            option.ddName == event.target.value
+                                          ) {
+                                            dropdownId = option.ddId;
 
-                                          document.getElementById(option.ddId)?.click();
-                                        }
-                                      });
-                                    }
-                                  })
+                                            document
+                                              .getElementById(option.ddId)
+                                              ?.click();
+                                          }
+                                        });
+                                      }
+                                    },
+                                  );
                                   const updatedQuestionsArray: any[] = [];
-                                  jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                    if (CV.questionId === genQues.questionId) {
-                                      CV.selectedId = dropdownId;
-                                    }
-                                    updatedQuestionsArray.push(CV)
-                                  })
+                                  jsonData.data.rightData.questions.forEach(
+                                    function (CV: any) {
+                                      if (
+                                        CV.questionId === genQues.questionId
+                                      ) {
+                                        CV.selectedId = dropdownId;
+                                      }
+                                      updatedQuestionsArray.push(CV);
+                                    },
+                                  );
 
-                                  setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-
-
-
-                                }
-                                }
+                                  setJSONData({
+                                    ...jsonData,
+                                    rightData: {
+                                      ...jsonData.rightData,
+                                      questions: [...updatedQuestionsArray],
+                                    },
+                                  });
+                                }}
                               >
                                 <MenuItem
                                   disabled
@@ -617,89 +640,113 @@ const GI = () => {
                             </FormControl>
                           </Grid>
 
-
-
-                          {genQues.selectedId !== "" ?
-
-                            (
-                              <>
-                                <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
-                                  <p className="gen-info">{genQues.optionName2} </p>
-                                </Grid>
-
-                                <Grid
-                                  item
-                                  xs={8}
-                                  sx={{ display: 'flex', alignItems: 'center' }}
+                          {genQues.selectedId !== '' ? (
+                            <>
+                              <Grid
+                                item
+                                xs={4}
+                                sx={{ display: 'flex', alignItems: 'center' }}
+                              >
+                                <p className="gen-info">
+                                  {genQues.optionName2}{' '}
+                                </p>
+                              </Grid>
+                              <Grid
+                                item
+                                xs={8}
+                                sx={{ display: 'flex', alignItems: 'center' }}
+                              >
+                                <Tooltip title={genQues?.description2} arrow>
+                                  <InfoIocn className="info-icon" />
+                                </Tooltip>
+                                <FormControl
+                                  sx={{
+                                    width: '100%',
+                                    borderRadius: 0,
+                                    mt: 1,
+                                    mb: 1,
+                                  }}
                                 >
-                                  <Tooltip title={genQues?.description2} arrow>
-                                    <InfoIocn className="info-icon" />
-                                  </Tooltip>
-                                  <FormControl
-                                    sx={{
-                                      width: '100%',
-                                      borderRadius: 0,
-                                      mt: 1,
-                                      mb: 1,
-                                    }}
-                                  >
-                                    <Select
-                                      sx={{ p: 0, borderRadius: 0 }}
-                                      displayEmpty={true}
-                                      value={getselectedDDName(genQues.options2, genQues.selectedId2)}
-                                      defaultValue="none"
-                                      className="inputField"
-                                      onChange={(event: any) => {
-                                        let dropdownId = "";
-                                        jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
-                                          if (CV.questionId2 == genQues.questionId2) {
-                                            CV.options2.forEach((option: any) => {
-                                              if (option.ddName == event.target.value) {
-                                                dropdownId = option.ddId;
+                                  <Select
+                                    sx={{ p: 0, borderRadius: 0 }}
+                                    displayEmpty={true}
+                                    value={getselectedDDName(
+                                      genQues.options2,
+                                      genQues.selectedId2,
+                                    )}
+                                    defaultValue="none"
+                                    className="inputField"
+                                    onChange={(event: any) => {
+                                      let dropdownId = '';
+                                      jsonData.data.rightData.questions.forEach(
+                                        (CV: any, idx: number) => {
+                                          if (
+                                            CV.questionId2 ==
+                                            genQues.questionId2
+                                          ) {
+                                            CV.options2.forEach(
+                                              (option: any) => {
+                                                if (
+                                                  option.ddName ==
+                                                  event.target.value
+                                                ) {
+                                                  dropdownId = option.ddId;
 
-                                                document.getElementById(option.ddId)?.click();
-                                              }
-                                            });
+                                                  document
+                                                    .getElementById(option.ddId)
+                                                    ?.click();
+                                                }
+                                              },
+                                            );
                                           }
-                                        })
-                                        const updatedQuestionsArray: any[] = [];
-                                        jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                          if (CV.questionId2 === genQues.questionId2) {
+                                        },
+                                      );
+                                      const updatedQuestionsArray: any[] = [];
+                                      jsonData.data.rightData.questions.forEach(
+                                        function (CV: any) {
+                                          if (
+                                            CV.questionId2 ===
+                                            genQues.questionId2
+                                          ) {
                                             CV.selectedId2 = dropdownId;
                                           }
-                                          updatedQuestionsArray.push(CV)
-                                        })
+                                          updatedQuestionsArray.push(CV);
+                                        },
+                                      );
 
-                                        setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-                                      }
-
-
-
-                                      }
+                                      setJSONData({
+                                        ...jsonData,
+                                        rightData: {
+                                          ...jsonData.rightData,
+                                          questions: [...updatedQuestionsArray],
+                                        },
+                                      });
+                                    }}
+                                  >
+                                    <MenuItem
+                                      disabled
+                                      value="none"
+                                      className="selectItem"
                                     >
+                                      <>{genQues.placeholder}</>
+                                    </MenuItem>
+                                    {getSddQ2Options(
+                                      genQues.selectedId,
+                                      genQues.map,
+                                      genQues.options2,
+                                    ).map((iteam: any) => (
                                       <MenuItem
-                                        disabled
-                                        value="none"
+                                        value={iteam?.ddName}
                                         className="selectItem"
                                       >
-                                        <>{genQues.placeholder}</>
+                                        {iteam?.ddName}
                                       </MenuItem>
-                                      {getSddQ2Options(genQues.selectedId, genQues.map, genQues.options2).map((iteam: any) => (
-                                        <MenuItem
-                                          value={iteam?.ddName}
-                                          className="selectItem"
-                                        >
-                                          {iteam?.ddName}
-                                        </MenuItem>
-                                      ))}
-                                    </Select>
-                                  </FormControl>
-                                </Grid> </>)
-                            : null}
-
-
-
-
+                                    ))}
+                                  </Select>
+                                </FormControl>
+                              </Grid>{' '}
+                            </>
+                          ) : null}
                         </Grid>
                       </Grid>
                     </>
@@ -732,37 +779,54 @@ const GI = () => {
                               <Select
                                 sx={{ mb: 1, borderRadius: 0 }}
                                 className="inputField"
-                                value={getselectedDDName(genQues.options, genQues.selectedId)}
+                                value={getselectedDDName(
+                                  genQues.options,
+                                  genQues.selectedId,
+                                )}
                                 onChange={(event) => {
-                                  let dropdownId = "";
-                                  jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
-                                    CV.selectedId2 = "";
-                                    CV.selectedId3 = "";
-                                    if (CV.questionId == genQues.questionId) {
-                                      CV.options.forEach((option: any) => {
-                                        if (option.ddName == event.target.value) {
-                                          dropdownId = option.ddId;
+                                  let dropdownId = '';
+                                  jsonData.data.rightData.questions.forEach(
+                                    (CV: any, idx: number) => {
+                                      CV.selectedId2 = '';
+                                      CV.selectedId3 = '';
+                                      if (CV.questionId == genQues.questionId) {
+                                        CV.options.forEach((option: any) => {
+                                          if (
+                                            option.ddName == event.target.value
+                                          ) {
+                                            dropdownId = option.ddId;
 
-                                          document.getElementById(option.ddId)?.click();
-                                          uncheckCheckboxes(genQues.options2);
-                                          uncheckCheckboxes(genQues.options3);
-                                        }
-                                      });
-                                    }
-                                  })
-
+                                            document
+                                              .getElementById(option.ddId)
+                                              ?.click();
+                                            uncheckCheckboxes(genQues.options2);
+                                            uncheckCheckboxes(genQues.options3);
+                                          }
+                                        });
+                                      }
+                                    },
+                                  );
 
                                   const updatedQuestionsArray: any[] = [];
-                                  jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                    if (CV.questionId === genQues.questionId) {
-                                      CV.selectedId = dropdownId;
-                                    }
-                                    updatedQuestionsArray.push(CV)
-                                  })
+                                  jsonData.data.rightData.questions.forEach(
+                                    function (CV: any) {
+                                      if (
+                                        CV.questionId === genQues.questionId
+                                      ) {
+                                        CV.selectedId = dropdownId;
+                                      }
+                                      updatedQuestionsArray.push(CV);
+                                    },
+                                  );
 
-                                  setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-                                }
-                                }
+                                  setJSONData({
+                                    ...jsonData,
+                                    rightData: {
+                                      ...jsonData.rightData,
+                                      questions: [...updatedQuestionsArray],
+                                    },
+                                  });
+                                }}
                               >
                                 <MenuItem
                                   disabled
@@ -784,7 +848,8 @@ const GI = () => {
                           </Grid>
                         </Grid>
 
-                        {(genQues.selectedId !== "" && mapContainsId(genQues.map, genQues.selectedId)) ? (
+                        {genQues.selectedId !== '' &&
+                        mapContainsId(genQues.map, genQues.selectedId) ? (
                           <Grid container>
                             <Grid item xs={4}>
                               <p className="gen-info">{genQues.optionName2}</p>
@@ -799,59 +864,82 @@ const GI = () => {
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
-                                  value={getselectedDDNameMulti(genQues.options2, genQues.selectedId2)} // genQues.selectedId2.split(", ")
+                                  value={getselectedDDNameMulti(
+                                    genQues.options2,
+                                    genQues.selectedId2,
+                                  )} // genQues.selectedId2.split(", ")
                                   multiple
                                   renderValue={(selected: any) => {
                                     // console.log(selected)
-                                    return selected.join(',')
+                                    return selected.join(',');
                                     // return ["hello",",hello2"]
-                                  }
-                                  }
+                                  }}
                                   onChange={(event) => {
                                     uncheckCheckboxes(genQues.options2);
                                     uncheckCheckboxes(genQues.options3);
                                     let dropdownIdsArr: string[] = [];
-                                    jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
-                                      CV.selectedId3 = "";
-                                      if (CV.questionId2 == genQues.questionId2) {
-                                        CV.options2.forEach((option: any) => {
-                                          console.log(event.target.value);
-                                          const ddSelectedIndex = event.target.value.indexOf(option.ddName);
-                                          if (ddSelectedIndex != -1) {
-                                            dropdownIdsArr.push(option.ddId);
-                                          }
-                                        });
+                                    jsonData.data.rightData.questions.forEach(
+                                      (CV: any, idx: number) => {
+                                        CV.selectedId3 = '';
+                                        if (
+                                          CV.questionId2 == genQues.questionId2
+                                        ) {
+                                          CV.options2.forEach((option: any) => {
+                                            console.log(event.target.value);
+                                            const ddSelectedIndex =
+                                              event.target.value.indexOf(
+                                                option.ddName,
+                                              );
+                                            if (ddSelectedIndex != -1) {
+                                              dropdownIdsArr.push(option.ddId);
+                                            }
+                                          });
 
-                                        checkCheckboxes(dropdownIdsArr)
-                                      }
-                                    })
+                                          checkCheckboxes(dropdownIdsArr);
+                                        }
+                                      },
+                                    );
 
                                     const updatedQuestionsArray: any[] = [];
-                                    jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                      if (CV.questionId2 === genQues.questionId2) {
+                                    jsonData.data.rightData.questions.forEach(
+                                      function (CV: any) {
+                                        if (
+                                          CV.questionId2 === genQues.questionId2
+                                        ) {
+                                          CV.selectedId2 =
+                                            dropdownIdsArr.join();
+                                        }
+                                        updatedQuestionsArray.push(CV);
+                                        console.log(
+                                          updatedQuestionsArray,
+                                          'Array',
+                                        );
+                                      },
+                                    );
 
-                                        CV.selectedId2 = dropdownIdsArr.join();
-
-                                      }
-                                      updatedQuestionsArray.push(CV)
-                                      console.log(updatedQuestionsArray, "Array")
-                                    })
-
-                                    setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-                                  }
-                                  }
+                                    setJSONData({
+                                      ...jsonData,
+                                      rightData: {
+                                        ...jsonData.rightData,
+                                        questions: [...updatedQuestionsArray],
+                                      },
+                                    });
+                                  }}
                                 >
-
-
-                                  {getSddQ2Options(genQues.selectedId, genQues.map, genQues.options2).map((element: any) => (
-                                    <MenuItem
-                                      value={element?.ddName}
-
-                                    >
+                                  {getSddQ2Options(
+                                    genQues.selectedId,
+                                    genQues.map,
+                                    genQues.options2,
+                                  ).map((element: any) => (
+                                    <MenuItem value={element?.ddName}>
                                       <Checkbox
                                         value={element?.ddName}
                                         checked={
-                                          genQues.selectedId2.indexOf(element.ddId) != -1 ? true : false
+                                          genQues.selectedId2.indexOf(
+                                            element.ddId,
+                                          ) != -1
+                                            ? true
+                                            : false
                                         }
                                         sx={{
                                           p: 0,
@@ -860,7 +948,7 @@ const GI = () => {
                                           fontSize: '12px',
                                         }}
                                         className="cutom-checkbox"
-                                      //onChange={setServicesName(element?.ddName)}
+                                        //onChange={setServicesName(element?.ddName)}
                                       />
                                       <ListItemText
                                         primary={element?.ddName}
@@ -875,8 +963,8 @@ const GI = () => {
                           </Grid>
                         ) : null}
 
-
-                        {(genQues.selectedId2 !== "" && mapContainsId2(genQues.map2, genQues.selectedId2)) ? (
+                        {genQues.selectedId2 !== '' &&
+                        mapContainsId2(genQues.map2, genQues.selectedId2) ? (
                           <Grid container>
                             <Grid item xs={4}>
                               <p className="gen-info">{genQues.optionName3}</p>
@@ -891,44 +979,61 @@ const GI = () => {
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
-                                  value={getselectedDDNameMulti(genQues.options3, genQues.selectedId3)} // genQues.selectedId2.split(", ")
+                                  value={getselectedDDNameMulti(
+                                    genQues.options3,
+                                    genQues.selectedId3,
+                                  )} // genQues.selectedId2.split(", ")
                                   multiple
                                   onChange={(event) => {
                                     uncheckCheckboxes(genQues.options3);
                                     let dropdownIdsArr: string[] = [];
-                                    jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
-                                      if (CV.questionId3 == genQues.questionId3) {
-                                        CV.options3.forEach((option: any) => {
-                                          const ddSelectedIndex = event.target.value.indexOf(option.ddName);
-                                          if (ddSelectedIndex != -1) {
-                                            dropdownIdsArr.push(option.ddId);
+                                    jsonData.data.rightData.questions.forEach(
+                                      (CV: any, idx: number) => {
+                                        if (
+                                          CV.questionId3 == genQues.questionId3
+                                        ) {
+                                          CV.options3.forEach((option: any) => {
+                                            const ddSelectedIndex =
+                                              event.target.value.indexOf(
+                                                option.ddName,
+                                              );
+                                            if (ddSelectedIndex != -1) {
+                                              dropdownIdsArr.push(option.ddId);
 
-                                            document.getElementById(option.ddId)?.click();
-
-                                          }
-                                        });
-                                      }
-                                    })
+                                              document
+                                                .getElementById(option.ddId)
+                                                ?.click();
+                                            }
+                                          });
+                                        }
+                                      },
+                                    );
 
                                     const updatedQuestionsArray: any[] = [];
-                                    jsonData.data.rightData.questions.forEach(function (CV: any) {
-                                      if (CV.questionId3 === genQues.questionId3) {
+                                    jsonData.data.rightData.questions.forEach(
+                                      function (CV: any) {
+                                        if (
+                                          CV.questionId3 === genQues.questionId3
+                                        ) {
+                                          CV.selectedId3 =
+                                            dropdownIdsArr.join(',');
+                                        }
+                                      },
+                                    );
 
-                                        CV.selectedId3 = dropdownIdsArr.join(",");
-
-                                      }
-
-                                    })
-
-                                    setJSONData({ ...jsonData, rightData: { ...jsonData.rightData, questions: [...updatedQuestionsArray] } })
-                                  }
-                                  }
+                                    setJSONData({
+                                      ...jsonData,
+                                      rightData: {
+                                        ...jsonData.rightData,
+                                        questions: [...updatedQuestionsArray],
+                                      },
+                                    });
+                                  }}
                                   renderValue={(selected: any) => {
                                     // console.log(selected)
-                                    return selected.join(',')
+                                    return selected.join(',');
                                     //return ["hello",",hello2"]
-                                  }
-                                  }
+                                  }}
                                 >
                                   <MenuItem
                                     disabled
@@ -937,21 +1042,37 @@ const GI = () => {
                                   >
                                     <>{genQues.placeholder}</>
                                   </MenuItem>
-                                  {getSddQ2Options(genQues.selectedId2, genQues.map2, genQues.options3).map((element: any) => (
+                                  {getSddQ2Options(
+                                    genQues.selectedId2,
+                                    genQues.map2,
+                                    genQues.options3,
+                                  ).map((element: any) => (
                                     <MenuItem
                                       value={element?.ddName}
-                                    //  onClick={() => setServicesId(element?.ddId)}
+                                      //  onClick={() => setServicesId(element?.ddId)}
                                     >
                                       <Checkbox
                                         value={element?.ddName}
-                                        sx={{ p: 0, pr: 1, height: 0.5, fontSize: '12px', }}
+                                        sx={{
+                                          p: 0,
+                                          pr: 1,
+                                          height: 0.5,
+                                          fontSize: '12px',
+                                        }}
                                         className="cutom-checkbox"
                                         checked={
-                                          genQues.selectedId3.indexOf(element.ddId) != -1 ? true : false
+                                          genQues.selectedId3.indexOf(
+                                            element.ddId,
+                                          ) != -1
+                                            ? true
+                                            : false
                                         }
                                       />
-                                      <ListItemText primary={element?.ddName} sx={{ p: 0, fontSize: '12px' }}
-                                        className="list-item" />
+                                      <ListItemText
+                                        primary={element?.ddName}
+                                        sx={{ p: 0, fontSize: '12px' }}
+                                        className="list-item"
+                                      />
                                     </MenuItem>
                                   ))}
                                 </Select>
@@ -959,8 +1080,8 @@ const GI = () => {
                             </Grid>
                           </Grid>
                         ) : (
-                            ''
-                          )}
+                          ''
+                        )}
                       </Grid>
                     </>
                   );
@@ -989,18 +1110,26 @@ const GI = () => {
         </div> */}
           <div className="button-container">
             <div className="button-inr-btn">
-              <CustomButton
+              {/* <CustomButton
                 className={'submitButton back-btn'}
+                onClick={handlePrevClick} children={undefined} disable={false}              >
+                {jsonData.data?.footerData?.previousTxt}
+              </CustomButton> */}
+
+              {/* <CustomButton
+                className="submitButton forword-btn"
                 onClick={handlePrevClick}
+                disable={false}
               >
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton>
               <CustomButton
-                className={'submitButton'}
+                className="submitButton forword-btn"
                 onClick={handleNextClick}
+                disable={false}
               >
                 {jsonData.data?.footerData?.forwardTxt}
-              </CustomButton>
+              </CustomButton> */}
             </div>
           </div>
         </div>

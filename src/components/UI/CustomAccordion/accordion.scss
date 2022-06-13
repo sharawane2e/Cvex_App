@@ -10,7 +10,7 @@
         display: none;
     }
     p{
-        font-size: 15px;
+        font-size: 13px;
     }
     .bestpractices-text{
         p{
@@ -27,4 +27,10 @@
 
 .accordDetail {
     border-bottom: 1px solid #efefef!important;
+}
+.dont-btn{
+    span{
+
+        font-size: 13px !important;
+    }
 }
