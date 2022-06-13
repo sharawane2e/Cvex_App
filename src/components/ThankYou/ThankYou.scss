@@ -1,20 +1,19 @@
 .thankyou-container {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 60px;
     text-align: center;
 
     svg {
-        height: 250px;
+        height: 185px;
     }
 
     .title {
-
         text-align: center;
     }
 
     .content-area p {
         text-align: center;
-
+        font-size: 13px;
     }
 }
 
@@ -22,34 +21,35 @@
     width: 100%;
     background-color: #F1F1F1;
     text-align: center;
-    padding: 30px;
+    padding: 15px;
 
     p {
         &:first-child {
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
 
         &:nth-child(2) {
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 13px;
+            margin-bottom: 5px;
         }
 
         &:last-child {
-            font-size: 14px;
+            font-size: 13px;
         }
     }
 }
 
 .show-btn {
     button {
-        width: 200px !important;
+        //width: 200px !important;
+        padding: 8px 20px !important;
     }
 }
 
 .helpdesk {
-    margin-top: 40px;
+    margin-top: 15px;
 }
 
 .thankyou-container svg {
