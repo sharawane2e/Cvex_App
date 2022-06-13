@@ -12,9 +12,8 @@ import { getParsedData } from '../../utils/parserUtil';
 
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
-  // const questionsData = questionData;
+
   useEffect(() => {
-    // console.log('questionpage is callled');
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
@@ -24,8 +23,8 @@ const QuestionPage = () => {
   const headingText = jsonData?.data?.rightPanel?.questionsData[0].subHeadingText
   const progressData = () => {
     return headingText?.map((element: any) => {
-      element.subTitle.map(() => {
-
+      element.subTitle.map((title: any) => {
+        console.log(title)
       })
     })
   }
