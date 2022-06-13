@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setSideBar } from '../actions/sideBarAction';
+import { setSideBar } from '../actions/SideBarAction';
 
 const initialState = {
   sidebartoggle: true,
