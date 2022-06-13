@@ -259,11 +259,22 @@ const GI = () => {
 
   const inputValidate = (value: any, pattern: any) => {
     const reg = pattern;
-    if (!reg.test(value)) {
-      return false;
-    } else {
-      return true;
+    // if (!reg.test(value)) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+
+    var res = "";
+    for(var i = 0; i < value.length; i++)
+    {
+      if(value[0] == " ")
+        return "";
+      if(reg.test(value[i]))
+        res += value[i];
     }
+
+    return res;
   };
 
   const handlePrevClick = () => {
@@ -343,9 +354,12 @@ const GI = () => {
                               //     ? console.log('Valid Input')
                               //     : (e.target.value = ''),
                               // )
-                              inputValidate(e.target.value.trim(), /^[A-Za-z ]+$/)
-                                  ? console.log('Valid Input')
-                                  : e.target.value = "";
+                              // inputValidate(e.target.value.trim(), /^[A-Za-z ]+$/)
+                              //     ? console.log('Valid Input')
+                              //     : e.target.value = "";
+
+                              e.target.value = inputValidate(e.target.value, /^[A-Za-z ]+$/);
+
                               const updatedQuestionsArray : any[] = [];
                               jsonData.data.rightData.questions.forEach(function(CV:any){
                                 if(CV.questionId===genQues.questionId){
@@ -414,9 +428,7 @@ const GI = () => {
                             //   )
                             // }
                             onChange={(e: any) =>{
-                              inputValidate(e.target.value.trim(), /^[0-9]+$/)
-                                  ? console.log('Valid Input')
-                                  : (e.target.value = "");
+                              e.target.value = inputValidate(e.target.value, /^[0-9]+$/);
 
                               const updatedQuestionsArray : any[] = [];
                               jsonData.data.rightData.questions.forEach(function(CV:any){
@@ -431,6 +443,7 @@ const GI = () => {
                               // document.getElementById(
                               //   genQues?.questionId,
                               // )?.value = e.target.value;
+                              let element: any;
                               element = document.getElementById(
                                 `${genQues?.questionId}`,
                               );
@@ -470,11 +483,6 @@ const GI = () => {
                               defaultValue="none"
                               value={getselectedDDName(genQues.options,genQues.selectedId)}
                               onChange={ (e) => {
-
-
-                                
-                                
-                                
 
                                 let dropdownId = "";
                                 jsonData.data.rightData.questions.forEach((CV:any, idx:number)=>{
@@ -910,7 +918,6 @@ const GI = () => {
                                             CV.selectedId3  = dropdownIdsArr.join(",");
           
                                           }
-                      
                                         })
                                         
                                         setJSONData({...jsonData,rightData:{...jsonData.rightData,questions:[...updatedQuestionsArray]}})
@@ -941,7 +948,7 @@ const GI = () => {
                                           genQues.selectedId3.indexOf(element.ddId) != -1? true: false
                                         }
                                       />
-                                      <ListItemText primary={element?.ddName} />
+                                      <ListItemText primary={element?.ddName} sx={{ p: 0, fontSize: '12px' }} className="list-item"/>
                                     </MenuItem>
                                   ))}
                                 </Select>
