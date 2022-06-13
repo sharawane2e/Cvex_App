@@ -56,27 +56,29 @@ function LinearProgressWithLabel(
       </Box>
     </div>
   );
+  
 }
 
+
 export default function ProgressBar() {
-  const [progress, setProgress] = useState(25);
+  // const [progress, setProgress] = useState(25);
+  // const questionsData = questionData;
   const [jsonData, setJSONData] = useState<any>('');
   const [currSaveId, setSaveId] = useState<any>('');
   useEffect(() => {
+    progressBarUpdateNew(3  , 6);
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = true;
-    setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId)
+    //setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId)
   }, []);
 
   const saveProgress = (saveId: string) => {
-    // console.log("param", saveId)
-    // console.log("json", currSaveId)
     // @ts-ignore
-    document.getElementById('navText').value = currSaveId;
+    document.getElementById('navText').value = saveId;
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = false;
     // @ts-ignore
@@ -85,29 +87,20 @@ export default function ProgressBar() {
 
   const submitProgress = (event: any) => { };
 
-  const progressBarUpdate = () => {
-    var chkBoxes = document.querySelectorAll('.progCheck');
-    var checkedCnt = 0;
-    // console.log(chkBoxes);
-    chkBoxes.forEach((elm: any, idx) => {
-      if (elm.children[0].checked) {
-        checkedCnt++;
-      }
-    });
 
-    // console.log(checkedCnt);
-    var progressPercentage = (100 / chkBoxes.length) * checkedCnt;
-    // console.log(progressPercentage);
-    setProgress(progressPercentage);
-  };
-
+  const progressBarUpdateNew = (answered:number, totalQuestions:number) =>   {
+    var progressPercentage = (answered / totalQuestions) * 100;
+    console.log("Progress Percentage", progressPercentage)
+   return progressPercentage;
+  }
+  
   //Use Effect Code
 
   return (
     <>
       <Box className="topContainer">
         <Box className="leftPanel">
-          <LinearProgressWithLabel value={progress} jsonData={jsonData} />
+          <LinearProgressWithLabel value={progressBarUpdateNew(1, 6)} jsonData={jsonData} />
         </Box>
         <Box className="rightPanel">
           <div className="button-container">
@@ -135,14 +128,6 @@ export default function ProgressBar() {
             </div>
           </div>
         </Box>
-      </Box>
-      <Box className="bottomContainer">
-        <Checkbox className="progCheck" onChange={() => progressBarUpdate()} />
-        <Checkbox className="progCheck" onChange={() => progressBarUpdate()} />
-        <Checkbox className="progCheck" onChange={() => progressBarUpdate()} />
-        <Checkbox className="progCheck" onChange={() => progressBarUpdate()} />
-        <Checkbox className="progCheck" onChange={() => progressBarUpdate()} />
-        <Checkbox className="progCheck" onChange={() => progressBarUpdate()} />
       </Box>
     </>
   );

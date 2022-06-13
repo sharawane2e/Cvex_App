@@ -258,11 +258,24 @@ const GI = () => {
 
   const inputValidate = (value: any, pattern: any) => {
     const reg = pattern;
-    if (!reg.test(value)) {
-      return false;
-    } else {
-      return true;
+    // if (!reg.test(value)) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+
+    let res = "";
+    
+    for(let i = 0; i < value.length; i++)
+    {
+        if(value[0] == " ")
+            return "";
+        
+        if(reg.test(value[i]))
+            res += value[i];
     }
+
+    return res;
   };
 
   const handlePrevClick = () => {
@@ -342,9 +355,8 @@ const GI = () => {
                               //     ? console.log('Valid Input')
                               //     : (e.target.value = ''),
                               // )
-                              inputValidate(e.target.value.trim(), /^[A-Za-z ]+$/)
-                                ? console.log('Valid Input')
-                                : e.target.value = "";
+                              e.target.value = inputValidate(e.target.value, /^[A-Za-z ]+$/);
+
                               const updatedQuestionsArray: any[] = [];
                               jsonData.data.rightData.questions.forEach(function (CV: any) {
                                 if (CV.questionId === genQues.questionId) {
@@ -413,9 +425,7 @@ const GI = () => {
                               //   )
                               // }
                               onChange={(e: any) => {
-                                inputValidate(e.target.value.trim(), /^[0-9]+$/)
-                                  ? console.log('Valid Input')
-                                  : (e.target.value = "");
+                                e.target.value = inputValidate(e.target.value.trim(), /^[0-9]+$/);
 
                                 const updatedQuestionsArray: any[] = [];
                                 jsonData.data.rightData.questions.forEach(function (CV: any) {
@@ -934,11 +944,14 @@ const GI = () => {
                                     >
                                       <Checkbox
                                         value={element?.ddName}
+                                        sx={{ p: 0, pr: 1, height: 0.5, fontSize: '12px', }}
+                                        className="cutom-checkbox"
                                         checked={
                                           genQues.selectedId3.indexOf(element.ddId) != -1 ? true : false
                                         }
                                       />
-                                      <ListItemText primary={element?.ddName} />
+                                      <ListItemText primary={element?.ddName} sx={{ p: 0, fontSize: '12px' }}
+                                        className="list-item" />
                                     </MenuItem>
                                   ))}
                                 </Select>
