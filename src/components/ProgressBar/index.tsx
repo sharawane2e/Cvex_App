@@ -77,7 +77,6 @@ export default function ProgressBar() {
     console.log("json", currSaveId)
     // @ts-ignore
     document.getElementById('navText').value = currSaveId;
-    alert("Here!!!")
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = false;
     // @ts-ignore
