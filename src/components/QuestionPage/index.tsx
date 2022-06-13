@@ -8,6 +8,9 @@ import CustomButton from '../UI/CustomButton';
 import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';
 import { getParsedData } from '../../utils/parserUtil';
+import store from '../../redux/store';
+import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
+import { setQuestionPageData } from '../../redux/actions/QuestionPageAction';
 
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -17,8 +20,12 @@ const QuestionPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
-  }, []);
 
+  }, []);
+  const { dispatch } = store;
+
+  dispatch(setQuestionPageData(jsonData))
+  console.log(jsonData)
   const headingText =
     jsonData?.data?.rightPanel?.questionsData[0].subHeadingText;
   const progressData = () => {
