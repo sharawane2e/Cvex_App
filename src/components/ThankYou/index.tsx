@@ -1,18 +1,18 @@
-import PrimaryHeader from "../Headers/PrimaryHeader/index";
-import thankyoupageData from "../../mock/thankyoupageData.json";
-import Parser from "html-react-parser";
-import { Footer } from "../Footer";
-import CustomButton from "../UI/CustomButton";
-import React, { useEffect, useState } from "react";
-import "../Login/Login.scss";
-import "./ThankYou.scss";
-import { ReactComponent as ThankyouImage } from "../../assets/svg/thankyou_image.svg";
-import { getParsedData } from "../../utils/parserUtil";
+import PrimaryHeader from '../Headers/PrimaryHeader/index';
+import thankyoupageData from '../../mock/thankyoupageData.json';
+import Parser from 'html-react-parser';
+import { Footer } from '../Footer';
+import CustomButton from '../UI/CustomButton';
+import React, { useEffect, useState } from 'react';
+import '../Login/Login.scss';
+import './ThankYou.scss';
+import { ReactComponent as ThankyouImage } from '../../assets/svg/thankyou_image.svg';
+import { getParsedData } from '../../utils/parserUtil';
 
 type Props = {};
 
 const ThankYou = (props: Props) => {
-  const [jsonData, setJSONData] = useState<any>("");
+  const [jsonData, setJSONData] = useState<any>('');
 
   useEffect(() => {
     setJSONData(
@@ -21,16 +21,15 @@ const ThankYou = (props: Props) => {
     );
   }, []);
 
-
   const handleClick = () => {
-    if (jsonData !== "") {
+    if (jsonData !== '') {
       // @ts-ignore
       // document.getElementById("navText").value =
       //   jsonData["data"]["contentDetails"]["submitBTnDetails"]["forwardInputId"]
       // // @ts-ignore
       // document.getElementById("forwardbutton").click();
     }
-  }
+  };
   return (
     <div>
       <PrimaryHeader />
@@ -47,19 +46,24 @@ const ThankYou = (props: Props) => {
         </div>
       </div>
       <div className="helpdesk">
-        {getParsedData(jsonData?.data?.contentDetails?.contactDetails?.contactHeading)}
-        {getParsedData(jsonData?.data?.contentDetails?.contactDetails?.contactTxt)}
+        {getParsedData(
+          jsonData?.data?.contentDetails?.contactDetails?.contactHeading,
+        )}
+        {getParsedData(
+          jsonData?.data?.contentDetails?.contactDetails?.contactTxt,
+        )}
       </div>
-      < Footer  >
+      <Footer>
         <div className="button-container">
           <div className="show-btn">
-            <CustomButton className="submitButton"
-              onClick={handleClick}>
-              {getParsedData(jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)}
+            <CustomButton className="submitButton" onClick={handleClick}>
+              {getParsedData(
+                jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt,
+              )}
             </CustomButton>
           </div>
         </div>
-      </ Footer>
+      </Footer>
     </div>
   );
 };

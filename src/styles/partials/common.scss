@@ -14,9 +14,11 @@
   margin: auto !important;
   padding: 8px 50px !important;
   color: #fff !important  ;
-  cursor: pointer;
+  cursor: pointer !important;
+  border: 1px solid #2251FF;
   border-radius: 0!important;
-  width: 150px;
+  width: 130px;
+  font-size: 14px !important;
   &.previous-button{
     margin-right: 10px !important;
   }

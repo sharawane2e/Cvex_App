@@ -99,8 +99,9 @@
                     font-weight: 600;
                     white-space: normal;
                     top: 15px;
-                    height: 64px;
-
+                    height: 50px;
+                    font-size: 12px;
+                    line-height: 1.2;
                     &.MuiSlider-markLabelActive{
                         font-weight: 500;
                         background: #2251FF;
@@ -156,6 +157,8 @@
                         background-color: #E1E1E1;
                         color: #2A2A2A;
                         font-weight: 600;
+                        font-size: 12px;
+                        line-height: 1.2;
                     }
                 }
             }

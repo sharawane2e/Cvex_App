@@ -9,7 +9,6 @@ import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';
 import { getParsedData } from '../../utils/parserUtil';
 
-
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
 
@@ -20,15 +19,16 @@ const QuestionPage = () => {
     );
   }, []);
 
-  const headingText = jsonData?.data?.rightPanel?.questionsData[0].subHeadingText
+  const headingText =
+    jsonData?.data?.rightPanel?.questionsData[0].subHeadingText;
   const progressData = () => {
     return headingText?.map((element: any) => {
       element.subTitle.map((title: any) => {
         // console.log(title)
-      })
-    })
-  }
-  progressData()
+      });
+    });
+  };
+  progressData();
   const nextHandleClick = (event: any) => {
     if (jsonData !== '') {
       // @ts-ignore
@@ -61,8 +61,8 @@ const QuestionPage = () => {
           <SideBar />
         </div>
         <div className="right-panel">
-          <div>
-            <ProgressBar />
+          <ProgressBar />
+          <div className="right-panel__inr">
             <div className="title">
               <h2>
                 {getParsedData(

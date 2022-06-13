@@ -1,6 +1,4 @@
-
-import {Button} from '@mui/material';
-
+import { Button } from '@mui/material';
 
 type Props = {
   children: any;
@@ -10,10 +8,7 @@ type Props = {
 export default function CustomButton(props: Props) {
   return (
     <>
-      <Button
-        className={props.className}
-        onClick={props.onClick}
-      >
+      <Button className={props.className} onClick={props.onClick}>
         {props.children}
       </Button>
     </>

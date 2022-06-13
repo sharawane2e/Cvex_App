@@ -11,10 +11,10 @@
 
         .right-panel {
             width: calc(100% - 280px);
-            overflow-y: scroll;
+            // overflow-y: scroll;
             position: relative;
             padding: 20px;
-            height: calc(100vh - 220px);
+            // height: calc(100vh - 220px);
 
             .title {
                 padding: 20px;
@@ -24,34 +24,41 @@
                     font-size: 18px;
                 }
             }
-
-            .right-panel {
-                width: calc(100% - 280px);
-                position: relative;
-                padding: 20px;
+            &__inr{
                 overflow-y: scroll;
-
-                .title {
-                    padding: 20px;
-                    margin-bottom: 0;
-
-                    h2 {
-                        font-size: 18px;
-                    }
-                }
-
-                .question-container {
-                    // min-height: 600px;
-                    overflow-y: scroll;
-                    // height: 600px;
-
-                    @media screen and (max-width:1200px) {
-                        min-height: 570px;
-                        overflow-y: scroll;
-                        height: 570px;
-                    }
-                }
+                height: calc(100vh - 280px);
             }
+
+            // .right-panel {
+            //     width: calc(100% - 280px);
+            //     position: relative;
+            //     padding: 20px;
+            //     overflow-y: scroll;
+
+            //     .title {
+            //         padding: 20px;
+            //         margin-bottom: 0;
+
+            //         h2 {
+            //             font-size: 18px;
+            //         }
+            //     }
+
+            //     .question-container {
+            //         // min-height: 600px;
+            //         overflow-y: scroll;
+            //         // height: 600px;
+
+            //         @media screen and (max-width:1200px) {
+            //             min-height: 570px;
+            //             overflow-y: scroll;
+            //             height: 570px;
+            //         }
+            //     }
+            //     &__inr{
+
+            //     }
+            // }
 
             .footer {
                 .button-container {

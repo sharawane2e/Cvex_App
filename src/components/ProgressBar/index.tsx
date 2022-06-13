@@ -56,9 +56,7 @@ function LinearProgressWithLabel(
       </Box>
     </div>
   );
-  
 }
-
 
 export default function ProgressBar() {
   // const [progress, setProgress] = useState(25);
@@ -66,7 +64,7 @@ export default function ProgressBar() {
   const [jsonData, setJSONData] = useState<any>('');
   const [currSaveId, setSaveId] = useState<any>('');
   useEffect(() => {
-    progressBarUpdateNew(3  , 6);
+    progressBarUpdateNew(3, 6);
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
@@ -85,22 +83,24 @@ export default function ProgressBar() {
     document.getElementById('forwardbutton').click();
   };
 
-  const submitProgress = (event: any) => { };
+  const submitProgress = (event: any) => {};
 
-
-  const progressBarUpdateNew = (answered:number, totalQuestions:number) =>   {
+  const progressBarUpdateNew = (answered: number, totalQuestions: number) => {
     var progressPercentage = (answered / totalQuestions) * 100;
-    console.log("Progress Percentage", progressPercentage)
-   return progressPercentage;
-  }
-  
+    console.log('Progress Percentage', progressPercentage);
+    return progressPercentage;
+  };
+
   //Use Effect Code
 
   return (
     <>
       <Box className="topContainer">
         <Box className="leftPanel">
-          <LinearProgressWithLabel value={progressBarUpdateNew(1, 6)} jsonData={jsonData} />
+          <LinearProgressWithLabel
+            value={progressBarUpdateNew(1, 6)}
+            jsonData={jsonData}
+          />
         </Box>
         <Box className="rightPanel">
           <div className="button-container">

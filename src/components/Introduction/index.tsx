@@ -44,14 +44,15 @@ export function Introduction(props: Props) {
       </div>
       <Footer>
         <div className="button-container">
-          <CustomButton
+          {/* <CustomButton
             className="submitButton forword-btn"
             onClick={handleClick}
+            disable={false}
           >
             {getParsedData(
               jsonData?.data?.contentDetails?.submitBTnDetails?.forwardBTnTxt,
             )}
-          </CustomButton>
+          </CustomButton> */}
         </div>
       </Footer>
     </>
