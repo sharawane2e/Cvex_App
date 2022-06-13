@@ -46,16 +46,16 @@ export default function CustomAccordion(props: AccordionProps) {
 
     const updatedSubHeadingText = JSON.parse(
       JSON.stringify([
-        ...jsonData.data.rightPanel.questionsData[0]['subHeadingText'],
+        ...jsonData.data.rightPanel.questionsData[0]?.subHeadingText,
       ]),
     );
 
-    updatedSubHeadingText.forEach(function (
+    updatedSubHeadingText.map(function (
       subHeading: any,
       subHeadingIndex: number,
     ) {
       if (subHeadingIndex == matchSubHeadingIndex) {
-        jsonData.data.rightPanel.questionsData[0]['subHeadingText'][
+        jsonData.data.rightPanel.questionsData[0]?.subHeadingText[
           subHeadingIndex
         ].subTitle.forEach(function (subTitleEl: any, subTitleIndex: number) {
           if (subTitleIndex == index) {
@@ -68,7 +68,11 @@ export default function CustomAccordion(props: AccordionProps) {
     });
     const updatedSubheading = updatedSubHeadingText[matchSubHeadingIndex];
     // //console.log(updatedSubHeadingText)
-    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText[matchSubHeadingIndex]] }] } } })
+    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
+    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [{ ...jsonData.data.rightPanel.questionsData[0].updatedSubHeadingText }] }] } } })
+    // Object.assign(jsonData, source)
+    // console.log(updatedSubHeadingText)
+    // console.log({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [{ ...jsonData.data.rightPanel.questionsData[0].updatedSubheading }] }] } } })
     setJSONData({
       pageCode: {
         page: 4,
@@ -493,6 +497,15 @@ export default function CustomAccordion(props: AccordionProps) {
     });
     // console.log("updated", jsonData)
   };
+
+  const handleTextArea = (currentText: string, textAreaId: string) => {
+    // let textAreaElem = document.getElementById(textAreaId)
+    // if (text != "") {
+    // @ts-ignore
+    document.getElementById(textAreaId).value = currentText;
+    // }
+  };
+
   return (
     <>
       {quesData?.map((elm: any, index2: any) => {
@@ -526,10 +539,20 @@ export default function CustomAccordion(props: AccordionProps) {
                   <>
                     <AccordionDetails key={index3} className="accordDetail">
                       <Typography
-                        sx={{ width: '33%', flexShrink: 0, fontWeight: 600 }}
+                        sx={{
+                          width: '33%',
+                          flexShrink: 0,
+                          fontWeight: 600,
+                          display: 'flex',
+                          alignItems: 'Center',
+                        }}
                       >
                         {elm3.subTitleTxt}
-                        <Tooltip title={elm.subTitleTxt} arrow>
+                        <Tooltip
+                          style={{ marginLeft: 5 }}
+                          title={elm3?.tooltipText}
+                          arrow
+                        >
                           <InfoIcon className="info-icon" />
                         </Tooltip>
                       </Typography>
@@ -585,8 +608,20 @@ export default function CustomAccordion(props: AccordionProps) {
                         aria-label="minimum height"
                         className="custom-text-area"
                         minRows={2}
-                        placeholder={elm?.obsplaceholder}
-                        style={{ width: '100%', marginTop: 20, padding: 5 }}
+                        defaultValue={elm3?.observationTxt}
+                        onChange={(event: any) =>
+                          handleTextArea(
+                            event.target.value,
+                            elm3?.observationId,
+                          )
+                        }
+                        placeholder={elm3?.obsplaceholder}
+                        style={{
+                          width: '100%',
+                          marginTop: 20,
+                          padding: 5,
+                          resize: 'none',
+                        }}
                       />
                     </AccordionDetails>
                   </>

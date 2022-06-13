@@ -71,14 +71,12 @@ export default function ProgressBar() {
     );
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = true;
-    setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId);
+    //setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId)
   }, []);
 
   const saveProgress = (saveId: string) => {
-    // console.log("param", saveId)
-    // console.log("json", currSaveId)
     // @ts-ignore
-    document.getElementById('navText').value = currSaveId;
+    document.getElementById('navText').value = saveId;
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = false;
     // @ts-ignore
