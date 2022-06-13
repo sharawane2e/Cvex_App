@@ -1116,20 +1116,18 @@ const GI = () => {
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton> */}
 
-              {/* <CustomButton
+              <CustomButton
                 className="submitButton forword-btn"
                 onClick={handlePrevClick}
-                disable={false}
               >
                 {jsonData.data?.footerData?.previousTxt}
               </CustomButton>
               <CustomButton
                 className="submitButton forword-btn"
                 onClick={handleNextClick}
-                disable={false}
               >
                 {jsonData.data?.footerData?.forwardTxt}
-              </CustomButton> */}
+              </CustomButton>
             </div>
           </div>
         </div>
