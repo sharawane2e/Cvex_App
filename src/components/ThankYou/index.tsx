@@ -17,7 +17,7 @@ const ThankYou = (props: Props) => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerText)
+      JSON.parse(document.getElementById('jsonData')?.innerText),
     );
   }, []);
 
