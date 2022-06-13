@@ -1,20 +1,32 @@
 .login-container{
     .main-container {
-      height: 80vh;
       margin: 0 auto;
-      margin-top: 100px;
-      // margin-top: 100px;
       width: 80%;
     
-      .title {
-        text-align: left;
-        font-size: 16px;
-        letter-spacing: 0px;
-        color: #000000;
-        margin-bottom: 15px;
-      }
-    
       .content-area {
+        padding-top: 150px;
+        .btn-cont {
+          display: flex;
+          justify-content: center;
+
+          .nav-btn {
+              font-size: 12px;
+              text-transform: capitalize;
+              padding: 25px 50px;
+              margin-right: 16px;
+              min-width: 200px;
+              box-shadow: none;
+          }
+          .nav-btn-blue {
+            background-color: #2251ff;
+          }
+          .nav-btn-grey {
+            background-color: #dddddd;
+            color: #000000;
+            font-weight: 700;
+          }
+        }
+
         p {
           text-align: left;
           font-size: 14px;
@@ -37,46 +49,3 @@
     }
   }
   
-  .input-error {
-    display: inline-block;
-    color: #ff0000;
-    font-size: 14px;
-    padding-top: 4px;
-  }
-  
-  .welcome-helpdesk {
-    margin-top: 60px;
-    text-align: left;
-    letter-spacing: 0px;
-    font-size: 14px;
-  
-    a {
-      display: block;
-      padding-top: 4px;
-      font-size: 12px;
-      color: #2251ff;
-    }
-  }
-  
-  .button-container {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-  }
-  
-  
-  // .welcome-link {
-  //   color: white;
-  //   text-decoration: none;
-  //   pointer-events: auto;
-  // }
-  
-  .cursor-block {
-    cursor: not-allowed;
-    display: inline-block;
-    text-align: center;
-  }
-  
-  .submit-block {
-    pointer-events: none;
-  }
