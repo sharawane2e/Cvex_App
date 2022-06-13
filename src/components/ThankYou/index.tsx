@@ -46,16 +46,12 @@ const ThankYou = (props: Props) => {
         </div>
       </div>
       <div className="helpdesk">
-        <p>
-          {getParsedData(
-            jsonData?.data?.contentDetails?.contactDetails?.contactHeading,
-          )}
-        </p>
-        <p>
-          {getParsedData(
-            jsonData?.data?.contentDetails?.contactDetails?.contactTxt,
-          )}
-        </p>
+        {getParsedData(
+          jsonData?.data?.contentDetails?.contactDetails?.contactHeading,
+        )}
+        {getParsedData(
+          jsonData?.data?.contentDetails?.contactDetails?.contactTxt,
+        )}
       </div>
       <Footer>
         <div className="button-container">
