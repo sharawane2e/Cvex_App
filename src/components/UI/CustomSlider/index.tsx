@@ -100,14 +100,15 @@ const CustomSlider = (props: SliderProps) => {
       if (inputIdData == event.target.value) {
         const currentID: any = el?.inputId;
         sliderId = currentID;
+        console.log(currentID)
         return currentID;
       }
     });
     const curentsliderId = sliderId.split('_')[2];
     let element: any;
     if (curentsliderId == event.target.value) {
-      element = document.getElementById(`${sliderId}`);
-      element.checked = true;
+      //element = document.getElementById(`${sliderId}`);
+      //element.checked = true;
       // @ts-ignore
       document.getElementById(sliderId).click();
     }
