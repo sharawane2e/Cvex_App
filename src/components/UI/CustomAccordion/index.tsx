@@ -461,7 +461,7 @@ export default function CustomAccordion(props: AccordionProps) {
                         sx={{ width: '33%', flexShrink: 0, fontWeight: 600 }}
                       >
                         {elm3.subTitleTxt}
-                        <Tooltip title={elm.subTitleTxt} arrow>
+                        <Tooltip style={{ marginLeft: 5 }} title={elm3?.tooltipText} arrow>
                           <InfoIcon className="info-icon" />
                         </Tooltip>
                       </Typography>
