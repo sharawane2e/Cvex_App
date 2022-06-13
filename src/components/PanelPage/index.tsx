@@ -66,14 +66,11 @@ const Login = (props: any) => {
     <div className="login-container">
       <PrimaryHeader />
       <div className="main-container">
-        <h3 className="title">
-          {getParsedData(jsonData.data?.contentDetails?.headingTxt)}
-        </h3>
         <div className="content-area main-container">
-          <Box>
-            <Button variant="contained">Impact Calculator</Button>
-            <Button variant="contained">CVEx 1.0</Button>
-            <Button variant="contained">CVEx 2.0</Button>
+          <Box className= "btn-cont">
+            <Button variant="contained" className="nav-btn nav-btn-blue" >Impact Calculator</Button>
+            <Button variant="contained" className="nav-btn nav-btn-grey">CVEx 1.0</Button>
+            <Button variant="contained" className="nav-btn nav-btn-grey">CVEx 2.0</Button>
           </Box>
         </div>
       </div>
@@ -95,13 +92,6 @@ const Login = (props: any) => {
             {startData.data.contentDetails.submitBTnDetails.submitBTnTxt}
           </CustomButton>
         </div> */}
-          <div className="button-container">
-            <div>
-              <CustomButton className={'submitButton'} onClick={handleClick}>
-                {jsonData.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
-              </CustomButton>
-            </div>
-          </div>
         </div>
       </Footer>
     </div>

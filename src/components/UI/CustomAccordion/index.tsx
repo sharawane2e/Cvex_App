@@ -27,6 +27,7 @@ export default function CustomAccordion(props: AccordionProps) {
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
   }, []);
+  console.log("jsonData", jsonData)
 
   const quesData = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText;
 
@@ -66,13 +67,12 @@ export default function CustomAccordion(props: AccordionProps) {
         });
       }
     });
+
+
     const updatedSubheading = updatedSubHeadingText[matchSubHeadingIndex];
-    // //console.log(updatedSubHeadingText)
-    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
-    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [{ ...jsonData.data.rightPanel.questionsData[0].updatedSubHeadingText }] }] } } })
-    // Object.assign(jsonData, source)
-    // console.log(updatedSubHeadingText)
-    // console.log({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [{ ...jsonData.data.rightPanel.questionsData[0].updatedSubheading }] }] } } })
+    setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
+    console.log("current", { ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
+    console.log("in state", jsonData)
     // setJSONData({
     //   pageCode: {
     //     page: 4,
@@ -168,7 +168,7 @@ export default function CustomAccordion(props: AccordionProps) {
     //                   sliderOptions: {
     //                     ratingDetails: {
     //                       defaultinputIdOpt: '3',
-    //                       SelectedInputId: '',
+    //                       SelectedInputId: 'VS1_1_1',
     //                       ratingOpt: [
     //                         {
     //                           inputId: 'VS1_1_1',
@@ -495,7 +495,6 @@ export default function CustomAccordion(props: AccordionProps) {
     //     },
     //   },
     // });
-    // console.log("updated", jsonData)
   };
 
   const handleTextArea = (currentText: string, textAreaId: string) => {

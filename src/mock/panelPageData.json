@@ -1,0 +1,26 @@
+{
+    "pageCode": { "page": 1 },
+    "data": {
+      "headerData": {
+        "title": "Customer Value Execution",
+        "logo": "src",
+        "banner": "src"
+      },
+      "panelDetails": 
+        [
+            {
+                "text": "Impact Calculator",
+                "InputId": ""
+            },
+            {
+                "text": "Impact Calculator",
+                "InputId": ""
+            },
+            {
+                "text": "Impact Calculator",
+                "InputId": ""
+            }
+        ]
+    }
+  }
+  

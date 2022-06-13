@@ -1,0 +1,51 @@
+.login-container{
+    .main-container {
+      margin: 0 auto;
+      width: 80%;
+    
+      .content-area {
+        padding-top: 150px;
+        .btn-cont {
+          display: flex;
+          justify-content: center;
+
+          .nav-btn {
+              font-size: 12px;
+              text-transform: capitalize;
+              padding: 25px 50px;
+              margin-right: 16px;
+              min-width: 200px;
+              box-shadow: none;
+          }
+          .nav-btn-blue {
+            background-color: #2251ff;
+          }
+          .nav-btn-grey {
+            background-color: #dddddd;
+            color: #000000;
+            font-weight: 700;
+          }
+        }
+
+        p {
+          text-align: left;
+          font-size: 14px;
+          color: #000000;
+          margin-bottom: 30px;
+        }
+    
+        .MuiFormControl-root {
+          input {
+            border: 1px solid #B3B3B3;
+            width: 100%;
+            padding: 5px 15px;
+    
+            &::placeholder {
+              color: #8a8a8a;
+            }
+          }
+        }
+      }
+    }
+  }
+  
