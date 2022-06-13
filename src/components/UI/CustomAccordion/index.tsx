@@ -8,6 +8,10 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import './accordion.scss';
 import CustomSlider from '../CustomSlider';
 import { getParsedData } from '../../../utils/parserUtil';
+import Tooltip from '@mui/material/Tooltip';
+import { ReactComponent as InfoIcon } from '../../../assets/svg/info-icon.svg';
+import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 type AccordionProps = {
 
@@ -53,7 +57,7 @@ export default function CustomAccordion(props: AccordionProps) {
     })
     const updatedSubheading = updatedSubHeadingText[matchSubHeadingIndex];
     // //console.log(updatedSubHeadingText)
-    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
+    // setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText[matchSubHeadingIndex]] }] } } })
     setJSONData({
       "pageCode": {
         "page": 4
@@ -134,7 +138,7 @@ export default function CustomAccordion(props: AccordionProps) {
                 "sliderOptions": {
                   "ratingDetails": {
                     "defaultinputIdOpt": "3",
-                    "SelectedInputId": "VS1_1_4",
+                    "SelectedInputId": "",
                     "ratingOpt": [{
                       "inputId": "VS1_1_1",
                       "value": 1,
@@ -444,8 +448,10 @@ export default function CustomAccordion(props: AccordionProps) {
                         sx={{ width: '33%', flexShrink: 0, fontWeight: 600 }}
                       >
                         {elm3.subTitleTxt}
+                        <Tooltip title={elm.subTitleTxt} arrow>
+                          <InfoIcon className="info-icon" />
+                        </Tooltip>
                       </Typography>
-
                       <Typography
                         className="question-text"
                         sx={{ mt: '10px', flexShrink: 0 }}
@@ -469,7 +475,21 @@ export default function CustomAccordion(props: AccordionProps) {
                         subHeadingIndex={index2} sliderIndex={index3} defaultValue={elm3?.sliderOptions?.ratingDetails?.defaultinputIdOpt} NAOptionTxt={elm3?.sliderOptions?.ratingDetails?.NAOptionTxt} NAoptionId={elm3?.sliderOptions?.ratingDetails?.NAOptionInputId} selectedInputId={elm3?.sliderOptions?.ratingDetails?.SelectedInputId} ratingData={elm3?.sliderOptions?.ratingDetails?.ratingOpt}
                         handleSliderChange={handleSliderChange}
                       />
-
+                      {/* <TextField
+                        id="outlined-multiline-flexible"
+                        label={elm?.obsplaceholder}
+                        multiline
+                        maxRows={4}
+                        // value={value}
+                        // onChange={handleChange}
+                        fullWidth
+                      /> */}
+                      <TextareaAutosize
+                        aria-label="minimum height"
+                        minRows={2}
+                        placeholder={elm?.obsplaceholder}
+                        style={{ width: "100%", marginTop: 20, padding: 0 }}
+                      />
                     </AccordionDetails>
                   </>
                 );

@@ -64,17 +64,23 @@ export default function ProgressBar() {
   // const [progress, setProgress] = useState(25);
   // const questionsData = questionData;
   const [jsonData, setJSONData] = useState<any>('');
+  const [currSaveId, setSaveId] = useState<any>('');
   useEffect(() => {
     progressBarUpdateNew(3  , 6);
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
+    // @ts-ignore
+    document.getElementById('forwardbutton').disabled = true;
+    setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId)
   }, []);
 
   const saveProgress = (saveId: string) => {
+    // console.log("param", saveId)
+    // console.log("json", currSaveId)
     // @ts-ignore
-    document.getElementsByTagName('currentTab').value = saveId;
+    document.getElementById('navText').value = currSaveId;
     // @ts-ignore
     document.getElementById('forwardbutton').disabled = false;
     // @ts-ignore
