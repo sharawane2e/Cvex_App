@@ -56,9 +56,9 @@ const SideBar = (props: SideBarProps) => {
           className="listItem-option"
           primary={listItem.optionName}
         />
-        <ListItemText className="listItem" primary={listItem.totalAnswered} />
+        {/* <ListItemText className="listItem" primary={listItem.totalAnswered} />
         <ListItemText className="listItem" primary={listItem.outOfTxt} />
-        <ListItemText className="listItem" primary={listItem.totalQues} />
+        <ListItemText className="listItem" primary={listItem.totalQues} /> */}
       </ListItem>
     ));
   };
