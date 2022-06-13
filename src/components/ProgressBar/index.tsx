@@ -73,8 +73,8 @@ export default function ProgressBar() {
   }, []);
 
   const saveProgress = (saveId: string) => {
-    console.log("param", saveId)
-    console.log("json", currSaveId)
+    // console.log("param", saveId)
+    // console.log("json", currSaveId)
     // @ts-ignore
     document.getElementById('navText').value = currSaveId;
     alert("Here!!!")
@@ -89,16 +89,16 @@ export default function ProgressBar() {
   const progressBarUpdate = () => {
     var chkBoxes = document.querySelectorAll('.progCheck');
     var checkedCnt = 0;
-    console.log(chkBoxes);
+    // console.log(chkBoxes);
     chkBoxes.forEach((elm: any, idx) => {
       if (elm.children[0].checked) {
         checkedCnt++;
       }
     });
 
-    console.log(checkedCnt);
+    // console.log(checkedCnt);
     var progressPercentage = (100 / chkBoxes.length) * checkedCnt;
-    console.log(progressPercentage);
+    // console.log(progressPercentage);
     setProgress(progressPercentage);
   };
 

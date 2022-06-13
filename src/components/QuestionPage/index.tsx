@@ -24,7 +24,7 @@ const QuestionPage = () => {
   const progressData = () => {
     return headingText?.map((element: any) => {
       element.subTitle.map((title: any) => {
-        console.log(title)
+        // console.log(title)
       })
     })
   }

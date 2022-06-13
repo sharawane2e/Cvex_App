@@ -136,7 +136,7 @@ const CustomSlider = (props: SliderProps) => {
                             <Slider
                                 key={`slider-${defaultValueSelected}`}
                                 aria-label="Restricted values"
-                                value={selectedInputId !== "" ? backpunchsliderId == backpunchsliderIdNA ? defaultValueSelected : backpunchsliderId : defaultValueSelected}
+                                defaultValue={selectedInputId !== "" ? backpunchsliderId == backpunchsliderIdNA ? defaultValueSelected : backpunchsliderId : defaultValueSelected}
                                 valueLabelFormat={valueLabelFormat}
                                 getAriaValueText={valuetext}
                                 valueLabelDisplay="off"
