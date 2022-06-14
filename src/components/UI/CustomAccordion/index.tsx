@@ -27,9 +27,8 @@ export default function CustomAccordion(props: AccordionProps) {
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
   }, []);
-  console.log("jsonData", jsonData)
 
-  const quesData = jsonData?.data?.rightPanel?.questionsData[0]?.subHeadingText;
+  const quesData = jsonData?.data?.rightPanel?.questionsData?.capabilityDetails;
 
   const handleAccordionChange =
     (panel: string, idx: any) =>
@@ -47,7 +46,7 @@ export default function CustomAccordion(props: AccordionProps) {
 
     const updatedSubHeadingText = JSON.parse(
       JSON.stringify([
-        ...jsonData.data.rightPanel.questionsData[0]?.subHeadingText,
+        ...jsonData.data.rightPanel.questionsData?.capabilityDetails,
       ]),
     );
 
@@ -56,13 +55,13 @@ export default function CustomAccordion(props: AccordionProps) {
       subHeadingIndex: number,
     ) {
       if (subHeadingIndex == matchSubHeadingIndex) {
-        jsonData.data.rightPanel.questionsData[0]?.subHeadingText[
+        jsonData.data.rightPanel.questionsData?.capabilityDetails[
           subHeadingIndex
         ].subTitle.forEach(function (subTitleEl: any, subTitleIndex: number) {
           if (subTitleIndex == index) {
             updatedSubHeadingText[subHeadingIndex].subTitle[
               subTitleIndex
-            ].sliderOptions.ratingDetails.SelectedInputId = value;
+            ].sliderOptions.selectedInputId = value;
           }
         });
       }
@@ -70,9 +69,7 @@ export default function CustomAccordion(props: AccordionProps) {
 
 
     const updatedSubheading = updatedSubHeadingText[matchSubHeadingIndex];
-    setJSONData({ ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
-    console.log("current", { ...jsonData, data: { ...jsonData.data, rightPanel: { ...jsonData.data.rightPanel, questionsData: [{ ...jsonData.data.rightPanel.questionsData[0], subHeadingText: [...updatedSubHeadingText] }] } } })
-    console.log("in state", jsonData)
+    setJSONData({ ...jsonData, data: { ...jsonData?.data, rightPanel: { ...jsonData?.data?.rightPanel, questionsData: [{ ...jsonData?.data.rightPanel.questionsData, subHeadingText: [...updatedSubHeadingText] }] } } })
     // setJSONData({
     //   pageCode: {
     //     page: 4,
@@ -532,8 +529,8 @@ export default function CustomAccordion(props: AccordionProps) {
                   {elm.skillTitle}
                 </Typography>
               </AccordionSummary>
-
               {title.map((elm3: any, index3: any) => {
+                { console.log(elm3) }
                 return (
                   <>
                     <AccordionDetails key={index3} className="accordDetail">
@@ -567,30 +564,24 @@ export default function CustomAccordion(props: AccordionProps) {
                       >
                         {getParsedData(elm3.bestPracticesTxt)}
                       </Typography>
-                      {/* {elm3?.sliderOptions?.ratingDetails?.ratingOpt.map(
-                        (el: any) => {
-                          return <CustomSlider inputId={el?.inputId} />;
-                        },
-                      )} */}
-                      { }
                       <CustomSlider
-                        inputId={elm3?.sliderOptions?.ratingDetails?.ratingOpt}
+                        inputId={elm3?.sliderOptions?.ratingOpt}
                         subHeadingIndex={index2}
                         sliderIndex={index3}
                         defaultValue={
-                          elm3?.sliderOptions?.ratingDetails?.defaultinputIdOpt
+                          elm3?.sliderOptions?.defaultinputIdOpt
                         }
                         NAOptionTxt={
-                          elm3?.sliderOptions?.ratingDetails?.NAOptionTxt
+                          elm3?.sliderOptions?.NAOptionTxt
                         }
                         NAoptionId={
-                          elm3?.sliderOptions?.ratingDetails?.NAOptionInputId
+                          elm3?.sliderOptions?.NAOptionInputId
                         }
                         selectedInputId={
-                          elm3?.sliderOptions?.ratingDetails?.SelectedInputId
+                          elm3?.sliderOptions?.selectedInputId
                         }
                         ratingData={
-                          elm3?.sliderOptions?.ratingDetails?.ratingOpt
+                          elm3?.sliderOptions?.ratingOpt
                         }
                         handleSliderChange={handleSliderChange}
                       />
