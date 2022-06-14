@@ -1,3 +1,99 @@
-.singleCapability {
-  display: flex;
+
+.skill-container {
+  color: #051C2C;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  .main-container {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+  }
+
+  .single-capability-header {
+    display: flex;
+    // justify-content: space-between;
+    width: 100%;
+    color: #565575;
+    padding: 10px;
+    border-bottom: 0px;
+    font-weight: 600;
+
+    div:nth-child(1){
+      width: 10%;
+    }
+    div:nth-child(2){
+      width: 9%;
+    }
+    div:nth-child(3){
+      width: 21%;
+    }
+    div:nth-child(4){
+      width: 41%;
+    }
+    div:nth-child(5){
+      width: 19%;
+    }
+  }
+
+  .single-capability {
+    border: 1px solid #BEBEBE;
+    display: flex;
+    &__left{
+      width: 10%;
+      padding: 10px;
+    }
+    &__right{
+
+        width: 90%;
+        &--cap-detail{
+          border: 1px solid #BEBEBE;
+          border-bottom: none;
+          display: flex;
+          &:first-child{
+            border-top: 0;
+          }
+          .skillCont {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 10%;
+            padding: 10px;
+          }
+          .skill-common{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-left: 1px solid #BEBEBE;
+            border-collapse: collapse;
+          }
+          .skill-details-cnrt {
+            width: 90%;
+            &__skill-details{
+              display: flex;
+              border-bottom: 1px solid #BEBEBE;
+              border-left: none;
+              &:last-child {
+                border-bottom: none;
+              }
+                      
+            }
+            
+            &__sub-skill{
+              width: 25%;
+            }
+            &__observation {
+              width: 50%;
+            }
+            &__slider {
+              width: 25%;
+            }
+
+          }
+        }
+  
+     
+      
+    }
+   
+  }
 }

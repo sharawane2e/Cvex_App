@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import startData from '../../mock/startPageData.json';
 import { isPasswordValid } from '../../utils';
-import PrimaryHeader from '../Headers/PrimaryHeader/index';
+import SecondaryHeader from '../Headers/SecondaryHeader/index';
 import { Inputbox } from '../UI/Input';
 import './Skill.scss';
 import CustomButton from '../UI/CustomButton';
@@ -43,38 +43,59 @@ const PanelPage = (props: any) => {
 
   console.log(jsonData)
   return (
-    <div className="login-container">
-      <PrimaryHeader />
+    <div className="skill-container">
+      <SecondaryHeader />
       <div className="main-container">
         <div className="content-area main-container">
           <Box className= "content-container">
+            <div className='single-capability-header'>
+              {
+                panelData?.panelHeading?.map((elm:any) => {
+                  return(
+                    <>
+                      <div>
+                        <p>{elm}</p>
+                      </div>
+                    </>
+                  )
+                })
+              }
+            </div>
             {
               panelData?.panelBody?.map((elm:any, idx:number) => {
                 return (
                   <>
-                    <div className="singleCapability">
-                      <p>{elm.capabilityText}</p>
+                    <div className="single-capability">
+                      <div className="single-capability__left">
+                        <p>{elm.capabilityText}</p>
+                      </div>
+                      <div className="single-capability__right">
                       {
                         elm?.skillDetails?.map((skill:any) => {
                           return(
                             <>
-                              <div>
-                                <p>{skill?.skillText}</p>
-                                <div>
-                                  <img src="" alt="" />
+                              <div className="single-capability__right--cap-detail">
+                                <div className="skillCont">
+                                  <div className="capability">
+                                    <p>{skill?.skillText}</p>
+                                  </div>
+                                  <div>
+                                    <img src={skill?.skillIcon} alt="" />
+                                  </div>
                                 </div>
+                                <div className="skill-details-cnrt">
                                 {
                                   skill?.subSkillDetails?.map((subskill:any) => {
                                     return(
                                       <>
-                                        <div className="skillDetails">
-                                          <div>
+                                        <div className=" skill-details-cnrt__skill-details">
+                                          <div className="skill-details-cnrt__sub-skill skill-common">
                                             <p>{subskill.subSkillText}</p>
                                           </div>
-                                          <div>
+                                          <div className="skill-details-cnrt__observation skill-common">
                                             <p>{subskill.observationtext}</p>
                                           </div>
-                                          <div>
+                                          <div className="skill-details-cnrt__slider skill-common">
                                             <p>{subskill.sliderValue}</p>
                                           </div>
                                         </div>
@@ -82,11 +103,13 @@ const PanelPage = (props: any) => {
                                     )
                                   })
                                 }
+                                </div>
                               </div>
                             </>
                           )
                         })
                       }
+                      </div>
                     </div>
                   </>
                 );
