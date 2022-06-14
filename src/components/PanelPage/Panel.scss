@@ -5,25 +5,24 @@
     
       .content-area {
         padding-top: 150px;
-        .btn-cont {
+        .btn-container {
           display: flex;
           justify-content: center;
 
-          .nav-btn {
+          .custom-nav-btn {
               font-size: 12px;
               text-transform: capitalize;
               padding: 25px 50px;
               margin-right: 16px;
               min-width: 200px;
               box-shadow: none;
-          }
-          .nav-btn-blue {
-            background-color: #2251ff;
-          }
-          .nav-btn-grey {
-            background-color: #dddddd;
+              background-color: #dddddd;
             color: #000000;
             font-weight: 700;
+              &:hover {
+                background-color: #2251ff;
+                color: #fff;
+              }
           }
         }
 
