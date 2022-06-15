@@ -22,7 +22,7 @@ const SecondaryHeader = () => {
     if (!sidebartoggle) {
       //dispatch(setSideBar(false));
     } else {
-     // dispatch(setSideBar(true));
+      // dispatch(setSideBar(true));
     }
   };
 
@@ -40,10 +40,10 @@ const SecondaryHeader = () => {
         <div className="logo">
           <div className="hamburger-toggle">
             {sidebartoggle ? (
-              <Hamburger  />
+              <Hamburger />
             ) : (
-              <></>
-            )}
+                <></>
+              )}
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
@@ -52,7 +52,7 @@ const SecondaryHeader = () => {
           />
         </div>
         <div className="title">
-          <h2>Customer Value Execution (CVEx) diagnostic</h2>
+          <h2>{jsonData?.data?.headerData?.title}</h2>
         </div>
       </div>
     </>
