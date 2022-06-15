@@ -5,30 +5,51 @@ import ListItem from '@mui/material/ListItem';
 import './Sidebar.scss';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
+import store from '../../redux/store';
+import { useSelector } from 'react-redux';
+import { updateLeftPanelCategories } from '../../redux/actions/LeftPanelActions';
 
-type SideBarProps = {};
 
-const SideBar = (props: SideBarProps) => {
-  const [jsonData, setJSONData] = useState<any>('');
+
+const SideBar = () => {
+
+  const { leftPanel, rightPanel } = useSelector((state: any) => state);
+  const { dispatch } = store;
+
   useEffect(() => {
-    // @ts-ignore
-    document.getElementById('forwardbutton').disabled = true;
-    setJSONData(
-      // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerText),
-    );
-  }, []);
+    updatedTotalAnswereda();
+  }, [rightPanel?.questionsData?.capabilityDetails])
 
-  const currentSelectedItem: any = jsonData?.data?.leftPanel?.currentSelectedId;
+  const currentSelectedItem: any = leftPanel?.currentSelectedId;
 
-  const listItems: any = jsonData?.data?.leftPanel?.categories;
-  const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
-  const [totalAnswered, setTotalAnswered] = useState(0);
-  const [currentItem, setcurrentItem] = useState(0);
-  // const updateTotalAnswered = () => {
-  //   // setTotalAnswered
-  // };
-  // const updateTotalQuestions = () => {};
+  const listItems: any = leftPanel?.categories;
+
+  const updatedTotalAnswereda = () => {
+    let updatedTotalAnswered = 0;
+
+    rightPanel?.questionsData?.capabilityDetails?.forEach((capabilityDetail: any) => {
+      capabilityDetail.subTitleDetails.forEach((subTitleDetail: any) => {
+        if (subTitleDetail.sliderOptions.selectedInputId != "") {
+          updatedTotalAnswered++
+        }
+      })
+
+      const categories = JSON.parse(JSON.stringify(leftPanel.categories));
+
+      categories.forEach((category: any) => {
+        if (category.selectedId === leftPanel.currentSelectedId) {
+          category.totalAnswered = updatedTotalAnswered;
+        }
+      })
+
+      dispatch(updateLeftPanelCategories(categories))
+
+    })
+  }
+
+
+
+
 
   const handleClick = (selectedId: any) => {
     // @ts-ignore
@@ -38,7 +59,6 @@ const SideBar = (props: SideBarProps) => {
     // @ts-ignore
     document.getElementById('forwardbutton').click();
   };
-  //console.log('listItems', listItems);
 
   const ListItemsHandle = () => {
     return listItems?.map((listItem: any, index: any) => (
