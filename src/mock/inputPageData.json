@@ -13,10 +13,10 @@
         "headingText": "Select industry and customer type:",
         "subHeadingDetails": [
           {
-            "subHeadingText": "",
+            "subHeadingText": "Subheading text",
             "segmentDetails": [
               {
-                "segmentText": "",
+                "segmentText": "Segment Text",
                 "questions": [
                   {
                     "optionName": "Industry:",
@@ -82,7 +82,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",
@@ -98,7 +98,7 @@
                   {
                     "optionName": "Customer base",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A4",
@@ -114,7 +114,7 @@
                   {
                     "optionName": "ARPU",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A4",
@@ -153,10 +153,10 @@
                   {
                     "optionName": "Yearly market growth",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "%",
                     "description": "",
-                    "questionId": "A4",
+                    "questionId": "A12",
                     "mappedBox": "",
                     "selectedText": "",
                     "selectedId": "A4",
@@ -183,7 +183,7 @@
                     "placeholder": "Please select",
                     "description": "Advanced/developed or Emerging/developing",
                     "questionId": "A5",
-                    "selectedId": "",
+                    "selectedId": "A5_2_label",
                     "enableQuestionIds": ["A12", "A13"],
 
                     "options": [
@@ -355,7 +355,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",
@@ -371,7 +371,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",
@@ -387,7 +387,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",
@@ -403,7 +403,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",
@@ -429,7 +429,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",
@@ -445,7 +445,7 @@
                   {
                     "optionName": "Customers in the market",
                     "type": "num",
-                    "isShow": true,
+                    "isShow": false,
                     "placeholder": "#",
                     "description": "",
                     "questionId": "A3",

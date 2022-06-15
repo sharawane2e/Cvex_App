@@ -130,7 +130,7 @@ const PanelPage = (props: any) => {
 																					)
 																				}
 																				else if (question.type == "hsdd") {
-																					return <HsddInput />
+																					return <HsddInput type={question.type} optionName={question?.optionName} placeholder={question?.placeholder} menuItems={question?.options} />
 																				}
 																			})
 																		}
