@@ -1,9 +1,30 @@
 import { FormControl, Grid, MenuItem, Select } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 
 type HsddInputProps = {
-	type: string, optionName: string, placeholder: string, menuItems: any
+	type: string, optionName: string, placeholder: string, menuItems: any, selectedId: string
 }
 const HsddInput = (props: HsddInputProps) => {
+	const [jsonData, setJSONData] = useState<any>('');
+
+	useEffect(() => {
+		setJSONData(
+			// @ts-ignore
+			JSON.parse(document.getElementById('jsonData')?.innerText),
+		);
+	}, []);
+	console.log(props.menuItems)
+	const inputDetails = jsonData?.data?.inputData
+
+	const getselectedDDName = (options: any, selectedId: string) => {
+		let selectedDDName = '';
+		props.menuItems?.forEach((element: any) => {
+			if (element.ddId == selectedId) {
+				selectedDDName = element.ddName;
+			}
+		});
+		return selectedDDName;
+	};
 
 	const hsddRender = () => {
 		if (props.type == "hsdd") {
@@ -20,8 +41,24 @@ const HsddInput = (props: HsddInputProps) => {
 									// style={{"padding":0}}
 									className="inputField cutom-input-field"
 									defaultValue="none"
-									value={"Hello"}
-								//   onChange={}
+									value={getselectedDDName(
+										props.menuItems, props.selectedId
+									)}
+									onChange={(e) => {
+										let dropdownId = '';
+										if (props.type == "hsdd") {
+											props.menuItems.forEach((option: any) => {
+												if (option.ddName == e.target.value) {
+													dropdownId = option.ddId;
+
+													// document
+													// 	.getElementById(option.ddId)
+													// 	?.click();
+													console.log(option)
+												}
+											})
+										}
+									}}
 								>
 									<MenuItem
 										disabled
@@ -46,6 +83,9 @@ const HsddInput = (props: HsddInputProps) => {
 			)
 		}
 	}
+
+
+
 	return (
 		<>
 			{hsddRender()}

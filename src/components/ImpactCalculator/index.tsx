@@ -26,7 +26,6 @@ const PanelPage = (props: any) => {
 
 	const inputData = jsonData?.data?.inputData;
 
-	console.log(inputData);
 
 	const handleClick = () => {
 		if (jsonData !== '') {
@@ -60,9 +59,9 @@ const PanelPage = (props: any) => {
 											return (
 												<>
 													<div className="single-dropdown-section--body">
-														<div className="title-container">
+														{subHeadingDetail?.subHeadingText ? <div className="title-container">
 															<p>{subHeadingDetail?.subHeadingText}</p>
-														</div>
+														</div> : ""}
 														{subHeadingDetail?.segmentDetails?.map((segmentDetail: any) => {
 															return (
 																<>
@@ -130,7 +129,7 @@ const PanelPage = (props: any) => {
 																					)
 																				}
 																				else if (question.type == "hsdd") {
-																					return <HsddInput type={question.type} optionName={question?.optionName} placeholder={question?.placeholder} menuItems={question?.options} />
+																					return <HsddInput type={question.type} optionName={question?.optionName} placeholder={question?.placeholder} menuItems={question?.options} selectedId={question?.selectedId} />
 																				}
 																			})
 																		}
