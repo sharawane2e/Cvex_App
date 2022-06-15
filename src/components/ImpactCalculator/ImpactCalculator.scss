@@ -1,6 +1,9 @@
+.impact-calc-container{
+    &__inr{
+        padding: 25px;
+    }
+}
 .main-container {
-    padding: 15px;
-
     .single-dropdown-section {
         &--header {
             background-color: #F6F6F6;
@@ -26,10 +29,6 @@
                 display: flex;
                 flex-wrap: wrap;
 
-                .inputCont {
-                    width: 30.33%;
-                    display: inline-block;
-                    margin-right: 20px;
 
                     .single-dropdown-title {
                         padding: 10px 0;
@@ -37,12 +36,13 @@
                     }
 
                     .inputField{
+                        padding: 0;
                         input{
-                          padding: 0  !important;
+                          padding: 10px  !important;
                           font-size: 12px !important;
                         }
                     }
-                }
+                
             }
         }
     }
