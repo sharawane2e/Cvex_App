@@ -8,54 +8,111 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useDispatch } from 'react-redux';
 import { setAnswerCount } from '../../../redux/actions/ProgressBarAction';
+import store from '../../../redux/store';
+import clsx from "clsx";
+import { isDisabled } from '@testing-library/user-event/dist/utils';
+import { updateCapabilityDetails } from '../../../redux/actions/RightPanelActions';
+import { updateLeftPanelCategories } from '../../../redux/actions/LeftPanelActions';
+import { useSelector } from 'react-redux';
 
 type SliderProps = {
-  inputId: any;
-  defaultValue: any;
-  sliderIndex: any;
-  subHeadingIndex: number;
-  NAOptionTxt: any;
-  NAoptionId: any;
-  selectedInputId: any;
-  ratingData: any;
-  handleSliderChange: any;
+  capabilityDetailIndex: number,
+  subTitleIndex: number
 };
 
 const CustomSlider = (props: SliderProps) => {
-  const [disableSlider, setDisableSlider] = useState<boolean>(false);
-  const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
+  // const [disableSlider, setDisableSlider] = useState<boolean>(false);
+  // const [noneSelectedVal, setNoneSelectedVal] = useState<boolean>(false);
 
-  let defaultValueSelected: any = props?.defaultValue;
+  const { rightPanel, leftPanel } = useSelector((state: any) => state);
+  const { dispatch } = store;
 
-  const [selectedValue, setselectedValue] =
-    useState<Number>(defaultValueSelected);
+  const isDisabled = () => {
+    let disableSlider = false;
 
-  const ratingData: any = props?.ratingData;
+    if (sliderOptions.selectedInputId === "") {
+      disableSlider = true;
+    }
 
-  const selectedInputId = props?.selectedInputId;
-  const NAselectedInputId = props?.NAoptionId;
-  const backpunchsliderId = selectedInputId?.split('_')[2];
-  const backpunchsliderIdNA = NAselectedInputId?.split('_')[2];
+    if (sliderOptions.selectedInputId === sliderOptions.NAOptionInputId) {
+      disableSlider = true;
+    }
+
+    return disableSlider
+  }
+
+  const updateSliderState = (selectedInputId: any) => {
+    const updatedCapabilityDetails = JSON.parse(JSON.stringify(rightPanel.questionsData.capabilityDetails));
+    updatedCapabilityDetails[props.capabilityDetailIndex].subTitleDetails[props.subTitleIndex].sliderOptions.selectedInputId = selectedInputId;
+    dispatch(updateCapabilityDetails(updatedCapabilityDetails))
+    // updateTotalAnswered();
+  }
+
+  const sliderDefaultValue = () => {
+
+    let defaultSliderValue = parseInt(sliderOptions.defaultinputIdOpt);
+    if (sliderOptions.selectedInputId !== "" && sliderOptions.selectedInputId !== sliderOptions.NAOptionInputId) {
+      defaultSliderValue = sliderOptions.selectedInputId.split("_")[2]
+    }
+    return defaultSliderValue;
+  }
+
+
+  // const updateTotalAnswered = () => {
+  //   let updatedTotalAnswered = 0;
+
+  //   rightPanel?.questionsData?.capabilityDetails?.forEach((capabilityDetail: any) => {
+  //     capabilityDetail.subTitleDetails.forEach((subTitleDetail: any) => {
+  //       if (subTitleDetail.sliderOptions.selectedInputId != "") {
+  //         updatedTotalAnswered++
+  //       }
+  //     })
+
+  //     const categories = JSON.parse(JSON.stringify(leftPanel.categories));
+
+  //     categories.forEach((category: any) => {
+  //       if (category.selectedId === leftPanel.currentSelectedId) {
+  //         category.totalAnswered =  updatedTotalAnswered;
+  //       }
+  //     })
+
+  //     dispatch(updateLeftPanelCategories(categories))
+
+  //   })
+  // }
+
+  // let defaultValueSelected: any = props?.defaultValue;
+  const sliderOptions = rightPanel?.questionsData.capabilityDetails[props.capabilityDetailIndex].subTitleDetails[props.subTitleIndex].sliderOptions
+
+  // const [selectedValue, setselectedValue] =
+  //   useState<Number>(defaultValueSelected);
+
+  // const ratingData: any = sliderOptions.ratingOpt;
+
+  // const selectedInputId = props?.selectedInputId;
+  // const NAselectedInputId = props?.NAoptionId;
+  // const backpunchsliderId = selectedInputId?.split('_')[2];
+  // const backpunchsliderIdNA = NAselectedInputId?.split('_')[2];
 
   const backpunchHandle = () => {
-    if (selectedInputId !== '') {
-      setDisableSlider(false);
-      if (backpunchsliderId == backpunchsliderIdNA) {
-      }
-    } else {
-      setDisableSlider(true);
-      setNoneSelectedVal(false);
-    }
+    // if (selectedInputId !== '') {
+    //   // setDisableSlider(false);
+    //   if (backpunchsliderId == backpunchsliderIdNA) {
+    //   }
+    // } else {
+    //   // setDisableSlider(true);
+    //   setNoneSelectedVal(false);
+    // }
   };
-  useEffect(() => {
-    if (selectedInputId == '') {
-      setDisableSlider(true);
-      setNoneSelectedVal(false);
-    } else {
-      backpunchHandle();
-      optionNACheck();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (selectedInputId == '') {
+  //     // setDisableSlider(true);
+  //     setNoneSelectedVal(false);
+  //   } else {
+  //     backpunchHandle();
+  //     optionNACheck();
+  //   }
+  // }, []);
 
   function valuetext(value: number) {
     return `${value}`;
@@ -63,101 +120,85 @@ const CustomSlider = (props: SliderProps) => {
 
   function valueLabelFormat(value: number) {
     return (
-      ratingData?.findIndex((ratingData: any) => ratingData.value === value) + 1
+      sliderOptions.ratingOpt?.findIndex((ratingData: any) => ratingData.value === value) + 1
     );
   }
 
-  const handleChange = (event: any, inputId: any) => {
-    if (event.target.checked === true) {
-      setDisableSlider(true);
-      if (selectedInputId !== '' && NAselectedInputId === selectedInputId) {
-        setNoneSelectedVal(true);
-      }
-    }
-    setNoneSelectedVal(event.target.checked);
-    document.getElementById(inputId)?.click();
-    handleSliderValue('');
-  };
   const optionNACheck = () => {
-    if (selectedInputId !== '' && NAselectedInputId === selectedInputId) {
-      setNoneSelectedVal(true);
-      setDisableSlider(true);
-      return true;
-    } else {
-      return false;
-    }
+    // if (selectedInputId !== '' && NAselectedInputId === selectedInputId) {
+    //   setNoneSelectedVal(true);
+    //   // setDisableSlider(true);
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   };
   const onSliderChange = (value: any, inputId: any) => {
-    if (disableSlider == true) {
-      setDisableSlider(false);
-    }
+    // if (disableSlider == true) {
+    //   // setDisableSlider(false);
+    // }
   };
 
   const sliderChecked = (event: any, inputId: any) => {
-    let sliderId: any;
-    inputId.map((el: any, index: any) => {
-      const inputIdData = el?.inputId.split('_')[2];
-      if (inputIdData == event.target.value) {
-        const currentID: any = el?.inputId;
-        sliderId = currentID;
-        return currentID;
-      }
-    });
-    const curentsliderId = sliderId.split('_')[2];
-    // let element: any;
-    if (curentsliderId == event.target.value) {
-      //element = document.getElementById(`${sliderId}`);
-      //element.checked = true;
-      // @ts-ignore
-      document.getElementById(sliderId).click();
-    }
-    handleSliderValue(event.target.value);
-    setNoneSelectedVal(false);
+    // let sliderId: any;
+    // debugger
+    // inputId.map((el: any, index: any) => {
+    //   const inputIdData = el?.inputId.split('_')[2];
+    //   if (inputIdData == event.target.value) {
+    //     const currentID: any = el?.inputId;
+    //     sliderId = currentID;
+    //     return currentID;
+    //   }
+    // });
+    // const curentsliderId = sliderId.split('_')[2];
+    // // let element: any;
+    // if (curentsliderId == event.target.value) {
+    //   //element = document.getElementById(`${sliderId}`);
+    //   //element.checked = true;
+    //   // @ts-ignore
+    //   document.getElementById(sliderId).click();
+    // }
+    // handleSliderValue(event.target.value);
+    // setNoneSelectedVal(false);
   };
 
   const handleSliderValue = (value: any) => {
-    if (disableSlider == true) {
-      defaultValueSelected = value;
-    }
+    // if (disableSlider == true) {
+    //   defaultValueSelected = value;
+    // }
   };
 
   return (
     <>
-      <div className="slider-container" id={props.sliderIndex}>
+      <div className="slider-container" id={"" + props.capabilityDetailIndex}>
         <div className="slider-container-inner">
           <div className="sliderOuter">
             <Box className="slider">
               <Slider
-                key={`slider-${defaultValueSelected}`}
+                // key={`slider-${defaultValueSelected}`}
                 aria-label="Restricted values"
-                defaultValue={
-                  selectedInputId !== ''
-                    ? backpunchsliderId == backpunchsliderIdNA
-                      ? defaultValueSelected
-                      : backpunchsliderId
-                    : defaultValueSelected
-                }
+                value={sliderDefaultValue()}
                 valueLabelFormat={valueLabelFormat}
                 getAriaValueText={valuetext}
                 valueLabelDisplay="off"
-                marks={ratingData}
+                marks={sliderOptions.ratingOpt}
                 min={1}
                 max={5}
                 track={false}
                 onChange={(event: any, value: any) => {
-                  //console.log()
-                  const sliderValue =
-                    ratingData[event.target.value - 1].inputId;
-                  //console.log(event)
-                  onSliderChange(event, sliderChecked(event, props?.inputId));
-                  // console.log("slider change")
-                  props.handleSliderChange(
-                    sliderValue,
-                    props?.sliderIndex,
-                    props?.subHeadingIndex,
-                  );
+                  let selectedInputId = "";
+                  sliderOptions.ratingOpt.forEach((ratingOp: any, ratingIndex: number) => {
+                    if (ratingOp.value === value) {
+                      selectedInputId = ratingOp.inputId
+                    }
+                  })
+
+                  //@ts-ignore
+                  document.getElementById(selectedInputId)?.click();
+
+                  updateSliderState(selectedInputId);
                 }}
-                className={disableSlider ? 'knob-disabled' : ''}
+                className={clsx({ 'knob-disabled': isDisabled() })}
               />
             </Box>
           </div>
@@ -166,12 +207,17 @@ const CustomSlider = (props: SliderProps) => {
               <FormControlLabel
                 value="bottom"
                 control={<Radio />}
-                label={props?.NAOptionTxt}
+                label={sliderOptions?.NAOptionTxt}
                 labelPlacement="bottom"
-                onChange={(event: any) =>
-                  handleChange(event, props?.NAoptionId)
+                onChange={(event: any) => {
+
+                  updateSliderState(sliderOptions?.NAOptionInputId);
+                  //@ts-ignore
+                  document.getElementById(sliderOptions?.NAOptionInputId)?.click();
                 }
-                checked={noneSelectedVal}
+
+                }
+                checked={sliderOptions.selectedInputId === sliderOptions.NAOptionInputId}
               />
             </RadioGroup>
           </FormControl>
@@ -181,3 +227,5 @@ const CustomSlider = (props: SliderProps) => {
   );
 };
 export default CustomSlider;
+
+
