@@ -24,6 +24,55 @@ const PanelPage = (props: any) => {
 		);
 	}, []);
 
+
+	const getSubHeadingDetails = (data:any) => {
+		return data?.subHeadingDetails;
+	}
+
+	const getSegmentDetails = (subHeadingDetail:any) => {
+		return subHeadingDetail?.segmentDetails;
+	}
+
+	const getQuestions = (detail:any) => {
+		console.log(detail?.questions, "OPTIONS")
+		return detail?.questions;
+	}
+
+	const getOptions = (question:any) => {
+		return question?.options;
+	}
+
+	const hideShow = () => {
+
+		const showNumQuestionIds:string[] = [];
+
+		jsonData?.data?.inputData.forEach((data:any)=>{
+			getSubHeadingDetails(data).forEach((subHeadingDetail:any) => {
+				getSegmentDetails(subHeadingDetail).forEach((segmentDetail:any) => {
+					getQuestions(segmentDetail).forEach((question:any) => {
+						if(question?.type == "hsdd")
+						{
+							getOptions(question).forEach((option:any) => {
+								// console.log(question?.selectedId == option?.ddId);
+								// console.log(option?.enableIds == true);
+								console.log(question?.selectedId);
+
+								if(question?.selectedId == option?.ddId && option?.enableIds == true && question?.enableQuestionIds.length != 0)
+								{
+									showNumQuestionIds.push(...question?.enableQuestionIds);
+									console.log("Something OUTPUT _____", showNumQuestionIds);
+								}
+							})	
+						}
+					})
+				})
+			})
+		})
+		
+	}
+
+	hideShow();
+
 	const inputData = jsonData?.data?.inputData;
 
 	console.log(inputData);
@@ -42,6 +91,7 @@ const PanelPage = (props: any) => {
 			// document.getElementById('forwardbutton').click();
 		}
 	};
+
 
 	return (
 		<div className="impact-calc-container">
