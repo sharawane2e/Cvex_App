@@ -24,8 +24,6 @@ export default function CustomAccordion(props: AccordionProps) {
   const [expanded, setExpanded] = useState<string | false>(false);
   const [jsonData, setJSONData] = useState<any>('');
 
-  console.log(rightPanel)
-
   useEffect(() => {
     setJSONData(
       // @ts-ignore

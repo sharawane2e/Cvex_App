@@ -2,11 +2,22 @@ import './SecondaryHeader.scss';
 import { ReactComponent as Hamburger } from '../../../assets/svg/hamburger.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLeftPanelOpenClose } from '../../../redux/actions/LeftPanelActions';
+import { useState, useEffect } from 'react';
 // import Logo from "../../../assets/svg/logo.svg";
+import clsx from "clsx";
+import store from '../../../redux/store';
 
 const SecondaryHeader = () => {
+  const [jsonData, setJSONData] = useState<any>('');
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+    );
+  }, []);
+  const { leftPanel } = useSelector((state: any) => state);
+  const { dispatch } = store
   const handleToggle = (event: any) => {
     // if (!sidebartoggle) {
     //dispatch(setSideBar(false));
@@ -14,11 +25,17 @@ const SecondaryHeader = () => {
     // dispatch(setSideBar(true));
     // }
   };
+  const toggleLeftPanel = () => {
+    const updateToggle = !leftPanel?.leftPanelOpen;
+    dispatch(setLeftPanelOpenClose(updateToggle));
+    //@ts-ignore
+    document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
+  }
 
   return (
     <>
       <div
-        className="secondary-header"
+        className={leftPanel?.leftPanelOpen === true ? "secondary-header hamburger-toggle" : " secondary-header hamburger-toggle-active"}
         style={{
           backgroundImage:
             'url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)',
@@ -27,8 +44,9 @@ const SecondaryHeader = () => {
         }}
       >
         <div className="logo">
-          <div className="hamburger-toggle">
-            <Hamburger />
+          {/* <div className="hamburger-toggle" > */}
+          <div className="hamburger-menu" >
+            <Hamburger onClick={() => toggleLeftPanel()} />
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
@@ -37,7 +55,7 @@ const SecondaryHeader = () => {
           />
         </div>
         <div className="title">
-          <h2>{ }</h2>
+          <h2>{jsonData?.data?.headerData?.title}</h2>
         </div>
       </div>
     </>
