@@ -34,7 +34,6 @@ const Pages = () => {
       return <QuestionPage />;
     }
     if (jsonData?.pageCode?.page == 5) {
-
       return <ThankYou />;
     }
     if (jsonData?.pageCode?.page == 6) {
@@ -44,9 +43,9 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == 7) {
       return <PanelPage />;
     }
-    if (jsonData?.pageCode?.page == 8) {
-      return <PanelPage />;
-    }
+    // if (jsonData?.pageCode?.page == 8) {
+    //   return <PanelPage />;
+    // }
     if (jsonData?.pageCode?.page == 9) {
       return <ImpactCalculatorPage />;
     }

@@ -10,7 +10,7 @@ import { getParsedData } from '../../utils/parserUtil';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { FormControl, Grid, MenuItem, Select, Tooltip } from '@mui/material';
-
+import HsddInput from "./HsddInput";
 const PanelPage = (props: any) => {
 
 	const [jsonData, setJSONData] = useState<any>("");
@@ -128,6 +128,9 @@ const PanelPage = (props: any) => {
 																							</Grid>
 																						</>
 																					)
+																				}
+																				else if (question.type == "hsdd") {
+																					return <HsddInput />
 																				}
 																			})
 																		}
