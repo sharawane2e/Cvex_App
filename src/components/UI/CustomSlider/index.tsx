@@ -95,7 +95,6 @@ const CustomSlider = (props: SliderProps) => {
 
   const sliderChecked = (event: any, inputId: any) => {
     let sliderId: any;
-    debugger
     inputId.map((el: any, index: any) => {
       const inputIdData = el?.inputId.split('_')[2];
       if (inputIdData == event.target.value) {

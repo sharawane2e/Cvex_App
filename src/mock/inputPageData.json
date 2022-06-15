@@ -1,0 +1,184 @@
+{
+  "pageCode": { "page": 3 },
+  "data": {
+    "headerData": {
+      "title": "Customer Value Execution",
+      "logo": "src",
+      "banner": "src"
+    },
+    "inputData": [
+      {
+        "heading": "",
+        "comments": "",
+        "segmentData": {
+          "type": "dd",
+          "optionName1": "",
+          "placeHolder1": "",
+          "ddInputId1": "",
+          "options1": [],
+          "optionName2": "",
+          "ddInputId2": "",
+          "placeHolder2": "",
+          "options2": []
+        }
+      },
+      {
+        "heading": "",
+        "comments": "",
+        "segmentData": [
+          {
+            "subHeading": "",
+            "numTypeInput": [
+              {
+                "type": "dd",
+                "placeHolder": "",
+                "optionName": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "type": "dd",
+                "placeHolder": "",
+                "optionName": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "type": "dd",
+                "placeHolder": "",
+                "optionName": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "type": "dd",
+                "placeHolder": "",
+                "optionName": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "type": "dd",
+                "placeHolder": "",
+                "optionName": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "type": "dd",
+                "placeHolder": "",
+                "optionName": "",
+                "inputId": "",
+                "options": []
+              }
+            ]
+          },
+          {
+            "heading": "",
+            "comments": "",
+            "segmentData": [
+              {
+                "subHeading": "",
+                "numTypeInput": [
+                  {
+                    "type": "num",
+                    "placeHolder": "",
+                    "optionName": "",
+                    "inputId": ""
+                  },
+                  {
+                    "type": "num",
+                    "placeHolder": "",
+                    "optionName": "",
+                    "inputId": ""
+                  },
+                  {
+                    "type": "num",
+                    "placeHolder": "",
+                    "optionName": "",
+                    "inputId": ""
+                  },
+                  {
+                    "type": "dd",
+                    "placeHolder": "",
+                    "optionName": "",
+                    "inputId": "",
+                    "options": []
+                  },
+                  {
+                    "type": "num",
+                    "placeHolder": "",
+                    "optionName": "",
+                    "inputId": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "",
+        "comments": "",
+        "segmentData": [
+          {
+            "subheading": "",
+            "numTypeInput": [
+              {
+                "type": "num",
+                "optionName": "",
+                "placeHolder": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "subheading": "",
+                "type": "num",
+                "optionName": "",
+                "placeHolder": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "subheading": "",
+                "type": "num",
+                "optionName": "",
+                "placeHolder": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "subheading": "",
+                "type": "num",
+                "optionName": "",
+                "placeHolder": "",
+                "inputId": "",
+                "options": []
+              }
+            ]
+          },
+          {
+            "subheading": "",
+            "numTypeInput": [
+              {
+                "type": "num",
+                "optionName": "",
+                "placeHolder": "",
+                "inputId": "",
+                "options": []
+              },
+              {
+                "subheading": "",
+                "type": "num",
+                "optionName": "",
+                "placeHolder": "",
+                "inputId": "",
+                "options": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
