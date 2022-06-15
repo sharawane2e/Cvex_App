@@ -12,7 +12,7 @@ import store from '../../redux/store';
 import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
 import { setRightPanelData } from '../../redux/actions/RightPanelActions';
 import { setLeftPanelData } from '../../redux/actions/LeftPanelActions';
-
+import "../../styles/partials/common.scss"
 
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');

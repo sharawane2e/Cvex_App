@@ -18,19 +18,19 @@
     border-bottom: 0px;
     font-weight: 600;
 
-    div:nth-child(1){
+    &--heading:nth-child(1){
       width: 10%;
     }
-    div:nth-child(2){
+    &--heading:nth-child(2){
       width: 9%;
     }
-    div:nth-child(3){
+    &--heading:nth-child(3){
       width: 21%;
     }
-    div:nth-child(4){
+    &--heading:nth-child(4){
       width: 41%;
     }
-    div:nth-child(5){
+    &--heading:nth-child(5){
       width: 19%;
     }
   }
