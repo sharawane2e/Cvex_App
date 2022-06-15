@@ -1,0 +1,53 @@
+.main-container {
+    padding: 15px;
+
+    .single-dropdown-section {
+        &--header {
+            background-color: #F6F6F6;
+            padding: 15px 10px;
+
+            .header-text {
+                font-size: 16px;
+                font-weight: 700;
+                color: #2A2A2A;
+            }
+        }
+
+        &--body {
+            .title-container {
+                border-bottom: 1px solid #C4C4C4;
+                font-size: 14px;
+                font-weight: 600;
+                color: #333333;
+                padding: 15px 0 8px 0px;
+            }
+
+            .dropdown-container {
+                display: flex;
+                flex-wrap: wrap;
+
+                .inputCont {
+                    width: 30.33%;
+                    display: inline-block;
+                    margin-right: 20px;
+
+                    .single-dropdown-title {
+                        padding: 10px 0;
+                        font-size: 18px;
+                    }
+
+                    .inputField{
+                        input{
+                          padding: 0  !important;
+                          font-size: 12px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+

@@ -53,7 +53,7 @@ const PanelPage = (props: any) => {
                 panelData?.panelHeading?.map((elm:any) => {
                   return(
                     <>
-                      <div>
+                      <div className="single-capability-header--heading">
                         <p>{elm}</p>
                       </div>
                     </>
