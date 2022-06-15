@@ -248,12 +248,6 @@ const GI = () => {
 
   const inputValidate = (value: any, pattern: any) => {
     const reg = pattern;
-    // if (!reg.test(value)) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
-
     let res = '';
 
     for (let i = 0; i < value.length; i++) {

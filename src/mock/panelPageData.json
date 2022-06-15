@@ -1,5 +1,5 @@
 {
-    "pageCode": { "page": 1 },
+    "pageCode": { "page": 7 },
     "data": {
       "headerData": {
         "title": "Customer Value Execution",
@@ -13,11 +13,11 @@
                 "InputId": ""
             },
             {
-                "text": "Impact Calculator",
+                "text": "CVEx 1.0",
                 "InputId": ""
             },
             {
-                "text": "Impact Calculator",
+                "text": "CVEx 2.0",
                 "InputId": ""
             }
         ]

@@ -8,7 +8,6 @@ const SecondaryHeader = () => {
 
   const dispatch = useDispatch();
 
-
   return (
     <>
       <div
