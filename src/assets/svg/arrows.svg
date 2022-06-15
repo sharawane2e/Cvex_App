@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="52" viewBox="0 0 52 52">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1961" data-name="Rectangle 1961" width="52" height="52" transform="translate(-0.5 -2.56)" fill="none" stroke="#888" stroke-width="2"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_1960" data-name="Rectangle 1960" width="52" height="52" fill="none" stroke="#888" stroke-width="2"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_1959" data-name="Rectangle 1959" width="51.167" height="51.181" fill="none" stroke="#888" stroke-width="2"/>
+    </clipPath>
+  </defs>
+  <g id="arrows" transform="translate(0.5 2.56)" clip-path="url(#clip-path)">
+    <g id="Group_3060" data-name="Group 3060" transform="translate(-0.5 -2.56)" clip-path="url(#clip-path-2)">
+      <path id="Path_11423" data-name="Path 11423" d="M7.1,13.467h7.6v4.156L25.256,9.168,14.693.59V4.766H3.42" transform="translate(4.542 5.859)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_66" data-name="Line 66" x1="9.039" transform="translate(6.053 14.29)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      <g id="Group_3059" data-name="Group 3059" transform="translate(0.447 0.45)" clip-path="url(#clip-path-3)">
+        <line id="Line_67" data-name="Line 67" x1="2.966" transform="translate(0.569 13.839)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      </g>
+      <path id="Path_11424" data-name="Path 11424" d="M20.475,15.45h5.85v3.357l8.47-6.879L26.325,5.05V8.407h-12" transform="translate(15.783 10.53)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_68" data-name="Line 68" x1="4.002" transform="translate(3.006 40.044)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      <path id="Path_11425" data-name="Path 11425" d="M12.09,14.2H22.8V8.45L36.953,20.037,22.8,31.543V25.954H3.62" transform="translate(4.749 14.09)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_69" data-name="Line 69" x2="6.886" transform="translate(4.123 32.285)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_70" data-name="Line 70" x2="15.031" transform="translate(12.045 32.285)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
