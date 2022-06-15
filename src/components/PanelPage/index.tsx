@@ -41,7 +41,7 @@ const Login = (props: any) => {
       // @ts-ignore
       document.getElementById('navText').value =
         jsonData['data']['contentDetails']['submitBTnDetails'][
-          'forwardInputId'
+        'forwardInputId'
         ];
 
       // @ts-ignore
@@ -67,7 +67,7 @@ const Login = (props: any) => {
       <PrimaryHeader />
       <div className="main-container">
         <div className="content-area main-container">
-          <Box className= "btn-cont">
+          <Box className="btn-cont">
             <Button variant="contained" className="nav-btn nav-btn-blue" >Impact Calculator</Button>
             <Button variant="contained" className="nav-btn nav-btn-grey">CVEx 1.0</Button>
             <Button variant="contained" className="nav-btn nav-btn-grey">CVEx 2.0</Button>

@@ -19,8 +19,6 @@ const Pages = () => {
     );
   }, []);
 
-  console.log(jsonData?.pageCode?.page)
-
   if (jsonData != '' || jsonData != undefined) {
     if (jsonData?.pageCode?.page == 1) {
       return <Login />;
