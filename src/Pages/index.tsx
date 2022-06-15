@@ -7,7 +7,8 @@ import QuestionPage from '../components/QuestionPage';
 import GI from '../components/GI';
 import PanelPage from "../components/PanelPage";
 import SkillPage from "../components/SkillPage";
-import InputPage from "../components/InputPage"
+import ImpactCalculatorPage from "../components/ImpactCalculator";
+
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
 
@@ -43,15 +44,14 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == 7) {
       return <PanelPage />;
     }
-    // if(jsonData?.pageCode?.page == 8) {
-    //     return < />;
-    // }
+    if (jsonData?.pageCode?.page == 8) {
+      return <PanelPage />;
+    }
     if (jsonData?.pageCode?.page == 9) {
-      return <InputPage />;
+      return <ImpactCalculatorPage />;
     }
 
   }
-
 
 };
 export default Pages;

@@ -46,7 +46,7 @@ const SecondaryHeader = () => {
         <div className="logo">
           {/* <div className="hamburger-toggle" > */}
           <div className="hamburger-menu" >
-            <Hamburger onClick={() => toggleLeftPanel()} />
+            {jsonData?.data?.leftPanel == undefined ? <Hamburger onClick={() => toggleLeftPanel()} /> : ""}
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}

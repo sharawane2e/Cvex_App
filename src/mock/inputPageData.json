@@ -1,5 +1,7 @@
 {
-  "pageCode": { "page": 9 },
+  "pageCode": {
+    "page": 9
+  },
   "data": {
     "headerData": {
       "title": "Customer Value Execution",
@@ -8,114 +10,59 @@
     },
     "inputData": [
       {
-        "heading": "",
-        "comments": "",
-        "segmentDetails": {
-          "type": "dd",
-          "optionName": [
-            {
-              "placeHolder1": "",
-              "ddInputId1": "",
-              "options1": []
-            }
-          ],
-          "placeHolder1": "",
-          "ddInputId1": "",
-          "options1": [],
-          "optionName2": "",
-          "ddInputId2": "",
-          "placeHolder2": "",
-          "options2": []
-        }
-      },
-      {
-        "heading": "",
-        "comments": "",
-        "segmentDetails": [
+        "headingText": "Select industry and customer type:",
+        "subHeadingDetails": [
           {
-            "segmentHeading": "",
-            "dddTypeInput": [
-              {
-                "type": "ddd",
-                "placeHolder": "",
-                "optionName": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "ddd",
-                "placeHolder": "",
-                "optionName": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "ddd",
-                "placeHolder": "",
-                "optionName": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "ddd",
-                "placeHolder": "",
-                "optionName": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "ddd",
-                "placeHolder": "",
-                "optionName": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "ddd",
-                "placeHolder": "",
-                "optionName": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          },
-          {
-            "heading": "",
-            "comments": "",
+            "subHeadingText": "",
             "segmentDetails": [
               {
-                "segmentHeading": "",
-                "multiTypeInput": [
+                "segmentText": "",
+                "questions": [
                   {
-                    "type": "num",
-                    "placeHolder": "",
-                    "optionName": "",
-                    "inputId": ""
-                  },
-                  {
-                    "type": "num",
-                    "placeHolder": "",
-                    "optionName": "",
-                    "inputId": ""
-                  },
-                  {
-                    "type": "num",
-                    "placeHolder": "",
-                    "optionName": "",
-                    "inputId": ""
-                  },
-                  {
+                    "optionName": "Industry:",
                     "type": "dd",
-                    "placeHolder": "",
-                    "optionName": "",
-                    "inputId": "",
-                    "options": []
+                    "error_id": "A1",
+                    "placeholder": "Please select",
+                    "description": "",
+                    "questionId": "A1",
+                    "selectedId": "",
+                    "options": [
+                      {
+                        "ddName": "TMT",
+                        "ddId": "A1_1_label"
+                      },
+                      {
+                        "ddName": "Tech",
+                        "ddId": "A1_2_label"
+                      },
+                      {
+                        "ddName": "Banking",
+                        "ddId": "A1_3_label"
+                      },
+                      {
+                        "ddName": "Placeholder",
+                        "ddId": "A1_4_label"
+                      }
+                    ]
                   },
                   {
-                    "type": "num",
-                    "placeHolder": "",
-                    "optionName": "",
-                    "inputId": ""
+                    "optionName": "Customer type:",
+                    "type": "dd",
+                    "error_id": "A2",
+                    "placeholder": "Please select",
+                    "description": "",
+                    "questionId": "A2",
+                    "selectedId": "",
+                    "options": [
+                      {
+                        "ddName": "B2B",
+                        "ddId": "A2_1_label"
+                      },
+                      {
+                        "ddName": "B2C",
+                        "ddId": "A2_2_label"
+                      }
+                    ]
                   }
                 ]
               }
@@ -124,172 +71,394 @@
         ]
       },
       {
-        "heading": "",
-        "comments": "",
-        "segmentDetails": [
+        "headingText": "Essential input (mandatory):",
+        "subHeadingDetails": [
           {
-            "segmentHeading": "",
-            "numTypeInput": [
+            "subHeadingText": "Company specific data",
+            "segmentDetails": [
               {
-                "type": "num",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "num",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "num",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "num",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
+                "segmentText": "",
+                "questions": [
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Customer base",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A4",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A4",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "ARPU",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A4",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A4",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Operator type",
+                    "type": "dd",
+                    "error_id": "A2",
+                    "placeholder": "Please select",
+                    "description": "",
+                    "questionId": "A2",
+                    "selectedId": "",
+                    "options": [
+                      {
+                        "ddName": "Traditional",
+                        "ddId": "A2_1_label"
+                      },
+                      {
+                        "ddName": "Attacker",
+                        "ddId": "A2_2_label"
+                      },
+                      {
+                        "ddName": "Digital",
+                        "ddId": "A2_2_label"
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Yearly market growth",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "%",
+                    "description": "",
+                    "questionId": "A4",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A4",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  }
+                ]
               }
             ]
           },
           {
-            "segmentHeading": "",
-            "numTypeInput": [
+            "subHeadingText": "Market segment comparison",
+            "segmentDetails": [
               {
-                "type": "num",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              },
-              {
-                "type": "num",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
+                "segmentText": "",
+                "questions": [
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Inbound sales",
+                    "type": "hsdd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Median quartile",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         ]
       },
       {
-        "heading": "",
-        "comments": "",
-        "subHeading1": "",
-        "subHeading2": "",
-        "segmentDetails1": [
+        "headingText": "Refined company information(highly recommended)",
+        "subHeadingDetails": [
           {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
+            "subHeadingText": "",
+            "segmentDetails": [
               {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
+                "segmentText": "Channel share",
+                "questions": [
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  }
+                ]
               }
             ]
           },
           {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
+            "subHeadingText": "",
+            "segmentDetails": [
               {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          },
-          {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
-              {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          },
-          {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
-              {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          },
-          {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
-              {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          }
-        ],
-        "segmentDetails2": [
-          {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
-              {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          },
-          {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
-              {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
-              }
-            ]
-          },
-          {
-            "enableSegment": "",
-            "segmentHeading": "",
-            "txtTypeInput": [
-              {
-                "type": "txt",
-                "optionName": "",
-                "placeHolder": "",
-                "inputId": "",
-                "options": []
+                "segmentText": "Business KPIs",
+                "questions": [
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Customers in the market",
+                    "type": "num",
+                    "isShow": true,
+                    "placeholder": "#",
+                    "description": "",
+                    "questionId": "A3",
+                    "mappedBox": "",
+                    "selectedText": "",
+                    "selectedId": "A3",
+                    "afterText": "",
+                    "maxLength": 28,
+                    "maxRange": 9999999999999999,
+                    "minRange": 0,
+                    "decimalPlaces": 0
+                  }
+                ]
               }
             ]
           }
