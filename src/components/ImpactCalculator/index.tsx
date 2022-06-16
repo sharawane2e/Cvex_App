@@ -11,69 +11,85 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { FormControl, Grid, MenuItem, Select, Tooltip } from '@mui/material';
 import HsddInput from './HsddInput';
+import { OptionUnstyled } from '@mui/base';
 const PanelPage = (props: any) => {
   const [jsonData, setJSONData] = useState<any>('');
+  const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
+  const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
 
   useEffect(() => {
-    // @ts-ignore
-    // document.getElementById('forwardbutton').disabled = true;
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
   }, []);
 
-  const getSubHeadingDetails = (data: any) => {
-    return data?.subHeadingDetails;
-  };
+  useEffect(() => {
 
-  const getSegmentDetails = (subHeadingDetail: any) => {
-    return subHeadingDetail?.segmentDetails;
-  };
+    hideShow();
+  }, [jsonData]);
 
-  const getQuestions = (detail: any) => {
-    console.log(detail?.questions, 'OPTIONS');
-    return detail?.questions;
-  };
 
-  const getOptions = (question: any) => {
-    return question?.options;
-  };
 
   const hideShow = () => {
+    const allSHowNumQuestionIds: string[] = [];
     const showNumQuestionIds: string[] = [];
 
-    jsonData?.data?.inputData.forEach((data: any) => {
-      getSubHeadingDetails(data).forEach((subHeadingDetail: any) => {
-        getSegmentDetails(subHeadingDetail).forEach((segmentDetail: any) => {
-          getQuestions(segmentDetail).forEach((question: any) => {
-            if (question?.type == 'hsdd') {
-              getOptions(question).forEach((option: any) => {
-                // console.log(question?.selectedId == option?.ddId);
-                // console.log(option?.enableIds == true);
-                console.log(question?.selectedId);
+    // jsonData?.data?.inputData.forEach((data: any) => {
+    //   getSubHeadingDetails(data).forEach((subHeadingDetail: any) => {
+    //     getSegmentDetails(subHeadingDetail).forEach((segmentDetail: any) => {
+    //       getQuestions(segmentDetail).forEach((question: any) => {
+    //         if (question?.type == 'hsdd') {
+    //           getOptions(question).forEach((option: any) => {
+    //             // console.log(question?.selectedId == option?.ddId);
+    //             // console.log(option?.enableIds == true);
+    //             console.log(question?.selectedId);
 
-                if (
-                  question?.selectedId == option?.ddId &&
-                  option?.enableIds == true &&
-                  question?.enableQuestionIds.length != 0
-                ) {
-                  showNumQuestionIds.push(...question?.enableQuestionIds);
-                  console.log('Something OUTPUT _____', showNumQuestionIds);
-                }
-              });
+    //             if (
+    //               question?.selectedId == option?.ddId &&
+    //               option?.enableIds == true &&
+    //               question?.enableQuestionIds.length != 0
+    //             ) {
+    //               showNumQuestionIds.push(...question?.enableQuestionIds);
+    //               console.log('Something OUTPUT _____', showNumQuestionIds);
+    //             }
+    //           });
+    //         }
+    //       });
+    //     });
+    //   });
+    // });
+
+
+    jsonData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
+      inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
+        subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
+          segment.questions.map((question: any, questionIndex: number) => {
+            if (question.type == "hsdd" && question.enableQuestionIds.length) {
+              allSHowNumQuestionIds.push(...question.enableQuestionIds)
             }
-          });
-        });
-      });
-    });
+            if (question.type == "hsdd" && question.selectedId != "") {
+              question.options.map((option: any) => {
+                if (option.ddId === question.selectedId && option.enableIds) {
+                  showNumQuestionIds.push(...question.enableQuestionIds)
+                }
+              })
+            }
+          })
+        })
+      })
+    })
+
+    setAllSHowNumQuestionIds([...allSHowNumQuestionIds]);
+    setShowNumQuestionIds([...showNumQuestionIds]);
+
+    //console.log(allSHowNumQuestionIds);
+    //console.log(showNumQuestionIds);
   };
 
-  hideShow();
+
 
   const inputData = jsonData?.data?.inputData;
-
-  console.log(inputData);
 
   const handleClick = () => {
     if (jsonData !== '') {
@@ -335,7 +351,7 @@ const PanelPage = (props: any) => {
                                                         // style={{"padding":0}}
                                                         className="inputField cutom-input-field"
                                                         value={'Hello'}
-                                                        //   onChange={}
+                                                      //   onChange={}
                                                       >
                                                         <MenuItem
                                                           disabled
@@ -411,7 +427,7 @@ const PanelPage = (props: any) => {
                                                       value={
                                                         question.selectedText
                                                       }
-                                                      onChange={(e: any) => {}}
+                                                      onChange={(e: any) => { }}
                                                     />
                                                   </Grid>
                                                 </Grid>
