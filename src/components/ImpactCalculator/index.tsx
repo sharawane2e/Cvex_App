@@ -153,7 +153,7 @@ const PanelPage = (props: any) => {
                   
                   <div className="single-dropdown-section">
                    {
-                    (inputDetails?.isShow == true)?
+                    (inputDetails?.isShow == true && inputDetails?.headingText != "")?
                      <div className="single-dropdown-section__header">
                       <p className="header-text">{inputDetails?.headingText}</p>
                     </div>
