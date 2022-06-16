@@ -12,7 +12,7 @@ import { LinearProgressBar } from '../LinearProgressBar';
 
 
 
-export default function ProgressBar() {
+export default function ProgressBar(props:any) {
   const [jsonData, setJSONData] = useState<any>('');
 
   // const { leftPanel } = useSelector((state: any) => state);
