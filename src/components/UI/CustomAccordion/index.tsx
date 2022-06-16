@@ -56,7 +56,7 @@ export default function CustomAccordion(props: AccordionProps) {
       ]),
     );
 
-    updatedSubHeadingText.map(function (
+    updatedSubHeadingText?.map(function (
       subHeading: any,
       subHeadingIndex: number,
     ) {
