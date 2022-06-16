@@ -292,7 +292,7 @@ const PanelPage = (props: any) => {
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
-            <ProgressBar />
+            <ProgressBar showProgressBar={false}/>
           </div>
 
         </div>

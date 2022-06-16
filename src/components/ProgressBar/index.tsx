@@ -10,9 +10,11 @@ import { getParsedData } from '../../utils/parserUtil';
 import { LinearProgressBar } from '../LinearProgressBar';
 // import { useSelector } from 'react-redux';
 
+type ProgressBarProps = {
+  showProgressBar:boolean
+}
 
-
-export default function ProgressBar(props:any) {
+export default function ProgressBar(props:ProgressBarProps) {
   const [jsonData, setJSONData] = useState<any>('');
 
   // const { leftPanel } = useSelector((state: any) => state);
@@ -54,9 +56,13 @@ export default function ProgressBar(props:any) {
   return (
     <>
       <Box className="topContainer">
-        <Box className="leftPanel">
-          <LinearProgressBar />
-        </Box>
+        {
+          (props?.showProgressBar ) ? 
+              <Box className="leftPanel">
+                <LinearProgressBar />
+              </Box> : null
+        }
+        
         <Box className="rightPanel">
           <div className="button-container">
             <div>

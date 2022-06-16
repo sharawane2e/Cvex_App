@@ -60,7 +60,7 @@ const QuestionPage = () => {
           <SideBar />
         </div>
         <div className="right-panel">
-          <ProgressBar />
+          <ProgressBar showProgressBar={true} />
           <div className="right-panel__inr">
             <div className="title">
               <h2>
