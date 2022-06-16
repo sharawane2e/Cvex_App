@@ -48,10 +48,10 @@ const PanelPage = (props: any) => {
       <PrimaryHeader />
       <div className="main-container">
         <div className="content-area main-container">
-          <Box className= "btn-container">
+          <Box className="btn-container">
             {
-              panelData?.map((elm:any, idx:number) => {
-                return(
+              panelData?.map((elm: any, idx: number) => {
+                return (
                   <>
                     <Button variant="contained" key={idx} className="custom-nav-btn custom-nav-btn-grey" >{elm.text}</Button>
                   </>

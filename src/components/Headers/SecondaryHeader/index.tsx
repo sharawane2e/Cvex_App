@@ -1,58 +1,61 @@
 import './SecondaryHeader.scss';
-import React, { useEffect, useState } from 'react';
 import { ReactComponent as Hamburger } from '../../../assets/svg/hamburger.svg';
-import store, { RootState } from '../../../redux/store';
-//import { setSideBar } from '../../../redux/actions/SideBarAction';
-import { ConstructionOutlined } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
+import { setLeftPanelOpenClose } from '../../../redux/actions/LeftPanelActions';
+import { useState, useEffect } from 'react';
 // import Logo from "../../../assets/svg/logo.svg";
+import clsx from "clsx";
+import store from '../../../redux/store';
 
 const SecondaryHeader = () => {
   const [jsonData, setJSONData] = useState<any>('');
+
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
   }, []);
-  // const { dispatch } = store;
-  const { sidebar: sidebartoggle } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
+  const { leftPanel } = useSelector((state: any) => state);
+  const { dispatch } = store
   const handleToggle = (event: any) => {
-    if (!sidebartoggle) {
-      //dispatch(setSideBar(false));
-    } else {
-     // dispatch(setSideBar(true));
-    }
+    // if (!sidebartoggle) {
+    //dispatch(setSideBar(false));
+    // } else {
+    // dispatch(setSideBar(true));
+    // }
   };
+  const toggleLeftPanel = () => {
+    const updateToggle = !leftPanel?.leftPanelOpen;
+    dispatch(setLeftPanelOpenClose(updateToggle));
+    //@ts-ignore
+    document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
+  }
 
   return (
     <>
       <div
-        className="secondary-header"
+        className={leftPanel?.leftPanelOpen === true ? "secondary-header hamburger-toggle" : " secondary-header hamburger-toggle-active"}
         style={{
           backgroundImage:
             'url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)',
-          // `url(${jsonData?.data?.headerData?.banner})`,
+
           backgroundRepeat: 'no-repeat',
         }}
       >
         <div className="logo">
-          <div className="hamburger-toggle">
-            {sidebartoggle ? (
-              <Hamburger  />
-            ) : (
-              <></>
-            )}
+          {/* <div className="hamburger-toggle" > */}
+          <div className="hamburger-menu" >
+            {jsonData?.data?.leftPanel == undefined ? <Hamburger onClick={() => toggleLeftPanel()} /> : ""}
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
-            // src={jsonData?.data?.headerData?.logo}
+
             alt="Mckinsey logo"
           />
         </div>
         <div className="title">
-          <h2>Customer Value Execution (CVEx) diagnostic</h2>
+          <h2>{jsonData?.data?.headerData?.title}</h2>
         </div>
       </div>
     </>

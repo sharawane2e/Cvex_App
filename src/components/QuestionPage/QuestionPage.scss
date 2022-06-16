@@ -1,69 +1,69 @@
 .question-wrapper {
-    .main-container {
-        display: flex;
-        width: 100%;
-        height: calc(100vh - 100px);
+  .main-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 100px);
 
-        .left-panel {
-            width: 280px;
-            background-color: #051C2C;
-        }
-
-        .right-panel {
-            width: calc(100% - 280px);
-            // overflow-y: scroll;
-            position: relative;
-            padding: 20px;
-            // height: calc(100vh - 220px);
-
-            .title {
-                padding: 20px;
-                margin-bottom: 0;
-
-                h2 {
-                    font-size: 18px;
-                }
-            }
-            &__inr{
-                overflow-y: scroll;
-                height: calc(100vh - 280px);
-            }
-
-
-
-            .footer {
-                .button-container {
-                    justify-content: end;
-                    padding: 0px 20px;
-
-                    .previous-button {
-                        border: 1px solid #2251FF;
-                        background-color: #fff !important;
-                        color: #2251FF !important;
-                    }
-                }
-            }
-        }
-
-        @media screen and (max-width:1200px) {
-            .submitButton {
-                padding: 4px 0px !important;
-                width: 100px;
-            }
-        }
+    .left-panel {
+      width: 280px;
+      background-color: #051c2c;
+      transition: 0.3s ease-out;
     }
+
+    .right-panel {
+      width: calc(100% - 280px);
+      // overflow-y: scroll;
+      position: relative;
+      padding: 20px;
+      transition: 0.3s ease-out;
+      // height: calc(100vh - 220px);
+
+      .title {
+        padding: 20px;
+        margin-bottom: 0;
+
+        h2 {
+          font-size: 18px;
+        }
+      }
+      &__inr {
+        overflow-y: scroll;
+        height: calc(100vh - 280px);
+      }
+
+      .footer {
+        .button-container {
+          justify-content: end;
+          padding: 0px 20px;
+
+          .previous-button {
+            border: 1px solid #2251ff;
+            background-color: #fff !important;
+            color: #2251ff !important;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      .submitButton {
+        padding: 4px 0px !important;
+        width: 100px;
+      }
+    }
+  }
 }
 
 .justi {
-    justify-content: end !important;
+  justify-content: end !important;
 }
 
 .Mui-expanded,
 .accordHead {
-    min-height: 20px !important;
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
+  min-height: 20px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
-.mar-right{
-    margin-right: 5px !important;
+.mar-right {
+  margin-right: 5px !important;
 }

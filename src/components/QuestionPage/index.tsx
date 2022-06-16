@@ -10,7 +10,9 @@ import questionData from '../../mock/questionData.json';
 import { getParsedData } from '../../utils/parserUtil';
 import store from '../../redux/store';
 import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
-import { setQuestionPageData } from '../../redux/actions/QuestionPageAction';
+import { setRightPanelData } from '../../redux/actions/RightPanelActions';
+import { setLeftPanelData } from '../../redux/actions/LeftPanelActions';
+import "../../styles/partials/common.scss"
 
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -23,19 +25,9 @@ const QuestionPage = () => {
 
   }, []);
   const { dispatch } = store;
+  dispatch(setLeftPanelData(jsonData?.data?.leftPanel));
+  dispatch(setRightPanelData(jsonData?.data?.rightPanel));
 
-  dispatch(setQuestionPageData(jsonData))
-  console.log(jsonData)
-  const headingText =
-    jsonData?.data?.rightPanel?.questionsData?.subHeadingText;
-  const progressData = () => {
-    return headingText?.map((element: any) => {
-      element.subTitle.map((title: any) => {
-        // console.log(title)
-      });
-    });
-  };
-  progressData();
   const nextHandleClick = (event: any) => {
     if (jsonData !== '') {
       // @ts-ignore
@@ -73,7 +65,7 @@ const QuestionPage = () => {
             <div className="title">
               <h2>
                 {getParsedData(
-                  jsonData?.data?.rightPanel?.questionsData[0]?.capabilityTxt,
+                  jsonData?.data?.rightPanel?.questionsData?.capabilityTxt,
                 )}
               </h2>
             </div>

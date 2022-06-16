@@ -1,0 +1,130 @@
+{
+  "pageCode": {
+    "page": 9
+  },
+  "data": {
+    "headerData": {
+      "title": "Customer Value Execution",
+      "logo": "src",
+      "banner": "src"
+    },
+    "inputData": [
+      {
+        "headingText": "Select industry",
+        "subHeadingDetails": [
+          {
+            "subHeadingText": "Subheading Text",
+            "segmentDetails": [
+              {
+                "segmentText": "Company specific data",
+                "questions": [
+                  {
+                    "optionName": "Economic status*",
+                    "type": "dd",
+                    "error_id": "A5",
+                    "placeholder": "Please select",
+                    "description": "Advanced/developed or Emerging/developing",
+                    "questionId": "A5",
+                    "selectedId": "",
+                    "enableQuestionIds": ["A12", "A13"],
+
+                    "options": [
+                      {
+                        "ddName": "Not selected",
+                        "ddId": "A5_1_label",
+                        "enableIds": false
+                      },
+                      {
+                        "ddName": "Emerging and developing",
+                        "ddId": "A5_2_label",
+                        "enableIds": true
+                      }
+                    ]
+                  },
+                  {
+                    "optionName": "Number of centers in the footprint",
+
+                    "type": "num",
+                    "isShow": true,
+
+                    "placeholder": "#",
+
+                    "description": "Number of centers in the footprint",
+
+                    "questionId": "A12",
+                    "mappedBox": "A56",
+                    "selectedText": "",
+
+                    "selectedId": "A12",
+
+                    "afterText": "",
+
+                    "maxLength": 28,
+
+                    "maxRange": 9999999999999999,
+
+                    "minRange": 0,
+
+                    "decimalPlaces": 0
+                  },
+                  {
+                    "optionName": "Number of centers in the footprint",
+
+                    "type": "num",
+                    "isShow": true,
+
+                    "placeholder": "#",
+
+                    "description": "Number of centers in the footprint",
+
+                    "questionId": "A13",
+                    "mappedBox": "A56",
+                    "selectedText": "",
+
+                    "selectedId": "A12",
+
+                    "afterText": "",
+
+                    "maxLength": 28,
+
+                    "maxRange": 9999999999999999,
+
+                    "minRange": 0,
+
+                    "decimalPlaces": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "progressBarData": {
+    "progressBarDetails": {
+      "indicators": {
+        "1": "Not Started",
+        "2": "In progress",
+        "3": "Completed"
+      },
+      "answeredTxt": "Answered",
+      "totalAnswered": "1",
+      "ofTxt": "of",
+      "totalQues": "6",
+      "bracketOne": "(",
+      "percentage": "%",
+      "bracketTwo": ")"
+    },
+    "saveBtn": {
+      "saveBtnTxt": "Save",
+      "SelectedInputId": "",
+      "saveId": "anyID"
+    },
+    "submitBtn": {
+      "SelectedInputId": "",
+      "submitDisabled": "true",
+      "submitBtntxt": "Submit"
+    }
+  }
+}

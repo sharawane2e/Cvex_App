@@ -1,6 +1,4 @@
 import Login from '../components/Login';
-import SecondaryHeader from '../components/Headers/SecondaryHeader';
-import CustomSlider from '../components/UI/CustomSlider';
 import { Introduction } from '../components/Introduction';
 import { useEffect, useState } from 'react';
 import { jsonData as jsonData1 } from '../mock/introData';
@@ -9,6 +7,7 @@ import QuestionPage from '../components/QuestionPage';
 import GI from '../components/GI';
 import PanelPage from '../components/PanelPage';
 import SkillPage from '../components/SkillPage';
+import ImpactCalculatorPage from '../components/ImpactCalculator';
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -41,6 +40,12 @@ const Pages = () => {
     }
     if (jsonData?.pageCode?.page == 7) {
       return <PanelPage />;
+    }
+    // if (jsonData?.pageCode?.page == 8) {
+    //   return <PanelPage />;
+    // }
+    if (jsonData?.pageCode?.page == 9) {
+      return <ImpactCalculatorPage />;
     }
   }
 };

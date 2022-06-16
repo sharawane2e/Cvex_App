@@ -1,0 +1,45 @@
+.impact-calc-container {
+  &__inr {
+    padding: 25px;
+
+    &--question{
+      .single-dropdown-section {
+        &__header {
+          background-color: #f6f6f6;
+          padding: 15px 10px;
+          .header-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2a2a2a;
+          }
+        }
+        &__body {
+          .title-container {
+            border-bottom: 1px solid #c4c4c4;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333333;
+            padding: 15px 0 8px 0px;
+          }
+          .dropdown-container {
+            display: flex;
+            flex-wrap: wrap;
+            .single-dropdown-title {
+              padding: 10px 0;
+              font-size: 18px;
+            }
+            .inputField {
+              padding: 0;
+              input {
+                padding: 10px !important;
+                font-size: 12px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+  }
+  
+}
