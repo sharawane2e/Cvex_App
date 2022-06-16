@@ -11,11 +11,12 @@ const HsddInput = (props: HsddInputProps) => {
 		if (props.type == "hsdd") {
 			return (
 				<>
-					<Grid container sx={{ alignItems: 'center', }} xs={12} md={4}>
-						<Grid item xs={12} md={6} className="single-dropdown-title">
-							<p className="gen-info">{props?.optionName}</p>
-						</Grid>
-						<Grid item xs={12} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingRight: "20px" }}>
+					<Grid container sx={{ alignItems: 'center', }} xs={12} md={4} className="input-form-control">
+						{/* <Grid item xs={12} md={6} className="single-dropdown-title">
+							<p>{props?.optionName}</p>
+						</Grid> */}
+						<Grid item xs={12} >
+						<p className="label-heading">{props?.optionName}</p>
 							<FormControl fullWidth>
 								<Select
 									sx={{ p: 0, borderRadius: 0, mb: 1 }}

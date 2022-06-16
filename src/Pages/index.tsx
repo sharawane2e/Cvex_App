@@ -5,9 +5,9 @@ import { jsonData as jsonData1 } from '../mock/introData';
 import ThankYou from '../components/ThankYou';
 import QuestionPage from '../components/QuestionPage';
 import GI from '../components/GI';
-import PanelPage from "../components/PanelPage";
-import SkillPage from "../components/SkillPage";
-import ImpactCalculatorPage from "../components/ImpactCalculator";
+import PanelPage from '../components/PanelPage';
+import SkillPage from '../components/SkillPage';
+import ImpactCalculatorPage from '../components/ImpactCalculator';
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -30,15 +30,13 @@ const Pages = () => {
       return <GI />;
     }
     if (jsonData?.pageCode?.page == 4) {
-
       return <QuestionPage />;
     }
     if (jsonData?.pageCode?.page == 5) {
       return <ThankYou />;
     }
     if (jsonData?.pageCode?.page == 6) {
-
-      return <SkillPage />
+      return <SkillPage />;
     }
     if (jsonData?.pageCode?.page == 7) {
       return <PanelPage />;
@@ -49,8 +47,6 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == 9) {
       return <ImpactCalculatorPage />;
     }
-
   }
-
 };
 export default Pages;
