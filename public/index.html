@@ -41,10 +41,13 @@
  		},
  		"inputData": [{
  				"headingText": "Select industry and customer type:",
+				"isShow": true,
  				"subHeadingDetails": [{
  					"subHeadingText": "",
+					"isShow": true,
  					"segmentDetails": [{
  						"segmentText": "",
+						"isShow": true,
  						"questions": [{
  								"optionName": "Industry:",
  								"type": "hsdd",
@@ -52,7 +55,7 @@
  								"placeholder": "Please select",
  								"description": "",
  								"questionId": "A1",
- 								"selectedId": "A1_1_label",
+ 								"selectedId": "A1_2_label",
  								"enableQuestionIds": ["A12", "A13"],
  								"options": [{
  										"ddName": "TMT",
@@ -78,12 +81,13 @@
  							},
  							{
  								"optionName": "Customer type:",
- 								"type": "dd",
+ 								"type": "hsdd",
  								"error_id": "A2",
  								"placeholder": "Please select",
  								"description": "",
  								"questionId": "A2",
  								"selectedId": "",
+								"enableQuestionIds": ["A12", "A13"],
  								"options": [{
  										"ddName": "B2B",
  										"ddId": "A2_1_label"
@@ -100,10 +104,13 @@
  			},
  			{
  				"headingText": "Essential input (mandatory):",
+				"isShow": true,
  				"subHeadingDetails": [{
  						"subHeadingText": "Company specific data",
+						"isShow": true,
  						"segmentDetails": [{
  							"segmentText": "",
+							"isShow": true,
  							"questions": [{
  									"optionName": "Customers in the market",
  									"type": "num",
@@ -195,8 +202,10 @@
  					},
  					{
  						"subHeadingText": "Market segment comparison",
+						"isShow": true,
  						"segmentDetails": [{
  							"segmentText": "",
+							"isShow": true,
  							"questions": [{
  									"optionName": "Inbound sales",
  									"type": "hsdd",
@@ -248,10 +257,13 @@
  			},
  			{
  				"headingText": "Refined company information(highly recommended)",
+				"isShow": true,
  				"subHeadingDetails": [{
  						"subHeadingText": "",
+						"isShow": true,
  						"segmentDetails": [{
  							"segmentText": "Channel share",
+							"isShow": true,
  							"questions": [{
  									"optionName": "Customers in the market",
  									"type": "num",
@@ -321,12 +333,14 @@
  					},
  					{
  						"subHeadingText": "",
+						"isShow": true,
  						"segmentDetails": [{
  							"segmentText": "Business KPIs",
+							"isShow": true,
  							"questions": [{
  									"optionName": "Customers in the market",
  									"type": "num",
- 									"isShow": true,
+ 									"isShow": false,
  									"placeholder": "#",
  									"description": "",
  									"questionId": "A3",
@@ -342,7 +356,7 @@
  								{
  									"optionName": "Customers in the market",
  									"type": "num",
- 									"isShow": true,
+ 									"isShow": false,
  									"placeholder": "#",
  									"description": "",
  									"questionId": "A3",

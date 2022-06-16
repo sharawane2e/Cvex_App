@@ -119,8 +119,11 @@ const PanelPage = (props: any) => {
     }
   };
 
-  const handleDDChange = () => {
-    console.log("called")
+  const handleDDChange = (ddId: string, inputDataIdx: number, subHeadingIdx: number, segmentDetailIdx: number, questionDataIdx: number) => {
+    const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
+    updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId = ddId;
+
+    setJSONData(updatedJsonData);
   }
 
   const handleNumChange = (value: number, inputDataIdx: number, subHeadingIdx: number, segmentDetailIdx: number, questionDataIdx: number) => {
@@ -173,51 +176,7 @@ const PanelPage = (props: any) => {
                                           if (question.type == 'dd') {
                                             return (
                                               <>
-                                                <Grid
-                                                  item
-                                                  xs={4}
-                                                  md={4}
-                                                  lg={4}
-                                                  className="input-form-control"
-                                                >
-                                                  <p className="label-heading">
-                                                    {question?.optionName}
-                                                  </p>
-                                                  <FormControl fullWidth>
-                                                    <Select
-                                                      sx={{
-                                                        p: 0,
-                                                        borderRadius: 0,
-                                                        mb: 1,
-                                                      }}
-                                                      className="inputField cutom-input-field"
-                                                      value={'Hello'}
-                                                      onChange={(e: any) => {
-                                                        handleNumChange(e.target.value, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx);
-                                                      }}
-                                                    >
-                                                      <MenuItem
-                                                        disabled
-                                                        value="none"
-                                                        className="selectItem"
-                                                      >
-                                                        <>Select Option</>
-                                                      </MenuItem>
-                                                      {question?.options?.map(
-                                                        (element: any) => (
-                                                          <MenuItem
-                                                            value={
-                                                              element?.ddName
-                                                            }
-                                                            className="selectItem"
-                                                          >
-                                                            {element?.ddName}
-                                                          </MenuItem>
-                                                        ),
-                                                      )}
-                                                    </Select>
-                                                  </FormControl>
-                                                </Grid>
+                                                <HsddInput question={question} onChange={(ddId: string) => handleDDChange(ddId, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx)} />
                                               </>
                                             );
                                           }
@@ -266,7 +225,7 @@ const PanelPage = (props: any) => {
                                             );
                                           } else if (question.type == 'hsdd') {
                                             return (
-                                              <HsddInput question={question} onChange={handleDDChange} />
+                                              <HsddInput question={question} onChange={(ddId: string) => handleDDChange(ddId, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx)} />
                                             );
                                           }
                                         },
