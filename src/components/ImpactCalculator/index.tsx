@@ -91,114 +91,114 @@ const PanelPage = (props: any) => {
                   <div className="single-dropdown-section__header">
                     <p className="header-text">{inputDetails?.headingText}</p>
                   </div>
-                  
+
                   {inputDetails?.subHeadingDetails?.map(
                     (subHeadingDetail: any) => {
                       return (
                         <>
                           <div className="single-dropdown-section__body">
                             {
-                              (subHeadingDetail?.subHeadingText != "")? 
+                              (subHeadingDetail?.subHeadingText != "") ?
 
-                              <div className="title-container">
-                                <p>{subHeadingDetail?.subHeadingText}</p>
-                              </div> : null
+                                <div className="title-container">
+                                  <p>{subHeadingDetail?.subHeadingText}</p>
+                                </div> : null
                             }
-                            
+
                             {subHeadingDetail?.segmentDetails?.map(
                               (segmentDetail: any) => {
                                 return (
                                   <>
-                                  <Grid
-                                    container
-                                    xs={12} 
-                                    className="section-pad"            
-                                  >
-                                    {/* <div className="dropdown-container"> */}
+                                    <Grid
+                                      container
+                                      xs={12}
+                                      className="section-pad"
+                                    >
+                                      {/* <div className="dropdown-container"> */}
                                       {segmentDetail?.questions?.map(
                                         (question: any) => {
                                           if (question.type == 'dd') {
                                             return (
                                               <>
-                                      
-                                                  <Grid
-                                                    item
-                                                    xs={4}
-                                                    className="input-form-control"
-                                                  >
-                                                     <p className="label-heading">
-                                                      {question?.optionName}
-                                                    </p>
-                                                    <FormControl fullWidth>
-                                                      <Select
-                                                        sx={{
-                                                          p: 0,
-                                                          borderRadius: 0,
-                                                          mb: 1,
-                                                        }}
-                                                        // style={{"padding":0}}
-                                                        className="inputField cutom-input-field"
-                                                        value={'Hello'}
-                                                      //   onChange={}
+
+                                                <Grid
+                                                  item
+                                                  xs={4}
+                                                  className="input-form-control"
+                                                >
+                                                  <p className="label-heading">
+                                                    {question?.optionName}
+                                                  </p>
+                                                  <FormControl fullWidth>
+                                                    <Select
+                                                      sx={{
+                                                        p: 0,
+                                                        borderRadius: 0,
+                                                        mb: 1,
+                                                      }}
+                                                      // style={{"padding":0}}
+                                                      className="inputField cutom-input-field"
+                                                      value={'Hello'}
+                                                    //   onChange={}
+                                                    >
+                                                      <MenuItem
+                                                        disabled
+                                                        value="none"
+                                                        className="selectItem"
                                                       >
-                                                        <MenuItem
-                                                          disabled
-                                                          value="none"
-                                                          className="selectItem"
-                                                        >
-                                                          <>Select Option</>
-                                                        </MenuItem>
-                                                        {question?.options?.map(
-                                                          (element: any) => (
-                                                            <MenuItem
-                                                              value={
-                                                                element?.ddName
-                                                              }
-                                                              className="selectItem"
-                                                            >
-                                                              {element?.ddName}
-                                                            </MenuItem>
-                                                          ),
-                                                        )}
-                                                      </Select>
-                                                    </FormControl>
-                                                  </Grid>
+                                                        <>Select Option</>
+                                                      </MenuItem>
+                                                      {question?.options?.map(
+                                                        (element: any) => (
+                                                          <MenuItem
+                                                            value={
+                                                              element?.ddName
+                                                            }
+                                                            className="selectItem"
+                                                          >
+                                                            {element?.ddName}
+                                                          </MenuItem>
+                                                        ),
+                                                      )}
+                                                    </Select>
+                                                  </FormControl>
+                                                </Grid>
                                                 {/* </Grid> */}
                                               </>
                                             );
                                           }
-                                           else if (question.type == 'num') {
+                                          else if (question.type == 'num') {
                                             return (
                                               <>
-                                    
-                                                  <Grid
-                                                    item
-                                                    xs={4}
-                                                    className="input-form-control"
-                                                  >
-                                                    <p className="label-heading">
-                                                      {question?.optionName}
-                                                    </p>
-                                                    <Inputbox
-                                                      className="inputField cutom-input-field"
-                                                      id={
-                                                        question.questionId +
-                                                        '_html'
-                                                      }
-                                                      placeholder={
-                                                        question.placeholder
-                                                      }
-                                                      type={
-                                                        question.type == 'text'
-                                                          ? 'text'
-                                                          : ''
-                                                      }
-                                                      value={
-                                                        question.selectedText
-                                                      }
-                                                      onChange={(e: any) => { }}
-                                                    />
-                                                  </Grid>
+
+                                                <Grid
+                                                  item
+                                                  xs={4}
+                                                  className="input-form-control"
+                                                >
+                                                  <p className="label-heading">
+                                                    {question?.optionName}
+                                                  </p>
+                                                  <Inputbox
+                                                    className="inputField cutom-input-field"
+                                                    id={
+                                                      question.questionId +
+                                                      '_html'
+                                                    }
+                                                    placeholder={
+                                                      question.placeholder
+                                                    }
+                                                    type={
+                                                      question.type == 'text'
+                                                        ? 'text'
+                                                        : ''
+                                                    }
+                                                    value={
+                                                      question.selectedText
+                                                    }
+                                                    onChange={(e: any) => { }}
+                                                  />
+                                                </Grid>
                                                 {/* </Grid> */}
                                               </>
                                             );
@@ -212,20 +212,21 @@ const PanelPage = (props: any) => {
                                                 placeholder={
                                                   question?.placeholder
                                                 }
-                                                menuItems={question?.options} selectedId={question?.selectedId}
+                                                menuItems={question?.options}
+                                                selectedId={question?.selectedId}
                                                 questionId={question?.questionId}
                                               />
                                             );
                                           }
                                         },
                                       )}
-                                       </Grid>
+                                    </Grid>
                                     {/* </div> */}
                                   </>
                                 );
                               },
                             )}
-                            
+
                           </div>
                         </>
                       );
