@@ -69,7 +69,45 @@ const PanelPage = (props: any) => {
 			})
 		})
 		
+		const setIsShowTrue = () => {
+			jsonData?.data?.inputData.forEach((data:any)=> {
+				getSubHeadingDetails(data).forEach((subHeadingDetail:any) => {
+					getSegmentDetails(subHeadingDetail).forEach((segmentDetail:any) => {
+						getQuestions(segmentDetail).forEach((question:any) => {
+							if(question?.type == "num" && showNumQuestionIds.indexOf(question?.questionId) == -1)
+							{
+								question.isShow = true;
+
+
+								const CV = question;
+
+								const updatedQuestionsArray: any[] = [];
+								jsonData?.data?.inputData?.subHeadingDetails?.segmentDetails?.questions.forEach(
+									function (CV: any) {
+										if(question?.type == "num" && showNumQuestionIds.indexOf(question?.questionId) == -1)
+										{
+											CV.isShow = true;
+										}
+										updatedQuestionsArray.push(CV);
+									},
+								);
+
+								setJSONData({
+									...jsonData,
+									rightData: {
+									...jsonData.rightData,
+									questions: [...updatedQuestionsArray],
+									},
+								});
+							}
+						})
+					})
+				})
+			})
+		}
 	}
+
+	
 
 	hideShow();
 
