@@ -60,7 +60,14 @@ const PanelPage = (props: any) => {
 
   };
 
+  const showSection = (questionId: string) => {
 
+
+    if (allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
+      return true;
+    else
+      return false;
+  }
 
   const inputData = jsonData?.data?.inputData;
 
@@ -167,7 +174,7 @@ const PanelPage = (props: any) => {
                                               </>
                                             );
                                           }
-                                          else if (question.type == 'num') {
+                                          else if (question.type == 'num' && showSection(question?.questionId)) {
                                             return (
                                               <>
 
