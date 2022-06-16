@@ -443,7 +443,8 @@ const PanelPage = (props: any) => {
                                                 placeholder={
                                                   question?.placeholder
                                                 }
-                                                menuItems={question?.options}
+                                                menuItems={question?.options} selectedId={question?.selectedId}
+                                                questionId={question?.questionId}
                                               />
                                             );
                                           }
