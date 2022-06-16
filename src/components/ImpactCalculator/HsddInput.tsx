@@ -4,6 +4,8 @@ type HsddInputProps = {
 	type: string, optionName: string, placeholder: string, menuItems: any
 }
 const HsddInput = (props: HsddInputProps) => {
+	
+
 
 	const hsddRender = () => {
 		if (props.type == "hsdd") {
