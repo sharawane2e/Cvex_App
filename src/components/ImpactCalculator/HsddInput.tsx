@@ -2,9 +2,12 @@ import { FormControl, Grid, MenuItem, Select } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 type HsddInputProps = {
-	type: string, optionName: string, placeholder: string, menuItems: any, selectedId: string, questionId: string
+	question: any
+	onChange: any
 }
 const HsddInput = (props: HsddInputProps) => {
+
+	const { optionName, type, placeholder, description, questionId, selectedId, enableQuestionIds, options, onChange } = props.question;
 	// const [jsonData, setJSONData] = useState<any>('');
 
 	// useEffect(() => {
@@ -50,6 +53,17 @@ const HsddInput = (props: HsddInputProps) => {
 	// 	}
 	// }
 
+	const getDDvalue = () => {
+		let ddName = ""
+		options.forEach((option: any) => {
+			if (option.ddId === selectedId) {
+				ddName = option.ddName
+			}
+		})
+
+		return ddName;
+	}
+
 
 
 	return (
@@ -59,41 +73,16 @@ const HsddInput = (props: HsddInputProps) => {
 							<p>{props?.optionName}</p>
 						</Grid> */}
 				<Grid item xs={12} >
-					<p className="label-heading">{props?.optionName}</p>
+					<p className="label-heading">{optionName}</p>
 					<FormControl fullWidth>
 						<Select
 							sx={{ p: 0, borderRadius: 0, mb: 1 }}
 							className="inputField cutom-input-field"
 							defaultValue="none"
-							value={"Hello"}
+							value={getDDvalue()}
 							onChange={(e) => {
-								// let dropdownId = '';
-								// if (props.type == "hsdd") {
-								// 	props.menuItems.forEach((option: any) => {
-								// 		if (option.ddName == e.target.value) {
-								// 			dropdownId = option.ddId;
-								// 			// document.getElementById(option.ddId)?.click();
-								// 		}
-								// 	})
-								// }
-								// const updatedQuestionsArray: any[] = [];
-								// inputDetails?.forEach((inputDetail: any) => {
-								// 	inputDetail?.subHeadingDetails.forEach((subHeadingDetail: any) => {
-								// 		subHeadingDetail?.segmentDetails.forEach((segmentDetail: any) => {
-								// 			segmentDetail?.questions.forEach((question: any) => {
-								// 				if (props.type == "hsdd") {
-								// 					if (question.questionId === props.questionId) {
-								// 						question.selectedId = dropdownId;
-								// 					}
-								// 					updatedQuestionsArray.push(inputDetail);
-								// 				}
-								// 			});
-								// 		});
-								// 	});
-								// });
-								// setJSONData({
-								// 	...jsonData, data: { ...jsonData.rightData, inputData: [...updatedQuestionsArray] }
-								// });
+								console.log(e);
+								props.onChange()
 							}}
 						>
 							<MenuItem
@@ -101,14 +90,14 @@ const HsddInput = (props: HsddInputProps) => {
 								value="none"
 								className="selectItem"
 							>
-								<>Select Option</>
+								<>{placeholder}</>
 							</MenuItem>
-							{props?.menuItems?.map((menuOption: any) => (
+							{options?.map((option: any) => (
 								<MenuItem
-									value={menuOption?.ddName}
+									value={option?.ddId}
 									className="selectItem"
 								>
-									{menuOption?.ddName}
+									{option?.ddName}
 								</MenuItem>
 							))}
 						</Select>

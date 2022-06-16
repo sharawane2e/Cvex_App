@@ -85,6 +85,10 @@ const PanelPage = (props: any) => {
     }
   };
 
+  const handleDDChange = () => {
+    console.log("called")
+  }
+
   return (
 
     <div className="impact-calc-container">
@@ -211,18 +215,7 @@ const PanelPage = (props: any) => {
                                             );
                                           } else if (question.type == 'hsdd') {
                                             return (
-                                              <HsddInput
-                                                type={question.type}
-                                                optionName={
-                                                  question?.optionName
-                                                }
-                                                placeholder={
-                                                  question?.placeholder
-                                                }
-                                                menuItems={question?.options}
-                                                selectedId={question?.selectedId}
-                                                questionId={question?.questionId}
-                                              />
+                                              <HsddInput question={question} onChange={handleDDChange} />
                                             );
                                           }
                                         },
