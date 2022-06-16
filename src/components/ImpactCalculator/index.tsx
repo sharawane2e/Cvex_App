@@ -95,12 +95,12 @@ const PanelPage = (props: any) => {
 
   };
 
-  const showSection = (questionId:string) => {
+  const showSection = (questionId: string) => {
 
 
-    if(allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
+    if (allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
       return true;
-    else 
+    else
       return false;
   }
 
@@ -141,30 +141,30 @@ const PanelPage = (props: any) => {
                   <div className="single-dropdown-section__header">
                     <p className="header-text">{inputDetails?.headingText}</p>
                   </div>
-                  
+
                   {inputDetails?.subHeadingDetails?.map(
                     (subHeadingDetail: any, subHeadingIdx:number) => {
                       return (
                         <>
                           <div className="single-dropdown-section__body">
                             {
-                              (subHeadingDetail?.subHeadingText != "")? 
+                              (subHeadingDetail?.subHeadingText != "") ?
 
-                              <div className="title-container">
-                                <p>{subHeadingDetail?.subHeadingText}</p>
-                              </div> : null
+                                <div className="title-container">
+                                  <p>{subHeadingDetail?.subHeadingText}</p>
+                                </div> : null
                             }
-                            
+
                             {subHeadingDetail?.segmentDetails?.map(
                               (segmentDetail: any, segmentDetailIdx:number) => {
                                 return (
                                   <>
-                                  <Grid
-                                    container
-                                    xs={12} 
-                                    className="section-pad"            
-                                  >
-                                    {/* <div className="dropdown-container"> */}
+                                    <Grid
+                                      container
+                                      xs={12}
+                                      className="section-pad"
+                                    >
+                                      {/* <div className="dropdown-container"> */}
                                       {segmentDetail?.questions?.map(
                                         (question: any, questionDataIdx:number) => {
                                           if (question.type == 'dd') {
@@ -218,7 +218,7 @@ const PanelPage = (props: any) => {
                                               </>
                                             );
                                           }
-                                           else if (question.type == 'num' && showSection(question?.questionId)) {
+                                          else if (question.type == 'num' && showSection(question?.questionId)) {
                                             return (
                                               <>
                                     
@@ -271,20 +271,21 @@ const PanelPage = (props: any) => {
                                                 placeholder={
                                                   question?.placeholder
                                                 }
-                                                menuItems={question?.options} selectedId={question?.selectedId}
+                                                menuItems={question?.options}
+                                                selectedId={question?.selectedId}
                                                 questionId={question?.questionId}
                                               />
                                             );
                                           }
                                         },
                                       )}
-                                       </Grid>
+                                    </Grid>
                                     {/* </div> */}
                                   </>
                                 );
                               },
                             )}
-                            
+
                           </div>
                         </>
                       );
