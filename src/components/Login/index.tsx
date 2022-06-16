@@ -64,10 +64,10 @@ const Login = (props: any) => {
     <div className="login-container">
       <PrimaryHeader />
       <div className="main-container">
-        <h3 className="title">
-          {getParsedData(jsonData.data?.contentDetails?.headingTxt)}
-        </h3>
         <div className="content-area">
+          <h3 className="title">
+            {getParsedData(jsonData.data?.contentDetails?.headingTxt)}
+          </h3>
           <p>{getParsedData(jsonData.data?.contentDetails?.content)}</p>
           <Inputbox
             className="startData.data.contentDetails.password.passwordInputId"
