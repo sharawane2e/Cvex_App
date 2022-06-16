@@ -44,7 +44,8 @@ const HsddInput = (props: HsddInputProps) => {
 		if (props.type == "hsdd") {
 			return (
 				<>
-					<Grid container sx={{ alignItems: 'center', }} xs={12} md={4} className="input-form-control">
+					<Grid container sx={{ alignItems: 'center', }} xs={12} md={4} lg={4}
+					className="input-form-control">
 						{/* <Grid item xs={12} md={6} className="single-dropdown-title">
 							<p>{props?.optionName}</p>
 						</Grid> */}

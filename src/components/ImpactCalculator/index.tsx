@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { FormControl, Grid, MenuItem, Select, Tooltip } from '@mui/material';
 import HsddInput from './HsddInput';
 import { OptionUnstyled } from '@mui/base';
+import ProgressBar from '../ProgressBar';
 const PanelPage = (props: any) => {
   const [jsonData, setJSONData] = useState<any>('');
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
@@ -30,6 +31,40 @@ const PanelPage = (props: any) => {
   }, [jsonData]);
 
 
+  const txtInputValidate = (value:any, pattern:any) =>
+  {
+    const reg = pattern;
+    let res = '';
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[0] == ' ') return '';
+
+      if (reg.test(value[i])) res += value[i];
+    }
+
+    return res;
+  }
+
+  const numInputValidate = (value: any, pattern: any, minRange:number, maxRange:number) => {
+    const reg = pattern;
+    let res = '';
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[0] == ' ') return '';
+
+      if (reg.test(value[i])) res += value[i];
+    }
+
+    var tempNum = Number(res);
+    if(tempNum > maxRange)
+        res = res.slice(0, -1);
+
+    if(tempNum < minRange)
+        tempNum = minRange;
+
+    // res = tempNum.toString();
+    return res;
+  };
 
   const hideShow = () => {
     const allSHowNumQuestionIds: string[] = [];
@@ -85,13 +120,21 @@ const PanelPage = (props: any) => {
     }
   };
 
+  const handleNumChange = (value:number, inputDataIdx:number,subHeadingIdx:number,segmentDetailIdx:number,questionDataIdx:number) => {
+    const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
+    updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedText = value;
+
+    setJSONData(updatedJsonData);
+  }
+
+
   return (
 
     <div className="impact-calc-container">
       <SecondaryHeader />
       <div className="impact-calc-container__inr">
         <div className="impact-calc-container__inr--question">
-          {inputData?.map((inputDetails: any) => {
+          {inputData?.map((inputDetails: any, inputDataIdx:number) => {
             return (
               <>
                 <div className="single-dropdown-section">
@@ -100,7 +143,7 @@ const PanelPage = (props: any) => {
                   </div>
                   
                   {inputDetails?.subHeadingDetails?.map(
-                    (subHeadingDetail: any) => {
+                    (subHeadingDetail: any, subHeadingIdx:number) => {
                       return (
                         <>
                           <div className="single-dropdown-section__body">
@@ -113,7 +156,7 @@ const PanelPage = (props: any) => {
                             }
                             
                             {subHeadingDetail?.segmentDetails?.map(
-                              (segmentDetail: any) => {
+                              (segmentDetail: any, segmentDetailIdx:number) => {
                                 return (
                                   <>
                                   <Grid
@@ -123,14 +166,15 @@ const PanelPage = (props: any) => {
                                   >
                                     {/* <div className="dropdown-container"> */}
                                       {segmentDetail?.questions?.map(
-                                        (question: any) => {
+                                        (question: any, questionDataIdx:number) => {
                                           if (question.type == 'dd') {
                                             return (
                                               <>
-                                      
                                                   <Grid
                                                     item
                                                     xs={4}
+                                                    md={4}
+                                                    lg={4}
                                                     className="input-form-control"
                                                   >
                                                      <p className="label-heading">
@@ -143,10 +187,11 @@ const PanelPage = (props: any) => {
                                                           borderRadius: 0,
                                                           mb: 1,
                                                         }}
-                                                        // style={{"padding":0}}
                                                         className="inputField cutom-input-field"
                                                         value={'Hello'}
-                                                      //   onChange={}
+                                                        onChange={(e: any) => { 
+                                                          handleNumChange(e.target.value,inputDataIdx,subHeadingIdx,segmentDetailIdx,questionDataIdx);
+                                                        }}
                                                       >
                                                         <MenuItem
                                                           disabled
@@ -170,7 +215,6 @@ const PanelPage = (props: any) => {
                                                       </Select>
                                                     </FormControl>
                                                   </Grid>
-                                                {/* </Grid> */}
                                               </>
                                             );
                                           }
@@ -181,6 +225,8 @@ const PanelPage = (props: any) => {
                                                   <Grid
                                                     item
                                                     xs={4}
+                                                    md={4}
+                                                    lg={4}
                                                     className="input-form-control"
                                                   >
                                                     <p className="label-heading">
@@ -203,10 +249,16 @@ const PanelPage = (props: any) => {
                                                       value={
                                                         question.selectedText
                                                       }
-                                                      onChange={(e: any) => { }}
+                                                      onChange={(e: any) => {
+                                                        e.target.value = numInputValidate(
+                                                          e.target.value,
+                                                          /^[0-9]+$/, question.minRange, question.maxRange
+                                                        );
+
+                                                         handleNumChange(e.target.value,inputDataIdx,subHeadingIdx,segmentDetailIdx,questionDataIdx); 
+                                                      }}
                                                     />
                                                   </Grid>
-                                                {/* </Grid> */}
                                               </>
                                             );
                                           } else if (question.type == 'hsdd') {
@@ -244,6 +296,14 @@ const PanelPage = (props: any) => {
           })}
         </div>
       </div>
+      <Footer>
+            <div className="footer-impact-calc">
+            <div className="left-sec">
+              <ProgressBar />
+            </div>
+          
+          </div>
+      </Footer>
     </div>
   );
 };
