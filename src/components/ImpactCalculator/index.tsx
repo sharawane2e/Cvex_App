@@ -129,7 +129,8 @@ const PanelPage = (props: any) => {
 																					)
 																				}
 																				else if (question.type == "hsdd") {
-																					return <HsddInput type={question.type} optionName={question?.optionName} placeholder={question?.placeholder} menuItems={question?.options} selectedId={question?.selectedId} />
+																					console.log(question?.selectedId)
+																					return <HsddInput type={question.type} optionName={question?.optionName} placeholder={question?.placeholder} menuItems={question?.options} selectedId={question?.selectedId} questionId={question?.questionId} />
 																				}
 																			})
 																		}
