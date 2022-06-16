@@ -35,31 +35,6 @@ const PanelPage = (props: any) => {
     const allSHowNumQuestionIds: string[] = [];
     const showNumQuestionIds: string[] = [];
 
-    // jsonData?.data?.inputData.forEach((data: any) => {
-    //   getSubHeadingDetails(data).forEach((subHeadingDetail: any) => {
-    //     getSegmentDetails(subHeadingDetail).forEach((segmentDetail: any) => {
-    //       getQuestions(segmentDetail).forEach((question: any) => {
-    //         if (question?.type == 'hsdd') {
-    //           getOptions(question).forEach((option: any) => {
-    //             // console.log(question?.selectedId == option?.ddId);
-    //             // console.log(option?.enableIds == true);
-    //             console.log(question?.selectedId);
-
-    //             if (
-    //               question?.selectedId == option?.ddId &&
-    //               option?.enableIds == true &&
-    //               question?.enableQuestionIds.length != 0
-    //             ) {
-    //               showNumQuestionIds.push(...question?.enableQuestionIds);
-    //               console.log('Something OUTPUT _____', showNumQuestionIds);
-    //             }
-    //           });
-    //         }
-    //       });
-    //     });
-    //   });
-    // });
-
 
     jsonData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
       inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
@@ -83,11 +58,16 @@ const PanelPage = (props: any) => {
     setAllSHowNumQuestionIds([...allSHowNumQuestionIds]);
     setShowNumQuestionIds([...showNumQuestionIds]);
 
-    //console.log(allSHowNumQuestionIds);
-    //console.log(showNumQuestionIds);
   };
 
+  const showSection = (questionId:string) => {
 
+
+    if(allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
+      return true;
+    else 
+      return false;
+  }
 
   const inputData = jsonData?.data?.inputData;
 
@@ -106,191 +86,11 @@ const PanelPage = (props: any) => {
   };
 
   return (
-    // <div className="impact-calc-container">
-    //   <SecondaryHeader />
-    //   <div className="impact-calc-container__inr">
-    //     <Box className="impact-calc-container__inr--question">
-    //       {inputData?.map((inputDetails: any) => {
-    //         return (
-    //           <>
-    //             <div className="single-dropdown-section">
-    //               <div className="single-dropdown-section__header">
-    //                 <p className="header-text">{inputDetails?.headingText}</p>
-    //               </div>
-    //               {inputDetails?.subHeadingDetails?.map(
-    //                 (subHeadingDetail: any) => {
-    //                   return (
-    //                     <>
-    //                       <div className="single-dropdown-section__body">
-    //                         <div className="title-container">
-    //                           <p>{subHeadingDetail?.subHeadingText}</p>
-    //                         </div>
-    //                         {subHeadingDetail?.segmentDetails?.map(
-    //                           (segmentDetail: any) => {
-    //                             return (
-    //                               <>
-    //                                 <div className="dropdown-container">
-    //                                   {segmentDetail?.questions?.map(
-    //                                     (question: any) => {
-    //                                       if (question.type == 'dd') {
-    //                                         return (
-    //                                           <>
-    //                                             <Grid
-    //                                               container
-    //                                               sx={{
-    //                                                 alignItems: 'center',
-    //                                               }}
-    //                                               xs={12}
-    //                                               md={4}
-    //                                             >
-    //                                               <Grid
-    //                                                 item
-    //                                                 xs={12}
-    //                                                 md={6}
-    //                                                 className="single-dropdown-title"
-    //                                               >
-    //                                                 <p className="gen-info">
-    //                                                   {question?.optionName}
-    //                                                 </p>
-    //                                               </Grid>
-    //                                               <Grid
-    //                                                 item
-    //                                                 xs={12}
-    //                                                 sx={{
-    //                                                   paddingRight: '20px',
-    //                                                 }}
-    //                                               >
-    //                                                 <FormControl fullWidth>
-    //                                                   <Select
-    //                                                     sx={{
-    //                                                       p: 0,
-    //                                                       borderRadius: 0,
-    //                                                       mb: 1,
-    //                                                     }}
-    //                                                     // style={{"padding":0}}
-    //                                                     className="inputField cutom-input-field"
-    //                                                     defaultValue="none"
-    //                                                     value={'Hello'}
-    //                                                     //   onChange={}
-    //                                                   >
-    //                                                     <MenuItem
-    //                                                       disabled
-    //                                                       value="none"
-    //                                                       className="selectItem"
-    //                                                     >
-    //                                                       <>Select Option</>
-    //                                                     </MenuItem>
-    //                                                     {question?.options?.map(
-    //                                                       (element: any) => (
-    //                                                         <MenuItem
-    //                                                           value={
-    //                                                             element?.ddName
-    //                                                           }
-    //                                                           className="selectItem"
-    //                                                         >
-    //                                                           {element?.ddName}
-    //                                                         </MenuItem>
-    //                                                       ),
-    //                                                     )}
-    //                                                   </Select>
-    //                                                 </FormControl>
-    //                                               </Grid>
-    //                                             </Grid>
-    //                                           </>
-    //                                         );
-    //                                       } else if (question.type == 'num') {
-    //                                         return (
-    //                                           <>
-    //                                             <Grid
-    //                                               container
-    //                                               sx={{
-    //                                                 alignItems: 'center',
-    //                                               }}
-    //                                               xs={12}
-    //                                               md={4}
-    //                                             >
-    //                                               <Grid
-    //                                                 item
-    //                                                 xs={12}
-    //                                                 md={6}
-    //                                                 className="single-dropdown-title"
-    //                                               >
-    //                                                 <p className="gen-info">
-    //                                                   {question?.optionName}
-    //                                                 </p>
-    //                                               </Grid>
-    //                                               <Grid
-    //                                                 item
-    //                                                 xs={12}
-    //                                                 sx={{
-    //                                                   display: 'flex',
-    //                                                   alignItems: 'center',
-    //                                                   justifyContent:
-    //                                                     'space-between',
-    //                                                   paddingRight: '20px',
-    //                                                 }}
-    //                                               >
-    //                                                 <Inputbox
-    //                                                   className="inputField cutom-input-field"
-    //                                                   id={
-    //                                                     question.questionId +
-    //                                                     '_html'
-    //                                                   }
-    //                                                   placeholder={
-    //                                                     question.placeholder
-    //                                                   }
-    //                                                   type={
-    //                                                     question.type == 'text'
-    //                                                       ? 'text'
-    //                                                       : ''
-    //                                                   }
-    //                                                   value={
-    //                                                     question.selectedText
-    //                                                   }
-    //                                                   onChange={(e: any) => {}}
-    //                                                 />
-    //                                               </Grid>
-    //                                             </Grid>
-    //                                           </>
-    //                                         );
-    //                                       } else if (question.type == 'hsdd') {
-    //                                         return (
-    //                                           <HsddInput
-    //                                             type={question.type}
-    //                                             optionName={
-    //                                               question?.optionName
-    //                                             }
-    //                                             placeholder={
-    //                                               question?.placeholder
-    //                                             }
-    //                                             menuItems={question?.options}
-    //                                           />
-    //                                         );
-    //                                       }
-    //                                     },
-    //                                   )}
-    //                                 </div>
-    //                               </>
-    //                             );
-    //                           },
-    //                         )}
-    //                       </div>
-    //                     </>
-    //                   );
-    //                 },
-    //               )}
-    //             </div>
-    //           </>
-    //         );
-    //       })}
-    //     </Box>
-    //   </div>
-    // </div>
 
     <div className="impact-calc-container">
       <SecondaryHeader />
       <div className="impact-calc-container__inr">
-        <Box className="impact-calc-container__inr--question">
+        <div className="impact-calc-container__inr--question">
           {inputData?.map((inputDetails: any) => {
             return (
               <>
@@ -298,49 +98,44 @@ const PanelPage = (props: any) => {
                   <div className="single-dropdown-section__header">
                     <p className="header-text">{inputDetails?.headingText}</p>
                   </div>
+                  
                   {inputDetails?.subHeadingDetails?.map(
                     (subHeadingDetail: any) => {
                       return (
                         <>
                           <div className="single-dropdown-section__body">
-                            <div className="title-container">
-                              <p>{subHeadingDetail?.subHeadingText}</p>
-                            </div>
+                            {
+                              (subHeadingDetail?.subHeadingText != "")? 
+
+                              <div className="title-container">
+                                <p>{subHeadingDetail?.subHeadingText}</p>
+                              </div> : null
+                            }
+                            
                             {subHeadingDetail?.segmentDetails?.map(
                               (segmentDetail: any) => {
                                 return (
                                   <>
-                                    <div className="dropdown-container">
+                                  <Grid
+                                    container
+                                    xs={12} 
+                                    className="section-pad"            
+                                  >
+                                    {/* <div className="dropdown-container"> */}
                                       {segmentDetail?.questions?.map(
                                         (question: any) => {
                                           if (question.type == 'dd') {
                                             return (
                                               <>
-                                                <Grid
-                                                  container
-                                                  sx={{
-                                                    alignItems: 'center',
-                                                  }}
-                                                  xs={12}
-                                                  md={4}
-                                                >
+                                      
                                                   <Grid
                                                     item
-                                                    xs={12}
-                                                    md={6}
-                                                    className="single-dropdown-title"
+                                                    xs={4}
+                                                    className="input-form-control"
                                                   >
-                                                    <p className="gen-info">
+                                                     <p className="label-heading">
                                                       {question?.optionName}
                                                     </p>
-                                                  </Grid>
-                                                  <Grid
-                                                    item
-                                                    xs={12}
-                                                    sx={{
-                                                      paddingRight: '20px',
-                                                    }}
-                                                  >
                                                     <FormControl fullWidth>
                                                       <Select
                                                         sx={{
@@ -375,41 +170,22 @@ const PanelPage = (props: any) => {
                                                       </Select>
                                                     </FormControl>
                                                   </Grid>
-                                                </Grid>
+                                                {/* </Grid> */}
                                               </>
                                             );
-                                          } else if (question.type == 'num') {
+                                          }
+                                           else if (question.type == 'num' && showSection(question?.questionId)) {
                                             return (
                                               <>
-                                                <Grid
-                                                  container
-                                                  sx={{
-                                                    alignItems: 'center',
-                                                  }}
-                                                  xs={12}
-                                                  md={4}
-                                                >
+                                    
                                                   <Grid
                                                     item
-                                                    xs={12}
-                                                    md={6}
-                                                    className="single-dropdown-title"
+                                                    xs={4}
+                                                    className="input-form-control"
                                                   >
-                                                    <p className="gen-info">
+                                                    <p className="label-heading">
                                                       {question?.optionName}
                                                     </p>
-                                                  </Grid>
-                                                  <Grid
-                                                    item
-                                                    xs={12}
-                                                    sx={{
-                                                      display: 'flex',
-                                                      alignItems: 'center',
-                                                      justifyContent:
-                                                        'space-between',
-                                                      paddingRight: '20px',
-                                                    }}
-                                                  >
                                                     <Inputbox
                                                       className="inputField cutom-input-field"
                                                       id={
@@ -430,7 +206,7 @@ const PanelPage = (props: any) => {
                                                       onChange={(e: any) => { }}
                                                     />
                                                   </Grid>
-                                                </Grid>
+                                                {/* </Grid> */}
                                               </>
                                             );
                                           } else if (question.type == 'hsdd') {
@@ -450,11 +226,13 @@ const PanelPage = (props: any) => {
                                           }
                                         },
                                       )}
-                                    </div>
+                                       </Grid>
+                                    {/* </div> */}
                                   </>
                                 );
                               },
                             )}
+                            
                           </div>
                         </>
                       );
@@ -464,7 +242,7 @@ const PanelPage = (props: any) => {
               </>
             );
           })}
-        </Box>
+        </div>
       </div>
     </div>
   );
