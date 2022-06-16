@@ -17,21 +17,15 @@ const SecondaryHeader = () => {
     );
   }, []);
   const { leftPanel } = useSelector((state: any) => state);
-  const { dispatch } = store
-  const handleToggle = (event: any) => {
-    // if (!sidebartoggle) {
-    //dispatch(setSideBar(false));
-    // } else {
-    // dispatch(setSideBar(true));
-    // }
-  };
+
+  const { dispatch } = store;
+
   const toggleLeftPanel = () => {
     const updateToggle = !leftPanel?.leftPanelOpen;
     dispatch(setLeftPanelOpenClose(updateToggle));
     //@ts-ignore
     document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
   }
-
   return (
     <>
       <div
@@ -44,13 +38,11 @@ const SecondaryHeader = () => {
         }}
       >
         <div className="logo">
-          {/* <div className="hamburger-toggle" > */}
           <div className="hamburger-menu" >
-            {jsonData?.data?.leftPanel == undefined ? <Hamburger onClick={() => toggleLeftPanel()} /> : ""}
+            {jsonData?.data?.leftPanel !== undefined ? <Hamburger onClick={() => toggleLeftPanel()} /> : ""}
           </div>
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
-
             alt="Mckinsey logo"
           />
         </div>

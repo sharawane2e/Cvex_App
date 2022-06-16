@@ -68,8 +68,6 @@
 }
 
 .question-wrapper {
-  // .secondary-header {
-  //   .logo {
   .hamburger-toggle-active {
     & ~ .main-container {
       .right-panel {
@@ -79,7 +77,5 @@
         margin-left: -280px;
       }
     }
-    //   }
-    // }
   }
 }
