@@ -41,13 +41,13 @@
  		},
  		"inputData": [{
  				"headingText": "Select industry and customer type:",
-				"isShow": true,
+ 				"isShow": true,
  				"subHeadingDetails": [{
  					"subHeadingText": "",
-					"isShow": true,
+ 					"isShow": true,
  					"segmentDetails": [{
  						"segmentText": "",
-						"isShow": true,
+ 						"isShow": true,
  						"questions": [{
  								"optionName": "Industry:",
  								"type": "hsdd",
@@ -55,7 +55,7 @@
  								"placeholder": "Please select",
  								"description": "",
  								"questionId": "A1",
- 								"selectedId": "A1_2_label",
+ 								"selectedId": "A1_1_label",
  								"enableQuestionIds": ["A12", "A13"],
  								"options": [{
  										"ddName": "TMT",
@@ -87,14 +87,16 @@
  								"description": "",
  								"questionId": "A2",
  								"selectedId": "",
-								"enableQuestionIds": ["A12", "A13"],
+ 								"enableQuestionIds": ["A14", "A15"],
  								"options": [{
  										"ddName": "B2B",
- 										"ddId": "A2_1_label"
+ 										"ddId": "A2_1_label",
+ 										"enableIds": false
  									},
  									{
  										"ddName": "B2C",
- 										"ddId": "A2_2_label"
+ 										"ddId": "A2_2_label",
+ 										"enableIds": true
  									}
  								]
  							}
@@ -104,23 +106,23 @@
  			},
  			{
  				"headingText": "Essential input (mandatory):",
-				"isShow": true,
+ 				"isShow": true,
  				"subHeadingDetails": [{
  						"subHeadingText": "Company specific data",
-						"isShow": true,
+ 						"isShow": true,
  						"segmentDetails": [{
- 							"segmentText": "",
-							"isShow": true,
+ 							"segmentText": "Hello",
+ 							"isShow": true,
  							"questions": [{
  									"optionName": "Customers in the market",
  									"type": "num",
  									"isShow": true,
  									"placeholder": "#",
  									"description": "",
- 									"questionId": "A3",
+ 									"questionId": "A12",
  									"mappedBox": "",
  									"selectedText": "",
- 									"selectedId": "A3",
+ 									"selectedId": "A12",
  									"afterText": "",
  									"maxLength": 28,
  									"maxRange": 9999999999999999,
@@ -133,10 +135,10 @@
  									"isShow": true,
  									"placeholder": "#",
  									"description": "",
- 									"questionId": "A4",
+ 									"questionId": "A13",
  									"mappedBox": "",
  									"selectedText": "",
- 									"selectedId": "A4",
+ 									"selectedId": "A13",
  									"afterText": "",
  									"maxLength": 28,
  									"maxRange": 9999999999999999,
@@ -149,220 +151,27 @@
  									"isShow": true,
  									"placeholder": "#",
  									"description": "",
- 									"questionId": "A4",
+ 									"questionId": "A14",
  									"mappedBox": "",
  									"selectedText": "",
- 									"selectedId": "A4",
+ 									"selectedId": "A14",
  									"afterText": "",
  									"maxLength": 28,
  									"maxRange": 9999999999999999,
  									"minRange": 0,
  									"decimalPlaces": 0
  								},
- 								{
- 									"optionName": "Operator type",
- 									"type": "dd",
- 									"error_id": "A2",
- 									"placeholder": "Please select",
- 									"description": "",
- 									"questionId": "A2",
- 									"selectedId": "",
- 									"options": [{
- 											"ddName": "Traditional",
- 											"ddId": "A2_1_label"
- 										},
- 										{
- 											"ddName": "Attacker",
- 											"ddId": "A2_2_label"
- 										},
- 										{
- 											"ddName": "Digital",
- 											"ddId": "A2_2_label"
- 										}
- 									]
- 								},
+
  								{
  									"optionName": "Yearly market growth",
  									"type": "num",
  									"isShow": true,
  									"placeholder": "%",
  									"description": "",
- 									"questionId": "A4",
+ 									"questionId": "A15",
  									"mappedBox": "",
  									"selectedText": "",
- 									"selectedId": "A4",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								}
- 							]
- 						}]
- 					},
- 					{
- 						"subHeadingText": "Market segment comparison",
-						"isShow": true,
- 						"segmentDetails": [{
- 							"segmentText": "",
-							"isShow": true,
- 							"questions": [{
- 									"optionName": "Inbound sales",
- 									"type": "hsdd",
- 									"error_id": "A5",
- 									"placeholder": "Please select",
- 									"description": "Advanced/developed or Emerging/developing",
- 									"questionId": "A5",
- 									"selectedId": "A5_2_label",
- 									"enableQuestionIds": ["A12", "A13"],
-
- 									"options": [{
- 											"ddName": "Not selected",
- 											"ddId": "A5_1_label",
- 											"enableIds": false
- 										},
- 										{
- 											"ddName": "Median quartile",
- 											"ddId": "A5_2_label",
- 											"enableIds": true
- 										}
- 									]
- 								},
- 								{
- 									"optionName": "Inbound sales",
- 									"type": "hsdd",
- 									"error_id": "A5",
- 									"placeholder": "Please select",
- 									"description": "Advanced/developed or Emerging/developing",
- 									"questionId": "A5",
- 									"selectedId": "",
- 									"enableQuestionIds": ["A12", "A13"],
-
- 									"options": [{
- 											"ddName": "Not selected",
- 											"ddId": "A5_1_label",
- 											"enableIds": false
- 										},
- 										{
- 											"ddName": "Median quartile",
- 											"ddId": "A5_2_label",
- 											"enableIds": true
- 										}
- 									]
- 								}
- 							]
- 						}]
- 					}
- 				]
- 			},
- 			{
- 				"headingText": "Refined company information(highly recommended)",
-				"isShow": true,
- 				"subHeadingDetails": [{
- 						"subHeadingText": "",
-						"isShow": true,
- 						"segmentDetails": [{
- 							"segmentText": "Channel share",
-							"isShow": true,
- 							"questions": [{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A3",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A3",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
- 								{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A3",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A3",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
- 								{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A3",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A3",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
- 								{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A3",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A3",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								}
- 							]
- 						}]
- 					},
- 					{
- 						"subHeadingText": "",
-						"isShow": true,
- 						"segmentDetails": [{
- 							"segmentText": "Business KPIs",
-							"isShow": true,
- 							"questions": [{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": false,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A3",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A3",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
- 								{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": false,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A3",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A3",
+ 									"selectedId": "A15",
  									"afterText": "",
  									"maxLength": 28,
  									"maxRange": 9999999999999999,
@@ -372,6 +181,7 @@
  							]
  						}]
  					}
+
  				]
  			}
  		]

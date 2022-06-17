@@ -69,6 +69,8 @@ const PanelPage = (props: any) => {
     const allSHowNumQuestionIds: string[] = [];
     const showNumQuestionIds: string[] = [];
 
+    // const updatedInputData = JSON.parse(JSON.stringify(jsonData?.data?.inputData));
+
 
     jsonData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
       inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
@@ -77,10 +79,10 @@ const PanelPage = (props: any) => {
             if (question.type == "hsdd" && question.enableQuestionIds.length) {
               allSHowNumQuestionIds.push(...question.enableQuestionIds)
             }
-            if (question.type == "hsdd" && question.selectedId != "") {
+            if (question.type == "hsdd" && question.selectedId != "" && question.enableQuestionIds.length) {
               question.options.map((option: any) => {
                 if (option.ddId === question.selectedId && option.enableIds) {
-                  showNumQuestionIds.push(...question.enableQuestionIds)
+                  showNumQuestionIds.push(...question.enableQuestionIds);
                 }
               })
             }
@@ -91,6 +93,58 @@ const PanelPage = (props: any) => {
 
     setAllSHowNumQuestionIds([...allSHowNumQuestionIds]);
     setShowNumQuestionIds([...showNumQuestionIds]);
+
+  };
+  const hideShowSections = (updatedJsonData: any) => {
+
+    const headers: boolean[] = [];
+    const subHeaders: boolean[] = [];
+    const segments: boolean[] = [];
+    const questions: boolean[] = [];
+
+    const updatedInputData = JSON.parse(JSON.stringify(updatedJsonData));
+
+
+    updatedInputData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
+      headers.length = 0;
+      inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
+        subHeaders.length = 0;
+        subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
+          segments.length = 0;
+          questions.length = 0;
+          // debugger;
+          segment.questions.map((question: any, questionIndex: number) => {
+            // if (question.type == "hsdd" && question.enableQuestionIds.length) {
+            //   allSHowNumQuestionIds.push(...question.enableQuestionIds)
+            // }
+            if (question.type == "num" && allSHowNumQuestionIds.indexOf(question.questionId) != -1 && showNumQuestionIds.indexOf(question.questionId) != -1) {
+              questions.push(true)
+
+            }
+
+            if (question.type == "num" && allSHowNumQuestionIds.indexOf(question.questionId) != -1 && showNumQuestionIds.indexOf(question.questionId) == -1) {
+              questions.push(false)
+
+            }
+          })
+
+          console.log(allSHowNumQuestionIds)
+          console.log(showNumQuestionIds)
+          console.log(questions)
+
+          if (questions.indexOf(true) != -1) {
+            segment.isShow = true;
+            console.log("ismain");
+          }
+          if (questions.indexOf(false) != -1) {
+            segment.isShow = false;
+            console.log("usmain");
+          }
+        })
+      })
+    })
+
+    console.log(updatedInputData)
 
   };
 
@@ -105,30 +159,27 @@ const PanelPage = (props: any) => {
 
   const inputData = jsonData?.data?.inputData;
 
-  const handleClick = () => {
-    if (jsonData !== '') {
-      // @ts-ignore
-      // document.getElementById('navText').value =
-      //   jsonData['data']['contentDetails']['submitBTnDetails'][
-      //     'forwardInputId'
-      //   ];
-      // // @ts-ignore
-      // document.getElementById('forwardbutton').disabled = false;
-      // // @ts-ignore
-      // document.getElementById('forwardbutton').click();
-    }
-  };
+
 
   const handleDDChange = (ddId: string, inputDataIdx: number, subHeadingIdx: number, segmentDetailIdx: number, questionDataIdx: number) => {
     const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
     updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId = ddId;
+
+    hideShowSections(updatedJsonData)
+
+    //@ts-ignore
+    document.getElementById(ddId)?.click();
 
     setJSONData(updatedJsonData);
   }
 
   const handleNumChange = (value: number, inputDataIdx: number, subHeadingIdx: number, segmentDetailIdx: number, questionDataIdx: number) => {
     const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
+    const selectedId = updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId;
     updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedText = value;
+
+    //@ts-ignore
+    document.getElementById(selectedId).value = value;
 
     setJSONData(updatedJsonData);
   }
