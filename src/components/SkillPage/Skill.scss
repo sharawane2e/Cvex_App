@@ -103,6 +103,8 @@
 
 
                 .knob-container {
+                  position: absolute;
+                  left: 20%;
                   .knob {
                     // background-image: url("../../assets/svg/Polygon\ 2.svg");
                     position: absolute;
@@ -124,6 +126,7 @@
                         height: 10px;
                         width: 10px;
                         top: 10px;
+                        font-size: 14px;
                         transform: translateX(-90%);
                   }
                 }
