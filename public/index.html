@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
+	<meta charset="utf-8" />
+	<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#000000" />
+	<meta name="description" content="Web site created using create-react-app" />
+	<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+	<!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+	<!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -22,307 +22,338 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>CVEX EPR2.0</title>
+	<title>CVEX EPR2.0</title>
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <span id="jsonData" style="display: none;">
-    {
- 	"pageCode": {
- 		"page": 9
- 	},
- 	"data": {
- 		"headerData": {
- 			"title": "Customer Value Execution",
- 			"logo": "src",
- 			"banner": "src"
- 		},
- 		"inputData": [{
- 				"headingText": "Select industry and customer type:",
- 				"isShow": true,
- 				"subHeadingDetails": [{
- 					"subHeadingText": "",
- 					"isShow": true,
- 					"segmentDetails": [{
- 						"segmentText": "",
- 						"isShow": true,
- 						"questions": [{
- 								"optionName": "Industry:",
- 								"type": "hsdd",
- 								"error_id": "A1",
- 								"placeholder": "Please select",
- 								"description": "",
- 								"questionId": "A1",
- 								"selectedId": "A1_1_label",
- 								"enableQuestionIds": ["A12", "A13"],
- 								"options": [{
- 										"ddName": "TMT",
- 										"ddId": "A1_1_label",
- 										"enableIds": false
- 									},
- 									{
- 										"ddName": "Tech",
- 										"ddId": "A1_2_label",
- 										"enableIds": true
- 									},
- 									{
- 										"ddName": "Banking",
- 										"ddId": "A1_3_label",
- 										"enableIds": true
- 									},
- 									{
- 										"ddName": "Placeholder",
- 										"ddId": "A1_4_label",
- 										"enableIds": true
- 									}
- 								]
- 							},
- 							{
- 								"optionName": "Customer type:",
- 								"type": "hsdd",
- 								"error_id": "A2",
- 								"placeholder": "Please select",
- 								"description": "",
- 								"questionId": "A2",
- 								"selectedId": "",
- 								"enableQuestionIds": ["A14", "A15"],
- 								"options": [{
- 										"ddName": "B2B",
- 										"ddId": "A2_1_label",
- 										"enableIds": false
- 									},
- 									{
- 										"ddName": "B2C",
- 										"ddId": "A2_2_label",
- 										"enableIds": true
- 									}
- 								]
- 							}
- 						]
- 					}]
- 				}]
- 			},
- 			{
- 				"headingText": "Essential input (mandatory):",
- 				"isShow": true,
- 				"subHeadingDetails": [{
- 						"subHeadingText": "Company specific data",
- 						"isShow": true,
- 						"segmentDetails": [{
- 							"segmentText": "Hello",
- 							"isShow": true,
- 							"questions": [{
- 									"optionName": "Customers in the market",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A12",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A12",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
- 								{
- 									"optionName": "Customer base",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A13",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A13",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
- 								{
- 									"optionName": "ARPU",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "#",
- 									"description": "",
- 									"questionId": "A14",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A14",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								},
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+	<div id="root"></div>
+	<span id="jsonData" style="display: none;">
+				{
+		"pageCode": {
+			"page": 9
+		},
+		"data": {
+			"headerData": {
+				"title": "Customer Value Execution",
+				"logo": "src",
+				"banner": "src"
+			},
+			"inputData": [{
+					"headingText": "Select industry and customer type:",
+					"isShow": true,
+					"subHeadingDetails": [{
+						"subHeadingText": "",
+						"isShow": true,
+						"segmentDetails": [{
+							"segmentText": "",
+							"isShow": true,
+							"questions": [{
+									"optionName": "Industry:",
+									"type": "hsdd",
+									"error_id": "A1",
+									"placeholder": "Please select",
+									"description": "",
+									"questionId": "A1",
+									"selectedId": "A1_2_label",
+									"enableQuestionIds": ["A12", "A13"],
+									"options": [{
+											"ddName": "TMT",
+											"ddId": "A1_1_label",
+											"enableIds": false
+										},
+										{
+											"ddName": "Tech",
+											"ddId": "A1_2_label",
+											"enableIds": true
+										},
+										{
+											"ddName": "Banking",
+											"ddId": "A1_3_label",
+											"enableIds": true
+										},
+										{
+											"ddName": "Placeholder",
+											"ddId": "A1_4_label",
+											"enableIds": true
+										}
+									]
+								},
+								{
+									"optionName": "Customer type:",
+									"type": "hsdd",
+									"error_id": "A2",
+									"placeholder": "Please select",
+									"description": "",
+									"questionId": "A2",
+									"selectedId": "",
+									"enableQuestionIds": ["A14", "A15"],
+									"options": [{
+											"ddName": "B2B",
+											"ddId": "A2_1_label",
+											"enableIds": false
+										},
+										{
+											"ddName": "B2C",
+											"ddId": "A2_2_label",
+											"enableIds": true
+										},
+										{
+											"ddName": "B2C",
+											"ddId": "A2_3_label",
+											"enableIds": true
+										},
+										{
+											"ddName": "B2C",
+											"ddId": "A2_4_label",
+											"enableIds": true
+										}
+									]
+								}
+							]
+						}]
+					}]
+				},
+				{
+					"headingText": "Essential input (mandatory):",
+					"isShow": true,
+					"subHeadingDetails": [{
+							"subHeadingText": "Company specific data",
+							"isShow": true,
+							"segmentDetails": [{
+								"segmentText": "Hello",
+								"isShow": true,
+								"questions": [{
+										"optionName": "Customers in the market",
+										"type": "num",
+										"isShow": true,
+										"placeholder": "#",
+										"description": "",
+										"questionId": "A12",
+										"mappedBox": "",
+										"selectedText": "",
+										"selectedId": "A12",
+										"afterText": "",
+										"maxLength": 28,
+										"maxRange": 9999999999999999,
+										"minRange": 0,
+										"decimalPlaces": 0
+									},
+									{
+										"optionName": "Customer base",
+										"type": "num",
+										"isShow": true,
+										"placeholder": "#",
+										"description": "",
+										"questionId": "A13",
+										"mappedBox": "",
+										"selectedText": "",
+										"selectedId": "A13",
+										"afterText": "",
+										"maxLength": 28,
+										"maxRange": 9999999999999999,
+										"minRange": 0,
+										"decimalPlaces": 0
+									},
+									{
+										"optionName": "ARPU",
+										"type": "num",
+										"isShow": true,
+										"placeholder": "#",
+										"description": "",
+										"questionId": "A14",
+										"mappedBox": "",
+										"selectedText": "",
+										"selectedId": "A14",
+										"afterText": "",
+										"maxLength": 28,
+										"maxRange": 9999999999999999,
+										"minRange": 0,
+										"decimalPlaces": 0
+									},
 
- 								{
- 									"optionName": "Yearly market growth",
- 									"type": "num",
- 									"isShow": true,
- 									"placeholder": "%",
- 									"description": "",
- 									"questionId": "A15",
- 									"mappedBox": "",
- 									"selectedText": "",
- 									"selectedId": "A15",
- 									"afterText": "",
- 									"maxLength": 28,
- 									"maxRange": 9999999999999999,
- 									"minRange": 0,
- 									"decimalPlaces": 0
- 								}
- 							]
- 						}]
- 					}
+									{
+										"optionName": "Yearly market growth",
+										"type": "num",
+										"isShow": true,
+										"placeholder": "%",
+										"description": "",
+										"questionId": "A15",
+										"mappedBox": "",
+										"selectedText": "",
+										"selectedId": "A15",
+										"afterText": "",
+										"maxLength": 28,
+										"maxRange": 9999999999999999,
+										"minRange": 0,
+										"decimalPlaces": 0
+									}
+								]
+							}]
+						}
 
- 				]
- 			}
- 		]
- 	},
- 	"progressBarData": {
- 		"progressBarDetails": {
- 			"indicators": {
- 				"1": "Not Started",
- 				"2": "In progress",
- 				"3": "Completed"
- 			},
- 			"answeredTxt": "Answered",
- 			"totalAnswered": "1",
- 			"ofTxt": "of",
- 			"totalQues": "6",
- 			"bracketOne": "(",
- 			"percentage": "%",
- 			"bracketTwo": ")"
- 		},
- 		"saveBtn": {
- 			"saveBtnTxt": "Save",
- 			"SelectedInputId": "",
- 			"saveId": "anyID"
- 		},
- 		"submitBtn": {
- 			"SelectedInputId": "",
- 			"submitDisabled": "true",
- 			"submitBtntxt": "Submit"
- 		}
- 	}
- }
+					]
+				}
+			]
+		},
+		"progressBarData": {
+			"progressBarDetails": {
+				"indicators": {
+					"1": "Not Started",
+					"2": "In progress",
+					"3": "Completed"
+				},
+				"answeredTxt": "Answered",
+				"totalAnswered": "1",
+				"ofTxt": "of",
+				"totalQues": "6",
+				"bracketOne": "(",
+				"percentage": "%",
+				"bracketTwo": ")"
+			},
+			"saveBtn": {
+				"saveBtnTxt": "Save",
+				"SelectedInputId": "",
+				"saveId": "anyID"
+			},
+			"submitBtn": {
+				"SelectedInputId": "",
+				"submitDisabled": "true",
+				"submitBtntxt": "Submit"
+			}
+		}
+	}
 
-  </span>
+	</span>
 
-  <span id="jsonData" style="display: none;">
-    {"pageCode": { "page": 1 },"data": {"headerData": {"title":"Customer Value
-    Execution","logo":"https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg","banner":"https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"},"contentDetails":
-    {"headingTxt": "Welcome to the Customer Value Execution self-assessment!","content": "For privacy reasons, please
-    enter the password you received by email below to gain access to the site","password": { "placeholder": "Enter
-    Password", "passwordInputId": "QPassword"},"Error":"Incorrect password. Please enter the correct password to
-    participate in the survey.","isInvalid":false,"helpdeskDetails": {"helpdeskTxt": "Should you experience any issues
-    or wish to participate in the self-assessment, please reach out to","mailTo":
-    "Customer_Value_Execution@mckinsey.com"},"submitBTnDetails": {"submitBTnTxt": "Submit","forwardInputId":
-    "qIntro"}}}}
-  </span>
-  <input id="forwardbutton" />
-  <input id="navText" />
+	<span id="jsonData" style="display: none;">
+		{"pageCode": { "page": 1 },"data": {"headerData": {"title":"Customer Value
+		Execution","logo":"https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg","banner":"https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"},"contentDetails":
+		{"headingTxt": "Welcome to the Customer Value Execution self-assessment!","content": "For privacy reasons,
+		please
+		enter the password you received by email below to gain access to the site","password": { "placeholder": "Enter
+		Password", "passwordInputId": "QPassword"},"Error":"Incorrect password. Please enter the correct password to
+		participate in the survey.","isInvalid":false,"helpdeskDetails": {"helpdeskTxt": "Should you experience any
+		issues
+		or wish to participate in the self-assessment, please reach out to","mailTo":
+		"Customer_Value_Execution@mckinsey.com"},"submitBTnDetails": {"submitBTnTxt": "Submit","forwardInputId":
+		"qIntro"}}}}
+	</span>
+	<input id="forwardbutton" />
+	<input id="navText" />
+	
+	
+	<div>
+	
+	<input type="radio" id="A1_1_label" />
+	<input type="radio" id="A1_2_label" />
+	<input type="radio" id="A1_3_label" />
+	<input type="radio" id="A1_4_label" />
+	
+	</div>
+	
+	<div>
+	
+	<input type="radio" id="A2_1_label" />
+	<input type="radio" id="A2_1_label" />
+	<input type="radio" id="A2_1_label" />
+	<input type="radio" id="A2_1_label" />
+	
+	</div>
 
-  <div>
-    <input type="radio" id="A6_16_label" name="A6" />
-    <input type="radio" id="A6_2_label" name="A6" />
-    <input type="radio" id="A6_16_label" />
-  </div>
+	<div>
+		<input type="radio" id="A6_16_label" name="A6" />
+		<input type="radio" id="A6_2_label" name="A6" />
+		<input type="radio" id="A6_16_label" />
+	</div>
 
-  <div>
-    <input type="checkbox" id="A7_20" />
-    <input type="checkbox" id="A7_21" />
-    <input type="checkbox" id="A7_22" />
+	<div>
+		<input type="checkbox" id="A7_20" />
+		<input type="checkbox" id="A7_21" />
+		<input type="checkbox" id="A7_22" />
 
-  </div>
+	</div>
 
-  <div>
-    <input type="checkbox" id="A7_a_1" />
-    <input type="checkbox" id="A7_a_2" />
-  </div>
+	<div>
+		<input type="checkbox" id="A7_a_1" />
+		<input type="checkbox" id="A7_a_2" />
+	</div>
 
-  <div>
-    <input type="checkbox" id="A7_a_1" />
-    <input type="checkbox" id="A7_a_2" />
-  </div>
+	<div>
+		<input type="checkbox" id="A7_a_1" />
+		<input type="checkbox" id="A7_a_2" />
+	</div>
 
-  <div>
-    <input type="radio" id="v_110" />
-    <input type="radio" id="v_111" />
-    <input type="radio" id="v_112" />
-    <input type="radio" id="v_113" />
-    <input type="radio" id="v_114" />
-  </div>
+	<div>
+		<input type="radio" id="v_110" />
+		<input type="radio" id="v_111" />
+		<input type="radio" id="v_112" />
+		<input type="radio" id="v_113" />
+		<input type="radio" id="v_114" />
+	</div>
 
-  <div class="economicRadioCont">
-    <input type="radio" id="A5_1_label" />
-    <input type="radio" id="A5_2_label" />
-  </div>
+	<div class="economicRadioCont">
+		<input type="radio" id="A5_1_label" />
+		<input type="radio" id="A5_2_label" />
+	</div>
 
-  <div class="businessRadioCont">
-    <input type="radio" id="A8_1_label" />
-    <input type="radio" id="A8_2_label" />
-    <input type="radio" id="A8_3_label" />
-  </div>
+	<div class="businessRadioCont">
+		<input type="radio" id="A8_1_label" />
+		<input type="radio" id="A8_2_label" />
+		<input type="radio" id="A8_3_label" />
+	</div>
 
-  <div class="majorWorkRadioCont">
-    <input type="radio" id="A9_1_label" />
-    <input type="radio" id="A9_2_label" />
-    <input type="radio" id="A9_3_label" />
-    <input type="radio" id="A9_4_label" />
-    <input type="radio" id="A9_5_label" />
-    <input type="radio" id="A9_6_label" />
-    <input type="radio" id="A9_7_label" />
-    <input type="radio" id="A9_8_label" />
-    <input type="radio" id="A9_9_label" />
-  </div>
+	<div class="majorWorkRadioCont">
+		<input type="radio" id="A9_1_label" />
+		<input type="radio" id="A9_2_label" />
+		<input type="radio" id="A9_3_label" />
+		<input type="radio" id="A9_4_label" />
+		<input type="radio" id="A9_5_label" />
+		<input type="radio" id="A9_6_label" />
+		<input type="radio" id="A9_7_label" />
+		<input type="radio" id="A9_8_label" />
+		<input type="radio" id="A9_9_label" />
+	</div>
 
-  <div class="siteRadioCont">
-    <input type="radio" id="A10_1_label" />
-    <input type="radio" id="A10_2_label" />
-    <input type="radio" id="A10_3_label" />
-  </div>
+	<div class="siteRadioCont">
+		<input type="radio" id="A10_1_label" />
+		<input type="radio" id="A10_2_label" />
+		<input type="radio" id="A10_3_label" />
+	</div>
 
-  <div>
-    <input type="text" name="" id="A4">
-  </div>
+	<div>
+		<input type="text" name="" id="A4">
+	</div>
 
-  <div>
-    <input type="text" name="" id="A12">
-  </div>
+	<div>
+		<input type="text" name="" id="A12">
+	</div>
 
-  <div>
-    <input type="text" name="" id="A13">
-  </div>
+	<div>
+		<input type="text" name="" id="A13">
+	</div>
 
-  <div>
-    <input type="text" name="" id="A14">
-  </div>
+	<div>
+		<input type="text" name="" id="A14">
+	</div>
 
-  <div>
-    <input type="text" name="" id="A15">
-  </div>
+	<div>
+		<input type="text" name="" id="A15">
+	</div>
 
 
-  <input type="text" id="VS1_1_" />
-  <div>
-    <input type="radio" id="VS1_1_1" name="slider-value" />
-    <input type="radio" id="VS1_1_2" name="slider-value" />
-    <input type="radio" id="VS1_1_3" name="slider-value" />
-    <input type="radio" id="VS1_1_4" name="slider-value" />
-    <input type="radio" id="VS1_1_5" name="slider-value" />
-    <input type="radio" id="VS1_1_6" name="slider-value" />
-  </div>
-  <textarea id="VS1_1_OPEN"></textarea>
-  <input class="left-panel-menu-slctn" style="DISPLAY: none" name="currentTab">
-  <!--
+	<input type="text" id="VS1_1_" />
+	<div>
+		<input type="radio" id="VS1_1_1" name="slider-value" />
+		<input type="radio" id="VS1_1_2" name="slider-value" />
+		<input type="radio" id="VS1_1_3" name="slider-value" />
+		<input type="radio" id="VS1_1_4" name="slider-value" />
+		<input type="radio" id="VS1_1_5" name="slider-value" />
+		<input type="radio" id="VS1_1_6" name="slider-value" />
+	</div>
+	<textarea id="VS1_1_OPEN"></textarea>
+	<input class="left-panel-menu-slctn" style="DISPLAY: none" name="currentTab">
+	<!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
