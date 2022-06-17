@@ -9,6 +9,7 @@ import { Footer } from '../Footer';
 import { getParsedData } from '../../utils/parserUtil';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import {ReactComponent as Knob} from '../../assets/svg/knob2.svg';
 
 const PanelPage = (props: any) => {
 
@@ -96,7 +97,14 @@ const PanelPage = (props: any) => {
                                             <p>{subskill.observationtext}</p>
                                           </div>
                                           <div className="skill-details-cnrt__slider skill-common">
-                                            <p>{subskill.sliderValue}</p>
+                                            {/* <p>{subskill.sliderValue}</p> */}
+                                            <div className="skill-slider-cont">
+                                                <div className="knob-container">
+                                                  <Knob className="knob" />
+
+                                                </div>
+                                                
+                                            </div>
                                           </div>
                                         </div>
                                       </>

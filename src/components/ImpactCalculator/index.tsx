@@ -169,7 +169,6 @@ const PanelPage = (props: any) => {
                                       </div>
                                       : null
                                   }
-
                                   {
 
                                     (

@@ -29,176 +29,102 @@
 	<noscript>You need to enable JavaScript to run this app.</noscript>
 	<div id="root"></div>
 	<span id="jsonData" style="display: none;">
-				{
-		"pageCode": {
-			"page": 9
-		},
-		"data": {
-			"headerData": {
+		{
+			"pageCode": { "page": 6 },
+			"data": {
+			  "headerData": {
 				"title": "Customer Value Execution",
 				"logo": "src",
 				"banner": "src"
-			},
-			
-			"inputData": [{
-					"headingText": "Select industry and customer type:",
-					"isShow": true,
-					"subHeadingDetails": [{
-						"subHeadingText": "",
-						"isShow": true,
-						"segmentDetails": [{
-							"segmentText": "",
-							"isShow": true,
-							"questions": [{
-									"optionName": "Industry:",
-									"type": "hsdd",
-									"error_id": "A1",
-									"placeholder": "Please select",
-									"description": "",
-									"questionId": "A1",
-									"selectedId": "A1_2_label",
-									"enableQuestionIds": ["A12", "A13"],
-									"options": [{
-											"ddName": "TMT",
-											"ddId": "A1_1_label",
-											"enableIds": false
-										},
-										{
-											"ddName": "Tech",
-											"ddId": "A1_2_label",
-											"enableIds": true
-										},
-										{
-											"ddName": "Banking",
-											"ddId": "A1_3_label",
-											"enableIds": true
-										},
-										{
-											"ddName": "Placeholder",
-											"ddId": "A1_4_label",
-											"enableIds": true
-										}
-									]
-								},
-								{
-									"optionName": "Customer type:",
-									"type": "hsdd",
-									"error_id": "A2",
-									"placeholder": "Please select",
-									"description": "",
-									"questionId": "A2",
-									"selectedId": "",
-									"enableQuestionIds": ["A14", "A15"],
-									"options": [{
-											"ddName": "B2B",
-											"ddId": "A2_1_label",
-											"enableIds": false
-										},
-										{
-											"ddName": "B2C",
-											"ddId": "A2_2_label",
-											"enableIds": true
-										},
-										{
-											"ddName": "B2C",
-											"ddId": "A2_3_label",
-											"enableIds": true
-										},
-										{
-											"ddName": "B2C",
-											"ddId": "A2_4_label",
-											"enableIds": true
-										}
-									]
-								}
-							]
-						}]
-					}]
-				},
-				{
-					"headingText": "Essential input (mandatory):",
-					"isShow": true,
-					"subHeadingDetails": [{
-							"subHeadingText": "Company specific data",
-							"isShow": true,
-							"segmentDetails": [{
-								"segmentText": "Hello",
-								"isShow": true,
-								"questions": [{
-										"optionName": "Customers in the market",
-										"type": "num",
-										"isShow": true,
-										"placeholder": "#",
-										"description": "",
-										"questionId": "A12",
-										"mappedBox": "",
-										"selectedText": "",
-										"selectedId": "A12",
-										"afterText": "",
-										"maxLength": 28,
-										"maxRange": 9999999999999999,
-										"minRange": 0,
-										"decimalPlaces": 0
+			  },
+			  "panelDetails": {
+		
+			  "panelHeading":["Capability","Skill","Sub-skill","Observations","0-100"],
+			  "panelBody":
+				[
+					{
+						"capabilityText": "Value strategy",
+						"skillDetails": 
+						[
+							{
+								"skillText": "Sales and service strategy",
+								"skillIcon": "URL",
+								"subSkillDetails": [
+									{
+										"subSkillText": "Channel value strategy",
+										"observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+										"sliderValue":10
 									},
 									{
-										"optionName": "Customer base",
-										"type": "num",
-										"isShow": true,
-										"placeholder": "#",
-										"description": "",
-										"questionId": "A13",
-										"mappedBox": "",
-										"selectedText": "",
-										"selectedId": "A13",
-										"afterText": "",
-										"maxLength": 28,
-										"maxRange": 9999999999999999,
-										"minRange": 0,
-										"decimalPlaces": 0
+										"subSkillText": "Operating model",
+										"observationtext": "Operating model is aligned across some functions, not fully exhaustive for all functions ​​",
+										"sliderValue":10
 									},
 									{
-										"optionName": "ARPU",
-										"type": "num",
-										"isShow": true,
-										"placeholder": "#",
-										"description": "",
-										"questionId": "A14",
-										"mappedBox": "",
-										"selectedText": "",
-										"selectedId": "A14",
-										"afterText": "",
-										"maxLength": 28,
-										"maxRange": 9999999999999999,
-										"minRange": 0,
-										"decimalPlaces": 0
-									},
-
-									{
-										"optionName": "Yearly market growth",
-										"type": "num",
-										"isShow": true,
-										"placeholder": "%",
-										"description": "",
-										"questionId": "A15",
-										"mappedBox": "",
-										"selectedText": "",
-										"selectedId": "A15",
-										"afterText": "",
-										"maxLength": 28,
-										"maxRange": 9999999999999999,
-										"minRange": 0,
-										"decimalPlaces": 0
+										"subSkillText": "Network strategy",
+										"observationtext": "Contact center has the network and location strategy defining services and activities only for top 3 locations",
+										"sliderValue":10
 									}
 								]
-							}]
-						}
-
-					]
-				}
-			]
-		}
-	}
-
+							},
+							{
+								"skillText": "Customer segment and channel startegy",
+								"skillIcon": "URL",
+								"subSkillDetails": [
+									{
+										"subSkillText": "Customer segmentation and target groups​",
+										"observationtext": "All customer segments and target groups are clearly defined and detailed out ​​",
+										"sliderValue":10
+									},
+									{
+										"subSkillText": "Channel mix​",
+										"observationtext": "The channel mix is fully designed and aligned across all channels​ ​​",
+										"sliderValue":10
+									},
+									{
+										"subSkillText": "Sales and service segment strategy​",
+										"observationtext": "The service strategy to define the target groups and segments are detailed out for the main segments​",
+										"sliderValue":10
+									}
+								]
+							}
+						   
+						]
+					},
+					{
+						"capabilityText": "Customer touchpoint design",
+						"skillDetails": 
+						[
+							{
+								"skillText": "Sales & Service journey design​",
+								"skillIcon": "URL",
+								"subSkillDetails": [
+									{
+										"subSkillText": "Channel value strategy",
+										"observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+										"sliderValue":10
+									}
+								]
+							},
+							{
+								"skillText": "Omnichannel integration​",
+								"skillIcon": "URL",
+								"subSkillDetails": [
+									{
+										"subSkillText": "Channel value strategy",
+										"observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+										"sliderValue":10
+									}
+								]
+							}
+						   
+						]
+					}
+				   
+				]
+			}
+			}
+		  }
 	</span>
 
 	<span id="jsonData" style="display: none;">

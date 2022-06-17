@@ -20,33 +20,35 @@ const Pages = () => {
   }, []);
 
   if (jsonData != '' || jsonData != undefined) {
-    if (jsonData?.pageCode?.page == 1) {
-      return <Login />;
-    }
-    if (jsonData?.pageCode?.page == 2) {
-      return <Introduction />;
-    }
-    if (jsonData?.pageCode?.page == 3) {
-      return <GI />;
-    }
-    if (jsonData?.pageCode?.page == 4) {
-      return <QuestionPage />;
-    }
-    if (jsonData?.pageCode?.page == 5) {
-      return <ThankYou />;
-    }
-    if (jsonData?.pageCode?.page == 6) {
-      return <SkillPage />;
-    }
-    if (jsonData?.pageCode?.page == 7) {
-      return <PanelPage />;
-    }
-    // if (jsonData?.pageCode?.page == 8) {
+    // if (jsonData?.pageCode?.page == 1) {
+    //   return <Login />;
+    // }
+    // if (jsonData?.pageCode?.page == 2) {
+    //   return <Introduction />;
+    // }
+    // if (jsonData?.pageCode?.page == 3) {
+    //   return <GI />;
+    // }
+    // if (jsonData?.pageCode?.page == 4) {
+    //   return <QuestionPage />;
+    // }
+    // if (jsonData?.pageCode?.page == 5) {
+    //   return <ThankYou />;
+    // }
+    // if (jsonData?.pageCode?.page == 6) {
+    //   return <SkillPage />;
+    // }
+    // if (jsonData?.pageCode?.page == 7) {
     //   return <PanelPage />;
     // }
-    if (jsonData?.pageCode?.page == 9) {
-      return <ImpactCalculatorPage />;
-    }
+    // // if (jsonData?.pageCode?.page == 8) {
+    // //   return <PanelPage />;
+    // // }
+    // if (jsonData?.pageCode?.page == 9) {
+    //   return <ImpactCalculatorPage />;
+    // }
   }
+
+  return <SkillPage />
 };
 export default Pages;
