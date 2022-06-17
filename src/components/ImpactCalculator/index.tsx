@@ -272,14 +272,13 @@ const PanelPage = (props: any) => {
           }
         </div>
       </div>
-      {/* <Footer>
+      <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
             <ProgressBar showProgressBar={false}/>
           </div>
-
         </div>
-      </Footer> */}
+      </Footer>
     </div>
   );
 };
