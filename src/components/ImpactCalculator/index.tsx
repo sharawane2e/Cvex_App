@@ -135,7 +135,7 @@ const PanelPage = (props: any) => {
   return (
 
     <div className="impact-calc-container">
-      <SecondaryHeader />
+      <SecondaryHeader sidebar={false} />
       <div className="impact-calc-container__inr">
         <div className="impact-calc-container__inr--question">
           {
@@ -172,91 +172,96 @@ const PanelPage = (props: any) => {
 
                                   {
 
-                                    subHeadingDetail?.segmentDetails?.map(
-                                      (segmentDetail: any, segmentDetailIdx: number) => {
-                                        console.log(segmentDetail.segmentText, "SEGMENT");
-                                        return (
-                                          (segmentDetail?.isShow == true) ?
-                                            <>
+                                    (
+                                      subHeadingDetail?.segmentDetails?.map(
+                                        (segmentDetail: any, segmentDetailIdx: number) => {
+                                          return (
 
-                                              <Grid
-                                                container
-                                                xs={12}
-                                                className="section-pad"
-                                              >
+                                            (segmentDetail?.isShow == true) ?
+                                              <>
+                                                <div className="title-container">
+                                                  <p>{segmentDetail.segmentText}</p>
 
-                                                {
-                                                  segmentDetail?.questions?.map(
-                                                    (question: any, questionDataIdx: number) => {
-                                                      // {
-                                                      //   (showSection(question?.questionId)===true)?
-                                                      //    (<div className='segment-heading'>
-                                                      //      <p>{segmentDetail?.segmentText}</p>
-                                                      //    </div>) : null
-                                                      //  }
-                                                      if (question.type == 'dd') {
-                                                        return (
-                                                          <>
+                                                </div>
+
+                                                <Grid
+                                                  container
+                                                  xs={12}
+                                                  className="section-pad"
+                                                >
+
+                                                  {
+                                                    segmentDetail?.questions?.map(
+                                                      (question: any, questionDataIdx: number) => {
+                                                        // {
+                                                        //   (showSection(question?.questionId)===true)?
+                                                        //    (<div className='segment-heading'>
+                                                        //      <p>{segmentDetail?.segmentText}</p>
+                                                        //    </div>) : null
+                                                        //  }
+                                                        if (question.type == 'dd') {
+                                                          return (
+                                                            <>
+                                                              <HsddInput question={question} onChange={(ddId: string) => handleDDChange(ddId, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx)} />
+                                                            </>
+                                                          );
+                                                        }
+                                                        else if (question.type == 'num' && question.isShow) {
+                                                          return (
+                                                            <>
+
+                                                              <Grid
+                                                                item
+                                                                xs={4}
+                                                                md={4}
+                                                                lg={4}
+                                                                className="input-form-control"
+                                                              >
+                                                                <p className="label-heading">
+                                                                  {question?.optionName}
+                                                                </p>
+                                                                <Inputbox
+                                                                  className="inputField cutom-input-field"
+                                                                  id={
+                                                                    question.questionId +
+                                                                    '_html'
+                                                                  }
+                                                                  placeholder={
+                                                                    question.placeholder
+                                                                  }
+                                                                  type={
+                                                                    question.type == 'text'
+                                                                      ? 'text'
+                                                                      : ''
+                                                                  }
+                                                                  value={
+                                                                    question.selectedText
+                                                                  }
+                                                                  onChange={(e: any) => {
+                                                                    e.target.value = numInputValidate(
+                                                                      e.target.value,
+                                                                      /^[0-9]+$/, question.minRange, question.maxRange
+                                                                    );
+
+                                                                    handleNumChange(e.target.value, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx);
+                                                                  }}
+                                                                />
+                                                              </Grid>
+                                                            </>
+                                                          );
+                                                        } else if (question.type == 'hsdd') {
+                                                          return (
                                                             <HsddInput question={question} onChange={(ddId: string) => handleDDChange(ddId, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx)} />
-                                                          </>
-                                                        );
-                                                      }
-                                                      else if (question.type == 'num' && question.isShow) {
-                                                        return (
-                                                          <>
-
-                                                            <Grid
-                                                              item
-                                                              xs={4}
-                                                              md={4}
-                                                              lg={4}
-                                                              className="input-form-control"
-                                                            >
-                                                              <p className="label-heading">
-                                                                {question?.optionName}
-                                                              </p>
-                                                              <Inputbox
-                                                                className="inputField cutom-input-field"
-                                                                id={
-                                                                  question.questionId +
-                                                                  '_html'
-                                                                }
-                                                                placeholder={
-                                                                  question.placeholder
-                                                                }
-                                                                type={
-                                                                  question.type == 'text'
-                                                                    ? 'text'
-                                                                    : ''
-                                                                }
-                                                                value={
-                                                                  question.selectedText
-                                                                }
-                                                                onChange={(e: any) => {
-                                                                  e.target.value = numInputValidate(
-                                                                    e.target.value,
-                                                                    /^[0-9]+$/, question.minRange, question.maxRange
-                                                                  );
-
-                                                                  handleNumChange(e.target.value, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx);
-                                                                }}
-                                                              />
-                                                            </Grid>
-                                                          </>
-                                                        );
-                                                      } else if (question.type == 'hsdd') {
-                                                        return (
-                                                          <HsddInput question={question} onChange={(ddId: string) => handleDDChange(ddId, inputDataIdx, subHeadingIdx, segmentDetailIdx, questionDataIdx)} />
-                                                        );
-                                                      }
-                                                    },
-                                                  )
-                                                }
-                                              </Grid>
-                                            </> : null
-                                        );
-                                      }
-                                    )
+                                                          );
+                                                        }
+                                                      },
+                                                    )
+                                                  }
+                                                </Grid>
+                                              </> : null
+                                          );
+                                        }
+                                      ))
                                   }
                                 </div>
                               </>
@@ -275,7 +280,7 @@ const PanelPage = (props: any) => {
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
-            <ProgressBar showProgressBar={false}/>
+            <ProgressBar showProgressBar={false} />
           </div>
         </div>
       </Footer>

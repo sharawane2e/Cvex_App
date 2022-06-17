@@ -47,6 +47,8 @@ export const hideShowSections = (impactJson:any) =>{
                     questionsBooleanCnd.push(false);
                     question.isShow = false;
                     question.selectedText = "";
+                    //@ts-ignore
+                    document.getElementById(question.questionId).value = "";
       
                   }
               }
