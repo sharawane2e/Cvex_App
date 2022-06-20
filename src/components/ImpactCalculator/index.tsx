@@ -5,7 +5,7 @@ import SecondaryHeader from '../Headers/SecondaryHeader/index';
 import { Inputbox } from '../UI/Input';
 import CustomButton from '../UI/CustomButton';
 import { Footer } from '../Footer';
-import './ImpactCalculator.scss';
+
 import { getParsedData } from '../../utils/parserUtil';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

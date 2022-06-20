@@ -1,6 +1,6 @@
 
 .skill-container {
-  color: #051C2C;
+  color: $dark-light-black;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   .main-container {
@@ -13,7 +13,7 @@
     display: flex;
     // justify-content: space-between;
     width: 100%;
-    color: #565575;
+    color: $light-voilet;
     padding: 10px;
     border-bottom: 0px;
     font-weight: 600;
@@ -36,7 +36,7 @@
   }
 
   .single-capability {
-    border: 1px solid #BEBEBE;
+    border: 1px solid $gray-lighter;
     display: flex;
     &__left{
       width: 10%;
@@ -46,7 +46,7 @@
 
         width: 90%;
         &--cap-detail{
-          border: 1px solid #BEBEBE;
+          border: 1px solid $gray-lighter;
           border-bottom: none;
           display: flex;
           &:first-child{
@@ -63,14 +63,14 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            border-left: 1px solid #BEBEBE;
+            border-left: 1px solid $gray-lighter;
             border-collapse: collapse;
           }
           .skill-details-cnrt {
             width: 90%;
             &__skill-details{
               display: flex;
-              border-bottom: 1px solid #BEBEBE;
+              border-bottom: 1px solid $gray-lighter;
               border-left: none;
               &:last-child {
                 border-bottom: none;
@@ -79,7 +79,7 @@
               .skill-slider-cont {
                 width: 100%;
                 height: 1px;
-                background-color: #BEBEBE;
+                background-color: $gray-lighter;
                 position: relative;
                 &:before {
                   content: "";
@@ -87,7 +87,7 @@
                   width: 1px;
                   position: absolute;
                   left: 0px;
-                  background-color: #BEBEBE;
+                  background-color: $gray-lighter;
                   transform: translateY(-50%);
                 }
 
@@ -97,7 +97,7 @@
                   width: 1px;
                   position: absolute;
                   right: 0px;
-                  background-color: #BEBEBE;
+                  background-color: $gray-lighter;
                   transform: translateY(-50%);
                 }
 
