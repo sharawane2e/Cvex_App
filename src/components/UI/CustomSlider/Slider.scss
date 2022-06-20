@@ -7,7 +7,7 @@
         height: 145px;
 
         .sliderOuter {
-            background-color: #E1E1E1;
+            background-color: $gray-color;
             height: 5px;
             width: 78%;
             margin: auto;
@@ -19,7 +19,7 @@
                 .MuiSlider-colorPrimary {
                     padding: 0px;
                     position: relative;
-                    color: rgb(225 225 225);
+                    color: $dark-white;
                 }
 
                 .MuiSlider-colorPrimary span {
@@ -30,11 +30,11 @@
                         height: 30px;
                         width: 30px;
                         border-radius: 50%;
-                        background-color: #fff;
-                        border: 1px solid #2251ff;
+                        background-color: $white-color;
+                        border: 1px solid $blue-color;
                         text-align: center;
                         line-height: 30px;
-                        color: #2251ff;
+                        color: $blue-color;
                     }
 
                     &::before {
@@ -44,7 +44,7 @@
                         left: 0px;
                         height: 13px;
                         width: 1px;
-                        background-color: #2251ff;
+                        background-color: $blue-color;
                     }
                 }
 
@@ -94,18 +94,18 @@
                     align-items: center;
                     justify-content: center;
                     text-align: center;
-                    background-color: #E1E1E1;
-                    color: #2A2A2A;
-                    font-weight: 600;
+                    background-color: $gray-color;
+                    color: $black-color;
+                    font-weight: $font-bold;
                     white-space: normal;
                     top: 15px;
                     height: 50px;
                     font-size: 12px;
                     line-height: 1.2;
                     &.MuiSlider-markLabelActive{
-                        font-weight: 500;
-                        background: #2251FF;
-                        color: #fff;
+                        font-weight: $font-500;
+                        background: $blue-color;
+                        color: $white-color;
                     }
                 }
 
@@ -142,7 +142,7 @@
                     }
                     }
                     .css-1aznpnh-MuiSlider-root {
-                        color: #CCCCCC;
+                        color: $gray-color;
                     }
                     .knob-disabled{
                         .MuiSlider-thumb{
@@ -154,9 +154,9 @@
                     }
 
                     .MuiSlider-markLabel.MuiSlider-markLabelActive {
-                        background-color: #E1E1E1;
-                        color: #2A2A2A;
-                        font-weight: 600;
+                        background-color: $gray-color;
+                        color: $black-color;
+                        font-weight: $font-bold;
                         font-size: 12px;
                         line-height: 1.2;
                     }
@@ -166,7 +166,7 @@
 
         .sliderRightPanel {
             width: 20%;
-            border-left: 1px solid #E1E1E1;
+            border-left: 1px solid $dark-white;
             display: flex;
             justify-content: center;
             flex-direction: column;

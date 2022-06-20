@@ -8,6 +8,7 @@ import GI from '../components/GI';
 import PanelPage from '../components/PanelPage';
 import SkillPage from '../components/SkillPage';
 import ImpactCalculatorPage from '../components/ImpactCalculator';
+import pageCode from '../enums/pageCode';
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -20,13 +21,13 @@ const Pages = () => {
   }, []);
 
   if (jsonData != '' || jsonData != undefined) {
-    if (jsonData?.pageCode?.page == 1) {
+    if (jsonData?.pageCode?.page === pageCode.Login) {
       return <Login />;
     }
-    if (jsonData?.pageCode?.page == 2) {
+    if (jsonData?.pageCode?.page === pageCode.Introduction) {
       return <Introduction />;
     }
-    if (jsonData?.pageCode?.page == 3) {
+    if (jsonData?.pageCode?.page === pageCode.GI) {
       return <GI />;
     }
     if (jsonData?.pageCode?.page == 4) {
@@ -48,7 +49,5 @@ const Pages = () => {
       return <ImpactCalculatorPage />;
     }
   }
-
-  //  return <SkillPage />;
 };
 export default Pages;
