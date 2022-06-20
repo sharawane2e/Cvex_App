@@ -2,12 +2,6 @@
   border-radius: $r;
 }
 
-@mixin box-shadow($x-axis: 0, $y-axis: 1px, $blur: 2px, $color: $primary) {
-  box-shadow: $x-axis $y-axis $blur $color;
-}
-@mixin card-box-shadow($x-axis: 0, $y-axis: 1px, $blur: 2px, $color: $primary) {
-  box-shadow: $x-axis $y-axis $blur $color !important;
-}
 
 @mixin breakpoint($point) {
   @if $point == desktop {
@@ -118,27 +112,6 @@
 
 /*End*/
 
-@mixin color($color) {
-  color: $color;
-}
-@mixin colorImp($colorImp) {
-  color: $colorImp !important;
-}
-@mixin both-color($bgcolor, $color) {
-  background: $bgcolor !important;
-  color: $color !important;
-}
-
-@mixin bgcolor($bgcolor) {
-  background: $bgcolor;
-}
-@mixin bgcolorImp($bgcolorImp) {
-  background: $bgcolorImp !important;
-}
-
-@mixin font-weight($weight) {
-  font-weight: $weight;
-}
 
 /*Border */
 @mixin border($direction, $width, $style, $color) {

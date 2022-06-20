@@ -1,0 +1,10 @@
+@import './partials/fonts.scss';
+@import './partials/variables.scss';
+@import './partials/mixins.scss';
+@import './partials/Common.scss';
+
+// @import './partials/theme.scss';
+@import '../components/Headers/PrimaryHeader/PrimaryHeader.scss';
+@import '../components/Headers/SecondaryHeader/SecondaryHeader.scss';
+@import '../components/Introduction/Introduction.scss';
+

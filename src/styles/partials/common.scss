@@ -1,26 +1,20 @@
-// @import "../../components/Headers/PrimaryHeader/PrimaryHeader.scss";
-// // @import url('https://fonts.googleapis.com/css2?family=Roboto');
-// @font-face {
-//   font-family: Roboto;
-//   src: url("../../styles/Fonts/Roboto/Roboto-Regular.ttf");
-// }
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif !important;
+  font-family: $font-Roboto !important;
+
 }
 .container {
   position: relative;
 }
 .submitButton {
-  background-color: #1f66f6 !important;
+  background-color: $blue-color !important;
   margin: auto !important;
   padding: 8px 50px !important;
-  color: #fff !important  ;
+  color: $white-color !important  ;
   cursor: pointer !important;
-  border: 1px solid #2251ff;
+  border: 1px solid $light-blue;
   border-radius: 0 !important;
   width: 130px;
   font-size: 14px !important;
@@ -28,6 +22,7 @@
   &.previous-button {
     margin-right: 10px !important;
   }
+  font-weight: $font-normal !important;
 }
 .button-container {
   display: flex !important;
@@ -73,8 +68,6 @@
 }
 
 .question-wrapper {
-  // .secondary-header {
-  //   .logo {
   .hamburger-toggle-active {
     & ~ .main-container {
       .right-panel {
@@ -84,8 +77,7 @@
         margin-left: -280px;
       }
     }
-    //   }
-    // }
+
   }
 }
 

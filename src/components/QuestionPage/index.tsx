@@ -3,7 +3,7 @@ import SecondaryHeader from '../Headers/SecondaryHeader';
 import ProgressBar from '../ProgressBar';
 import SideBar from '../Sidebar';
 import { Footer } from '../Footer';
-import './QuestionPage.scss';
+// import './QuestionPage.scss';
 import CustomButton from '../UI/CustomButton';
 import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';
@@ -12,7 +12,7 @@ import store from '../../redux/store';
 import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
 import { setRightPanelData } from '../../redux/actions/RightPanelActions';
 import { setLeftPanelData } from '../../redux/actions/LeftPanelActions';
-import "../../styles/partials/common.scss"
+// import '../../styles/partials/common.scss';
 
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -22,7 +22,6 @@ const QuestionPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
-
   }, []);
   const { dispatch } = store;
   dispatch(setLeftPanelData(jsonData?.data?.leftPanel));

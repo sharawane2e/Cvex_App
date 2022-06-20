@@ -1,10 +1,10 @@
-@import "../../../styles/partials/mixins.scss";
+
 .primary-header {
   display: flex;
   position: relative;
   justify-content: space-between;
   width: 100%;
-  background-color: #051c2c;
+  background-color: $dark-black;
   background-position: right;
   align-items: center;
   height: 20vh;
@@ -38,8 +38,8 @@
   background-color: #fff;
   color: #051c2c;
   text-align: center;
-  -webkit-box-shadow: 0px 4px 9px 0px #00000029;
-  box-shadow: 0px 4px 9px 0px #00000029;
+  -webkit-box-shadow: 0px 4px 9px 0px $box-shadow-color;
+  box-shadow: 0px 4px 9px 0px $box-shadow-color;
 }
 
 .banner-title h2 {
@@ -55,6 +55,6 @@
   width: 0;
   height: 0;
   border-right: 30px solid transparent;
-  border-bottom: 25px solid #2251ff;
+  border-bottom: 25px solid $blue-color;
 }
 }

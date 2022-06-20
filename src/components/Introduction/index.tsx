@@ -1,9 +1,7 @@
 import PrimaryHeader from '../Headers/PrimaryHeader/index';
-import './Introduction.scss';
 import CustomButton from '../UI/CustomButton';
 import { Footer } from '../Footer';
 import React, { useEffect, useState } from 'react';
-import '../Login/Login.scss';
 import { getParsedData } from '../../utils/parserUtil';
 
 type Props = {};
