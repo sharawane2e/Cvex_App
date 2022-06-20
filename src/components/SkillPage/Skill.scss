@@ -2,7 +2,7 @@
 .skill-container {
   color: $dark-light-black;
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: $font-500;
   .main-container {
     margin: 0;
     padding: 15px;
@@ -16,7 +16,7 @@
     color: $light-voilet;
     padding: 10px;
     border-bottom: 0px;
-    font-weight: 600;
+    font-weight: $font-bold;
 
     &--heading:nth-child(1){
       width: 10%;
