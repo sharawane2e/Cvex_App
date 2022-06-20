@@ -12,12 +12,9 @@
 
     .right-panel {
       width: calc(100% - 280px);
-      // overflow-y: scroll;
       position: relative;
       padding: 20px;
       transition: 0.3s ease-out;
-      // height: calc(100vh - 220px);
-
       .title {
         padding: 20px;
         margin-bottom: 0;
@@ -27,7 +24,7 @@
         }
       }
       &__inr {
-        overflow-y: scroll;
+        overflow-y: auto;
         height: calc(100vh - 280px);
       }
 
