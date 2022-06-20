@@ -1,4 +1,3 @@
-import './SecondaryHeader.scss';
 import { ReactComponent as Hamburger } from '../../../assets/svg/hamburger.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLeftPanelOpenClose } from '../../../redux/actions/LeftPanelActions';

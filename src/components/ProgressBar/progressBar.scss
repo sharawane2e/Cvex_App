@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 15px;
-    border-bottom: 2px solid #efefef;
+    border-bottom: 2px solid $gray-color;
 }
 
 .saveBtn,
@@ -44,9 +44,9 @@
 
         .previous-button {
             border: 1px
-             solid #1f66f6;
-                background-color: #1f66f6 !important;
-                color: #ffffff !important;
+             solid $light-blue;
+                background-color: $light-blue !important;
+                color: $white-color !important;
                 width: 120px;
         }
 
@@ -61,9 +61,9 @@
             //     border: 1px solid #D0D0D0;
             // }
             width: 120px;
-    border: 1px solid #e1e1e1;
-    background: #e1e1e1 !important;
-    color: #2a2a2a !important;
+    border: 1px solid $gray-color;
+    background: $gray-color !important;
+    color: $dark-light-black !important;
         }
     }
 }
@@ -71,12 +71,12 @@
 .css-eglki6-MuiLinearProgress-root,
 .css-7p5u54 {
     height: 8px !important;
-    background-color: #F7F7F7 !important;
+    background-color: $dark-white !important;
     margin-left: 15px;
 }
 
 .css-5xe99f-MuiLinearProgress-bar1 {
-    background-color: #2251FF !important;
+    background-color: $blue-color !important;
 }
 
 .bottomContainer {
@@ -110,5 +110,5 @@
     margin-left: 18px !important;
     font-size: 13px;
     height: 37px !important;
-    border: 1px solid #cdc6c6;
+    border: 1px solid $gray-lighter;
 }
