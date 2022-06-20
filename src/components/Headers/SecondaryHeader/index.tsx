@@ -28,7 +28,7 @@ const SecondaryHeader = (props: headerProps) => {
   const { dispatch } = store
 
   const toggleLeftPanel = () => {
-    const updateToggle = eval(leftPanel?.leftPanelOpen);
+    const updateToggle = leftPanel?.leftPanelOpen;
     dispatch(setLeftPanelOpenClose(!updateToggle));
     //@ts-ignore
     // document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
@@ -47,11 +47,15 @@ const SecondaryHeader = (props: headerProps) => {
       >
 
         <div className="logo">
-          {
+          {/* {
             props?.sidebar && <div className="hamburger-menu" >
               <Hamburger onClick={() => toggleLeftPanel()} />
             </div>
-          }
+          } */}
+
+        <div className={leftPanel?.leftPanelOpen ? "menu btn15" : "menu btn15 open"} data-menu="15" onClick={() => toggleLeftPanel()}>
+          <div className="icon"></div>
+        </div>
 
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}

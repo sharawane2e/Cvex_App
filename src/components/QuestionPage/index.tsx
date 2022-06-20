@@ -3,7 +3,6 @@ import SecondaryHeader from '../Headers/SecondaryHeader';
 import ProgressBar from '../ProgressBar';
 import SideBar from '../Sidebar';
 import { Footer } from '../Footer';
-// import './QuestionPage.scss';
 import CustomButton from '../UI/CustomButton';
 import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';

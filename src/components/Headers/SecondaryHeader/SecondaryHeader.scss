@@ -1,3 +1,7 @@
+$dark: #fff;
+$light: #efefef;
+$color: #b3e5fc;
+
 .secondary-header {
   display: flex;
   position: relative;
@@ -9,7 +13,7 @@
   height: 100px;
   min-height: 100px;
   .logo {
-    padding-left: 40px;
+    padding-left: 10px;
     padding-right: 40px;
     border-right: 1px solid #1e323f;
     border-bottom: 1px solid #1e323f;
@@ -35,5 +39,82 @@
     h2 {
       font-size: 18px;
     }
+  }
+}
+
+@mixin btn($left, $top) {
+  // position: absolute;
+  width: 60px;
+  height: 60px;
+  // top: $top;
+  // left: $left;
+  transition-duration: 0.5s;
+}
+
+@mixin icon($height, $width) {
+  transition-duration: 0.5s;
+  position: relative;
+  height: $height;
+  width: $width;
+  top: 30px;
+  background-color: $dark;
+}
+
+@mixin icon-before($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $dark;
+  content: "";
+  top: $top;
+}
+
+@mixin icon-after($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: $dark;
+  content: "";
+  top: $top;
+}
+
+.btn15{
+  @include btn(120px, 400px);
+  
+  .icon {
+    @include icon(3px, 28px);
+    border-radius: 4px;
+    left: 15px;
+    
+    &:before{
+      @include icon-before(3px, 28px, -10px);
+      border-radius: 4px;
+    }
+    
+    &:after{
+      @include icon-after(3px, 28px, 10px);
+      border-radius: 4px;
+    }
+  }
+  
+  &.open {
+    .icon {
+      transition-duration: 0.5s;
+      background: transparent;
+      color: #fff;
+      
+      &:before{
+        transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
+      }
+
+      &:after{
+        transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
   }
 }
