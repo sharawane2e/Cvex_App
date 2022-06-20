@@ -6,7 +6,7 @@
 
     .left-panel {
       width: 280px;
-      background-color: #051c2c;
+      background-color: $dark-light-black;
       transition: 0.3s ease-out;
     }
 
@@ -37,9 +37,9 @@
           padding: 0px 20px;
 
           .previous-button {
-            border: 1px solid #2251ff;
-            background-color: #fff !important;
-            color: #2251ff !important;
+            border: 1px solid $blue-color;
+            background-color: $white-color !important;
+            color: $blue-color !important;
           }
         }
       }

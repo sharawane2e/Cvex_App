@@ -41,11 +41,11 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == 7) {
       return <PanelPage />;
     }
-    // if (jsonData?.pageCode?.page == 8) {
-    //   return <PanelPage />;
-    // }
+    if (jsonData?.pageCode?.page == 8) {
+      return <PanelPage />;
+    }
     if (jsonData?.pageCode?.page == 9) {
-      // return <ImpactCalculatorPage />;
+      return <ImpactCalculatorPage />;
     }
   }
 
