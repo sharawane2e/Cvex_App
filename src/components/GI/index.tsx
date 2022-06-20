@@ -10,7 +10,7 @@ import { Footer } from '../Footer';
 import CustomButton from '../UI/CustomButton';
 import { ReactComponent as InfoIocn } from '../../assets/svg/info-icon.svg';
 import Tooltip from '@mui/material/Tooltip';
-import { debug } from 'console';
+import regexCodes from '../../enums/regexCodes';
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -284,7 +284,7 @@ const GI = () => {
                               // )
                               e.target.value = inputValidate(
                                 e.target.value,
-                                /^[A-Za-z ]+$/,
+                                regexCodes.number,
                               );
 
                               const updatedQuestionsArray: any[] = [];

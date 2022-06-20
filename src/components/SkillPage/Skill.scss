@@ -1,12 +1,32 @@
+@import "../../styles/partials/mixins.scss";
 
 .skill-container {
   color: $dark-light-black;
   font-family: 'Roboto', sans-serif;
   font-weight: $font-500;
+  min-width: 600px;
   .main-container {
     margin: 0;
     padding: 15px;
     width: 100%;
+    height: calc(100vh - 112px);
+    overflow-y: auto;
+    
+    // @include breakpoint(Ipad-pro)
+    // {
+    //   font-size: 12px;
+    //   padding: 5px;
+    // }
+    // @include breakpoint(mobileonly)
+    // {
+    //   padding: 5px;
+    //   font-size: 10px;
+    // }
+    // @include breakpoint(sm-mobileonly)
+    // {
+    //   padding: 5px;
+    //   font-size: 10px;
+    // }
   }
 
   .single-capability-header {
@@ -37,6 +57,7 @@
 
   .single-capability {
     border: 1px solid $gray-lighter;
+    // border-bottom: 0;
     display: flex;
     &__left{
       width: 10%;
@@ -48,6 +69,7 @@
         &--cap-detail{
           border: 1px solid $gray-lighter;
           border-bottom: none;
+          border-right: 0;
           display: flex;
           &:first-child{
             border-top: 0;
@@ -58,6 +80,8 @@
             justify-content: space-between;
             width: 10%;
             padding: 10px;
+            word-break: break-all;
+            line-height: 1.2;
           }
           .skill-common{
             display: flex;
@@ -146,10 +170,7 @@
 
           }
         }
-  
-     
-      
     }
-   
   }
 }
+
