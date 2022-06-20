@@ -19,7 +19,7 @@
                 .MuiSlider-colorPrimary {
                     padding: 0px;
                     position: relative;
-                    color: rgb(225 225 225);
+                    color: $dark-white;
                 }
 
                 .MuiSlider-colorPrimary span {
@@ -95,7 +95,7 @@
                     justify-content: center;
                     text-align: center;
                     background-color: $gray-color;
-                    color: #2A2A2A;
+                    color: $black-color;
                     font-weight: 600;
                     white-space: normal;
                     top: 15px;
@@ -155,7 +155,7 @@
 
                     .MuiSlider-markLabel.MuiSlider-markLabelActive {
                         background-color: $gray-color;
-                        color: #2A2A2A;
+                        color: $black-color;
                         font-weight: 600;
                         font-size: 12px;
                         line-height: 1.2;
