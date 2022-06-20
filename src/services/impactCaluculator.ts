@@ -7,14 +7,14 @@ export const hideShowSections = (impactJson:any) =>{
     const showNumQuestionIds: string[] = [];
 
     updatedInputData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
-      inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
-        subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
-          segment.questions.map((question: any, questionIndex: number) => {
+      inputDataEl.subHeadingDetails?.map((subHeading: any, subHeadingIndex: number) => {
+        subHeading.segmentDetails?.map((segment: any, segmentIndex: number) => {
+          segment.questions?.map((question: any, questionIndex: number) => {
             if (question.type == "hsdd" && question.enableQuestionIds.length) {
               allSHowNumQuestionIds.push(...question.enableQuestionIds)
             }
             if (question.type == "hsdd" && question.selectedId != "" && question.enableQuestionIds.length) {
-              question.options.map((option: any) => {
+              question.options?.map((option: any) => {
                 if (option.ddId === question.selectedId && option.enableIds) {
                   showNumQuestionIds.push(...question.enableQuestionIds);
                 }
@@ -30,11 +30,11 @@ export const hideShowSections = (impactJson:any) =>{
         // console.log(inputDataIndex)
         // console.log(inputDataEl.headingText)
         const subHeadersBooleanCnd: boolean[] = [];
-      inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
+      inputDataEl.subHeadingDetails?.map((subHeading: any, subHeadingIndex: number) => {
         const segmentsBooleanCnd: boolean[] = [];
-        subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
+        subHeading.segmentDetails?.map((segment: any, segmentIndex: number) => {
             const questionsBooleanCnd: boolean[] = [];
-          segment.questions.map((question: any, questionIndex: number) => {
+          segment.questions?.map((question: any, questionIndex: number) => {
               if(question.type == "num" && allSHowNumQuestionIds.indexOf(question.questionId) != -1){
                 //   console.log("inside num")
                 if (showNumQuestionIds.indexOf(question.questionId) != -1) {
