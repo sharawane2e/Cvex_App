@@ -31,6 +31,7 @@ export function Introduction(props: Props) {
   console.log(jsonData?.data?.contentDetails);
   return (
     <>
+      <div className="introduction-container">
       <PrimaryHeader />
       <div className="introduction-main">
         <h3 className="introduction-heading">
@@ -52,6 +53,7 @@ export function Introduction(props: Props) {
           </CustomButton>
         </div>
       </Footer>
+      </div>
     </>
   );
 }
