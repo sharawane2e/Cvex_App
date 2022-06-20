@@ -22,15 +22,16 @@ const SecondaryHeader = (props: headerProps) => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    console.log(document.getElementById('jsonData')?.innerHTML)
   }, []);
   const { leftPanel } = useSelector((state: any) => state);
   const { dispatch } = store
 
   const toggleLeftPanel = () => {
-    const updateToggle = !leftPanel?.leftPanelOpen;
-    dispatch(setLeftPanelOpenClose(updateToggle));
+    const updateToggle = eval(leftPanel?.leftPanelOpen);
+    dispatch(setLeftPanelOpenClose(!updateToggle));
     //@ts-ignore
-    document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
+    // document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
   }
 
   return (
