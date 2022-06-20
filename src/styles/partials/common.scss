@@ -5,13 +5,16 @@
   font-family: $font-Roboto !important;
 
 }
+#root{
+  height: 100vh;
+}
 .container {
   position: relative;
 }
 .submitButton {
   background-color: $blue-color !important;
   margin: auto !important;
-  padding: 12px 35px !important;
+  padding: 8px 35px !important;
   color: $white-color !important  ;
   cursor: pointer !important;
   border: 1px solid $light-blue;

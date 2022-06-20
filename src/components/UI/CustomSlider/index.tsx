@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import './Slider.scss';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import { useDispatch } from 'react-redux';
-import { setAnswerCount } from '../../../redux/actions/ProgressBarAction';
 import store from '../../../redux/store';
-import clsx from "clsx";
-import { isDisabled } from '@testing-library/user-event/dist/utils';
+import clsx from 'clsx';
 import { updateCapabilityDetails } from '../../../redux/actions/RightPanelActions';
-import { updateLeftPanelCategories } from '../../../redux/actions/LeftPanelActions';
 import { useSelector } from 'react-redux';
 
 type SliderProps = {
-  capabilityDetailIndex: number,
-  subTitleIndex: number
+  capabilityDetailIndex: number;
+  subTitleIndex: number;
 };
 
 const CustomSlider = (props: SliderProps) => {
@@ -30,7 +24,7 @@ const CustomSlider = (props: SliderProps) => {
   const isDisabled = () => {
     let disableSlider = false;
 
-    if (sliderOptions.selectedInputId === "") {
+    if (sliderOptions.selectedInputId === '') {
       disableSlider = true;
     }
 
@@ -38,25 +32,30 @@ const CustomSlider = (props: SliderProps) => {
       disableSlider = true;
     }
 
-    return disableSlider
-  }
+    return disableSlider;
+  };
 
   const updateSliderState = (selectedInputId: any) => {
-    const updatedCapabilityDetails = JSON.parse(JSON.stringify(rightPanel.questionsData.capabilityDetails));
-    updatedCapabilityDetails[props.capabilityDetailIndex].subTitleDetails[props.subTitleIndex].sliderOptions.selectedInputId = selectedInputId;
-    dispatch(updateCapabilityDetails(updatedCapabilityDetails))
+    const updatedCapabilityDetails = JSON.parse(
+      JSON.stringify(rightPanel.questionsData.capabilityDetails),
+    );
+    updatedCapabilityDetails[props.capabilityDetailIndex].subTitleDetails[
+      props.subTitleIndex
+    ].sliderOptions.selectedInputId = selectedInputId;
+    dispatch(updateCapabilityDetails(updatedCapabilityDetails));
     // updateTotalAnswered();
-  }
+  };
 
   const sliderDefaultValue = () => {
-
     let defaultSliderValue = parseInt(sliderOptions.defaultinputIdOpt);
-    if (sliderOptions.selectedInputId !== "" && sliderOptions.selectedInputId !== sliderOptions.NAOptionInputId) {
-      defaultSliderValue = sliderOptions.selectedInputId.split("_")[2]
+    if (
+      sliderOptions.selectedInputId !== '' &&
+      sliderOptions.selectedInputId !== sliderOptions.NAOptionInputId
+    ) {
+      defaultSliderValue = sliderOptions.selectedInputId.split('_')[2];
     }
     return defaultSliderValue;
-  }
-
+  };
 
   // const updateTotalAnswered = () => {
   //   let updatedTotalAnswered = 0;
@@ -82,7 +81,9 @@ const CustomSlider = (props: SliderProps) => {
   // }
 
   // let defaultValueSelected: any = props?.defaultValue;
-  const sliderOptions = rightPanel?.questionsData.capabilityDetails[props.capabilityDetailIndex].subTitleDetails[props.subTitleIndex].sliderOptions
+  const sliderOptions =
+    rightPanel?.questionsData.capabilityDetails[props.capabilityDetailIndex]
+      .subTitleDetails[props.subTitleIndex].sliderOptions;
 
   // const [selectedValue, setselectedValue] =
   //   useState<Number>(defaultValueSelected);
@@ -120,7 +121,9 @@ const CustomSlider = (props: SliderProps) => {
 
   function valueLabelFormat(value: number) {
     return (
-      sliderOptions.ratingOpt?.findIndex((ratingData: any) => ratingData.value === value) + 1
+      sliderOptions.ratingOpt?.findIndex(
+        (ratingData: any) => ratingData.value === value,
+      ) + 1
     );
   }
 
@@ -170,7 +173,7 @@ const CustomSlider = (props: SliderProps) => {
 
   return (
     <>
-      <div className="slider-container" id={"" + props.capabilityDetailIndex}>
+      <div className="slider-container" id={'' + props.capabilityDetailIndex}>
         <div className="slider-container-inner">
           <div className="sliderOuter">
             <Box className="slider">
@@ -186,12 +189,14 @@ const CustomSlider = (props: SliderProps) => {
                 max={5}
                 track={false}
                 onChange={(event: any, value: any) => {
-                  let selectedInputId = "";
-                  sliderOptions.ratingOpt.forEach((ratingOp: any, ratingIndex: number) => {
-                    if (ratingOp.value === value) {
-                      selectedInputId = ratingOp.inputId
-                    }
-                  })
+                  let selectedInputId = '';
+                  sliderOptions.ratingOpt.forEach(
+                    (ratingOp: any, ratingIndex: number) => {
+                      if (ratingOp.value === value) {
+                        selectedInputId = ratingOp.inputId;
+                      }
+                    },
+                  );
 
                   //@ts-ignore
                   document.getElementById(selectedInputId)?.click();
@@ -210,14 +215,16 @@ const CustomSlider = (props: SliderProps) => {
                 label={sliderOptions?.NAOptionTxt}
                 labelPlacement="bottom"
                 onChange={(event: any) => {
-
                   updateSliderState(sliderOptions?.NAOptionInputId);
                   //@ts-ignore
-                  document.getElementById(sliderOptions?.NAOptionInputId)?.click();
+                  document
+                    .getElementById(sliderOptions?.NAOptionInputId)
+                    ?.click();
+                }}
+                checked={
+                  sliderOptions.selectedInputId ===
+                  sliderOptions.NAOptionInputId
                 }
-
-                }
-                checked={sliderOptions.selectedInputId === sliderOptions.NAOptionInputId}
               />
             </RadioGroup>
           </FormControl>
@@ -227,5 +234,3 @@ const CustomSlider = (props: SliderProps) => {
   );
 };
 export default CustomSlider;
-
-

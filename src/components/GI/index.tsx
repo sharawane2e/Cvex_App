@@ -1,8 +1,5 @@
-// @flow
 import React, { useState, useEffect } from 'react';
 import PrimaryHeader from '../Headers/PrimaryHeader';
-//import generalData from '../../mock/giData.json';
-import './GI.scss';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Checkbox, InputLabel, ListItemText, MenuItem } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
@@ -16,18 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import { debug } from 'console';
 
 const GI = () => {
-  const [state, setState] = useState(0);
   const [jsonData, setJSONData] = useState<any>('');
-  const [geography, setGeography] = useState('none');
-  const [country, setCountry] = useState('none');
-  const [economicStatus, setEconomicStatus] = useState('none');
-  const [sector, setSector] = useState('none');
-  const [services, setServices] = useState<string[]>([]);
-  const [servicesId, setServicesId] = useState<any>('');
   const [serviceOffer, setServicesOffer] = useState<any>([]);
-  const [getFilterCountry, setFilterCountry] = useState([]);
-  const [getFilterService, setFilterService] = useState([]);
-  const [getFilterServiceData, setFilterServiceData] = useState<any>([]);
 
   useEffect(() => {
     setJSONData(
@@ -89,11 +76,6 @@ const GI = () => {
     const allMapIndex: string[] = [];
     map.split('|').forEach((element: any) => {
       allMapIndex.push(element.split(':')[0]);
-      // var currMapElm = element.split("|");
-      // if(selectedId == currMapElm.split(":")[0])
-      // {
-      //   return true;
-      // }
     });
 
     if (allMapIndex.indexOf(selectedId) != -1) {
@@ -122,42 +104,6 @@ const GI = () => {
     });
 
     return isCondition;
-  };
-
-  const handleCountry = (event: any) => {
-    setCountry(event.target.value);
-  };
-  // const handleSector = (event: any, questionmap: any, questionoption2: any) => {
-  //   setSector(event.target.value);
-  //   setServices([]);
-  //   const selectedSector = getSddQ2Options(event, questionmap, questionoption2);
-  //   setFilterService(selectedSector);
-  // };
-
-  const handleEconomicStatus = (event: any) => {
-    setEconomicStatus(event.target.value);
-  };
-
-  const handleServices = (
-    event: any,
-    questionmap: any,
-    questionoption3: any,
-  ) => {
-    const {
-      target: { value },
-    } = event;
-    console.log(event);
-    setServices(typeof value === 'string' ? value.split(',') : value);
-
-    const selectedServices = getdddptions(
-      servicesId,
-      questionmap,
-      questionoption3,
-    );
-    console.log('SelectedServices', selectedServices);
-    setFilterServiceData(selectedServices);
-    console.log(getFilterService);
-    console.log(getFilterServiceData);
   };
 
   const getSddQ2Options = (
@@ -1086,30 +1032,8 @@ const GI = () => {
       </div>
       <Footer>
         <div className="button-container">
-          {/* <div
-          className={
-            password && isPasswordValid(password) && password != ""
-              ? ""
-              : "cursor-block"
-          }
-        >
-          <CustomButton className={
-            password && isPasswordValid(password) && password != ""
-              ? "submitButton"
-              : "submitButton submit-block"
-          }
-            onClick={handleClick}>
-            {startData.data.contentDetails.submitBTnDetails.submitBTnTxt}
-          </CustomButton>
-        </div> */}
           <div className="button-container">
             <div className="button-inr-btn">
-              {/* <CustomButton
-                className={'submitButton back-btn'}
-                onClick={handlePrevClick} children={undefined} disable={false}              >
-                {jsonData.data?.footerData?.previousTxt}
-              </CustomButton> */}
-
               <CustomButton
                 className="submitButton  mar-right"
                 onClick={handlePrevClick}

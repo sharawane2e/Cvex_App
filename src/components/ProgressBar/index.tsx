@@ -5,16 +5,16 @@ import LinearProgress, {
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CustomButton from '../UI/CustomButton';
-import './progressBar.scss';
+// import './progressBar.scss';
 import { getParsedData } from '../../utils/parserUtil';
 import { LinearProgressBar } from '../LinearProgressBar';
 // import { useSelector } from 'react-redux';
 
 type ProgressBarProps = {
-  showProgressBar:boolean
-}
+  showProgressBar: boolean;
+};
 
-export default function ProgressBar(props:ProgressBarProps) {
+export default function ProgressBar(props: ProgressBarProps) {
   const [jsonData, setJSONData] = useState<any>('');
 
   // const { leftPanel } = useSelector((state: any) => state);
@@ -43,7 +43,7 @@ export default function ProgressBar(props:ProgressBarProps) {
     document.getElementById('forwardbutton').click();
   };
 
-  const submitProgress = (event: any) => { };
+  const submitProgress = (event: any) => {};
 
   const progressBarUpdateNew = (answered: number, totalQuestions: number) => {
     var progressPercentage = (answered / totalQuestions) * 100;
@@ -51,18 +51,15 @@ export default function ProgressBar(props:ProgressBarProps) {
     return progressPercentage;
   };
 
-
-
   return (
     <>
       <Box className="topContainer">
-        {
-          (props?.showProgressBar ) ? 
-              <Box className="leftPanel">
-                <LinearProgressBar />
-              </Box> : null
-        }
-        
+        {props?.showProgressBar ? (
+          <Box className="leftPanel">
+            <LinearProgressBar />
+          </Box>
+        ) : null}
+
         <Box className="rightPanel">
           <div className="button-container">
             <div>
