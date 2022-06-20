@@ -1,6 +1,8 @@
 .impact-calc-container {
   &__inr {
     padding: 25px;
+    height: calc(100vh - 210px);
+    overflow-y: scroll;
 
     &--question{
       .single-dropdown-section {
