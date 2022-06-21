@@ -14,10 +14,14 @@ import HsddInput from './HsddInput';
 import { OptionUnstyled } from '@mui/base';
 import ProgressBar from '../ProgressBar';
 import { hideShowSections } from '../../services/impactCaluculator';
+import LinearProgressbar2 from '../LinearProgressbar2';
 const PanelPage = (props: any) => {
   const [jsonData, setJSONData] = useState<any>('');
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
+
+  const [progpercentage, setProgpercentage] = useState<any>(0);
+
 
   // useEffect(() => {
   //   setJSONData(
@@ -27,6 +31,7 @@ const PanelPage = (props: any) => {
   //     ),
   //   );
   // }, []);
+
   useEffect(() => {
     setJSONData(
       // @ts-ignore
@@ -75,6 +80,7 @@ const PanelPage = (props: any) => {
       tempNum = minRange;
       res = tempNum.toString();
     }
+    progressUpdate();
 
     return res;
   };
@@ -137,7 +143,8 @@ const PanelPage = (props: any) => {
     //@ts-ignore
 
     setJSONData(updatedJson);
-    console.log("Json Updated", updatedJson)
+    // console.log("Json Updated", updatedJson);
+    progressUpdate();
   };
 
   const handleNumChange = (
@@ -162,6 +169,42 @@ const PanelPage = (props: any) => {
 
     setJSONData(updatedJsonData);
   };
+
+  const progressUpdate = () => {
+
+    var obj:any = {};
+    // var incCount = jsonData.data.inputData.length
+
+    jsonData.data.inputData.map((block:any) => {
+      obj[block.headingText] = 0;
+      block.subHeadingDetails.map((seg:any) => {
+        seg.segmentDetails.map((ques:any) => {
+          let quesCount = ques.questions.length;
+          let len;
+          if(ques.options){
+            len = ques.questions.filter((select:any) => select.selectedId != "").length;
+            if(len == quesCount){
+              obj[block.headingText] = 20;
+            }
+            else{
+              obj[block.headingText] = 0;
+            }
+          }
+          else{
+            len = ques.questions.filter((select:any) => select.selectedText != "").length;
+            if(len == quesCount){
+              obj[block.headingText] = 20;
+            }
+            else{
+              obj[block.headingText] = 0;
+            }
+          }
+      })
+    })})
+    console.log(obj);
+    // console.log(jsonData)
+    setProgpercentage(Object.values(obj).reduce((a:any,b:any) => a+b));
+  }
 
   return (
     <div className="impact-calc-container">
@@ -332,7 +375,8 @@ const PanelPage = (props: any) => {
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
-            <ProgressBar showProgressBar={true} />
+            {/* <ProgressBar showProgressBar={true} /> */}
+            <LinearProgressbar2 percentage={progpercentage}/>
           </div>
         </div>
       </Footer>

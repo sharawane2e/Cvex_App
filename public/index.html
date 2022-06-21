@@ -205,161 +205,210 @@
 	<span id="jsonData" style="display: none;">
 			{
 			"pageCode": {
-				"page": 11
+				"page": 9
 			},
 			"data": {
 				"headerData": {
-					"title": "Customer Value Execution (CVEx) diagnostic",
+					"title": "Customer Value Execution",
 					"logo": "src",
 					"banner": "src"
 				},
-				"inputData": {
-					"title": "1. Output template Capability Heatmap",
-					"markers": ["Right set up to...", "...target customers...", "...and convert the lead!"],
-					"legends": [{
-							"legendText": "With improvement potential",
-							"colorCode": "#ddd",
-							"colorLabel": "1"
-						},
-						{
-							"legendText": "Improvement for further growth",
-							"colorCode": "#eee",
-							"colorLabel": "2"
-						},
-						{
-							"legendText": "Market leading",
-							"colorCode": "#fff",
-							"colorLabel": "3"
-						}
-					],
-					"capabilities": [{
-						"capability": "1. Value strategy",
-						"skills": [{
-									"skillName": "1.1 Sales and service strategy",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								},
-								{
-									"skillName": "1.2 Customer segment and channel strategy",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								}
-							]
-						},
-						{
-							"capability": "2. Customer touchpoint design",
-							"skills": [{
-									"skillName": "2.1 Sales and Service journey design",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "1"
-								},
-								{
-									"skillName": "2.2 Omnichannel integration",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								}
-							]
-						},
-						{
-							"capability": "3. Governance & Steering",
-							"skills": [{
-									"skillName": "3.1 Cross-functional collaboration",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								},
-								{
-									"skillName": "3.2 KPIs and reporting",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								},
-								{
-									"skillName": "3.3 Win-Room",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								}
-							]
-						},
-						{
-							"capability": "4. Proposition and campaiging1",
-							"skills": [{
-									"skillName": "4.1 Proposition design",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								},
-								{
-									"skillName": "4.2 Prescriptive NBA modelling",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								},
-								{
-									"skillName": "4.3 Agile campaiging",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								}
-							]
-						},
-						{
-							"capability": "5. Contact management",
-							"skills": [{
-									"skillName": "5.1 Routing",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								},
-								{
-									"skillName": "5.2 Workforce Management and Multitasking",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								}
-							]
-						},
-						{
-							"capability": "6. Frontline management",
-							"skills": [{
-									"skillName": "6.1 Performance Management",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								},
-								{
-									"skillName": "6.2 Role of team leader and routines",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "1"
-								}
-							]
-						},
-						{
-							"capability": "7. Sales capabilities",
-							"skills": [{
-									"skillName": "7.1 Talent management",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "1"
-								},
-								{
-									"skillName": "7.2 Capability building",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "3"
-								}
-							]
-						},
-						{
-							"capability": "8. Sales enablement",
-							"skills": [{
-									"skillName": "8.1 Scripts and sales applications",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "2"
-								},
-								{
-									"skillName": "8.2 Compensation and incentives",
-									"skillImageUrl": "abc.svg",
-									"colorLabel": "1"
-								}
-							]
-						}
-					]
+				
+				"inputData": [{
+						"headingText": "Select industry and customer type:",
+						"isShow": true,
+						"subHeadingDetails": [{
+							"subHeadingText": "",
+							"isShow": true,
+							"segmentDetails": [{
+								"segmentText": "",
+								"isShow": true,
+								"questions": [{
+										"optionName": "Industry:",
+										"type": "hsdd",
+										"error_id": "A1",
+										"placeholder": "Please select",
+										"description": "",
+										"questionId": "A1",
+										"selectedId": "A1_2_label",
+										"enableQuestionIds": ["A12", "A13"],
+										"options": [{
+												"ddName": "TMT",
+												"ddId": "A1_1_label",
+												"enableIds": false
+											},
+											{
+												"ddName": "Tech",
+												"ddId": "A1_2_label",
+												"enableIds": true
+											},
+											{
+												"ddName": "Banking",
+												"ddId": "A1_3_label",
+												"enableIds": true
+											},
+											{
+												"ddName": "Placeholder",
+												"ddId": "A1_4_label",
+												"enableIds": true
+											}
+										]
+									},
+									{
+										"optionName": "Customer type:",
+										"type": "hsdd",
+										"error_id": "A2",
+										"placeholder": "Please select",
+										"description": "",
+										"questionId": "A2",
+										"selectedId": "",
+										"enableQuestionIds": ["A14", "A15"],
+										"options": [{
+												"ddName": "B2B",
+												"ddId": "A2_1_label",
+												"enableIds": false
+											},
+											{
+												"ddName": "B2C",
+												"ddId": "A2_2_label",
+												"enableIds": true
+											},
+											{
+												"ddName": "B2C",
+												"ddId": "A2_3_label",
+												"enableIds": true
+											},
+											{
+												"ddName": "B2C",
+												"ddId": "A2_4_label",
+												"enableIds": true
+											}
+										]
+									}
+								]
+							}]
+						}]
+					},
+					{
+						"headingText": "Essential input (mandatory):",
+						"isShow": true,
+						"subHeadingDetails": [{
+								"subHeadingText": "Company specific data",
+								"isShow": true,
+								"segmentDetails": [{
+									"segmentText": "Hello",
+									"isShow": true,
+									"questions": [{
+											"optionName": "Customers in the market",
+											"type": "num",
+											"isShow": true,
+											"placeholder": "#",
+											"description": "",
+											"questionId": "A12",
+											"mappedBox": "",
+											"selectedText": "",
+											"selectedId": "A12",
+											"afterText": "",
+											"maxLength": 28,
+											"maxRange": 9999999999999999,
+											"minRange": 0,
+											"decimalPlaces": 0
+										},
+										{
+											"optionName": "Customer base",
+											"type": "num",
+											"isShow": true,
+											"placeholder": "#",
+											"description": "",
+											"questionId": "A13",
+											"mappedBox": "",
+											"selectedText": "",
+											"selectedId": "A13",
+											"afterText": "",
+											"maxLength": 28,
+											"maxRange": 9999999999999999,
+											"minRange": 0,
+											"decimalPlaces": 0
+										},
+										{
+											"optionName": "ARPU",
+											"type": "num",
+											"isShow": true,
+											"placeholder": "#",
+											"description": "",
+											"questionId": "A14",
+											"mappedBox": "",
+											"selectedText": "",
+											"selectedId": "A14",
+											"afterText": "",
+											"maxLength": 28,
+											"maxRange": 9999999999999999,
+											"minRange": 0,
+											"decimalPlaces": 0
+										},
 		
+										{
+											"optionName": "Yearly market growth",
+											"type": "num",
+											"isShow": true,
+											"placeholder": "%",
+											"description": "",
+											"questionId": "A15",
+											"mappedBox": "",
+											"selectedText": "",
+											"selectedId": "A15",
+											"afterText": "",
+											"maxLength": 28,
+											"maxRange": 9999999999999999,
+											"minRange": 0,
+											"decimalPlaces": 0
+										}
+									]
+								}]
+							}
+		
+						]
+					}
+					
+				],
+				"footerData": {
+					"previousBtn": {
+						"previousInputId": "A1",
+						"previousDisabled": "false",
+						"previousBtnTxt": "Previous"
+					},
+					"forwardBtn": {
+						"forwardInputId": "CTD1_1",
+						"forwardDisabled": "false",
+						"forwardBtntxt": "Forward"
+					}
+				},
+				"progressBarData": {
+					"progressBarDetails": {
+						"indicators": {
+							"1": "Not Started",
+							"2": "In progress",
+							"3": "Completed"
+						},
+						"answeredTxt": "Answered",
+						"totalAnswered": "1",
+						"ofTxt": "of",
+						"totalQues": "6",
+						"bracketOne": "(",
+						"percentage": "%",
+						"bracketTwo": ")"
+					},
+					"saveBtn": {
+						"saveBtnTxt": "Save",
+						"saveId": "VS1_1"
+					},
+					"submitBtn": {
+						"inputId": "",
+						"submitDisabled": "true",
+						"submitBtntxt": "Submit"
+					}
 				}
-		
 			}
-		
 		}
 	</span>
 
