@@ -9,6 +9,7 @@ import PanelPage from '../components/PanelPage';
 import SkillPage from '../components/SkillPage';
 import ImpactCalculatorPage from '../components/ImpactCalculator';
 import pageCode from '../enums/pageCode';
+import SubskillPage from "../components/SubskillPage";
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -49,5 +50,7 @@ const Pages = () => {
       return <ImpactCalculatorPage />;
     }
   }
+
+  // return <SubskillPage />
 };
 export default Pages;

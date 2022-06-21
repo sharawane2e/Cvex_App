@@ -72,6 +72,16 @@
                                 "subSkillText": "Channel value strategy",
                                 "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
                                 "sliderValue":10
+                            },
+                            {
+                                "subSkillText": "Channel value strategy",
+                                "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+                                "sliderValue":10
+                            },
+                            {
+                                "subSkillText": "Channel value strategy",
+                                "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+                                "sliderValue":10
                             }
                         ]
                     },
@@ -79,6 +89,16 @@
                         "skillText": "Omnichannel integration​",
                         "skillIcon": "URL",
                         "subSkillDetails": [
+                            {
+                                "subSkillText": "Channel value strategy",
+                                "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+                                "sliderValue":10
+                            },
+                            {
+                                "subSkillText": "Channel value strategy",
+                                "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
+                                "sliderValue":10
+                            },
                             {
                                 "subSkillText": "Channel value strategy",
                                 "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
