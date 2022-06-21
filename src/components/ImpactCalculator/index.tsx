@@ -34,6 +34,7 @@ const PanelPage = (props: any) => {
     );
   }, []);
 
+
   // useEffect(() => {
 
   //   hideShow();
@@ -136,6 +137,7 @@ const PanelPage = (props: any) => {
     //@ts-ignore
 
     setJSONData(updatedJson);
+    console.log("Json Updated", updatedJson)
   };
 
   const handleNumChange = (
@@ -330,7 +332,7 @@ const PanelPage = (props: any) => {
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
-            <ProgressBar showProgressBar={false} />
+            <ProgressBar showProgressBar={true} />
           </div>
         </div>
       </Footer>

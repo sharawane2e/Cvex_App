@@ -9,6 +9,8 @@ import PanelPage from '../components/PanelPage';
 import SkillPage from '../components/SkillPage';
 import ImpactCalculatorPage from '../components/ImpactCalculator';
 import pageCode from '../enums/pageCode';
+import HeatmapPage from '../components/HeatmapPage/Index';
+import SubskillPage from "../components/SubskillPage";
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -48,6 +50,11 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
       return <ImpactCalculatorPage />;
     }
+    if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
+      return <HeatmapPage />;
+    }
   }
+
+  // return <SubskillPage />
 };
 export default Pages;

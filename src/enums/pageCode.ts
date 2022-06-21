@@ -6,6 +6,7 @@ enum pageCode {
   'ThankYou' = '5',
   'SkillPage' = '6',
   'PanelPage' = '7',
-  'ImpactCalculatorPage' = '9'
+  'ImpactCalculatorPage' = '9',
+  'HeatmapPage' = '11'
 }
 export default pageCode;

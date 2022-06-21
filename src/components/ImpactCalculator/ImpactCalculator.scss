@@ -7,8 +7,9 @@
     &--question{
       .single-dropdown-section {
         &__header {
-          background-color: $dark-white;
+          background-color: $gray-color;
           padding: 10px 10px;
+          
           .header-text {
             font-size: 14px;
             font-weight: $font-bold;
@@ -16,12 +17,16 @@
           }
         }
         &__body {
+          box-shadow: 0px 5px 11px 1px #ccc;
+          padding: 5px 15px;
+          margin-bottom: 30px;
           .title-container {
-            border-bottom: 1px solid $gray-color;
             font-size: 14px;
-            font-weight: $font-bold;
-            color: $dark-light-black;
-            padding: 15px 0 8px 0px;
+            font-weight: bold;
+            color: #051c2c;
+            padding: 15px 10px 8px 10px;
+            background-color: $dark-white;
+            margin-top: 10px;
           }
           .single-dropdown-title {
             padding: 10px 0;
