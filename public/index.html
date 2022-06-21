@@ -203,7 +203,7 @@
 	</span> -->
 
 	<span id="jsonData" style="display: none;">
-			{
+{
 	"pageCode": {
 		"page": 9
 	},
@@ -213,10 +213,12 @@
 			"logo": "src",
 			"banner": "src"
 		},
+
 		"errorData": {
 			"bodyText": "Please fill mandatory fields",
 			"btnText": "OK"
 		},
+
 		"inputData": [{
 				"headingText": "Select industry and customer type:",
 				"isShow": true,
@@ -234,6 +236,7 @@
 								"description": "",
 								"questionId": "A1",
 								"selectedId": "A1_2_label",
+								"isRequired": false,
 								"enableQuestionIds": ["A12", "A13"],
 								"options": [{
 										"ddName": "TMT",
@@ -265,6 +268,7 @@
 								"description": "",
 								"questionId": "A2",
 								"selectedId": "",
+								"isRequired": true,
 								"enableQuestionIds": ["A14", "A15"],
 								"options": [{
 										"ddName": "B2B",
@@ -296,96 +300,85 @@
 				"headingText": "Essential input (mandatory):",
 				"isShow": true,
 				"subHeadingDetails": [{
-						"subHeadingText": "Company specific data",
+					"subHeadingText": "Company specific data",
+					"isShow": true,
+					"segmentDetails": [{
+						"segmentText": "Hello",
 						"isShow": true,
-						"segmentDetails": [{
-							"segmentText": "Hello",
-							"isShow": true,
-							"questions": [{
-									"optionName": "Customers in the market",
-									"type": "num",
-									"isShow": true,
-									"placeholder": "#",
-									"description": "",
-									"questionId": "A12",
-									"mappedBox": "",
-									"selectedText": "",
-									"selectedId": "A12",
-									"afterText": "",
-									"maxLength": 28,
-									"maxRange": 9999999999999999,
-									"minRange": 0,
-									"decimalPlaces": 0
-								},
-								{
-									"optionName": "Customer base",
-									"type": "num",
-									"isShow": true,
-									"placeholder": "#",
-									"description": "",
-									"questionId": "A13",
-									"mappedBox": "",
-									"selectedText": "",
-									"selectedId": "A13",
-									"afterText": "",
-									"maxLength": 28,
-									"maxRange": 9999999999999999,
-									"minRange": 0,
-									"decimalPlaces": 0
-								},
-								{
-									"optionName": "ARPU",
-									"type": "num",
-									"isShow": true,
-									"placeholder": "#",
-									"description": "",
-									"questionId": "A14",
-									"mappedBox": "",
-									"selectedText": "",
-									"selectedId": "A14",
-									"afterText": "",
-									"maxLength": 28,
-									"maxRange": 9999999999999999,
-									"minRange": 0,
-									"decimalPlaces": 0
-								},
+						"questions": [{
+								"optionName": "Customers in the market",
+								"type": "num",
+								"isShow": true,
+								"placeholder": "#",
+								"description": "",
+								"questionId": "A12",
+								"mappedBox": "",
+								"selectedText": "",
+								"selectedId": "A12",
+								"isRequired": true,
+								"afterText": "",
+								"maxLength": 28,
+								"maxRange": 9999999999999999,
+								"minRange": 0,
+								"decimalPlaces": 0
+							},
+							{
+								"optionName": "Customer base",
+								"type": "num",
+								"isShow": true,
+								"placeholder": "#",
+								"description": "",
+								"questionId": "A13",
+								"mappedBox": "",
+								"selectedText": "",
+								"selectedId": "A13",
+								"isRequired": true,
+								"afterText": "",
+								"maxLength": 28,
+								"maxRange": 9999999999999999,
+								"minRange": 0,
+								"decimalPlaces": 0
+							},
+							{
+								"optionName": "ARPU",
+								"type": "num",
+								"isShow": true,
+								"placeholder": "#",
+								"description": "",
+								"questionId": "A14",
+								"mappedBox": "",
+								"selectedText": "",
+								"selectedId": "A14",
+								"isRequired": true,
+								"afterText": "",
+								"maxLength": 28,
+								"maxRange": 9999999999999999,
+								"minRange": 0,
+								"decimalPlaces": 0
+							},
 
-								{
-									"optionName": "Yearly market growth",
-									"type": "num",
-									"isShow": true,
-									"placeholder": "%",
-									"description": "",
-									"questionId": "A15",
-									"mappedBox": "",
-									"selectedText": "",
-									"selectedId": "A15",
-									"afterText": "",
-									"maxLength": 28,
-									"maxRange": 9999999999999999,
-									"minRange": 0,
-									"decimalPlaces": 0
-								}
-							]
-						}]
-					}
-
-				]
+							{
+								"optionName": "Yearly market growth",
+								"type": "num",
+								"isShow": true,
+								"placeholder": "%",
+								"description": "",
+								"questionId": "A15",
+								"mappedBox": "",
+								"selectedText": "",
+								"selectedId": "A15",
+								"isRequired": true,
+								"afterText": "",
+								"maxLength": 28,
+								"maxRange": 9999999999999999,
+								"minRange": 0,
+								"decimalPlaces": 0
+							}
+						]
+					}]
+				}]
 			}
-
 		],
-		"footerData": {
-			"previousBtn": {
-				"previousInputId": "A1",
-				"previousDisabled": "false",
-				"previousBtnTxt": "Previous"
-			},
-			"forwardBtn": {
-				"forwardInputId": "CTD1_1",
-				"forwardDisabled": "false",
-				"forwardBtntxt": "Forward"
-			}
-		},
 		"progressBarData": {
 			"progressBarDetails": {
 				"indicators": {

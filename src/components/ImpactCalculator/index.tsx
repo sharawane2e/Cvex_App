@@ -15,7 +15,7 @@ import { OptionUnstyled } from '@mui/base';
 import ProgressBar from '../ProgressBar';
 import { hideShowSections } from '../../services/impactCaluculator';
 import LinearProgressbar2 from '../LinearProgressbar2';
-const PanelPage = (props: any) => {
+const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>('');
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
@@ -172,38 +172,39 @@ const PanelPage = (props: any) => {
 
   const progressUpdate = () => {
 
-    var obj:any = {};
+    var obj: any = {};
     // var incCount = jsonData.data.inputData.length
 
-    jsonData.data.inputData.map((block:any) => {
+    jsonData.data.inputData.map((block: any) => {
       obj[block.headingText] = 0;
-      block.subHeadingDetails.map((seg:any) => {
-        seg.segmentDetails.map((ques:any) => {
+      block.subHeadingDetails.map((seg: any) => {
+        seg.segmentDetails.map((ques: any) => {
           let quesCount = ques.questions.length;
           let len;
-          if(ques.options){
-            len = ques.questions.filter((select:any) => select.selectedId != "").length;
-            if(len == quesCount){
+          if (ques.options) {
+            len = ques.questions.filter((select: any) => select.selectedId != "").length;
+            if (len == quesCount) {
               obj[block.headingText] = 20;
             }
-            else{
+            else {
               obj[block.headingText] = 0;
             }
           }
-          else{
-            len = ques.questions.filter((select:any) => select.selectedText != "").length;
-            if(len == quesCount){
+          else {
+            len = ques.questions.filter((select: any) => select.selectedText != "").length;
+            if (len == quesCount) {
               obj[block.headingText] = 20;
             }
-            else{
+            else {
               obj[block.headingText] = 0;
             }
           }
+        })
       })
-    })})
+    })
     console.log(obj);
     // console.log(jsonData)
-    setProgpercentage(Object.values(obj).reduce((a:any,b:any) => a+b));
+    setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
   }
 
   return (
@@ -219,13 +220,13 @@ const PanelPage = (props: any) => {
                 <>
                   <div className="single-dropdown-section">
                     {inputDetails?.isShow == true &&
-                    inputDetails?.headingText != '' ? (
-                      <div className="single-dropdown-section__header">
-                        <p className="header-text">
-                          {inputDetails?.headingText}
-                        </p>
-                      </div>
-                    ) : null}
+                      inputDetails?.headingText != '' ? (
+                        <div className="single-dropdown-section__header">
+                          <p className="header-text">
+                            {inputDetails?.headingText}
+                          </p>
+                        </div>
+                      ) : null}
 
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
@@ -376,7 +377,7 @@ const PanelPage = (props: any) => {
         <div className="footer-impact-calc">
           <div className="left-sec">
             {/* <ProgressBar showProgressBar={true} /> */}
-            <LinearProgressbar2 percentage={progpercentage}/>
+            <LinearProgressbar2 percentage={progpercentage} />
           </div>
         </div>
       </Footer>
@@ -384,4 +385,4 @@ const PanelPage = (props: any) => {
   );
 };
 
-export default PanelPage;
+export default ImpactCalculator;
