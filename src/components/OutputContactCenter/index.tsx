@@ -194,40 +194,6 @@ const OutputContactCenter = () => {
                             </Grid>
                         </Grid>
                     </div>
-                    {/* <Box className="outputTable-container" sx={{ mb: 5, }}>
-                        <div className="outputTable-container__inr">
-                            <div className="outputTable-container__inr__header">
-                                <div className="table-col"><span>Inbound Sales</span></div>
-                                <div className="table-col"><span>Outbound Sales</span></div>
-                                <div className="table-col"><span>Service to Sales</span></div>
-                                <div className="table-col"><span>Retention</span></div>
-                                <div className="table-col"><span>Winback</span></div>
-                                <div className="table-col"><span>Total</span></div>
-                            </div>
-                            <div className="outputTable-container__inr__body">
-                                <div className="table-col">
-                                    <div className="table-row">
-                                        <span>Not Selected</span>
-                                    </div>
-                                    <div className="table-row">
-                                        <span>9,523 €</span>
-                                    </div>
-                                    <div className="table-row">
-                                        <span>Not Selected</span>
-                                    </div>
-                                    <div className="table-row">
-                                        <span>19,010 €</span>
-                                    </div>
-                                    <div className="table-row">
-                                        <span>Not Selected</span>
-                                    </div>
-                                    <div className="table-row">
-                                        <span>28,535 €</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Box> */}
                     <div className="chart-container">
                         <div className="chart-container__waterfall">
                             <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
