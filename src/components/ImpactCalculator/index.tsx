@@ -33,9 +33,11 @@ const PanelPage = (props: any) => {
   // }, []);
 
   useEffect(() => {
+    // @ts-ignore
+    const updatedJson = hideShowSections(document.getElementById('jsonData')?.innerText)
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(updatedJson),
     );
   }, []);
 
@@ -205,7 +207,7 @@ const PanelPage = (props: any) => {
             ques.questions.map((x: any) => {
               if (x.options) {
                 len = ques.questions.filter((select: any) => select.selectedId != "").length;
-                console.log(len)
+                //console.log(len)
                 if (len == quesCount) {
                   obj[block.headingText] = incCount;
                 }

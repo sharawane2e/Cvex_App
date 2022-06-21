@@ -74,6 +74,7 @@ export const hideShowSections = (impactJson: any) => {
 
               //   console.log("questions",questionsBooleanCnd)
 
+              console.log(questionsBooleanCnd)
               if (
                 questionsBooleanCnd.indexOf(true) != -1 ||
                 questionsBooleanCnd.length == 0

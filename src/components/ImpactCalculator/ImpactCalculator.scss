@@ -6,9 +6,11 @@
 
     &--question{
       .single-dropdown-section {
+        box-shadow: 0px 0px 5px 1px #ccc;
         &__header {
           background-color: $gray-color;
           padding: 10px 10px;
+         
           
           .header-text {
             font-size: 14px;
@@ -17,7 +19,7 @@
           }
         }
         &__body {
-          box-shadow: 0px 5px 11px 1px #ccc;
+          // box-shadow: 0px 5px 11px 1px #ccc;
           padding: 5px 15px;
           margin-bottom: 30px;
           .title-container {
