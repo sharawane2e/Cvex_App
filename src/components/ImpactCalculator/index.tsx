@@ -40,10 +40,10 @@ const PanelPage = (props: any) => {
   }, []);
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   hideShow();
-  // }, [jsonData]);
+    progressUpdate();
+  }, [jsonData]);
 
   // const txtInputValidate = (value: any, pattern: any) => {
   //   const reg = pattern;
@@ -172,38 +172,42 @@ const PanelPage = (props: any) => {
 
   const progressUpdate = () => {
 
-    var obj:any = {};
-    // var incCount = jsonData.data.inputData.length
+    var obj: any = {};
 
-    jsonData.data.inputData.map((block:any) => {
-      obj[block.headingText] = 0;
-      block.subHeadingDetails.map((seg:any) => {
-        seg.segmentDetails.map((ques:any) => {
-          let quesCount = ques.questions.length;
-          let len;
-          if(ques.options){
-            len = ques.questions.filter((select:any) => select.selectedId != "").length;
-            if(len == quesCount){
-              obj[block.headingText] = 20;
+    if (
+      jsonData?.data?.inputData
+    ) {
+      jsonData?.data?.inputData?.map((block: any) => {
+        obj[block.headingText] = 0;
+        block.subHeadingDetails?.map((seg: any) => {
+          seg.segmentDetails?.map((ques: any) => {
+            let quesCount = ques.questions.length;
+            let len;
+            if (ques.options) {
+              len = ques.questions.filter((select: any) => select.selectedId != "").length;
+              if (len == quesCount) {
+                obj[block.headingText] = 20;
+              }
+              else {
+                obj[block.headingText] = 0;
+              }
             }
-            else{
-              obj[block.headingText] = 0;
+            else {
+              len = ques.questions.filter((select: any) => select.selectedText != "").length;
+              if (len == quesCount) {
+                obj[block.headingText] = 20;
+              }
+              else {
+                obj[block.headingText] = 0;
+              }
             }
-          }
-          else{
-            len = ques.questions.filter((select:any) => select.selectedText != "").length;
-            if(len == quesCount){
-              obj[block.headingText] = 20;
-            }
-            else{
-              obj[block.headingText] = 0;
-            }
-          }
+          })
+        })
       })
-    })})
-    console.log(obj);
-    // console.log(jsonData)
-    setProgpercentage(Object.values(obj).reduce((a:any,b:any) => a+b));
+      setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
+    }
+
+
   }
 
   return (
@@ -219,7 +223,7 @@ const PanelPage = (props: any) => {
                 <>
                   <div className="single-dropdown-section">
                     {inputDetails?.isShow == true &&
-                    inputDetails?.headingText != '' ? (
+                      inputDetails?.headingText != '' ? (
                       <div className="single-dropdown-section__header">
                         <p className="header-text">
                           {inputDetails?.headingText}
@@ -376,7 +380,7 @@ const PanelPage = (props: any) => {
         <div className="footer-impact-calc">
           <div className="left-sec">
             {/* <ProgressBar showProgressBar={true} /> */}
-            <LinearProgressbar2 percentage={progpercentage}/>
+            <LinearProgressbar2 percentage={progpercentage} />
           </div>
         </div>
       </Footer>
