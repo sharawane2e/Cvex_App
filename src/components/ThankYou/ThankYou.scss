@@ -19,13 +19,13 @@
 
 .helpdesk {
     width: 100%;
-    background-color: #F1F1F1;
+    background-color: $dark-white;
     text-align: center;
     padding: 15px;
 
     p {
         &:first-child {
-            font-weight: normal;
+            font-weight: $font-normal;
             margin-bottom: 8px;
             font-size: 16px;
         }

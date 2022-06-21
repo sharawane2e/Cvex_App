@@ -1,14 +1,9 @@
-import CustomButton from "../UI/CustomButton"
-import "./footer.scss";
+import CustomButton from '../UI/CustomButton';
+// import "./footer.scss";
 
 type props = {
-    children: any;
+  children: any;
 };
 export const Footer = (props: any) => {
-    return (
-        <div className="footer">
-            {props.children}
-        </div>
-    )
-
-}
+  return <div className="footer">{props.children}</div>;
+};

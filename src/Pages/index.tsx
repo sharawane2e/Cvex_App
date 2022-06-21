@@ -9,6 +9,7 @@ import PanelPage from '../components/PanelPage';
 import SkillPage from '../components/SkillPage';
 import ImpactCalculatorPage from '../components/ImpactCalculator';
 import OutputContactCenter from '../components/OutputContactCenter';
+import pageCode from '../enums/pageCode';
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -21,31 +22,31 @@ const Pages = () => {
   }, []);
 
   if (jsonData != '' || jsonData != undefined) {
-    if (jsonData?.pageCode?.page == 1) {
+    if (jsonData?.pageCode?.page === pageCode.Login) {
       return <Login />;
     }
-    if (jsonData?.pageCode?.page == 2) {
+    if (jsonData?.pageCode?.page === pageCode.Introduction) {
       return <Introduction />;
     }
-    if (jsonData?.pageCode?.page == 3) {
+    if (jsonData?.pageCode?.page === pageCode.GI) {
       return <GI />;
     }
-    if (jsonData?.pageCode?.page == 4) {
+    if (jsonData?.pageCode?.page == pageCode.QuestionPage) {
       return <QuestionPage />;
     }
-    if (jsonData?.pageCode?.page == 5) {
+    if (jsonData?.pageCode?.page == pageCode.ThankYou) {
       return <ThankYou />;
     }
-    if (jsonData?.pageCode?.page == 6) {
+    if (jsonData?.pageCode?.page == pageCode.SkillPage) {
       return <SkillPage />;
     }
-    if (jsonData?.pageCode?.page == 7) {
+    if (jsonData?.pageCode?.page == pageCode.PanelPage) {
       return <PanelPage />;
     }
     // if (jsonData?.pageCode?.page == 8) {
     //   return <PanelPage />;
     // }
-    if (jsonData?.pageCode?.page == 9) {
+    if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
       return <ImpactCalculatorPage />;
     }
     if (jsonData?.pageCode?.page == 10) {

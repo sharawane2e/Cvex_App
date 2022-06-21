@@ -9,7 +9,7 @@
       text-align: left;
       font-size: 16px;
       letter-spacing: 0px;
-      color: #000000;
+      color: $dark-black;
       margin-bottom: 15px;
     }
   
@@ -17,18 +17,18 @@
       p {
         text-align: left;
         font-size: 14px;
-        color: #000000;
+        color: $dark-black;
         margin-bottom: 30px;
       }
   
       .MuiFormControl-root {
         input {
-          border: 1px solid #B3B3B3;
+          border: 1px solid $gray-light;
           width: 100%;
           padding: 5px 15px;
   
           &::placeholder {
-            color: #8a8a8a;
+            color: $dark-gray;
           }
         }
       }
@@ -38,7 +38,7 @@
 
 .input-error {
   display: inline-block;
-  color: #ff0000;
+  color: $red-color;
   font-size: 14px;
   padding-top: 4px;
 }
@@ -53,7 +53,7 @@
     display: block;
     padding-top: 4px;
     font-size: 12px;
-    color: #2251ff;
+    color: $blue-color;
   }
 }
 

@@ -1,60 +1,48 @@
 .sidebar{
-    
-    // .MuiListItem-button {
-    //     color: #FFFFFF !important;
-    // }
     .listitem-container{
         position: relative;
         padding: 20px;
         &.Mui-selected{
 
             .listItem{
-                color: #2251FF;
+                color: $blue-color;
             }
             .listItem-option{
-                color: #2251FF;
+                color: $blue-color;
             }
         &::after{
             content: "";
             height: 100%;
             width: 5px;
             position: absolute;
-            background-color: #2251FF;
+            background-color: $blue-color;
             left: 0;
         }
         
     }
         .listItem{
-            color: #FFF;
+            color: $white-color;
           
         }
         .listItem-option{
             width: 90%;
-            color: #FFF;
+            color: $white-color;
         }
 
     }
     .MuiListItem-button.active {
-        background-color: #082336 !important;
-        color: #2251FF !important;
-        border-left: 4px solid #2251FF !important;
+        background-color: $dark-light-black !important;
+        color: $blue-color !important;
+        border-left: 4px solid $blue-color !important;
     }
     
     .MuiListItemIcon-root {
-        color: white !important;
+        color: $white-color !important;
     }
     span{
         font-size: 13px !important;
     }
     
-    // .sidebar-menu{
-    //     display: inline-block;
-    //     width: 100%;
-    //     height: calc(100vh - 100px);
-        
-    // }
-    // .css-10hburv-MuiTypography-root {
-    //     font-size:14px!important;
-    // }
+ 
 }
 

@@ -11,7 +11,7 @@ const InputPage = () => {
             <div className="input-container">
                 <SecondaryHeader />
                 <div>
-                    <ProgressBar />
+                    <ProgressBar showProgressBar={true} />
                 </div>
             </div>
         </>

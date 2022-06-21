@@ -1,9 +1,7 @@
 import PrimaryHeader from '../Headers/PrimaryHeader/index';
-import './Introduction.scss';
 import CustomButton from '../UI/CustomButton';
 import { Footer } from '../Footer';
 import React, { useEffect, useState } from 'react';
-import '../Login/Login.scss';
 import { getParsedData } from '../../utils/parserUtil';
 
 type Props = {};
@@ -33,6 +31,7 @@ export function Introduction(props: Props) {
   console.log(jsonData?.data?.contentDetails);
   return (
     <>
+      <div className="introduction-container">
       <PrimaryHeader />
       <div className="introduction-main">
         <h3 className="introduction-heading">
@@ -54,6 +53,7 @@ export function Introduction(props: Props) {
           </CustomButton>
         </div>
       </Footer>
+      </div>
     </>
   );
 }

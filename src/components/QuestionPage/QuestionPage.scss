@@ -6,18 +6,15 @@
 
     .left-panel {
       width: 280px;
-      background-color: #051c2c;
+      background-color: $dark-light-black;
       transition: 0.3s ease-out;
     }
 
     .right-panel {
       width: calc(100% - 280px);
-      // overflow-y: scroll;
       position: relative;
       padding: 20px;
       transition: 0.3s ease-out;
-      // height: calc(100vh - 220px);
-
       .title {
         padding: 20px;
         margin-bottom: 0;
@@ -27,7 +24,7 @@
         }
       }
       &__inr {
-        overflow-y: scroll;
+        overflow-y: auto;
         height: calc(100vh - 280px);
       }
 
@@ -37,9 +34,9 @@
           padding: 0px 20px;
 
           .previous-button {
-            border: 1px solid #2251ff;
-            background-color: #fff !important;
-            color: #2251ff !important;
+            border: 1px solid $blue-color;
+            background-color: $white-color !important;
+            color: $blue-color !important;
           }
         }
       }

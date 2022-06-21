@@ -5,15 +5,23 @@ import LinearProgress, {
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CustomButton from '../UI/CustomButton';
-import './progressBar.scss';
+// import './progressBar.scss';
 import { getParsedData } from '../../utils/parserUtil';
 import { LinearProgressBar } from '../LinearProgressBar';
+import { useSelector } from 'react-redux';
+
 // import { useSelector } from 'react-redux';
 
+type ProgressBarProps = {
+  showProgressBar: boolean;
+};
 
+export default function ProgressBar(props: ProgressBarProps) {
 
-export default function ProgressBar() {
+  const { leftPanel, rightPanel } = useSelector((state: any) => state);
+
   const [jsonData, setJSONData] = useState<any>('');
+  const [sbtDisable, setSbtdisable] = useState(true);
 
   // const { leftPanel } = useSelector((state: any) => state);
 
@@ -41,7 +49,13 @@ export default function ProgressBar() {
     document.getElementById('forwardbutton').click();
   };
 
-  const submitProgress = (event: any) => { };
+  const submitProgress = (event: any) => {
+    var len = leftPanel.categories.filter((x: any) => x.totalAnswered == x.totalQues).length;
+    if(len == 8){
+      // @ts-ignore
+      // document.getElementById('').click();
+    }
+  };
 
   const progressBarUpdateNew = (answered: number, totalQuestions: number) => {
     var progressPercentage = (answered / totalQuestions) * 100;
@@ -49,14 +63,15 @@ export default function ProgressBar() {
     return progressPercentage;
   };
 
-
-
   return (
     <>
       <Box className="topContainer">
-        <Box className="leftPanel">
-          <LinearProgressBar />
-        </Box>
+        {props?.showProgressBar ? (
+          <Box className="leftPanel">
+            <LinearProgressBar />
+          </Box>
+        ) : null}
+
         <Box className="rightPanel">
           <div className="button-container">
             <div>
@@ -73,7 +88,7 @@ export default function ProgressBar() {
             </div>
             <div>
               <CustomButton
-                className={'submitButton next-button'}
+                className={leftPanel.categories.filter((x: any) => x.totalAnswered == x.totalQues).length == leftPanel.categories.length ? 'submitButton submitactive' : 'submitButton next-button'}
                 onClick={(e: any) => submitProgress(e)}
               >
                 {getParsedData(

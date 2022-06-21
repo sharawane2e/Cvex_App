@@ -1,22 +1,42 @@
+@import "../../styles/partials/mixins.scss";
 
 .skill-container {
-  color: #051C2C;
+  color: $dark-light-black;
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: $font-500;
+  min-width: 600px;
   .main-container {
     margin: 0;
     padding: 15px;
     width: 100%;
+    height: calc(100vh - 112px);
+    overflow-y: auto;
+    
+    // @include breakpoint(Ipad-pro)
+    // {
+    //   font-size: 12px;
+    //   padding: 5px;
+    // }
+    // @include breakpoint(mobileonly)
+    // {
+    //   padding: 5px;
+    //   font-size: 10px;
+    // }
+    // @include breakpoint(sm-mobileonly)
+    // {
+    //   padding: 5px;
+    //   font-size: 10px;
+    // }
   }
 
   .single-capability-header {
     display: flex;
     // justify-content: space-between;
     width: 100%;
-    color: #565575;
+    color: $light-voilet;
     padding: 10px;
     border-bottom: 0px;
-    font-weight: 600;
+    font-weight: $font-bold;
 
     &--heading:nth-child(1){
       width: 10%;
@@ -36,7 +56,8 @@
   }
 
   .single-capability {
-    border: 1px solid #BEBEBE;
+    border: 1px solid $gray-lighter;
+    // border-bottom: 0;
     display: flex;
     &__left{
       width: 10%;
@@ -46,8 +67,9 @@
 
         width: 90%;
         &--cap-detail{
-          border: 1px solid #BEBEBE;
+          border: 1px solid $gray-lighter;
           border-bottom: none;
+          border-right: 0;
           display: flex;
           &:first-child{
             border-top: 0;
@@ -58,22 +80,80 @@
             justify-content: space-between;
             width: 10%;
             padding: 10px;
+            word-break: break-all;
+            line-height: 1.2;
           }
           .skill-common{
             display: flex;
             align-items: center;
             padding: 10px;
-            border-left: 1px solid #BEBEBE;
+            border-left: 1px solid $gray-lighter;
             border-collapse: collapse;
           }
           .skill-details-cnrt {
             width: 90%;
             &__skill-details{
               display: flex;
-              border-bottom: 1px solid #BEBEBE;
+              border-bottom: 1px solid $gray-lighter;
               border-left: none;
               &:last-child {
                 border-bottom: none;
+              }
+
+              .skill-slider-cont {
+                width: 100%;
+                height: 1px;
+                background-color: $gray-lighter;
+                position: relative;
+                &:before {
+                  content: "";
+                  height: 15px;
+                  width: 1px;
+                  position: absolute;
+                  left: 0px;
+                  background-color: $gray-lighter;
+                  transform: translateY(-50%);
+                }
+
+                &::after {
+                  content: "";
+                  height: 15px;
+                  width: 1px;
+                  position: absolute;
+                  right: 0px;
+                  background-color: $gray-lighter;
+                  transform: translateY(-50%);
+                }
+
+
+                .knob-container {
+                  position: absolute;
+                  left: 20%;
+                  .knob {
+                    // background-image: url("../../assets/svg/Polygon\ 2.svg");
+                    position: absolute;
+                    top: -5px;
+                    left: 0%;
+                    transform: translateX(-50%);
+                    z-index: 1;
+                    // &::after {
+                    //   content: "20";
+                    //   position: absolute;
+                    //   height: 10px;
+                    //   width: 10px;
+                    //   top: 5px;
+                    // }
+                  }
+                  &::after {
+                    content: "20";
+                        position: absolute;
+                        height: 10px;
+                        width: 10px;
+                        top: 7px;
+                        font-size: 14px;
+                        transform: translateX(-90%);
+                  }
+                }
               }
                       
             }
@@ -90,10 +170,7 @@
 
           }
         }
-  
-     
-      
     }
-   
   }
 }
+

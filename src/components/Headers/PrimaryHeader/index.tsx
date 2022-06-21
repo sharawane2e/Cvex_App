@@ -1,12 +1,12 @@
-import { ReactComponent as Banner } from "../../../assets/svg/header_image.svg";
-import React, { useEffect, useState } from "react";
+import { ReactComponent as Banner } from '../../../assets/svg/header_image.svg';
+import React, { useEffect, useState } from 'react';
 
 const PrimaryHeader = () => {
-  const [jsonData, setJSONData] = useState<any>("");
+  const [jsonData, setJSONData] = useState<any>('');
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
   }, []);
   return (
@@ -15,14 +15,14 @@ const PrimaryHeader = () => {
         className="primary-header"
         style={{
           backgroundImage:
-            "url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)",
+            'url(https://ui.e2eresearch.com/Mckinsey/assets/svg/BG.svg)',
           // `url(${jsonData?.data?.headerData?.banner})`,
-          backgroundRepeat: "no-repeat",
+          backgroundRepeat: 'no-repeat',
         }}
       >
         <div className="logo">
           <img
-            src={"https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg"}
+            src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
             // src={jsonData?.data?.headerData?.logo}
             alt="Mckinsey logo"
           />
