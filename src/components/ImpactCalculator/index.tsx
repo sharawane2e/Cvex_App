@@ -14,7 +14,7 @@ import HsddInput from './HsddInput';
 import { OptionUnstyled } from '@mui/base';
 import ProgressBar from '../ProgressBar';
 import { hideShowSections } from '../../services/impactCaluculator';
-const PanelPage = (props: any) => {
+const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>('');
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
@@ -189,7 +189,7 @@ const PanelPage = (props: any) => {
                         return subHeadingDetail?.isShow == true ? (
                           <>
                             <div className="single-dropdown-section__body">
-                              {subHeadingDetail?.subHeadingText != '' ? (
+                              {(subHeadingDetail?.subHeadingText != "" && subHeadingDetail?.isShow == true) ? (
                                 <div className="title-container">
                                   <p>{subHeadingDetail?.subHeadingText}</p>
                                 </div>
@@ -199,11 +199,16 @@ const PanelPage = (props: any) => {
                                   segmentDetail: any,
                                   segmentDetailIdx: number,
                                 ) => {
-                                  return segmentDetail?.isShow == true ? (
+                                  return (segmentDetail?.isShow == true) ? (
                                     <>
-                                      <div className="title-container">
-                                        <p>{segmentDetail.segmentText}</p>
-                                      </div>
+                                    {
+                                      (segmentDetail?.segmentText != "")? (
+                                        <div className="segment-container">
+                                          <p>{segmentDetail.segmentText}</p>
+                                        </div>
+                                      ) : null
+                                    }
+                                      
 
                                       <Grid
                                         container
@@ -340,4 +345,4 @@ const PanelPage = (props: any) => {
   );
 };
 
-export default PanelPage;
+export default ImpactCalculator;

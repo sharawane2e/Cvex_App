@@ -28,6 +28,14 @@
             background-color: $dark-white;
             margin-top: 10px;
           }
+          .segment-container {
+            font-size: 14px;
+            font-weight: bold;
+            color: #051c2c;
+            padding: 15px 10px 8px 10px;
+            background-color: $dark-white;
+            margin-top: 10px;
+          }
           .single-dropdown-title {
             padding: 10px 0;
             font-size: 14px;
@@ -53,17 +61,32 @@
       padding: 10px 0;
     }
   }
- 
-  .footer-impact-calc {
-    .left-sec {
-      .topContainer  {
-        justify-content: center;
-      border-bottom: 0;
+
+  .footer {
+    .footer-impact-calc {
+      .left-sec {
+        .topContainer  {
+          justify-content: center;
+          border-bottom: 0;
+          .rightPanel {
+            .previous-button {
+              background-color: $dark-white !important;
+              border: 1px solid $dark-light-black !important;
+            }
+            .next-button {
+              background-color: $gray-color !important;
+              border: 1px soild $gray-color !important;
+            }
+          }
+        }
       }
     }
   }
+ 
+  
   
 }
+
 
 .dark-background {
   background-color: $dark-white;
