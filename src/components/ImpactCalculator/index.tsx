@@ -34,10 +34,12 @@ const PanelPage = (props: any) => {
 
   useEffect(() => {
     // @ts-ignore
-    const updatedJson = hideShowSections(document.getElementById('jsonData')?.innerText)
+    const updatedJsona = JSON.parse(document.getElementById('jsonData')?.innerText)
+    // @ts-ignore
+    const updatedJson = hideShowSections(updatedJsona)
     setJSONData(
       // @ts-ignore
-      JSON.parse(updatedJson),
+      updatedJson,
     );
   }, []);
 
@@ -257,14 +259,19 @@ const PanelPage = (props: any) => {
 
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
+                        console.log(subHeadingDetail?.subHeadingText == undefined && subHeadingDetail?.subHeadingText=="")
                         return subHeadingDetail?.isShow == true ? (
                           <>
+                        
                             <div className="single-dropdown-section__body">
-                              {(subHeadingDetail?.subHeadingText != "" && subHeadingDetail?.isShow == true) ? (
-                                <div className="title-container">
-                                  <p>{subHeadingDetail?.subHeadingText}</p>
-                                </div>
-                              ) : null}
+                              {subHeadingDetail.hasOwnProperty("subHeadingText") ?
+                                ((subHeadingDetail?.subHeadingText != "" && subHeadingDetail?.isShow == true) ? (
+                                  <div className="title-container">
+                                    <p>{subHeadingDetail?.subHeadingText}</p>
+                                  </div>
+                                ) : null):null
+                              }
+                              
                               {subHeadingDetail?.segmentDetails?.map(
                                 (
                                   segmentDetail: any,

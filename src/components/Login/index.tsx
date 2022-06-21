@@ -25,6 +25,7 @@ const Login = (props: any) => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    console.log(document.getElementById('jsonData')?.innerHTML)
   }, []);
   errorMessage = jsonData?.data?.contentDetails?.Error;
   isInvalid = jsonData?.data?.contentDetails?.isInvalid;
