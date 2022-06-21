@@ -100,14 +100,6 @@
               "gridLineWidth": 0
             },
 
-            "legend": {
-              "enabled": false
-            },
-
-            "tooltip": {
-              "pointFormat": "<b>${point.y:,.2f}</b> USD"
-            },
-
             "series": [
               {
                 "data": [
@@ -136,6 +128,39 @@
                     "isSum": true
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "chart": {
+              "type": "bar"
+            },
+            "title": {
+              "text": ""
+            },
+            "xAxis": {
+              "tickLength": 0,
+              "categories": ["Baseline", "Possible future baseline"],
+              "gridLineWidth": 0
+            },
+            "yAxis": {
+              "tickLength": 0,
+              "labels": {
+                "enabled": false
+              },
+              "gridLineWidth": 0,
+              "title": false,
+              "plotLines": [
+                {
+                  "color": "#000000",
+                  "value": 0,
+                  "zIndex": 5
+                }
+              ]
+            },
+            "series": [
+              {
+                "data": [28535, 140440]
               }
             ]
           }
@@ -302,6 +327,13 @@
           ]
         }
       }
-    ]
+    ],
+    "footerData": {
+      "forwardBtn": {
+        "quesCode": "",
+        "forwardBtntxt": "Submit",
+        "forwardInputId": ""
+      }
+    }
   }
 }

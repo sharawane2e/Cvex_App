@@ -1,8 +1,11 @@
-import { Grid, FormControl, Select, MenuItem, Box } from "@mui/material";
+import { Grid, FormControl, Select, MenuItem, Box, Divider } from "@mui/material";
 import React, { useState, useEffect, useRef } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader";
 import "./OutputContactCenter.scss";
 import HighChart from "../UI/HighCharts";
+import { Footer } from "../Footer";
+import { getParsedData } from "../../utils/parserUtil";
+import CustomButton from "../UI/CustomButton";
 
 const OutputContactCenter = () => {
     const [jsonData, setJSONData] = useState<any>('');
@@ -15,7 +18,44 @@ const OutputContactCenter = () => {
         );
     }, []);
 
+    const nextHandleClick = (event: any) => {
+        if (jsonData !== '') {
+            // @ts-ignore
+            document.getElementById('navText').value =
+                jsonData.data?.footerData?.forwardBtn?.forwardInputId;
+            // @ts-ignore
+            document.getElementById('forwardbutton').disabled = false;
+            // @ts-ignore
+            document.getElementById('forwardbutton').click();
+        }
+    };
+
     const inputDetails = jsonData?.data?.inputData;
+    // console.log(inputDetails)
+
+    const getChartType = () => {
+        inputDetails?.map((inputDetail: any) => {
+            inputDetail?.questions?.chartData?.map((chartDetail: any) => {
+                // console.log(chartDetail?.series)
+                return chartDetail?.type;
+            })
+        })
+    };
+    const getChartOptions = () => {
+        inputDetails?.map((inputDetail: any) => {
+            // inputDetail?.questions?.chartData?.map((chartDetail: any) => {
+            // console.log(chartDetail?.series)
+            return inputDetail?.questions?.chartData;
+            // })
+        })
+    };
+    const getChartSeries = () => {
+        inputDetails?.map((inputDetail: any) => {
+            inputDetail?.questions?.chartData?.map((chartDetail: any) => {
+                return chartDetail?.series;
+            })
+        })
+    };
 
     return (
         <div className="contactpage-container">
@@ -51,7 +91,7 @@ const OutputContactCenter = () => {
                         </div>
                     </div>
                     <div className="chart-container" >
-                        <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
+                        <HighChart chartRef={chartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getChartSeries()} chartOptions={getChartOptions()} />
                     </div>
                     <Box className="outputTable-container" sx={{ mb: 5, }}>
                         <div className="outputTable-container__inr">
@@ -150,17 +190,13 @@ const OutputContactCenter = () => {
                             </div>
                         </div>
                     </Box>
-
-                    {/* <Box className="outputTable-container" sx={{ mb: 5, }}>
-                        
-                    </Box> */}
                     <div className="chart-container multiple-charts">
                         <div className="chart-container__inr">
                             <div className="chart-baseline">
-                                <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
+                                <HighChart chartRef={chartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getChartSeries()} chartOptions={getChartOptions()} />
                             </div>
                             <div className="chart-futurebaseline">
-                                <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
+                                <HighChart chartRef={chartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getChartSeries()} chartOptions={getChartOptions()} />
                             </div>
                         </div>
                     </div>
@@ -194,13 +230,62 @@ const OutputContactCenter = () => {
                             </Grid>
                         </Grid>
                     </div>
+                    <Box className="outputTable-container" sx={{ mb: 5, }}>
+                        <div className="outputTable-container__inr">
+                            <div className="outputTable-container__inr__header">
+                                <div className="table-col"><span>Inbound Sales</span></div>
+                                <div className="table-col"><span>Outbound Sales</span></div>
+                                <div className="table-col"><span>Service to Sales</span></div>
+                                <div className="table-col"><span>Retention</span></div>
+                                <div className="table-col"><span>Winback</span></div>
+                                <div className="table-col"><span>Total</span></div>
+                            </div>
+                            <div className="outputTable-container__inr__body">
+                                <div className="table-col">
+                                    <div className="table-row">
+                                        <span>Not Selected</span>
+                                    </div>
+                                    <div className="table-row">
+                                        <span>9,523 €</span>
+                                    </div>
+                                    <div className="table-row">
+                                        <span>Not Selected</span>
+                                    </div>
+                                    <div className="table-row">
+                                        <span>19,010 €</span>
+                                    </div>
+                                    <div className="table-row">
+                                        <span>Not Selected</span>
+                                    </div>
+                                    <div className="table-row">
+                                        <span>28,535 €</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Box>
                     <div className="chart-container">
                         <div className="chart-container__waterfall">
-                            <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
+                            <HighChart chartRef={chartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getChartSeries()} chartOptions={getChartOptions()} />
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer>
+                <Divider />
+                <div className="button-container justi">
+                    <div>
+                        <CustomButton
+                            className={'submitButton next-button'}
+                            onClick={(e: any) => nextHandleClick(e)}
+                        >
+                            {getParsedData(
+                                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
+                            )}
+                        </CustomButton>
+                    </div>
+                </div>
+            </Footer>
         </div >
     )
 }

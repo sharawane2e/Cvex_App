@@ -235,4 +235,15 @@
       }
     }
   }
+  .footer {
+    background-color: #fff;
+    .border-top {
+      display: inline-block;
+      width: 100%;
+      border: 1px solid #ccc;
+    }
+    .button-container {
+      padding-top: 20px;
+    }
+  }
 }
