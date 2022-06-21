@@ -11,6 +11,7 @@ import store from '../../redux/store';
 import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
 import { setRightPanelData } from '../../redux/actions/RightPanelActions';
 import { setLeftPanelData } from '../../redux/actions/LeftPanelActions';
+import { useDispatch, useSelector } from 'react-redux';
 // import '../../styles/partials/common.scss';
 
 const QuestionPage = () => {
@@ -22,6 +23,7 @@ const QuestionPage = () => {
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
   }, []);
+  
   const { dispatch } = store;
   dispatch(setLeftPanelData(jsonData?.data?.leftPanel));
   dispatch(setRightPanelData(jsonData?.data?.rightPanel));
@@ -35,6 +37,7 @@ const QuestionPage = () => {
       document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
       document.getElementById('forwardbutton').click();
+    // console.log(leftPanel);
     }
   };
 
@@ -49,6 +52,8 @@ const QuestionPage = () => {
       document.getElementById('forwardbutton').click();
     }
   };
+
+  console.log(jsonData?.data?.footerData?.previousBtn.previousShow)
 
   return (
     <div className="question-wrapper">
@@ -74,26 +79,34 @@ const QuestionPage = () => {
         </div>
         <Footer>
           <div className="button-container justi">
-            <div className="d-flex">
-              <CustomButton
-                className={'submitButton previous-button '}
-                onClick={(e: any) => previousHandleClick(e)}
-              >
-                {getParsedData(
-                  jsonData?.data?.footerData?.previousBtn?.previousBtnTxt,
-                )}
-              </CustomButton>
-            </div>
-            <div>
-              <CustomButton
-                className={'submitButton next-button'}
-                onClick={(e: any) => nextHandleClick(e)}
-              >
-                {getParsedData(
-                  jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
-                )}
-              </CustomButton>
-            </div>
+            {jsonData?.data?.footerData?.previousBtn.previousShow ?
+              <div className="d-flex">
+                <CustomButton
+                  className={'submitButton previous-button '}
+                  onClick={(e: any) => previousHandleClick(e)}
+                >
+                  {getParsedData(
+                    jsonData?.data?.footerData?.previousBtn?.previousBtnTxt,
+                  )}
+                </CustomButton>
+              </div>
+              : ""
+            }
+
+            {jsonData?.data?.footerData?.forwardBtn.forwardShow ?
+              <div>
+                <CustomButton
+                  className={'submitButton next-button'}
+                  onClick={(e: any) => nextHandleClick(e)}
+                >
+                  {getParsedData(
+                    jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
+                  )}
+                </CustomButton>
+              </div>
+              : ""
+            }
+
           </div>
         </Footer>
       </div>

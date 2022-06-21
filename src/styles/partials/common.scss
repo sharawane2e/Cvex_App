@@ -3,21 +3,20 @@
   margin: 0;
   box-sizing: border-box;
   font-family: $font-Roboto !important;
-
 }
-#root{
+#root {
   height: 100vh;
 }
 .container {
   position: relative;
 }
 .submitButton {
-  background-color:$light-blue !important;
+  background-color: $light-blue !important;
   margin: auto !important;
   padding: 8px 35px !important;
   color: $white-color !important  ;
   cursor: pointer !important;
-  border: 1px solid   $blue-color !important;
+  border: 1px solid $blue-color;
   border-radius: 0 !important;
   // width: 130px;
   font-size: 14px !important;
@@ -80,21 +79,17 @@
         margin-left: -280px;
       }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ac2a52bf098d5ff0041916a0d58d136d67632a6
   }
 }
 
-.cutom-input-field{
-  input{
-    padding: 8px 12px  !important;
+.cutom-input-field {
+  input {
+    padding: 8px 12px !important;
     font-size: 12px !important;
   }
 }
 
-.MuiSelect-select{
-  padding: 6px 12px  !important;
+.MuiSelect-select {
+  padding: 6px 12px !important;
   font-size: 14px !important;
 }
