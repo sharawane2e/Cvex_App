@@ -14,10 +14,14 @@ import HsddInput from './HsddInput';
 import { OptionUnstyled } from '@mui/base';
 import ProgressBar from '../ProgressBar';
 import { hideShowSections } from '../../services/impactCaluculator';
-const ImpactCalculator = (props: any) => {
+import LinearProgressbar2 from '../LinearProgressbar2';
+const PanelPage = (props: any) => {
   const [jsonData, setJSONData] = useState<any>('');
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
+
+  const [progpercentage, setProgpercentage] = useState<any>(0);
+
 
   // useEffect(() => {
   //   setJSONData(
@@ -27,6 +31,7 @@ const ImpactCalculator = (props: any) => {
   //     ),
   //   );
   // }, []);
+
   useEffect(() => {
     setJSONData(
       // @ts-ignore
@@ -35,10 +40,10 @@ const ImpactCalculator = (props: any) => {
   }, []);
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   hideShow();
-  // }, [jsonData]);
+    progressUpdate();
+  }, [jsonData]);
 
   // const txtInputValidate = (value: any, pattern: any) => {
   //   const reg = pattern;
@@ -75,6 +80,7 @@ const ImpactCalculator = (props: any) => {
       tempNum = minRange;
       res = tempNum.toString();
     }
+    // progressUpdate();
 
     return res;
   };
@@ -137,7 +143,8 @@ const ImpactCalculator = (props: any) => {
     //@ts-ignore
 
     setJSONData(updatedJson);
-    console.log("Json Updated", updatedJson)
+    // console.log("Json Updated", updatedJson);
+    // progressUpdate();
   };
 
   const handleNumChange = (
@@ -163,6 +170,68 @@ const ImpactCalculator = (props: any) => {
     setJSONData(updatedJsonData);
   };
 
+  const progressUpdate = () => {
+
+    if (jsonData?.data?.inputData) {
+      var obj: any = {};
+      var incCount = 100 / (jsonData?.data?.inputData?.length);
+
+      jsonData?.data?.inputData?.map((block: any) => {
+        obj[block.headingText] = 0;
+        block.subHeadingDetails.map((seg: any) => {
+          seg.segmentDetails.map((ques: any) => {
+            let quesCount = ques.questions.length;
+
+            let len;
+            // if(ques.options){
+            //   len = ques.questions.filter((select:any) => select.selectedId != "").length;
+            //   if(len == quesCount){
+            //     obj[block.headingText] = incCount;
+            //   }
+            //   else{
+            //     obj[block.headingText] = 0;
+            //   }
+            // }
+            // else{
+            //   len = ques.questions.filter((select:any) => select.selectedText != "").length;
+            //   if(len == quesCount){
+            //     obj[block.headingText] = incCount;
+            //   }
+            //   else{
+            //     obj[block.headingText] = 0;
+            //   }
+            // }
+
+            ques.questions.map((x: any) => {
+              if (x.options) {
+                len = ques.questions.filter((select: any) => select.selectedId != "").length;
+                console.log(len)
+                if (len == quesCount) {
+                  obj[block.headingText] = incCount;
+                }
+                else {
+                  obj[block.headingText] = 0;
+                }
+              }
+              else {
+                len = ques.questions.filter((select: any) => select.selectedText != "").length;
+                if (len == quesCount) {
+                  obj[block.headingText] = incCount;
+                }
+                else {
+                  obj[block.headingText] = 0;
+                }
+              }
+            })
+          })
+        })
+      })
+      setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
+    }
+
+
+  }
+
   return (
     <div className="impact-calc-container">
       <SecondaryHeader sidebar={false} />
@@ -176,7 +245,7 @@ const ImpactCalculator = (props: any) => {
                 <>
                   <div className="single-dropdown-section">
                     {inputDetails?.isShow == true &&
-                    inputDetails?.headingText != '' ? (
+                      inputDetails?.headingText != '' ? (
                       <div className="single-dropdown-section__header">
                         <p className="header-text">
                           {inputDetails?.headingText}
@@ -337,7 +406,8 @@ const ImpactCalculator = (props: any) => {
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
-            <ProgressBar showProgressBar={true} />
+            {/* <ProgressBar showProgressBar={true} /> */}
+            <LinearProgressbar2 percentage={progpercentage} />
           </div>
         </div>
       </Footer>
@@ -345,4 +415,4 @@ const ImpactCalculator = (props: any) => {
   );
 };
 
-export default ImpactCalculator;
+export default PanelPage;

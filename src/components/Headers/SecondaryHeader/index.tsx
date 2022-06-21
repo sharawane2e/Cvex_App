@@ -55,9 +55,9 @@ const SecondaryHeader = (props: headerProps) => {
             </div>
           } */}
 
-        <div className={leftPanel?.leftPanelOpen ? "menu btn15" : "menu btn15 open"} data-menu="15" onClick={() => toggleLeftPanel()}>
-          <div className="icon"></div>
-        </div>
+          <div className={leftPanel?.leftPanelOpen ? "menu btn15 open" : "menu btn15"} data-menu="15" onClick={() => toggleLeftPanel()}>
+            <div className="icon"></div>
+          </div>
 
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
