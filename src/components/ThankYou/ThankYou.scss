@@ -25,7 +25,7 @@
 
     p {
         &:first-child {
-            font-weight: normal;
+            font-weight: $font-normal;
             margin-bottom: 8px;
             font-size: 16px;
         }

@@ -30,22 +30,22 @@ const Pages = () => {
     if (jsonData?.pageCode?.page === pageCode.GI) {
       return <GI />;
     }
-    if (jsonData?.pageCode?.page == 4) {
+    if (jsonData?.pageCode?.page == pageCode.QuestionPage) {
       return <QuestionPage />;
     }
-    if (jsonData?.pageCode?.page == 5) {
+    if (jsonData?.pageCode?.page == pageCode.ThankYou) {
       return <ThankYou />;
     }
-    if (jsonData?.pageCode?.page == 6) {
+    if (jsonData?.pageCode?.page == pageCode.SkillPage) {
       return <SkillPage />;
     }
-    if (jsonData?.pageCode?.page == 7) {
+    if (jsonData?.pageCode?.page == pageCode.PanelPage) {
       return <PanelPage />;
     }
-    if (jsonData?.pageCode?.page == 8) {
-      return <PanelPage />;
-    }
-    if (jsonData?.pageCode?.page == 9) {
+    // if (jsonData?.pageCode?.page == 8) {
+    //   return <PanelPage />;
+    // }
+    if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
       return <ImpactCalculatorPage />;
     }
   }

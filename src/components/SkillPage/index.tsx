@@ -46,7 +46,7 @@ const PanelPage = (props: any) => {
     <div className="skill-container">
       <SecondaryHeader />
       <div className="main-container">
-        <div className="content-area main-container">
+        <div className="content-area ">
           <Box className= "content-container">
             <div className='single-capability-header'>
               {

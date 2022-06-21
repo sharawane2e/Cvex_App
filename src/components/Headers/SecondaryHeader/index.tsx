@@ -20,13 +20,14 @@ const SecondaryHeader = (props: headerProps) => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    console.log(document.getElementById('jsonData')?.innerHTML)
   }, []);
   const { leftPanel } = useSelector((state: any) => state);
   const { dispatch } = store;
 
   const toggleLeftPanel = () => {
-    const updateToggle = !leftPanel?.leftPanelOpen;
-    dispatch(setLeftPanelOpenClose(updateToggle));
+    const updateToggle = leftPanel?.leftPanelOpen;
+    dispatch(setLeftPanelOpenClose(!updateToggle));
     //@ts-ignore
     // document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
     console.log(jsonData?.data?.leftPanel);
@@ -48,11 +49,15 @@ const SecondaryHeader = (props: headerProps) => {
         }}
       >
         <div className="logo">
-          {props?.sidebar && (
-            <div className="hamburger-menu">
+          {/* {
+            props?.sidebar && <div className="hamburger-menu" >
               <Hamburger onClick={() => toggleLeftPanel()} />
             </div>
-          )}
+          } */}
+
+        <div className={leftPanel?.leftPanelOpen ? "menu btn15" : "menu btn15 open"} data-menu="15" onClick={() => toggleLeftPanel()}>
+          <div className="icon"></div>
+        </div>
 
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
