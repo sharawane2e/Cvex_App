@@ -3,7 +3,7 @@
   position: relative;
   justify-content: space-between;
   width: 100%;
-  background-color: #051c2c;
+  background-color: $dark-light-black;
   background-position: right;
   align-items: center;
   height: 100px;
@@ -11,8 +11,8 @@
   .logo {
     padding-left: 40px;
     padding-right: 40px;
-    border-right: 1px solid #1e323f;
-    border-bottom: 1px solid #1e323f;
+    border-right: 1px solid $dark-blue;
+    border-bottom: 1px solid $dark-blue;
     width: 280px;
     height: 100%;
     display: flex;
@@ -31,7 +31,7 @@
     display: inline-block;
     width: 80%;
     padding-left: 20px;
-    color: #fff;
+    color: $white-color;
     h2 {
       font-size: 18px;
     }

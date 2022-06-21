@@ -1,12 +1,15 @@
 
 .gi-container{
   margin-top: 100px;
-   height: calc(100vh - 310px);
+//   height: calc(100vh - 310px);
 
-  overflow-y: scroll;
+  //overflow-y: scroll;
   &__inr{
     width: 85%;
+    padding-right: 8px;
   margin: 0 auto;
+  height: calc(100vh - 310px);
+  overflow-y: auto;
   padding-bottom: 30px;
   }
   .gi-heading{
@@ -41,4 +44,7 @@
 }
 .selectItem{
   font-size: 14px !important;
+}
+.mar-right{
+ margin-right: 5px !important;
 }

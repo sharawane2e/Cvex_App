@@ -8,6 +8,7 @@
 			"logo": "src",
 			"banner": "src"
 		},
+		
 		"inputData": [{
 			"headingText": "Select industry",
 			"subHeadingDetails": [{
@@ -79,31 +80,6 @@
 				]
 			}]
 		}]
-	},
-	"progressBarData": {
-		"progressBarDetails": {
-			"indicators": {
-				"1": "Not Started",
-				"2": "In progress",
-				"3": "Completed"
-			},
-			"answeredTxt": "Answered",
-			"totalAnswered": "1",
-			"ofTxt": "of",
-			"totalQues": "6",
-			"bracketOne": "(",
-			"percentage": "%",
-			"bracketTwo": ")"
-		},
-		"saveBtn": {
-			"saveBtnTxt": "Save",
-			"SelectedInputId": "",
-			"saveId": "anyID"
-		},
-		"submitBtn": {
-			"SelectedInputId": "",
-			"submitDisabled": "true",
-			"submitBtntxt": "Submit"
-		}
 	}
+	
 }

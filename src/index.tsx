@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/partials/common.scss';
+// import './styles/partials/common.scss';
 import App from './App';
-import store, { persistor } from './redux/store';
+import './styles/App.scss';
+import store from './redux/store';
 import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(

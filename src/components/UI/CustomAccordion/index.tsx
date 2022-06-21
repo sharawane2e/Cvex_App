@@ -5,7 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import './accordion.scss';
+// import './accordion.scss';
 import CustomSlider from '../CustomSlider';
 import { getParsedData } from '../../../utils/parserUtil';
 import Tooltip from '@mui/material/Tooltip';
@@ -33,15 +33,22 @@ export default function CustomAccordion(props: AccordionProps) {
 
   const quesData = jsonData?.data?.rightPanel?.questionsData?.capabilityDetails;
 
-  const handleAccordionChange = (capabilityDetail: any, capabilityDetailIndex: number) => {
-
-    const updatedCapabilityDetails = JSON.parse(JSON.stringify(rightPanel.questionsData.capabilityDetails));
-    console.log(updatedCapabilityDetails)
-    updatedCapabilityDetails[capabilityDetailIndex].groupAll = !updatedCapabilityDetails[capabilityDetailIndex].groupAll;
+  const handleAccordionChange = (
+    capabilityDetail: any,
+    capabilityDetailIndex: number,
+  ) => {
+    const updatedCapabilityDetails = JSON.parse(
+      JSON.stringify(rightPanel.questionsData.capabilityDetails),
+    );
+    console.log(updatedCapabilityDetails);
+    updatedCapabilityDetails[capabilityDetailIndex].groupAll =
+      !updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     //@ts-ignore
-    document.getElementById(updatedCapabilityDetails[capabilityDetailIndex].groupToggleId).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
-    dispatch(updateCapabilityDetails(updatedCapabilityDetails))
-  }
+    // document.getElementById(
+    //   updatedCapabilityDetails[capabilityDetailIndex].groupToggleId,
+    // ).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
+    dispatch(updateCapabilityDetails(updatedCapabilityDetails));
+  };
 
   const handleSliderChange = (
     value: string,
@@ -73,10 +80,22 @@ export default function CustomAccordion(props: AccordionProps) {
       }
     });
 
-
     const updatedSubheading = updatedSubHeadingText[matchSubHeadingIndex];
-    setJSONData({ ...jsonData, data: { ...jsonData?.data, rightPanel: { ...jsonData?.data?.rightPanel, questionsData: [{ ...jsonData?.data.rightPanel.questionsData, subHeadingText: [...updatedSubHeadingText] }] } } })
-
+    setJSONData({
+      ...jsonData,
+      data: {
+        ...jsonData?.data,
+        rightPanel: {
+          ...jsonData?.data?.rightPanel,
+          questionsData: [
+            {
+              ...jsonData?.data.rightPanel.questionsData,
+              subHeadingText: [...updatedSubHeadingText],
+            },
+          ],
+        },
+      },
+    });
   };
 
   const handleTextArea = (currentText: string, textAreaId: string) => {
@@ -87,99 +106,114 @@ export default function CustomAccordion(props: AccordionProps) {
     // }
   };
 
-
   const capabilityDetails = rightPanel?.questionsData?.capabilityDetails;
   // console.log(capabilityDetails)
 
   return (
     <>
-      {capabilityDetails?.map((capabilityDetail: any, capabilityDetailIndex: any) => {
-        const subTitleDetails = capabilityDetail.subTitleDetails;
-        return (
-          <>
-            <Accordion
-              // key={capabilityDetailIndex}
-              expanded={capabilityDetail.groupAll}
-              className="accordBlock"
-              onChange={() => handleAccordionChange(capabilityDetail, capabilityDetailIndex)}
-            >
-              <AccordionSummary
-                className="accordHead"
-                expandIcon={
-                  capabilityDetail.groupAll === true ? <RemoveIcon /> : <AddIcon />
+      {capabilityDetails?.map(
+        (capabilityDetail: any, capabilityDetailIndex: any) => {
+          const subTitleDetails = capabilityDetail.subTitleDetails;
+          return (
+            <>
+              <Accordion
+                // key={capabilityDetailIndex}
+                expanded={capabilityDetail.groupAll}
+                className="accordBlock"
+                onChange={() =>
+                  handleAccordionChange(capabilityDetail, capabilityDetailIndex)
                 }
-                aria-controls="panel1bh-content"
-                id="panel1bh-header"
-                sx={{ m: 0, minHeight: 0 }}
               >
-                <Typography
-                  sx={{ width: '33%', flexShrink: 0, fontWeight: 700 }}
+                <AccordionSummary
+                  className="accordHead"
+                  expandIcon={
+                    capabilityDetail.groupAll === true ? (
+                      <RemoveIcon />
+                    ) : (
+                      <AddIcon />
+                    )
+                  }
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                  sx={{ m: 0, minHeight: 0 }}
                 >
-                  {capabilityDetail.skillTitle}
-                </Typography>
-              </AccordionSummary>
-              {subTitleDetails?.map((subTitleDetail: any, subTitleIndex: any) => {
-                return (
-                  <>
-                    <AccordionDetails key={subTitleIndex} className="accordDetail">
-                      <Typography
-                        sx={{
-                          width: '33%',
-                          flexShrink: 0,
-                          fontWeight: 600,
-                          display: 'flex',
-                          alignItems: 'Center',
-                        }}
-                      >
-                        {subTitleDetail.subTitleTxt}
-                        <Tooltip
-                          style={{ marginLeft: 5 }}
-                          title={subTitleDetail?.tooltipText}
-                          arrow
+                  <Typography
+                    sx={{ width: '33%', flexShrink: 0, fontWeight: 700 }}
+                  >
+                    {capabilityDetail.skillTitle}
+                  </Typography>
+                </AccordionSummary>
+                {subTitleDetails?.map(
+                  (subTitleDetail: any, subTitleIndex: any) => {
+                    return (
+                      <>
+                        <AccordionDetails
+                          key={subTitleIndex}
+                          className="accordDetail"
                         >
-                          <InfoIcon className="info-icon" />
-                        </Tooltip>
-                      </Typography>
-                      <Typography
-                        className="question-text"
-                        sx={{ mt: '10px', flexShrink: 0 }}
-                      >
-                        {subTitleDetail.questionText}
-                      </Typography>
-                      <Typography
-                        className="bestpractices-text"
-                        sx={{ mt: '10px', flexShrink: 0 }}
-                      >
-                        {getParsedData(subTitleDetail.bestPracticesTxt)}
-                      </Typography>
-                      <CustomSlider capabilityDetailIndex={capabilityDetailIndex} subTitleIndex={subTitleIndex} />
-                      <TextareaAutosize
-                        aria-label="minimum height"
-                        className="custom-text-area"
-                        minRows={2}
-                        defaultValue={subTitleDetail?.observationTxt}
-                        onChange={(event: any) =>
-                          handleTextArea(
-                            event.target.value,
-                            subTitleDetail?.observationId,
-                          )
-                        }
-                        placeholder={subTitleDetail?.obsplaceholder}
-                        style={{
-                          width: '100%',
-                          marginTop: 20,
-                          padding: 5,
-                          resize: 'none',
-                        }}
-                      />
-                    </AccordionDetails>
-                  </>
-                );
-              })}
-            </Accordion>
-          </>
-        );
-      })}
+                          <Typography
+                            sx={{
+                              width: '33%',
+                              flexShrink: 0,
+                              fontWeight: 600,
+                              display: 'flex',
+                              alignItems: 'Center',
+                            }}
+                          >
+                            {subTitleDetail.subTitleTxt}
+                            <Tooltip
+                              style={{ marginLeft: 5 }}
+                              title={subTitleDetail?.tooltipText}
+                              arrow
+                            >
+                              <InfoIcon className="info-icon" />
+                            </Tooltip>
+                          </Typography>
+                          <Typography
+                            className="question-text"
+                            sx={{ mt: '10px', flexShrink: 0 }}
+                          >
+                            {subTitleDetail.questionText}
+                          </Typography>
+                          <Typography
+                            className="bestpractices-text"
+                            sx={{ mt: '10px', flexShrink: 0 }}
+                          >
+                            {getParsedData(subTitleDetail.bestPracticesTxt)}
+                          </Typography>
+                          <CustomSlider
+                            capabilityDetailIndex={capabilityDetailIndex}
+                            subTitleIndex={subTitleIndex}
+                          />
+                          <TextareaAutosize
+                            aria-label="minimum height"
+                            className="custom-text-area"
+                            minRows={2}
+                            defaultValue={subTitleDetail?.observationTxt}
+                            onChange={(event: any) =>
+                              handleTextArea(
+                                event.target.value,
+                                subTitleDetail?.observationId,
+                              )
+                            }
+                            placeholder={subTitleDetail?.obsplaceholder}
+                            style={{
+                              width: '100%',
+                              marginTop: 20,
+                              padding: 5,
+                              resize: 'none',
+                            }}
+                          />
+                        </AccordionDetails>
+                      </>
+                    );
+                  },
+                )}
+              </Accordion>
+            </>
+          );
+        },
+      )}
     </>
   );
 }

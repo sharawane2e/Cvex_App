@@ -3,7 +3,6 @@ import startData from '../../mock/startPageData.json';
 import { isPasswordValid } from '../../utils';
 import PrimaryHeader from '../Headers/PrimaryHeader/index';
 import { Inputbox } from '../UI/Input';
-import './Login.scss';
 import CustomButton from '../UI/CustomButton';
 import { Footer } from '../Footer';
 import { getParsedData } from '../../utils/parserUtil';

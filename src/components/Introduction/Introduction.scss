@@ -1,61 +1,22 @@
-.introduction-main {
-    margin: auto;
-    margin-top: 100px;
-    width: 80%;
-  }
+.introduction-container {
+    .introduction-main {
+      margin: auto;
+      margin-top: 100px;
+      width: 80%;
   
-  .introduction-heading {
-    text-align: left;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
-    margin: 0;
-  }
-  
-  .introduction-content {
-    text-align: left;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
-  }
-  
-  .introduction-input {
-    margin-top: 20px;
-    background: #FFFFFF;
-    border: 1px solid #B3B3B3;
-    opacity: 1;
-    width: 100%;
-    padding: 10px 20px;
-  
-    text-align: left;
-    font: normal normal normal 16px/24px Roboto;
-    letter-spacing: 0px;
-    opacity: 1;
-  }
-  
-  .introduction-input-error {
-    color: #B00020;
-  }
-  
-  .introduction-helpdesk {
-    margin-top: 60px;
-    text-align: left;
-    letter-spacing: 0px;
-    opacity: 1;
-  }
-  
-  .introduction-submit {
-    background-color: #1F66F6;
-    margin: auto;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 8px 50px;
-    color: #fff;
-    cursor: pointer;
-  }
-  .forword-btn{
-    padding: 8px 10px !important;
-    width: 190px !important;
+      .introduction-heading {
+        text-align: left;
+        letter-spacing: 0px;
+        color: $dark-black;
+        opacity: 1;
+        margin: 0;
+      }
+      
+      .introduction-content {
+        text-align: left;
+        letter-spacing: 0px;
+        color: $dark-black;
+        opacity: 1;
+      }
+    }
   }
