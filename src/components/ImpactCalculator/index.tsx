@@ -80,7 +80,7 @@ const PanelPage = (props: any) => {
       tempNum = minRange;
       res = tempNum.toString();
     }
-    progressUpdate();
+    // progressUpdate();
 
     return res;
   };
@@ -144,7 +144,7 @@ const PanelPage = (props: any) => {
 
     setJSONData(updatedJson);
     // console.log("Json Updated", updatedJson);
-    progressUpdate();
+    // progressUpdate();
   };
 
   const handleNumChange = (
@@ -172,35 +172,57 @@ const PanelPage = (props: any) => {
 
   const progressUpdate = () => {
 
-    var obj: any = {};
+    if (jsonData?.data?.inputData) {
+      var obj: any = {};
+      var incCount = 100 / (jsonData?.data?.inputData?.length);
 
-    if (
-      jsonData?.data?.inputData
-    ) {
       jsonData?.data?.inputData?.map((block: any) => {
         obj[block.headingText] = 0;
-        block.subHeadingDetails?.map((seg: any) => {
-          seg.segmentDetails?.map((ques: any) => {
+        block.subHeadingDetails.map((seg: any) => {
+          seg.segmentDetails.map((ques: any) => {
             let quesCount = ques.questions.length;
+
             let len;
-            if (ques.options) {
-              len = ques.questions.filter((select: any) => select.selectedId != "").length;
-              if (len == quesCount) {
-                obj[block.headingText] = 20;
+            // if(ques.options){
+            //   len = ques.questions.filter((select:any) => select.selectedId != "").length;
+            //   if(len == quesCount){
+            //     obj[block.headingText] = incCount;
+            //   }
+            //   else{
+            //     obj[block.headingText] = 0;
+            //   }
+            // }
+            // else{
+            //   len = ques.questions.filter((select:any) => select.selectedText != "").length;
+            //   if(len == quesCount){
+            //     obj[block.headingText] = incCount;
+            //   }
+            //   else{
+            //     obj[block.headingText] = 0;
+            //   }
+            // }
+
+            ques.questions.map((x: any) => {
+              if (x.options) {
+                len = ques.questions.filter((select: any) => select.selectedId != "").length;
+                console.log(len)
+                if (len == quesCount) {
+                  obj[block.headingText] = incCount;
+                }
+                else {
+                  obj[block.headingText] = 0;
+                }
               }
               else {
-                obj[block.headingText] = 0;
+                len = ques.questions.filter((select: any) => select.selectedText != "").length;
+                if (len == quesCount) {
+                  obj[block.headingText] = incCount;
+                }
+                else {
+                  obj[block.headingText] = 0;
+                }
               }
-            }
-            else {
-              len = ques.questions.filter((select: any) => select.selectedText != "").length;
-              if (len == quesCount) {
-                obj[block.headingText] = 20;
-              }
-              else {
-                obj[block.headingText] = 0;
-              }
-            }
+            })
           })
         })
       })

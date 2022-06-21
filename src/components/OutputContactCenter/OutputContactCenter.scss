@@ -1,0 +1,127 @@
+.contactpage-container {
+  &__inr {
+    padding: 25px;
+    .single-dropdown-section {
+      &__header {
+        background-color: #f6f6f6;
+        padding: 15px 10px;
+        .header-text {
+          font-size: 16px;
+          font-weight: 700;
+          color: #2a2a2a;
+        }
+      }
+      &__body {
+        .title-container {
+          border-bottom: none;
+          font-size: 14px;
+          font-weight: 600;
+          color: #333333;
+          padding: 15px 0 8px 0px;
+        }
+        .dropdown-container {
+          display: flex;
+          flex-wrap: wrap;
+          .single-dropdown-title {
+            padding: 10px 0;
+            font-size: 18px;
+          }
+          .inputField {
+            padding: 0;
+            input {
+              padding: 10px !important;
+              font-size: 12px !important;
+            }
+          }
+        }
+      }
+    }
+    .outputTable-container {
+      width: 900px;
+      margin: 0 auto;
+      margin-top: 20px;
+      &__inr {
+        &__header {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          .table-col {
+            display: inline-block;
+            width: 20%;
+            padding: 10px 5px 10px 5px;
+            border: 1px solid #2a2a2a;
+            border-bottom: none;
+            border-left: 1px solid #2a2a2a;
+            border-top: 1px solid #2a2a2a;
+            border-right: none;
+            text-align: center;
+            font-size: 14px;
+            &__empty {
+              display: inline-block;
+              width: 20%;
+              border: 1px solid #fff;
+              padding: 10px 5px 10px 5px;
+            }
+            span {
+              display: inline-block;
+            }
+            &:last-child {
+              background-color: #71d2f1;
+              border-right: 1px solid #2a2a2a;
+            }
+          }
+        }
+        &__body {
+          .table-col {
+            display: flex;
+
+            .table-row {
+              border: 1px solid #2a2a2a;
+              border-bottom: none;
+              border-right: none;
+              border-left: 1px solid #2a2a2a;
+              display: inline-block;
+              width: 20%;
+              text-align: center;
+              padding: 10px 5px 10px 5px;
+              font-size: 14px;
+              span {
+                display: inline-block;
+              }
+              &:first-child {
+                text-align: left;
+              }
+              &:nth-child(even) {
+                background-color: #d0d0d0;
+              }
+              &:last-child {
+                background-color: #71d2f1;
+                border-right: 1px solid #2a2a2a;
+              }
+            }
+            &:last-child {
+              border-bottom: 1px solid #2a2a2a;
+            }
+          }
+        }
+      }
+    }
+    .chart-container {
+      &__inr {
+        display: flex;
+        width: 100%;
+        .chart-baseline {
+          width: 50%;
+        }
+        .chart-futurebaseline {
+          width: 50%;
+        }
+        .highcharts-title {
+          width: 100%;
+          text-align: center;
+          left: 0 !important;
+        }
+      }
+    }
+  }
+}
