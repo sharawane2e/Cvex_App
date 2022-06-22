@@ -52,15 +52,19 @@ const ThankYou = (props: Props) => {
         )}
       </div>
       <Footer>
-        <div className="button-container">
-          <div className="show-btn">
-            <CustomButton className="submitButton" onClick={handleClick}>
-              {getParsedData(
-                jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt,
-              )}
-            </CustomButton>
-          </div>
-        </div>
+        {
+          (jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)?
+          <div className="button-container">
+            <div className="show-btn">
+              <CustomButton className="submitButton" onClick={handleClick}>
+                {getParsedData(
+                  jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt,
+                )}
+              </CustomButton>
+            </div>
+          </div> :null
+        }
+        
       </Footer>
     </div>
   );
