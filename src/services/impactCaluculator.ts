@@ -3,6 +3,11 @@ export const hideShowSections = (impactJson: any) => {
 
   const allSHowNumQuestionIds: string[] = [];
   const showNumQuestionIds: string[] = [];
+  const answeredHeadings: any[] = [];
+
+  for (var i = 0; i < updatedInputData?.data?.inputData.length; i++) {
+    answeredHeadings[i] = false;
+  }
 
   updatedInputData?.data?.inputData?.map(
     (inputDataEl: any, inputDataIndex: number) => {
@@ -12,14 +17,20 @@ export const hideShowSections = (impactJson: any) => {
             (segment: any, segmentIndex: number) => {
               segment.questions?.map((question: any, questionIndex: number) => {
                 if (
-                  question.type == 'hsdd' &&
+                  (question.type == "num" && question.selectedText != "") ||
+                  (question.type == "hsdd" && question.selectedId != "")
+                ) {
+                  answeredHeadings[inputDataIndex] = true;
+                }
+                if (
+                  question.type == "hsdd" &&
                   question.enableQuestionIds.length
                 ) {
                   allSHowNumQuestionIds.push(...question.enableQuestionIds);
                 }
                 if (
-                  question.type == 'hsdd' &&
-                  question.selectedId != '' &&
+                  question.type == "hsdd" &&
+                  question.selectedId != "" &&
                   question.enableQuestionIds.length
                 ) {
                   question.options?.map((option: any) => {
@@ -32,11 +43,11 @@ export const hideShowSections = (impactJson: any) => {
                   });
                 }
               });
-            },
+            }
           );
-        },
+        }
       );
-    },
+    }
   );
 
   // headers.length = 0;
@@ -53,9 +64,8 @@ export const hideShowSections = (impactJson: any) => {
               const questionsBooleanCnd: boolean[] = [];
               // debugger
               segment.questions?.map((question: any, questionIndex: number) => {
-                
                 if (
-                  question.type == 'num' &&
+                  question.type == "num" &&
                   allSHowNumQuestionIds.indexOf(question.questionId) != -1
                 ) {
                   //   console.log("inside num")
@@ -67,15 +77,15 @@ export const hideShowSections = (impactJson: any) => {
                   if (showNumQuestionIds.indexOf(question.questionId) == -1) {
                     questionsBooleanCnd.push(false);
                     question.isShow = false;
-                    question.selectedText = '';
+                    question.selectedText = "";
                     //@ts-ignore
-                    document.getElementById(question.questionId).value = '';
+                    document.getElementById(question.questionId).value = "";
                   }
                 }
               });
 
-              console.log("questions",questionsBooleanCnd)
-              console.log(questionsBooleanCnd)
+              //console.log("questions", questionsBooleanCnd);
+              //console.log(questionsBooleanCnd);
               if (
                 questionsBooleanCnd.indexOf(true) != -1 ||
                 questionsBooleanCnd.length == 0
@@ -90,7 +100,7 @@ export const hideShowSections = (impactJson: any) => {
               //     segment.isShow = false;
               //     segmentsBooleanCnd.push(false);
               //   }
-            },
+            }
           );
 
           // console.log("segments",segmentsBooleanCnd)
@@ -106,7 +116,7 @@ export const hideShowSections = (impactJson: any) => {
           //   subHeading.isShow = false;
           //   subHeadersBooleanCnd.push(false);
           // }
-        },
+        }
       );
       //   console.log("subHeaders",subHeadersBooleanCnd)
 
@@ -118,10 +128,24 @@ export const hideShowSections = (impactJson: any) => {
       //   if (subHeadersBooleanCnd.indexOf(false) != -1) {
       //     inputDataEl.isShow = false;
       //   }
-    },
+    }
   );
 
   // console.log(updatedInputData)
+
+  updatedInputData?.data?.inputData?.map(
+    (inputDataEl: any, inputDataIndex: number) => {
+      if (inputDataIndex != 0 && inputDataEl.isSequential) {
+        if (answeredHeadings[inputDataIndex - 1]) {
+          inputDataEl.isSequentialShow = true;
+        } else {
+          inputDataEl.isSequentialShow = false;
+        }
+      }
+    }
+  );
+
+  // console.log(answeredHeadings);
 
   return updatedInputData;
 };
