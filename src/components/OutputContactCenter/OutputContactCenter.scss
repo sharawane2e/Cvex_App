@@ -54,7 +54,8 @@
         }
       }
       .outputTable-container {
-        width: 900px;
+        width: 50%;
+        max-width: 90%;
         margin: 20px auto;
         @include breakpoint(Ipad) {
           width: 100%;
@@ -75,10 +76,9 @@
           &__header {
             display: flex;
             width: 100%;
-            justify-content: space-between;
             .table-col {
               display: inline-block;
-              width: 20%;
+              min-width: 20%;
               padding: 10px 5px 10px 5px;
               border: 1px solid #2a2a2a;
               border-bottom: none;
@@ -89,7 +89,7 @@
               font-size: 14px;
               &__empty {
                 display: inline-block;
-                width: 20%;
+                min-width: 20%;
                 border: 1px solid #fff;
                 padding: 10px 5px 10px 5px;
               }
@@ -112,12 +112,15 @@
                 border-right: none;
                 border-left: 1px solid #2a2a2a;
                 display: inline-block;
-                width: 20%;
+                min-width: 20%;
                 text-align: center;
                 padding: 10px 5px 10px 5px;
                 font-size: 14px;
                 span {
                   display: inline-block;
+                }
+                .currency-symbol {
+                  padding-left: 5px;
                 }
                 &:first-child {
                   text-align: left;
@@ -207,7 +210,7 @@
           border-top: 1px solid #ccc;
           .chart-baseline {
             .highcharts-title {
-              width: 100%;
+              width: 100% !important;
               text-align: center;
               left: 0 !important;
               top: 0 !important;
@@ -215,7 +218,7 @@
           }
           .chart-futurebaseline {
             .highcharts-title {
-              width: 100%;
+              width: 100% !important;
               text-align: center;
               left: 0 !important;
               top: 0 !important;
