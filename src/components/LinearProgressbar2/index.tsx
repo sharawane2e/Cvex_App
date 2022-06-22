@@ -9,6 +9,7 @@ import CustomButton from "../UI/CustomButton";
 import { getParsedData } from "../../utils/parserUtil";
 import { LinearProgressBar } from "../LinearProgressBar";
 import { useSelector } from "react-redux";
+import CustomPopup from "../UI/CustomPopup";
 
 // import { useSelector } from 'react-redux';
 
@@ -23,6 +24,14 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
   const [jsonData, setJSONData] = useState<any>("");
   const [sbtDisable, setSbtdisable] = useState(true);
 
+  const [open, setOpen] = useState(false);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   // const { leftPanel } = useSelector((state: any) => state);
 
   // useEffect(()=>{
@@ -39,7 +48,22 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     document.getElementById("forwardbutton").disabled = true;
     //setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId)
   }, []);
+  const getMandatoryField = () => {
+    const inputData = jsonData?.data?.inputData;
 
+    return inputData?.map((inputDetail: any) => {
+      inputDetail?.subHeadingDetails?.map((subHeadingDetail: any) => {
+        subHeadingDetail?.segmentDetails.map((segmentDetail: any) => {
+          segmentDetail?.questions.map((question: any) => {
+            if (question.isRequired && question.selectedId !== "") {
+              setOpen(true);
+            }
+          });
+        });
+      });
+    });
+  };
+  const saveProgress = (saveId: string) => {};
   const handleBtnClick = (saveId: string) => {
     // @ts-ignore
     document.getElementById("navText").value = saveId;
@@ -48,6 +72,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     // @ts-ignore
     document.getElementById("forwardbutton").click();
     let req = isReqAnswered;
+    getMandatoryField();
     console.log(req());
   };
 
@@ -59,6 +84,9 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     //   // @ts-ignore
     //   // document.getElementById('').click();
     // }
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
 
   //   const progressBarUpdateNew = (answered: number, totalQuestions: number) => {
@@ -167,6 +195,12 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
             </div>
           </div>
         </Box>
+        <CustomPopup
+          buttonText={jsonData?.data?.errorData?.btnText}
+          description={jsonData?.data?.errorData?.bodyText}
+          handleClose={handleClose}
+          open={open}
+        />
       </Box>
     </>
   );

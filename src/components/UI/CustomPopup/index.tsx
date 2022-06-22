@@ -14,47 +14,45 @@ const CustomDialog = styled(Dialog)(({ theme }) => ({
     },
 }));
 
-
-type CustomPopupProps = {
-    buttonText: string, description: string, onClose: () => void;
+interface CustomPopupProps {
+    buttonText: string;
+    description: string;
+    open: boolean;
+    handleClose?: (value: any) => void;
 }
-const CustomPopup = (props: CustomPopupProps) => {
-    const [open, setOpen] = useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
+// type CustomPopupProps = {
+//     buttonText: string, description: string, handleClose: boolean;
+// }
+const CustomPopup: React.FC<CustomPopupProps> = (props) => {
+    const { open = true, buttonText, description, handleClose } = props;
     return (
         <div className="popup-container">
-            <CustomButton className='submitButton' onClick={handleClickOpen}>
-                BUTTON
-            </CustomButton>
             <CustomDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}
                 maxWidth="sm"
+                className="popup-container__inr"
             >
-                <DialogTitle sx={{ m: 0, p: 2 }} >
+                <DialogTitle sx={{ m: 0, p: 2, display: 'flex', justifyContent: 'end' }} >
                     <IconButton
                         aria-label="close"
-                        onClick={props?.onClose}
+                        onClick={handleClose}
+                        sx={
+                            { position: "absolute", right: "0", top: "0" }
+                        }
                     >
                         <CloseIcon />
                     </IconButton>
                 </DialogTitle>
-                <DialogContent dividers>
-                    <Typography gutterBottom>
-                        {props?.description}
+                <DialogContent >
+                    <Typography className="popup-description" gutterBottom>
+                        {description}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
                     <CustomButton className='submitButton' onClick={handleClose}>
-                        {props?.buttonText}
+                        {buttonText}
                     </CustomButton>
                 </DialogActions>
             </CustomDialog>
