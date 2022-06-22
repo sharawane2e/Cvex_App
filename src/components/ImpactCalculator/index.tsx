@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import startData from "../../mock/startPageData.json";
 import { isPasswordValid } from "../../utils";
 import SecondaryHeader from "../Headers/SecondaryHeader/index";
@@ -15,14 +15,19 @@ import { OptionUnstyled } from "@mui/base";
 import ProgressBar from "../ProgressBar";
 import { hideShowSections } from "../../services/impactCaluculator";
 import LinearProgressbar2 from "../LinearProgressbar2";
+import { LegendToggleTwoTone } from "@mui/icons-material";
+
 const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>("");
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
-  const [showError, setShowError] = useState(true);
+  const [showError, setShowError] = useState(false);
 
   const [progpercentage, setProgpercentage] = useState<any>(0);
+  // @ts-ignore
+  const testRef = useRef<HTMLDivElement>(document.getElementById("ok"));
+  const scrollToElement = () => testRef.current.scrollIntoView();
 
   // useEffect(() => {
   //   setJSONData(
@@ -33,10 +38,13 @@ const ImpactCalculator = (props: any) => {
   //   );
   // }, []);
 
+  const [blockLocs, setBlockLocs] = useState([]);
+
   useEffect(() => {
     // prettier-ignore
     // @ts-ignore
     let updatedJsona: any = JSON.parse(document.getElementById("jsonData")?.innerText);
+    setupJson(updatedJsona);
     // const updatedJsona = JSON.parse(
     //   document.getElementById("jsonData")?.innerText
     // );
@@ -46,6 +54,7 @@ const ImpactCalculator = (props: any) => {
       // @ts-ignore
       updatedJson
     );
+    getblockLocations(updatedJson);
   }, []);
 
   useEffect(() => {
@@ -152,6 +161,17 @@ const ImpactCalculator = (props: any) => {
     setupJson(updatedJson);
     // console.log("Json Updated", updatedJson);
     // progressUpdate();
+
+    // let currIndex =  JSON.parse(JSON.stringify(jsonData)).subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId
+
+    let quesLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
+      inputDataIdx
+    ].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx]
+      .questions.length;
+    if (questionDataIdx == quesLength - 1) {
+      scrollEffect(inputDataIdx);
+      console.log("last", inputDataIdx);
+    }
   };
 
   const handleNumChange = (
@@ -219,10 +239,47 @@ const ImpactCalculator = (props: any) => {
     }
   };
 
+  // function scrollToTargetAdjusted() {
+  //   // @ts-ignore
+  //   let element = document.getElementById("ok");
+  //   // @ts-ignore
+  //   let container = document.getElementById("impactCalc");
+  //   let headerOffset = 45;
+  //   // @ts-ignore
+  //   let elementPosition = element.getBoundingClientRect().top;
+  //   // @ts-ignore
+  //   let offsetPosition = elementPosition + container.pageYOffset - headerOffset;
+  //   // @ts-ignore
+  //   container.scrollTo({
+  //     top: offsetPosition,
+  //     behavior: "smooth",
+  //   });
+  //   // @ts-ignore
+  //   document.getElementById("impactCalc").scrollTop = container.pageYOffset;
+  // }
+
+  const getblockLocations = (jsonData: any) => {
+    // debugger;
+    let arr: any = [];
+    jsonData?.data?.inputData.forEach((y: any, i: any) => {
+      let height = document.getElementById("scroll_" + (i + 1))?.scrollHeight;
+      arr.push(height);
+    });
+    setBlockLocs(arr);
+  };
+
+  const scrollEffect = (ind: any) => {
+    // @ts-ignore
+    let container = document.getElementById("impactCalc");
+    // @ts-ignore
+    container.scrollTo(0, 400);
+    console.log(blockLocs[ind]);
+  };
+
   return (
     <div className="impact-calc-container">
       <SecondaryHeader sidebar={false} />
-      <div className="impact-calc-container__inr">
+      <div className="impact-calc-container__inr" id="impactCalc">
         <div className="impact-calc-container__inr--question">
           {
             // console.log(inputData?.isShow)
@@ -230,7 +287,10 @@ const ImpactCalculator = (props: any) => {
             inputData?.map((inputDetails: any, inputDataIdx: number) => {
               return (
                 <>
-                  <div className="single-dropdown-section">
+                  <div
+                    className="single-dropdown-section"
+                    id={"scroll_" + (inputDataIdx + 1)}
+                  >
                     {inputDetails?.isShow == true &&
                     inputDetails?.headingText != "" ? (
                       <div className="single-dropdown-section__header">
@@ -242,10 +302,6 @@ const ImpactCalculator = (props: any) => {
 
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
-                        console.log(
-                          subHeadingDetail?.subHeadingText == undefined &&
-                            subHeadingDetail?.subHeadingText == ""
-                        );
                         return subHeadingDetail?.isShow == true ? (
                           <>
                             <div className="single-dropdown-section__body">
@@ -409,6 +465,7 @@ const ImpactCalculator = (props: any) => {
           }
         </div>
       </div>
+
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
@@ -416,6 +473,7 @@ const ImpactCalculator = (props: any) => {
             <LinearProgressbar2
               percentage={progpercentage}
               upJson={JSON.stringify(upJson)}
+              showError={setShowError}
             />
           </div>
         </div>

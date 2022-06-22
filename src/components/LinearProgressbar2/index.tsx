@@ -16,15 +16,26 @@ import CustomPopup from "../UI/CustomPopup";
 type ProgressBarProps = {
   percentage: number;
   upJson: string;
+  showError: any;
 };
 
-export default function LinearProgressbar2(props: ProgressBarProps) {
+const LinearProgressbar2 = ({
+  percentage,
+  upJson,
+  showError,
+}: ProgressBarProps) => {
   const { leftPanel, rightPanel } = useSelector((state: any) => state);
 
   const [jsonData, setJSONData] = useState<any>("");
   const [sbtDisable, setSbtdisable] = useState(true);
 
   const [open, setOpen] = useState(false);
+
+  const defaultProps: ProgressBarProps = {
+    percentage: 0,
+    upJson: jsonData,
+    showError: false,
+  };
 
   // const handleClickOpen = () => {
   //   setOpen(true);
@@ -72,6 +83,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     // @ts-ignore
     document.getElementById("forwardbutton").click();
     isReqAnswered();
+    showError(true);
   };
 
   const submitProgress = (event: any) => {
@@ -94,9 +106,9 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
   //   };
 
   const isReqAnswered = () => {
-    if (JSON.parse(props?.upJson)?.data?.inputData) {
+    if (JSON.parse(upJson)?.data?.inputData) {
       let count: number = 0;
-      JSON.parse(props?.upJson)?.data?.inputData?.map((block: any) => {
+      JSON.parse(upJson)?.data?.inputData?.map((block: any) => {
         block.subHeadingDetails.map((seg: any) => {
           seg.segmentDetails.map((ques: any) => {
             let len;
@@ -121,7 +133,6 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
           });
         });
       });
-      console.log(JSON.parse(props?.upJson));
       if (count == 0) {
         return true;
       } else {
@@ -129,6 +140,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
         return false;
       }
     }
+    console.log(upJson);
   };
 
   return (
@@ -136,10 +148,10 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
       <Box className="topContainer">
         <Box className="leftPanel">
           {/* <Box className="progressbar-text" sx={{ minWidth: 35 }}>
-                        <Typography variant="body2" color="text.secondary">{`(${Math.round(props?.percentage)}%)`}</Typography>
+                        <Typography variant="body2" color="text.secondary">{`(${Math.round(percentage)}%)`}</Typography>
                     </Box> */}
           <div className="ProgressText">
-            {"Answered " + Math.round(props?.percentage) + "%"}
+            {"Answered " + Math.round(percentage) + "%"}
           </div>
           <div className="progressbar-container">
             <Box
@@ -147,10 +159,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
               sx={{ display: "flex", justifyContent: "start" }}
             >
               <Box className="progressbar" sx={{ width: "100%", mr: 1 }}>
-                <LinearProgress
-                  variant="determinate"
-                  value={props?.percentage}
-                />
+                <LinearProgress variant="determinate" value={percentage} />
               </Box>
             </Box>
           </div>
@@ -203,4 +212,6 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
       </Box>
     </>
   );
-}
+};
+
+export default LinearProgressbar2;
