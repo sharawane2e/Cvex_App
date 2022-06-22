@@ -44,6 +44,13 @@ const HsddInput = (props: HsddInputProps) => {
               sx={{ p: 0, borderRadius: 0, mb: 1 }}
               className="inputField cutom-input-field"
               defaultValue="none"
+              displayEmpty
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return <>{placeholder}</>;
+                }
+                return selected;
+              }}
               value={selectedId}
               onChange={(e) => {
                 props.onChange(e.target.value);

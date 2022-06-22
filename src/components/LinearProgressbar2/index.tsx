@@ -74,6 +74,14 @@ const LinearProgressbar2 = ({
       });
     });
   };
+
+  const saveScrollPos = () => {
+    var scrollValue = document.querySelector(".impact-calc-container__inr")?.scrollTop;
+    console.log(scrollValue);
+    var scrollInput:any = document.querySelector("#scroll-value");
+    scrollInput.innerHTML = scrollValue;
+  }
+
   const saveProgress = (saveId: string) => {};
   const handleBtnClick = (saveId: string) => {
     // @ts-ignore
@@ -170,10 +178,12 @@ const LinearProgressbar2 = ({
             <div>
               <CustomButton
                 className={"submitButton previous-button"}
-                onClick={() =>
+                onClick={() => {
                   handleBtnClick(
                     jsonData?.data?.progressBarData?.saveBtn?.saveId
-                  )
+                  );
+                    saveScrollPos();
+                  }
                 }
               >
                 {getParsedData(

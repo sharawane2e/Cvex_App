@@ -59,6 +59,7 @@ const ImpactCalculator = (props: any) => {
 
   useEffect(() => {
     progressUpdate();
+    updateScrollPos(jsonData?.data?.scrollPosition);
   }, [jsonData]);
 
   // const txtInputValidate = (value: any, pattern: any) => {
@@ -274,6 +275,12 @@ const ImpactCalculator = (props: any) => {
     // @ts-ignore
     container.scrollTo(0, 400);
     console.log(blockLocs[ind]);
+  };
+  const updateScrollPos = (scrollValue: number) => {
+    let scrollContainer: any = document.querySelector(
+      ".impact-calc-container__inr"
+    );
+    scrollContainer.scrollTop = scrollValue;
   };
 
   return (
