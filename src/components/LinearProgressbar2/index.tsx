@@ -63,7 +63,8 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     })
 
   }
-  const saveProgress = (saveId: string) => {
+  const saveProgress = (saveId: string) => { }
+  const handleBtnClick = (saveId: string) => {
     // @ts-ignore
     document.getElementById('navText').value = saveId;
     // @ts-ignore
@@ -71,6 +72,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     // @ts-ignore
     document.getElementById('forwardbutton').click();
   };
+
 
   const submitProgress = (event: any) => {
     const inputData = jsonData?.data?.inputData;
@@ -118,7 +120,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
               <CustomButton
                 className={'submitButton previous-button'}
                 onClick={() =>
-                  saveProgress(jsonData?.data?.progressBarData?.saveBtn?.saveId)
+                  handleBtnClick(jsonData?.data?.progressBarData?.saveBtn?.saveId)
                 }
               >
                 {getParsedData(
@@ -129,7 +131,9 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
             <div>
               <CustomButton
                 className={leftPanel.categories.filter((x: any) => x.totalAnswered == x.totalQues).length == leftPanel.categories.length ? 'submitButton submitactive' : 'submitButton next-button'}
-                onClick={(e: any) => submitProgress(e)}
+                onClick={() =>
+                  handleBtnClick(jsonData?.data?.progressBarData?.saveBtn?.submitId)
+                }
               >
                 {getParsedData(
                   jsonData?.data?.progressBarData?.submitBtn?.submitBtntxt,

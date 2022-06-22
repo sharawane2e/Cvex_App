@@ -20,7 +20,7 @@ const SecondaryHeader = (props: headerProps) => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
-    console.log(document.getElementById('jsonData')?.innerHTML)
+    // console.log(document.getElementById('jsonData')?.innerHTML)
   }, []);
   const { leftPanel } = useSelector((state: any) => state);
   const { dispatch } = store;

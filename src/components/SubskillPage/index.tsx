@@ -9,6 +9,7 @@ import { getParsedData } from '../../utils/parserUtil';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import {ReactComponent as Knob} from '../../assets/svg/knob2.svg';
+import { TextareaAutosize } from '@mui/material';
 
 const PanelPage = (props: any) => {
 
@@ -81,37 +82,49 @@ const PanelPage = (props: any) => {
                                   </div>
                                   <div>
                                     <img src={skill?.skillIcon} alt="" />
-                                  </div>
+                                  </div>  
                                 </div>
-                                <div className="skill-details-cnrt">
-                                {
-                                  skill?.subSkillDetails?.map((subskill:any) => {
-                                    return(
-                                      <>
-                                        <div className=" skill-details-cnrt__skill-details">
-                                          <div className="skill-details-cnrt__sub-skill skill-common">
-                                            <p>{subskill.subSkillText}</p>
+                                <div className="subSkillCont">
+                                  {
+                                    (skill?.subSkillDetails?.map((subSkillDetail:any) => {
+                                      return(
+                                          <div className="subSkillDetailCont">
+                                            <p>{subSkillDetail}</p>
                                           </div>
-                                          <div className="skill-details-cnrt__observation skill-common">
-                                            <p>{subskill.observationtext}</p>
-                                          </div>
-                                          <div className="skill-details-cnrt__slider skill-common">
-                                            {/* <p>{subskill.sliderValue}</p> */}
-                                            <div className="skill-slider-cont">
-                                                <div className="knob-container" style={{left:`${subskill.sliderValue}%`}}>
-                                                  <Knob className="knob"/>
-                                                  <div className="slider-text" >
-                                                    { subskill.sliderValue }
-                                                  </div>
-                                                </div>
-                                                
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </>
-                                    )
-                                  })
-                                }
+                                      )
+                                    }))
+                                  }
+                                </div>
+                                <div className="observationCont">
+                                  <TextareaAutosize
+                                    aria-label="minimum height"
+                                    className="custom-text-area"
+                                    minRows={2}
+                                    defaultValue={skill?.observationsText}
+                                    onChange={(event: any) =>
+                                      {
+                                        
+                                      }
+                                    }
+                                    placeholder={skill?.observationsTextPlaceholder}
+                                    style={{
+                                      width: '100%',
+                                      marginTop: 20,
+                                      padding: 5,
+                                      resize: 'none',
+                                    }}
+                                  />
+                                </div>
+                                <div className="progressBarCont">
+                                  <div className="skill-slider-cont">
+                                    <div className="knob-container" style={{left:`${skill.sliderValue}%`}}>
+                                      <Knob className="knob"/>
+                                      <div className="slider-text" >
+                                        { skill.sliderValue }
+                                      </div>
+                                    </div>
+                                      
+                                  </div>
                                 </div>
                               </div>
                             </>

@@ -24,6 +24,7 @@ const Pages = () => {
   }, []);
 
   if (jsonData != '' || jsonData != undefined) {
+    console.log(jsonData)
     if (jsonData?.pageCode?.page === pageCode.Login) {
       return <Login />;
     }
@@ -51,9 +52,9 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
       return <ImpactCalculatorPage />;
     }
-    if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
-      return <HeatmapPage />;
-    }
+    // if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
+    //   return <HeatmapPage />;
+    // }
   }
 
   // return <SubskillPage />

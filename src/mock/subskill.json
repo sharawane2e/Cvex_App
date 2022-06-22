@@ -20,6 +20,7 @@
                         "skillIcon": "URL",
                         "subSkillDetails": ["Channel value strategy", "Operating model", "Network strategy"],
                         "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
                         "sliderValue": 10
                     },
                     {
@@ -27,6 +28,7 @@
                         "skillIcon": "URL",
                         "subSkillDetails": ["Customer segmentation and target groups​", "Channel mix​", "Sales and service segment strategy​"],
                         "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
                         "sliderValue": 10
                     }
                 ]
@@ -40,6 +42,7 @@
                         "skillIcon": "URL",
                         "subSkillDetails": ["Sales and service (omnichannel) journeys​", "Touchpoint design​"],
                         "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
                         "sliderValue": 10
                     },
                     {
@@ -47,6 +50,7 @@
                         "skillIcon": "URL",
                         "subSkillDetails": ["Omnichannel integrated data layer​", "Cross-channel collaboration​​"],
                         "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
                         "sliderValue": 10
                     }
                 ]

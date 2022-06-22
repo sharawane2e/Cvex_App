@@ -33,17 +33,21 @@ const ImpactCalculator = (props: any) => {
   // }, []);
 
   useEffect(() => {
+    // @ts-ignore
+    const updatedJsona = JSON.parse(document.getElementById('jsonData')?.innerText)
+    // @ts-ignore
+    const updatedJson = hideShowSections(updatedJsona)
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      updatedJson,
     );
   }, []);
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   hideShow();
-  // }, [jsonData]);
+    progressUpdate();
+  }, [jsonData]);
 
   // const txtInputValidate = (value: any, pattern: any) => {
   //   const reg = pattern;
@@ -80,7 +84,7 @@ const ImpactCalculator = (props: any) => {
       tempNum = minRange;
       res = tempNum.toString();
     }
-    progressUpdate();
+    // progressUpdate();
 
     return res;
   };
@@ -144,7 +148,7 @@ const ImpactCalculator = (props: any) => {
 
     setJSONData(updatedJson);
     // console.log("Json Updated", updatedJson);
-    progressUpdate();
+    // progressUpdate();
   };
 
   const handleNumChange = (
@@ -172,6 +176,7 @@ const ImpactCalculator = (props: any) => {
 
   const progressUpdate = () => {
 
+<<<<<<< HEAD
     var obj: any = {};
     // var incCount = jsonData.data.inputData.length
 
@@ -205,6 +210,66 @@ const ImpactCalculator = (props: any) => {
     console.log(obj);
     // console.log(jsonData)
     setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
+=======
+    if (jsonData?.data?.inputData) {
+      var obj: any = {};
+      var incCount = 100 / (jsonData?.data?.inputData?.length);
+
+      jsonData?.data?.inputData?.map((block: any) => {
+        obj[block.headingText] = 0;
+        block.subHeadingDetails.map((seg: any) => {
+          seg.segmentDetails.map((ques: any) => {
+            let quesCount = ques.questions.length;
+
+            let len;
+            // if(ques.options){
+            //   len = ques.questions.filter((select:any) => select.selectedId != "").length;
+            //   if(len == quesCount){
+            //     obj[block.headingText] = incCount;
+            //   }
+            //   else{
+            //     obj[block.headingText] = 0;
+            //   }
+            // }
+            // else{
+            //   len = ques.questions.filter((select:any) => select.selectedText != "").length;
+            //   if(len == quesCount){
+            //     obj[block.headingText] = incCount;
+            //   }
+            //   else{
+            //     obj[block.headingText] = 0;
+            //   }
+            // }
+
+            ques.questions.map((x: any) => {
+              if (x.options) {
+                len = ques.questions.filter((select: any) => select.selectedId != "").length;
+                //console.log(len)
+                if (len == quesCount) {
+                  obj[block.headingText] = incCount;
+                }
+                else {
+                  obj[block.headingText] = 0;
+                }
+              }
+              else {
+                len = ques.questions.filter((select: any) => select.selectedText != "").length;
+                if (len == quesCount) {
+                  obj[block.headingText] = incCount;
+                }
+                else {
+                  obj[block.headingText] = 0;
+                }
+              }
+            })
+          })
+        })
+      })
+      setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
+    }
+
+
+>>>>>>> 86b0f823821fcdc9734e99ab1e7122a4181dfb03
   }
 
   return (
@@ -221,33 +286,52 @@ const ImpactCalculator = (props: any) => {
                   <div className="single-dropdown-section">
                     {inputDetails?.isShow == true &&
                       inputDetails?.headingText != '' ? (
+<<<<<<< HEAD
                         <div className="single-dropdown-section__header">
                           <p className="header-text">
                             {inputDetails?.headingText}
                           </p>
                         </div>
                       ) : null}
+=======
+                      <div className="single-dropdown-section__header">
+                        <p className="header-text">
+                          {inputDetails?.headingText}
+                        </p>
+                      </div>
+                    ) : null}
+>>>>>>> 86b0f823821fcdc9734e99ab1e7122a4181dfb03
 
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
+                        console.log(subHeadingDetail?.subHeadingText == undefined && subHeadingDetail?.subHeadingText=="")
                         return subHeadingDetail?.isShow == true ? (
                           <>
+                        
                             <div className="single-dropdown-section__body">
-                              {subHeadingDetail?.subHeadingText != '' ? (
-                                <div className="title-container">
-                                  <p>{subHeadingDetail?.subHeadingText}</p>
-                                </div>
-                              ) : null}
+                              {subHeadingDetail.hasOwnProperty("subHeadingText") ?
+                                ((subHeadingDetail?.subHeadingText != "" && subHeadingDetail?.isShow == true) ? (
+                                  <div className="title-container">
+                                    <p>{subHeadingDetail?.subHeadingText}</p>
+                                  </div>
+                                ) : null):null
+                              }
+                              
                               {subHeadingDetail?.segmentDetails?.map(
                                 (
                                   segmentDetail: any,
                                   segmentDetailIdx: number,
                                 ) => {
-                                  return segmentDetail?.isShow == true ? (
+                                  return (segmentDetail?.isShow == true) ? (
                                     <>
-                                      <div className="title-container">
-                                        <p>{segmentDetail.segmentText}</p>
-                                      </div>
+                                    {
+                                      (segmentDetail?.segmentText != "")? (
+                                        <div className="segment-container">
+                                          <p>{segmentDetail.segmentText}</p>
+                                        </div>
+                                      ) : null
+                                    }
+                                      
 
                                       <Grid
                                         container
@@ -385,4 +469,8 @@ const ImpactCalculator = (props: any) => {
   );
 };
 
+<<<<<<< HEAD
 export default ImpactCalculator;
+=======
+export default PanelPage;
+>>>>>>> 86b0f823821fcdc9734e99ab1e7122a4181dfb03
