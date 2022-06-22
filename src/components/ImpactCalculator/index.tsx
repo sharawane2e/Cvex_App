@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import startData from '../../mock/startPageData.json';
-import { isPasswordValid } from '../../utils';
-import SecondaryHeader from '../Headers/SecondaryHeader/index';
-import { Inputbox } from '../UI/Input';
-import CustomButton from '../UI/CustomButton';
-import { Footer } from '../Footer';
+import React, { useEffect, useState } from "react";
+import startData from "../../mock/startPageData.json";
+import { isPasswordValid } from "../../utils";
+import SecondaryHeader from "../Headers/SecondaryHeader/index";
+import { Inputbox } from "../UI/Input";
+import CustomButton from "../UI/CustomButton";
+import { Footer } from "../Footer";
 
-import { getParsedData } from '../../utils/parserUtil';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import { FormControl, Grid, MenuItem, Select, Tooltip } from '@mui/material';
-import HsddInput from './HsddInput';
-import { OptionUnstyled } from '@mui/base';
-import ProgressBar from '../ProgressBar';
-import { hideShowSections } from '../../services/impactCaluculator';
-import LinearProgressbar2 from '../LinearProgressbar2';
+import { getParsedData } from "../../utils/parserUtil";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { FormControl, Grid, MenuItem, Select, Tooltip } from "@mui/material";
+import HsddInput from "./HsddInput";
+import { OptionUnstyled } from "@mui/base";
+import ProgressBar from "../ProgressBar";
+import { hideShowSections } from "../../services/impactCaluculator";
+import LinearProgressbar2 from "../LinearProgressbar2";
 const ImpactCalculator = (props: any) => {
-  const [jsonData, setJSONData] = useState<any>('');
+  const [jsonData, setJSONData] = useState<any>("");
+  const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
+  const [showError, setShowError] = useState(true);
 
   const [progpercentage, setProgpercentage] = useState<any>(0);
-
 
   // useEffect(() => {
   //   setJSONData(
@@ -33,20 +34,23 @@ const ImpactCalculator = (props: any) => {
   // }, []);
 
   useEffect(() => {
+    // prettier-ignore
     // @ts-ignore
-    const updatedJsona = JSON.parse(document.getElementById('jsonData')?.innerText)
+    let updatedJsona: any = JSON.parse(document.getElementById("jsonData")?.innerText);
+    // const updatedJsona = JSON.parse(
+    //   document.getElementById("jsonData")?.innerText
+    // );
     // @ts-ignore
-    const updatedJson = hideShowSections(updatedJsona)
+    const updatedJson = hideShowSections(updatedJsona);
     setJSONData(
       // @ts-ignore
-      updatedJson,
+      updatedJson
     );
   }, []);
 
-
   useEffect(() => {
-
     progressUpdate();
+    updateScrollPos(jsonData?.data?.scrollPosition);
   }, [jsonData]);
 
   // const txtInputValidate = (value: any, pattern: any) => {
@@ -66,13 +70,13 @@ const ImpactCalculator = (props: any) => {
     value: any,
     pattern: any,
     minRange: number,
-    maxRange: number,
+    maxRange: number
   ) => {
     const reg = pattern;
-    let res = '';
+    let res = "";
 
     for (let i = 0; i < value.length; i++) {
-      if (value[0] == ' ') return '';
+      if (value[0] == " ") return "";
 
       if (reg.test(value[i])) res += value[i];
     }
@@ -133,7 +137,7 @@ const ImpactCalculator = (props: any) => {
     inputDataIdx: number,
     subHeadingIdx: number,
     segmentDetailIdx: number,
-    questionDataIdx: number,
+    questionDataIdx: number
   ) => {
     const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
     updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[
@@ -143,10 +147,10 @@ const ImpactCalculator = (props: any) => {
     document.getElementById(ddId)?.click();
 
     const updatedJson = hideShowSections(updatedJsonData);
-
     //@ts-ignore
 
     setJSONData(updatedJson);
+    setupJson(updatedJson);
     // console.log("Json Updated", updatedJson);
     // progressUpdate();
   };
@@ -156,7 +160,7 @@ const ImpactCalculator = (props: any) => {
     inputDataIdx: number,
     subHeadingIdx: number,
     segmentDetailIdx: number,
-    questionDataIdx: number,
+    questionDataIdx: number
   ) => {
     const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
     const selectedId =
@@ -172,44 +176,56 @@ const ImpactCalculator = (props: any) => {
     document.getElementById(selectedId).value = value;
 
     setJSONData(updatedJsonData);
+    setupJson(updatedJsonData);
   };
 
   const progressUpdate = () => {
-
     var obj: any = {};
-    // var incCount = jsonData.data.inputData.length
+    var incCount = jsonData?.data?.inputData?.length;
 
-    jsonData.data.inputData.map((block: any) => {
+    jsonData?.data?.inputData?.map((block: any) => {
       obj[block.headingText] = 0;
-      block.subHeadingDetails.map((seg: any) => {
-        seg.segmentDetails.map((ques: any) => {
+      block?.subHeadingDetails?.map((seg: any) => {
+        seg?.segmentDetails?.map((ques: any) => {
           let quesCount = ques.questions.length;
           let len;
-          if (ques.options) {
-            len = ques.questions.filter((select: any) => select.selectedId != "").length;
-            if (len == quesCount) {
-              obj[block.headingText] = 20;
+
+          ques?.questions?.map((x: any) => {
+            if (x.options) {
+              len = ques.questions.filter(
+                (select: any) => select?.selectedId != ""
+              ).length;
+              //console.log(len)
+              if (len == quesCount) {
+                obj[block?.headingText] = incCount;
+              } else {
+                obj[block?.headingText] = 0;
+              }
+            } else {
+              len = ques?.questions?.filter(
+                (select: any) => select?.selectedText != ""
+              ).length;
+              if (len == quesCount) {
+                obj[block?.headingText] = incCount;
+              } else {
+                obj[block?.headingText] = 0;
+              }
             }
-            else {
-              obj[block.headingText] = 0;
-            }
-          }
-          else {
-            len = ques.questions.filter((select: any) => select.selectedText != "").length;
-            if (len == quesCount) {
-              obj[block.headingText] = 20;
-            }
-            else {
-              obj[block.headingText] = 0;
-            }
-          }
-        })
-      })
-    })
-    console.log(obj);
-    // console.log(jsonData)
-    setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
+          });
+        });
+      });
+    });
+    if (Object.values(obj).length > 0) {
+      setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
+    }
+  };
+
+  const updateScrollPos = ( scrollValue:number) => {
+    let scrollContainer:any = document.querySelector(".impact-calc-container__inr");
+    scrollContainer.scrollTop = scrollValue;
   }
+
+  
 
   return (
     <div className="impact-calc-container">
@@ -224,44 +240,46 @@ const ImpactCalculator = (props: any) => {
                 <>
                   <div className="single-dropdown-section">
                     {inputDetails?.isShow == true &&
-                      inputDetails?.headingText != '' ? (
-                        <div className="single-dropdown-section__header">
-                          <p className="header-text">
-                            {inputDetails?.headingText}
-                          </p>
-                        </div>
-                      ) : null}
+                    inputDetails?.headingText != "" ? (
+                      <div className="single-dropdown-section__header">
+                        <p className="header-text">
+                          {inputDetails?.headingText}
+                        </p>
+                      </div>
+                    ) : null}
 
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
-                        console.log(subHeadingDetail?.subHeadingText == undefined && subHeadingDetail?.subHeadingText=="")
+                        console.log(
+                          subHeadingDetail?.subHeadingText == undefined &&
+                            subHeadingDetail?.subHeadingText == ""
+                        );
                         return subHeadingDetail?.isShow == true ? (
                           <>
-                        
                             <div className="single-dropdown-section__body">
-                              {subHeadingDetail.hasOwnProperty("subHeadingText") ?
-                                ((subHeadingDetail?.subHeadingText != "" && subHeadingDetail?.isShow == true) ? (
+                              {subHeadingDetail.hasOwnProperty(
+                                "subHeadingText"
+                              ) ? (
+                                subHeadingDetail?.subHeadingText != "" &&
+                                subHeadingDetail?.isShow == true ? (
                                   <div className="title-container">
                                     <p>{subHeadingDetail?.subHeadingText}</p>
                                   </div>
-                                ) : null):null
-                              }
-                              
+                                ) : null
+                              ) : null}
+
                               {subHeadingDetail?.segmentDetails?.map(
                                 (
                                   segmentDetail: any,
-                                  segmentDetailIdx: number,
+                                  segmentDetailIdx: number
                                 ) => {
-                                  return (segmentDetail?.isShow == true) ? (
+                                  return segmentDetail?.isShow == true ? (
                                     <>
-                                    {
-                                      (segmentDetail?.segmentText != "")? (
+                                      {segmentDetail?.segmentText != "" ? (
                                         <div className="segment-container">
                                           <p>{segmentDetail.segmentText}</p>
                                         </div>
-                                      ) : null
-                                    }
-                                      
+                                      ) : null}
 
                                       <Grid
                                         container
@@ -271,7 +289,7 @@ const ImpactCalculator = (props: any) => {
                                         {segmentDetail?.questions?.map(
                                           (
                                             question: any,
-                                            questionDataIdx: number,
+                                            questionDataIdx: number
                                           ) => {
                                             // {
                                             //   (showSection(question?.questionId)===true)?
@@ -279,7 +297,7 @@ const ImpactCalculator = (props: any) => {
                                             //      <p>{segmentDetail?.segmentText}</p>
                                             //    </div>) : null
                                             //  }
-                                            if (question.type == 'dd') {
+                                            if (question.type == "dd") {
                                               return (
                                                 <>
                                                   <HsddInput
@@ -290,14 +308,14 @@ const ImpactCalculator = (props: any) => {
                                                         inputDataIdx,
                                                         subHeadingIdx,
                                                         segmentDetailIdx,
-                                                        questionDataIdx,
+                                                        questionDataIdx
                                                       )
                                                     }
                                                   />
                                                 </>
                                               );
                                             } else if (
-                                              question.type == 'num' &&
+                                              question.type == "num" &&
                                               question.isShow
                                             ) {
                                               return (
@@ -316,15 +334,15 @@ const ImpactCalculator = (props: any) => {
                                                       className="inputField cutom-input-field"
                                                       id={
                                                         question.questionId +
-                                                        '_html'
+                                                        "_html"
                                                       }
                                                       placeholder={
                                                         question.placeholder
                                                       }
                                                       type={
-                                                        question.type == 'text'
-                                                          ? 'text'
-                                                          : ''
+                                                        question.type == "text"
+                                                          ? "text"
+                                                          : ""
                                                       }
                                                       value={
                                                         question.selectedText
@@ -335,7 +353,7 @@ const ImpactCalculator = (props: any) => {
                                                             e.target.value,
                                                             /^[0-9]+$/,
                                                             question.minRange,
-                                                            question.maxRange,
+                                                            question.maxRange
                                                           );
 
                                                         handleNumChange(
@@ -343,42 +361,54 @@ const ImpactCalculator = (props: any) => {
                                                           inputDataIdx,
                                                           subHeadingIdx,
                                                           segmentDetailIdx,
-                                                          questionDataIdx,
+                                                          questionDataIdx
                                                         );
                                                       }}
+                                                      error={
+                                                        showError &&
+                                                        question.selectedText ==
+                                                          "" &&
+                                                        question.isRequired
+                                                      }
                                                     />
                                                   </Grid>
                                                 </>
                                               );
                                             } else if (
-                                              question.type == 'hsdd'
+                                              question.type == "hsdd"
                                             ) {
                                               return (
                                                 <HsddInput
                                                   question={question}
+                                                  // error={showwerror && x.selcetedid == "" && x.isrequired}
                                                   onChange={(ddId: string) =>
                                                     handleDDChange(
                                                       ddId,
                                                       inputDataIdx,
                                                       subHeadingIdx,
                                                       segmentDetailIdx,
-                                                      questionDataIdx,
+                                                      questionDataIdx
                                                     )
+                                                  }
+                                                  error={
+                                                    showError &&
+                                                    question.selectedId == "" &&
+                                                    question.isRequired
                                                   }
                                                 />
                                               );
                                             }
-                                          },
+                                          }
                                         )}
                                       </Grid>
                                     </>
                                   ) : null;
-                                },
+                                }
                               )}
                             </div>
                           </>
                         ) : null;
-                      },
+                      }
                     )}
                   </div>
                 </>
@@ -391,7 +421,10 @@ const ImpactCalculator = (props: any) => {
         <div className="footer-impact-calc">
           <div className="left-sec">
             {/* <ProgressBar showProgressBar={true} /> */}
-            <LinearProgressbar2 percentage={progpercentage} />
+            <LinearProgressbar2
+              percentage={progpercentage}
+              upJson={JSON.stringify(upJson)}
+            />
           </div>
         </div>
       </Footer>
