@@ -71,9 +71,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     document.getElementById("forwardbutton").disabled = false;
     // @ts-ignore
     document.getElementById("forwardbutton").click();
-    let req = isReqAnswered;
-    getMandatoryField();
-    console.log(req());
+    isReqAnswered();
   };
 
   const submitProgress = (event: any) => {
@@ -127,6 +125,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
       if (count == 0) {
         return true;
       } else {
+        setOpen(true);
         return false;
       }
     }

@@ -20,6 +20,7 @@ const ImpactCalculator = (props: any) => {
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
+  const [showError, setShowError] = useState(true);
 
   const [progpercentage, setProgpercentage] = useState<any>(0);
 
@@ -355,6 +356,12 @@ const ImpactCalculator = (props: any) => {
                                                           questionDataIdx
                                                         );
                                                       }}
+                                                      error={
+                                                        showError &&
+                                                        question.selectedText ==
+                                                          "" &&
+                                                        question.isRequired
+                                                      }
                                                     />
                                                   </Grid>
                                                 </>
@@ -365,6 +372,7 @@ const ImpactCalculator = (props: any) => {
                                               return (
                                                 <HsddInput
                                                   question={question}
+                                                  // error={showwerror && x.selcetedid == "" && x.isrequired}
                                                   onChange={(ddId: string) =>
                                                     handleDDChange(
                                                       ddId,
@@ -373,6 +381,11 @@ const ImpactCalculator = (props: any) => {
                                                       segmentDetailIdx,
                                                       questionDataIdx
                                                     )
+                                                  }
+                                                  error={
+                                                    showError &&
+                                                    question.selectedId == "" &&
+                                                    question.isRequired
                                                   }
                                                 />
                                               );
