@@ -51,7 +51,7 @@ export default function ProgressBar(props: ProgressBarProps) {
 
   const submitProgress = (event: any) => {
     var len = leftPanel.categories.filter((x: any) => x.totalAnswered == x.totalQues).length;
-    if(len == 8){
+    if (len == 8) {
       // @ts-ignore
       // document.getElementById('').click();
     }
