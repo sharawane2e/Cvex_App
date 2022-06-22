@@ -12,6 +12,7 @@ const BarChart = (props: HighChartProps) => {
     const chartSeries = props?.chartSeries
     const chartDetails: any = [];
     const seriesData: any = [];
+    const titleData: any = [];
     useEffect(() => {
         setJSONData(
             // @ts-ignore
@@ -24,15 +25,23 @@ const BarChart = (props: HighChartProps) => {
         chartSeries?.map((chartDetail: any) => {
             chartDetails.push(chartDetail)
         })
-        return chartSeries?.map((chartDetail: any) => {
+        return chartSeries?.map((chartDetail: any, index: number) => {
             // console.log(chartDetail)
-            if (chartDetail[0] == "Baseline") {
-                return chartDetail[0]
+            if (chartDetail.length > -1) {
+                if (chartDetail[0] == "Baseline" && chartDetail[chartDetail.length - 1] == "service to sales") {
+                    chartDetail.splice(chartDetail.length, 1)
+                    console.log(chartDetail)
+                    titleData.push(chartDetail)
+                    seriesData.push(chartDetail[0])
+
+                }
             }
         })
     }
     getChartSeries()
     console.log(getChartSeries())
+    console.log(titleData)
+    console.log(seriesData)
     const chartOptions = getBaselinechartOptions();
     const [options, setOptions] = useState({
         // Bar chart
