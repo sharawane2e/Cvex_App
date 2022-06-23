@@ -43,11 +43,14 @@ const HsddInput = (props: HsddInputProps) => {
       <Grid
         container
         sx={{ alignItems: "center" }}
-        xs={12}
+        sm={4}
         md={4}
         className="input-form-control"
       >
-        <Grid item xs={12}>
+        <Grid item
+        xs={12}
+        lg={12}
+        md={12}>
           <p className="label-heading">{optionName}</p>
           <FormControl fullWidth>
             <Select

@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import PrimaryHeader from '../Headers/PrimaryHeader';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Checkbox, InputLabel, ListItemText, MenuItem } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import { Inputbox } from '../UI/Input';
-import { Grid } from '@mui/material';
-import { Footer } from '../Footer';
-import CustomButton from '../UI/CustomButton';
-import { ReactComponent as InfoIcon } from '../../assets/svg/info-icon.svg';
-import Tooltip from '@mui/material/Tooltip';
+import React, { useState, useEffect } from "react";
+import PrimaryHeader from "../Headers/PrimaryHeader";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { Checkbox, InputLabel, ListItemText, MenuItem } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import { Inputbox } from "../UI/Input";
+import { Grid } from "@mui/material";
+import { Footer } from "../Footer";
+import CustomButton from "../UI/CustomButton";
+import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
+import Tooltip from "@mui/material/Tooltip";
+import CustomPopup from "../UI/CustomPopup";
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>("");
   const [serviceOffer, setServicesOffer] = useState<any>([]);
+  const [showError, setShowError] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setJSONData(
@@ -20,6 +23,35 @@ const GI = () => {
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
   }, []);
+
+  const isReqAnswered = () => {
+    let count = 0;
+    jsonData?.data?.rightData?.questions.map((ques: any) => {
+      if (
+        (ques.isRequired == true &&
+          (ques.selectedId == "" || ques.selectedText == "")) ||
+        (ques.isRequired2 == true &&
+          (ques.selectedId2 == "" || ques.selectedText2 == "")) ||
+        (ques.isRequired3 == true &&
+          (ques.selectedId3 == "" || ques.selectedText3 == ""))
+      ) {
+        count = count + 1;
+      }
+    });
+
+    console.log("unanswered : ", count);
+    console.log("jsonData : ", jsonData);
+
+    if (count > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const giInfo = jsonData?.data?.rightData;
 
@@ -69,7 +101,7 @@ const GI = () => {
   };
 
   const mapContainsId = (map: any, selectedId: any) => {
-    selectedId = selectedId.split('_')[1];
+    selectedId = selectedId.split("_")[1];
     const allMapIndex: string[] = [];
     map.split("|").forEach((element: any) => {
       allMapIndex.push(element.split(":")[0]);
@@ -211,13 +243,19 @@ const GI = () => {
 
   const handleNextClick = () => {
     if (jsonData !== "") {
-      // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData?.data?.footerData?.forwardInputId;
-      // @ts-ignore
-      document.getElementById("forwardbutton").disabled = false;
-      // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      if (isReqAnswered() == true) {
+        // @ts-ignore
+        document.getElementById("navText").value =
+          jsonData?.data?.footerData?.forwardInputId;
+        // @ts-ignore
+        document.getElementById("forwardbutton").disabled = false;
+        // @ts-ignore
+        document.getElementById("forwardbutton").click();
+        isReqAnswered();
+      } else {
+        setShowError(true);
+        setOpen(true);
+      }
     }
   };
 
@@ -276,7 +314,7 @@ const GI = () => {
                               // )
                               e.target.value = inputValidate(
                                 e.target.value,
-                                /^[A-Za-z ]+$/,
+                                /^[A-Za-z ]+$/
                               );
 
                               const updatedQuestionsArray: any[] = [];
@@ -306,7 +344,7 @@ const GI = () => {
                               );
                               element.value = e.target.value;
                             }}
-                            error={false}
+                            error={showError && genQues.isRequired}
                           />
                         </Grid>
                       </Grid>
@@ -382,7 +420,7 @@ const GI = () => {
                               );
                               element.value = e.target.value;
                             }}
-                            error={false}
+                            error={showError && genQues.isRequired}
                           />
                         </Grid>
                       </Grid>
@@ -416,6 +454,11 @@ const GI = () => {
                               className="inputField cutom-input-field"
                               displayEmpty={true}
                               defaultValue="none"
+                              error={
+                                showError &&
+                                genQues.selectedId == "" &&
+                                genQues.isRequired
+                              }
                               renderValue={(selected) => {
                                 if (selected.length === 0) {
                                   return <>{genQues?.placeholder}</>;
@@ -568,6 +611,11 @@ const GI = () => {
                                     },
                                   });
                                 }}
+                                error={
+                                  showError &&
+                                  genQues.selectedId == "" &&
+                                  genQues.isRequired
+                                }
                               >
                                 <MenuItem
                                   disabled
@@ -622,7 +670,7 @@ const GI = () => {
                                       if (selected.length === 0) {
                                         return <>{genQues?.placeholder}</>;
                                       }
-                          
+
                                       return selected;
                                     }}
                                     value={getselectedDDName(
@@ -677,6 +725,11 @@ const GI = () => {
                                         },
                                       });
                                     }}
+                                    error={
+                                      showError &&
+                                      genQues.selectedId2 == "" &&
+                                      genQues.isRequired2
+                                    }
                                   >
                                     <MenuItem
                                       disabled
@@ -688,7 +741,7 @@ const GI = () => {
                                     {getSddQ2Options(
                                       genQues.selectedId,
                                       genQues.map,
-                                      genQues.options2,
+                                      genQues.options2
                                     ).map((item: any) => (
                                       <MenuItem
                                         value={item?.ddName}
@@ -749,22 +802,25 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
-                                      CV.selectedId2 = "";
-                                      CV.selectedId3 = "";
-                                      if (CV.questionId == genQues.questionId) {
-                                        CV.options.forEach((option: any) => {
-                                          if (
-                                            option.ddName == event.target.value
-                                          ) {
-                                            dropdownId = option.ddId;
+                                      if(CV?.type == genQues?.type)
+                                      {
+                                        CV.selectedId2 = "";
+                                        CV.selectedId3 = "";
+                                        if (CV.questionId == genQues.questionId) {
+                                          CV.options.forEach((option: any) => {
+                                            if (
+                                              option.ddName == event.target.value
+                                            ) {
+                                              dropdownId = option.ddId;
 
-                                            document
-                                              .getElementById(option.ddId)
-                                              ?.click();
-                                            uncheckCheckboxes(genQues.options2);
-                                            uncheckCheckboxes(genQues.options3);
-                                          }
-                                        });
+                                              document
+                                                .getElementById(option.ddId)
+                                                ?.click();
+                                              uncheckCheckboxes(genQues.options2);
+                                              uncheckCheckboxes(genQues.options3);
+                                            }
+                                          });
+                                        }
                                       }
                                     }
                                   );
@@ -789,6 +845,11 @@ const GI = () => {
                                     },
                                   });
                                 }}
+                                error={
+                                  showError &&
+                                  genQues.selectedId == "" &&
+                                  genQues.isRequired
+                                }
                               >
                                 <MenuItem
                                   disabled
@@ -836,7 +897,7 @@ const GI = () => {
                                     if (selected.length === 0) {
                                       return <>{genQues?.placeholder}</>;
                                     }
-                                    return selected.join(',');
+                                    return selected.join(",");
                                     // return ["hello",",hello2"]
                                   }}
                                   onChange={(event) => {
@@ -874,7 +935,7 @@ const GI = () => {
                                             dropdownIdsArr.join();
                                         }
                                         updatedQuestionsArray.push(CV);
-                                      },
+                                      }
                                     );
 
                                     setJSONData({
@@ -885,6 +946,11 @@ const GI = () => {
                                       },
                                     });
                                   }}
+                                  error={
+                                    showError &&
+                                    genQues.selectedId == "" &&
+                                    genQues.isRequired
+                                  }
                                 >
                                   {getSddQ2Options(
                                     genQues.selectedId,
@@ -944,7 +1010,7 @@ const GI = () => {
                                     if (selected.length === 0) {
                                       return <>{genQues?.placeholder}</>;
                                     }
-                                    return selected.join(',');
+                                    return selected.join(",");
                                     //return ["hello",",hello2"]
                                   }}
                                   value={getselectedDDNameMulti(
@@ -997,7 +1063,11 @@ const GI = () => {
                                       },
                                     });
                                   }}
-                                  
+                                  error={
+                                    showError &&
+                                    genQues.selectedId == "" &&
+                                    genQues.isRequired
+                                  }
                                 >
                                   <MenuItem
                                     disabled
@@ -1071,6 +1141,12 @@ const GI = () => {
           </div>
         </div>
       </Footer>
+      <CustomPopup
+        buttonText={jsonData?.data?.errorData?.btnText}
+        description={jsonData?.data?.errorData?.bodyText}
+        handleClose={handleClose}
+        open={open}
+      />
     </div>
   );
 };

@@ -9,3 +9,10 @@ export const isPasswordValid = (password: string) => {
 //   if (pageCode.Login == "1") {
 //   }
 // };
+
+export const saveScrollPosNew = (containerClass:string, inputFieldId:string) => {
+  var scrollValue = document.querySelector(`${containerClass}`)?.scrollTop;
+  var scrollInput:any = document.querySelector(`${inputFieldId}`);
+  return scrollInput.value = scrollValue;
+}
+

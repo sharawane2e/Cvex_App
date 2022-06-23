@@ -1,5 +1,5 @@
 {
-    "pageCode": { "page": 6 },
+    "pageCode": { "page": 12 },
     "data": {
       "headerData": {
         "title": "Customer Value Execution",
@@ -19,16 +19,14 @@
                         "skillText": "Sales and service strategy",
                         "skillIcon": "URL",
                         "subSkillDetails": ["Channel value strategy", "Operating model", "Network strategy"],
-                        "observationsText": "",
-                        "observationsTextPlaceholder": "Enter text...",
+                        "observationTxt": "Hello Ji!",
                         "sliderValue": 10
                     },
                     {
                         "skillText": "Customer segment and channel startegy",
                         "skillIcon": "URL",
                         "subSkillDetails": ["Customer segmentation and target groups​", "Channel mix​", "Sales and service segment strategy​"],
-                        "observationsText": "",
-                        "observationsTextPlaceholder": "Enter text...",
+                        "observationTxt": "observationsText2",
                         "sliderValue": 10
                     }
                 ]
@@ -41,16 +39,14 @@
                         "skillText": "Sales & Service journey design​",
                         "skillIcon": "URL",
                         "subSkillDetails": ["Sales and service (omnichannel) journeys​", "Touchpoint design​"],
-                        "observationsText": "",
-                        "observationsTextPlaceholder": "Enter text...",
+                        "observationTxt": "observationsText3",
                         "sliderValue": 10
                     },
                     {
                         "skillText": "Omnichannel integration​",
                         "skillIcon": "URL",
                         "subSkillDetails": ["Omnichannel integrated data layer​", "Cross-channel collaboration​​"],
-                        "observationsText": "",
-                        "observationsTextPlaceholder": "Enter text...",
+                        "observationTxt": "observationsText4",
                         "sliderValue": 10
                     }
                 ]

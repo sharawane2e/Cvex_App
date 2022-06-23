@@ -9,6 +9,7 @@ import CustomButton from '../UI/CustomButton';
 import { getParsedData } from '../../utils/parserUtil';
 import { LinearProgressBar } from '../LinearProgressBar';
 import { useSelector } from 'react-redux';
+import { saveScrollPosNew } from "../../utils";
 
 // import { useSelector } from 'react-redux';
 
@@ -77,9 +78,10 @@ export default function ProgressBar(props: ProgressBarProps) {
             <div>
               <CustomButton
                 className={'submitButton previous-button'}
-                onClick={() =>
+                onClick={() =>{
+                  saveScrollPosNew(".right-panel__inr", "#scroll-value");
                   saveProgress(jsonData?.data?.progressBarData?.saveBtn?.saveId)
-                }
+                }}
               >
                 {getParsedData(
                   jsonData?.data?.progressBarData?.saveBtn?.saveBtnTxt,

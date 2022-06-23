@@ -17,11 +17,20 @@ import { useDispatch, useSelector } from 'react-redux';
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
 
+  const updateScrollPos = (scrollValue: number) => {
+    let scrollContainer: any = document.querySelector(
+      ".right-panel__inr"
+    );
+    scrollContainer.scrollTop = scrollValue;
+  };
+
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    console.log(document.querySelector(".right-panel__inr"));
+    setTimeout(function(){updateScrollPos(jsonData?.data?.scrollPosition);}, 1000);
   }, []);
   
   const { dispatch } = store;
@@ -80,8 +89,9 @@ const QuestionPage = () => {
           </div>
         </div>
         <Footer>
+          {console.log("dd",jsonData?.data?.footerData)}
           <div className="button-container justi">
-            {jsonData?.data?.footerData?.previousBtn.previousShow ?
+            {/* {jsonData?.data?.footerData?.previousBtn.previousShow ? */}
               <div className="d-flex">
                 <CustomButton
                   className={'submitButton previous-button '}
@@ -92,10 +102,10 @@ const QuestionPage = () => {
                   )}
                 </CustomButton>
               </div>
-              : ""
-            }
+              {/* : ""
+            } */}
 
-            {jsonData?.data?.footerData?.forwardBtn.forwardShow ?
+            {/* {jsonData?.data?.footerData?.forwardBtn.forwardShow ? */}
               <div>
                 <CustomButton
                   className={'submitButton next-button'}
@@ -106,8 +116,8 @@ const QuestionPage = () => {
                   )}
                 </CustomButton>
               </div>
-              : ""
-            }
+              {/* : ""
+            } */}
 
           </div>
         </Footer>
