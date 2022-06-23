@@ -89,8 +89,9 @@ const QuestionPage = () => {
           </div>
         </div>
         <Footer>
+          {console.log("dd",jsonData?.data?.footerData)}
           <div className="button-container justi">
-            {jsonData?.data?.footerData?.previousBtn.previousShow ?
+            {/* {jsonData?.data?.footerData?.previousBtn.previousShow ? */}
               <div className="d-flex">
                 <CustomButton
                   className={'submitButton previous-button '}
@@ -101,10 +102,10 @@ const QuestionPage = () => {
                   )}
                 </CustomButton>
               </div>
-              : ""
-            }
+              {/* : ""
+            } */}
 
-            {jsonData?.data?.footerData?.forwardBtn.forwardShow ?
+            {/* {jsonData?.data?.footerData?.forwardBtn.forwardShow ? */}
               <div>
                 <CustomButton
                   className={'submitButton next-button'}
@@ -115,8 +116,8 @@ const QuestionPage = () => {
                   )}
                 </CustomButton>
               </div>
-              : ""
-            }
+              {/* : ""
+            } */}
 
           </div>
         </Footer>

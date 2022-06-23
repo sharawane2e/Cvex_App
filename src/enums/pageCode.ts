@@ -4,9 +4,10 @@ enum pageCode {
   'GI' = 3,
   'QuestionPage' = 4,
   'ThankYou' = 5,
-  'SkillPage' = 6,
+  'SubskillPage' = 6,
   'PanelPage' = 7,
   'ImpactCalculatorPage' = 9,
-  'HeatmapPage' = 11
+  'HeatmapPage' = 11,
+  'SkillPage' = 12,
 }
 export default pageCode;
