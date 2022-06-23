@@ -6,6 +6,10 @@
   background-size: 100%;
   align-items: center;
   min-height: 150px;
+  @include breakpoint(sm-mobileonly) {
+    background-size: cover;
+    min-height: 78px;
+  }
 
 .header {
   position: absolute;
@@ -13,14 +17,30 @@
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
+  @include breakpoint(sm-mobileonly) {
+    bottom: -169px;
+    width: 255px;
+  }
+  @include breakpoint(Ipad) {
+    width: 255px;
+  }
 }
 
 .logo {
   padding-left: 60px;
-
+  @include breakpoint(sm-mobileonly) {
+    padding-left: 15px;
+    height: 43px;
+  }
   img{
     @include breakpoint(lg-desktop) {
       width: 200px;
+    }
+    @include breakpoint(sm-mobileonly) {
+      width: 140px;
+    }
+    @include breakpoint(Ipad) {
+      width: 140px;
     }
   }
 }
@@ -47,6 +67,12 @@
 .banner-title h2 {
   @include space("padding", "all", 15px, 0px);
   font-size: 18px;
+  @include breakpoint(Ipad) {
+    font-size: 16px;
+  }
+  @include breakpoint(sm-mobileonly) {
+    font-size: 15px;
+  }
 }
 
 .banner-title::after {

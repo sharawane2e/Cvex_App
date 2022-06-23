@@ -5,6 +5,9 @@
     
       .content-area {
         padding-top: 150px;
+        @include breakpoint(sm-mobileonly) {
+          padding-top: 205px;
+        }
         .btn-container {
           display: flex;
           justify-content: center;
