@@ -23,40 +23,40 @@ const Pages = () => {
     );
   }, []);
 
-  // if (jsonData != '' || jsonData != undefined) {
-  //   console.log(jsonData)
-  //   if (jsonData?.pageCode?.page === pageCode.Login) {
-  //     return <Login />;
-  //   }
-  //   if (jsonData?.pageCode?.page === pageCode.Introduction) {
-  //     return <Introduction />;
-  //   }
-  //   if (jsonData?.pageCode?.page === pageCode.GI) {
-  //     return <GI />;
-  //   }
-  //   if (jsonData?.pageCode?.page == pageCode.QuestionPage) {
-  //     return <QuestionPage />;
-  //   }
-  //   if (jsonData?.pageCode?.page == pageCode.ThankYou) {
-  //     return <ThankYou />;
-  //   }
-  //   if (jsonData?.pageCode?.page == pageCode.SkillPage) {
-  //     return <SkillPage />;
-  //   }
-  //   if (jsonData?.pageCode?.page == pageCode.PanelPage) {
-  //     return <PanelPage />;
-  //   }
-  //   // if (jsonData?.pageCode?.page == 8) {
-  //   //   return <PanelPage />;
-  //   // }
-  //   if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
-  //     return <ImpactCalculatorPage />;
-  //   }
-  //   // if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
-  //   //   return <HeatmapPage />;
-  //   // }
-  // }
+  if (jsonData != '' || jsonData != undefined) {
+    console.log(jsonData)
+    if (jsonData?.pageCode?.page === pageCode.Login) {
+      return <Login />;
+    }
+    if (jsonData?.pageCode?.page === pageCode.Introduction) {
+      return <Introduction />;
+    }
+    if (jsonData?.pageCode?.page === pageCode.GI) {
+      return <GI />;
+    }
+    if (jsonData?.pageCode?.page == pageCode.QuestionPage) {
+      return <QuestionPage />;
+    }
+    if (jsonData?.pageCode?.page == pageCode.ThankYou) {
+      return <ThankYou />;
+    }
+    if (jsonData?.pageCode?.page == pageCode.SkillPage) {
+      return <SkillPage />;
+    }
+    if (jsonData?.pageCode?.page == pageCode.PanelPage) {
+      return <PanelPage />;
+    }
+    // if (jsonData?.pageCode?.page == 8) {
+    //   return <PanelPage />;
+    // }
+    if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
+      return <ImpactCalculatorPage />;
+    }
+    // if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
+    //   return <HeatmapPage />;
+    // }
+  }
 
-  return <SubskillPage />
+  // return <SubskillPage />
 };
 export default Pages;

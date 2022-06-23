@@ -23,6 +23,7 @@ interface InputProps {
   onKeyUp?: any;
   value?: string;
   error: boolean;
+  onBlur?: any;
 }
 
 export function Inputbox(props: InputProps) {
@@ -35,6 +36,7 @@ export function Inputbox(props: InputProps) {
     onKeyUp,
     value,
     error = false,
+    onBlur,
   } = props;
   return (
     <FormControl sx={{ width: "100%" }} variant="outlined">
@@ -48,6 +50,7 @@ export function Inputbox(props: InputProps) {
         onKeyUp={onKeyUp}
         value={value}
         error={error}
+        onBlur={onBlur}
       />
     </FormControl>
   );
