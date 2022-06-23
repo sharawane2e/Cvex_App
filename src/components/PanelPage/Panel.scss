@@ -16,12 +16,12 @@
               margin-right: 16px;
               min-width: 200px;
               box-shadow: none;
-              background-color: #dddddd;
-            color: #000000;
-            font-weight: 700;
+              background-color: $dark-white;
+            color: $dark-black;
+            font-weight: $font-bold;
               &:hover {
-                background-color: #2251ff;
-                color: #fff;
+                background-color: $blue-color;
+                color: $white-color;
               }
           }
         }
@@ -29,18 +29,18 @@
         p {
           text-align: left;
           font-size: 14px;
-          color: #000000;
+          color: $dark-black;
           margin-bottom: 30px;
         }
     
         .MuiFormControl-root {
           input {
-            border: 1px solid #B3B3B3;
+            border: 1px solid $gray-light;
             width: 100%;
             padding: 5px 15px;
     
             &::placeholder {
-              color: #8a8a8a;
+              color: $dark-gray;
             }
           }
         }

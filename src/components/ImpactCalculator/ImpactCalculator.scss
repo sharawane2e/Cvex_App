@@ -1,38 +1,68 @@
 .impact-calc-container {
   &__inr {
-    padding: 25px;
+    padding: 25px 20px;
+    height: calc(100vh - 185px);
+    overflow-y: auto;
 
     &--question{
       .single-dropdown-section {
+        box-shadow: 0px 0px 5px 1px #ccc;
+        margin-bottom: 30px;
+        &:last-child{
+          margin-bottom: 0px;
+        }
         &__header {
-          background-color: #f6f6f6;
+          background-color: $gray-color;
           padding: 10px 10px;
+         
+          
           .header-text {
             font-size: 14px;
-            font-weight: 700;
-            color: #2a2a2a;
+            font-weight: $font-bold;
+            color: $dark-light-black;
           }
         }
         &__body {
+          // box-shadow: 0px 5px 11px 1px #ccc;
+          padding: 10px 15px;
+//          margin-bottom: 30px;
           .title-container {
-            border-bottom: 1px solid #c4c4c4;
+            font-size: 15px;
+            font-weight: bold;
+            color: #051c2c;
+            background: #dddddd;
+            margin-bottom: 6px;
+            padding: 5px;
+          }
+          .segment-container {
             font-size: 14px;
-            font-weight: 600;
-            color: #333333;
-            padding: 15px 0 8px 0px;
+            font-weight: bold;
+            color: #051c2c;
+            padding: 5px;
+          //  padding: 15px 10px 8px 10px;
+            background-color: $dark-white;
+            // margin-top: 15px;
           }
           .single-dropdown-title {
             padding: 10px 0;
             font-size: 14px;
           }
           .label-heading {
-            padding: 10px 0 5px;
+            padding: 10px 0 3px;
             font-size: 12px;
             line-height: 1;
           }
         }
         .input-form-control{
           padding-right: 20px;
+          @include breakpoint(sm-mobileonly)
+              {
+               padding-right: 0;
+              }
+          @include breakpoint(Ipad-pro)
+              {
+               padding-right: 0;
+              }
           &:nth-child(3){
             padding-right: 0;
           }
@@ -43,8 +73,50 @@
       }
     }
     .section-pad {
-      padding: 10px 0;
+//      padding: 10px 0;
     }
   }
+
+  .footer {
+    .footer-impact-calc {
+      .left-sec {
+        .topContainer  {
+          // justify-content: center;
+           border-bottom: 0;
+           padding-bottom: 0;
+          .rightPanel {
+            .previous-button {
+              background-color: $dark-white !important;
+              border: 1px solid $dark-light-black !important;
+              color: $black-color !important;
+            }
+            .next-button {
+              background-color: $gray-color !important;
+              border: 1px soild $gray-color !important;
+            }
+          }
+          .leftPanel{
+            width: 80%;
+          }
+          .ProgressText{
+            margin: 0 0 10px;
+          }
+          .progressbar{
+            width: 100%;
+            span{
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+ 
   
+  
+}
+
+
+.dark-background {
+  background-color: $dark-white;
 }

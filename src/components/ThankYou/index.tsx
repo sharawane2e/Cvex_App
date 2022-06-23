@@ -4,8 +4,6 @@ import Parser from 'html-react-parser';
 import { Footer } from '../Footer';
 import CustomButton from '../UI/CustomButton';
 import React, { useEffect, useState } from 'react';
-import '../Login/Login.scss';
-import './ThankYou.scss';
 import { ReactComponent as ThankyouImage } from '../../assets/svg/thankyou_image.svg';
 import { getParsedData } from '../../utils/parserUtil';
 
@@ -54,15 +52,19 @@ const ThankYou = (props: Props) => {
         )}
       </div>
       <Footer>
-        <div className="button-container">
-          <div className="show-btn">
-            <CustomButton className="submitButton" onClick={handleClick}>
-              {getParsedData(
-                jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt,
-              )}
-            </CustomButton>
-          </div>
-        </div>
+        {
+          (jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)?
+          <div className="button-container">
+            <div className="show-btn">
+              <CustomButton className="submitButton" onClick={handleClick}>
+                {getParsedData(
+                  jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt,
+                )}
+              </CustomButton>
+            </div>
+          </div> :null
+        }
+        
       </Footer>
     </div>
   );

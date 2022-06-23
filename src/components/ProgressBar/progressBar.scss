@@ -1,114 +1,123 @@
-
+#impactCalc {
+  scroll-behavior: smooth;
+}
 
 .topContainer {
-    // display: none;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #efefef;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid $gray-color;
 }
 
 .saveBtn,
 .submitBtn {
-    width: 140px;
+  width: 140px;
 }
 
 .leftPanel {
-    width: 70%;
+  width: 70%;
 
-    .MuiBox-root .css-70qvj9 {
-        position: relative;
-        width: 80%;
-        margin: 0 auto;
+  .MuiBox-root .css-70qvj9 {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .progressbar-container {
+    .progressbar-innercontainer {
+      justify-content: end;
     }
 
-    .progressbar-container {
-        .progressbar-innercontainer {
-            justify-content: end;
-        }
-
-        .progressbar {
-            width: 80%;
-            margin: 0;
-        }
+    .progressbar {
+      width: 80%;
+      margin: 0;
     }
+  }
 }
 
 .rightPanel {
-    width: 25%;
+  width: 25%;
 
+  .button-container {
+    justify-content: end;
 
-    .button-container {
-        justify-content: end;
-
-        .previous-button {
-            border: 1px
-             solid #1f66f6;
-                background-color: #1f66f6 !important;
-                color: #ffffff !important;
-                width: 120px;
-        }
-
-        .next-button {
-            // width: 120px;
-            // border: 1px
-            // solid gray;
-            // background: gray !important;
-            // &.disabled {
-            //     background-color: #D9D9D9 !important;
-            //     color: #000 !important;
-            //     border: 1px solid #D0D0D0;
-            // }
-            width: 120px;
-    border: 1px solid #e1e1e1;
-    background: #e1e1e1 !important;
-    color: #2a2a2a !important;
-        }
+    .previous-button {
+      border: 1px solid $light-blue;
+      background-color: $light-blue !important;
+      color: $white-color !important;
+      width: 120px;
     }
+    .next-button {
+      width: 120px;
+      border: 1px solid $gray-color !important;
+      background: $gray-color !important;
+      color: $dark-light-black !important;
+    }
+  }
 }
 
 .css-eglki6-MuiLinearProgress-root,
 .css-7p5u54 {
-    height: 8px !important;
-    background-color: #F7F7F7 !important;
-    margin-left: 15px;
+  height: 8px !important;
+  background-color: $dark-white !important;
+  margin-left: 15px;
 }
 
 .css-5xe99f-MuiLinearProgress-bar1 {
-    background-color: #2251FF !important;
+  background-color: $blue-color !important;
 }
 
 .bottomContainer {
-    display: none;
+  display: none;
 }
-
 
 .progressbar-text {
-    &.css-pazuet {
-        position: absolute;
-        left: 25px;
-        display: flex;
-        justify-content: SPACE-BETWEEN;
-        width: 135px;
-    }
+  &.css-pazuet {
+    position: absolute;
+    left: 25px;
+    display: flex;
+    justify-content: SPACE-BETWEEN;
+    width: 146px;
+  }
 }
 
-@media screen and (max-width:1200px) {
-    .progressbar-text.css-pazuet {
-        width: 130px;
-    }
+@media screen and (max-width: 1200px) {
+  .progressbar-text.css-pazuet {
+    width: 130px;
+  }
 
-    .css-eglki6-MuiLinearProgress-root {
-        margin-left: 20px;
-    }
+  .css-eglki6-MuiLinearProgress-root {
+    margin-left: 20px;
+  }
 }
-.custom-text-area{
-    resize: none ;
-    padding: 10px !important;
-    width: 78% !important;
-    margin-left: 18px !important;
-    font-size: 13px;
-    height: 37px !important;
-    border: 1px solid #cdc6c6;
+.custom-text-area {
+  resize: none;
+  padding: 10px !important;
+  width: 78% !important;
+  margin-left: 18px !important;
+  font-size: 13px;
+  height: 37px !important;
+  border: 1px solid $gray-color;
+}
+
+.submitactive {
+  width: 120px;
+  border: 1px solid $blue-color !important;
+  background-color: $light-blue !important;
+  color: #fff !important;
+ }
+
+.jc-start {
+  justify-content: start !important;
+}
+
+.jc-center {
+  justify-content: center !important;
+}
+
+.ProgressText {
+  text-align: left;
+  margin: 0px 0px 5px 16px;
+  font-size: 13px;
 }

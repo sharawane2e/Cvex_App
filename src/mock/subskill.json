@@ -1,0 +1,63 @@
+{
+    "pageCode": { "page": 6 },
+    "data": {
+      "headerData": {
+        "title": "Customer Value Execution",
+        "logo": "src",
+        "banner": "src"
+      },
+      "panelDetails": {
+
+      "panelHeading":["Capability","Skill","Sub-skill","Observations","0-100"],
+      "panelBody":
+        [
+            {
+                "capabilityText": "Value strategy",
+                "skillDetails": 
+                [
+                    {
+                        "skillText": "Sales and service strategy",
+                        "skillIcon": "URL",
+                        "subSkillDetails": ["Channel value strategy", "Operating model", "Network strategy"],
+                        "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
+                        "sliderValue": 10
+                    },
+                    {
+                        "skillText": "Customer segment and channel startegy",
+                        "skillIcon": "URL",
+                        "subSkillDetails": ["Customer segmentation and target groups​", "Channel mix​", "Sales and service segment strategy​"],
+                        "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
+                        "sliderValue": 10
+                    }
+                ]
+            },
+            {
+                "capabilityText": "Customer touchpoint design",
+                "skillDetails": 
+                [
+                    {
+                        "skillText": "Sales & Service journey design​",
+                        "skillIcon": "URL",
+                        "subSkillDetails": ["Sales and service (omnichannel) journeys​", "Touchpoint design​"],
+                        "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
+                        "sliderValue": 10
+                    },
+                    {
+                        "skillText": "Omnichannel integration​",
+                        "skillIcon": "URL",
+                        "subSkillDetails": ["Omnichannel integrated data layer​", "Cross-channel collaboration​​"],
+                        "observationsText": "",
+                        "observationsTextPlaceholder": "Enter text...",
+                        "sliderValue": 10
+                    }
+                ]
+            }
+           
+        ]
+    }
+    }
+  }
+  

@@ -17,6 +17,7 @@ import HighchartsReact from 'highcharts-react-official';
 import BaselineChart from '../UI/BaselineChart';
 import PotentialChart from '../UI/PotentialChart';
 import SegmentChart from '../UI/SegmentChart';
+import HsddInput from '../ImpactCalculator/HsddInput';
 
 const OutputContactCenter = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -77,15 +78,30 @@ const OutputContactCenter = () => {
     );
   };
 
-  const getperiodDropDown = (event: any) => {
-    const updatedJson = JSON.parse(JSON.stringify(jsonData));
-    // inputDetails?.periodDD?.options?.map((elemnt: any) => {
-    //   if (elemnt?.ddName === event.target.value) {
-    //     setJSONData()
-    //   }
+  //   const getperiodDropDown = (event: any) => {
+  //     const updatedJson = JSON.parse(JSON.stringify(jsonData));
+  //     // inputDetails?.periodDD?.options?.map((elemnt: any) => {
+  //     //   if (elemnt?.ddName === event.target.value) {
+  //     //     setJSONData()
+  //     //   }
 
-    // });
+  //     // });
+  //   };
+
+  const handleDDChange = (ddId: string) => {
+    //console.log(ddId);
+    //const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
+    // updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[
+    //   subHeadingIdx
+    // ].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId =
+    //   ddId;
+    // document.getElementById(ddId)?.click();
+    // // const updatedJson = hideShowSections(updatedJsonData);
+    // //@ts-ignore
+    // setJSONData(updatedJson);
   };
+
+  //  console.log(inputDetails?.periodDD?.options);
 
   return (
     <div className="contactpage-container">
@@ -93,36 +109,29 @@ const OutputContactCenter = () => {
       <div className="contactpage-container__inr">
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
-            <div className="single-dropdown-section__body">
+            {/* <div className="single-dropdown-section__body">
               <div className="title-container">
                 <p>{inputDetails?.periodDD?.optionName}</p>
               </div>
-            </div>
-            <Grid container sx={{ alignItems: 'center', pb: 2 }} xs={12} md={4}>
+            </div> */}
+            <Grid
+              container
+              sx={{ alignItems: 'center', pb: 2 }}
+              xs={12}
+              md={12}
+            >
               {/* <Grid item xs={12} md={6} className="single-dropdown-title">
                                 <p className="gen-info">{inputDetails?.periodDD?.optionName}</p>
                             </Grid> */}
               <Grid item xs={12} sx={{ paddingRight: '20px' }}>
-                <FormControl fullWidth>
-                  <Select
-                    sx={{ p: 0, borderRadius: 0, mb: 1 }}
-                    className="inputField cutom-input-field"
-                    value={'Hello'}
-                    displayEmpty={true}
-                    onChange={(e) => {
-                      getperiodDropDown(e);
-                    }}
-                  >
-                    <MenuItem disabled value="none" className="selectItem">
-                      <>{inputDetails?.periodDD?.placeholder}</>
-                    </MenuItem>
-                    {inputDetails?.periodDD?.options?.map((elemnt: any) => (
-                      <MenuItem value={elemnt?.ddName} className="selectItem">
-                        {elemnt?.ddName}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                {inputDetails != undefined ? (
+                  <HsddInput
+                    question={inputDetails?.periodDD}
+                    onChange={(ddId: string) => handleDDChange(ddId)}
+                  />
+                ) : (
+                  ''
+                )}
               </Grid>
             </Grid>
           </div>

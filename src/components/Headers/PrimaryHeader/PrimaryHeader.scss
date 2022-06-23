@@ -1,15 +1,11 @@
-@import "../../../styles/partials/mixins.scss";
+
 .primary-header {
   display: flex;
   position: relative;
-  justify-content: space-between;
   width: 100%;
-  background-color: #051c2c;
-  background-position: right;
+  background-size: 100%;
   align-items: center;
-  height: 20vh;
-  min-height: 100px;
-
+  min-height: 150px;
 
 .header {
   position: absolute;
@@ -21,6 +17,12 @@
 
 .logo {
   padding-left: 60px;
+
+  img{
+    @include breakpoint(lg-desktop) {
+      width: 200px;
+    }
+  }
 }
 
 .banner-image {
@@ -34,12 +36,12 @@
 .banner-title {
   width: 100%;
   display: inline-block;
-  font-weight: 600;
-  background-color: #fff;
-  color: #051c2c;
+  font-weight: $font-bold;
+  background-color: $white-color;
+  color: $dark-light-black;
   text-align: center;
-  -webkit-box-shadow: 0px 4px 9px 0px #00000029;
-  box-shadow: 0px 4px 9px 0px #00000029;
+  -webkit-box-shadow: 0px 4px 9px 0px $box-shadow-color;
+  box-shadow: 0px 4px 9px 0px $box-shadow-color;
 }
 
 .banner-title h2 {
@@ -55,6 +57,6 @@
   width: 0;
   height: 0;
   border-right: 30px solid transparent;
-  border-bottom: 25px solid #2251ff;
+  border-bottom: 25px solid $blue-color;
 }
 }
