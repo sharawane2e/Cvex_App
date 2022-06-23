@@ -29,16 +29,7 @@ const ImpactCalculator = (props: any) => {
   const testRef = useRef<HTMLDivElement>(document.getElementById("ok"));
   const scrollToElement = () => testRef.current.scrollIntoView();
 
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     hideShowSections(
-  //       JSON.parse(document.getElementById('jsonData')?.innerHTML),
-  //     ),
-  //   );
-  // }, []);
-
-  const [blockLocs, setBlockLocs] = useState([]);
+ const [blockLocs, setBlockLocs] = useState([]);
 
   useEffect(() => {
     // prettier-ignore
@@ -59,28 +50,10 @@ const ImpactCalculator = (props: any) => {
     
   }, []);
 
-  // useEffect(()=>{
-  //   console.log(jsonData?.data?.scrollPosition)
-    
-    
-  // },[])
-
   useEffect(() => {
     progressUpdate();
   }, [jsonData]);
 
-  // const txtInputValidate = (value: any, pattern: any) => {
-  //   const reg = pattern;
-  //   let res = '';
-
-  //   for (let i = 0; i < value.length; i++) {
-  //     if (value[0] == ' ') return '';
-
-  //     if (reg.test(value[i])) res += value[i];
-  //   }
-
-  //   return res;
-  // }
 
   const numInputValidate = (
     value: any,
@@ -109,45 +82,8 @@ const ImpactCalculator = (props: any) => {
     return res;
   };
 
-  // const hideShow = () => {
-  //   const allSHowNumQuestionIds: string[] = [];
-  //   const showNumQuestionIds: string[] = [];
-
-  //   jsonData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
-  //     inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
-  //       subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
-  //         segment.questions.map((question: any, questionIndex: number) => {
-  //           if (question.type == "hsdd" && question.enableQuestionIds.length) {
-  //             allSHowNumQuestionIds.push(...question.enableQuestionIds)
-  //           }
-  //           if (question.type == "hsdd" && question.selectedId != "" && question.enableQuestionIds.length) {
-  //             question.options.map((option: any) => {
-  //               if (option.ddId === question.selectedId && option.enableIds) {
-  //                 showNumQuestionIds.push(...question.enableQuestionIds);
-  //               }
-  //             })
-  //           }
-  //         })
-  //       })
-  //     })
-  //   })
-
-  //   setAllSHowNumQuestionIds([...allSHowNumQuestionIds]);
-  //   setShowNumQuestionIds([...showNumQuestionIds]);
-
-  // };
-
-  const inputData = jsonData?.data?.inputData;
-  // const showSection = (questionId: string) => {
-  //   if (allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
-  //     return true;
-  //   else
-  //     // if (false) {
-  //     //   setJSONData(inputData);
-  //     // }
-  //     return false;
-  // }
-
+    const inputData = jsonData?.data?.inputData;
+  
   const handleDDChange = (
     ddId: string,
     inputDataIdx: number,
@@ -167,12 +103,7 @@ const ImpactCalculator = (props: any) => {
 
     setJSONData(updatedJson);
     setupJson(updatedJson);
-    // console.log("Json Updated", updatedJson);
-    // progressUpdate();
-
-    // let currIndex =  JSON.parse(JSON.stringify(jsonData)).subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId
-
-    let quesLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
+     let quesLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
       inputDataIdx
     ].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx]
       .questions.length;
@@ -300,8 +231,6 @@ const ImpactCalculator = (props: any) => {
       <div className="impact-calc-container__inr" id="impactCalc">
         <div className="impact-calc-container__inr--question">
           {
-            // console.log(inputData?.isShow)
-            // (inputData?.isShow == true)?
             inputData?.map((inputDetails: any, inputDataIdx: number) => {
               return (
                 <>
@@ -357,12 +286,7 @@ const ImpactCalculator = (props: any) => {
                                             question: any,
                                             questionDataIdx: number
                                           ) => {
-                                            // {
-                                            //   (showSection(question?.questionId)===true)?
-                                            //    (<div className='segment-heading'>
-                                            //      <p>{segmentDetail?.segmentText}</p>
-                                            //    </div>) : null
-                                            //  }
+                                    
                                             if (question.type == "dd") {
                                               return (
                                                 <>
@@ -388,7 +312,7 @@ const ImpactCalculator = (props: any) => {
                                                 <>
                                                   <Grid
                                                     item
-                                                    xs={4}
+                                                    xs={12}
                                                     md={4}
                                                     lg={4}
                                                     className="input-form-control"
