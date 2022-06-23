@@ -279,6 +279,7 @@ const ImpactCalculator = (props: any) => {
                                       <Grid
                                         container
                                         xs={12}
+                                        
                                         className="section-pad"
                                       >
                                         {segmentDetail?.questions?.map(
@@ -313,8 +314,9 @@ const ImpactCalculator = (props: any) => {
                                                   <Grid
                                                     item
                                                     xs={12}
-                                                    md={4}
+                                                    sm={4}
                                                     lg={4}
+                                                    md={4}
                                                     className="input-form-control"
                                                   >
                                                     <p className="label-heading">
