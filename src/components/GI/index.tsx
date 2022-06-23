@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
-import PrimaryHeader from "../Headers/PrimaryHeader";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { Checkbox, InputLabel, ListItemText, MenuItem } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import { Inputbox } from "../UI/Input";
-import { Grid } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import { Footer } from "../Footer";
-import CustomButton from "../UI/CustomButton";
-import { ReactComponent as InfoIocn } from "../../assets/svg/info-icon.svg";
-import Tooltip from "@mui/material/Tooltip";
-import regexCodes from "../../enums/regexCodes";
+import React, { useState, useEffect } from 'react';
+import PrimaryHeader from '../Headers/PrimaryHeader';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Checkbox, InputLabel, ListItemText, MenuItem } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import { Inputbox } from '../UI/Input';
+import { Grid } from '@mui/material';
+import { Footer } from '../Footer';
+import CustomButton from '../UI/CustomButton';
+import { ReactComponent as InfoIcon } from '../../assets/svg/info-icon.svg';
+import Tooltip from '@mui/material/Tooltip';
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -71,8 +69,7 @@ const GI = () => {
   };
 
   const mapContainsId = (map: any, selectedId: any) => {
-    selectedId = selectedId.split("_")[1];
-    console.log("SelectedId", selectedId);
+    selectedId = selectedId.split('_')[1];
     const allMapIndex: string[] = [];
     map.split("|").forEach((element: any) => {
       allMapIndex.push(element.split(":")[0]);
@@ -138,11 +135,9 @@ const GI = () => {
           const returnedObj = questionoption2.filter((elm: any) => {
             return ddId == elm.ddId;
           });
-          console.log("returnedObj", returnedObj);
           filteredData.push(...returnedObj);
         }
       });
-      console.log(filteredData, "Filtered Data");
       return filteredData;
     } else {
       let selectIquestion = ddLabel.split("_")[1];
@@ -158,8 +153,6 @@ const GI = () => {
           optionsToRender.includes(el.ddId)
         );
       }
-      console.log(ddLabel);
-      console.log(filteredData);
       return filteredData;
     }
   };
@@ -184,7 +177,6 @@ const GI = () => {
         optionsToRender.includes(el.ddId)
       );
     }
-    // console.log(filteredData);
     return filteredData;
   };
 
@@ -230,9 +222,9 @@ const GI = () => {
   };
 
   return (
-    <>
+    <div className="gi-container-outer">
       <PrimaryHeader />
-      <div className="gi-container">
+      <div className=" gi-container">
         <div className="gi-container__inr">
           <h3 className="gi-heading">{giInfo?.heading}</h3>
           <div className="gi-container__questions">
@@ -266,7 +258,7 @@ const GI = () => {
                           sx={{ display: "flex", alignItems: "center" }}
                         >
                           <Tooltip title={genQues?.description} arrow>
-                            <InfoIocn className="info-icon" />
+                            <InfoIcon className="info-icon" />
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
@@ -284,7 +276,7 @@ const GI = () => {
                               // )
                               e.target.value = inputValidate(
                                 e.target.value,
-                                regexCodes.number
+                                /^[A-Za-z ]+$/,
                               );
 
                               const updatedQuestionsArray: any[] = [];
@@ -342,7 +334,7 @@ const GI = () => {
                           sx={{ display: "flex", alignItems: "center" }}
                         >
                           <Tooltip title={genQues?.description} arrow>
-                            <InfoIocn className="info-icon" />
+                            <InfoIcon className="info-icon" />
                           </Tooltip>
                           <Inputbox
                             className="inputField cutom-input-field"
@@ -416,13 +408,20 @@ const GI = () => {
                           sx={{ display: "flex", alignItems: "center" }}
                         >
                           <Tooltip title={genQues?.description} arrow>
-                            <InfoIocn className="info-icon" />
+                            <InfoIcon className="info-icon" />
                           </Tooltip>
                           <FormControl fullWidth>
                             <Select
                               sx={{ p: 0, borderRadius: 0, mb: 1 }}
                               className="inputField cutom-input-field"
+                              displayEmpty={true}
                               defaultValue="none"
+                              renderValue={(selected) => {
+                                if (selected.length === 0) {
+                                  return <>{genQues?.placeholder}</>;
+                                }
+                                return selected;
+                              }}
                               value={getselectedDDName(
                                 genQues.options,
                                 genQues.selectedId
@@ -511,12 +510,19 @@ const GI = () => {
                             sx={{ display: "flex", alignItems: "center" }}
                           >
                             <Tooltip title={genQues?.description} arrow>
-                              <InfoIocn className="info-icon" />
+                              <InfoIcon className="info-icon" />
                             </Tooltip>
                             <FormControl fullWidth>
                               <Select
                                 sx={{ p: 0, borderRadius: 0, mb: 1 }}
                                 displayEmpty={true}
+                                renderValue={(selected) => {
+                                  if (selected.length === 0) {
+                                    return <>{genQues?.placeholder}</>;
+                                  }
+
+                                  return selected;
+                                }}
                                 value={getselectedDDName(
                                   genQues.options,
                                   genQues.selectedId
@@ -599,7 +605,7 @@ const GI = () => {
                                 sx={{ display: "flex", alignItems: "center" }}
                               >
                                 <Tooltip title={genQues?.description2} arrow>
-                                  <InfoIocn className="info-icon" />
+                                  <InfoIcon className="info-icon" />
                                 </Tooltip>
                                 <FormControl
                                   sx={{
@@ -612,6 +618,13 @@ const GI = () => {
                                   <Select
                                     sx={{ p: 0, borderRadius: 0 }}
                                     displayEmpty={true}
+                                    renderValue={(selected) => {
+                                      if (selected.length === 0) {
+                                        return <>{genQues?.placeholder}</>;
+                                      }
+                          
+                                      return selected;
+                                    }}
                                     value={getselectedDDName(
                                       genQues.options2,
                                       genQues.selectedId2
@@ -675,13 +688,13 @@ const GI = () => {
                                     {getSddQ2Options(
                                       genQues.selectedId,
                                       genQues.map,
-                                      genQues.options2
-                                    ).map((iteam: any) => (
+                                      genQues.options2,
+                                    ).map((item: any) => (
                                       <MenuItem
-                                        value={iteam?.ddName}
+                                        value={item?.ddName}
                                         className="selectItem"
                                       >
-                                        {iteam?.ddName}
+                                        {item?.ddName}
                                       </MenuItem>
                                     ))}
                                   </Select>
@@ -716,11 +729,18 @@ const GI = () => {
                             xs={8}
                             sx={{ display: "flex", alignItems: "center" }}
                           >
-                            <InfoIocn className="info-icon" />
+                            <InfoIcon className="info-icon" />
                             <FormControl fullWidth>
                               <Select
                                 sx={{ mb: 1, borderRadius: 0 }}
                                 className="inputField"
+                                displayEmpty
+                                renderValue={(selected) => {
+                                  if (selected.length === 0) {
+                                    return <>{genQues?.placeholder}</>;
+                                  }
+                                  return selected;
+                                }}
                                 value={getselectedDDName(
                                   genQues.options,
                                   genQues.selectedId
@@ -801,19 +821,22 @@ const GI = () => {
                               xs={8}
                               sx={{ display: "flex", alignItems: "center" }}
                             >
-                              <InfoIocn className="info-icon" />
+                              <InfoIcon className="info-icon" />
                               <FormControl fullWidth>
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
+                                  displayEmpty
                                   value={getselectedDDNameMulti(
                                     genQues.options2,
                                     genQues.selectedId2
                                   )} // genQues.selectedId2.split(", ")
                                   multiple
                                   renderValue={(selected: any) => {
-                                    // console.log(selected)
-                                    return selected.join(",");
+                                    if (selected.length === 0) {
+                                      return <>{genQues?.placeholder}</>;
+                                    }
+                                    return selected.join(',');
                                     // return ["hello",",hello2"]
                                   }}
                                   onChange={(event) => {
@@ -827,7 +850,6 @@ const GI = () => {
                                           CV.questionId2 == genQues.questionId2
                                         ) {
                                           CV.options2.forEach((option: any) => {
-                                            console.log(event.target.value);
                                             const ddSelectedIndex =
                                               event.target.value.indexOf(
                                                 option.ddName
@@ -852,11 +874,7 @@ const GI = () => {
                                             dropdownIdsArr.join();
                                         }
                                         updatedQuestionsArray.push(CV);
-                                        console.log(
-                                          updatedQuestionsArray,
-                                          "Array"
-                                        );
-                                      }
+                                      },
                                     );
 
                                     setJSONData({
@@ -916,11 +934,19 @@ const GI = () => {
                               xs={8}
                               sx={{ display: "flex", alignItems: "center" }}
                             >
-                              <InfoIocn className="info-icon" />
+                              <InfoIcon className="info-icon" />
                               <FormControl fullWidth>
                                 <Select
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
+                                  displayEmpty
+                                  renderValue={(selected: any) => {
+                                    if (selected.length === 0) {
+                                      return <>{genQues?.placeholder}</>;
+                                    }
+                                    return selected.join(',');
+                                    //return ["hello",",hello2"]
+                                  }}
                                   value={getselectedDDNameMulti(
                                     genQues.options3,
                                     genQues.selectedId3
@@ -971,11 +997,7 @@ const GI = () => {
                                       },
                                     });
                                   }}
-                                  renderValue={(selected: any) => {
-                                    // console.log(selected)
-                                    return selected.join(",");
-                                    //return ["hello",",hello2"]
-                                  }}
+                                  
                                 >
                                   <MenuItem
                                     disabled
@@ -1049,7 +1071,7 @@ const GI = () => {
           </div>
         </div>
       </Footer>
-    </>
+    </div>
   );
 };
 

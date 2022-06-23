@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import startData from "../../mock/startPageData.json";
 import { isPasswordValid } from "../../utils";
 import SecondaryHeader from "../Headers/SecondaryHeader/index";
@@ -15,28 +15,27 @@ import { OptionUnstyled } from "@mui/base";
 import ProgressBar from "../ProgressBar";
 import { hideShowSections } from "../../services/impactCaluculator";
 import LinearProgressbar2 from "../LinearProgressbar2";
+import { LegendToggleTwoTone } from "@mui/icons-material";
+
 const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>("");
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
-  const [showError, setShowError] = useState(true);
+  const [showError, setShowError] = useState(false);
 
   const [progpercentage, setProgpercentage] = useState<any>(0);
+  // @ts-ignore
+  const testRef = useRef<HTMLDivElement>(document.getElementById("ok"));
+  const scrollToElement = () => testRef.current.scrollIntoView();
 
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     hideShowSections(
-  //       JSON.parse(document.getElementById('jsonData')?.innerHTML),
-  //     ),
-  //   );
-  // }, []);
+ const [blockLocs, setBlockLocs] = useState([]);
 
   useEffect(() => {
     // prettier-ignore
     // @ts-ignore
     let updatedJsona: any = JSON.parse(document.getElementById("jsonData")?.innerText);
+    setupJson(updatedJsona);
     // const updatedJsona = JSON.parse(
     //   document.getElementById("jsonData")?.innerText
     // );
@@ -46,24 +45,15 @@ const ImpactCalculator = (props: any) => {
       // @ts-ignore
       updatedJson
     );
+    getblockLocations(updatedJson);
+    setTimeout(function(){updateScrollPos(updatedJson?.data?.scrollPosition);}, 1500);
+    
   }, []);
 
   useEffect(() => {
     progressUpdate();
   }, [jsonData]);
 
-  // const txtInputValidate = (value: any, pattern: any) => {
-  //   const reg = pattern;
-  //   let res = '';
-
-  //   for (let i = 0; i < value.length; i++) {
-  //     if (value[0] == ' ') return '';
-
-  //     if (reg.test(value[i])) res += value[i];
-  //   }
-
-  //   return res;
-  // }
 
   const numInputValidate = (
     value: any,
@@ -92,45 +82,8 @@ const ImpactCalculator = (props: any) => {
     return res;
   };
 
-  // const hideShow = () => {
-  //   const allSHowNumQuestionIds: string[] = [];
-  //   const showNumQuestionIds: string[] = [];
-
-  //   jsonData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
-  //     inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
-  //       subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
-  //         segment.questions.map((question: any, questionIndex: number) => {
-  //           if (question.type == "hsdd" && question.enableQuestionIds.length) {
-  //             allSHowNumQuestionIds.push(...question.enableQuestionIds)
-  //           }
-  //           if (question.type == "hsdd" && question.selectedId != "" && question.enableQuestionIds.length) {
-  //             question.options.map((option: any) => {
-  //               if (option.ddId === question.selectedId && option.enableIds) {
-  //                 showNumQuestionIds.push(...question.enableQuestionIds);
-  //               }
-  //             })
-  //           }
-  //         })
-  //       })
-  //     })
-  //   })
-
-  //   setAllSHowNumQuestionIds([...allSHowNumQuestionIds]);
-  //   setShowNumQuestionIds([...showNumQuestionIds]);
-
-  // };
-
-  const inputData = jsonData?.data?.inputData;
-  // const showSection = (questionId: string) => {
-  //   if (allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
-  //     return true;
-  //   else
-  //     // if (false) {
-  //     //   setJSONData(inputData);
-  //     // }
-  //     return false;
-  // }
-
+    const inputData = jsonData?.data?.inputData;
+  
   const handleDDChange = (
     ddId: string,
     inputDataIdx: number,
@@ -150,8 +103,14 @@ const ImpactCalculator = (props: any) => {
 
     setJSONData(updatedJson);
     setupJson(updatedJson);
-    // console.log("Json Updated", updatedJson);
-    // progressUpdate();
+     let quesLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
+      inputDataIdx
+    ].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx]
+      .questions.length;
+    if (questionDataIdx == quesLength - 1) {
+      // scrollEffect(inputDataIdx);
+      console.log("last", inputDataIdx);
+    }
   };
 
   const handleNumChange = (
@@ -171,16 +130,18 @@ const ImpactCalculator = (props: any) => {
     ].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedText =
       value;
 
+      const updatedJson = hideShowSections(updatedJsonData);
+
     //@ts-ignore
     document.getElementById(selectedId).value = value;
 
-    setJSONData(updatedJsonData);
-    setupJson(updatedJsonData);
+    setJSONData(updatedJson);
+    setupJson(updatedJson);
   };
 
   const progressUpdate = () => {
     var obj: any = {};
-    var incCount = jsonData?.data?.inputData?.length;
+    var incCount = 100/jsonData?.data?.inputData?.length;
 
     jsonData?.data?.inputData?.map((block: any) => {
       obj[block.headingText] = 0;
@@ -219,18 +180,64 @@ const ImpactCalculator = (props: any) => {
     }
   };
 
+  
+
+  // function scrollToTargetAdjusted() {
+  //   // @ts-ignore
+  //   let element = document.getElementById("ok");
+  //   // @ts-ignore
+  //   let container = document.getElementById("impactCalc");
+  //   let headerOffset = 45;
+  //   // @ts-ignore
+  //   let elementPosition = element.getBoundingClientRect().top;
+  //   // @ts-ignore
+  //   let offsetPosition = elementPosition + container.pageYOffset - headerOffset;
+  //   // @ts-ignore
+  //   container.scrollTo({
+  //     top: offsetPosition,
+  //     behavior: "smooth",
+  //   });
+  //   // @ts-ignore
+  //   document.getElementById("impactCalc").scrollTop = container.pageYOffset;
+  // }
+
+  const getblockLocations = (jsonData: any) => {
+    // debugger;
+    let arr: any = [];
+    jsonData?.data?.inputData.forEach((y: any, i: any) => {
+      let height = document.getElementById("scroll_" + (i + 1))?.scrollHeight;
+      arr.push(height);
+    });
+    setBlockLocs(arr);
+  };
+
+  const scrollEffect = (ind: any) => {
+    // @ts-ignore
+    let container = document.getElementById("impactCalc");
+    // @ts-ignore
+    container.scrollTo(0, 400);
+    console.log(blockLocs[ind]);
+  };
+  const updateScrollPos = (scrollValue: number) => {
+    let scrollContainer: any = document.querySelector(
+      ".impact-calc-container__inr"
+    );
+    scrollContainer.scrollTop = scrollValue;
+  };
+
   return (
     <div className="impact-calc-container">
       <SecondaryHeader sidebar={false} />
-      <div className="impact-calc-container__inr">
+      <div className="impact-calc-container__inr" id="impactCalc">
         <div className="impact-calc-container__inr--question">
           {
-            // console.log(inputData?.isShow)
-            // (inputData?.isShow == true)?
             inputData?.map((inputDetails: any, inputDataIdx: number) => {
               return (
                 <>
-                  <div className="single-dropdown-section">
+                  {((inputDetails.isSequential && inputDetails.isSequentialShow && inputDetails.isShow)||(!inputDetails.isSequential && inputDetails.isShow)||inputDataIdx==0)?<div
+                    className="single-dropdown-section"
+                    id={"scroll_" + (inputDataIdx + 1)}
+                  >
                     {inputDetails?.isShow == true &&
                     inputDetails?.headingText != "" ? (
                       <div className="single-dropdown-section__header">
@@ -242,10 +249,6 @@ const ImpactCalculator = (props: any) => {
 
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
-                        console.log(
-                          subHeadingDetail?.subHeadingText == undefined &&
-                            subHeadingDetail?.subHeadingText == ""
-                        );
                         return subHeadingDetail?.isShow == true ? (
                           <>
                             <div className="single-dropdown-section__body">
@@ -283,12 +286,7 @@ const ImpactCalculator = (props: any) => {
                                             question: any,
                                             questionDataIdx: number
                                           ) => {
-                                            // {
-                                            //   (showSection(question?.questionId)===true)?
-                                            //    (<div className='segment-heading'>
-                                            //      <p>{segmentDetail?.segmentText}</p>
-                                            //    </div>) : null
-                                            //  }
+                                    
                                             if (question.type == "dd") {
                                               return (
                                                 <>
@@ -314,7 +312,7 @@ const ImpactCalculator = (props: any) => {
                                                 <>
                                                   <Grid
                                                     item
-                                                    xs={4}
+                                                    xs={12}
                                                     md={4}
                                                     lg={4}
                                                     className="input-form-control"
@@ -402,13 +400,14 @@ const ImpactCalculator = (props: any) => {
                         ) : null;
                       }
                     )}
-                  </div>
+                  </div>:null}
                 </>
               );
             })
           }
         </div>
       </div>
+
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
@@ -416,6 +415,7 @@ const ImpactCalculator = (props: any) => {
             <LinearProgressbar2
               percentage={progpercentage}
               upJson={JSON.stringify(upJson)}
+              showError={setShowError}
             />
           </div>
         </div>

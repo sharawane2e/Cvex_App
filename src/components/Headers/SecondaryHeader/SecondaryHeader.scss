@@ -12,6 +12,11 @@ $color: #b3e5fc;
   align-items: center;
   height: 100px;
   min-height: 100px;
+  @include breakpoint(sm-mobileonly) {
+    background-size: cover;
+    height: 78px;
+    min-height: 78px;
+  }
   .logo {
     padding-left: 10px;
     padding-right: 40px;
@@ -22,6 +27,9 @@ $color: #b3e5fc;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include breakpoint(sm-mobileonly) {
+      padding-right:20px;
+    }
     .hamburger-menu {
       svg {
         height: 15px;
@@ -38,6 +46,9 @@ $color: #b3e5fc;
     color: $white-color;
     h2 {
       font-size: 18px;
+      @include breakpoint(sm-mobileonly) {
+        font-size: 12px;
+      }
     }
   }
 }

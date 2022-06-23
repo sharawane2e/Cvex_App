@@ -18,7 +18,7 @@
   transform: translateX(-50%);
   width: 300px;
   @include breakpoint(sm-mobileonly) {
-    bottom: -169px;
+    bottom: -155px;
     width: 255px;
   }
   @include breakpoint(Ipad) {

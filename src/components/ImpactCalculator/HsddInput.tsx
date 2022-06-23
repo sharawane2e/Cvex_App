@@ -13,6 +13,16 @@ type HsddInputProps = {
   error?: boolean;
 };
 
+const getselectedDDName = (options: any, selectedId: string) => {
+  let selectedDDName = "";
+  options?.forEach((element: any) => {
+    if (element.ddId == selectedId) {
+      selectedDDName = element.ddName;
+    }
+  });
+  return selectedDDName;
+};
+
 const HsddInput = (props: HsddInputProps) => {
   const { error = false } = props;
 
@@ -44,8 +54,16 @@ const HsddInput = (props: HsddInputProps) => {
               sx={{ p: 0, borderRadius: 0, mb: 1 }}
               className="inputField cutom-input-field"
               defaultValue="none"
-              value={selectedId}
+              displayEmpty
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return <>{placeholder}</>;
+                }
+                return selected;
+              }}
+              value={getselectedDDName(options,selectedId)}
               onChange={(e) => {
+                console.log(e.target.value)
                 props.onChange(e.target.value);
               }}
               error={error}

@@ -1,4 +1,4 @@
 enum regexCodes {
-    "number"= "/^[A-Za-z ]+$/"
+    "text"= "/^[A-Za-z ]+$/"
 }
 export default regexCodes;
