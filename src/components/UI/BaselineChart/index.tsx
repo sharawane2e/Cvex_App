@@ -17,8 +17,43 @@ const BaselineChart = (props: HighChartProps) => {
         );
     }, []);
     HC_more(Highcharts);
-    // getHighchartOptions()
+    const chartSeries = props?.chartSeries
+    const chartIndexDetails: any = [];
+    const chartIndexData: any = [];
+    const seriesData: any = [];
+    // const chartOptions = getBaselinechartOptions();
+    console.log(chartSeries)
+    const getChartSeries = () => {
+        return chartSeries?.map((chartDetail: any, index: number) => {
+            // console.log()
+            if (chartDetail?.length > -1) {
+                if (chartSeries[0][index] == chartDetail[0]) {
+                    chartIndexDetails?.push(...chartDetail)
+                }
+                if (chartSeries[chartSeries?.length - 1][index] == chartDetail[chartSeries?.length - 1]) {
+                    chartIndexData?.push(...chartDetail)
+                }
+            }
+        })
+    }
+    getChartSeries()
+
+    const getCategories = () => {
+        const categories: any = [];
+        categories.push(chartIndexDetails[0]);
+        categories.push(chartIndexData[0]);
+        return categories;
+    }
+
+    const getSeriesData = () => {
+        let chartIdx = chartIndexDetails;
+        let chartIndex = chartIndexData;
+        seriesData.push(chartIdx[chartIdx?.length - 1])
+        seriesData.push(chartIndexData[chartIndex?.length - 1])
+        return seriesData;
+    }
     const chartOptions = getBaselinechartOptions();
+
     const [options, setOptions] = useState({
         chart: {
             type: 'waterfall'

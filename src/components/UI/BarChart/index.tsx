@@ -9,40 +9,50 @@ type HighChartProps = { chartRef: any, setChartInfo: any, chartType: any, chartS
 const BarChart = (props: HighChartProps) => {
     const [jsonData, setJSONData] = useState<any>('');
     // const chartOptions = props?.chartOptions
-    const chartSeries = props?.chartSeries
-    const chartDetails: any = [];
-    const seriesData: any = [];
-    const titleData: any = [];
+
     useEffect(() => {
         setJSONData(
             // @ts-ignore
             JSON.parse(document.getElementById('jsonData')?.innerHTML),
         );
+        getChartSeries()
     }, []);
+    const chartSeries = props?.chartSeries
+    const chartIndexDetails: any = [];
+    const chartIndexData: any = [];
+    const seriesData: any = [];
     HC_more(Highcharts);
-    // getHighchartOptions()
-    const getChartSeries = () => {
-        chartSeries?.map((chartDetail: any) => {
-            chartDetails.push(chartDetail)
-        })
-        return chartSeries?.map((chartDetail: any, index: number) => {
-            // console.log(chartDetail)
-            if (chartDetail.length > -1) {
-                if (chartDetail[0] == "Baseline" && chartDetail[chartDetail.length - 1] == "service to sales") {
-                    chartDetail.splice(chartDetail.length, 1)
-                    console.log(chartDetail)
-                    titleData.push(chartDetail)
-                    seriesData.push(chartDetail[0])
 
+    const getChartSeries = () => {
+        return chartSeries?.map((chartDetail: any, index: number) => {
+            if (chartDetail?.length > -1) {
+                if (chartSeries[0][index] == chartDetail[0]) {
+                    chartIndexDetails?.push(...chartDetail)
+                }
+                if (chartSeries[chartSeries?.length - 1][index] == chartDetail[chartSeries?.length - 1]) {
+                    chartIndexData?.push(...chartDetail)
                 }
             }
         })
     }
-    getChartSeries()
-    console.log(getChartSeries())
-    console.log(titleData)
-    console.log(seriesData)
-    const chartOptions = getBaselinechartOptions();
+
+    const getCategories = () => {
+        const categories: any = [];
+        categories.push(chartIndexDetails[0]);
+        categories.push(chartIndexData[0]);
+        return categories;
+    }
+
+    const getSeriesData = () => {
+        if ((chartIndexDetails != undefined && chartIndexDetails != "") || (chartIndexData != undefined && chartIndexData != "")) {
+            const chartIdx = chartIndexDetails;
+            const chartIndex = chartIndexData;
+            seriesData.push(chartIdx[chartIdx?.length - 1])
+            seriesData.push(chartIndex[chartIndex?.length - 1])
+            return seriesData;
+        }
+    }
+
     const [options, setOptions] = useState({
         // Bar chart
         chart: {
@@ -53,7 +63,8 @@ const BarChart = (props: HighChartProps) => {
         },
         xAxis: {
             tickLength: 0,
-            categories: ['Baseline', 'Possible future baseline'], gridLineWidth: 0
+            categories: getCategories(), gridLineWidth: 0
+            // categories: ["asd", "asd"], gridLineWidth: 0
         },
         yAxis: {
             tickLength: 0,
@@ -81,7 +92,8 @@ const BarChart = (props: HighChartProps) => {
             enabled: false
         },
         series: [{
-            data: [28535, 140440]
+            data: getSeriesData()
+            // data: [1000, 4000]
         }]
     });
     return (

@@ -44,15 +44,33 @@ const OutputContactCenter = () => {
     // console.log(inputDetails)
     const getChartType = () => {
     };
-    const getBarChartSeries = () => {
+    const getBarChartSeriesForLabelOne = () => {
         return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
-            return rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
+            return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
                 return tbodyDetail;
             })
         }
         )
     };
-    // console.log(getBarChartSeries())
+    const getBarChartSeriesForLabelTwo = () => {
+        return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
+            return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
+                return tbodyDetail;
+            })
+        }
+        )
+    };
+    const getBaselineChartSeries = () => {
+        return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
+            return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
+                return tbodyDetail;
+            })
+        }
+        )
+    }
+
+
+
     return (
         <div className="contactpage-container">
             <SecondaryHeader />
@@ -103,7 +121,7 @@ const OutputContactCenter = () => {
                         </div>
                     </div>
                     <div className="chart-container" >
-                        <BarChart chartRef={barChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeries()} chartOptions={getChartType()} />
+                        <BarChart chartRef={barChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} />
                     </div>
                     <Box className="outputTable-container" sx={{ mb: 5, }}>
                         <div className="outputTable-container__inr">
@@ -130,8 +148,14 @@ const OutputContactCenter = () => {
                             </div>
                         </div>
                         <div className="outputTable-container__md">
-                            <div className="title-container">
-                                <p>Baseline</p>
+                            <div className="title-container" >
+                                {
+                                    inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
+                                        return (<>
+                                            <p>{rowDetail?.tbodyDetails[0]}</p>
+                                        </>)
+                                    })
+                                }
                             </div>
                             <div className="outputTable-container__md__header">
                                 <div className="table-row"><span>Inbound Sales</span><span>:</span><span>Not Selected</span></div>
@@ -141,15 +165,44 @@ const OutputContactCenter = () => {
                                 <div className="table-row"><span>Winback</span><span>:</span><span>Not Selected</span></div>
                                 <div className="table-row"><span>Total</span><span>:</span><span>28,535 €</span></div>
                             </div>
+                            {/* <div className="outputTable-container__md__header">
+                                {
+                                    inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
+                                        const currencySymbol = inputDetails?.periodTableData?.A5_1_label?.currencySymbol
+                                        return <>
+                                            {
+                                                rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
+                                                    let indexToRemove = 1;
+                                                    let numberToRemove = rowDetail?.tbodyDetails.length - 1;
+                                                    const rowValues = rowDetail?.tbodyDetails.splice(indexToRemove, numberToRemove);
+                                                    rowValues.map((rowValue: any) => {
+                                                        return <div className="table-row">
+                                                            {rowValues.map((rowValue: any) => { return <><span>:</span><span>{rowValue}</span></> })}
+                                                        </div>
+                                                    })
+                                                    // return <>
+                                                    //     {rowValues.map((rowValue: any) => {
+                                                    //         // return  <div className="table-row"><span>:</span><span>{rowValue}</span></div>
+                                                    //         // return (typeof rowValue == "number" ?  : <div className="table-row"><span>{rowValue}</span></div>)
+                                                    //     })
+
+                                                    //     } </>
+                                                    // return (typeof tbodyDetail == "number" ? <div className="table-row"><span>{tbodyDetail}</span><span className="currency-symbol">{currencySymbol}</span></div> : <div className="table-row"><span>{tbodyDetail}</span></div>)
+                                                })
+                                            }
+                                        </>
+                                    })
+                                }
+                            </div> */}
                         </div>
                     </Box>
                     <div className="chart-container multiple-charts">
                         <div className="chart-container__inr">
                             <div className="chart-baseline">
-                                <BaselineChart chartRef={baselineChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeries()} chartOptions={getChartType()} />
+                                <BaselineChart chartRef={baselineChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBaselineChartSeries()} chartOptions={getChartType()} />
                             </div>
                             <div className="chart-futurebaseline">
-                                <PotentialChart chartRef={potentialChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeries()} chartOptions={getChartType()} />
+                                <PotentialChart chartRef={potentialChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} />
                             </div>
                         </div>
                     </div>
@@ -157,13 +210,13 @@ const OutputContactCenter = () => {
                 <div className="contactpage-container__inr__section">
                     <div className="single-dropdown-section">
                         <div className="single-dropdown-section__header">
-                            <p className="header-text">{inputDetails?.heading}</p>
+                            <p className="header-text">{inputDetails?.potentialIncreaseData?.heading}</p>
                         </div>
                     </div>
                     <div className="dropdown-container">
                         <div className="single-dropdown-section__body">
                             <div className="title-container">
-                                <p>{inputDetails?.questions?.optionName}</p>
+                                <p>{inputDetails?.potentialIncreaseData?.segmentDD?.description}</p>
                             </div>
                         </div>
                         <Grid container sx={{ alignItems: 'center', pb: 2 }} xs={12} md={4}>
@@ -175,9 +228,21 @@ const OutputContactCenter = () => {
                                     <Select sx={{ p: 0, borderRadius: 0, mb: 1, }}
                                         className="inputField cutom-input-field" value={'Hello'}
                                     >
-                                        <MenuItem disabled value="none" className="selectItem">
-                                            <>Select Option</>
+                                        <MenuItem
+                                            disabled
+                                            value="none"
+                                            className="selectItem"
+                                        >
+                                            <>{inputDetails?.potentialIncreaseData?.segmentDD?.placeholder}</>
                                         </MenuItem>
+                                        {inputDetails?.potentialIncreaseData?.segmentDD?.options?.map((elemnt: any) => (
+                                            <MenuItem
+                                                value={elemnt?.ddName}
+                                                className="selectItem"
+                                            >
+                                                {elemnt?.ddName}
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -219,7 +284,7 @@ const OutputContactCenter = () => {
                     </Box>
                     <div className="chart-container">
                         <div className="chart-container__waterfall">
-                            <SegmentChart chartRef={segmentChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeries()} chartOptions={getChartType()} />
+                            <SegmentChart chartRef={segmentChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} />
                         </div>
                     </div>
                 </div>
