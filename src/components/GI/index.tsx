@@ -802,22 +802,25 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
-                                      CV.selectedId2 = "";
-                                      CV.selectedId3 = "";
-                                      if (CV.questionId == genQues.questionId) {
-                                        CV.options.forEach((option: any) => {
-                                          if (
-                                            option.ddName == event.target.value
-                                          ) {
-                                            dropdownId = option.ddId;
+                                      if(CV?.type == genQues?.type)
+                                      {
+                                        CV.selectedId2 = "";
+                                        CV.selectedId3 = "";
+                                        if (CV.questionId == genQues.questionId) {
+                                          CV.options.forEach((option: any) => {
+                                            if (
+                                              option.ddName == event.target.value
+                                            ) {
+                                              dropdownId = option.ddId;
 
-                                            document
-                                              .getElementById(option.ddId)
-                                              ?.click();
-                                            uncheckCheckboxes(genQues.options2);
-                                            uncheckCheckboxes(genQues.options3);
-                                          }
-                                        });
+                                              document
+                                                .getElementById(option.ddId)
+                                                ?.click();
+                                              uncheckCheckboxes(genQues.options2);
+                                              uncheckCheckboxes(genQues.options3);
+                                            }
+                                          });
+                                        }
                                       }
                                     }
                                   );

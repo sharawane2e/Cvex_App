@@ -17,11 +17,20 @@ import { useDispatch, useSelector } from 'react-redux';
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
 
+  const updateScrollPos = (scrollValue: number) => {
+    let scrollContainer: any = document.querySelector(
+      ".right-panel__inr"
+    );
+    scrollContainer.scrollTop = scrollValue;
+  };
+
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    console.log(document.querySelector(".right-panel__inr"));
+    setTimeout(function(){updateScrollPos(jsonData?.data?.scrollPosition);}, 1000);
   }, []);
   
   const { dispatch } = store;

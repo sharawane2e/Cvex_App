@@ -18,6 +18,7 @@ import LinearProgressbar2 from "../LinearProgressbar2";
 import { LegendToggleTwoTone } from "@mui/icons-material";
 
 const ImpactCalculator = (props: any) => {
+
   const [jsonData, setJSONData] = useState<any>("");
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
@@ -50,6 +51,8 @@ const ImpactCalculator = (props: any) => {
     setTimeout(function () {
       // updateScrollPos(updatedJson?.data?.scrollPosition);
       getblockLocations(updatedJson);
+
+      console.log(updatedJson)
     }, 0);
   }, []);
 
@@ -258,7 +261,7 @@ const ImpactCalculator = (props: any) => {
     });
     setBlockLocs(arr);
     console.log(arr);
-    console.log(obj);
+    console.log(jsonData);
     // let ab = document.getElementById("scroll_2")?.getBoundingClientRect().top;
     // @ts-ignore
     // console.log(parentheight.getBoundingClientRect().top - ab);
@@ -344,6 +347,7 @@ const ImpactCalculator = (props: any) => {
                                       <Grid
                                         container
                                         xs={12}
+                                        
                                         className="section-pad"
                                       >
                                         {segmentDetail?.questions?.map(
@@ -383,8 +387,9 @@ const ImpactCalculator = (props: any) => {
                                                   <Grid
                                                     item
                                                     xs={12}
-                                                    md={4}
+                                                    sm={4}
                                                     lg={4}
+                                                    md={4}
                                                     className="input-form-control"
                                                   >
                                                     <p className="label-heading">

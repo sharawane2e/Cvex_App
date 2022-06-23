@@ -11,6 +11,7 @@ import { LinearProgressBar } from "../LinearProgressBar";
 import { useSelector } from "react-redux";
 import CustomPopup from "../UI/CustomPopup";
 import { $CombinedState } from "@reduxjs/toolkit";
+import { saveScrollPosNew } from "../../utils";
 
 // import { useSelector } from 'react-redux';
 
@@ -76,11 +77,13 @@ const LinearProgressbar2 = ({
   //   });
   // };
 
-  const saveScrollPos = () => {
-    var scrollValue = document.querySelector(".impact-calc-container__inr")?.scrollTop;
-    var scrollInput:any = document.querySelector("#scroll-value");
-    scrollInput.value = scrollValue;
-  }
+  // const saveScrollPos = () => {
+  //   var scrollValue = document.querySelector(".impact-calc-container__inr")?.scrollTop;
+  //   var scrollInput:any = document.querySelector("#scroll-value");
+  //   scrollInput.value = scrollValue;
+  // }
+
+    
 
   const handleSave = (saveId: string) => {
     // @ts-ignore
@@ -186,7 +189,7 @@ const LinearProgressbar2 = ({
               <CustomButton
                 className={"submitButton previous-button"}
                 onClick={() => {
-                  saveScrollPos();
+                  saveScrollPosNew(".impact-calc-container__inr", "#scroll-value");
                   handleSave(
                     jsonData?.data?.progressBarData?.saveBtn?.saveId
                   );
