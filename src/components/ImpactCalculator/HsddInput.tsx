@@ -13,6 +13,16 @@ type HsddInputProps = {
   error?: boolean;
 };
 
+const getselectedDDName = (options: any, selectedId: string) => {
+  let selectedDDName = "";
+  options?.forEach((element: any) => {
+    if (element.ddId == selectedId) {
+      selectedDDName = element.ddName;
+    }
+  });
+  return selectedDDName;
+};
+
 const HsddInput = (props: HsddInputProps) => {
   const { error = false } = props;
 
@@ -51,8 +61,9 @@ const HsddInput = (props: HsddInputProps) => {
                 }
                 return selected;
               }}
-              value={selectedId}
+              value={getselectedDDName(options,selectedId)}
               onChange={(e) => {
+                console.log(e.target.value)
                 props.onChange(e.target.value);
               }}
               error={error}

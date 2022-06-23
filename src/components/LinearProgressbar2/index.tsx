@@ -10,21 +10,33 @@ import { getParsedData } from "../../utils/parserUtil";
 import { LinearProgressBar } from "../LinearProgressBar";
 import { useSelector } from "react-redux";
 import CustomPopup from "../UI/CustomPopup";
+import { $CombinedState } from "@reduxjs/toolkit";
 
 // import { useSelector } from 'react-redux';
 
 type ProgressBarProps = {
   percentage: number;
   upJson: string;
+  showError: any;
 };
 
-export default function LinearProgressbar2(props: ProgressBarProps) {
+const LinearProgressbar2 = ({
+  percentage,
+  upJson,
+  showError,
+}: ProgressBarProps) => {
   const { leftPanel, rightPanel } = useSelector((state: any) => state);
 
   const [jsonData, setJSONData] = useState<any>("");
   const [sbtDisable, setSbtdisable] = useState(true);
 
   const [open, setOpen] = useState(false);
+
+  const defaultProps: ProgressBarProps = {
+    percentage: 0,
+    upJson: jsonData,
+    showError: false,
+  };
 
   // const handleClickOpen = () => {
   //   setOpen(true);
@@ -48,38 +60,39 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
     document.getElementById("forwardbutton").disabled = true;
     //setSaveId(jsonData?.data?.progressBarData?.saveBtn?.saveId)
   }, []);
-  const getMandatoryField = () => {
-    const inputData = jsonData?.data?.inputData;
+  // const getMandatoryField = () => {
+  //   const inputData = jsonData?.data?.inputData;
 
-    return inputData?.map((inputDetail: any) => {
-      inputDetail?.subHeadingDetails?.map((subHeadingDetail: any) => {
-        subHeadingDetail?.segmentDetails.map((segmentDetail: any) => {
-          segmentDetail?.questions.map((question: any) => {
-            if (question.isRequired && question.selectedId !== "") {
-              setOpen(true);
-            }
-          });
-        });
-      });
-    });
-  };
+  //   return inputData?.map((inputDetail: any) => {
+  //     inputDetail?.subHeadingDetails?.map((subHeadingDetail: any) => {
+  //       subHeadingDetail?.segmentDetails.map((segmentDetail: any) => {
+  //         segmentDetail?.questions.map((question: any) => {
+  //           if (question.isRequired && question.selectedId !== "") {
+  //             setOpen(true);
+  //           }
+  //         });
+  //       });
+  //     });
+  //   });
+  // };
 
   const saveScrollPos = () => {
     var scrollValue = document.querySelector(".impact-calc-container__inr")?.scrollTop;
-    console.log(scrollValue);
     var scrollInput:any = document.querySelector("#scroll-value");
-    scrollInput.innerHTML = scrollValue;
+    scrollInput.value = scrollValue;
   }
 
-  const saveProgress = (saveId: string) => {};
-  const handleBtnClick = (saveId: string) => {
+  const handleSave = (saveId: string) => {
     // @ts-ignore
     document.getElementById("navText").value = saveId;
     // @ts-ignore
     document.getElementById("forwardbutton").disabled = false;
     // @ts-ignore
     document.getElementById("forwardbutton").click();
-    isReqAnswered();
+  };
+  const handleSubmit = (saveId: string) => {
+    isReqAnswered(saveId);
+    showError(true);
   };
 
   const submitProgress = (event: any) => {
@@ -101,10 +114,10 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
   //     return progressPercentage;
   //   };
 
-  const isReqAnswered = () => {
-    if (JSON.parse(props?.upJson)?.data?.inputData) {
+  const isReqAnswered = (saveId:any) => {
+    if (JSON.parse(upJson)?.data?.inputData) {
       let count: number = 0;
-      JSON.parse(props?.upJson)?.data?.inputData?.map((block: any) => {
+      JSON.parse(upJson)?.data?.inputData?.map((block: any) => {
         block.subHeadingDetails.map((seg: any) => {
           seg.segmentDetails.map((ques: any) => {
             let len;
@@ -129,14 +142,20 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
           });
         });
       });
-      console.log(JSON.parse(props?.upJson));
       if (count == 0) {
+         // @ts-ignore
+    document.getElementById("navText").value = saveId;
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = false;
+    // @ts-ignore
+    document.getElementById("forwardbutton").click();
         return true;
       } else {
         setOpen(true);
         return false;
       }
     }
+    //console.log(upJson);
   };
 
   return (
@@ -144,10 +163,10 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
       <Box className="topContainer">
         <Box className="leftPanel">
           {/* <Box className="progressbar-text" sx={{ minWidth: 35 }}>
-                        <Typography variant="body2" color="text.secondary">{`(${Math.round(props?.percentage)}%)`}</Typography>
+                        <Typography variant="body2" color="text.secondary">{`(${Math.round(percentage)}%)`}</Typography>
                     </Box> */}
           <div className="ProgressText">
-            {"Answered " + Math.round(props?.percentage) + "%"}
+            {"Answered " + Math.round(percentage) + "%"}
           </div>
           <div className="progressbar-container">
             <Box
@@ -155,10 +174,7 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
               sx={{ display: "flex", justifyContent: "start" }}
             >
               <Box className="progressbar" sx={{ width: "100%", mr: 1 }}>
-                <LinearProgress
-                  variant="determinate"
-                  value={props?.percentage}
-                />
+                <LinearProgress variant="determinate" value={percentage} />
               </Box>
             </Box>
           </div>
@@ -170,10 +186,10 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
               <CustomButton
                 className={"submitButton previous-button"}
                 onClick={() => {
-                  handleBtnClick(
+                  saveScrollPos();
+                  handleSave(
                     jsonData?.data?.progressBarData?.saveBtn?.saveId
                   );
-                    saveScrollPos();
                   }
                 }
               >
@@ -192,8 +208,8 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
                     : "submitButton next-button"
                 }
                 onClick={() =>
-                  handleBtnClick(
-                    jsonData?.data?.progressBarData?.saveBtn?.submitId
+                  handleSubmit(
+                    jsonData?.data?.progressBarData?.submitBtn?.submitId
                   )
                 }
               >
@@ -213,4 +229,6 @@ export default function LinearProgressbar2(props: ProgressBarProps) {
       </Box>
     </>
   );
-}
+};
+
+export default LinearProgressbar2;
