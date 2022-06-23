@@ -19,7 +19,10 @@ const OutputContactCenter = () => {
     const segmentChartRef = useRef<HighchartsReact.RefObject>(null);
 
     const [chartInfo, setChartInfo] = useState(null);
-
+    const [chartIndexDetails, setChartIndexDetails] = useState<any>([]);
+    const [chartIndexData, setChartIndexData] = useState<any>([]);
+    const [categories, setCategories] = useState<any>([]);
+    const [seriesData, setSeriesData] = useState<any>([]);
 
     useEffect(() => {
         setJSONData(
@@ -41,19 +44,69 @@ const OutputContactCenter = () => {
     };
 
     const inputDetails = jsonData?.data?.inputData;
-    // console.log(inputDetails)
+
     const getChartType = () => {
     };
     const getBarChartSeriesForLabelOne = () => {
         return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
-            return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
-                return tbodyDetail;
+            // getChartSeriesOne(rowDetail?.tbodyDetails)
+            return rowDetail?.tbodyDetails?.map((tbodyDetail: any, index: number) => {
+                if (jsonData != undefined) {
+                    if (tbodyDetail?.length > -1) {
+                        console.log(rowDetail?.tbodyDetails[0])
+                        if (rowDetail?.tbodyDetails == tbodyDetail) {
+                            setChartIndexDetails([...tbodyDetail])
+                        }
+                        if (rowDetail?.tbodyDetails == tbodyDetail) {
+                            setChartIndexData([...tbodyDetail])
+                        }
+                    }
+                }
             })
-        }
-        )
+        })
     };
+
+    // const getChartSeriesOne = (chartSeriesOne: any) => {
+    //     console.log(chartSeriesOne)
+    //     return chartSeriesOne?.map((chartDetail: any, index: number) => {
+    //         if (chartDetail?.length > -1) {
+    //             if (chartSeriesOne[0][index] == chartDetail[0]) {
+    //                 setChartIndexDetails([...chartDetail])
+    //             }
+    //             if (chartSeriesOne[chartSeriesOne?.length - 1][index] == chartDetail[chartSeriesOne?.length - 1]) {
+    //                 setChartIndexData([...chartDetail])
+    //             }
+    //         }
+    //     })
+
+    // }
+    const getCategories = () => {
+        const categoriesArr: any = [];
+        categoriesArr.push(chartIndexDetails);
+        categoriesArr.push(chartIndexData[0]);
+        console.log(chartIndexDetails)
+
+        setCategories(categoriesArr)
+
+        // return categories;
+    }
+    getCategories()
+    console.log(categories)
+
+    // const getSeriesData = () => {
+    //     const seriesDataArr: any = [];
+    //     if ((chartIndexDetails != undefined && chartIndexDetails != "") || (chartIndexData != undefined && chartIndexData != "")) {
+    //         const chartIdx = chartIndexDetails;
+    //         const chartIndex = chartIndexData;
+    //         seriesDataArr.push(chartIdx[chartIdx?.length - 1])
+    //         seriesDataArr.push(chartIndex[chartIndex?.length - 1])
+    //         setSeriesData(seriesDataArr)
+    //     }
+    // }
+    // getCategories();
+    // getSeriesData();
     const getBarChartSeriesForLabelTwo = () => {
-        return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
+        return inputDetails?.periodTableData?.A5_2_label?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
             return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
                 return tbodyDetail;
             })
@@ -121,7 +174,7 @@ const OutputContactCenter = () => {
                         </div>
                     </div>
                     <div className="chart-container" >
-                        <BarChart chartRef={barChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} />
+                        <BarChart chartRef={barChartRef} chartSeriesLabelOne={getBarChartSeriesForLabelOne()} chartSeriesLabelTwo={getBarChartSeriesForLabelTwo()} chartOptions={getChartType()} />
                     </div>
                     <Box className="outputTable-container" sx={{ mb: 5, }}>
                         <div className="outputTable-container__inr">
@@ -199,10 +252,10 @@ const OutputContactCenter = () => {
                     <div className="chart-container multiple-charts">
                         <div className="chart-container__inr">
                             <div className="chart-baseline">
-                                <BaselineChart chartRef={baselineChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBaselineChartSeries()} chartOptions={getChartType()} />
+                                {/* <BaselineChart chartRef={baselineChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBaselineChartSeries()} chartOptions={getChartType()} /> */}
                             </div>
                             <div className="chart-futurebaseline">
-                                <PotentialChart chartRef={potentialChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} />
+                                {/* <PotentialChart chartRef={potentialChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} /> */}
                             </div>
                         </div>
                     </div>
@@ -284,7 +337,7 @@ const OutputContactCenter = () => {
                     </Box>
                     <div className="chart-container">
                         <div className="chart-container__waterfall">
-                            <SegmentChart chartRef={segmentChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} />
+                            {/* <SegmentChart chartRef={segmentChartRef} setChartInfo={setChartInfo} chartType={getChartType()} chartSeries={getBarChartSeriesForLabelOne()} chartOptions={getChartType()} /> */}
                         </div>
                     </div>
                 </div>

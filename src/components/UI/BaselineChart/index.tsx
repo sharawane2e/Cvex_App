@@ -4,9 +4,9 @@ import Highcharts from "highcharts";
 import HC_more from 'highcharts/highcharts-more';
 import { getBaselinechartOptions, getBarchartOptions, getPotentialchartOptions, getSegmentchartOptions } from "../../../utils/highchartOptionUtil";
 
-type HighChartProps = { chartRef: any, setChartInfo: any, chartType: any, chartSeries: any, chartOptions: any }
+type BaselineChartProps = { chartRef: any, setChartInfo: any, chartType: any, chartSeriesLabelOne: any, chartSeriesLabelTwo: any, chartOptions: any }
 
-const BaselineChart = (props: HighChartProps) => {
+const BaselineChart = (props: BaselineChartProps) => {
     const [jsonData, setJSONData] = useState<any>('');
     // const chartOptions = props?.chartOptions
 
@@ -17,26 +17,16 @@ const BaselineChart = (props: HighChartProps) => {
         );
     }, []);
     HC_more(Highcharts);
-    const chartSeries = props?.chartSeries
+    const chartSeries = props?.chartSeriesLabelOne
     const chartIndexDetails: any = [];
     const chartIndexData: any = [];
     const seriesData: any = [];
     // const chartOptions = getBaselinechartOptions();
     console.log(chartSeries)
-    const getChartSeries = () => {
-        return chartSeries?.map((chartDetail: any, index: number) => {
-            // console.log()
-            if (chartDetail?.length > -1) {
-                if (chartSeries[0][index] == chartDetail[0]) {
-                    chartIndexDetails?.push(...chartDetail)
-                }
-                if (chartSeries[chartSeries?.length - 1][index] == chartDetail[chartSeries?.length - 1]) {
-                    chartIndexData?.push(...chartDetail)
-                }
-            }
-        })
-    }
-    getChartSeries()
+    // const getChartSeries = () => {
+
+    // }
+    // getChartSeries()
 
     const getCategories = () => {
         const categories: any = [];
