@@ -29,15 +29,6 @@ const ImpactCalculator = (props: any) => {
   // @ts-ignore
   const scrollToElement = () => testRef.current.scrollIntoView();
 
-  // useEffect(() => {
-  //   setJSONData(
-  //     // @ts-ignore
-  //     hideShowSections(
-  //       JSON.parse(document.getElementById('jsonData')?.innerHTML),
-  //     ),
-  //   );
-  // }, []);
-
   const [blockLocs, setBlockLocs] = useState([]);
 
   useEffect(() => {
@@ -66,19 +57,6 @@ const ImpactCalculator = (props: any) => {
     progressUpdate();
   }, [jsonData]);
 
-  // const txtInputValidate = (value: any, pattern: any) => {
-  //   const reg = pattern;
-  //   let res = '';
-
-  //   for (let i = 0; i < value.length; i++) {
-  //     if (value[0] == ' ') return '';
-
-  //     if (reg.test(value[i])) res += value[i];
-  //   }
-
-  //   return res;
-  // }
-
   const numInputValidate = (
     value: any,
     pattern: any,
@@ -106,44 +84,7 @@ const ImpactCalculator = (props: any) => {
     return res;
   };
 
-  // const hideShow = () => {
-  //   const allSHowNumQuestionIds: string[] = [];
-  //   const showNumQuestionIds: string[] = [];
-
-  //   jsonData?.data?.inputData?.map((inputDataEl: any, inputDataIndex: number) => {
-  //     inputDataEl.subHeadingDetails.map((subHeading: any, subHeadingIndex: number) => {
-  //       subHeading.segmentDetails.map((segment: any, segmentIndex: number) => {
-  //         segment.questions.map((question: any, questionIndex: number) => {
-  //           if (question.type == "hsdd" && question.enableQuestionIds.length) {
-  //             allSHowNumQuestionIds.push(...question.enableQuestionIds)
-  //           }
-  //           if (question.type == "hsdd" && question.selectedId != "" && question.enableQuestionIds.length) {
-  //             question.options.map((option: any) => {
-  //               if (option.ddId === question.selectedId && option.enableIds) {
-  //                 showNumQuestionIds.push(...question.enableQuestionIds);
-  //               }
-  //             })
-  //           }
-  //         })
-  //       })
-  //     })
-  //   })
-
-  //   setAllSHowNumQuestionIds([...allSHowNumQuestionIds]);
-  //   setShowNumQuestionIds([...showNumQuestionIds]);
-
-  // };
-
   const inputData = jsonData?.data?.inputData;
-  // const showSection = (questionId: string) => {
-  //   if (allSHowNumQuestionIds.indexOf(questionId) != -1 && showNumQuestionIds.indexOf(questionId) != -1)
-  //     return true;
-  //   else
-  //     // if (false) {
-  //     //   setJSONData(inputData);
-  //     // }
-  //     return false;
-  // }
 
   const handleDDChange = (
     ddId: string,
@@ -350,171 +291,77 @@ const ImpactCalculator = (props: any) => {
       <SecondaryHeader sidebar={false} />
       <div className="impact-calc-container__inr" id="impactCalc">
         <div className="impact-calc-container__inr--question">
-          {
-            // console.log(inputData?.isShow)
-            // (inputData?.isShow == true)?
-            inputData?.map((inputDetails: any, inputDataIdx: number) => {
-              return (
-                <>
-                  {(inputDetails.isSequential &&
-                    inputDetails.isSequentialShow &&
-                    inputDetails.isShow) ||
-                  (!inputDetails.isSequential && inputDetails.isShow) ||
-                  inputDataIdx == 0 ? (
-                    <div
-                      className="single-dropdown-section"
-                      id={"scroll_" + (inputDataIdx + 1)}
-                    >
-                      {inputDetails?.isShow == true &&
-                      inputDetails?.headingText != "" ? (
-                        <div className="single-dropdown-section__header">
-                          <p className="header-text">
-                            {inputDetails?.headingText}
-                          </p>
-                        </div>
-                      ) : null}
+          {inputData?.map((inputDetails: any, inputDataIdx: number) => {
+            return (
+              <>
+                {(inputDetails.isSequential &&
+                  inputDetails.isSequentialShow &&
+                  inputDetails.isShow) ||
+                (!inputDetails.isSequential && inputDetails.isShow) ||
+                inputDataIdx == 0 ? (
+                  <div
+                    className="single-dropdown-section"
+                    id={"scroll_" + (inputDataIdx + 1)}
+                  >
+                    {inputDetails?.isShow == true &&
+                    inputDetails?.headingText != "" ? (
+                      <div className="single-dropdown-section__header">
+                        <p className="header-text">
+                          {inputDetails?.headingText}
+                        </p>
+                      </div>
+                    ) : null}
 
-                      {inputDetails?.subHeadingDetails?.map(
-                        (subHeadingDetail: any, subHeadingIdx: number) => {
-                          return subHeadingDetail?.isShow == true ? (
-                            <>
-                              <div className="single-dropdown-section__body">
-                                {subHeadingDetail.hasOwnProperty(
-                                  "subHeadingText"
-                                ) ? (
-                                  subHeadingDetail?.subHeadingText != "" &&
-                                  subHeadingDetail?.isShow == true ? (
-                                    <div className="title-container">
-                                      <p>{subHeadingDetail?.subHeadingText}</p>
-                                    </div>
-                                  ) : null
-                                ) : null}
+                    {inputDetails?.subHeadingDetails?.map(
+                      (subHeadingDetail: any, subHeadingIdx: number) => {
+                        return subHeadingDetail?.isShow == true ? (
+                          <>
+                            <div className="single-dropdown-section__body">
+                              {subHeadingDetail.hasOwnProperty(
+                                "subHeadingText"
+                              ) ? (
+                                subHeadingDetail?.subHeadingText != "" &&
+                                subHeadingDetail?.isShow == true ? (
+                                  <div className="title-container">
+                                    <p>{subHeadingDetail?.subHeadingText}</p>
+                                  </div>
+                                ) : null
+                              ) : null}
 
-                                {subHeadingDetail?.segmentDetails?.map(
-                                  (
-                                    segmentDetail: any,
-                                    segmentDetailIdx: number
-                                  ) => {
-                                    return segmentDetail?.isShow == true ? (
-                                      <>
-                                        {segmentDetail?.segmentText != "" ? (
-                                          <div className="segment-container">
-                                            <p>{segmentDetail.segmentText}</p>
-                                          </div>
-                                        ) : null}
+                              {subHeadingDetail?.segmentDetails?.map(
+                                (
+                                  segmentDetail: any,
+                                  segmentDetailIdx: number
+                                ) => {
+                                  return segmentDetail?.isShow == true ? (
+                                    <>
+                                      {segmentDetail?.segmentText != "" ? (
+                                        <div className="segment-container">
+                                          <p>{segmentDetail.segmentText}</p>
+                                        </div>
+                                      ) : null}
 
-                                        <Grid
-                                          container
-                                          xs={12}
-                                          className="section-pad"
-                                        >
-                                          {segmentDetail?.questions?.map(
-                                            (
-                                              question: any,
-                                              questionDataIdx: number
-                                            ) => {
-                                              // {
-                                              //   (showSection(question?.questionId)===true)?
-                                              //    (<div className='segment-heading'>
-                                              //      <p>{segmentDetail?.segmentText}</p>
-                                              //    </div>) : null
-                                              //  }
-                                              if (question.type == "dd") {
-                                                return (
-                                                  <>
-                                                    <HsddInput
-                                                      question={question}
-                                                      onChange={(
-                                                        ddId: string
-                                                      ) =>
-                                                        handleDDChange(
-                                                          ddId,
-                                                          inputDataIdx,
-                                                          subHeadingIdx,
-                                                          segmentDetailIdx,
-                                                          questionDataIdx
-                                                        )
-                                                      }
-                                                    />
-                                                  </>
-                                                );
-                                              } else if (
-                                                question.type == "num" &&
-                                                question.isShow
-                                              ) {
-                                                return (
-                                                  <>
-                                                    <Grid
-                                                      item
-                                                      xs={4}
-                                                      md={4}
-                                                      lg={4}
-                                                      className="input-form-control"
-                                                    >
-                                                      <p className="label-heading">
-                                                        {question?.optionName}
-                                                      </p>
-                                                      <Inputbox
-                                                        className="inputField cutom-input-field"
-                                                        id={
-                                                          question.questionId +
-                                                          "_html"
-                                                        }
-                                                        placeholder={
-                                                          question.placeholder
-                                                        }
-                                                        type={
-                                                          question.type ==
-                                                          "text"
-                                                            ? "text"
-                                                            : ""
-                                                        }
-                                                        value={
-                                                          question.selectedText
-                                                        }
-                                                        onChange={(e: any) => {
-                                                          e.target.value =
-                                                            numInputValidate(
-                                                              e.target.value,
-                                                              /^[0-9]+$/,
-                                                              question.minRange,
-                                                              question.maxRange
-                                                            );
-
-                                                          handleNumChange(
-                                                            e.target.value,
-                                                            inputDataIdx,
-                                                            subHeadingIdx,
-                                                            segmentDetailIdx,
-                                                            questionDataIdx
-                                                          );
-                                                        }}
-                                                        error={
-                                                          showError &&
-                                                          question.selectedText ==
-                                                            "" &&
-                                                          question.isRequired
-                                                        }
-                                                        onBlur={(e: any) => {
-                                                          numFocusOut(
-                                                            e.target.value,
-                                                            inputDataIdx,
-                                                            subHeadingIdx,
-                                                            segmentDetailIdx,
-                                                            questionDataIdx
-                                                          );
-                                                        }}
-                                                      />
-                                                    </Grid>
-                                                  </>
-                                                );
-                                              } else if (
-                                                question.type == "hsdd"
-                                              ) {
-                                                return (
+                                      <Grid
+                                        container
+                                        xs={12}
+                                        className="section-pad"
+                                      >
+                                        {segmentDetail?.questions?.map(
+                                          (
+                                            question: any,
+                                            questionDataIdx: number
+                                          ) => {
+                                            // {
+                                            //   (showSection(question?.questionId)===true)?
+                                            //    (<div className='segment-heading'>
+                                            //      <p>{segmentDetail?.segmentText}</p>
+                                            //    </div>) : null
+                                            //  }
+                                            if (question.type == "dd") {
+                                              return (
+                                                <>
                                                   <HsddInput
                                                     question={question}
-                                                    // error={showwerror && x.selcetedid == "" && x.isrequired}
                                                     onChange={(ddId: string) =>
                                                       handleDDChange(
                                                         ddId,
@@ -524,33 +371,119 @@ const ImpactCalculator = (props: any) => {
                                                         questionDataIdx
                                                       )
                                                     }
-                                                    error={
-                                                      showError &&
-                                                      question.selectedId ==
-                                                        "" &&
-                                                      question.isRequired
-                                                    }
                                                   />
-                                                );
-                                              }
+                                                </>
+                                              );
+                                            } else if (
+                                              question.type == "num" &&
+                                              question.isShow
+                                            ) {
+                                              return (
+                                                <>
+                                                  <Grid
+                                                    item
+                                                    xs={12}
+                                                    md={4}
+                                                    lg={4}
+                                                    className="input-form-control"
+                                                  >
+                                                    <p className="label-heading">
+                                                      {question?.optionName}
+                                                    </p>
+                                                    <Inputbox
+                                                      className="inputField cutom-input-field"
+                                                      id={
+                                                        question.questionId +
+                                                        "_html"
+                                                      }
+                                                      placeholder={
+                                                        question.placeholder
+                                                      }
+                                                      type={
+                                                        question.type == "text"
+                                                          ? "text"
+                                                          : ""
+                                                      }
+                                                      value={
+                                                        question.selectedText
+                                                      }
+                                                      onChange={(e: any) => {
+                                                        e.target.value =
+                                                          numInputValidate(
+                                                            e.target.value,
+                                                            /^[0-9]+$/,
+                                                            question.minRange,
+                                                            question.maxRange
+                                                          );
+
+                                                        handleNumChange(
+                                                          e.target.value,
+                                                          inputDataIdx,
+                                                          subHeadingIdx,
+                                                          segmentDetailIdx,
+                                                          questionDataIdx
+                                                        );
+                                                      }}
+                                                      error={
+                                                        showError &&
+                                                        question.selectedText ==
+                                                          "" &&
+                                                        question.isRequired
+                                                      }
+                                                      onBlur={(e: any) => {
+                                                        numFocusOut(
+                                                          e.target.value,
+                                                          inputDataIdx,
+                                                          subHeadingIdx,
+                                                          segmentDetailIdx,
+                                                          questionDataIdx
+                                                        );
+                                                      }}
+                                                    />
+                                                  </Grid>
+                                                </>
+                                              );
+                                            } else if (
+                                              question.type == "hsdd"
+                                            ) {
+                                              return (
+                                                <HsddInput
+                                                  question={question}
+                                                  // error={showwerror && x.selcetedid == "" && x.isrequired}
+                                                  onChange={(ddId: string) =>
+                                                    handleDDChange(
+                                                      ddId,
+                                                      inputDataIdx,
+                                                      subHeadingIdx,
+                                                      segmentDetailIdx,
+                                                      questionDataIdx
+                                                    )
+                                                  }
+                                                  error={
+                                                    showError &&
+                                                    question.selectedId == "" &&
+                                                    question.isRequired
+                                                  }
+                                                />
+                                              );
                                             }
-                                          )}
-                                        </Grid>
-                                      </>
-                                    ) : null;
-                                  }
-                                )}
-                              </div>
-                            </>
-                          ) : null;
-                        }
-                      )}
-                    </div>
-                  ) : null}
-                </>
-              );
-            })
-          }
+                                          }
+                                        )}
+                                      </Grid>
+                                    </>
+                                  ) : null;
+                                }
+                              )}
+                            </div>
+                          </>
+                        ) : null;
+                      }
+                    )}
+                  </div>
+                ) : null}
+              </>
+            );
+          })}
         </div>
       </div>
 
