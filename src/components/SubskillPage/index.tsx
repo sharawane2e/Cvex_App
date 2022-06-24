@@ -67,7 +67,7 @@ const PanelPage = (props: any) => {
                   <>
                     <div className="single-capability">
                       <div className="single-capability__left">
-                      <div className="mobile_heading">Capability</div>
+                      <div className="mobile_heading">{ panelData?.panelHeading[0]}</div>
                         <p className="skill_text">{elm.capabilityText}</p>
                       </div>
                       <div className="single-capability__right">
@@ -78,7 +78,7 @@ const PanelPage = (props: any) => {
                               <div className="single-capability__right--cap-detail">
                                 <div className="skillCont">
                                   <div className="capability">
-                                  <div className="mobile_heading">Skill</div>
+                                  <div className="mobile_heading">{ panelData?.panelHeading[1]}</div>
                                     <p className="skill_text">{skill?.skillText}</p>
                                   </div>
                                   <div>
@@ -94,11 +94,11 @@ const PanelPage = (props: any) => {
                                         <div className=" skill-details-cnrt__skill-details">
                                         
                                           <div className="skill-details-cnrt__sub-skill skill-common">
-                                          <div className="mobile_heading">Sub-skill</div>
+                                          <div className="mobile_heading">{ panelData?.panelHeading[2]}</div>
                                             <p className="skill_text">{subskill.subSkillText}</p>
                                           </div>
                                           <div className="skill-details-cnrt__observation skill-common">
-                                          <div className="mobile_heading">Observations</div>
+                                          <div className="mobile_heading">{ panelData?.panelHeading[3]}</div>
                                             <p className="skill_text">{subskill.observationtext}</p>
                                           </div>
                                           <div className="skill-details-cnrt__slider skill-common">
