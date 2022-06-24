@@ -18,7 +18,6 @@ import LinearProgressbar2 from "../LinearProgressbar2";
 import { LegendToggleTwoTone } from "@mui/icons-material";
 
 const ImpactCalculator = (props: any) => {
-
   const [jsonData, setJSONData] = useState<any>("");
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
@@ -52,12 +51,13 @@ const ImpactCalculator = (props: any) => {
       // updateScrollPos(updatedJson?.data?.scrollPosition);
       getblockLocations(updatedJson);
 
-      console.log(updatedJson)
+      console.log(updatedJson);
     }, 0);
   }, []);
 
   useEffect(() => {
     progressUpdate();
+    getblockLocations(jsonData);
   }, [jsonData]);
 
   const numInputValidate = (
@@ -132,6 +132,7 @@ const ImpactCalculator = (props: any) => {
       scrollEffect(inputDataIdx);
       console.log("last", inputDataIdx);
     }
+    getblockLocations(updatedJson);
   };
 
   const handleNumChange = (
@@ -158,6 +159,7 @@ const ImpactCalculator = (props: any) => {
 
     setJSONData(updatedJson);
     setupJson(updatedJson);
+    getblockLocations(updatedJson);
   };
 
   const numFocusOut = (
@@ -253,15 +255,30 @@ const ImpactCalculator = (props: any) => {
     // @ts-ignore
     let parentheight = document.getElementById("impactCalc")?.scrollHeight;
 
+    // @ts-ignore
+    let parentscrollpos = document.getElementById("impactCalc")?.scrollTop;
+
+    // @ts-ignore
     jsonData?.data?.inputData.forEach((y: any, i: any) => {
       let idStr = "scroll_" + (i + 1);
-      let height = document.getElementById(idStr)?.getBoundingClientRect().top;
+      let height = 0;
+      // @ts-ignore
+      if (parentscrollpos > 0) {
+        // prettier-ignore
+        // @ts-ignore
+        height = parentscrollpos + document.getElementById(idStr)?.getBoundingClientRect().top;
+      } else {
+        // @ts-ignore
+        height = document.getElementById(idStr)?.getBoundingClientRect().top;
+      }
       arr.push(height);
       obj[idStr] = height;
     });
+
     setBlockLocs(arr);
     console.log(arr);
     console.log(jsonData);
+    console.log("sh ", parentscrollpos);
     // let ab = document.getElementById("scroll_2")?.getBoundingClientRect().top;
     // @ts-ignore
     // console.log(parentheight.getBoundingClientRect().top - ab);
@@ -347,7 +364,6 @@ const ImpactCalculator = (props: any) => {
                                       <Grid
                                         container
                                         xs={12}
-                                        
                                         className="section-pad"
                                       >
                                         {segmentDetail?.questions?.map(
