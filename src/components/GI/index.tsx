@@ -934,7 +934,7 @@ const GI = () => {
                                           CV.questionId2 === genQues.questionId2
                                         ) {
                                           CV.selectedId2 =
-                                            dropdownIdsArr.join(",");
+                                            dropdownIdsArr.join();
                                         }
                                         updatedQuestionsArray.push(CV);
                                       }
@@ -961,7 +961,7 @@ const GI = () => {
                                   ).map((element: any) => (
                                     <MenuItem value={element?.ddName}>
                                       <Checkbox
-                                        value={element?.ddId}
+                                        value={element?.ddName}
                                         checked={
                                           genQues.selectedId2.indexOf(
                                             element.ddId

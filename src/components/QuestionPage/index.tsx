@@ -83,6 +83,9 @@ const QuestionPage = () => {
                 )}
               </h2>
             </div>
+            <p>{getParsedData(
+                  jsonData?.data?.rightPanel?.questionsData?.insTxt,
+                )}</p>
             <div className="question-container">
               <CustomAccordion />
             </div>
