@@ -1,19 +1,10 @@
-import {
-  Grid,
-  FormControl,
-  Select,
-  MenuItem,
-  Box,
-  Divider,
-} from "@mui/material";
-import React, { useState, useEffect, useRef } from "react";
+import { Grid, Box, Divider } from "@mui/material";
+import { useState, useEffect } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader";
-import "./OutputContactCenter.scss";
 import BarChart from "../UI/BarChart";
 import { Footer } from "../Footer";
 import { getParsedData } from "../../utils/parserUtil";
 import CustomButton from "../UI/CustomButton";
-import HighchartsReact from "highcharts-react-official";
 import BaselineChart from "../UI/BaselineChart";
 import PotentialChart from "../UI/PotentialChart";
 import SegmentChart from "../UI/SegmentChart";
@@ -26,19 +17,20 @@ import store from "../../redux/store";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
+  setPotentialChartOptions,
+  setSegmentChartOptions,
 } from "../../redux/actions/HighChartAction";
-import { getbaseLineChartOptions } from "../../utils/highchartOptionUtil";
+import {
+  getbaseLineChartOptions,
+  getpotentialChartOptions,
+} from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 
 const OutputContactCenter = () => {
   const [jsonData, setJSONData] = useState<any>("");
-  const barChartRef = useRef<HighchartsReact.RefObject>(null);
-  const potentialChartRef = useRef<HighchartsReact.RefObject>(null);
-  const baselineChartRef = useRef<HighchartsReact.RefObject>(null);
-  const segmentChartRef = useRef<HighchartsReact.RefObject>(null);
-  const { dispatch } = store;
+  const { dropdown } = useSelector((state: any) => state);
 
-  const [chartInfo, setChartInfo] = useState(null);
+  const { dispatch } = store;
 
   useEffect(() => {
     setJSONData(
@@ -46,6 +38,13 @@ const OutputContactCenter = () => {
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
   }, []);
+
+  useEffect(() => {
+    handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
+    handleDropDownChange(
+      jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
+    );
+  }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
   const nextHandleClick = (event: any) => {
     if (jsonData !== "") {
@@ -62,89 +61,97 @@ const OutputContactCenter = () => {
   const inputDetails = jsonData?.data?.inputData;
 
   const handleDDChange = (ddId: string) => {
-    const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
-    updatedJsonData.data.inputData.periodDD.selectedId = ddId;
-    document.getElementById(ddId)?.click();
-    setJSONData(updatedJsonData);
+    if (ddId != undefined) {
+      const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
+      console.log(updatedJsonData.data.inputData.periodDD.selectedId);
+      updatedJsonData.data.inputData.periodDD.selectedId = ddId;
 
-    var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
-    keys.forEach(function (key: any) {
-      if (key == ddId) {
-        dispatch(
-          setDropDown(updatedJsonData.data.inputData.periodTableData[key])
-        );
-        const rowDetails =
-          updatedJsonData.data.inputData.periodTableData[key].rowDetails;
-        const seriesValue1 =
-          rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
-        const seriesValue2 =
-          rowDetails[rowDetails.length - 1].tbodyDetails[
-            rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
-          ];
+      document.getElementById(ddId)?.click();
+      setJSONData(updatedJsonData);
 
-        dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
-        const getSeriesData = getbaseLineChartOptions(
-          updatedJsonData.data.inputData.periodTableData[key]
-        );
-
-        dispatch(
-          setBaseLineChartOptions({
-            data: getSeriesData[0],
-            categories: getSeriesData[1],
-          })
-        );
-      }
-    });
-  };
-
-  const handleDropDownChange = (ddId: string) => {
-    const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
-    updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId =
-      ddId;
-    document.getElementById(ddId)?.click();
-    setJSONData(updatedJsonData);
-    var options =
-      updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options;
-    options.map((option: any) => {
-      console.log(option);
-      if (option == ddId) {
-      }
-      dispatch(
-        setDropDown(
-          updatedJsonData.data.inputData.potentialIncreaseData.segmentDD
-        )
-      );
-      const mergeKey =
-        updatedJsonData.data.inputData.periodDD.selectedId + "-" + ddId;
-      var keys = Object.keys(
-        updatedJsonData.data.inputData.potentialIncreaseData
-          .segmentTableChartData
-      );
-
+      var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
       keys.forEach(function (key: any) {
-        console.log(key);
-        console.log(mergeKey);
-        if (key == mergeKey) {
+        if (key == ddId) {
           dispatch(
-            setSecDropDown(
-              updatedJsonData.data.inputData.potentialIncreaseData
-                .segmentTableChartData[key]
-            )
+            setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId])
+          );
+          const rowDetails =
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails;
+          const seriesValue1 =
+            rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
+          const seriesValue2 =
+            rowDetails[rowDetails.length - 1].tbodyDetails[
+              rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
+            ];
+
+          dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
+          const getSeriesData = getbaseLineChartOptions(
+            updatedJsonData.data.inputData.periodTableData[key]
+          );
+
+          dispatch(
+            setBaseLineChartOptions({
+              data: getSeriesData[0],
+              categories: getSeriesData[1],
+            })
+          );
+          const getSeriesPotentialData = getpotentialChartOptions(
+            updatedJsonData.data.inputData.periodTableData[key]
+          );
+
+          dispatch(
+            setPotentialChartOptions({
+              data: getSeriesPotentialData[0],
+              categories: getSeriesPotentialData[1],
+            })
           );
         }
       });
-
-      // console.log(
-      //   "updatedJsonData",
-      //   updatedJsonData.data.inputData.potentialIncreaseData
-      //     .segmentTableChartDatasetSecDropDown
-      // );
-      // getBarChartDetails(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD[key])
-    });
+    }
   };
 
-  const { dropdown } = useSelector((state: any) => state);
-  //console.log("dropdown", dropdown.selectedData.rowDetails);
+  const handleDropDownChange = (ddId: string) => {
+    if (ddId != undefined) {
+      const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
+      updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId =
+        ddId;
+      document.getElementById(ddId)?.click();
+      setJSONData(updatedJsonData);
+      var options =
+        updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options;
+      options.map((option: any) => {
+        const mergeKey =
+          updatedJsonData.data.inputData.periodDD.selectedId + "-" + ddId;
+        var keys = Object.keys(
+          updatedJsonData.data.inputData.potentialIncreaseData
+            .segmentTableChartData
+        );
+
+        console.log(mergeKey);
+
+        keys.forEach(function (key: any) {
+          if (key == mergeKey) {
+            dispatch(
+              setSecDropDown(
+                updatedJsonData.data.inputData.potentialIncreaseData
+                  .segmentTableChartData[mergeKey]
+              )
+            );
+            dispatch(
+              setSegmentChartOptions({
+                data: updatedJsonData.data.inputData.potentialIncreaseData
+                  .segmentTableChartData[mergeKey].chartDetails,
+                categories:
+                  updatedJsonData.data.inputData.potentialIncreaseData
+                    .segmentTableChartData[mergeKey].chartLabels,
+              })
+            );
+          }
+        });
+      });
+    }
+  };
+
   return (
     <div className="contactpage-container">
       <SecondaryHeader />
@@ -342,58 +349,32 @@ const OutputContactCenter = () => {
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">
-                <div className="table-col">
-                  <span>Inbound Sales</span>
-                </div>
-                <div className="table-col">
-                  <span>Outbound Sales</span>
-                </div>
-                <div className="table-col">
-                  <span>Service to Sales</span>
-                </div>
-                <div className="table-col">
-                  <span>Retention</span>
-                </div>
-                <div className="table-col">
-                  <span>Winback</span>
-                </div>
-                <div className="table-col">
-                  <span>Total</span>
-                </div>
+                {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
+                  return (
+                    <div className="table-col">
+                      <span>{el}</span>
+                    </div>
+                  );
+                })}
               </div>
               <div className="outputTable-container__inr__body">
                 <div className="table-col">
-                  <div className="table-row">
-                    <span>Not Selected</span>
-                  </div>
-                  <div className="table-row">
-                    <span>9,523 €</span>
-                  </div>
-                  <div className="table-row">
-                    <span>Not Selected</span>
-                  </div>
-                  <div className="table-row">
-                    <span>19,010 €</span>
-                  </div>
-                  <div className="table-row">
-                    <span>Not Selected</span>
-                  </div>
-                  <div className="table-row">
-                    <span>28,535 €</span>
-                  </div>
+                  {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
+                    (el: any) => {
+                      return (
+                        <div className="table-row">
+                          <span>{el}</span>
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
               </div>
             </div>
           </Box>
           <div className="chart-container">
             <div className="chart-container__waterfall">
-              <SegmentChart
-              // chartRef={segmentChartRef}
-              // setChartInfo={setChartInfo}
-              // chartType={getChartType()}
-              // chartSeries={getBarChartSeriesForLabelOne()}
-              // chartOptions={getChartType()}
-              />
+              <SegmentChart />
             </div>
           </div>
         </div>

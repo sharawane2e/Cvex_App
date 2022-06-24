@@ -110,6 +110,14 @@ const initialState: IChartState = {
     series: [
       {
         data: [],
+        dataLabels: {
+          enabled: true,
+          color: "black",
+          inside: false,
+          y: -50,
+          align: "center",
+          format: "{point.y:1f}€",
+        },
       },
     ],
   },
@@ -144,16 +152,15 @@ const initialState: IChartState = {
     },
     series: [
       {
-        data: [
-          {
-            name: "Start",
-            y: 0,
-          },
-          {
-            name: "Product Revenue",
-            y: 9523,
-          },
-        ],
+        data: [],
+        dataLabels: {
+          enabled: true,
+          color: "black",
+          inside: false,
+          y: -50,
+          align: "center",
+          format: "{point.y:1f}€",
+        },
       },
     ],
   },
@@ -184,16 +191,15 @@ const initialState: IChartState = {
     },
     series: [
       {
-        data: [
-          {
-            name: "Start",
-            y: 0,
-          },
-          {
-            name: "Product Revenue",
-            y: 9523,
-          },
-        ],
+        data: [],
+        dataLabels: {
+          enabled: true,
+          color: "black",
+          inside: false,
+          y: -50,
+          align: "center",
+          format: "{point.y:1f}€",
+        },
       },
     ],
   },
@@ -229,9 +235,12 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     ...state,
     potentialChartOptions: {
       ...state.potentialChartOptions,
+      xAxis: {
+        ...action.payload,
+      },
       series: [
         {
-          data: [...action.payload],
+          ...action.payload,
         },
       ],
     },
@@ -240,9 +249,12 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     ...state,
     segmentChartOptions: {
       ...state.segmentChartOptions,
+      xAxis: {
+        ...action.payload,
+      },
       series: [
         {
-          data: [...action.payload],
+          ...action.payload,
         },
       ],
     },

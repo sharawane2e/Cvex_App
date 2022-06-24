@@ -49,7 +49,69 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
 
   return [SeriesData, categories];
 };
-const getpotentialChartOptions = (potentialChartOptions: any): any => {
-  console.log(potentialChartOptions);
+export const getpotentialChartOptions = (potentialChartOptions: any): any => {
+  const baselineHedding = potentialChartOptions.headings;
+  const seriesName: any = [];
+  const seriesY: any = [];
+  const SeriesData: any = [];
+  const categories: any = [];
+
+  for (let i = 1; i < baselineHedding.length; i++) {
+    seriesName.push(baselineHedding[i]);
+  }
+  for (let i = 0; i < potentialChartOptions.rowDetails.length; i++) {
+    let newArrayData: any = [];
+    const baselinedata = potentialChartOptions.rowDetails[i].tbodyDetails;
+    console.log(baselinedata);
+    for (let j = 1; j < baselinedata.length; j++) {
+      if (typeof baselinedata[j] == "string") {
+        newArrayData.push(0);
+      } else {
+        newArrayData.push(baselinedata[j]);
+      }
+    }
+    seriesY.push(newArrayData);
+  }
+
+  seriesY[seriesY.length - 1].forEach((el: any, index: any) => {
+    categories.push(seriesName[index]);
+    SeriesData.push({
+      name: seriesName[index],
+      y: el,
+    });
+  });
+  return [SeriesData, categories];
 };
-const getsegmentChartOptions = (segmentChartOptions: any): any => {};
+const getsegmentChartOptions = (segmentChartOptions: any): any => {
+  const baselineHedding = segmentChartOptions.headings;
+  const seriesName: any = [];
+  const seriesY: any = [];
+  const SeriesData: any = [];
+  const categories: any = [];
+
+  for (let i = 1; i < baselineHedding.length; i++) {
+    seriesName.push(baselineHedding[i]);
+  }
+  for (let i = 0; i < segmentChartOptions.rowDetails.length; i++) {
+    let newArrayData: any = [];
+    const baselinedata = segmentChartOptions.rowDetails[i].tbodyDetails;
+    console.log(baselinedata);
+    for (let j = 1; j < baselinedata.length; j++) {
+      if (typeof baselinedata[j] == "string") {
+        newArrayData.push(0);
+      } else {
+        newArrayData.push(baselinedata[j]);
+      }
+    }
+    seriesY.push(newArrayData);
+  }
+
+  seriesY[seriesY.length - 1].forEach((el: any, index: any) => {
+    categories.push(seriesName[index]);
+    SeriesData.push({
+      name: seriesName[index],
+      y: el,
+    });
+  });
+  return [SeriesData, categories];
+};
