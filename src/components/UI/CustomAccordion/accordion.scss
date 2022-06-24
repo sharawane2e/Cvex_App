@@ -22,13 +22,13 @@
 }
 
 .accordHead {
-    background-color: #EFEFEF !important;
+    background-color: $dark-white !important;
     box-shadow: none !important;
-    color: #2A2A2A !important;
+    color: $black-color !important;
 }
 
 .accordDetail {
-    border-bottom: 1px solid #efefef!important;
+    border-bottom: 1px solid $dark-white !important;
 }
 .dont-btn{
     span{

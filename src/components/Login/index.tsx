@@ -1,56 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import startData from '../../mock/startPageData.json';
-import { isPasswordValid } from '../../utils';
-import PrimaryHeader from '../Headers/PrimaryHeader/index';
-import { Inputbox } from '../UI/Input';
-import './Login.scss';
-import CustomButton from '../UI/CustomButton';
-import { Footer } from '../Footer';
-import { getParsedData } from '../../utils/parserUtil';
+import React, { useEffect, useState } from "react";
+import startData from "../../mock/startPageData.json";
+import { isPasswordValid } from "../../utils";
+import PrimaryHeader from "../Headers/PrimaryHeader/index";
+import { Inputbox } from "../UI/Input";
+import CustomButton from "../UI/CustomButton";
+import { Footer } from "../Footer";
+import { getParsedData } from "../../utils/parserUtil";
 
 const Login = (props: any) => {
-  const [password, setPassword] = useState('');
-  const [jsonData, setJSONData] = useState<any>('');
+  const [password, setPassword] = useState("");
+  const [jsonData, setJSONData] = useState<any>("");
   let errorMessage: any;
   const inputElem: any = document.getElementById(
-    `${startData.data.contentDetails.password.passwordInputId}`,
+    `${startData.data.contentDetails.password.passwordInputId}`
   );
   let isInvalid: Boolean;
-  const errorElem: any = document.getElementById('input-error');
-  const backpunchElem: any = document.getElementById('QPassword');
+  const errorElem: any = document.getElementById("input-error");
+  const backpunchElem: any = document.getElementById("QPassword");
 
   useEffect(() => {
     // @ts-ignore
-    document.getElementById('forwardbutton').disabled = true;
+    document.getElementById("forwardbutton").disabled = true;
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
+    console.log(document.getElementById("jsonData")?.innerHTML);
   }, []);
   errorMessage = jsonData?.data?.contentDetails?.Error;
   isInvalid = jsonData?.data?.contentDetails?.isInvalid;
 
-  document.addEventListener('DOMContentLoaded', function (event) {
+  document.addEventListener("DOMContentLoaded", function (event) {
     errorElem.innerHTML = errorMessage;
   });
 
   const handleClick = () => {
-    if (jsonData !== '') {
+    if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById('navText').value =
-        jsonData['data']['contentDetails']['submitBTnDetails'][
-          'forwardInputId'
+      document.getElementById("navText").value =
+        jsonData["data"]["contentDetails"]["submitBTnDetails"][
+          "forwardInputId"
         ];
 
       // @ts-ignore
-      document.getElementById('forwardbutton').disabled = false;
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
-      document.getElementById('forwardbutton').click();
+      document.getElementById("forwardbutton").click();
     }
   };
 
   const handleKeyUp = (e: any) => {
-    if (e.key == 'Enter') {
+    if (e.key == "Enter") {
       handleClick();
     }
   };
@@ -76,23 +76,24 @@ const Login = (props: any) => {
             type="password"
             onChange={(e: any) => handleOnChange(e)}
             onKeyUp={(e: any) => handleKeyUp(e)}
+            error={false}
           />
 
           <span className="input-error" id="input-error">
-            {isInvalid ? errorMessage : ''}
+            {isInvalid ? errorMessage : ""}
           </span>
           <div className="welcome-helpdesk">
             {getParsedData(
-              jsonData.data?.contentDetails?.helpdeskDetails?.helpdeskTxt,
+              jsonData.data?.contentDetails?.helpdeskDetails?.helpdeskTxt
             )}
             <br />
             <a
               href={`mailto:${getParsedData(
-                jsonData.data?.contentDetails?.helpdeskDetails?.mailTo,
+                jsonData.data?.contentDetails?.helpdeskDetails?.mailTo
               )}`}
             >
               {getParsedData(
-                jsonData.data?.contentDetails?.helpdeskDetails?.mailTo,
+                jsonData.data?.contentDetails?.helpdeskDetails?.mailTo
               )}
             </a>
           </div>
@@ -118,7 +119,7 @@ const Login = (props: any) => {
         </div> */}
           <div className="button-container">
             <div>
-              <CustomButton className={'submitButton'} onClick={handleClick}>
+              <CustomButton className={"submitButton"} onClick={handleClick}>
                 {jsonData.data?.contentDetails?.submitBTnDetails?.submitBTnTxt}
               </CustomButton>
             </div>

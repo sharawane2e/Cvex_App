@@ -3,7 +3,6 @@ import SecondaryHeader from '../Headers/SecondaryHeader';
 import ProgressBar from '../ProgressBar';
 import SideBar from '../Sidebar';
 import { Footer } from '../Footer';
-import './QuestionPage.scss';
 import CustomButton from '../UI/CustomButton';
 import CustomAccordion from '../UI/CustomAccordion';
 import questionData from '../../mock/questionData.json';
@@ -12,18 +11,28 @@ import store from '../../redux/store';
 import { setAnswerCount } from '../../redux/actions/ProgressBarAction';
 import { setRightPanelData } from '../../redux/actions/RightPanelActions';
 import { setLeftPanelData } from '../../redux/actions/LeftPanelActions';
-import "../../styles/partials/common.scss"
+import { useDispatch, useSelector } from 'react-redux';
+// import '../../styles/partials/common.scss';
 
 const QuestionPage = () => {
   const [jsonData, setJSONData] = useState<any>('');
+
+  const updateScrollPos = (scrollValue: number) => {
+    let scrollContainer: any = document.querySelector(
+      ".right-panel__inr"
+    );
+    scrollContainer.scrollTop = scrollValue;
+  };
 
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
-
+    console.log(document.querySelector(".right-panel__inr"));
+    setTimeout(function(){updateScrollPos(jsonData?.data?.scrollPosition);}, 1000);
   }, []);
+  
   const { dispatch } = store;
   dispatch(setLeftPanelData(jsonData?.data?.leftPanel));
   dispatch(setRightPanelData(jsonData?.data?.rightPanel));
@@ -37,6 +46,7 @@ const QuestionPage = () => {
       document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
       document.getElementById('forwardbutton').click();
+    // console.log(leftPanel);
     }
   };
 
@@ -52,6 +62,8 @@ const QuestionPage = () => {
     }
   };
 
+  console.log(jsonData?.data?.footerData?.previousBtn.previousShow)
+
   return (
     <div className="question-wrapper">
       <SecondaryHeader />
@@ -60,7 +72,9 @@ const QuestionPage = () => {
           <SideBar />
         </div>
         <div className="right-panel">
-          <ProgressBar />
+          
+          <ProgressBar showProgressBar={true} />
+
           <div className="right-panel__inr">
             <div className="title">
               <h2>
@@ -76,26 +90,34 @@ const QuestionPage = () => {
         </div>
         <Footer>
           <div className="button-container justi">
-            <div className="d-flex">
-              <CustomButton
-                className={'submitButton previous-button '}
-                onClick={(e: any) => previousHandleClick(e)}
-              >
-                {getParsedData(
-                  jsonData?.data?.footerData?.previousBtn?.previousBtnTxt,
-                )}
-              </CustomButton>
-            </div>
-            <div>
-              <CustomButton
-                className={'submitButton next-button'}
-                onClick={(e: any) => nextHandleClick(e)}
-              >
-                {getParsedData(
-                  jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
-                )}
-              </CustomButton>
-            </div>
+            {jsonData?.data?.footerData?.previousBtn.previousShow ?
+              <div className="d-flex">
+                <CustomButton
+                  className={'submitButton previous-button '}
+                  onClick={(e: any) => previousHandleClick(e)}
+                >
+                  {getParsedData(
+                    jsonData?.data?.footerData?.previousBtn?.previousBtnTxt,
+                  )}
+                </CustomButton>
+              </div>
+              : ""
+            }
+
+            {jsonData?.data?.footerData?.forwardBtn.forwardShow ?
+              <div>
+                <CustomButton
+                  className={'submitButton next-button'}
+                  onClick={(e: any) => nextHandleClick(e)}
+                >
+                  {getParsedData(
+                    jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
+                  )}
+                </CustomButton>
+              </div>
+              : ""
+            }
+
           </div>
         </Footer>
       </div>

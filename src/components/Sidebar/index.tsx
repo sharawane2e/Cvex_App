@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import './Sidebar.scss';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemButton from '@mui/material/ListItemButton';
 import store from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { updateLeftPanelCategories } from '../../redux/actions/LeftPanelActions';
 
-
-
 const SideBar = () => {
-
   const { leftPanel, rightPanel } = useSelector((state: any) => state);
   const { dispatch } = store;
 
   useEffect(() => {
     updatedTotalAnswereda();
-  }, [rightPanel?.questionsData?.capabilityDetails])
+  }, [rightPanel?.questionsData?.capabilityDetails]);
 
   const currentSelectedItem: any = leftPanel?.currentSelectedId;
 
@@ -27,29 +21,28 @@ const SideBar = () => {
   const updatedTotalAnswereda = () => {
     let updatedTotalAnswered = 0;
 
-    rightPanel?.questionsData?.capabilityDetails?.forEach((capabilityDetail: any) => {
-      capabilityDetail.subTitleDetails.forEach((subTitleDetail: any) => {
-        if (subTitleDetail.sliderOptions.selectedInputId != "") {
-          updatedTotalAnswered++
-        }
-      })
+    rightPanel?.questionsData?.capabilityDetails?.forEach(
+      (capabilityDetail: any) => {
+        capabilityDetail.subTitleDetails.forEach((subTitleDetail: any) => {
+          if (subTitleDetail.sliderOptions.selectedInputId != '') {
+            updatedTotalAnswered++;
+          }
+        });
 
-      const categories = JSON.parse(JSON.stringify(leftPanel.categories));
+        const categories = JSON.parse(JSON.stringify(leftPanel.categories));
 
-      categories.forEach((category: any) => {
-        if (category.selectedId === leftPanel.currentSelectedId) {
-          category.totalAnswered = updatedTotalAnswered;
-        }
-      })
+        categories.forEach((category: any) => {
+          if (category.selectedId === leftPanel.currentSelectedId) {
+            category.totalAnswered = updatedTotalAnswered;
+            // @ts-ignore
+            document.getElementById("ttl-attmpt").value = category.totalAnswered;
+          }
+        });
 
-      dispatch(updateLeftPanelCategories(categories))
-
-    })
-  }
-
-
-
-
+        dispatch(updateLeftPanelCategories(categories));
+      },
+    );
+  };
 
   const handleClick = (selectedId: any) => {
     // @ts-ignore

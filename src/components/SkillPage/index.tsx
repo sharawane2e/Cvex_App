@@ -3,12 +3,12 @@ import startData from '../../mock/startPageData.json';
 import { isPasswordValid } from '../../utils';
 import SecondaryHeader from '../Headers/SecondaryHeader/index';
 import { Inputbox } from '../UI/Input';
-import './Skill.scss';
 import CustomButton from '../UI/CustomButton';
 import { Footer } from '../Footer';
 import { getParsedData } from '../../utils/parserUtil';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import {ReactComponent as Knob} from '../../assets/svg/knob2.svg';
 
 const PanelPage = (props: any) => {
 
@@ -46,7 +46,7 @@ const PanelPage = (props: any) => {
     <div className="skill-container">
       <SecondaryHeader />
       <div className="main-container">
-        <div className="content-area main-container">
+        <div className="content-area ">
           <Box className= "content-container">
             <div className='single-capability-header'>
               {
@@ -96,7 +96,16 @@ const PanelPage = (props: any) => {
                                             <p>{subskill.observationtext}</p>
                                           </div>
                                           <div className="skill-details-cnrt__slider skill-common">
-                                            <p>{subskill.sliderValue}</p>
+                                            {/* <p>{subskill.sliderValue}</p> */}
+                                            <div className="skill-slider-cont">
+                                                <div className="knob-container" style={{left:`${subskill.sliderValue}%`}}>
+                                                  <Knob className="knob"/>
+                                                  <div className="slider-text" >
+                                                    { subskill.sliderValue }
+                                                  </div>
+                                                </div>
+                                                
+                                            </div>
                                           </div>
                                         </div>
                                       </>
