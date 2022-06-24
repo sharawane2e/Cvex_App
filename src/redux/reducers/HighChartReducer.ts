@@ -6,6 +6,13 @@ import {
   setSegmentChartOptions,
 } from "../actions/HighChartAction";
 
+export interface IChartState {
+  barChartOptions: any;
+  baseLineChartOptions: any;
+  potentialChartOptions: any;
+  segmentChartOptions: any;
+}
+
 export const defaultPlotOptions = {
   series: {
     stacking: "normal",
@@ -33,7 +40,7 @@ export const defaultyAxis = {
   ],
 };
 
-const initialState = {
+const initialState: IChartState = {
   barChartOptions: {
     chart: {
       type: "bar",
@@ -44,7 +51,7 @@ const initialState = {
     xAxis: {
       tickLength: 0,
       gridLineWidth: 0,
-      categories: ["asd", "asd"],
+      categories: ["Baseline", "Possible future baseline"],
     },
     yAxis: {
       ...defaultyAxis,
@@ -58,7 +65,7 @@ const initialState = {
     },
     series: [
       {
-        data: [100, 100],
+        data: [],
       },
     ],
   },
@@ -195,38 +202,46 @@ const initialState = {
 const HighChartReducer = createReducer(initialState, (builder) => {
   builder.addCase(setBarChartOptions, (state, action) => ({
     ...state,
-    chartOptions: {
+    barChartOptions: {
       ...state.barChartOptions,
-      chart: {
-        ...state.barChartOptions.chart,
-      },
+      series: [
+        {
+          data: [...action.payload],
+        },
+      ],
     },
   }));
   builder.addCase(setBaseLineChartOptions, (state, action) => ({
     ...state,
-    chartOptions: {
+    baseLineChartOptions: {
       ...state.baseLineChartOptions,
-      chart: {
-        ...state.baseLineChartOptions.chart,
-      },
+      series: [
+        {
+          data: [...action.payload],
+        },
+      ],
     },
   }));
   builder.addCase(setPotentialChartOptions, (state, action) => ({
     ...state,
-    chartOptions: {
+    potentialChartOptions: {
       ...state.potentialChartOptions,
-      chart: {
-        ...state.potentialChartOptions.chart,
-      },
+      series: [
+        {
+          data: [...action.payload],
+        },
+      ],
     },
   }));
   builder.addCase(setSegmentChartOptions, (state, action) => ({
     ...state,
-    chartOptions: {
+    segmentChartOptions: {
       ...state.segmentChartOptions,
-      chart: {
-        ...state.segmentChartOptions.chart,
-      },
+      series: [
+        {
+          data: [...action.payload],
+        },
+      ],
     },
   }));
 });
