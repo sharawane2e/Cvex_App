@@ -21,6 +21,7 @@ import HsddInput from "../ImpactCalculator/HsddInput";
 import { setDropDown } from "../../redux/actions/HighChartDropDownAction";
 import store from "../../redux/store";
 import { setBarChartOptions } from "../../redux/actions/HighChartAction";
+import { getbaseLineChartOptions } from "../../utils/highchartOptionUtil";
 
 const OutputContactCenter = () => {
     const [jsonData, setJSONData] = useState<any>("");
@@ -105,15 +106,29 @@ const OutputContactCenter = () => {
         setJSONData(updatedJsonData);
 
         var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
-        console.log(keys)
-
         keys.forEach(function (key: any) {
             if (key == ddId) {
                 dispatch(
                     setDropDown(updatedJsonData.data.inputData.periodTableData[key])
                 );
+                const rowDetails =
+                    updatedJsonData.data.inputData.periodTableData[key].rowDetails;
+                const seriesValue1 =
+                    rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
+                const seriesValue2 =
+                    rowDetails[rowDetails.length - 1].tbodyDetails[
+                    rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
+                    ];
+
+                dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
+                const seriesDataGet = getbaseLineChartOptions(
+                    updatedJsonData.data.inputData.periodTableData[key]
+                );
+                console.log("seriesDataGet", seriesDataGet);
+
+                // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
+                //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));
             }
-            getBarChartDetails(updatedJsonData.data.inputData.periodTableData[key])
         });
     };
     const handleDropDownChange = (ddId: string) => {

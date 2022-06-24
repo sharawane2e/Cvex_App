@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const SegmentChart = () => {
   HC_more(Highcharts);
-
   const { chart } = useSelector((state: any) => state);
   return (
     <HighchartsReact

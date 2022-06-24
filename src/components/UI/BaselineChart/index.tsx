@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const BaselineChart = () => {
     HC_more(Highcharts);
     const { chart } = useSelector((state: any) => state);
-
     return (
         <HighchartsReact
             highcharts={Highcharts}
