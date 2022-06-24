@@ -18,7 +18,10 @@ import BaselineChart from "../UI/BaselineChart";
 import PotentialChart from "../UI/PotentialChart";
 import SegmentChart from "../UI/SegmentChart";
 import HsddInput from "../ImpactCalculator/HsddInput";
-import { setDropDown } from "../../redux/actions/HighChartDropDownAction";
+import {
+  setDropDown,
+  setSecDropDown,
+} from "../../redux/actions/HighChartDropDownAction";
 import store from "../../redux/store";
 import {
   setBarChartOptions,
@@ -84,17 +87,12 @@ const OutputContactCenter = () => {
           updatedJsonData.data.inputData.periodTableData[key]
         );
 
-        console.log(getSeriesData[0]);
         dispatch(
           setBaseLineChartOptions({
             data: getSeriesData[0],
             categories: getSeriesData[1],
           })
         );
-        // console.log("getSeriesData", getSeriesData);
-
-        // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
-        //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));
       }
     });
   };
@@ -116,6 +114,31 @@ const OutputContactCenter = () => {
           updatedJsonData.data.inputData.potentialIncreaseData.segmentDD
         )
       );
+      const mergeKey =
+        updatedJsonData.data.inputData.periodDD.selectedId + "-" + ddId;
+      var keys = Object.keys(
+        updatedJsonData.data.inputData.potentialIncreaseData
+          .segmentTableChartData
+      );
+
+      keys.forEach(function (key: any) {
+        console.log(key);
+        console.log(mergeKey);
+        if (key == mergeKey) {
+          dispatch(
+            setSecDropDown(
+              updatedJsonData.data.inputData.potentialIncreaseData
+                .segmentTableChartData[key]
+            )
+          );
+        }
+      });
+
+      // console.log(
+      //   "updatedJsonData",
+      //   updatedJsonData.data.inputData.potentialIncreaseData
+      //     .segmentTableChartDatasetSecDropDown
+      // );
       // getBarChartDetails(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD[key])
     });
   };

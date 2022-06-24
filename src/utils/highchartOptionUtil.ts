@@ -28,7 +28,7 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
   for (let i = 0; i < baseLineChartOptions.rowDetails.length; i++) {
     let newArrayData: any = [];
     const baselinedata = baseLineChartOptions.rowDetails[i].tbodyDetails;
-    console.log(baselinedata);
+    // console.log(baselinedata);
     for (let j = 1; j < baselinedata.length; j++) {
       if (typeof baselinedata[j] == "string") {
         newArrayData.push(0);
