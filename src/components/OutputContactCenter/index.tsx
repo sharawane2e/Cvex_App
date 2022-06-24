@@ -20,6 +20,7 @@ import SegmentChart from "../UI/SegmentChart";
 import HsddInput from "../ImpactCalculator/HsddInput";
 import { setDropDown } from "../../redux/actions/HighChartDropDownAction";
 import store from "../../redux/store";
+import { setBarChartOptions } from "../../redux/actions/HighChartAction";
 
 const OutputContactCenter = () => {
     const [jsonData, setJSONData] = useState<any>("");
@@ -27,6 +28,8 @@ const OutputContactCenter = () => {
     const potentialChartRef = useRef<HighchartsReact.RefObject>(null);
     const baselineChartRef = useRef<HighchartsReact.RefObject>(null);
     const segmentChartRef = useRef<HighchartsReact.RefObject>(null);
+    const [chartCategoryDetails, setChartCategoryDetails] = useState<any>([]);
+    const [chartSeriesData, setChartSeriesDetails] = useState<any>([]);
     const { dispatch } = store;
 
     const [chartInfo, setChartInfo] = useState(null);
@@ -36,6 +39,8 @@ const OutputContactCenter = () => {
             // @ts-ignore
             JSON.parse(document.getElementById("jsonData")?.innerHTML)
         );
+
+
     }, []);
 
     const nextHandleClick = (event: any) => {
@@ -52,15 +57,27 @@ const OutputContactCenter = () => {
 
     const inputDetails = jsonData?.data?.inputData;
     // console.log(inputDetails)
-    const getChartType = () => { };
-    const getBarChartSeriesForLabelOne = () => {
-        return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
-            (rowDetail: any, rowIndex: number) => {
-                return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
-                    return tbodyDetail;
-                });
-            }
-        );
+    const getBarChartDetails = (inputData: any) => {
+        let titleArr: any = [];
+        let totalArr: any = []
+        return inputData?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
+            return rowDetail?.tbodyDetails?.map((tbodyDetail: any, index: number) => {
+                if (jsonData != undefined) {
+                    if (tbodyDetail?.length > -1) {
+                        if (rowDetail?.tbodyDetails[0] == tbodyDetail) {
+                            titleArr.push(rowDetail?.tbodyDetails[0])
+                            setChartCategoryDetails([...titleArr]);
+                            dispatch(setBarChartOptions([...titleArr]));
+                        }
+                    }
+                    if (rowDetail?.tbodyDetails[rowDetail?.tbodyDetails?.length - 1] == tbodyDetail) {
+                        totalArr.push(rowDetail?.tbodyDetails[rowDetail?.tbodyDetails?.length - 1])
+                        setChartSeriesDetails([...totalArr]);
+                        // dispatch(setBarChartOptions([...totalArr]));
+                    }
+                }
+            })
+        })
     };
     const getBarChartSeriesForLabelTwo = () => {
         return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
@@ -94,6 +111,23 @@ const OutputContactCenter = () => {
                     setDropDown(updatedJsonData.data.inputData.periodTableData[key])
                 );
             }
+            getBarChartDetails(updatedJsonData.data.inputData.periodTableData[key])
+        });
+    };
+    const handleDropDownChange = (ddId: string) => {
+        const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
+        updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId = ddId;
+        document.getElementById(ddId)?.click();
+        setJSONData(updatedJsonData);
+
+        var keys = Object.keys(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD);
+        keys.forEach(function (key: any) {
+            if (key == ddId) {
+                dispatch(
+                    setDropDown(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD)
+                );
+            }
+            // getBarChartDetails(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD[key])
         });
     };
 
@@ -275,37 +309,23 @@ const OutputContactCenter = () => {
                                 </p>
                             </div>
                         </div>
-                        <Grid container sx={{ alignItems: "center", pb: 2 }} xs={12} md={4}>
-                            <Grid item xs={12} md={6} className="single-dropdown-title">
-                                <p className="gen-info">{ }</p>
-                            </Grid>
+                        <Grid
+                            container
+                            sx={{ alignItems: "center", pb: 2 }}
+                            xs={12}
+                            md={12}
+                        >
                             <Grid item xs={12} sx={{ paddingRight: "20px" }}>
-                                <FormControl fullWidth>
-                                    <Select
-                                        sx={{ p: 0, borderRadius: 0, mb: 1 }}
-                                        className="inputField cutom-input-field"
-                                        value={"Hello"}
-                                    >
-                                        <MenuItem disabled value="none" className="selectItem">
-                                            <>
-                                                {
-                                                    inputDetails?.potentialIncreaseData?.segmentDD
-                                                        ?.placeholder
-                                                }
-                                            </>
-                                        </MenuItem>
-                                        {inputDetails?.potentialIncreaseData?.segmentDD?.options?.map(
-                                            (elemnt: any) => (
-                                                <MenuItem value={elemnt?.ddName} className="selectItem">
-                                                    {elemnt?.ddName}
-                                                </MenuItem>
-                                            )
-                                        )}
-                                    </Select>
-                                </FormControl>
+                                {inputDetails != undefined ? (
+                                    <HsddInput
+                                        question={inputDetails?.potentialIncreaseData?.segmentDD}
+                                        onChange={(ddId: string) => handleDropDownChange(ddId)}
+                                    />
+                                ) : (
+                                        ""
+                                    )}
                             </Grid>
-                        </Grid>
-                    </div>
+                        </Grid></div>
                     <Box className="outputTable-container" sx={{ mb: 5 }}>
                         <div className="outputTable-container__inr">
                             <div className="outputTable-container__inr__header">
