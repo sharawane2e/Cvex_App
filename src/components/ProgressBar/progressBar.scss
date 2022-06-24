@@ -38,9 +38,21 @@
 
 .rightPanel {
   width: 25%;
+  @include breakpoint(sm-mobileonly) {
+    width: 100%;
+    margin-bottom:10px;
+  }
+  @include breakpoint(Ipad-pro) {
+    width: 36%;
+  }
+
+ 
 
   .button-container {
     justify-content: end;
+    @include breakpoint(sm-mobileonly) {
+      justify-content: center;
+    }
 
     .previous-button {
       border: 1px solid $light-blue;

@@ -5,14 +5,14 @@ import HC_more from "highcharts/highcharts-more";
 import { useSelector } from "react-redux";
 
 const BaselineChart = () => {
-  HC_more(Highcharts);
-  const { chart } = useSelector((state: any) => state);
-  return (
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={chart.baseLineChartOptions}
-    />
-  );
+    HC_more(Highcharts);
+    const { chart } = useSelector((state: any) => state);
+    return (
+        <HighchartsReact
+            highcharts={Highcharts}
+            options={chart.baseLineChartOptions}
+        />
+    );
 };
 
 export default BaselineChart;

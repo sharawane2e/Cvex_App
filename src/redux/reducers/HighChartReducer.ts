@@ -19,7 +19,7 @@ export const defaultPlotOptions = {
   },
   dataLabels: {
     formatter: function (y: any) {
-      return Math.abs(y) + "%";
+      return Math.abs(y) + "€";
     },
   },
 };
@@ -66,6 +66,15 @@ const initialState: IChartState = {
     series: [
       {
         data: [],
+        dataLabels: {
+          enabled: true,
+          color: "black",
+          inside: false,
+          x: 0,
+          align: "left",
+          format: "{point.y:,.2f}€",
+        },
+        legendIndex: 0,
       },
     ],
   },
@@ -96,7 +105,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>${point.y:,.2f}</b> USD",
+      pointFormat: "<b>€{point.y:,.2f}</b>",
     },
     series: [
       {
@@ -131,7 +140,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>${point.y:,.2f}</b> USD",
+      pointFormat: "<b>€{point.y:,.2f}</b>",
     },
     series: [
       {
@@ -206,9 +215,12 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     ...state,
     baseLineChartOptions: {
       ...state.baseLineChartOptions,
+      xAxis: {
+        ...action.payload,
+      },
       series: [
         {
-          data: [...action.payload],
+          ...action.payload,
         },
       ],
     },

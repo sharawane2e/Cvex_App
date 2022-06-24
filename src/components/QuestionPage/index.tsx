@@ -88,36 +88,36 @@ const QuestionPage = () => {
           </div>
         </div>
         <Footer>
+          {console.log("dd", jsonData?.data?.footerData)}
           <div className="button-container justi">
-            {jsonData?.data?.footerData?.previousBtn.previousShow ? (
-              <div className="d-flex">
-                <CustomButton
-                  className={"submitButton previous-button "}
-                  onClick={(e: any) => previousHandleClick(e)}
-                >
-                  {getParsedData(
-                    jsonData?.data?.footerData?.previousBtn?.previousBtnTxt
-                  )}
-                </CustomButton>
-              </div>
-            ) : (
-              ""
-            )}
+            {/* {jsonData?.data?.footerData?.previousBtn.previousShow ? */}
+            <div className="d-flex">
+              <CustomButton
+                className={"submitButton previous-button "}
+                onClick={(e: any) => previousHandleClick(e)}
+              >
+                {getParsedData(
+                  jsonData?.data?.footerData?.previousBtn?.previousBtnTxt
+                )}
+              </CustomButton>
+            </div>
+            {/* : ""
+            } */}
 
-            {jsonData?.data?.footerData?.forwardBtn.forwardShow ? (
-              <div>
-                <CustomButton
-                  className={"submitButton next-button"}
-                  onClick={(e: any) => nextHandleClick(e)}
-                >
-                  {getParsedData(
-                    jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
-                  )}
-                </CustomButton>
-              </div>
-            ) : (
-              ""
-            )}
+            {/* {jsonData?.data?.footerData?.forwardBtn.forwardShow ? */}
+            <div>
+              <CustomButton
+                className={"submitButton next-button"}
+                onClick={(e: any) => nextHandleClick(e)}
+              >
+                {getParsedData(
+                  jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
+                )}
+              </CustomButton>
+            </div>
+            {/* : ""
+            } */}
+
           </div>
         </Footer>
       </div>

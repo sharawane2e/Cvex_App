@@ -2,16 +2,20 @@
 .gi-container-outer {
   .gi-container{
     margin-top: 100px;
-  //   height: calc(100vh - 310px);
-  
-    //overflow-y: scroll;
+    @include breakpoint(sm-mobileonly) {
+      margin-top: 176px;
+    }
     &__inr{
       width: 85%;
       padding-right: 8px;
     margin: 0 auto;
-    height: calc(100vh - 310px);
+    height:calc(100vh - 301px);
     overflow-y: auto;
     padding-bottom: 30px;
+    @include breakpoint(sm-mobileonly) {
+      height: calc(100vh - 330px);
+    }
+    
     }
     .gi-heading{
       font-size: 18px;
@@ -19,6 +23,10 @@
     }
     .gen-info {
       font-size: 14px;
+      @include breakpoint(sm-mobileonly) {
+        font-size: 12px;
+      }
+      
     }
     .cutom-input-field{
       input{
@@ -29,8 +37,16 @@
     .MuiSelect-select{
       padding: 6px 12px  !important;
       font-size: 14px !important;
+      @include breakpoint(sm-mobileonly) {
+        font-size: 12px !important;
+      }
     }
     
+  }
+  .css-10mzr36-MuiGrid-root>.MuiGrid-item {
+    @include breakpoint(sm-mobileonly) {
+      padding-bottom:8px;
+    }
   }
   .submitButton {
     min-width: 135px;
@@ -49,6 +65,9 @@
 }
 .selectItem {
   font-size: 14px !important;
+  @include breakpoint(sm-mobileonly) {
+    font-size: 12px !important;
+  }
 }
 .mar-right{
  margin-right: 5px !important;
