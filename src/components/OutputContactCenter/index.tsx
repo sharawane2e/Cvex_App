@@ -21,6 +21,7 @@ import HsddInput from "../ImpactCalculator/HsddInput";
 import { setDropDown } from "../../redux/actions/HighChartDropDownAction";
 import store from "../../redux/store";
 import { setBarChartOptions } from "../../redux/actions/HighChartAction";
+import { getbaseLineChartOptions } from "../../utils/highchartOptionUtil";
 
 const OutputContactCenter = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -102,8 +103,15 @@ const OutputContactCenter = () => {
           rowDetails[rowDetails.length - 1].tbodyDetails[
             rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
           ];
-        console.log(seriesValue1, seriesValue2);
+
         dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
+        const seriesDataGet = getbaseLineChartOptions(
+          updatedJsonData.data.inputData.periodTableData[key]
+        );
+        console.log("seriesDataGet", seriesDataGet);
+
+        // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
+        //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));
       }
     });
   };
