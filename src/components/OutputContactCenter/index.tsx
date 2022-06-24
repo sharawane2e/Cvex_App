@@ -112,7 +112,7 @@ const OutputContactCenter = () => {
           updatedJsonData.data.inputData.periodTableData[key]
         );
         dispatch(setBaseLineChartOptions(seriesDataGet));
-        console.log("seriesDataGet", seriesDataGet);
+        console.log("seriesDataGet", updatedJsonData);
 
         // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
         //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));

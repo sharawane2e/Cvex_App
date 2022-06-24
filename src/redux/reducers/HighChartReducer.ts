@@ -100,7 +100,16 @@ const initialState: IChartState = {
     },
     series: [
       {
-        data: [],
+        data: [
+          {
+            name: "Start",
+            y: 0,
+          },
+          {
+            name: "Product Revenue",
+            y: 9523,
+          },
+        ],
       },
     ],
   },

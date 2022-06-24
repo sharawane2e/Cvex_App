@@ -97,7 +97,11 @@
 
         "segmentTableChartData": {
           "A5_1_label-A6_1_label": {
-            "headings": ["", "inbound sales", "service to sales"],
+            "headings": [
+              "Raection per year",
+              "inbound sales",
+              "service to sales"
+            ],
             "chartLabels": [
               "Retention",
               "No touchpoint made",
