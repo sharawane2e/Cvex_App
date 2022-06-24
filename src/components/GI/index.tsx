@@ -576,6 +576,7 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
+                                      CV.selectedId2 = "";
                                       if (CV.questionId == genQues.questionId) {
                                         CV.options.forEach((option: any) => {
                                           if (
@@ -586,6 +587,7 @@ const GI = () => {
                                             document
                                               .getElementById(option.ddId)
                                               ?.click();
+                                              uncheckCheckboxes(genQues.options2);
                                           }
                                         });
                                       }

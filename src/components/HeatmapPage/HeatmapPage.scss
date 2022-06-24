@@ -203,6 +203,15 @@ body {
     .custom_image{
         display: flex;
         justify-content: center;
+        .color-lightgray{
+            filter: brightness(2.5);
+        }
+        .color-midgray{
+            filter: brightness(0.5);
+        }
+        .color-darkgray{
+            filter: brightness(0.5);
+        }
     }
    .custom-table .custom-row:last-child {
         border-right: solid 1px #000;

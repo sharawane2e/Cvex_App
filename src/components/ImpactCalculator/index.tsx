@@ -18,7 +18,6 @@ import LinearProgressbar2 from "../LinearProgressbar2";
 import { LegendToggleTwoTone } from "@mui/icons-material";
 
 const ImpactCalculator = (props: any) => {
-
   const [jsonData, setJSONData] = useState<any>("");
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
@@ -26,6 +25,7 @@ const ImpactCalculator = (props: any) => {
   const [showError, setShowError] = useState(false);
 
   const [progpercentage, setProgpercentage] = useState<any>(0);
+  const [unAnsLocs, setUnAnsLocs] = useState([]);
 
   // @ts-ignore
   const scrollToElement = () => testRef.current.scrollIntoView();
@@ -52,12 +52,14 @@ const ImpactCalculator = (props: any) => {
       // updateScrollPos(updatedJson?.data?.scrollPosition);
       getblockLocations(updatedJson);
 
-      console.log(updatedJson)
+      console.log(updatedJson);
     }, 0);
   }, []);
 
   useEffect(() => {
     progressUpdate();
+    getblockLocations(jsonData);
+    unAnsweredLocs();
   }, [jsonData]);
 
   const numInputValidate = (
@@ -132,6 +134,7 @@ const ImpactCalculator = (props: any) => {
       scrollEffect(inputDataIdx);
       console.log("last", inputDataIdx);
     }
+    getblockLocations(updatedJson);
   };
 
   const handleNumChange = (
@@ -158,6 +161,7 @@ const ImpactCalculator = (props: any) => {
 
     setJSONData(updatedJson);
     setupJson(updatedJson);
+    getblockLocations(updatedJson);
   };
 
   const numFocusOut = (
@@ -246,26 +250,35 @@ const ImpactCalculator = (props: any) => {
   // }
 
   const getblockLocations = (jsonData: any) => {
-    // debugger;
     let arr: any = [];
     let obj: any = {};
 
     // @ts-ignore
     let parentheight = document.getElementById("impactCalc")?.scrollHeight;
 
+    // @ts-ignore
+    let parentscrollpos = document.getElementById("impactCalc")?.scrollTop;
+
+    // @ts-ignore
     jsonData?.data?.inputData.forEach((y: any, i: any) => {
       let idStr = "scroll_" + (i + 1);
-      let height = document.getElementById(idStr)?.getBoundingClientRect().top;
+      let height = 0;
+      // @ts-ignore
+      if (parentscrollpos > 0) {
+        // prettier-ignore
+        // @ts-ignore
+        height = parentscrollpos + document.getElementById(idStr)?.getBoundingClientRect().top;
+      } else {
+        // @ts-ignore
+        height = document.getElementById(idStr)?.getBoundingClientRect().top;
+      }
       arr.push(height);
       obj[idStr] = height;
     });
+
     setBlockLocs(arr);
     console.log(arr);
-    console.log(jsonData);
-    // let ab = document.getElementById("scroll_2")?.getBoundingClientRect().top;
-    // @ts-ignore
-    // console.log(parentheight.getBoundingClientRect().top - ab);
-    // console.log(document.getElementById("scroll_3")?.scrollTop);
+    console.log("sh ", parentscrollpos);
   };
 
   const scrollEffect = (ind: any) => {
@@ -274,19 +287,68 @@ const ImpactCalculator = (props: any) => {
     let dataobj = JSON.parse(JSON.stringify(jsonData));
 
     if (ind < dataobj?.data?.inputData.length - 1) {
-      // let reqheight = blockLocs[ind] + (10 / 100) * window.screen.height;
       let reqheight = blockLocs[ind + 1];
       // @ts-ignore
       container.scrollTo(0, reqheight - 110);
-      // @ts-ignore
-      // container.location("#scroll_3");
-      // document.getElementById("scroll_3")?.scrollIntoView();
       console.log(reqheight);
-
-      // block 2 = 180
-      // block 3 = 780
-      // block 4 = 1220
     }
+  };
+
+  const unAnsweredLocs = () => {
+    let arr: any = [];
+    let arr2: any = [];
+    let blockID = "";
+    let len;
+    // prettier-ignore
+    jsonData?.data?.inputData?.map(
+          (block: any, ib: any) => {
+            block.subHeadingDetails.map((seg: any, is: any) => {
+              seg.segmentDetails.map((ques: any, iq: any) => {
+                ques.questions.map((x: any, ix: any) => {
+                  blockID = "subblock_" + (ib + 1) + "_" + (is + 1);
+
+                    let newheight = 0;
+                    if (x.options != undefined) {
+                      // prettier-ignore
+                      // @ts-ignore
+                      newheight = document.getElementById(blockID)?.getBoundingClientRect().top;
+                      len = ques.questions.filter((select: any) => select.isRequired == true && select.selectedId == "").length;
+                      if (len > 0) {
+                        if(is==0 && ib==0){
+                          arr.push(0);
+                          arr2.push(0);
+                        }
+                        else{
+                          arr.push(blockID);
+                          arr2.push(newheight);
+                        }
+                      }
+                    } 
+                    else {
+                      // prettier-ignore
+                      len = ques.questions.filter((select: any) => select.isRequired == true && select.selectedText == "").length;
+                      if(len > 0){
+                        if(is==0 && ib==0){
+                          arr.push(0);
+                          arr2.push(0);
+                        }
+                        else{
+                          arr.push(blockID);
+                          arr2.push(newheight);
+                        }
+                      }
+                    }
+                  
+                });
+              });
+            });
+          }
+        )
+    // @ts-ignore
+    arr = [...new Set(arr)];
+    // @ts-ignore
+    console.log("qnames ", [...new Set(arr2)]);
+    setUnAnsLocs(arr);
   };
 
   return (
@@ -319,7 +381,15 @@ const ImpactCalculator = (props: any) => {
                       (subHeadingDetail: any, subHeadingIdx: number) => {
                         return subHeadingDetail?.isShow == true ? (
                           <>
-                            <div className="single-dropdown-section__body">
+                            <div
+                              className="single-dropdown-section__body"
+                              id={
+                                "subblock_" +
+                                (inputDataIdx + 1) +
+                                "_" +
+                                (subHeadingIdx + 1)
+                              }
+                            >
                               {subHeadingDetail.hasOwnProperty(
                                 "subHeadingText"
                               ) ? (
@@ -347,7 +417,6 @@ const ImpactCalculator = (props: any) => {
                                       <Grid
                                         container
                                         xs={12}
-                                        
                                         className="section-pad"
                                       >
                                         {segmentDetail?.questions?.map(
@@ -500,6 +569,7 @@ const ImpactCalculator = (props: any) => {
               percentage={progpercentage}
               upJson={JSON.stringify(upJson)}
               showError={setShowError}
+              unAnsLocs={unAnsLocs}
             />
           </div>
         </div>

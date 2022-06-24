@@ -55,9 +55,9 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == pageCode.SkillPage) {
       return <SkillPage />;
     }
-    // if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
-    //   return <HeatmapPage />;
-    // }
+    if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
+      return <HeatmapPage />;
+    }
   }
 
   // return <SubskillPage />

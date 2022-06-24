@@ -205,10 +205,25 @@ export default function CustomAccordion(props: AccordionProps) {
                             }}
                           />
                         </AccordionDetails>
+                        
                       </>
                     );
                   },
                 )}
+                <TextareaAutosize
+                            aria-label="minimum height"
+                            className="custom-text-area"
+                            minRows={2}
+                            defaultValue={"hello"}
+                     
+                            placeholder={"subTitleDetail?.obsplaceholder"}
+                            style={{
+                              width: '100%',
+                              marginTop: 20,
+                              padding: 5,
+                              resize: 'none',
+                            }}
+                          />
               </Accordion>
             </>
           );
