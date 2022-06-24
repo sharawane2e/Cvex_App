@@ -86,8 +86,16 @@ const OutputContactCenter = () => {
     updatedJsonData.data.inputData.periodDD.selectedId = ddId;
     document.getElementById(ddId)?.click();
     setJSONData(updatedJsonData);
+
+    var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
+    keys.forEach(function (key: any) {
+      if (key == ddId) {
+        dispatch(
+          setDropDown(updatedJsonData.data.inputData.periodTableData[key])
+        );
+      }
+    });
   };
-  dispatch(setDropDown(inputDetails));
 
   return (
     <div className="contactpage-container">
