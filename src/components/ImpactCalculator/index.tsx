@@ -25,6 +25,7 @@ const ImpactCalculator = (props: any) => {
   const [showError, setShowError] = useState(false);
 
   const [progpercentage, setProgpercentage] = useState<any>(0);
+  const [unAnsLocs, setUnAnsLocs] = useState([]);
 
   // @ts-ignore
   const scrollToElement = () => testRef.current.scrollIntoView();
@@ -58,6 +59,7 @@ const ImpactCalculator = (props: any) => {
   useEffect(() => {
     progressUpdate();
     getblockLocations(jsonData);
+    unAnsweredLocs();
   }, [jsonData]);
 
   const numInputValidate = (
@@ -248,7 +250,6 @@ const ImpactCalculator = (props: any) => {
   // }
 
   const getblockLocations = (jsonData: any) => {
-    // debugger;
     let arr: any = [];
     let obj: any = {};
 
@@ -277,12 +278,7 @@ const ImpactCalculator = (props: any) => {
 
     setBlockLocs(arr);
     console.log(arr);
-    console.log(jsonData);
     console.log("sh ", parentscrollpos);
-    // let ab = document.getElementById("scroll_2")?.getBoundingClientRect().top;
-    // @ts-ignore
-    // console.log(parentheight.getBoundingClientRect().top - ab);
-    // console.log(document.getElementById("scroll_3")?.scrollTop);
   };
 
   const scrollEffect = (ind: any) => {
@@ -291,19 +287,68 @@ const ImpactCalculator = (props: any) => {
     let dataobj = JSON.parse(JSON.stringify(jsonData));
 
     if (ind < dataobj?.data?.inputData.length - 1) {
-      // let reqheight = blockLocs[ind] + (10 / 100) * window.screen.height;
       let reqheight = blockLocs[ind + 1];
       // @ts-ignore
       container.scrollTo(0, reqheight - 110);
-      // @ts-ignore
-      // container.location("#scroll_3");
-      // document.getElementById("scroll_3")?.scrollIntoView();
       console.log(reqheight);
-
-      // block 2 = 180
-      // block 3 = 780
-      // block 4 = 1220
     }
+  };
+
+  const unAnsweredLocs = () => {
+    let arr: any = [];
+    let arr2: any = [];
+    let blockID = "";
+    let len;
+    // prettier-ignore
+    jsonData?.data?.inputData?.map(
+          (block: any, ib: any) => {
+            block.subHeadingDetails.map((seg: any, is: any) => {
+              seg.segmentDetails.map((ques: any, iq: any) => {
+                ques.questions.map((x: any, ix: any) => {
+                  blockID = "subblock_" + (ib + 1) + "_" + (is + 1);
+
+                    let newheight = 0;
+                    if (x.options != undefined) {
+                      // prettier-ignore
+                      // @ts-ignore
+                      newheight = document.getElementById(blockID)?.getBoundingClientRect().top;
+                      len = ques.questions.filter((select: any) => select.isRequired == true && select.selectedId == "").length;
+                      if (len > 0) {
+                        if(is==0 && ib==0){
+                          arr.push(0);
+                          arr2.push(0);
+                        }
+                        else{
+                          arr.push(blockID);
+                          arr2.push(newheight);
+                        }
+                      }
+                    } 
+                    else {
+                      // prettier-ignore
+                      len = ques.questions.filter((select: any) => select.isRequired == true && select.selectedText == "").length;
+                      if(len > 0){
+                        if(is==0 && ib==0){
+                          arr.push(0);
+                          arr2.push(0);
+                        }
+                        else{
+                          arr.push(blockID);
+                          arr2.push(newheight);
+                        }
+                      }
+                    }
+                  
+                });
+              });
+            });
+          }
+        )
+    // @ts-ignore
+    arr = [...new Set(arr)];
+    // @ts-ignore
+    console.log("qnames ", [...new Set(arr2)]);
+    setUnAnsLocs(arr);
   };
 
   return (
@@ -336,7 +381,15 @@ const ImpactCalculator = (props: any) => {
                       (subHeadingDetail: any, subHeadingIdx: number) => {
                         return subHeadingDetail?.isShow == true ? (
                           <>
-                            <div className="single-dropdown-section__body">
+                            <div
+                              className="single-dropdown-section__body"
+                              id={
+                                "subblock_" +
+                                (inputDataIdx + 1) +
+                                "_" +
+                                (subHeadingIdx + 1)
+                              }
+                            >
                               {subHeadingDetail.hasOwnProperty(
                                 "subHeadingText"
                               ) ? (
@@ -516,6 +569,7 @@ const ImpactCalculator = (props: any) => {
               percentage={progpercentage}
               upJson={JSON.stringify(upJson)}
               showError={setShowError}
+              unAnsLocs={unAnsLocs}
             />
           </div>
         </div>

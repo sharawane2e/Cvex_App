@@ -19,24 +19,26 @@ type ProgressBarProps = {
   percentage: number;
   upJson: string;
   showError: any;
+  unAnsLocs: any;
 };
 
 const LinearProgressbar2 = ({
   percentage,
   upJson,
   showError,
+  unAnsLocs,
 }: ProgressBarProps) => {
   const { leftPanel, rightPanel } = useSelector((state: any) => state);
-
   const [jsonData, setJSONData] = useState<any>("");
   const [sbtDisable, setSbtdisable] = useState(true);
-
   const [open, setOpen] = useState(false);
+  // const [unAnsLocs, setUnAnsLocs] = useState([]);
 
   const defaultProps: ProgressBarProps = {
     percentage: 0,
     upJson: jsonData,
     showError: false,
+    unAnsLocs: [],
   };
 
   // const handleClickOpen = () => {
@@ -83,7 +85,9 @@ const LinearProgressbar2 = ({
   //   scrollInput.value = scrollValue;
   // }
 
-    
+  // useEffect(() => {
+  //   unAnsweredLocs();
+  // }, [jsonData]);
 
   const handleSave = (saveId: string) => {
     // @ts-ignore
@@ -96,6 +100,8 @@ const LinearProgressbar2 = ({
   const handleSubmit = (saveId: string) => {
     isReqAnswered(saveId);
     showError(true);
+    scrollEvent();
+    // unAnsweredLocs();
   };
 
   const submitProgress = (event: any) => {
@@ -117,7 +123,72 @@ const LinearProgressbar2 = ({
   //     return progressPercentage;
   //   };
 
-  const isReqAnswered = (saveId:any) => {
+  const scrollEvent = () => {
+    let container = document.getElementById("impactCalc");
+    // @ts-ignore
+    let parentscrollpos = container.scrollTop;
+    let height = 0;
+    // prettier-ignore
+    let firstLoc = document.getElementById(unAnsLocs[0])?.getBoundingClientRect().top;
+    // @ts-ignore
+    if (parentscrollpos > 0) {
+      // @ts-ignore
+      height = parentscrollpos + firstLoc;
+    } else {
+      // @ts-ignore
+      height = firstLoc;
+    }
+
+    console.log("firstloc ", firstLoc);
+    console.log("unAnsLocs ", unAnsLocs);
+    // @ts-ignore
+    container.scrollTo(0, height - 110);
+
+    //block_1_1 = 0;
+    //block_2_1 = 220;
+    //block_2_2 = 390;
+  };
+
+  const scrollEffect = () => {
+    if (unAnsLocs.length > 0) {
+      let parentscrollpos = document.getElementById("impactCalc")?.scrollTop;
+      let height = 0;
+      let firstLoc = document
+        .getElementById(unAnsLocs[0])
+        ?.getBoundingClientRect().top;
+      // @ts-ignore
+      if (parentscrollpos > 0) {
+        // @ts-ignore
+        height = parentscrollpos + firstLoc;
+      } else {
+        // @ts-ignore
+        height = firstLoc;
+      }
+    }
+
+    console.log(jsonData);
+    console.log("blocks ", unAnsLocs);
+    // console.log("qnames ", arr2);
+
+    // @ts-ignore
+    let container = document.getElementById("impactCalc");
+    let dataobj = JSON.parse(JSON.stringify(jsonData));
+
+    // let reqheight = blockLocs[ind] + (10 / 100) * window.screen.height;
+    let reqheight = unAnsLocs[0];
+    // @ts-ignore
+    container.scrollTo(0, reqheight - 110);
+    // @ts-ignore
+    // container.location("#scroll_3");
+    // document.getElementById("scroll_3")?.scrollIntoView();
+    console.log(reqheight);
+
+    // block 2 = 180
+    // block 3 = 780
+    // block 4 = 1220
+  };
+
+  const isReqAnswered = (saveId: any) => {
     if (JSON.parse(upJson)?.data?.inputData) {
       let count: number = 0;
       JSON.parse(upJson)?.data?.inputData?.map((block: any) => {
@@ -145,13 +216,14 @@ const LinearProgressbar2 = ({
           });
         });
       });
+      console.log(count);
       if (count == 0) {
-         // @ts-ignore
-    document.getElementById("navText").value = saveId;
-    // @ts-ignore
-    document.getElementById("forwardbutton").disabled = false;
-    // @ts-ignore
-    document.getElementById("forwardbutton").click();
+        // @ts-ignore
+        document.getElementById("navText").value = saveId;
+        // @ts-ignore
+        document.getElementById("forwardbutton").disabled = false;
+        // @ts-ignore
+        document.getElementById("forwardbutton").click();
         return true;
       } else {
         setOpen(true);
@@ -189,12 +261,12 @@ const LinearProgressbar2 = ({
               <CustomButton
                 className={"submitButton previous-button"}
                 onClick={() => {
-                  saveScrollPosNew(".impact-calc-container__inr", "#scroll-value");
-                  handleSave(
-                    jsonData?.data?.progressBarData?.saveBtn?.saveId
+                  saveScrollPosNew(
+                    ".impact-calc-container__inr",
+                    "#scroll-value"
                   );
-                  }
-                }
+                  handleSave(jsonData?.data?.progressBarData?.saveBtn?.saveId);
+                }}
               >
                 {getParsedData(
                   jsonData?.data?.progressBarData?.saveBtn?.saveBtnTxt
