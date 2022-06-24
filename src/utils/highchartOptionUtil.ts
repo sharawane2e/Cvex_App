@@ -45,7 +45,7 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
   });
   console.log(SeriesData);
 
-  return [...SeriesData];
+  return SeriesData;
 };
 const getpotentialChartOptions = (potentialChartOptions: any): any => {
   console.log(potentialChartOptions);

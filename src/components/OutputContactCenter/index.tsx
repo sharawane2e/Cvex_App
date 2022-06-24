@@ -44,8 +44,8 @@ const OutputContactCenter = () => {
             JSON.parse(document.getElementById("jsonData")?.innerHTML)
         );
 
-
     }, []);
+
 
     const nextHandleClick = (event: any) => {
         if (jsonData !== "") {
