@@ -69,7 +69,8 @@ const PanelPage = (props: any) => {
                   <>
                     <div className="single-capability">
                       <div className="single-capability__left">
-                        <p>{elm.capabilityText}</p>
+                      <div className="mobile_heading">Capability</div>
+                        <p className="skill_text">{elm.capabilityText}</p>
                       </div>
                       <div className="single-capability__right">
                       {
@@ -79,27 +80,31 @@ const PanelPage = (props: any) => {
                               <div className="single-capability__right--cap-detail">
                                 <div className="skillCont">
                                   <div className="capability">
-                                    <p>{skill?.skillText}</p>
+                                  <div className="mobile_heading">Skill</div>
+                                    <p className="skill_text">{skill?.skillText}</p>
                                   </div>
                                   <div>
                                     <img src={skill?.skillIcon} alt="" />
                                   </div>  
                                 </div>
                                 <div className="subSkillCont">
+                                <div className="mobile_heading">Sub-skill</div>
                                   {
                                     (skill?.subSkillDetails?.map((subSkillDetail:any) => {
                                       return(
                                           <div className="subSkillDetailCont">
-                                            <p>{subSkillDetail}</p>
+                                            <p className="skill_text">{subSkillDetail}</p>
                                           </div>
                                       )
                                     }))
                                   }
                                 </div>
                                 <div className="observationCont">
-                                  <p>{skill?.observationTxt}</p>
+                                <div className="mobile_heading">Observations</div>
+                                  <p className="skill_text">{skill?.observationTxt}</p>
                                 </div>
                                 <div className="progressBarCont">
+                                <div className="mobile_heading"><span>0</span>     <span>100</span></div>
                                   <div className="skill-slider-cont">
                                     <div className="knob-container" style={{left:`${skill.sliderValue}%`}}>
                                       <Knob className="knob"/>

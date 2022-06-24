@@ -67,7 +67,8 @@ const PanelPage = (props: any) => {
                   <>
                     <div className="single-capability">
                       <div className="single-capability__left">
-                        <p>{elm.capabilityText}</p>
+                      <div className="mobile_heading">Capability</div>
+                        <p className="skill_text">{elm.capabilityText}</p>
                       </div>
                       <div className="single-capability__right">
                       {
@@ -77,25 +78,31 @@ const PanelPage = (props: any) => {
                               <div className="single-capability__right--cap-detail">
                                 <div className="skillCont">
                                   <div className="capability">
-                                    <p>{skill?.skillText}</p>
+                                  <div className="mobile_heading">Skill</div>
+                                    <p className="skill_text">{skill?.skillText}</p>
                                   </div>
                                   <div>
                                     <img src={skill?.skillIcon} alt="" />
                                   </div>
                                 </div>
                                 <div className="skill-details-cnrt">
+                               
                                 {
                                   skill?.subSkillDetails?.map((subskill:any) => {
                                     return(
                                       <>
                                         <div className=" skill-details-cnrt__skill-details">
+                                        
                                           <div className="skill-details-cnrt__sub-skill skill-common">
-                                            <p>{subskill.subSkillText}</p>
+                                          <div className="mobile_heading">Sub-skill</div>
+                                            <p className="skill_text">{subskill.subSkillText}</p>
                                           </div>
                                           <div className="skill-details-cnrt__observation skill-common">
-                                            <p>{subskill.observationtext}</p>
+                                          <div className="mobile_heading">Observations</div>
+                                            <p className="skill_text">{subskill.observationtext}</p>
                                           </div>
                                           <div className="skill-details-cnrt__slider skill-common">
+                                          <div className="mobile_heading"><span>0</span>     <span>100</span></div>
                                             {/* <p>{subskill.sliderValue}</p> */}
                                             <div className="skill-slider-cont">
                                                 <div className="knob-container" style={{left:`${subskill.sliderValue}%`}}>
