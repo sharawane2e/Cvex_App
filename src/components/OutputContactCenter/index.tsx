@@ -20,7 +20,10 @@ import SegmentChart from "../UI/SegmentChart";
 import HsddInput from "../ImpactCalculator/HsddInput";
 import { setDropDown } from "../../redux/actions/HighChartDropDownAction";
 import store from "../../redux/store";
-import { setBarChartOptions } from "../../redux/actions/HighChartAction";
+import {
+  setBarChartOptions,
+  setBaseLineChartOptions,
+} from "../../redux/actions/HighChartAction";
 import { getbaseLineChartOptions } from "../../utils/highchartOptionUtil";
 
 const OutputContactCenter = () => {
@@ -108,6 +111,7 @@ const OutputContactCenter = () => {
         const seriesDataGet = getbaseLineChartOptions(
           updatedJsonData.data.inputData.periodTableData[key]
         );
+        dispatch(setBaseLineChartOptions(seriesDataGet));
         console.log("seriesDataGet", seriesDataGet);
 
         // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
