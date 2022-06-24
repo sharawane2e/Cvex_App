@@ -23,6 +23,7 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
 
   for (let i = 1; i < baselineHedding.length; i++) {
     seriesName.push(baselineHedding[i]);
+
   }
   for (let i = 0; i < baseLineChartOptions.rowDetails.length; i++) {
     let newArrayData: any = [];
@@ -36,18 +37,15 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
     }
     seriesY.push(newArrayData);
   }
-
-  seriesY.forEach((el: any, index: any) => {
-    el.forEach((el: any, Index: any) => {
-      SeriesData.push({
-        name: seriesName[Index],
-        y: el,
-      });
+  seriesY[0].forEach((el: any, index: any) => {
+    SeriesData.push({
+      name: seriesName[index],
+      y: el,
     });
   });
   console.log(SeriesData);
 
-  return SeriesData;
+  return [...SeriesData];
 };
 const getpotentialChartOptions = (potentialChartOptions: any): any => {
   console.log(potentialChartOptions);
