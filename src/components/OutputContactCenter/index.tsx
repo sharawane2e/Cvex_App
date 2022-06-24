@@ -102,7 +102,6 @@ const OutputContactCenter = () => {
         );
     };
 
-
     const handleDDChange = (ddId: string) => {
         const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
         updatedJsonData.data.inputData.periodDD.selectedId = ddId;
@@ -128,14 +127,15 @@ const OutputContactCenter = () => {
                 const seriesDataGet = getbaseLineChartOptions(
                     updatedJsonData.data.inputData.periodTableData[key]
                 );
-                console.log("seriesDataGet", seriesDataGet);
                 dispatch(setBaseLineChartOptions(seriesDataGet));
-                console.log("seriesDataGet", seriesDataGet);
+                console.log("seriesDataGet", updatedJsonData);
+
                 // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
                 //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));
             }
         });
     };
+
     const handleDropDownChange = (ddId: string) => {
         const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
         updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId = ddId;
