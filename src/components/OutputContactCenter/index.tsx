@@ -78,30 +78,12 @@ const OutputContactCenter = () => {
     );
   };
 
-  //   const getperiodDropDown = (event: any) => {
-  //     const updatedJson = JSON.parse(JSON.stringify(jsonData));
-  //     // inputDetails?.periodDD?.options?.map((elemnt: any) => {
-  //     //   if (elemnt?.ddName === event.target.value) {
-  //     //     setJSONData()
-  //     //   }
-
-  //     // });
-  //   };
-
   const handleDDChange = (ddId: string) => {
-    //console.log(ddId);
-    //const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
-    // updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[
-    //   subHeadingIdx
-    // ].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId =
-    //   ddId;
-    // document.getElementById(ddId)?.click();
-    // // const updatedJson = hideShowSections(updatedJsonData);
-    // //@ts-ignore
-    // setJSONData(updatedJson);
+    const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
+    updatedJsonData.data.inputData.periodDD.selectedId = ddId;
+    document.getElementById(ddId)?.click();
+    setJSONData(updatedJsonData);
   };
-
-  //  console.log(inputDetails?.periodDD?.options);
 
   return (
     <div className="contactpage-container">
@@ -109,20 +91,12 @@ const OutputContactCenter = () => {
       <div className="contactpage-container__inr">
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
-            {/* <div className="single-dropdown-section__body">
-              <div className="title-container">
-                <p>{inputDetails?.periodDD?.optionName}</p>
-              </div>
-            </div> */}
             <Grid
               container
               sx={{ alignItems: 'center', pb: 2 }}
               xs={12}
               md={12}
             >
-              {/* <Grid item xs={12} md={6} className="single-dropdown-title">
-                                <p className="gen-info">{inputDetails?.periodDD?.optionName}</p>
-                            </Grid> */}
               <Grid item xs={12} sx={{ paddingRight: '20px' }}>
                 {inputDetails != undefined ? (
                   <HsddInput

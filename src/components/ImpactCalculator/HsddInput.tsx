@@ -40,6 +40,8 @@ const HsddInput = (props: HsddInputProps) => {
     onChange,
   } = props.question;
 
+  // console.log('selectedId', props);
+
   return (
     <>
       <Grid
@@ -62,7 +64,6 @@ const HsddInput = (props: HsddInputProps) => {
                   return <>{placeholder}</>;
                 }
 
-                console.log('selected', selected);
                 return selected;
               }}
               value={getselectedDDName(options, selectedId)}
@@ -75,7 +76,7 @@ const HsddInput = (props: HsddInputProps) => {
                 <>{placeholder}</>
               </MenuItem>
               {options?.map((option: any) => (
-                <MenuItem value={option?.ddName} className="selectItem">
+                <MenuItem value={option?.ddId} className="selectItem">
                   {option?.ddName}
                 </MenuItem>
               ))}
