@@ -4,12 +4,49 @@
   font-family: 'Roboto', sans-serif;
   font-weight: $font-500;
   min-width: 600px;
+  @include breakpoint(sm-mobileonly) {
+    min-width:100%;
+   }
   .main-container {
     margin: 0;
     padding: 15px;
     width: 100%;
     height: calc(100vh - 112px);
     overflow-y: auto;
+    
+     @include breakpoint(sm-mobileonly) {
+      .skill_text {
+        color: #606060;
+        font-size: 14px;
+      }
+     }
+     @include breakpoint(Ipad) {
+      p.skill_text {
+        font-size: 14px;
+      }
+     }
+    .mobile_heading span:first-child {
+      float: left;
+      display: block;
+    }
+    
+    .mobile_heading span:last-child {
+        float: right;
+        display: block;
+    }
+    
+    .mobile_heading {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color:$dark-black;
+        min-height: 19px;
+    }
+    .mobile_heading {
+        display: none;
+        @include breakpoint(sm-mobileonly) {
+          display: block;
+        }
+    }
 
   }
 
@@ -20,6 +57,9 @@
     padding: 10px;
     border-bottom: 0px;
     font-weight: $font-bold;
+    @include breakpoint(sm-mobileonly) {
+      display:none;
+    }
 
     &--heading:nth-child(1){
       width: 10%;
@@ -42,21 +82,37 @@
     border: 1px solid $gray-lighter;
     border-bottom: none;
     display: flex;
+    @include breakpoint(sm-mobileonly) {
+      display: block;
+    }
     &:last-child {
       border-bottom: 1px solid $gray-lighter;
     }
     &__left{
       width: 10%;
       padding: 10px;
+      @include breakpoint(sm-mobileonly) {
+        width: 100%;
+      }
+      @include breakpoint(Ipad) {
+        width: 20%;
+       }
     }
     &__right{
 
         width: 90%;
+        @include breakpoint(sm-mobileonly) {
+          width: 100%;
+        }
         &--cap-detail{
           border: 1px solid $gray-lighter;
           border-bottom: none;
           border-right: 0;
           display: flex;
+          @include breakpoint(sm-mobileonly) {
+            display: block;
+            border:0;
+          }
           &:first-child{
             border-top: 0;
           }
@@ -68,6 +124,13 @@
             padding: 10px;
             word-break: break-all;
             line-height: 1.2;
+            @include breakpoint(sm-mobileonly) {
+              width: 100%;
+              display: block;
+            }
+            @include breakpoint(Ipad) {
+              width: 29%;
+             }
           }
           .skill-common{
             display: flex;
@@ -79,10 +142,17 @@
           }
           .skill-details-cnrt {
             width: 90%;
+            @include breakpoint(sm-mobileonly) {
+              width: 100%;
+            }
             &__skill-details{
               display: flex;
               border-bottom: 1px solid $gray-lighter;
               border-left: none;
+              @include breakpoint(sm-mobileonly) {
+                display:block;
+                border: 0;
+              }
               &:last-child {
                 border-bottom: none;
               }
@@ -139,12 +209,37 @@
             
             &__sub-skill{
               width: 25%;
+              @include breakpoint(sm-mobileonly) {
+                width: 100%;
+                padding: 10px 10px;
+                display: block;
+                border:0;
+              }
+              @include breakpoint(Ipad) {
+                width: 25%;
+                padding:10px;
+               }
             }
             &__observation {
               width: 50%;
+              @include breakpoint(sm-mobileonly) {
+                width: 100%;
+                display: block;
+                padding: 10px 10px;
+                border:0;
+              }
+              @include breakpoint(Ipad) {
+                padding:10px;
+               }
             }
             &__slider {
               width: 25%;
+              @include breakpoint(sm-mobileonly) {
+                width: 100%;
+                display: block;
+                padding: 10px 10px;
+                border:0;
+              }
             }
 
           }
