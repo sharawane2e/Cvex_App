@@ -1,3 +1,4 @@
+@import "../../styles/partials/mixins.scss";
 
 .skill-container {
   color: $dark-light-black;
@@ -10,11 +11,27 @@
     width: 100%;
     height: calc(100vh - 112px);
     overflow-y: auto;
-
+    
+    // @include breakpoint(Ipad-pro)
+    // {
+    //   font-size: 12px;
+    //   padding: 5px;
+    // }
+    // @include breakpoint(mobileonly)
+    // {
+    //   padding: 5px;
+    //   font-size: 10px;
+    // }
+    // @include breakpoint(sm-mobileonly)
+    // {
+    //   padding: 5px;
+    //   font-size: 10px;
+    // }
   }
 
   .single-capability-header {
     display: flex;
+    // justify-content: space-between;
     width: 100%;
     color: $light-voilet;
     padding: 10px;
@@ -22,10 +39,10 @@
     font-weight: $font-bold;
 
     &--heading:nth-child(1){
-      width: 10%;
+      width: 12%;
     }
     &--heading:nth-child(2){
-      width: 9%;
+      width: 20%;
     }
     &--heading:nth-child(3){
       width: 21%;
@@ -40,11 +57,8 @@
 
   .single-capability {
     border: 1px solid $gray-lighter;
-    border-bottom: none;
+    // border-bottom: 0;
     display: flex;
-    &:last-child {
-      border-bottom: 1px solid $gray-lighter;
-    }
     &__left{
       width: 10%;
       padding: 10px;
@@ -64,90 +78,95 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 10%;
+            width: 20%;
             padding: 10px;
             word-break: break-all;
             line-height: 1.2;
+            border-right: 1px solid $gray-lighter;
           }
-          .skill-common{
+
+          .subSkillCont {
             display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            border-left: 1px solid $gray-lighter;
-            border-collapse: collapse;
-            min-height: 70px;
-            height: 70px;
-          }
-          .skill-details-cnrt {
-            width: 90%;
-            &__skill-details{
-              display: flex;
-              border-bottom: 1px solid $gray-lighter;
-              border-left: none;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 20%;
+            border-right: 1px solid $gray-lighter;
+            padding: 10px;
+
+            .subSkillDetailCont {
+              margin-bottom: 10px;
               &:last-child {
-                border-bottom: none;
+                margin-bottom: none;
               }
+            }
+          }
 
-              .skill-slider-cont {
-                width: 100%;
-                height: 1px;
+          .observationCont {
+            width: 40%;
+            padding: 10px;
+            border-right: 1px solid $gray-lighter;
+            .custom-text-area {
+              width: 100% !important;
+              height: 100% !important;
+              margin-left: 0px !important;
+              margin-top: 0px !important;
+              border: 1px solid $gray-lighter;
+
+            }
+          }
+
+          .progressBarCont {
+            width: 20%;
+            padding: 10px;
+            .skill-slider-cont {
+              width: 100%;
+              height: 1px;
+              background-color: $gray-lighter;
+              position: relative;
+              margin-top: 20px;
+              &:before {
+                content: "";
+                height: 15px;
+                width: 1px;
+                position: absolute;
+                left: 0px;
                 background-color: $gray-lighter;
-                position: relative;
-                &:before {
-                  content: "";
-                  height: 15px;
-                  width: 1px;
+                transform: translateY(-50%);
+              }
+
+              &::after {
+                content: "";
+                height: 15px;
+                width: 1px;
+                position: absolute;
+                right: 0px;
+                background-color: $gray-lighter;
+                transform: translateY(-50%);
+              }
+
+
+              .knob-container {
+                position: absolute;
+                left: 20%;
+                .knob {
+                  // background-image: url("../../assets/svg/Polygon\ 2.svg");
                   position: absolute;
-                  left: 0px;
-                  background-color: $gray-lighter;
-                  transform: translateY(-50%);
+                  top: -5px;
+                  left: 0%;
+                  transform: translateX(-50%);
+                  z-index: 1;
                 }
-
-                &::after {
+                .slider-text {
                   content: "";
-                  height: 15px;
-                  width: 1px;
-                  position: absolute;
-                  right: 0px;
-                  background-color: $gray-lighter;
-                  transform: translateY(-50%);
-                }
-
-
-                .knob-container {
-                  position: absolute;
-                  left: 20%;
-                  .knob {
-                    position: absolute;
-                    top: -5px;
-                    left: 0%;
-                    transform: translateX(-50%);
-                    z-index: 1;
-                  }
-                  .slider-text {
-                    content: "";
-                        position: absolute;
-                        height: 10px;
-                        width: 10px;
-                        top: 7px;
-                        font-size: 14px;
-                        transform: translateX(-90%);
-                  }
+                      position: absolute;
+                      height: 10px;
+                      width: 10px;
+                      top: 7px;
+                      font-size: 14px;
+                      transform: translateX(-90%);
                 }
               }
-                      
             }
-            
-            &__sub-skill{
-              width: 25%;
-            }
-            &__observation {
-              width: 50%;
-            }
-            &__slider {
-              width: 25%;
-            }
-
           }
         }
     }

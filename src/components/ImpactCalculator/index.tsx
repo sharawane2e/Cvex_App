@@ -18,8 +18,13 @@ import LinearProgressbar2 from '../LinearProgressbar2';
 import { LegendToggleTwoTone } from '@mui/icons-material';
 
 const ImpactCalculator = (props: any) => {
+<<<<<<< HEAD
   const [jsonData, setJSONData] = useState<any>('');
   const [upJson, setupJson] = useState<any>('');
+=======
+  const [jsonData, setJSONData] = useState<any>("");
+  const [upJson, setupJson] = useState<any>("");
+>>>>>>> e3554ebbff6b8113f8111a788e6a358039e38f99
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
   const [showError, setShowError] = useState(false);
@@ -57,6 +62,7 @@ const ImpactCalculator = (props: any) => {
 
   useEffect(() => {
     progressUpdate();
+    getblockLocations(jsonData);
   }, [jsonData]);
 
   const numInputValidate = (
@@ -130,6 +136,7 @@ const ImpactCalculator = (props: any) => {
     ) {
       scrollEffect(inputDataIdx);
     }
+    getblockLocations(updatedJson);
   };
 
   const handleNumChange = (
@@ -156,6 +163,7 @@ const ImpactCalculator = (props: any) => {
 
     setJSONData(updatedJson);
     setupJson(updatedJson);
+    getblockLocations(updatedJson);
   };
 
   const numFocusOut = (
@@ -251,14 +259,39 @@ const ImpactCalculator = (props: any) => {
     // @ts-ignore
     let parentheight = document.getElementById('impactCalc')?.scrollHeight;
 
+    // @ts-ignore
+    let parentscrollpos = document.getElementById("impactCalc")?.scrollTop;
+
+    // @ts-ignore
     jsonData?.data?.inputData.forEach((y: any, i: any) => {
+<<<<<<< HEAD
       let idStr = 'scroll_' + (i + 1);
       let height = document.getElementById(idStr)?.getBoundingClientRect().top;
+=======
+      let idStr = "scroll_" + (i + 1);
+      let height = 0;
+      // @ts-ignore
+      if (parentscrollpos > 0) {
+        // prettier-ignore
+        // @ts-ignore
+        height = parentscrollpos + document.getElementById(idStr)?.getBoundingClientRect().top;
+      } else {
+        // @ts-ignore
+        height = document.getElementById(idStr)?.getBoundingClientRect().top;
+      }
+>>>>>>> e3554ebbff6b8113f8111a788e6a358039e38f99
       arr.push(height);
       obj[idStr] = height;
     });
-    setBlockLocs(arr);
 
+    setBlockLocs(arr);
+<<<<<<< HEAD
+
+=======
+    console.log(arr);
+    console.log(jsonData);
+    console.log("sh ", parentscrollpos);
+>>>>>>> e3554ebbff6b8113f8111a788e6a358039e38f99
     // let ab = document.getElementById("scroll_2")?.getBoundingClientRect().top;
     // @ts-ignore
     // console.log(parentheight.getBoundingClientRect().top - ab);

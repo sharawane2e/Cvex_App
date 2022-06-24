@@ -3,13 +3,18 @@
       margin: auto;
       margin-top: 100px;
       width: 80%;
+      
+      @include breakpoint(sm-mobileonly) {
+        font-size: 15px;
+        @include space("margin", "top", 190px, 0px);
+      }
   
       .introduction-heading {
         text-align: left;
         letter-spacing: 0px;
         color: $dark-black;
         opacity: 1;
-        margin: 0;
+        margin-bottom: 15px;
       }
       
       .introduction-content {
@@ -17,6 +22,7 @@
         letter-spacing: 0px;
         color: $dark-black;
         opacity: 1;
+        line-height: 21px;
       }
     }
   }

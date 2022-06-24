@@ -61,7 +61,7 @@
               }
           @include breakpoint(Ipad-pro)
               {
-               padding-right: 0;
+              //  padding-right: 0;
               }
           &:nth-child(3){
             padding-right: 0;
@@ -84,6 +84,9 @@
           // justify-content: center;
            border-bottom: 0;
            padding-bottom: 0;
+           @include breakpoint(sm-mobileonly) {
+            display: block;
+          }
           .rightPanel {
             .previous-button {
               background-color: $dark-white !important;
@@ -97,6 +100,16 @@
           }
           .leftPanel{
             width: 80%;
+            @include breakpoint(sm-mobileonly) {
+              width:100%;
+              margin-bottom:10px;
+              background: #fff;
+              padding-top:5px;
+            }
+            @include breakpoint(Ipad-pro) {
+              width: 64%;
+            }
+            
           }
           .ProgressText{
             margin: 0 0 10px;

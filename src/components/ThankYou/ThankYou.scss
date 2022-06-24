@@ -2,6 +2,10 @@
     width: 100%;
     margin-top: 60px;
     text-align: center;
+    @include breakpoint(sm-mobileonly) {
+        margin-top: 160px;
+        padding: 0 12px;
+      }
 
     svg {
         height: 185px;

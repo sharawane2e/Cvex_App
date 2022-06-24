@@ -6,12 +6,12 @@ import ThankYou from '../components/ThankYou';
 import QuestionPage from '../components/QuestionPage';
 import GI from '../components/GI';
 import PanelPage from '../components/PanelPage';
-import SkillPage from '../components/SkillPage';
+import SubskillPage from '../components/SubskillPage';
 import ImpactCalculatorPage from '../components/ImpactCalculator';
 import OutputContactCenter from '../components/OutputContactCenter';
 import pageCode from '../enums/pageCode';
 import HeatmapPage from '../components/HeatmapPage/Index';
-import SubskillPage from '../components/SubskillPage';
+import SkillPage from "../components/SkillPage";
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -39,8 +39,8 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == pageCode.ThankYou) {
       return <ThankYou />;
     }
-    if (jsonData?.pageCode?.page == pageCode.SkillPage) {
-      return <SkillPage />;
+    if (jsonData?.pageCode?.page == pageCode.SubskillPage) {
+      return <SubskillPage />;
     }
     if (jsonData?.pageCode?.page == pageCode.PanelPage) {
       return <PanelPage />;
@@ -54,6 +54,12 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == 11) {
       return <OutputContactCenter />;
     }
+    if (jsonData?.pageCode?.page == pageCode.SkillPage) {
+      return <SkillPage />;
+    }
+    // if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
+    //   return <HeatmapPage />;
+    // }
   }
 
   // return <SubskillPage />
