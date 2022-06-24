@@ -27,7 +27,7 @@ const QuestionPage = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById('jsonData')?.innerText),
     );
     console.log(document.querySelector(".right-panel__inr"));
     setTimeout(function(){updateScrollPos(jsonData?.data?.scrollPosition);}, 1000);
@@ -108,7 +108,7 @@ const QuestionPage = () => {
               {/* : ""
             } */}
 
-            {/* {jsonData?.data?.footerData?.forwardBtn.forwardShow ? */}
+            {jsonData?.data?.footerData?.forwardBtn.forwardShow ?
               <div>
                 <CustomButton
                   className={'submitButton next-button'}
@@ -119,8 +119,8 @@ const QuestionPage = () => {
                   )}
                 </CustomButton>
               </div>
-              {/* : ""
-            } */}
+              : ""
+            }
 
           </div>
         </Footer>

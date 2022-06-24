@@ -576,20 +576,22 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
-                                      CV.selectedId2 = "";
-                                      if (CV.questionId == genQues.questionId) {
-                                        CV.options.forEach((option: any) => {
-                                          if (
-                                            option.ddName == event.target.value
-                                          ) {
-                                            dropdownId = option.ddId;
+                                      if(CV?.type == genQues?.type){
+                                        CV.selectedId2 = "";
+                                        if (CV.questionId == genQues.questionId) {
+                                          CV.options.forEach((option: any) => {
+                                            if (
+                                              option.ddName == event.target.value
+                                            ) {
+                                              dropdownId = option.ddId;
 
-                                            document
-                                              .getElementById(option.ddId)
-                                              ?.click();
-                                              uncheckCheckboxes(genQues.options2);
-                                          }
-                                        });
+                                              document
+                                                .getElementById(option.ddId)
+                                                ?.click();
+                                                uncheckCheckboxes(genQues.options2);
+                                            }
+                                          });
+                                        }
                                       }
                                     }
                                   );
@@ -921,7 +923,6 @@ const GI = () => {
                                               dropdownIdsArr.push(option.ddId);
                                             }
                                           });
-
                                           checkCheckboxes(dropdownIdsArr);
                                         }
                                       }
