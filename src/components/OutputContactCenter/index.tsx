@@ -105,6 +105,8 @@ const OutputContactCenter = () => {
         setJSONData(updatedJsonData);
 
         var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
+        console.log(keys)
+
         keys.forEach(function (key: any) {
             if (key == ddId) {
                 dispatch(
@@ -120,13 +122,14 @@ const OutputContactCenter = () => {
         document.getElementById(ddId)?.click();
         setJSONData(updatedJsonData);
 
-        var keys = Object.keys(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD);
-        keys.forEach(function (key: any) {
-            if (key == ddId) {
-                dispatch(
-                    setDropDown(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD)
-                );
+        var options = updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options
+        options.map((option: any) => {
+            console.log(option)
+            if (option == ddId) {
             }
+            dispatch(
+                setDropDown(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD)
+            );
             // getBarChartDetails(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD[key])
         });
     };
