@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="52" height="52" viewBox="0 0 52 52">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_49" data-name="Rectangle 49" width="52" height="52" transform="translate(-0.45 -0.47)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_48" data-name="Rectangle 48" width="52" height="52" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Quality_management" transform="translate(0.45 0.47)" clip-path="url(#clip-path)">
+    <g id="Group_28" data-name="Group 28" transform="translate(-0.45 -0.47)" clip-path="url(#clip-path-2)">
+      <path id="Path_72" data-name="Path 72" d="M29.253,44.322H.38V.38H39.946v18.6" transform="translate(0.899 0.93)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Path_73" data-name="Path 73" d="M33.921,24.35V36.46l-5.855-3.436L22.35,36.46V24.35" transform="translate(12.779 13.891)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="1.5"/>
+      <path id="Path_74" data-name="Path 74" d="M39.985,23.024A9.953,9.953,0,1,1,30.032,12.84a10.076,10.076,0,0,1,9.953,10.184Z" transform="translate(10.859 6.943)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="1.5"/>
+      <line id="Line_1" data-name="Line 1" x2="23.142" transform="translate(9.491 13.158)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="1.5"/>
+      <line id="Line_2" data-name="Line 2" x2="13.189" transform="translate(9.491 23.219)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="1.5"/>
+      <line id="Line_3" data-name="Line 3" x2="13.189" transform="translate(9.491 33.403)" fill="none" stroke="#888" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

@@ -576,6 +576,7 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
+                                      CV.selectedId2 = "";
                                       if (CV.questionId == genQues.questionId) {
                                         CV.options.forEach((option: any) => {
                                           if (
@@ -586,6 +587,7 @@ const GI = () => {
                                             document
                                               .getElementById(option.ddId)
                                               ?.click();
+                                              uncheckCheckboxes(genQues.options2);
                                           }
                                         });
                                       }
@@ -932,7 +934,7 @@ const GI = () => {
                                           CV.questionId2 === genQues.questionId2
                                         ) {
                                           CV.selectedId2 =
-                                            dropdownIdsArr.join();
+                                            dropdownIdsArr.join(",");
                                         }
                                         updatedQuestionsArray.push(CV);
                                       }
@@ -959,7 +961,7 @@ const GI = () => {
                                   ).map((element: any) => (
                                     <MenuItem value={element?.ddName}>
                                       <Checkbox
-                                        value={element?.ddName}
+                                        value={element?.ddId}
                                         checked={
                                           genQues.selectedId2.indexOf(
                                             element.ddId
