@@ -5,22 +5,22 @@ import {
   MenuItem,
   Box,
   Divider,
-} from '@mui/material';
-import React, { useState, useEffect, useRef } from 'react';
-import SecondaryHeader from '../Headers/SecondaryHeader';
-import './OutputContactCenter.scss';
-import BarChart from '../UI/BarChart';
-import { Footer } from '../Footer';
-import { getParsedData } from '../../utils/parserUtil';
-import CustomButton from '../UI/CustomButton';
-import HighchartsReact from 'highcharts-react-official';
-import BaselineChart from '../UI/BaselineChart';
-import PotentialChart from '../UI/PotentialChart';
-import SegmentChart from '../UI/SegmentChart';
-import HsddInput from '../ImpactCalculator/HsddInput';
+} from "@mui/material";
+import React, { useState, useEffect, useRef } from "react";
+import SecondaryHeader from "../Headers/SecondaryHeader";
+import "./OutputContactCenter.scss";
+import BarChart from "../UI/BarChart";
+import { Footer } from "../Footer";
+import { getParsedData } from "../../utils/parserUtil";
+import CustomButton from "../UI/CustomButton";
+import HighchartsReact from "highcharts-react-official";
+import BaselineChart from "../UI/BaselineChart";
+import PotentialChart from "../UI/PotentialChart";
+import SegmentChart from "../UI/SegmentChart";
+import HsddInput from "../ImpactCalculator/HsddInput";
 
 const OutputContactCenter = () => {
-  const [jsonData, setJSONData] = useState<any>('');
+  const [jsonData, setJSONData] = useState<any>("");
   const barChartRef = useRef<HighchartsReact.RefObject>(null);
   const potentialChartRef = useRef<HighchartsReact.RefObject>(null);
   const baselineChartRef = useRef<HighchartsReact.RefObject>(null);
@@ -31,19 +31,19 @@ const OutputContactCenter = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
   }, []);
 
   const nextHandleClick = (event: any) => {
-    if (jsonData !== '') {
+    if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById('navText').value =
+      document.getElementById("navText").value =
         jsonData.data?.footerData?.forwardBtn?.forwardInputId;
       // @ts-ignore
-      document.getElementById('forwardbutton').disabled = false;
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
-      document.getElementById('forwardbutton').click();
+      document.getElementById("forwardbutton").click();
     }
   };
 
@@ -56,7 +56,7 @@ const OutputContactCenter = () => {
         return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
           return tbodyDetail;
         });
-      },
+      }
     );
   };
   const getBarChartSeriesForLabelTwo = () => {
@@ -65,7 +65,7 @@ const OutputContactCenter = () => {
         return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
           return tbodyDetail;
         });
-      },
+      }
     );
   };
   const getBaselineChartSeries = () => {
@@ -74,7 +74,7 @@ const OutputContactCenter = () => {
         return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
           return tbodyDetail;
         });
-      },
+      }
     );
   };
 
@@ -93,18 +93,18 @@ const OutputContactCenter = () => {
           <div className="dropdown-container">
             <Grid
               container
-              sx={{ alignItems: 'center', pb: 2 }}
+              sx={{ alignItems: "center", pb: 2 }}
               xs={12}
               md={12}
             >
-              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
+              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.periodDD}
                     onChange={(ddId: string) => handleDDChange(ddId)}
                   />
                 ) : (
-                  ''
+                  ""
                 )}
               </Grid>
             </Grid>
@@ -115,13 +115,7 @@ const OutputContactCenter = () => {
             </div>
           </div>
           <div className="chart-container">
-            <BarChart
-              chartRef={barChartRef}
-              setChartInfo={setChartInfo}
-              chartType={getChartType()}
-              chartSeries={getBarChartSeriesForLabelOne()}
-              chartOptions={getChartType()}
-            />
+            <BarChart />
           </div>
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
@@ -131,13 +125,13 @@ const OutputContactCenter = () => {
                     return (
                       <div
                         className={
-                          heading == '' ? 'table-col__empty' : 'table-col'
+                          heading == "" ? "table-col__empty" : "table-col"
                         }
                       >
                         <span>{heading}</span>
                       </div>
                     );
-                  },
+                  }
                 )}
               </div>
               <div className="outputTable-container__inr__body">
@@ -148,7 +142,7 @@ const OutputContactCenter = () => {
                     return (
                       <div className="table-col" key={rowIndex}>
                         {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
-                          return typeof tbodyDetail == 'number' ? (
+                          return typeof tbodyDetail == "number" ? (
                             <div className="table-row">
                               <span>{tbodyDetail}</span>
                               <span className="currency-symbol">
@@ -163,7 +157,7 @@ const OutputContactCenter = () => {
                         })}
                       </div>
                     );
-                  },
+                  }
                 )}
               </div>
             </div>
@@ -176,7 +170,7 @@ const OutputContactCenter = () => {
                         <p>{rowDetail?.tbodyDetails[0]}</p>
                       </>
                     );
-                  },
+                  }
                 )}
               </div>
               <div className="outputTable-container__md__header">
@@ -246,20 +240,20 @@ const OutputContactCenter = () => {
             <div className="chart-container__inr">
               <div className="chart-baseline">
                 <BaselineChart
-                  chartRef={baselineChartRef}
-                  setChartInfo={setChartInfo}
-                  chartType={getChartType()}
-                  chartSeries={getBaselineChartSeries()}
-                  chartOptions={getChartType()}
+                // chartRef={baselineChartRef}
+                //   setChartInfo={setChartInfo}
+                //   chartType={getChartType()}
+                //   chartSeries={getBaselineChartSeries()}
+                //   chartOptions={getChartType()}
                 />
               </div>
               <div className="chart-futurebaseline">
                 <PotentialChart
-                  chartRef={potentialChartRef}
-                  setChartInfo={setChartInfo}
-                  chartType={getChartType()}
-                  chartSeries={getBarChartSeriesForLabelOne()}
-                  chartOptions={getChartType()}
+                //  // chartRef={potentialChartRef}
+                //   setChartInfo={setChartInfo}
+                //   chartType={getChartType()}
+                //   chartSeries={getBarChartSeriesForLabelOne()}
+                //   chartOptions={getChartType()}
                 />
               </div>
             </div>
@@ -281,16 +275,16 @@ const OutputContactCenter = () => {
                 </p>
               </div>
             </div>
-            <Grid container sx={{ alignItems: 'center', pb: 2 }} xs={12} md={4}>
+            <Grid container sx={{ alignItems: "center", pb: 2 }} xs={12} md={4}>
               <Grid item xs={12} md={6} className="single-dropdown-title">
                 <p className="gen-info">{}</p>
               </Grid>
-              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
+              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
                 <FormControl fullWidth>
                   <Select
                     sx={{ p: 0, borderRadius: 0, mb: 1 }}
                     className="inputField cutom-input-field"
-                    value={'Hello'}
+                    value={"Hello"}
                   >
                     <MenuItem disabled value="none" className="selectItem">
                       <>
@@ -305,7 +299,7 @@ const OutputContactCenter = () => {
                         <MenuItem value={elemnt?.ddName} className="selectItem">
                           {elemnt?.ddName}
                         </MenuItem>
-                      ),
+                      )
                     )}
                   </Select>
                 </FormControl>
@@ -361,11 +355,11 @@ const OutputContactCenter = () => {
           <div className="chart-container">
             <div className="chart-container__waterfall">
               <SegmentChart
-                chartRef={segmentChartRef}
-                setChartInfo={setChartInfo}
-                chartType={getChartType()}
-                chartSeries={getBarChartSeriesForLabelOne()}
-                chartOptions={getChartType()}
+              // chartRef={segmentChartRef}
+              // setChartInfo={setChartInfo}
+              // chartType={getChartType()}
+              // chartSeries={getBarChartSeriesForLabelOne()}
+              // chartOptions={getChartType()}
               />
             </div>
           </div>
@@ -376,11 +370,11 @@ const OutputContactCenter = () => {
         <div className="button-container justi">
           <div>
             <CustomButton
-              className={'submitButton next-button'}
+              className={"submitButton next-button"}
               onClick={(e: any) => nextHandleClick(e)}
             >
               {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
+                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
               )}
             </CustomButton>
           </div>
