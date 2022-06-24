@@ -239,22 +239,10 @@ const OutputContactCenter = () => {
                     <div className="chart-container multiple-charts">
                         <div className="chart-container__inr">
                             <div className="chart-baseline">
-                                <BaselineChart
-                                // chartRef={baselineChartRef}
-                                //   setChartInfo={setChartInfo}
-                                //   chartType={getChartType()}
-                                //   chartSeries={getBaselineChartSeries()}
-                                //   chartOptions={getChartType()}
-                                />
+                                <BaselineChart />
                             </div>
                             <div className="chart-futurebaseline">
-                                <PotentialChart
-                                //  // chartRef={potentialChartRef}
-                                //   setChartInfo={setChartInfo}
-                                //   chartType={getChartType()}
-                                //   chartSeries={getBarChartSeriesForLabelOne()}
-                                //   chartOptions={getChartType()}
-                                />
+                                <PotentialChart />
                             </div>
                         </div>
                     </div>
@@ -354,13 +342,7 @@ const OutputContactCenter = () => {
                     </Box>
                     <div className="chart-container">
                         <div className="chart-container__waterfall">
-                            <SegmentChart
-                            // chartRef={segmentChartRef}
-                            // setChartInfo={setChartInfo}
-                            // chartType={getChartType()}
-                            // chartSeries={getBarChartSeriesForLabelOne()}
-                            // chartOptions={getChartType()}
-                            />
+                            <SegmentChart />
                         </div>
                     </div>
                 </div>
