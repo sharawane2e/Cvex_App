@@ -25,6 +25,7 @@ import {
   setBaseLineChartOptions,
 } from "../../redux/actions/HighChartAction";
 import { getbaseLineChartOptions } from "../../utils/highchartOptionUtil";
+import { useSelector } from "react-redux";
 
 const OutputContactCenter = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -108,11 +109,11 @@ const OutputContactCenter = () => {
           ];
 
         dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
-        const seriesDataGet = getbaseLineChartOptions(
+        const getSeriesData = getbaseLineChartOptions(
           updatedJsonData.data.inputData.periodTableData[key]
         );
-        dispatch(setBaseLineChartOptions(seriesDataGet));
-        console.log("seriesDataGet", updatedJsonData);
+        dispatch(setBaseLineChartOptions(getSeriesData));
+        // console.log("getSeriesData", getSeriesData);
 
         // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
         //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));
@@ -120,6 +121,8 @@ const OutputContactCenter = () => {
     });
   };
 
+  const { dropdown } = useSelector((state: any) => state);
+  //console.log("dropdown", dropdown.selectedData.rowDetails);
   return (
     <div className="contactpage-container">
       <SecondaryHeader />
@@ -170,7 +173,7 @@ const OutputContactCenter = () => {
                 )}
               </div>
               <div className="outputTable-container__inr__body">
-                {inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
+                {dropdown?.selectedData?.rowDetails?.map(
                   (rowDetail: any, rowIndex: number) => {
                     const currencySymbol =
                       inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
