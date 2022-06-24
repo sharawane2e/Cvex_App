@@ -18,6 +18,8 @@ import BaselineChart from "../UI/BaselineChart";
 import PotentialChart from "../UI/PotentialChart";
 import SegmentChart from "../UI/SegmentChart";
 import HsddInput from "../ImpactCalculator/HsddInput";
+import { setDropDown } from "../../redux/actions/HighChartDropDownAction";
+import store from "../../redux/store";
 
 const OutputContactCenter = () => {
     const [jsonData, setJSONData] = useState<any>("");
@@ -25,6 +27,7 @@ const OutputContactCenter = () => {
     const potentialChartRef = useRef<HighchartsReact.RefObject>(null);
     const baselineChartRef = useRef<HighchartsReact.RefObject>(null);
     const segmentChartRef = useRef<HighchartsReact.RefObject>(null);
+    const { dispatch } = store;
 
     const [chartInfo, setChartInfo] = useState(null);
 
@@ -84,6 +87,7 @@ const OutputContactCenter = () => {
         document.getElementById(ddId)?.click();
         setJSONData(updatedJsonData);
     };
+    dispatch(setDropDown(inputDetails));
 
     return (
         <div className="contactpage-container">
