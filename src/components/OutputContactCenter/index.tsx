@@ -23,8 +23,10 @@ import store from "../../redux/store";
 import {
     setBarChartOptions,
     setBaseLineChartOptions,
+    setPotentialChartOptions,
 } from "../../redux/actions/HighChartAction";
-import { getbaseLineChartOptions } from "../../utils/highchartOptionUtil";
+import { getbaseLineChartOptions, getpotentialChartOptions } from "../../utils/highchartOptionUtil";
+import { useSelector } from "react-redux";
 
 const OutputContactCenter = () => {
     const [jsonData, setJSONData] = useState<any>("");
@@ -32,8 +34,6 @@ const OutputContactCenter = () => {
     const potentialChartRef = useRef<HighchartsReact.RefObject>(null);
     const baselineChartRef = useRef<HighchartsReact.RefObject>(null);
     const segmentChartRef = useRef<HighchartsReact.RefObject>(null);
-    const [chartCategoryDetails, setChartCategoryDetails] = useState<any>([]);
-    const [chartSeriesData, setChartSeriesDetails] = useState<any>([]);
     const { dispatch } = store;
 
     const [chartInfo, setChartInfo] = useState(null);
@@ -45,7 +45,9 @@ const OutputContactCenter = () => {
         );
 
     }, []);
-
+    // useEffect(() => {
+    //     handleDDChange()
+    // }, []);
 
     const nextHandleClick = (event: any) => {
         if (jsonData !== "") {
@@ -60,47 +62,6 @@ const OutputContactCenter = () => {
     };
 
     const inputDetails = jsonData?.data?.inputData;
-    // console.log(inputDetails)
-    const getBarChartDetails = (inputData: any) => {
-        let titleArr: any = [];
-        let totalArr: any = []
-        return inputData?.rowDetails?.map((rowDetail: any, rowIndex: number) => {
-            return rowDetail?.tbodyDetails?.map((tbodyDetail: any, index: number) => {
-                if (jsonData != undefined) {
-                    if (tbodyDetail?.length > -1) {
-                        if (rowDetail?.tbodyDetails[0] == tbodyDetail) {
-                            titleArr.push(rowDetail?.tbodyDetails[0])
-                            setChartCategoryDetails([...titleArr]);
-                            dispatch(setBarChartOptions([...titleArr]));
-                        }
-                    }
-                    if (rowDetail?.tbodyDetails[rowDetail?.tbodyDetails?.length - 1] == tbodyDetail) {
-                        totalArr.push(rowDetail?.tbodyDetails[rowDetail?.tbodyDetails?.length - 1])
-                        setChartSeriesDetails([...totalArr]);
-                        // dispatch(setBarChartOptions([...totalArr]));
-                    }
-                }
-            })
-        })
-    };
-    const getBarChartSeriesForLabelTwo = () => {
-        return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
-            (rowDetail: any, rowIndex: number) => {
-                return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
-                    return tbodyDetail;
-                });
-            }
-        );
-    };
-    const getBaselineChartSeries = () => {
-        return inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
-            (rowDetail: any, rowIndex: number) => {
-                return rowDetail?.tbodyDetails?.map((tbodyDetail: any) => {
-                    return tbodyDetail;
-                });
-            }
-        );
-    };
 
     const handleDDChange = (ddId: string) => {
         const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
@@ -124,11 +85,27 @@ const OutputContactCenter = () => {
                     ];
 
                 dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
-                const seriesDataGet = getbaseLineChartOptions(
+                const getSeriesData = getbaseLineChartOptions(
                     updatedJsonData.data.inputData.periodTableData[key]
                 );
-                dispatch(setBaseLineChartOptions(seriesDataGet));
-                console.log("seriesDataGet", updatedJsonData);
+
+                dispatch(
+                    setBaseLineChartOptions({
+                        data: getSeriesData[0],
+                        categories: getSeriesData[1],
+                    })
+                );
+                const getSeriesPotentialData = getpotentialChartOptions(
+                    updatedJsonData.data.inputData.periodTableData[key]
+                );
+
+                dispatch(
+                    setPotentialChartOptions({
+                        data: getSeriesPotentialData[0],
+                        categories: getSeriesPotentialData[1],
+                    })
+                );
+                // console.log("getSeriesData", getSeriesData);
 
                 // dispatch(baseLineChartOptions([seriesValue1, seriesValue2]));
                 //dispatch(potentialChartOptions([seriesValue1, seriesValue2]));
@@ -138,22 +115,27 @@ const OutputContactCenter = () => {
 
     const handleDropDownChange = (ddId: string) => {
         const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
-        updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId = ddId;
+        updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId =
+            ddId;
         document.getElementById(ddId)?.click();
         setJSONData(updatedJsonData);
-
-        var options = updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options
+        var options =
+            updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options;
         options.map((option: any) => {
-            console.log(option)
+            console.log(option);
             if (option == ddId) {
             }
             dispatch(
-                setDropDown(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD)
+                setDropDown(
+                    updatedJsonData.data.inputData.potentialIncreaseData.segmentDD
+                )
             );
             // getBarChartDetails(updatedJsonData.data.inputData.potentialIncreaseData.segmentDD[key])
         });
     };
 
+    const { dropdown } = useSelector((state: any) => state);
+    //console.log("dropdown", dropdown.selectedData.rowDetails);
     return (
         <div className="contactpage-container">
             <SecondaryHeader />
@@ -189,22 +171,20 @@ const OutputContactCenter = () => {
                     <Box className="outputTable-container" sx={{ mb: 5 }}>
                         <div className="outputTable-container__inr">
                             <div className="outputTable-container__inr__header">
-                                {inputDetails?.periodTableData?.A5_1_label?.headings?.map(
-                                    (heading: any) => {
-                                        return (
-                                            <div
-                                                className={
-                                                    heading == "" ? "table-col__empty" : "table-col"
-                                                }
-                                            >
-                                                <span>{heading}</span>
-                                            </div>
-                                        );
-                                    }
-                                )}
+                                {dropdown?.selectedData?.headings?.map((heading: any) => {
+                                    return (
+                                        <div
+                                            className={
+                                                heading == "" ? "table-col__empty" : "table-col"
+                                            }
+                                        >
+                                            <span>{heading}</span>
+                                        </div>
+                                    );
+                                })}
                             </div>
                             <div className="outputTable-container__inr__body">
-                                {inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
+                                {dropdown?.selectedData?.rowDetails?.map(
                                     (rowDetail: any, rowIndex: number) => {
                                         const currencySymbol =
                                             inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
@@ -348,7 +328,8 @@ const OutputContactCenter = () => {
                                         ""
                                     )}
                             </Grid>
-                        </Grid></div>
+                        </Grid>
+                    </div>
                     <Box className="outputTable-container" sx={{ mb: 5 }}>
                         <div className="outputTable-container__inr">
                             <div className="outputTable-container__inr__header">
@@ -397,7 +378,13 @@ const OutputContactCenter = () => {
                     </Box>
                     <div className="chart-container">
                         <div className="chart-container__waterfall">
-                            <SegmentChart />
+                            <SegmentChart
+                            // chartRef={segmentChartRef}
+                            // setChartInfo={setChartInfo}
+                            // chartType={getChartType()}
+                            // chartSeries={getBarChartSeriesForLabelOne()}
+                            // chartOptions={getChartType()}
+                            />
                         </div>
                     </div>
                 </div>
