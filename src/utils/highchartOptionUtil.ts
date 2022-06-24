@@ -17,24 +17,37 @@ const getBaseChartOptions = (barChartOptions: any): any => {
 };
 export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
   const baselineHedding = baseLineChartOptions.headings;
-  const seriesName = [];
-  const seriesY = [];
+  const seriesName: any = [];
+  const seriesY: any = [];
+  const SeriesData: any = [];
 
   for (let i = 1; i < baselineHedding.length; i++) {
     seriesName.push(baselineHedding[i]);
   }
   for (let i = 0; i < baseLineChartOptions.rowDetails.length; i++) {
+    let newArrayData: any = [];
     const baselinedata = baseLineChartOptions.rowDetails[i].tbodyDetails;
     for (let j = 1; j < baselinedata.length; j++) {
       if (typeof baselinedata[j] == "string") {
-        console.log(parseInt(baselinedata[j],0));
-        
+        newArrayData.push(0);
+      } else {
+        newArrayData.push(baselinedata[j]);
       }
     }
-    //seriesY.push(baselineHedding[i]);
+    seriesY.push(newArrayData);
   }
 
-  //return data;
+  seriesY.forEach((el: any, index: any) => {
+    el.forEach((el: any, Index: any) => {
+      SeriesData.push({
+        name: seriesName[Index],
+        y: el,
+      });
+    });
+  });
+  console.log(SeriesData);
+
+  return SeriesData;
 };
 const getpotentialChartOptions = (potentialChartOptions: any): any => {
   console.log(potentialChartOptions);
