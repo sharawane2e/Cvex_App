@@ -128,9 +128,9 @@
                 &:first-child {
                   text-align: left;
                 }
-                &:nth-child(even) {
-                  background-color: #d0d0d0;
-                }
+                // &:nth-child(even) {
+                //   background-color: #d0d0d0;
+                // }
                 &:last-child {
                   background-color: #71d2f1;
                   border-right: 1px solid #2a2a2a;
@@ -270,4 +270,9 @@
 .emptyicon {
   height: 20px;
   width: 16px;
+}
+
+.bg-StringGray {
+  background-color: #d0d0d0;
+  border-right: 1px solid #2a2a2a;
 }

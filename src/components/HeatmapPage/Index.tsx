@@ -15,7 +15,7 @@ const HeatmapPage = () => {
 
   return (
     <div className="question-wrapper">
-      {/* <SecondaryHeader sidebar={false} /> */}
+      <SecondaryHeader sidebar={false} />
       <div className="heatmap-container">
         <div className="custom_middle_container">
           <div className="Illustrative_content">

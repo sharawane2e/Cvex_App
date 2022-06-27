@@ -212,13 +212,6 @@ const OutputContactCenter = () => {
                           (tbodyDetail: any, i: any) => {
                             return typeof tbodyDetail == "number" ? (
                               <div className="table-row">
-                                {/* {rowDetail.iconDetails[rowIndex] == "up" ? (
-                                  <img src={arrowUp} />
-                                ) : rowDetail.iconDetails[rowIndex] ==
-                                  "down" ? (
-                                  <img src={arrowDown} />
-                                ) : (
-                                )} */}
                                 <div
                                   className={
                                     rowDetail.iconDetails[rowIndex] == "up"
@@ -237,7 +230,13 @@ const OutputContactCenter = () => {
                                 </div>
                               </div>
                             ) : (
-                              <div className="table-row">
+                              <div
+                                className={
+                                  i > 0 && typeof tbodyDetail == "string"
+                                    ? "table-row bg-StringGray"
+                                    : "table-row"
+                                }
+                              >
                                 <span>{tbodyDetail}</span>
                               </div>
                             );
