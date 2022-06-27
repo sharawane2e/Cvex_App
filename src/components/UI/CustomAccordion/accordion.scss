@@ -1,6 +1,8 @@
 .accordBlock {
     box-shadow: none !important;
-    
+    @include breakpoint(sm-mobileonly) {
+        padding-bottom:0px;
+    }
     // border-top: 1px solid #C4C4C4 !important;
     padding-bottom: 10px;
     &::after{
@@ -13,6 +15,7 @@
         font-size: 13px;
        // margin-bottom: 8px;
       line-height: 1.2;
+      width:98%;
     }
     .bestpractices-text{
         p{
