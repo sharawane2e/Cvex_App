@@ -25,10 +25,8 @@ import {
   getpotentialChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
-import arrowDown from "../../assets/svg/angle-double-down.svg";
-import arrowUp from "../../assets/svg/angle-double-up.svg";
 
-const OutputContactCenter = () => {
+const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
 
@@ -208,40 +206,20 @@ const OutputContactCenter = () => {
                       inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
                     return (
                       <div className="table-col" key={rowIndex}>
-                        {rowDetail?.tbodyDetails.map(
-                          (tbodyDetail: any, i: any) => {
-                            return typeof tbodyDetail == "number" ? (
-                              <div className="table-row">
-                                <div
-                                  className={
-                                    rowDetail.iconDetails[rowIndex] == "up"
-                                      ? "arrowUpicon"
-                                      : rowDetail.iconDetails[rowIndex] ==
-                                        "down"
-                                      ? "arrowDownicon"
-                                      : "emptyicon"
-                                  }
-                                ></div>
-                                <div>
-                                  <span>{tbodyDetail}</span>
-                                  <span className="currency-symbol">
-                                    {currencySymbol}
-                                  </span>
-                                </div>
-                              </div>
-                            ) : (
-                              <div
-                                className={
-                                  i > 0 && typeof tbodyDetail == "string"
-                                    ? "table-row bg-StringGray"
-                                    : "table-row"
-                                }
-                              >
-                                <span>{tbodyDetail}</span>
-                              </div>
-                            );
-                          }
-                        )}
+                        {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
+                          return typeof tbodyDetail == "number" ? (
+                            <div className="table-row">
+                              <span>{tbodyDetail}</span>
+                              <span className="currency-symbol">
+                                {currencySymbol}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="table-row">
+                              <span>{tbodyDetail}</span>
+                            </div>
+                          );
+                        })}
                       </div>
                     );
                   }
@@ -358,4 +336,4 @@ const OutputContactCenter = () => {
     </div>
   );
 };
-export default OutputContactCenter;
+export default CustomizedIC;

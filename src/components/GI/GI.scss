@@ -51,20 +51,19 @@
   .submitButton {
     min-width: 135px;
   }
-  
 }
-.cutom-checkbox{
-  svg{
+.cutom-checkbox {
+  svg {
     width: 1rem;
     height: 1rem;
   }
 }
-.list-item{
-  span{
+.list-item {
+  span {
     font-size: 14px !important;
   }
 }
-.selectItem{
+.selectItem {
   font-size: 14px !important;
   @include breakpoint(sm-mobileonly) {
     font-size: 12px !important;

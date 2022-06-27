@@ -9,5 +9,7 @@ enum pageCode {
   'ImpactCalculatorPage' = 9,
   'HeatmapPage' = 11,
   'SkillPage' = 12,
+  'OutputContactCenter' = 13,
+  'CustomizedIC' = 15
 }
 export default pageCode;

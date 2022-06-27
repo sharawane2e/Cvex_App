@@ -1,9 +1,9 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 import {
   setLeftPanelData,
   setLeftPanelOpenClose,
   updateLeftPanelCategories,
-} from "../actions/LeftPanelActions";
+} from '../actions/LeftPanelActions';
 
 interface leftPanel {
   leftPanelOpen: boolean;
@@ -13,9 +13,9 @@ interface leftPanel {
 }
 
 const initialState: leftPanel = {
-  leftPanelOpen: false,
-  currentScrollPos: "",
-  currentSelectedId: "",
+  leftPanelOpen: true,
+  currentScrollPos: '',
+  currentSelectedId: '',
   categories: [],
 };
 

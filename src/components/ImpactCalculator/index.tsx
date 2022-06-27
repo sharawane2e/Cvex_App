@@ -1,21 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import startData from "../../mock/startPageData.json";
-import { isPasswordValid } from "../../utils";
+import { useEffect, useState } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader/index";
 import { Inputbox } from "../UI/Input";
-import CustomButton from "../UI/CustomButton";
 import { Footer } from "../Footer";
-
-import { getParsedData } from "../../utils/parserUtil";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { FormControl, Grid, MenuItem, Select, Tooltip } from "@mui/material";
+import { Grid } from "@mui/material";
 import HsddInput from "./HsddInput";
-import { OptionUnstyled } from "@mui/base";
-import ProgressBar from "../ProgressBar";
 import { hideShowSections } from "../../services/impactCaluculator";
 import LinearProgressbar2 from "../LinearProgressbar2";
-import { LegendToggleTwoTone } from "@mui/icons-material";
 
 const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -132,7 +122,6 @@ const ImpactCalculator = (props: any) => {
       questionDataIdx == quesLength - 1
     ) {
       scrollEffect(inputDataIdx);
-      console.log("last", inputDataIdx);
     }
     getblockLocations(updatedJson);
   };
@@ -230,25 +219,6 @@ const ImpactCalculator = (props: any) => {
     }
   };
 
-  // function scrollToTargetAdjusted() {
-  //   // @ts-ignore
-  //   let element = document.getElementById("ok");
-  //   // @ts-ignore
-  //   let container = document.getElementById("impactCalc");
-  //   let headerOffset = 45;
-  //   // @ts-ignore
-  //   let elementPosition = element.getBoundingClientRect().top;
-  //   // @ts-ignore
-  //   let offsetPosition = elementPosition + container.pageYOffset - headerOffset;
-  //   // @ts-ignore
-  //   container.scrollTo({
-  //     top: offsetPosition,
-  //     behavior: "smooth",
-  //   });
-  //   // @ts-ignore
-  //   document.getElementById("impactCalc").scrollTop = container.pageYOffset;
-  // }
-
   const getblockLocations = (jsonData: any) => {
     let arr: any = [];
     let obj: any = {};
@@ -307,7 +277,7 @@ const ImpactCalculator = (props: any) => {
                 ques.questions.map((x: any, ix: any) => {
                   blockID = "subblock_" + (ib + 1) + "_" + (is + 1);
 
-                    let newheight = 0;
+                 let newheight = 0;
                     if (x.options != undefined) {
                       // prettier-ignore
                       // @ts-ignore
@@ -381,15 +351,7 @@ const ImpactCalculator = (props: any) => {
                       (subHeadingDetail: any, subHeadingIdx: number) => {
                         return subHeadingDetail?.isShow == true ? (
                           <>
-                            <div
-                              className="single-dropdown-section__body"
-                              id={
-                                "subblock_" +
-                                (inputDataIdx + 1) +
-                                "_" +
-                                (subHeadingIdx + 1)
-                              }
-                            >
+                            <div className="single-dropdown-section__body">
                               {subHeadingDetail.hasOwnProperty(
                                 "subHeadingText"
                               ) ? (

@@ -3,6 +3,8 @@
       margin: auto;
       margin-top: 100px;
       width: 80%;
+      height: calc(100vh - 346px);
+       overflow-y: auto;
       
       @include breakpoint(sm-mobileonly) {
         font-size: 15px;

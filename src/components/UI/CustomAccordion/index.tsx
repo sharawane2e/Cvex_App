@@ -214,9 +214,14 @@ export default function CustomAccordion(props: AccordionProps) {
                             aria-label="minimum height"
                             className="custom-text-area"
                             minRows={2}
-                            defaultValue={"hello"}
-                     
-                            placeholder={"subTitleDetail?.obsplaceholder"}
+                            defaultValue={capabilityDetail.observationTxt}
+                            placeholder={capabilityDetail.obsplaceholder}
+                            onChange={(event) => {
+                              handleTextArea(
+                                event.target.value,
+                                capabilityDetail?.observationId,
+                              )
+                            }}
                             style={{
                               width: '100%',
                               marginTop: 20,

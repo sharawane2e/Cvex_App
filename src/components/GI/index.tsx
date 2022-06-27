@@ -69,11 +69,26 @@ const GI = () => {
     let selectedDDName: string[] = [];
     let selectedIdArr = selectedId.split(",");
 
-    options.forEach(function (option: any) {
-      if (selectedIdArr.indexOf(option.ddId) != -1) {
-        selectedDDName.push(option["ddName"]);
-      }
-    });
+    // options.forEach(function (option: any) {
+    //   if (selectedIdArr.indexOf(option.ddId) != -1) {
+    //     selectedDDName.push(option["ddName"]);
+    //   }
+    // });
+
+    // options?.forEach((element: any) => {
+    //   if (element.ddId == selectedId) {
+    //     selectedDDName.push(element["ddName"]);
+    //   }
+    // });
+
+    // selectedIdArr.forEach((x: any, i: any) => {
+    //   let ind = options.indexOf((opt: any) => opt.ddId == selectedIdArr[i]);
+    //   selectedDDName.push(options[ind].ddName);
+    // });
+
+    selectedDDName = ["A7_3", "A7_5"];
+
+    console.log(selectedIdArr);
 
     return selectedDDName;
   };
@@ -576,20 +591,27 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
-                                      CV.selectedId2 = "";
-                                      if (CV.questionId == genQues.questionId) {
-                                        CV.options.forEach((option: any) => {
-                                          if (
-                                            option.ddName == event.target.value
-                                          ) {
-                                            dropdownId = option.ddId;
+                                      if (CV?.type == genQues?.type) {
+                                        CV.selectedId2 = "";
+                                        if (
+                                          CV.questionId == genQues.questionId
+                                        ) {
+                                          CV.options.forEach((option: any) => {
+                                            if (
+                                              option.ddName ==
+                                              event.target.value
+                                            ) {
+                                              dropdownId = option.ddId;
 
-                                            document
-                                              .getElementById(option.ddId)
-                                              ?.click();
-                                              uncheckCheckboxes(genQues.options2);
-                                          }
-                                        });
+                                              document
+                                                .getElementById(option.ddId)
+                                                ?.click();
+                                              uncheckCheckboxes(
+                                                genQues.options2
+                                              );
+                                            }
+                                          });
+                                        }
                                       }
                                     }
                                   );
@@ -804,22 +826,28 @@ const GI = () => {
                                   let dropdownId = "";
                                   jsonData.data.rightData.questions.forEach(
                                     (CV: any, idx: number) => {
-                                      if(CV?.type == genQues?.type)
-                                      {
+                                      if (CV?.type == genQues?.type) {
                                         CV.selectedId2 = "";
                                         CV.selectedId3 = "";
-                                        if (CV.questionId == genQues.questionId) {
+                                        if (
+                                          CV.questionId == genQues.questionId
+                                        ) {
                                           CV.options.forEach((option: any) => {
                                             if (
-                                              option.ddName == event.target.value
+                                              option.ddName ==
+                                              event.target.value
                                             ) {
                                               dropdownId = option.ddId;
 
                                               document
                                                 .getElementById(option.ddId)
                                                 ?.click();
-                                              uncheckCheckboxes(genQues.options2);
-                                              uncheckCheckboxes(genQues.options3);
+                                              uncheckCheckboxes(
+                                                genQues.options2
+                                              );
+                                              uncheckCheckboxes(
+                                                genQues.options3
+                                              );
                                             }
                                           });
                                         }
@@ -921,7 +949,6 @@ const GI = () => {
                                               dropdownIdsArr.push(option.ddId);
                                             }
                                           });
-
                                           checkCheckboxes(dropdownIdsArr);
                                         }
                                       }
