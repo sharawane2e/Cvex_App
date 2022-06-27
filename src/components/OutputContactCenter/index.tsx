@@ -23,6 +23,7 @@ import {
 import {
   getbaseLineChartOptions,
   getpotentialChartOptions,
+  getsegmentChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import arrowDown from "../../assets/svg/angle-double-down.svg";
@@ -83,14 +84,14 @@ const OutputContactCenter = () => {
             rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
           const seriesValue2 =
             rowDetails[rowDetails.length - 1].tbodyDetails[
-              rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
+            rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
             ];
 
           dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key]
           );
-
+          console.log(updatedJsonData.data.inputData.periodTableData[key])
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],
@@ -129,7 +130,6 @@ const OutputContactCenter = () => {
             .segmentTableChartData
         );
 
-        console.log(mergeKey);
 
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
@@ -139,13 +139,23 @@ const OutputContactCenter = () => {
                   .segmentTableChartData[mergeKey]
               )
             );
+
+            // dispatch(
+            //   setSegmentChartOptions({
+            //     data: updatedJsonData.data.inputData.potentialIncreaseData
+            //       .segmentTableChartData[mergeKey].chartDetails,
+            //     categories:
+            //       updatedJsonData.data.inputData.potentialIncreaseData
+            //         .segmentTableChartData[mergeKey].chartLabels,
+            //   })
+            // );
+            const getSeriesData = getsegmentChartOptions(updatedJsonData.data.inputData.potentialIncreaseData
+              .segmentTableChartData[mergeKey])
+            console.log(getSeriesData)
             dispatch(
               setSegmentChartOptions({
-                data: updatedJsonData.data.inputData.potentialIncreaseData
-                  .segmentTableChartData[mergeKey].chartDetails,
-                categories:
-                  updatedJsonData.data.inputData.potentialIncreaseData
-                    .segmentTableChartData[mergeKey].chartLabels,
+                data: getSeriesData[0],
+                categories: getSeriesData[1],
               })
             );
           }
@@ -173,8 +183,8 @@ const OutputContactCenter = () => {
                     onChange={(ddId: string) => handleDDChange(ddId)}
                   />
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </Grid>
             </Grid>
           </div>
@@ -218,8 +228,8 @@ const OutputContactCenter = () => {
                                       ? "arrowUpicon"
                                       : rowDetail.iconDetails[rowIndex] ==
                                         "down"
-                                      ? "arrowDownicon"
-                                      : "emptyicon"
+                                        ? "arrowDownicon"
+                                        : "emptyicon"
                                   }
                                 ></div>
                                 <div>
@@ -230,16 +240,16 @@ const OutputContactCenter = () => {
                                 </div>
                               </div>
                             ) : (
-                              <div
-                                className={
-                                  i > 0 && typeof tbodyDetail == "string"
-                                    ? "table-row bg-StringGray"
-                                    : "table-row"
-                                }
-                              >
-                                <span>{tbodyDetail}</span>
-                              </div>
-                            );
+                                <div
+                                  className={
+                                    i > 0 && typeof tbodyDetail == "string"
+                                      ? "table-row bg-StringGray"
+                                      : "table-row"
+                                  }
+                                >
+                                  <span>{tbodyDetail}</span>
+                                </div>
+                              );
                           }
                         )}
                       </div>
@@ -302,8 +312,8 @@ const OutputContactCenter = () => {
                     onChange={(ddId: string) => handleDropDownChange(ddId)}
                   />
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </Grid>
             </Grid>
           </div>

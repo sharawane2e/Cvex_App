@@ -187,7 +187,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>${point.y:,.2f}</b> USD",
+      pointFormat: "<b>€{point.y:1f}</b>",
     },
     series: [
       {

@@ -1,0 +1,83 @@
+        // chart: {
+        //     type: 'bar',
+        // }, title: {
+        //     text: "",
+        // },
+        // xAxis: {
+        //     minorTickLength: 0,
+        //     tickLength: 0,
+        //     lineWidth: 0,
+        //     minorGridLineWidth: 0,
+        //     lineColor: "transparent",
+        //     categories: ['Baseline', 'Possible future baseline']
+        // },
+        // yAxis: {
+        //     lineWidth: 0,
+        //     minorGridLineWidth: 0,
+        //     lineColor: 'transparent',
+        //     minorTickLength: 0,
+        //     tickLength: 0,
+        //     labels: {
+        //         enabled: false
+        //     }
+        // },
+        // plotOptions: {
+        //     series: {
+        //         stacking: 'normal'
+        //     }
+        // },
+
+        // series: [{
+        //     data: [28535, 140440]
+        // }]
+	
+	chart: {
+            type: 'waterfall'
+        },
+
+        title: {
+            text: "Baseline"
+        },
+
+        xAxis: {
+            type: 'category',
+        },
+
+        yAxis: {
+            labels: {
+                enabled: false
+            }
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        tooltip: {
+            pointFormat: '<b>${point.y:,.2f}</b> USD'
+        },
+
+        series: [{
+            data: [{
+                name: 'Start',
+                y: 0
+            }, {
+                name: 'Product Revenue',
+                y: 9523
+            }, {
+                name: 'Service Revenue',
+                y: 0
+            }, {
+                name: 'Positive Balance',
+                y: 19010
+            }, {
+                name: 'Fixed Costs',
+                y: 0
+            }, {
+                name: 'Variable Costs',
+                isSum: true,
+            }]
+        }]
+		
+		
+		
