@@ -31,153 +31,154 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <span id="jsonData" style="display: none;">
-      {
-        "pageCode": {
-          "page": 13
-        },
-        "data": {
-          "headerData": {
-            "title": "CVEx - Customer Value Execution - Impact Calculator - Contact Centre",
-            "logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
-            "banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
-          },
-          "inputData": {
-            "heading": "Breakdown of baseline",
-            "periodDD": {
-              "optionName": "Select a period to view",
-              "type": "dd",
-              "error_id": "A5",
-              "placeholder": "Please select",
-              "description": "",
-              "questionId": "A5",
-              "selectedId": "A5_1_label",
-              "options": [
-                {
-                  "ddName": "Monthly",
-                  "ddId": "A5_1_label"
-                },
-                {
-                  "ddName": "Year",
-                  "ddId": "A5_2_label"
-                }
-              ]
-            },
-            "periodTableData": {
-              "A5_1_label": {
-                "headings": [
-                  "",
-                  "inbound sales",
-                  "service to sales",
-                  "inbound sales"
-                ],
-                "currencySymbol": "€",
-                "rowDetails": [
-                  {
-                    "tbodyDetails": ["Baseline", "NS", 3500, 200],
-                    "iconDetails": ["", "", ""]
-                  },
-                  {
-                    "tbodyDetails": ["Potential", "NS", 3500, 200],
-                    "iconDetails": ["", "up", "down"]
-                  },
-                  {
-                    "tbodyDetails": ["service to sales", "NS", 3500, 200],
-                    "iconDetails": ["", "", ""]
-                  }
-                ]
-              },
-              "A5_2_label": {
-                "headings": ["", "inbound sales", "service to sales"],
-                "currencySymbol": "€",
-                "rowDetails": [
-                  {
-                    "tbodyDetails": ["Baseline", "NS", 3500, 1000],
-                    "iconDetails": ["", "", ""]
-                  },
-                  {
-                    "tbodyDetails": ["Potential", "NS", 3500, 2000],
-                    "iconDetails": ["", "up", "down"]
-                  },
-                  {
-                    "tbodyDetails": ["service to sales", "NS", 3500, 3000],
-                    "iconDetails": ["", "", ""]
-                  }
-                ]
-              }
-            },
-      
-            "potentialIncreaseData": {
-              "heading": "Breakdown of baseline",
-              "segmentDD": {
-                "optionName": "Select a period to view",
-                "type": "dd",
-                "error_id": "A6",
-                "placeholder": "Please select",
-                "description": "Choose segment to view in detail",
-                "questionId": "A6",
-                "selectedId": "A6_1_label",
-                "options": [
-                  {
-                    "ddName": "Inboubd sales",
-                    "ddId": "A6_1_label"
-                  },
-                  {
-                    "ddName": "Outboud sales",
-                    "ddId": "A6_2_label"
-                  }
-                ]
-              },
-      
-              "segmentTableChartData": {
-                "A5_1_label-A6_1_label": {
-                  "headings": [
-                    "Raection per year",
-                    "inbound sales",
-                    "service to sales"
-                  ],
-                  "chartLabels": [
-                    "Retention",
-                    "No touchpoint made",
-                    "No offer potential"
-                  ],
-                  "tbodyDetails": [11900, 3500, 200],
-                  "chartDetails": [11900, 3500, 200]
-                },
-                "A5_1_label-A6_2_label": {
-                  "headings": ["", "inbound sales", "service to sales"],
-                  "chartLabels": [
-                    "Retention",
-                    "No touchpoint made",
-                    "No offer potential"
-                  ],
-                  "tbodyDetails": [11900, 3500, 200],
-                  "chartDetails": [11900, 3500, 200]
-                },
-                "A5_2_label-A6_1_label": {
-                  "headings": ["", "inbound sales", "service to sales"],
-                  "chartLabels": [
-                    "Retention",
-                    "No touchpoint made",
-                    "No offer potential"
-                  ],
-                  "tbodyDetails": [11900, 3500, 200],
-                  "chartDetails": [11900, 3500, 200]
-                },
-                "A5_2_label-A6_2_label": {
-                  "headings": ["", "inbound sales", "service to sales"],
-                  "chartLabels": [
-                    "Retention",
-                    "No touchpoint made",
-                    "No offer potential"
-                  ],
-                  "tbodyDetails": [11900, 3500, 200],
-                  "chartDetails": [11900, 3500, 200]
-                }
-              }
-            }
-          }
-        }
-      }
+		{
+			"pageCode": {
+			  "page": 13
+			},
+			"data": {
+			  "headerData": {
+				"title": "CVEx - Customer Value Execution - Impact Calculator - Contact Centre",
+				"logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
+				"banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
+			  },
+			  "inputData": {
+				"heading": "Breakdown of baseline",
+				"periodDD": {
+				  "optionName": "Select a period to view",
+				  "type": "dd",
+				  "error_id": "A5",
+				  "placeholder": "Please select",
+				  "description": "",
+				  "questionId": "A5",
+				  "selectedId": "",
+				  "options": [
+					{
+					  "ddName": "Monthly",
+					  "ddId": "A5_1_label"
+					},
+					{
+					  "ddName": "Year",
+					  "ddId": "A5_2_label"
+					}
+				  ]
+				},
+				"periodTableData": {
+				  "A5_1_label": {
+					"headings": [
+					  "",
+					  "inbound sales",
+					  "service to sales",
+					  "inbound sales"
+					],
+					"currencySymbol": "€",
+					"rowDetails": [
+					  {
+						"tbodyDetails": ["Baseline", "NS", 3500, 200],
+						"iconDetails": ["", "", ""]
+					  },
+					  {
+						"tbodyDetails": ["Potential", "NS", 3500, 200],
+						"iconDetails": ["", "up", "up"]
+					  },
+					  {
+						"tbodyDetails": ["service to sales", "NS", 3500, 200],
+						"iconDetails": ["", "", ""]
+					  }
+					]
+				  },
+				  "A5_2_label": {
+					"headings": ["", "inbound sales", "service to sales"],
+					"currencySymbol": "€",
+					"rowDetails": [
+					  {
+						"tbodyDetails": ["Baseline", "NS", 3500, 1000],
+						"iconDetails": ["", "", ""]
+					  },
+					  {
+						"tbodyDetails": ["Potential", "NS", 3500, 2000],
+						"iconDetails": ["", "up", "down"]
+					  },
+					  {
+						"tbodyDetails": ["service to sales", "NS", 3500, 3000],
+						"iconDetails": ["", "", ""]
+					  }
+					]
+				  }
+				},
+		  
+				"potentialIncreaseData": {
+				  "heading": "Breakdown of baseline",
+				  "segmentDD": {
+					"optionName": "Select a period to view",
+					"type": "dd",
+					"error_id": "A6",
+					"placeholder": "Please select",
+					"description": "Choose segment to view in detail",
+					"questionId": "A6",
+					"selectedId": "",
+					"options": [
+					  {
+						"ddName": "Inboubd sales",
+						"ddId": "A6_1_label"
+					  },
+					  {
+						"ddName": "Outboud sales",
+						"ddId": "A6_2_label"
+					  }
+					]
+				  },
+		  
+				  "segmentTableChartData": {
+					"A5_1_label-A6_1_label": {
+					  "headings": [
+						"Raection per year",
+						"inbound sales",
+						"service to sales"
+					  ],
+					  "chartLabels": [
+						"Retention",
+						"No touchpoint made",
+						"No offer potential"
+					  ],
+					  "tbodyDetails": [11900, 3500, 200],
+					  "chartDetails": [11900, 3500, 200]
+					},
+					"A5_1_label-A6_2_label": {
+					  "headings": ["", "inbound sales", "service to sales"],
+					  "chartLabels": [
+						"Retention",
+						"No touchpoint made",
+						"No offer potential"
+					  ],
+					  "tbodyDetails": [11900, 3500, 200],
+					  "chartDetails": [11900, 3500, 200]
+					},
+					"A5_2_label-A6_1_label": {
+					  "headings": ["", "inbound sales", "service to sales"],
+					  "chartLabels": [
+						"Retention",
+						"No touchpoint made",
+						"No offer potential"
+					  ],
+					  "tbodyDetails": [11900, 3500, 200],
+					  "chartDetails": [11900, 3500, 200]
+					},
+					"A5_2_label-A6_2_label": {
+					  "headings": ["", "inbound sales", "service to sales"],
+					  "chartLabels": [
+						"Retention",
+						"No touchpoint made",
+						"No offer potential"
+					  ],
+					  "tbodyDetails": [11900, 3500, 200],
+					  "chartDetails": [11900, 3500, 200]
+					}
+				  }
+				}
+			  }
+			}
+		  }
+		  
       
     </span>
 
