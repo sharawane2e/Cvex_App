@@ -1,156 +1,339 @@
-import { Grid, FormControl, Select, MenuItem, Box } from "@mui/material";
-import React, { useState, useEffect, useRef } from "react";
-import SecondaryHeader from "../Headers/SecondaryHeader";
-import "./OutputContactCenter.scss";
-import HighChart from "../UI/HighCharts";
+import { Grid, Box, Divider } from '@mui/material';
+import { useState, useEffect } from 'react';
+import SecondaryHeader from '../Headers/SecondaryHeader';
+import BarChart from '../UI/BarChart';
+import { Footer } from '../Footer';
+import { getParsedData } from '../../utils/parserUtil';
+import CustomButton from '../UI/CustomButton';
+import BaselineChart from '../UI/BaselineChart';
+import PotentialChart from '../UI/PotentialChart';
+import SegmentChart from '../UI/SegmentChart';
+import HsddInput from '../ImpactCalculator/HsddInput';
+import {
+  setDropDown,
+  setSecDropDown,
+} from '../../redux/actions/HighChartDropDownAction';
+import store from '../../redux/store';
+import {
+  setBarChartOptions,
+  setBaseLineChartOptions,
+  setPotentialChartOptions,
+  setSegmentChartOptions,
+} from '../../redux/actions/HighChartAction';
+import {
+  getbaseLineChartOptions,
+  getpotentialChartOptions,
+} from '../../utils/highchartOptionUtil';
+import { useSelector } from 'react-redux';
 
 const OutputContactCenter = () => {
-    const [jsonData, setJSONData] = useState<any>('');
-    const chartRef = useRef(null);
-    const [chartInfo, setChartInfo] = useState(null);
-    useEffect(() => {
-        setJSONData(
-            // @ts-ignore
-            JSON.parse(document.getElementById('jsonData')?.innerHTML),
+  const [jsonData, setJSONData] = useState<any>('');
+  const { dropdown } = useSelector((state: any) => state);
+
+  const { dispatch } = store;
+
+  useEffect(() => {
+    setJSONData(
+      // @ts-ignore
+      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+    );
+  }, []);
+
+  useEffect(() => {
+    handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
+    handleDropDownChange(
+      jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId,
+    );
+  }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
+
+  const nextHandleClick = (event: any) => {
+    if (jsonData !== '') {
+      // @ts-ignore
+      document.getElementById('navText').value =
+        jsonData.data?.footerData?.forwardBtn?.forwardInputId;
+      // @ts-ignore
+      document.getElementById('forwardbutton').disabled = false;
+      // @ts-ignore
+      document.getElementById('forwardbutton').click();
+    }
+  };
+
+  const inputDetails = jsonData?.data?.inputData;
+
+  const handleDDChange = (ddId: string) => {
+    if (ddId != undefined) {
+      const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
+      console.log(updatedJsonData.data.inputData.periodDD.selectedId);
+      updatedJsonData.data.inputData.periodDD.selectedId = ddId;
+
+      document.getElementById(ddId)?.click();
+      setJSONData(updatedJsonData);
+
+      var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
+      keys.forEach(function (key: any) {
+        if (key == ddId) {
+          dispatch(
+            setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId]),
+          );
+          const rowDetails =
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails;
+          const seriesValue1 =
+            rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
+          const seriesValue2 =
+            rowDetails[rowDetails.length - 1].tbodyDetails[
+              rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
+            ];
+
+          dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
+          const getSeriesData = getbaseLineChartOptions(
+            updatedJsonData.data.inputData.periodTableData[key],
+          );
+
+          dispatch(
+            setBaseLineChartOptions({
+              data: getSeriesData[0],
+              categories: getSeriesData[1],
+            }),
+          );
+          const getSeriesPotentialData = getpotentialChartOptions(
+            updatedJsonData.data.inputData.periodTableData[key],
+          );
+
+          dispatch(
+            setPotentialChartOptions({
+              data: getSeriesPotentialData[0],
+              categories: getSeriesPotentialData[1],
+            }),
+          );
+        }
+      });
+    }
+  };
+
+  const handleDropDownChange = (ddId: string) => {
+    if (ddId != undefined) {
+      const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
+      updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.selectedId =
+        ddId;
+      document.getElementById(ddId)?.click();
+      setJSONData(updatedJsonData);
+      var options =
+        updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options;
+      options.map((option: any) => {
+        const mergeKey =
+          updatedJsonData.data.inputData.periodDD.selectedId + '-' + ddId;
+        var keys = Object.keys(
+          updatedJsonData.data.inputData.potentialIncreaseData
+            .segmentTableChartData,
         );
-    }, []);
 
-    const inputDetails = jsonData?.data?.inputData;
+        console.log(mergeKey);
 
-    return (
-        <div className="contactpage-container">
-            <SecondaryHeader />
-            <div className="contactpage-container__inr">
-                <div className="dropdown-container">
+        keys.forEach(function (key: any) {
+          if (key == mergeKey) {
+            dispatch(
+              setSecDropDown(
+                updatedJsonData.data.inputData.potentialIncreaseData
+                  .segmentTableChartData[mergeKey],
+              ),
+            );
+            dispatch(
+              setSegmentChartOptions({
+                data: updatedJsonData.data.inputData.potentialIncreaseData
+                  .segmentTableChartData[mergeKey].chartDetails,
+                categories:
+                  updatedJsonData.data.inputData.potentialIncreaseData
+                    .segmentTableChartData[mergeKey].chartLabels,
+              }),
+            );
+          }
+        });
+      });
+    }
+  };
 
-                    <div className="single-dropdown-section__body">
-                        <div className="title-container">
-                            <p>{inputDetails?.questions?.optionName}</p>
-                        </div>
-                    </div>
-                    <Grid container sx={{ alignItems: 'center', pb: 2 }} xs={12} md={4}>
-                        <Grid item xs={12} md={6} className="single-dropdown-title">
-                            <p className="gen-info">{ }</p>
-                        </Grid>
-                        <Grid item xs={12} sx={{ paddingRight: '20px', }}>
-                            <FormControl fullWidth>
-                                <Select sx={{ p: 0, borderRadius: 0, mb: 1, }}
-                                    // style={{"padding":0}}       
-                                    className="inputField cutom-input-field" value={'Hello'}
-                                //   onChange={}     
-                                >
-                                    <MenuItem disabled value="none" className="selectItem">
-                                        <>Select Option</>
-                                    </MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
-                </div>
-                <div className="single-dropdown-section">
-                    <div className="single-dropdown-section__header">
-                        <p className="header-text">{inputDetails?.heading}</p>
-                    </div>
-                </div>
-                <div className="chart-container" >
-                    <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
-                </div>
-                <Box className="outputTable-container">
-                    <div className="outputTable-container__inr">
-                        <div className="outputTable-container__inr__header">
-                            <div className="table-col__empty"></div>
-                            <div className="table-col"><span>Inbound Sales</span></div>
-                            <div className="table-col"><span>Outbound Sales</span></div>
-                            <div className="table-col"><span>Service to Sales</span></div>
-                            <div className="table-col"><span>Retention</span></div>
-                            <div className="table-col"><span>Winback</span></div>
-                            <div className="table-col"><span>Total</span></div>
-                        </div>
-                        <div className="outputTable-container__inr__body">
-                            <div className="table-col">
-                                <div className="table-row">
-                                    <span>Baseline</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>9,523 €</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>19,010 €</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>28,535 €</span>
-                                </div>
-                            </div>
-                            <div className="table-col">
-                                <div className="table-row">
-                                    <span>Baseline</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>9,523 €</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>19,010 €</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>28,535 €</span>
-                                </div>
-                            </div>
-                            <div className="table-col">
-                                <div className="table-row">
-                                    <span>Baseline</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>9,523 €</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>19,010 €</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>Not Selected</span>
-                                </div>
-                                <div className="table-row">
-                                    <span>28,535 €</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Box>
-                <div className="chart-container">
-                    <div className="chart-container__inr">
-                        <div className="chart-baseline">
-                            <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
-                        </div>
-                        <div className="chart-futurebaseline">
-                            <HighChart chartRef={chartRef} setChartInfo={setChartInfo} />
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div className="contactpage-container">
+      <SecondaryHeader sidebar={false} />
+      <div className="contactpage-container__inr">
+        <div className="contactpage-container__inr__section">
+          <div className="dropdown-container">
+            <Grid
+              container
+              sx={{ alignItems: 'center', pb: 2 }}
+              xs={12}
+              md={12}
+            >
+              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
+                {inputDetails != undefined ? (
+                  <HsddInput
+                    question={inputDetails?.periodDD}
+                    onChange={(ddId: string) => handleDDChange(ddId)}
+                  />
+                ) : (
+                  ''
+                )}
+              </Grid>
+            </Grid>
+          </div>
+          <div className="single-dropdown-section">
+            <div className="single-dropdown-section__header">
+              <p className="header-text">{inputDetails?.heading}</p>
             </div>
+          </div>
+          <div className="chart-container">
+            <BarChart />
+          </div>
+          <Box className="outputTable-container" sx={{ mb: 5 }}>
+            <div className="outputTable-container__inr">
+              <div className="outputTable-container__inr__header">
+                {dropdown?.selectedData?.headings?.map((heading: any) => {
+                  return (
+                    <div
+                      className={
+                        heading == '' ? 'table-col__empty' : 'table-col'
+                      }
+                    >
+                      <span>{heading}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="outputTable-container__inr__body">
+                {dropdown?.selectedData?.rowDetails?.map(
+                  (rowDetail: any, rowIndex: number) => {
+                    const currencySymbol =
+                      inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
+                    return (
+                      <div className="table-col" key={rowIndex}>
+                        {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
+                          return typeof tbodyDetail == 'number' ? (
+                            <div className="table-row">
+                              <span>{tbodyDetail}</span>
+                              <span className="currency-symbol">
+                                {currencySymbol}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="table-row">
+                              <span>{tbodyDetail}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  },
+                )}
+              </div>
+            </div>
+            <div className="outputTable-container__md">
+              <div className="title-container">
+                {inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
+                  (rowDetail: any, rowIndex: number) => {
+                    return (
+                      <>
+                        <p>{rowDetail?.tbodyDetails[0]}</p>
+                      </>
+                    );
+                  },
+                )}
+              </div>
+            </div>
+          </Box>
+          <div className="chart-container multiple-charts">
+            <div className="chart-container__inr">
+              <div className="chart-baseline">
+                <BaselineChart />
+              </div>
+              <div className="chart-futurebaseline">
+                <PotentialChart />
+              </div>
+            </div>
+          </div>
         </div>
-    )
-}
+        <div className="contactpage-container__inr__section">
+          <div className="single-dropdown-section">
+            <div className="single-dropdown-section__header">
+              <p className="header-text">
+                {inputDetails?.potentialIncreaseData?.heading}
+              </p>
+            </div>
+          </div>
+          <div className="dropdown-container">
+            <div className="single-dropdown-section__body">
+              <div className="title-container">
+                <p>
+                  {inputDetails?.potentialIncreaseData?.segmentDD?.description}
+                </p>
+              </div>
+            </div>
+            <Grid
+              container
+              sx={{ alignItems: 'center', pb: 2 }}
+              xs={12}
+              md={12}
+            >
+              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
+                {inputDetails != undefined ? (
+                  <HsddInput
+                    question={inputDetails?.potentialIncreaseData?.segmentDD}
+                    onChange={(ddId: string) => handleDropDownChange(ddId)}
+                  />
+                ) : (
+                  ''
+                )}
+              </Grid>
+            </Grid>
+          </div>
+          <Box className="outputTable-container" sx={{ mb: 5 }}>
+            <div className="outputTable-container__inr">
+              <div className="outputTable-container__inr__header">
+                {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
+                  return (
+                    <div className="table-col">
+                      <span>{el}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="outputTable-container__inr__body">
+                <div className="table-col">
+                  {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
+                    (el: any) => {
+                      return (
+                        <div className="table-row">
+                          <span>{el}</span>
+                        </div>
+                      );
+                    },
+                  )}
+                </div>
+              </div>
+            </div>
+          </Box>
+          <div className="chart-container">
+            <div className="chart-container__waterfall">
+              <SegmentChart />
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer>
+        <Divider />
+        <div className="button-container justi">
+          <div>
+            <CustomButton
+              className={'submitButton next-button'}
+              onClick={(e: any) => nextHandleClick(e)}
+            >
+              {getParsedData(
+                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
+              )}
+            </CustomButton>
+          </div>
+        </div>
+      </Footer>
+    </div>
+  );
+};
 export default OutputContactCenter;

@@ -11,7 +11,7 @@ import ImpactCalculatorPage from '../components/ImpactCalculator';
 import OutputContactCenter from '../components/OutputContactCenter';
 import pageCode from '../enums/pageCode';
 import HeatmapPage from '../components/HeatmapPage/Index';
-import SkillPage from "../components/SkillPage";
+import SkillPage from '../components/SkillPage';
 
 const Pages = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -24,7 +24,6 @@ const Pages = () => {
   }, []);
 
   if (jsonData != '' || jsonData != undefined) {
-    console.log(jsonData)
     if (jsonData?.pageCode?.page === pageCode.Login) {
       return <Login />;
     }
@@ -46,11 +45,11 @@ const Pages = () => {
     if (jsonData?.pageCode?.page == pageCode.PanelPage) {
       return <PanelPage />;
     }
-    // if (jsonData?.pageCode?.page == 8) {
-    //   return <PanelPage />;
-    // }
     if (jsonData?.pageCode?.page == pageCode.ImpactCalculatorPage) {
       return <ImpactCalculatorPage />;
+    }
+    if (jsonData?.pageCode?.page == pageCode.OutputContactCenter) {
+      return <OutputContactCenter />;
     }
     if (jsonData?.pageCode?.page == pageCode.SkillPage) {
       return <SkillPage />;
@@ -59,7 +58,5 @@ const Pages = () => {
       return <HeatmapPage />;
     }
   }
-
-  // return <SubskillPage />
 };
 export default Pages;
