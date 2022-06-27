@@ -37,7 +37,7 @@ const SecondaryHeader = (props: headerProps) => {
     <>
       <div
         className={
-          leftPanel?.leftPanelOpen === true
+          leftPanel?.leftPanelOpen
             ? 'secondary-header hamburger-toggle'
             : ' secondary-header hamburger-toggle-active'
         }
@@ -48,18 +48,24 @@ const SecondaryHeader = (props: headerProps) => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className={props?.sidebar ? "logo" : "logo jc-center"}>
+        <div className={props?.sidebar ? 'logo' : 'logo jc-center'}>
           {/* {
             props?.sidebar && <div className="hamburger-menu" >
               <Hamburger onClick={() => toggleLeftPanel()} />
             </div>
           } */}
 
-          {props?.sidebar && 
-          <div className={leftPanel?.leftPanelOpen ? "menu btn15 open" : "menu btn15"} data-menu="15" onClick={() => toggleLeftPanel()}>
-            <div className="icon"></div>
-          </div>
-          }
+          {props?.sidebar && (
+            <div
+              className={
+                leftPanel?.leftPanelOpen ? 'menu btn15 open' : 'menu btn15'
+              }
+              data-menu="15"
+              onClick={() => toggleLeftPanel()}
+            >
+              <div className="icon"></div>
+            </div>
+          )}
 
           <img
             src={'https://ui.e2eresearch.com/Mckinsey/assets/svg/logo.svg'}
