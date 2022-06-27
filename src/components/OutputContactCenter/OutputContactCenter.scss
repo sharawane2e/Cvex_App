@@ -112,6 +112,7 @@
                 border-bottom: none;
                 border-right: none;
                 border-left: 1px solid #2a2a2a;
+                border-bottom: 1px solid #2a2a2a;
                 display: inline-block;
                 min-width: 20%;
                 text-align: center;
@@ -132,7 +133,6 @@
                 &:last-child {
                   background-color: #71d2f1;
                   border-right: 1px solid #2a2a2a;
-                  border-bottom: 1px solid;
                 }
               }
             }
@@ -170,7 +170,6 @@
       }
       .chart-container {
         padding: 20px 0px 20px 0px;
-        width: 50%;
         &__inr {
           display: flex;
           width: 100%;

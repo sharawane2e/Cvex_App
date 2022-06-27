@@ -116,7 +116,7 @@ const initialState: IChartState = {
           inside: false,
           y: -50,
           align: "center",
-          format: "{point.y:1f}€",
+          format: "{point.y:,.2f}€",
         },
       },
     ],
@@ -159,7 +159,7 @@ const initialState: IChartState = {
           inside: false,
           y: -50,
           align: "center",
-          format: "{point.y:1f}€",
+          format: "{point.y:,.2f}€",
         },
       },
     ],
@@ -187,7 +187,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:1f}</b>",
+      pointFormat: "<b>€{point.y:,.2f}</b>",
     },
     series: [
       {
@@ -198,7 +198,7 @@ const initialState: IChartState = {
           inside: false,
           y: -50,
           align: "center",
-          format: "{point.y:1f}€",
+          format: "{point.y:,.2f}€",
         },
       },
     ],
