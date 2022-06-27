@@ -38,6 +38,7 @@ const QuestionPage = () => {
   dispatch(setRightPanelData(jsonData?.data?.rightPanel));
 
   const nextHandleClick = (event: any) => {
+    debugger;
     if (jsonData !== '') {
       // @ts-ignore
       document.getElementById('navText').value =

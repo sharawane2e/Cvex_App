@@ -34,8 +34,11 @@ const SideBar = () => {
         categories.forEach((category: any) => {
           if (category.selectedId === leftPanel.currentSelectedId) {
             category.totalAnswered = updatedTotalAnswered;
+            console.log(typeof category.totalAnswered);
+            console.log(typeof updatedTotalAnswered);
             // @ts-ignore
-            document.getElementById("ttl-attmpt").value = category.totalAnswered;
+            document.getElementById('ttl-attmpt').value =
+              category.totalAnswered;
           }
         });
 
