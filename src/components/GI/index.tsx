@@ -69,26 +69,13 @@ const GI = () => {
     let selectedDDName: string[] = [];
     let selectedIdArr = selectedId.split(",");
 
-    // options.forEach(function (option: any) {
-    //   if (selectedIdArr.indexOf(option.ddId) != -1) {
-    //     selectedDDName.push(option["ddName"]);
-    //   }
-    // });
+    options.forEach(function (option: any) {
+      if (selectedIdArr.indexOf(option.ddId) != -1) {
+        selectedDDName.push(option["ddName"]);
+      }
+    });
 
-    // options?.forEach((element: any) => {
-    //   if (element.ddId == selectedId) {
-    //     selectedDDName.push(element["ddName"]);
-    //   }
-    // });
-
-    // selectedIdArr.forEach((x: any, i: any) => {
-    //   let ind = options.indexOf((opt: any) => opt.ddId == selectedIdArr[i]);
-    //   selectedDDName.push(options[ind].ddName);
-    // });
-
-    selectedDDName = ["A7_3", "A7_5"];
-
-    console.log(selectedIdArr);
+    console.log(selectedId);
 
     return selectedDDName;
   };
@@ -990,9 +977,9 @@ const GI = () => {
                                       <Checkbox
                                         value={element?.ddName}
                                         checked={
-                                          genQues.selectedId2.indexOf(
+                                          genQues.selectedId2.includes(
                                             element.ddId
-                                          ) != -1
+                                          )
                                             ? true
                                             : false
                                         }
@@ -1003,7 +990,6 @@ const GI = () => {
                                           fontSize: "12px",
                                         }}
                                         className="cutom-checkbox"
-                                        //onChange={setServicesName(element?.ddName)}
                                       />
                                       <ListItemText
                                         primary={element?.ddName}

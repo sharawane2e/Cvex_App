@@ -1,9 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
+import Highcharts from 'highcharts';
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
   setPotentialChartOptions,
   setSegmentChartOptions,
+  setChartSymbol,
 } from '../actions/HighChartAction';
 
 export interface IChartState {
@@ -62,6 +64,7 @@ const initialState: IChartState = {
     },
     legend: {
       enabled: false,
+      // backgroundColor: "red",
     },
     series: [
       {
@@ -116,7 +119,7 @@ const initialState: IChartState = {
           inside: false,
           y: -50,
           align: 'center',
-          format: '{point.y:1f}€',
+          format: '{point.y:,.2f}€',
         },
       },
     ],
@@ -159,7 +162,7 @@ const initialState: IChartState = {
           inside: false,
           y: -50,
           align: 'center',
-          format: '{point.y:1f}€',
+          // format: '{point.y:,.2f}€',
         },
       },
     ],
@@ -187,7 +190,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: '<b>€{point.y:1f}</b>',
+      pointFormat: '<b>€{point.y:,.2f}</b>',
     },
     series: [
       {
@@ -195,10 +198,14 @@ const initialState: IChartState = {
         dataLabels: {
           enabled: true,
           color: 'black',
-          inside: false,
-          y: -50,
+          inside: true,
+          //y: 50,
           align: 'center',
-          format: '{point.y:1f}€',
+
+          // format: "{point.y:,.2f}",
+          // formatter: function (this: any) {
+          //   return Math.abs(this.y) + '€';
+          // },
         },
       },
     ],
@@ -254,11 +261,30 @@ const HighChartReducer = createReducer(initialState, (builder) => {
       },
       series: [
         {
-          ...action.payload,
+          data: [...action.payload],
+          // dataLabels: {
+          //   // ...state.segmentChartOptions.series.dataLabels,
+          //   format: action.payload,
+          // },
         },
       ],
     },
   }));
+  // builder.addCase(setChartSymbol, (state, action) => {
+  //   return {
+  //     ...state,
+  //     segmentChartOptions: {
+  //       ...state.segmentChartOptions,
+  //       series: {
+  //         ...state.segmentChartOptions,
+  //         dataLabels: {
+  //           format: action.payload,
+  //         },
+  //       },
+  //     },
+  //     // chartOptions,
+  //   };
+  // });
 });
 
 export default HighChartReducer;

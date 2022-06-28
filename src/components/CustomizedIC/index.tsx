@@ -25,6 +25,7 @@ import {
   getpotentialChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
+import "../CustomizedIC/CustomizedIC.scss";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -251,6 +252,67 @@ const CustomizedIC = () => {
             </div>
           </div>
         </div>
+
+        <div className="contactpage-container__inr__section">
+          {jsonData?.data?.inputData?.SalesTables?.tbody?.map((table: any) => (
+            <>
+              <Box className="outputTable-container" sx={{ mb: 5 }}>
+                <div className="outputTable-container__inr">
+                  <div>{table.theading}</div>
+
+                  <div className="outputTable-container__inr__body">
+                    {table.tbodyDetails?.map((row: any, ri: any) => (
+                      <div className="table-col" key={ri}>
+                        {row.rowDetails.map((detail: any) => (
+                          <div className="table-row">
+                            <span>{detail.text}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Box>
+            </>
+          ))}
+        </div>
+
+        <div className="table_section">
+          <div>Inbound sales</div>
+          <div>
+            <div className="table-col">
+              <div className="table-row">
+                <span>One</span>
+              </div>
+              <div className="table-row">
+                <span>One</span>
+              </div>
+              <div className="table-row">
+                <span>One</span>
+              </div>
+              <div className="table-row">
+                <span>One</span>
+              </div>
+            </div>
+            <div className="table-col">
+              <div className="table-row">
+                <span>One</span>
+              </div>
+              <div className="table-row">
+                <span>One</span>
+              </div>
+              <div className="table-row">
+                <span>One</span>
+              </div>
+              <div className="table-row">
+                <span>One</span>
+              </div>
+            </div>
+          </div>
+          <div>Three</div>
+          <div>Four</div>
+        </div>
+
         <div className="contactpage-container__inr__section">
           <div className="single-dropdown-section">
             <div className="single-dropdown-section__header">
@@ -285,6 +347,7 @@ const CustomizedIC = () => {
               </Grid>
             </Grid>
           </div>
+
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">

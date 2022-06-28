@@ -1,3 +1,5 @@
+import Highcharts from 'highcharts';
+
 export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
   const baselineHedding = baseLineChartOptions.headings;
   const seriesName: any = [];
@@ -27,6 +29,7 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
     SeriesData.push({
       name: seriesName[index],
       y: el,
+      // color: "red",
     });
   });
 
@@ -61,11 +64,15 @@ export const getpotentialChartOptions = (potentialChartOptions: any): any => {
     SeriesData.push({
       name: seriesName[index],
       y: el,
+      // color: "red",
     });
   });
   return [SeriesData, categories];
 };
-export const getsegmentChartOptions = (segmentChartOptions: any): any => {
+export const getsegmentChartOptions = (
+  segmentChartOptions: any,
+  currencySymbol: any,
+): any => {
   const segementHeading = segmentChartOptions.chartLabels;
   const seriesName: any = [];
   const seriesY: any = [];
@@ -74,40 +81,42 @@ export const getsegmentChartOptions = (segmentChartOptions: any): any => {
   for (let i = 0; i < segementHeading.length; i++) {
     seriesName.push(segementHeading[i]);
   }
-  
+
   for (let i = 0; i < segmentChartOptions.chartDetails.length; i++) {
     let newArrayData: any = [];
     const segmentData = segmentChartOptions.chartDetails[i];
-      if (typeof segmentData== 'string') {
-        newArrayData.push(0);
-      } else {
-        newArrayData.push(segmentData);
+    if (typeof segmentData == 'string') {
+      newArrayData.push(0);
+    } else {
+      newArrayData.push(segmentData);
     }
     seriesY.push(newArrayData);
   }
-  
+
   seriesY.forEach((el: any, index: any) => {
+    //console.log('el', el);
     categories.push(seriesName[index]);
-    // if(seriesY[0][0]==el){
-    //   SeriesData.push({
-    //     name: seriesName[0],
-    //     y: el[0],
-    //     isSum:true
-    //   });
-    // }
-    if(seriesY[seriesY.length-1][0]==el){
-      SeriesData.push({
-        name: seriesName[index],
-        // y: false,
-       isSum:true
-      });
-    }
-    // else{
-      SeriesData.push({
-        name: seriesName[index],
-        y: el[0]
-      });
-    // }
+    SeriesData.push({
+      name: seriesName[index],
+      y: el[0],
+
+      // color: "red",
+    });
+  });
+  console.log('SeriesData', {
+    data: SeriesData,
+    dataLabels: {
+      enabled: true,
+      color: 'black',
+      inside: false,
+      y: 50,
+      align: 'center',
+      // format: `{point.y:,.2f} ${currencySymbol}`,
+      formatter: function () {
+        return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
+      },
+    },
+    categories,
   });
 
   return [SeriesData, categories];

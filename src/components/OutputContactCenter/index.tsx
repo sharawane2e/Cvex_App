@@ -17,6 +17,7 @@ import store from '../../redux/store';
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
+  setChartSymbol,
   setPotentialChartOptions,
   setSegmentChartOptions,
 } from '../../redux/actions/HighChartAction';
@@ -47,6 +48,9 @@ const OutputContactCenter = () => {
     handleDropDownChange(
       jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId,
     );
+    //const symbolIcon = `{point.y:,.2f}%`;
+    // console.log('symbolIcon', jsonData?.data?.inputData?.currencySymbol);
+    // dispatch(setChartSymbol(symbolIcon));
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
   const nextHandleClick = (event: any) => {
@@ -80,18 +84,26 @@ const OutputContactCenter = () => {
           );
           const rowDetails =
             updatedJsonData.data.inputData.periodTableData[key].rowDetails;
-          const seriesValue1 =
-            rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
-          const seriesValue2 =
-            rowDetails[rowDetails.length - 1].tbodyDetails[
+          const colorArray =
+            updatedJsonData.data.inputData.periodTableData[key].colorArray;
+          const seriesValue1 = {
+            y: rowDetails[0].tbodyDetails[
+              rowDetails[0].tbodyDetails.length - 1
+            ],
+            color: colorArray[0],
+          };
+          const seriesValue2 = {
+            y: rowDetails[rowDetails.length - 1].tbodyDetails[
               rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
-            ];
+            ],
+            color: colorArray[1],
+          };
 
           dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key],
           );
-          console.log(updatedJsonData.data.inputData.periodTableData[key]);
+          // console.log(getSeriesData);
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],
@@ -151,13 +163,15 @@ const OutputContactCenter = () => {
             const getSeriesData = getsegmentChartOptions(
               updatedJsonData.data.inputData.potentialIncreaseData
                 .segmentTableChartData[mergeKey],
+              updatedJsonData.data.inputData.currencySymbol,
             );
-            console.log(getSeriesData);
+
+            // console.log();
             dispatch(
-              setSegmentChartOptions({
-                data: getSeriesData[0],
-                categories: getSeriesData[1],
-              }),
+              setSegmentChartOptions(
+                getSeriesData[0],
+                // categories: getSeriesData[1],
+              ),
             );
           }
         });
@@ -225,14 +239,14 @@ const OutputContactCenter = () => {
                               <div className="table-row">
                                 <div
                                   className={
-                                    rowDetail.iconDetails[rowIndex] == 'up'
+                                    rowDetail.iconDetails[i] == 'up'
                                       ? 'arrowUpicon'
-                                      : rowDetail.iconDetails[rowIndex] ==
-                                        'down'
+                                      : rowDetail.iconDetails[i] == 'down'
                                       ? 'arrowDownicon'
                                       : 'emptyicon'
                                   }
                                 ></div>
+
                                 <div>
                                   <span>{tbodyDetail}</span>
                                   <span className="currency-symbol">
@@ -323,18 +337,18 @@ const OutputContactCenter = () => {
               <div className="outputTable-container__inr__header">
                 {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
                   return (
-                    <div className="table-col">
+                    <div className="table-col bg-white">
                       <span>{el}</span>
                     </div>
                   );
                 })}
               </div>
               <div className="outputTable-container__inr__body">
-                <div className="table-col">
+                <div className="table-col bg-white">
                   {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
                     (el: any) => {
                       return (
-                        <div className="table-row">
+                        <div className="table-row bg-white">
                           <span>{el}</span>
                         </div>
                       );
