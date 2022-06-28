@@ -95,14 +95,14 @@ const GI = () => {
   };
 
   const uncheckCheckboxes = (options: any[]) => {
-    // options.forEach((currObj: any) => {
-    //   let elemId = currObj.ddId;
-    //   let elem = document.getElementById(elemId);
-    //   if (elem) {
-    //     // @ts-ignore
-    //     elem.checked = false;
-    //   }
-    // });
+    options.forEach((currObj: any) => {
+      let elemId = currObj.ddId;
+      let elem = document.getElementById(elemId);
+      if (elem) {
+        // @ts-ignore
+        elem.checked = false;
+      }
+    });
   };
 
   const checkCheckboxes = (ddIdsArr: any[]) => {
@@ -114,7 +114,6 @@ const GI = () => {
         elem.checked = true;
       }
     });
-    console.log("ok");
   };
 
   const mapContainsId = (map: any, selectedId: any) => {
