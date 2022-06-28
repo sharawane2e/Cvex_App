@@ -214,14 +214,14 @@ const OutputContactCenter = () => {
                               <div className="table-row">
                                 <div
                                   className={
-                                    rowDetail.iconDetails[rowIndex] == "up"
+                                    rowDetail.iconDetails[i] == "up"
                                       ? "arrowUpicon"
-                                      : rowDetail.iconDetails[rowIndex] ==
-                                        "down"
+                                      : rowDetail.iconDetails[i] == "down"
                                       ? "arrowDownicon"
                                       : "emptyicon"
                                   }
                                 ></div>
+
                                 <div>
                                   <span>{tbodyDetail}</span>
                                   <span className="currency-symbol">
@@ -312,18 +312,18 @@ const OutputContactCenter = () => {
               <div className="outputTable-container__inr__header">
                 {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
                   return (
-                    <div className="table-col">
+                    <div className="table-col bg-white">
                       <span>{el}</span>
                     </div>
                   );
                 })}
               </div>
               <div className="outputTable-container__inr__body">
-                <div className="table-col">
+                <div className="table-col bg-white">
                   {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
                     (el: any) => {
                       return (
-                        <div className="table-row">
+                        <div className="table-row bg-white">
                           <span>{el}</span>
                         </div>
                       );

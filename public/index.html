@@ -31,154 +31,157 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <span id="jsonData" style="display: none;">
-		{
-			"pageCode": {
-			  "page": 13
-			},
-			"data": {
-			  "headerData": {
-				"title": "CVEx - Customer Value Execution - Impact Calculator - Contact Centre",
-				"logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
-				"banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
-			  },
-			  "inputData": {
-				"heading": "Breakdown of baseline",
-				"periodDD": {
-				  "optionName": "Select a period to view",
-				  "type": "dd",
-				  "error_id": "A5",
-				  "placeholder": "Please select",
-				  "description": "",
-				  "questionId": "A5",
-				  "selectedId": "",
-				  "options": [
-					{
-					  "ddName": "Monthly",
-					  "ddId": "A5_1_label"
-					},
-					{
-					  "ddName": "Year",
-					  "ddId": "A5_2_label"
-					}
-				  ]
-				},
-				"periodTableData": {
-				  "A5_1_label": {
-					"headings": [
-					  "",
-					  "inbound sales",
-					  "service to sales",
-					  "inbound sales"
-					],
-					"currencySymbol": "€",
-					"rowDetails": [
-					  {
-						"tbodyDetails": ["Baseline", "NS", 3500, 200],
-						"iconDetails": ["", "", ""]
-					  },
-					  {
-						"tbodyDetails": ["Potential", "NS", 3500, 200],
-						"iconDetails": ["", "", ""]
-					  },
-					  {
-						"tbodyDetails": ["service to sales", "NS", 3500, 200],
-						"iconDetails": ["", "", ""]
-					  }
-					]
-				  },
-				  "A5_2_label": {
-					"headings": ["", "inbound sales", "service to sales"],
-					"currencySymbol": "€",
-					"rowDetails": [
-					  {
-						"tbodyDetails": ["Baseline", "NS", 3500, 1000],
-						"iconDetails": ["", "", ""]
-					  },
-					  {
-						"tbodyDetails": ["Potential", "NS", 3500, 2000],
-						"iconDetails": ["", "up", ""]
-					  },
-					  {
-						"tbodyDetails": ["service to sales", "NS", 3500, 3000],
-						"iconDetails": ["", "", ""]
-					  }
-					]
-				  }
-				},
-		  
-				"potentialIncreaseData": {
-				  "heading": "Breakdown of baseline",
-				  "segmentDD": {
-					"optionName": "Select a period to view",
-					"type": "dd",
-					"error_id": "A6",
-					"placeholder": "Please select",
-					"description": "Choose segment to view in detail",
-					"questionId": "A6",
-					"selectedId": "",
-					"options": [
-					  {
-						"ddName": "Inboubd sales",
-						"ddId": "A6_1_label"
-					  },
-					  {
-						"ddName": "Outboud sales",
-						"ddId": "A6_2_label"
-					  }
-					]
-				  },
-		  
-				  "segmentTableChartData": {
-					"A5_1_label-A6_1_label": {
-					  "headings": [
-						"Raection per year",
-						"inbound sales",
-						"service to sales"
-					  ],
-					  "chartLabels": [
-						"Retention",
-						"No touchpoint made",
-						"No offer potential"
-					  ],
-					  "tbodyDetails": [11900, 3500, 200],
-					  "chartDetails": [11900, 3500, 200]
-					},
-					"A5_1_label-A6_2_label": {
-					  "headings": ["", "inbound sales", "service to sales"],
-					  "chartLabels": [
-						"Retention",
-						"No touchpoint made",
-						"No offer potential"
-					  ],
-					  "tbodyDetails": [11900, 3500, 200],
-					  "chartDetails": [11900, 3500, 200]
-					},
-					"A5_2_label-A6_1_label": {
-					  "headings": ["", "inbound sales", "service to sales"],
-					  "chartLabels": [
-						"Retention",
-						"No touchpoint made",
-						"No offer potential"
-					  ],
-					  "tbodyDetails": [11900, 3500, 200],
-					  "chartDetails": [11900, 3500, 200]
-					},
-					"A5_2_label-A6_2_label": {
-					  "headings": ["", "inbound sales", "service to sales"],
-					  "chartLabels": [
-						"Retention",
-						"No touchpoint made",
-						"No offer potential"
-					  ],
-					  "tbodyDetails": [11900, 3500, 200],
-					  "chartDetails": [11900, 3500, 200]
-					}
-				  }
-				}
-			  }
-			}
-		  }
-		  
+      {
+        "pageCode": {
+          "page": 13
+        },
+        "data": {
+          "headerData": {
+            "title": "CVEx - Customer Value Execution - Impact Calculator - Contact Centre",
+            "logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
+            "banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
+          },
+          "inputData": {
+            "heading": "Breakdown of baseline and proposed baseline by segment",
+            "periodDD": {
+              "optionName": "Select a period to view",
+              "type": "dd",
+              "error_id": "HidMonth",
+              "placeholder": "",
+              "description": "",
+              "questionId": "HidMonth",
+              "selectedId": "HidMonth_1_label",
+              "options": [{
+                "ddName": "Monthly",
+                "ddId": "HidMonth_1_label"
+              }, {
+                "ddName": "Yearly",
+                "ddId": "HidMonth_2_label"
+              }]
+            },
+            "periodTableData": {
+              "HidMonth_1_label": {
+                "headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback", "Total"],
+                "currencySymbol": "?",
+                "rowDetails": [{
+                  "tbodyDetails": ["Baseline", 1814383, 112971, "Not selected", "Not selected", "Not selected", 1927354],
+                  "iconDetails": ["", "", "", "", "", ""]
+                }, {
+                  "tbodyDetails": ["Potential increase", 36285, 2256, "Not selected", "Not selected", "Not selected", 38541],
+                  "iconDetails": ["", "up", "up", "", "", ""]
+                }, {
+                  "tbodyDetails": ["Possible future baseline", 1850668, 115227, "Not selected", "Not selected", "Not selected", 1965895],
+                  "iconDetails": ["", "", "", "", "", ""]
+                }]
+              },
+              "HidMonth_2_label": {
+                "headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback", "Total"],
+                "currencySymbol": "?",
+                "rowDetails": [{
+                  "tbodyDetails": ["Baseline", 21772600, 1355650, "Not selected", "Not selected", "Not selected", 23128250],
+                  "iconDetails": ["", "", "", "", "", ""]
+                }, {
+                  "tbodyDetails": ["Potential increase", 435418, 27074, "Not selected", "Not selected", "Not selected", 462492],
+                  "iconDetails": ["", "up", "up", "", "", ""]
+                }, {
+                  "tbodyDetails": ["Possible future baseline", 22208018, 1382724, "Not selected", "Not selected", "Not selected", 23590742],
+                  "iconDetails": ["", "", "", "", "", ""]
+                }]
+              }
+            },
+            "potentialIncreaseData": {
+              "heading": "Breakdown of potential increase by segment and its components",
+              "segmentDD": {
+                "optionName": "Select a period to view",
+                "type": "dd",
+                "error_id": "Hidsegment",
+                "placeholder": "Please select",
+                "description": "Choose segment to view in detail",
+                "questionId": "Hidsegment",
+                "selectedId": "Hidsegment_1_label",
+                "options": [{
+                  "ddName": "Inbound Sales",
+                  "ddId": "Hidsegment_1_label"
+                }, {
+                  "ddName": "Outbound Sales",
+                  "ddId": "Hidsegment_2_label"
+                }, {
+                  "ddName": "Service to Sales",
+                  "ddId": "Hidsegment_3_label"
+                }, {
+                  "ddName": "Retention",
+                  "ddId": "Hidsegment_4_label"
+                }, {
+                  "ddName": "Winback",
+                  "ddId": "Hidsegment_5_label"
+                }]
+              },
+              "segmentTableChartData": {
+                "HidMonth_1_label-Hidsegment_1_label": {
+                  "headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [81786, 78515, 70663, 68543, 41126, 37013],
+                  "chartDetails": [81786, -3271, -7851, -2120, -27417, -4113]
+                },
+                "HidMonth_1_label-Hidsegment_2_label": {
+                  "headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [119000, 91630, 74220, 51212, 2561, 2305],
+                  "chartDetails": [119000, -27370, -17410, -23008, -48651, -256, 2305]
+                },
+                "HidMonth_1_label-Hidsegment_3_label": {
+                  "headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [0, 0, 0, 0, 0, 0],
+                  "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                },
+                "HidMonth_1_label-Hidsegment_4_label": {
+                  "headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [0, 0, 0, 0, 0, 0],
+                  "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                },
+                "HidMonth_1_label-Hidsegment_5_label": {
+                  "headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [0, 0, 0, 0, 0, 0],
+                  "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                },
+                "HidMonth_2_label-Hidsegment_1_label": {
+                  "headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [981433, 942175, 847958, 822519, 493512, 444160],
+                  "chartDetails": [981433, -39257, -94218, -25439, -329008, -49351, 444160]
+                },
+                "HidMonth_2_label-Hidsegment_2_label": {
+                  "headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [1428000, 1099560, 890644, 614544, 30727, 27654],
+                  "chartDetails": [1428000, -328440, -208916, -276100, -583817, -3073, 27654]
+                },
+                "HidMonth_2_label-Hidsegment_3_label": {
+                  "headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [0, 0, 0, 0, 0, 0],
+                  "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                },
+                "HidMonth_2_label-Hidsegment_4_label": {
+                  "headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [0, 0, 0, 0, 0, 0],
+                  "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                },
+                "HidMonth_2_label-Hidsegment_5_label": {
+                  "headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
+                  "chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+                  "tbodyDetails": [0, 0, 0, 0, 0, 0],
+                  "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                }
+              }
+            }
+          }
+        }
+      }
       
     </span>
 

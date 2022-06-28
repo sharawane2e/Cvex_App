@@ -25,6 +25,7 @@ import {
   getpotentialChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
+import "../CustomizedIC/CustomizedIC.scss";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -251,6 +252,41 @@ const CustomizedIC = () => {
             </div>
           </div>
         </div>
+
+        <div className="contactpage-container__inr__section">
+          {jsonData?.data?.inputData?.SalesTable?.map((table: any) => (
+            <>
+              <span>{table.heading}</span>
+              <Box className="outputTable-container" sx={{ mb: 5 }}>
+                <div className="outputTable-container__inr">
+                  {/* <div className="outputTable-container__inr__header">
+                    {jsonData?.data?.inputData?.SalesTable?.map((el: any) => {
+                      return (
+                    <div className="table-col">
+                      <span>new</span>
+                    </div>
+                    );
+                    })}
+                  </div> */}
+                  <div className="outputTable-container__inr__body">
+                    {/* <div className="table-col"> */}
+                    {table.rowDetails?.map((row: any, ri: any) => (
+                      <div className="table-col" key={ri}>
+                        {row.tbodyDetails.map((detail: any) => (
+                          <div className="table-row">
+                            <span>{detail}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                    {/* </div> */}
+                  </div>
+                </div>
+              </Box>
+            </>
+          ))}
+        </div>
+
         <div className="contactpage-container__inr__section">
           <div className="single-dropdown-section">
             <div className="single-dropdown-section__header">
@@ -285,6 +321,7 @@ const CustomizedIC = () => {
               </Grid>
             </Grid>
           </div>
+
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">

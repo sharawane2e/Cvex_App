@@ -273,6 +273,10 @@
 }
 
 .bg-StringGray {
-  background-color: #d0d0d0;
+  background-color: #d0d0d0 !important;
   border-right: 1px solid #2a2a2a;
+}
+
+.bg-white {
+  background-color: #fff !important;
 }
