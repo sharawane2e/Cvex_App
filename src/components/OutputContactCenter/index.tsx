@@ -23,6 +23,7 @@ import {
 import {
   getbaseLineChartOptions,
   getpotentialChartOptions,
+  getsegmentChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import arrowDown from "../../assets/svg/angle-double-down.svg";
@@ -90,7 +91,7 @@ const OutputContactCenter = () => {
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key]
           );
-
+          console.log(updatedJsonData.data.inputData.periodTableData[key]);
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],
@@ -129,8 +130,6 @@ const OutputContactCenter = () => {
             .segmentTableChartData
         );
 
-        console.log(mergeKey);
-
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
             dispatch(
@@ -139,13 +138,25 @@ const OutputContactCenter = () => {
                   .segmentTableChartData[mergeKey]
               )
             );
+
+            // dispatch(
+            //   setSegmentChartOptions({
+            //     data: updatedJsonData.data.inputData.potentialIncreaseData
+            //       .segmentTableChartData[mergeKey].chartDetails,
+            //     categories:
+            //       updatedJsonData.data.inputData.potentialIncreaseData
+            //         .segmentTableChartData[mergeKey].chartLabels,
+            //   })
+            // );
+            const getSeriesData = getsegmentChartOptions(
+              updatedJsonData.data.inputData.potentialIncreaseData
+                .segmentTableChartData[mergeKey]
+            );
+            console.log(getSeriesData);
             dispatch(
               setSegmentChartOptions({
-                data: updatedJsonData.data.inputData.potentialIncreaseData
-                  .segmentTableChartData[mergeKey].chartDetails,
-                categories:
-                  updatedJsonData.data.inputData.potentialIncreaseData
-                    .segmentTableChartData[mergeKey].chartLabels,
+                data: getSeriesData[0],
+                categories: getSeriesData[1],
               })
             );
           }

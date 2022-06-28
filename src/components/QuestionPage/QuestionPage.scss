@@ -8,6 +8,14 @@
       width: 280px;
       background-color: $dark-light-black;
       transition: 0.3s ease-out;
+      @include breakpoint(Ipad) {
+        margin-left: -280px;
+        transition: 0s ease-out;
+      }
+      @include breakpoint(sm-mobileonly) {
+        margin-left: -280px;
+        transition: 0s ease-out;
+      }
     }
 
     .right-panel {
@@ -15,9 +23,22 @@
       position: relative;
       padding: 20px;
       transition: 0.3s ease-out;
+      @include breakpoint(Ipad) {
+        width: 100%;
+      }
+      @include breakpoint(sm-mobileonly) {
+        width: 100%;
+        padding: 10px;
+      }
       .title {
         padding: 20px;
         margin-bottom: 0;
+        @include breakpoint(Ipad) {
+          padding-left:0;
+        }
+        @include breakpoint(sm-mobileonly) {
+          padding-left:0;
+        }
 
         h2 {
           font-size: 18px;
@@ -50,6 +71,63 @@
     }
   }
 }
+.question-wrapper {
+  .hamburger-toggle-active {
+    & ~ .main-container {
+      .right-panel {
+        @include breakpoint(Ipad) {
+          width: 100% !important;
+        }
+        @include breakpoint(sm-mobileonly) {
+          width:100% !important;
+        }
+      }
+      .left-panel {
+        @include breakpoint(Ipad) {
+          margin-left: 0px !important;
+          position: fixed;
+          height: 100%;
+          z-index: 99;
+        }
+        @include breakpoint(sm-mobileonly) {
+          margin-left: 0px !important;
+          position: fixed;
+          height: 100%;
+          z-index: 99;
+        }
+      }
+    }
+  }
+}
+@include breakpoint(Ipad) {
+  .leftPanel .progressbar-container .progressbar {
+    width: 71% !important;
+  }
+  .leftPanel {
+    width: 63% !important;
+}
+}
+@include breakpoint(sm-mobileonly) {
+  .leftPanel .progressbar-container .progressbar {
+    width: 100% !important;
+  }
+  .leftPanel {
+    width: 100% !important;
+    height: 45px;
+  }
+  .css-eglki6-MuiLinearProgress-root {
+    margin-left: 0 !important;
+  }
+  .progressbar-text.css-pazuet {
+    left: 20px !important;
+    margin-top: 5px !important;
+  }
+  .css-15v22id-MuiAccordionDetails-root {
+    padding:15px 0px 10px !important;
+  }
+}
+
+
 
 .justi {
   justify-content: end !important;
@@ -60,6 +138,10 @@
   min-height: 20px !important;
   margin-top: 10px !important;
   margin-bottom: 10px !important;
+  @include breakpoint(sm-mobileonly) {
+    margin-bottom:0px !important;
+    padding: 0 5px !important;
+}
 }
 .mar-right {
   margin-right: 5px !important;

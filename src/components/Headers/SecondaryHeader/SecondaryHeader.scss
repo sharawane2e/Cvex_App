@@ -98,15 +98,32 @@ $color: #b3e5fc;
     @include icon(3px, 28px);
     border-radius: 4px;
     left: 15px;
-    
+    @include breakpoint(Ipad) {
+      background:transparent;
+    }
+    @include breakpoint(sm-mobileonly) {
+      background:transparent;
+    }
     &:before{
       @include icon-before(3px, 28px, -10px);
       border-radius: 4px;
+      @include breakpoint(Ipad) {
+        transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
+      }
+      @include breakpoint(sm-mobileonly) {
+        transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
+      }
     }
     
     &:after{
       @include icon-after(3px, 28px, 10px);
       border-radius: 4px;
+      @include breakpoint(Ipad) {
+        transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
+      }
+      @include breakpoint(sm-mobileonly) {
+        transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
+      }
     }
   }
   
@@ -115,13 +132,31 @@ $color: #b3e5fc;
       transition-duration: 0.5s;
       background: transparent;
       color: #fff;
+      @include breakpoint(Ipad) {
+        background: #fff;
+      }
+      @include breakpoint(sm-mobileonly) {
+        background: #fff;
+      }
       
       &:before{
         transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
+        @include breakpoint(Ipad) {
+          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        }
+        @include breakpoint(sm-mobileonly) {
+          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        }
       }
 
       &:after{
         transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
+        @include breakpoint(Ipad) {
+          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        }
+        @include breakpoint(sm-mobileonly) {
+          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        }
       }
     }
   }

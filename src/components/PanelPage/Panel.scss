@@ -7,11 +7,14 @@
         padding-top: 150px;
         @include breakpoint(sm-mobileonly) {
           padding-top: 205px;
+          width: 100%;
         }
         .btn-container {
           display: flex;
           justify-content: center;
-
+          @include breakpoint(sm-mobileonly) {
+             display:block;
+          }
           .custom-nav-btn {
               font-size: 12px;
               text-transform: capitalize;
@@ -22,6 +25,11 @@
               background-color: $dark-white;
             color: $dark-black;
             font-weight: $font-bold;
+            @include breakpoint(sm-mobileonly) {
+              min-width:100%;
+              margin-right:0;
+              margin-bottom:15px;
+           }
               &:hover {
                 background-color: $blue-color;
                 color: $white-color;
