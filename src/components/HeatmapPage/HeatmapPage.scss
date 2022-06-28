@@ -12,6 +12,9 @@ body {
 
 .heatmap-container{
     padding: 20px 50px;
+    @include breakpoint(sm-mobileonly) {
+        padding: 15px 10px;
+     }
 }
 
 .bg-dark{
@@ -106,10 +109,10 @@ body {
         top: -4px;
     }
     .marker-one{
-        left: 0;
+        left: 31px;
     }
     .marker-two{
-        left: 37.5%;
+        left:32.5%;
         width: 140px;
         bottom: 0;
     }
@@ -131,12 +134,12 @@ body {
     .circle_two{
         border: 1px solid #1d3fe7;
         background-color: #1d3fe7;
-        left: 37.5%;
+        left:28.5%;
     }
     .circle_three{
         border: 1px solid #02a6f2;
         background-color: #02a6f2;
-        left: 50%;
+        left: 47%;
     }
     sup {display: contents;}
    .custom-table{
@@ -199,6 +202,7 @@ body {
         padding-left: 20px;
         display: flex;
         font-size: 12px;
+        font-weight: bold;
     }
     .custom_image{
         display: flex;
@@ -373,6 +377,7 @@ body {
         .marker-two {
             left: 37.5%;
             bottom: 10px;
+            width: 100px;
         }
         
         .marker-three {
@@ -446,7 +451,13 @@ body {
             width: 20px;
             top: -9px;
         }
-        
+        .marker-two {
+            left: 28.5%;
+            width: 114px;
+        }
+        .heatmap-container {
+            padding: 20px 30px;
+        }
         .track {
             height: 3px;
         }
