@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader";
 import Coaching from "../../assets/svg/heatmapSvg/Coaching.svg";
+import { Footer } from "../Footer";
+import CustomButton from "../UI/CustomButton";
 
 const HeatmapPage = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -10,11 +12,25 @@ const HeatmapPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerText)
     );
+       // @ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
     // console.log(jsonData.data.inputData.capabilities)
   }, []);
 
+  const handleForwardClick = () => {
+    if (jsonData !== "") {
+        // @ts-ignore
+        document.getElementById("navText").value =
+          jsonData?.data?.footerData?.forwardInputId;
+        // @ts-ignore
+        document.getElementById("forwardbutton").disabled = false;
+        // @ts-ignore
+        document.getElementById("forwardbutton").click();
+    }
+  }
+
   return (
-    <div className="question-wrapper">
+    <div className="heatmap-wrapper">
       <SecondaryHeader sidebar={false} />
       <div className="heatmap-container">
         <div className="custom_middle_container">
@@ -82,7 +98,7 @@ const HeatmapPage = () => {
                           ? "headSeven"
                           : "headEight"
                       }>
-                    <span className="headingSerialNo">{i + 1 + "."}</span>
+                    <span className="headingSerialNo">{cap.serialNumber}</span>
                     <p>{cap.capability}</p>
                   </div>
                   {cap.skills.map((skill: any) => (
@@ -116,6 +132,17 @@ const HeatmapPage = () => {
           </div>
         </div>
       </div>
+      <Footer>
+        <div className="button-container">
+          <div className="button-container">
+            <div className="button-inr-btn">
+              <CustomButton className="submitButton" onClick={handleForwardClick()}>
+                {jsonData.data?.footerData?.forwardTxt}
+              </CustomButton>
+            </div>
+          </div>
+        </div>
+      </Footer>
     </div>
   );
 };

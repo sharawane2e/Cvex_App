@@ -10,6 +10,7 @@ import CustomButton from "../UI/CustomButton";
 import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
 import Tooltip from "@mui/material/Tooltip";
 import CustomPopup from "../UI/CustomPopup";
+import DDD from "../UI/ddd";
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -70,7 +71,7 @@ const GI = () => {
     let selectedIdArr = selectedId.split(",");
 
     options.forEach(function (option: any) {
-      if (selectedIdArr.indexOf(option.ddId) != -1) {
+      if (selectedIdArr.includes(option.ddId)) {
         selectedDDName.push(option["ddName"]);
       }
     });
@@ -88,7 +89,7 @@ const GI = () => {
 
     // selectedDDName = ["A7_3", "A7_5"];
 
-    console.log(selectedId);
+    console.log(selectedIdArr)
 
     return selectedDDName;
   };
@@ -919,6 +920,7 @@ const GI = () => {
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
                                   displayEmpty
+                                  // value={"A7_6"}
                                   value={getselectedDDNameMulti(
                                     genQues.options2,
                                     genQues.selectedId2
@@ -938,22 +940,26 @@ const GI = () => {
                                     jsonData.data.rightData.questions.forEach(
                                       (CV: any, idx: number) => {
                                         CV.selectedId3 = "";
-                                        if (
-                                          CV.questionId2 == genQues.questionId2
-                                        ) {
+                                        if (CV.questionId2 == genQues.questionId2) {
+                                          let arr = genQues.selectedId2.split(",");
                                           CV.options2.forEach((option: any) => {
-                                            const ddSelectedIndex =
+                                            const ddSelectedIndex = 
                                               event.target.value.indexOf(
                                                 option.ddName
                                               );
                                             if (ddSelectedIndex != -1) {
                                               dropdownIdsArr.push(option.ddId);
                                             }
+                                            // if(arr.includes(option.ddId)){
+                                            //   dropdownIdsArr.push(option.ddId);
+                                            // }
                                           });
                                           checkCheckboxes(dropdownIdsArr);
                                         }
                                       }
                                     );
+
+                                    console.log(event.target);
 
                                     const updatedQuestionsArray: any[] = [];
                                     jsonData.data.rightData.questions.forEach(
@@ -1148,6 +1154,7 @@ const GI = () => {
                       </Grid>
                     </>
                   );
+                          
               })}
             </Grid>
           </div>

@@ -1,17 +1,9 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    padding:0;
-    margin:0;
-}
-
 .heatmap-container{
     padding: 20px 50px;
+
+    // padding: 20px 50px;
+    // height: calc(100vh - 180px);
+    // overflow-y: auto;
 }
 
 .bg-dark{
@@ -56,9 +48,9 @@ body {
     margin-right: 4px;
 }
 .custom_middle_container{
-    width: 99%;
-    margin: 0px auto;
-    padding-top: 10px;
+    width: 100%;
+    // margin: 0px auto;
+    // padding-top: 10px;
 }
 .capability_heatmap_container {
     width:100%;
@@ -140,7 +132,7 @@ body {
     }
     sup {display: contents;}
    .custom-table{
-        margin-top: 30px;
+// /        margin-top: 30px;
         display: flex;
     }
     .custom-row{
@@ -261,6 +253,12 @@ body {
     }
     .markers .div-marker {
         position: absolute;
+    }
+
+    .table_container {
+        height: calc(100vh - 308px);
+        overflow-y: auto;
+        padding-bottom: 10px;
     }
 /* ==== Custom Checkbox =========*/
 .checkbox_container{
