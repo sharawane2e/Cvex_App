@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader";
 import Coaching from "../../assets/svg/heatmapSvg/Coaching.svg";
+import { Footer } from "../Footer";
+import CustomButton from "../UI/CustomButton";
 
 const HeatmapPage = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -8,10 +10,22 @@ const HeatmapPage = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById("jsonData")?.innerText)
     );
     // console.log(jsonData.data.inputData.capabilities)
   }, []);
+
+  const handleForwardClick = () => {
+    if (jsonData !== "") {
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData?.data?.footerData?.forwardInputId;
+      // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
+    }
+  };
 
   return (
     <div className="question-wrapper">
@@ -65,8 +79,28 @@ const HeatmapPage = () => {
             {jsonData?.data?.inputData?.capabilities?.map(
               (cap: any, i: any) => (
                 <div key={i} className="custom-row">
-                  <div className="custom-col-head" id="headOne">
-                    {cap.capability}
+                  <div
+                    className="custom-col-head"
+                    id={
+                      i + 1 == 1
+                        ? "headOne"
+                        : i + 1 == 2
+                        ? "headTwo"
+                        : i + 1 == 3
+                        ? "headThree"
+                        : i + 1 == 4
+                        ? "headFour"
+                        : i + 1 == 5
+                        ? "headFive"
+                        : i + 1 == 6
+                        ? "headSix"
+                        : i + 1 == 7
+                        ? "headSeven"
+                        : "headEight"
+                    }
+                  >
+                    <span className="headingSerialNo">{cap.serialNumber}</span>
+                    <p>{cap.capability}</p>
                   </div>
                   {cap.skills.map((skill: any) => (
                     <div
@@ -99,6 +133,20 @@ const HeatmapPage = () => {
           </div>
         </div>
       </div>
+      <Footer>
+        <div className="button-container">
+          <div className="button-container">
+            <div className="button-inr-btn">
+              <CustomButton
+                className="submitButton"
+                onClick={handleForwardClick()}
+              >
+                {jsonData.data?.footerData?.forwardTxt}
+              </CustomButton>
+            </div>
+          </div>
+        </div>
+      </Footer>
     </div>
   );
 };
