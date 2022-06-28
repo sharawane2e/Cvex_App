@@ -87,7 +87,8 @@ const CustomizedIC = () => {
 
           dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
           const getSeriesData = getbaseLineChartOptions(
-            updatedJsonData.data.inputData.periodTableData[key]
+            updatedJsonData.data.inputData.periodTableData[key],
+            updatedJsonData.data.inputData.currencySymbol
           );
 
           dispatch(
@@ -96,16 +97,16 @@ const CustomizedIC = () => {
               categories: getSeriesData[1],
             })
           );
-          const getSeriesPotentialData = getpotentialChartOptions(
-            updatedJsonData.data.inputData.periodTableData[key]
-          );
+          // const getSeriesPotentialData = getpotentialChartOptions(
+          //   updatedJsonData.data.inputData.periodTableData[key]
+          // );
 
-          dispatch(
-            setPotentialChartOptions({
-              data: getSeriesPotentialData[0],
-              categories: getSeriesPotentialData[1],
-            })
-          );
+          // dispatch(
+          //   setPotentialChartOptions({
+          //     data: getSeriesPotentialData[0],
+          //     categories: getSeriesPotentialData[1],
+          //   })
+          // );
         }
       });
     }

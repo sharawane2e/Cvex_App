@@ -1,158 +1,150 @@
-import Highcharts from 'highcharts';
+export const getbaseChart = (
+  rowDetails: any,
+  colorArray: any,
+  currencySymbol: any
+): any => {
+  const labelsFormate = {
+    enabled: true,
+    bold: false,
+    color: "black",
+    inside: false,
+    x: 0,
+    align: "left",
+    format: `{point.y:,.2f} ${currencySymbol}`,
+  };
+  const seriesValue1 = {
+    y: rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
+    color: colorArray[0],
+    dataLabels: {
+      ...labelsFormate,
+    },
+  };
+  const seriesValue2 = {
+    y: rowDetails[rowDetails.length - 1].tbodyDetails[
+      rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
+    ],
+    color: colorArray[1],
+    dataLabels: {
+      ...labelsFormate,
+    },
+  };
+  return [seriesValue1, seriesValue2];
+};
 
-export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
+export const getbaseLineChartOptions = (
+  baseLineChartOptions: any,
+  currencySymbol: any
+): any => {
   const baselineHeading = baseLineChartOptions.headings;
-  const seriesName: any = [];
-  const seriesY: any = [];
-  const SeriesData: any = [];
+  const categorieName: any = [];
+  const data: any = [];
   const categories: any = [];
-  const colorsArr: any = [];
+  const series: any = [];
 
   for (let i = 1; i < baselineHeading.length; i++) {
-    seriesName.push(baselineHeading[i]);
+    categorieName.push(baselineHeading[i]);
   }
-  for (let i = 0; i < baseLineChartOptions.rowDetails.length; i++) {
-    let newArrayData: any = [];
-    const baselinedata = baseLineChartOptions.rowDetails[i].tbodyDetails;
-    // console.log(baselinedata);
-    for (let j = 1; j < baselinedata.length; j++) {
-      if (typeof baselinedata[j] == 'string') {
-        newArrayData.push(0);
-      } else {
-        newArrayData.push(baselinedata[j]);
-      }
-    }
-    // seriesY.push(chartArrayData);
-    // colorsArr.push(colorDataData);
-    // console.log(colorDataData)
-    // seriesY.splice(1,1)
-    // colorsArr.splice(1,1)
+  const baseLineChart = baseLineChartOptions.rowDetails[0];
+  const baseLineChartColor = baseLineChartOptions.rowDetails[0].chartColorArray;
 
-    for (
-      let index = 0;
-      index < baseLineChartOptions.rowDetails[i]?.chartDetails.length;
-      index++
-    ) {
-      //   seriesY.forEach((el: any,i:number) => {
-      //     categories.push(seriesName[index]);
-      //     SeriesData.push({
-      //       name: seriesName[index],
-      //       y: el[i],
-      //       color: colorsArr[index],
-      //     });
-      //   });
-      // }
-    }
-  }
-  console.log(colorsArr);
-  // seriesY.forEach((el: any, index: any) => {
-  //   categories.push(seriesName[index]);
-  //   SeriesData.push({
-  //     name: seriesName[index],
-  //     y: el,
-  //     // color: "red",
-  //   });
-  // });
-  // var blankIndex = colorsArr.indexOf("");
-  // colorsArr.splice(blankIndex,1)
-
-  // seriesY.forEach((el: any, index: any) => {
-  //   el?.forEach((element:any)=> {
-  //     console.log(el)
-  //   });
-  // categories.push(seriesName);
-  // SeriesData.push({
-  //   name: seriesName,
-  //   y: el,
-  //   color: colorsArr[index],
-  // });
-  // });
-  // console.log(SeriesData)
-  return [SeriesData, categories];
-};
-export const getpotentialChartOptions = (potentialChartOptions: any): any => {
-  const baselineHedding = potentialChartOptions.headings;
-  const seriesName: any = [];
-  const seriesY: any = [];
-  const SeriesData: any = [];
-  const categories: any = [];
-
-  for (let i = 1; i < baselineHedding.length; i++) {
-    seriesName.push(baselineHedding[i]);
-  }
-  for (let i = 0; i < potentialChartOptions.rowDetails.length; i++) {
-    let newArrayData: any = [];
-    const baselinedata = potentialChartOptions.rowDetails[i].tbodyDetails;
-    // console.log(baselinedata);
-    for (let j = 1; j < baselinedata.length; j++) {
-      if (typeof baselinedata[j] == 'string') {
-        newArrayData.push(0);
-      } else {
-        newArrayData.push(baselinedata[j]);
-      }
-    }
-    seriesY.push(newArrayData);
-  }
-
-  seriesY[seriesY.length - 1].forEach((el: any, index: any) => {
-    categories.push(seriesName[index]);
-    SeriesData.push({
-      name: seriesName[index],
-      y: el,
-      // color: "red",
+  baseLineChart?.chartDetails.forEach((detail: any, Index: any) => {
+    categories.push(categorieName[Index]);
+    data.push({
+      name: categorieName[Index],
+      y: detail,
+      color: baseLineChartColor[Index],
     });
   });
-  return [SeriesData, categories];
+
+  series.push({
+    data,
+    dataLabels: {
+      enabled: true,
+      color: "black",
+      inside: false,
+      y: 50,
+      align: "center",
+      format: `{point.y:,.2f} ${currencySymbol}`,
+    },
+  });
+  return [series, categories];
+};
+export const getpotentialChartOptions = (
+  potentialChartOptions: any,
+  currencySymbol: any
+): any => {
+  const baselineHedding = potentialChartOptions.headings;
+  const categorieName: any = [];
+  const data: any = [];
+  const categories: any = [];
+  const series: any = [];
+
+  for (let i = 1; i < baselineHedding.length; i++) {
+    categorieName.push(baselineHedding[i]);
+  }
+
+  const baseLineChart = potentialChartOptions.rowDetails[2];
+  const baseLineChartColor =
+    potentialChartOptions.rowDetails[2].chartColorArray;
+
+  baseLineChart?.chartDetails.forEach((detail: any, Index: any) => {
+    categories.push(categorieName[Index]);
+    data.push({
+      name: categorieName[Index],
+      y: detail,
+      color: baseLineChartColor[Index],
+    });
+  });
+  series.push({
+    data,
+    dataLabels: {
+      enabled: true,
+      color: "#000000",
+      inside: false,
+      y: 50,
+      align: "center",
+      format: `{point.y:,.2f} ${currencySymbol}`,
+    },
+  });
+
+  return [series, categories];
 };
 export const getsegmentChartOptions = (
   segmentChartOptions: any,
-  currencySymbol: any,
+  currencySymbol: any
 ): any => {
   const segementHeading = segmentChartOptions.chartLabels;
   const seriesName: any = [];
-  const seriesY: any = [];
-  const SeriesData: any = [];
+  const data: any = [];
+  const series: any = [];
   const categories: any = [];
   for (let i = 0; i < segementHeading.length; i++) {
     seriesName.push(segementHeading[i]);
   }
+  const chartDetails = segmentChartOptions.chartDetails;
+  const chartColor = segmentChartOptions.chartColorArray;
 
-  for (let i = 0; i < segmentChartOptions.chartDetails.length; i++) {
-    let newArrayData: any = [];
-    const segmentData = segmentChartOptions.chartDetails[i];
-    if (typeof segmentData == 'string') {
-      newArrayData.push(0);
-    } else {
-      newArrayData.push(segmentData);
-    }
-    seriesY.push(newArrayData);
-  }
-
-  seriesY.forEach((el: any, index: any) => {
-    //console.log('el', el);
-    categories.push(seriesName[index]);
-    SeriesData.push({
-      name: seriesName[index],
-      y: el[0],
-
-      // color: "red",
+  chartDetails.forEach((detail: any, Index: number) => {
+    categories.push(seriesName[Index]);
+    data.push({
+      y: detail,
+      name: seriesName[Index],
+      color: chartColor[Index],
     });
   });
-  console.log('SeriesData', {
-    data: SeriesData,
+
+  series.push({
+    data,
     dataLabels: {
       enabled: true,
-      color: 'black',
+      color: "black",
       inside: false,
+
       y: 50,
-      align: 'center',
-      // format: `{point.y:,.2f} ${currencySymbol}`,
-      formatter: function () {
-        return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
-      },
+      align: "center",
+      format: `{point.y:,.2f} ${currencySymbol}`,
     },
-    categories,
   });
 
-  return [SeriesData, categories];
+  return [series, categories];
 };

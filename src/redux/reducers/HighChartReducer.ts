@@ -1,12 +1,14 @@
-import { createReducer } from '@reduxjs/toolkit';
-import Highcharts from 'highcharts';
+import { createReducer } from "@reduxjs/toolkit";
+import Highcharts from "highcharts";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
   setPotentialChartOptions,
   setSegmentChartOptions,
-  setChartSymbol,
-} from '../actions/HighChartAction';
+  setCharBasetTitle,
+  setCharPotentialtTitle,
+  setCharcategory,
+} from "../actions/HighChartAction";
 
 export interface IChartState {
   barChartOptions: any;
@@ -17,18 +19,18 @@ export interface IChartState {
 
 export const defaultPlotOptions = {
   series: {
-    stacking: 'normal',
+    stacking: "normal",
   },
   dataLabels: {
     formatter: function (y: any) {
-      return Math.abs(y) + '€';
+      return Math.abs(y) + "€";
     },
   },
 };
 
-export const defaultXFontSize = { style: { fontSize: '16px' } };
+export const defaultXFontSize = { style: { fontSize: "16px" } };
 export const defaultYFontSize = {
-  style: { fontSize: '16px', fontWeight: 'bold' },
+  style: { fontSize: "16px", fontWeight: "bold" },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -40,32 +42,22 @@ export const defaultYAxis = {
   title: false,
   plotLines: [
     {
-      color: '#000000',
+      color: "#000000",
       value: 0,
       zIndex: 5,
     },
   ],
 };
-export const defaultYDataLabels = {
-  enabled: true,
-  color: 'black',
-  inside: false,
-  // y: 50,
-  align: 'center',
-  // format: "{point.y:,.2f}",
-  formatter: function (this: any) {
-    return Math.abs(this.y) + '€';
-  },
-};
+
 export const defaultXDataLabels = {
   enabled: true,
-  color: 'black',
+  color: "black",
   inside: false,
   x: 50,
-  align: 'center',
+  align: "center",
   // format: "{point.y:,.2f}",
   formatter: function (this: any) {
-    return Math.abs(this.y) + '€';
+    return Math.abs(this.y) + "€";
   },
 };
 
@@ -74,19 +66,26 @@ export const defaultMargin = { marginTop: 40 };
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
-      type: 'bar',
+      type: "bar",
     },
     title: {
-      text: '',
+      text: "",
     },
     xAxis: {
       tickLength: 0,
       gridLineWidth: 0,
-      categories: ['Baseline', 'Possible future baseline'],
+      categories: [],
+      labels: {
+        style: {
+          color: "#2A2A2A",
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      },
     },
     yAxis: {
-      ...defaultYAxis,
-      ...defaultXFontSize,
+      visible: false,
+      reversedStacks: false,
     },
 
     plotOptions: {
@@ -99,36 +98,28 @@ const initialState: IChartState = {
     series: [
       {
         data: [],
-        dataLabels: {
-          enabled: true,
-          color: 'black',
-          inside: false,
-          x: 0,
-          align: 'left',
-          format: '{point.y:,.2f}€',
-        },
         legendIndex: 0,
       },
     ],
   },
   baseLineChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
     },
     title: {
-      text: 'BASELINE',
+      text: "",
       useHTML: true,
       style: {
-        color: '#fff',
-        'background-color': '#ccc',
-        fontWeight: 'bold',
+        color: "#fff",
+        "background-color": "#ccc",
+        fontWeight: "bold",
+        "text-transform": "uppercase",
       },
     },
     xAxis: {
       tickLength: 0,
-      categories: '',
+      categories: "",
       gridLineWidth: 0,
-      // categories: ["asd", "asd"], gridLineWidth: 0
       labels: {
         ...defaultXFontSize,
       },
@@ -141,43 +132,35 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: '<b>€{point.y:,.2f}</b>',
+      pointFormat: "<b>€{point.y:,.2f}</b>",
     },
     series: [
       {
         data: [],
-        dataLabels: {
-          enabled: true,
-          color: 'black',
-          inside: false,
-          y: -50,
-          align: 'center',
-          format: '{point.y:,.2f}€',
-        },
       },
     ],
   },
   potentialChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
     },
     title: {
-      text: 'POTENTIAL FUTURE BASELINE',
+      text: "",
       useHTML: true,
       style: {
-        color: '#fff',
-        'background-color': '#027AB1',
-        fontWeight: 'bold',
+        color: "#fff",
+        "background-color": "#027AB1",
+        fontWeight: "bold",
+        "text-transform": "uppercase",
       },
     },
     xAxis: {
       tickLength: 0,
-      type: 'category',
+      type: "category",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
       },
-      // categories: ["asd", "asd"], gridLineWidth: 0
     },
     yAxis: {
       ...defaultYAxis,
@@ -187,35 +170,26 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: '<b>€{point.y:,.2f}</b>',
+      pointFormat: "<b>€{point.y:,.2f}</b>",
     },
     series: [
       {
         data: [],
-        dataLabels: {
-          enabled: true,
-          color: 'black',
-          inside: false,
-          y: -50,
-          align: 'center',
-          // format: '{point.y:,.2f}€',
-        },
       },
     ],
   },
   segmentChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
     },
-    title: '',
+    title: "",
     xAxis: {
       tickLength: 0,
-      type: 'category',
+      type: "category",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
       },
-      // categories: ["asd", "asd"], gridLineWidth: 0
     },
     yAxis: {
       tickInterval: 0,
@@ -223,29 +197,17 @@ const initialState: IChartState = {
         enabled: false,
       },
       gridLineWidth: 0,
-      title: '',
+      title: "",
     },
     legend: {
       enabled: false,
     },
     tooltip: {
-      pointFormat: '<b>€{point.y:,.2f}</b>',
+      pointFormat: "<b>€{point.y:,.2f}</b>",
     },
     series: [
       {
         data: [],
-        dataLabels: {
-          enabled: true,
-          color: 'black',
-          inside: true,
-          //y: 50,
-          align: 'center',
-
-          // format: "{point.y:,.2f}",
-          // formatter: function (this: any) {
-          //   return Math.abs(this.y) + '€';
-          // },
-        },
       },
     ],
   },
@@ -300,30 +262,41 @@ const HighChartReducer = createReducer(initialState, (builder) => {
       },
       series: [
         {
-          data: [...action.payload],
-          // dataLabels: {
-          //   // ...state.segmentChartOptions.series.dataLabels,
-          //   format: action.payload,
-          // },
+          ...action.payload,
         },
       ],
     },
   }));
-  // builder.addCase(setChartSymbol, (state, action) => {
-  //   return {
-  //     ...state,
-  //     segmentChartOptions: {
-  //       ...state.segmentChartOptions,
-  //       series: {
-  //         ...state.segmentChartOptions,
-  //         dataLabels: {
-  //           format: action.payload,
-  //         },
-  //       },
-  //     },
-  //     // chartOptions,
-  //   };
-  // });
+  builder.addCase(setCharBasetTitle, (state, action) => {
+    return {
+      ...state,
+      baseLineChartOptions: {
+        title: {
+          text: action.payload,
+        },
+      },
+    };
+  });
+  builder.addCase(setCharPotentialtTitle, (state, action) => {
+    return {
+      ...state,
+      potentialChartOptions: {
+        title: {
+          text: action.payload,
+        },
+      },
+    };
+  });
+  builder.addCase(setCharcategory, (state, action) => {
+    return {
+      ...state,
+      barChartOptions: {
+        xAxis: {
+          categories: action.payload,
+        },
+      },
+    };
+  });
 });
 
 export default HighChartReducer;
