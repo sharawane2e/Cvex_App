@@ -88,26 +88,10 @@ export const getsegmentChartOptions = (segmentChartOptions: any): any => {
   
   seriesY.forEach((el: any, index: any) => {
     categories.push(seriesName[index]);
-    // if(seriesY[0][0]==el){
-    //   SeriesData.push({
-    //     name: seriesName[0],
-    //     y: el[0],
-    //     isSum:true
-    //   });
-    // }
-    if(seriesY[seriesY.length-1][0]==el){
-      SeriesData.push({
-        name: seriesName[index],
-        // y: false,
-       isSum:true
-      });
-    }
-    // else{
       SeriesData.push({
         name: seriesName[index],
         y: el[0]
       });
-    // }
   });
 
   return [SeriesData, categories];

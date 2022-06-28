@@ -69,11 +69,11 @@ const GI = () => {
     let selectedDDName: string[] = [];
     let selectedIdArr = selectedId.split(",");
 
-    // options.forEach(function (option: any) {
-    //   if (selectedIdArr.indexOf(option.ddId) != -1) {
-    //     selectedDDName.push(option["ddName"]);
-    //   }
-    // });
+    options.forEach(function (option: any) {
+      if (selectedIdArr.indexOf(option.ddId) != -1) {
+        selectedDDName.push(option["ddName"]);
+      }
+    });
 
     // options?.forEach((element: any) => {
     //   if (element.ddId == selectedId) {
@@ -86,22 +86,22 @@ const GI = () => {
     //   selectedDDName.push(options[ind].ddName);
     // });
 
-    selectedDDName = ["A7_3", "A7_5"];
+    // selectedDDName = ["A7_3", "A7_5"];
 
-    console.log(selectedIdArr);
+    console.log(selectedId);
 
     return selectedDDName;
   };
 
   const uncheckCheckboxes = (options: any[]) => {
-    options.forEach((currObj: any) => {
-      let elemId = currObj.ddId;
-      let elem = document.getElementById(elemId);
-      if (elem) {
-        // @ts-ignore
-        elem.checked = false;
-      }
-    });
+    // options.forEach((currObj: any) => {
+    //   let elemId = currObj.ddId;
+    //   let elem = document.getElementById(elemId);
+    //   if (elem) {
+    //     // @ts-ignore
+    //     elem.checked = false;
+    //   }
+    // });
   };
 
   const checkCheckboxes = (ddIdsArr: any[]) => {
@@ -113,6 +113,7 @@ const GI = () => {
         elem.checked = true;
       }
     });
+    console.log("ok");
   };
 
   const mapContainsId = (map: any, selectedId: any) => {
@@ -990,9 +991,9 @@ const GI = () => {
                                       <Checkbox
                                         value={element?.ddName}
                                         checked={
-                                          genQues.selectedId2.indexOf(
+                                          genQues.selectedId2.includes(
                                             element.ddId
-                                          ) != -1
+                                          )
                                             ? true
                                             : false
                                         }
@@ -1003,7 +1004,6 @@ const GI = () => {
                                           fontSize: "12px",
                                         }}
                                         className="cutom-checkbox"
-                                        //onChange={setServicesName(element?.ddName)}
                                       />
                                       <ListItemText
                                         primary={element?.ddName}

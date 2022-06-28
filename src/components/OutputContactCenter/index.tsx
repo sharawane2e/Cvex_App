@@ -84,14 +84,14 @@ const OutputContactCenter = () => {
             rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
           const seriesValue2 =
             rowDetails[rowDetails.length - 1].tbodyDetails[
-            rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
+              rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
             ];
 
           dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key]
           );
-          console.log(updatedJsonData.data.inputData.periodTableData[key])
+          console.log(updatedJsonData.data.inputData.periodTableData[key]);
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],
@@ -130,7 +130,6 @@ const OutputContactCenter = () => {
             .segmentTableChartData
         );
 
-
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
             dispatch(
@@ -149,9 +148,11 @@ const OutputContactCenter = () => {
             //         .segmentTableChartData[mergeKey].chartLabels,
             //   })
             // );
-            const getSeriesData = getsegmentChartOptions(updatedJsonData.data.inputData.potentialIncreaseData
-              .segmentTableChartData[mergeKey])
-            console.log(getSeriesData)
+            const getSeriesData = getsegmentChartOptions(
+              updatedJsonData.data.inputData.potentialIncreaseData
+                .segmentTableChartData[mergeKey]
+            );
+            console.log(getSeriesData);
             dispatch(
               setSegmentChartOptions({
                 data: getSeriesData[0],
@@ -183,8 +184,8 @@ const OutputContactCenter = () => {
                     onChange={(ddId: string) => handleDDChange(ddId)}
                   />
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </Grid>
             </Grid>
           </div>
@@ -224,14 +225,14 @@ const OutputContactCenter = () => {
                               <div className="table-row">
                                 <div
                                   className={
-                                    rowDetail.iconDetails[rowIndex] == "up"
+                                    rowDetail.iconDetails[i] == "up"
                                       ? "arrowUpicon"
-                                      : rowDetail.iconDetails[rowIndex] ==
-                                        "down"
-                                        ? "arrowDownicon"
-                                        : "emptyicon"
+                                      : rowDetail.iconDetails[i] == "down"
+                                      ? "arrowDownicon"
+                                      : "emptyicon"
                                   }
                                 ></div>
+
                                 <div>
                                   <span>{tbodyDetail}</span>
                                   <span className="currency-symbol">
@@ -240,16 +241,16 @@ const OutputContactCenter = () => {
                                 </div>
                               </div>
                             ) : (
-                                <div
-                                  className={
-                                    i > 0 && typeof tbodyDetail == "string"
-                                      ? "table-row bg-StringGray"
-                                      : "table-row"
-                                  }
-                                >
-                                  <span>{tbodyDetail}</span>
-                                </div>
-                              );
+                              <div
+                                className={
+                                  i > 0 && typeof tbodyDetail == "string"
+                                    ? "table-row bg-StringGray"
+                                    : "table-row"
+                                }
+                              >
+                                <span>{tbodyDetail}</span>
+                              </div>
+                            );
                           }
                         )}
                       </div>
@@ -312,8 +313,8 @@ const OutputContactCenter = () => {
                     onChange={(ddId: string) => handleDropDownChange(ddId)}
                   />
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </Grid>
             </Grid>
           </div>
@@ -322,18 +323,18 @@ const OutputContactCenter = () => {
               <div className="outputTable-container__inr__header">
                 {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
                   return (
-                    <div className="table-col">
+                    <div className="table-col bg-white">
                       <span>{el}</span>
                     </div>
                   );
                 })}
               </div>
               <div className="outputTable-container__inr__body">
-                <div className="table-col">
+                <div className="table-col bg-white">
                   {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
                     (el: any) => {
                       return (
-                        <div className="table-row">
+                        <div className="table-row bg-white">
                           <span>{el}</span>
                         </div>
                       );

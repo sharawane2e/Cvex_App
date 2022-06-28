@@ -113,7 +113,8 @@
                 border-right: none;
                 border-left: 1px solid #2a2a2a;
                 border-bottom: 1px solid #2a2a2a;
-                display: inline-block;
+                display: flex;
+                justify-content: space-around;
                 min-width: 20%;
                 text-align: center;
                 padding: 10px 5px 10px 5px;
@@ -127,9 +128,9 @@
                 &:first-child {
                   text-align: left;
                 }
-                &:nth-child(even) {
-                  background-color: #d0d0d0;
-                }
+                // &:nth-child(even) {
+                //   background-color: #d0d0d0;
+                // }
                 &:last-child {
                   background-color: #71d2f1;
                   border-right: 1px solid #2a2a2a;
@@ -248,4 +249,34 @@
       padding-top: 20px;
     }
   }
+}
+
+.arrowUpicon {
+  background-image: url("https://ui.e2eresearch.com/Mckinsey/assets/svg/angle-double-up.svg");
+  height: 15px;
+  width: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.arrowDownicon {
+  background-image: url("https://ui.e2eresearch.com/Mckinsey/assets/svg/angle-double-down.svg");
+  height: 15px;
+  width: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.emptyicon {
+  height: 20px;
+  width: 16px;
+}
+
+.bg-StringGray {
+  background-color: #d0d0d0 !important;
+  border-right: 1px solid #2a2a2a;
+}
+
+.bg-white {
+  background-color: #fff !important;
 }
