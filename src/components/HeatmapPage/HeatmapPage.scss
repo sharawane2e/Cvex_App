@@ -112,12 +112,12 @@ body {
         left: 31px;
     }
     .marker-two{
-        left:32.5%;
+        left:30.5%;
         width: 140px;
         bottom: 0;
     }
     .marker-three{
-        left: 50%;
+        left:49%;
     }
     .marker-ball{
         height: 27px;
@@ -196,7 +196,12 @@ body {
         min-height: 77px;
         border-right: 2px solid #fff;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        padding-top: 10px;
+        .headingSerialNo {
+            margin-right: 5px;
+            // align-self: baseline;
+        }
     }
     .checkbox{
         padding-left: 20px;
@@ -245,6 +250,9 @@ body {
     }
     #headFour{
         background-color: #1d3fe7;
+    }
+    .custom-col-head p {
+        font-size: 15px;
     }
     #headFive{
         background-color: #00abf5;
@@ -338,9 +346,13 @@ body {
         .Illustrative {
             display: inline;
         }
+        .marker-one {
+            left: 0px;
+        }
         .checkbox_container{
             margin-top: 16px;
             display: block;
+            margin-bottom: 16px;
         }
         .custom_checkbox{
             margin: 8px 0px 8px 0px;
@@ -375,7 +387,7 @@ body {
         }
         
         .marker-two {
-            left: 37.5%;
+            left: 32.5%;
             bottom: 10px;
             width: 100px;
         }
@@ -405,7 +417,7 @@ body {
         }
         
         .circle_two {
-            left: 37.5%;
+            left:31.5%;
         }
 
         .circle_three{
@@ -428,9 +440,11 @@ body {
         .custom-col-head {
             padding: 5px;
             font-size: 13px;
+            min-height: 57px;
         }
         .custom-col {
             min-height: 130px;
+            padding: 5px;
         }
         .custom-col svg {
             width: 36px;
@@ -451,9 +465,17 @@ body {
             width: 20px;
             top: -9px;
         }
+        .circle_two {
+            left: 22.5%;
+        }
         .marker-two {
-            left: 28.5%;
-            width: 114px;
+            left: 27.5%;
+        }
+        .custom-col-head p {
+            font-size: 11px;
+        }
+        .marker-three{
+            left:52%;
         }
         .heatmap-container {
             padding: 20px 30px;

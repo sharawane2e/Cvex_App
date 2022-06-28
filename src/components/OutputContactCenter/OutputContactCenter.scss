@@ -19,6 +19,9 @@
     padding: 25px;
     &__section {
       //padding-bottom: 25px;
+      .label-heading {
+        margin-bottom: 10px;
+      }
       .single-dropdown-section {
         &__header {
           background-color: #f6f6f6;
@@ -40,6 +43,7 @@
           .dropdown-container {
             display: flex;
             flex-wrap: wrap;
+            
             .single-dropdown-title {
               padding: 10px 0;
               font-size: 18px;
@@ -55,8 +59,7 @@
         }
       }
       .outputTable-container {
-        width: 50%;
-        max-width: 90%;
+        width: 84%;
         margin: 20px auto;
         @include breakpoint(Ipad) {
           width: 100%;
@@ -68,18 +71,22 @@
           width: 100%;
         }
         &__inr {
+          // margin-left: -25%;
           @include breakpoint(sm-mobileonly) {
-            display: none;
+            display: block;
           }
           @include breakpoint(mobileonly) {
             display: none;
           }
           &__header {
+            @include breakpoint(sm-mobileonly) {
+              display:none;
+            }
             display: flex;
             width: 100%;
             .table-col {
               display: inline-block;
-              min-width: 20%;
+              flex: 22% 0;
               padding: 10px 5px 10px 5px;
               border: 1px solid #2a2a2a;
               border-bottom: none;
@@ -90,7 +97,7 @@
               font-size: 14px;
               &__empty {
                 display: inline-block;
-                min-width: 20%;
+                flex: 22% 0;
                 border: 1px solid #fff;
                 padding: 10px 5px 10px 5px;
               }
@@ -106,19 +113,52 @@
           &__body {
             .table-col {
               display: flex;
+              @include breakpoint(sm-mobileonly) {
+                display: block;
+                .output_mobile_head {
+                  display: block !important;
+                }
+              }
+              .output_mobile_head {
+                display: none;
+                font-weight:bold;
+                margin-bottom:10px;
+               }
+              &:last-child {
+                border-bottom: 1px solid #2a2a2a !important;
+                @include breakpoint(sm-mobileonly) {
+                  border-bottom: none !important;
+                  
+                }
+            
+                .table-row 
+                {
+                &:last-child {
+                 
+                  @include breakpoint(sm-mobileonly) {
+                    border-bottom: 1px solid #2a2a2a;
+                    
+                  }
+                }
+              }
+                
+              }
 
               .table-row {
                 border: 1px solid #2a2a2a;
                 border-bottom: none;
                 border-right: none;
                 border-left: 1px solid #2a2a2a;
-                border-bottom: 1px solid #2a2a2a;
                 display: flex;
                 justify-content: space-around;
-                min-width: 20%;
+                flex: 22% 0;
                 text-align: center;
                 padding: 10px 5px 10px 5px;
                 font-size: 14px;
+                @include breakpoint(sm-mobileonly) {
+                  display: block;
+                  border-right: 1px solid #2a2a2a;
+                }
                 span {
                   display: inline-block;
                 }
@@ -127,6 +167,14 @@
                 }
                 &:first-child {
                   text-align: left;
+                  @include breakpoint(sm-mobileonly) {
+                    span {
+                      display:block;
+                      text-align:center;
+                      font-weight:bold;
+                      font-size:16px;
+                    }
+                  }
                 }
                 // &:nth-child(even) {
                 //   background-color: #d0d0d0;
@@ -251,12 +299,17 @@
   }
 }
 
+
 .arrowUpicon {
   background-image: url("https://ui.e2eresearch.com/Mckinsey/assets/svg/angle-double-up.svg");
   height: 15px;
   width: 15px;
   background-size: contain;
   background-repeat: no-repeat;
+  @include breakpoint(sm-mobileonly) {
+    margin:auto;
+    margin-bottom:10px;
+  }
 }
 
 .arrowDownicon {
@@ -273,6 +326,12 @@
 }
 
 .bg-StringGray {
-  background-color: #d0d0d0;
+  background-color: #d0d0d0 !important;
   border-right: 1px solid #2a2a2a;
 }
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+
