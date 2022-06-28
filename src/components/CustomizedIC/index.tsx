@@ -154,223 +154,225 @@ const CustomizedIC = () => {
   };
 
   return (
-    <div className="contactpage-container">
-      <SecondaryHeader sidebar={false} />
-      <div className="contactpage-container__inr">
-        <div className="contactpage-container__inr__section">
-          <div className="dropdown-container">
-            <Grid
-              container
-              sx={{ alignItems: "center", pb: 2 }}
-              xs={12}
-              md={12}
-            >
-              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
-                {inputDetails != undefined ? (
-                  <HsddInput
-                    question={inputDetails?.periodDD}
-                    onChange={(ddId: string) => handleDDChange(ddId)}
-                  />
-                ) : (
-                  ""
-                )}
-              </Grid>
-            </Grid>
-          </div>
-          <div className="single-dropdown-section">
-            <div className="single-dropdown-section__header">
-              <p className="header-text">{inputDetails?.heading}</p>
-            </div>
-          </div>
-          <div className="chart-container">
-            <BarChart />
-          </div>
-          <Box className="outputTable-container" sx={{ mb: 5 }}>
-            <div className="outputTable-container__inr">
-              <div className="outputTable-container__inr__header">
-                {dropdown?.selectedData?.headings?.map((heading: any) => {
-                  return (
-                    <div
-                      className={
-                        heading == "" ? "table-col__empty" : "table-col"
-                      }
-                    >
-                      <span>{heading}</span>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="outputTable-container__inr__body">
-                {dropdown?.selectedData?.rowDetails?.map(
-                  (rowDetail: any, rowIndex: number) => {
-                    const currencySymbol =
-                      inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
-                    return (
-                      <div className="table-col" key={rowIndex}>
-                        {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
-                          return typeof tbodyDetail == "number" ? (
-                            <div className="table-row">
-                              <span>{tbodyDetail}</span>
-                              <span className="currency-symbol">
-                                {currencySymbol}
-                              </span>
-                            </div>
-                          ) : (
-                            <div className="table-row">
-                              <span>{tbodyDetail}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-            <div className="outputTable-container__md">
-              <div className="title-container">
-                {inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
-                  (rowDetail: any, rowIndex: number) => {
-                    return (
-                      <>
-                        <p>{rowDetail?.tbodyDetails[0]}</p>
-                      </>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-          </Box>
-          <div className="chart-container multiple-charts">
-            <div className="chart-container__inr">
-              <div className="chart-baseline">
-                <BaselineChart />
-              </div>
-              <div className="chart-futurebaseline">
-                <PotentialChart />
-              </div>
-            </div>
-          </div>
-        </div>
+    <></>
 
-        <div className="contactpage-container__inr__section">
-          {jsonData?.data?.inputData?.SalesTable?.map((table: any) => (
-            <>
-              <span>{table.heading}</span>
-              <Box className="outputTable-container" sx={{ mb: 5 }}>
-                <div className="outputTable-container__inr">
-                  {/* <div className="outputTable-container__inr__header">
-                    {jsonData?.data?.inputData?.SalesTable?.map((el: any) => {
-                      return (
-                    <div className="table-col">
-                      <span>new</span>
-                    </div>
-                    );
-                    })}
-                  </div> */}
-                  <div className="outputTable-container__inr__body">
-                    {/* <div className="table-col"> */}
-                    {table.rowDetails?.map((row: any, ri: any) => (
-                      <div className="table-col" key={ri}>
-                        {row.tbodyDetails.map((detail: any) => (
-                          <div className="table-row">
-                            <span>{detail}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                    {/* </div> */}
-                  </div>
-                </div>
-              </Box>
-            </>
-          ))}
-        </div>
+    // <div className="contactpage-container">
+    //   <SecondaryHeader sidebar={false} />
+    //   <div className="contactpage-container__inr">
+    //     <div className="contactpage-container__inr__section">
+    //       <div className="dropdown-container">
+    //         <Grid
+    //           container
+    //           sx={{ alignItems: "center", pb: 2 }}
+    //           xs={12}
+    //           md={12}
+    //         >
+    //           <Grid item xs={12} sx={{ paddingRight: "20px" }}>
+    //             {inputDetails != undefined ? (
+    //               <HsddInput
+    //                 question={inputDetails?.periodDD}
+    //                 onChange={(ddId: string) => handleDDChange(ddId)}
+    //               />
+    //             ) : (
+    //               ""
+    //             )}
+    //           </Grid>
+    //         </Grid>
+    //       </div>
+    //       <div className="single-dropdown-section">
+    //         <div className="single-dropdown-section__header">
+    //           <p className="header-text">{inputDetails?.heading}</p>
+    //         </div>
+    //       </div>
+    //       <div className="chart-container">
+    //         <BarChart />
+    //       </div>
+    //       <Box className="outputTable-container" sx={{ mb: 5 }}>
+    //         <div className="outputTable-container__inr">
+    //           <div className="outputTable-container__inr__header">
+    //             {dropdown?.selectedData?.headings?.map((heading: any) => {
+    //               return (
+    //                 <div
+    //                   className={
+    //                     heading == "" ? "table-col__empty" : "table-col"
+    //                   }
+    //                 >
+    //                   <span>{heading}</span>
+    //                 </div>
+    //               );
+    //             })}
+    //           </div>
+    //           <div className="outputTable-container__inr__body">
+    //             {dropdown?.selectedData?.rowDetails?.map(
+    //               (rowDetail: any, rowIndex: number) => {
+    //                 const currencySymbol =
+    //                   inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
+    //                 return (
+    //                   <div className="table-col" key={rowIndex}>
+    //                     {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
+    //                       return typeof tbodyDetail == "number" ? (
+    //                         <div className="table-row">
+    //                           <span>{tbodyDetail}</span>
+    //                           <span className="currency-symbol">
+    //                             {currencySymbol}
+    //                           </span>
+    //                         </div>
+    //                       ) : (
+    //                         <div className="table-row">
+    //                           <span>{tbodyDetail}</span>
+    //                         </div>
+    //                       );
+    //                     })}
+    //                   </div>
+    //                 );
+    //               }
+    //             )}
+    //           </div>
+    //         </div>
+    //         <div className="outputTable-container__md">
+    //           <div className="title-container">
+    //             {inputDetails?.periodTableData?.A5_1_label?.rowDetails?.map(
+    //               (rowDetail: any, rowIndex: number) => {
+    //                 return (
+    //                   <>
+    //                     <p>{rowDetail?.tbodyDetails[0]}</p>
+    //                   </>
+    //                 );
+    //               }
+    //             )}
+    //           </div>
+    //         </div>
+    //       </Box>
+    //       <div className="chart-container multiple-charts">
+    //         <div className="chart-container__inr">
+    //           <div className="chart-baseline">
+    //             <BaselineChart />
+    //           </div>
+    //           <div className="chart-futurebaseline">
+    //             <PotentialChart />
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
 
-        <div className="contactpage-container__inr__section">
-          <div className="single-dropdown-section">
-            <div className="single-dropdown-section__header">
-              <p className="header-text">
-                {inputDetails?.potentialIncreaseData?.heading}
-              </p>
-            </div>
-          </div>
-          <div className="dropdown-container">
-            <div className="single-dropdown-section__body">
-              <div className="title-container">
-                <p>
-                  {inputDetails?.potentialIncreaseData?.segmentDD?.description}
-                </p>
-              </div>
-            </div>
-            <Grid
-              container
-              sx={{ alignItems: "center", pb: 2 }}
-              xs={12}
-              md={12}
-            >
-              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
-                {inputDetails != undefined ? (
-                  <HsddInput
-                    question={inputDetails?.potentialIncreaseData?.segmentDD}
-                    onChange={(ddId: string) => handleDropDownChange(ddId)}
-                  />
-                ) : (
-                  ""
-                )}
-              </Grid>
-            </Grid>
-          </div>
+    //     <div className="contactpage-container__inr__section">
+    //       {jsonData?.data?.inputData?.SalesTable?.map((table: any) => (
+    //         <>
+    //           <span>{table.heading}</span>
+    //           <Box className="outputTable-container" sx={{ mb: 5 }}>
+    //             <div className="outputTable-container__inr">
+    //               {/* <div className="outputTable-container__inr__header">
+    //                 {jsonData?.data?.inputData?.SalesTable?.map((el: any) => {
+    //                   return (
+    //                 <div className="table-col">
+    //                   <span>new</span>
+    //                 </div>
+    //                 );
+    //                 })}
+    //               </div> */}
+    //               <div className="outputTable-container__inr__body">
+    //                 {/* <div className="table-col"> */}
+    //                 {table.rowDetails?.map((row: any, ri: any) => (
+    //                   <div className="table-col" key={ri}>
+    //                     {row.tbodyDetails.map((detail: any) => (
+    //                       <div className="table-row">
+    //                         <span>{detail}</span>
+    //                       </div>
+    //                     ))}
+    //                   </div>
+    //                 ))}
+    //                 {/* </div> */}
+    //               </div>
+    //             </div>
+    //           </Box>
+    //         </>
+    //       ))}
+    //     </div>
 
-          <Box className="outputTable-container" sx={{ mb: 5 }}>
-            <div className="outputTable-container__inr">
-              <div className="outputTable-container__inr__header">
-                {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
-                  return (
-                    <div className="table-col">
-                      <span>{el}</span>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="outputTable-container__inr__body">
-                <div className="table-col">
-                  {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
-                    (el: any) => {
-                      return (
-                        <div className="table-row">
-                          <span>{el}</span>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
-            </div>
-          </Box>
-          <div className="chart-container">
-            <div className="chart-container__waterfall">
-              <SegmentChart />
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer>
-        <Divider />
-        <div className="button-container justi">
-          <div>
-            <CustomButton
-              className={"submitButton next-button"}
-              onClick={(e: any) => nextHandleClick(e)}
-            >
-              {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
-              )}
-            </CustomButton>
-          </div>
-        </div>
-      </Footer>
-    </div>
+    //     <div className="contactpage-container__inr__section">
+    //       <div className="single-dropdown-section">
+    //         <div className="single-dropdown-section__header">
+    //           <p className="header-text">
+    //             {inputDetails?.potentialIncreaseData?.heading}
+    //           </p>
+    //         </div>
+    //       </div>
+    //       <div className="dropdown-container">
+    //         <div className="single-dropdown-section__body">
+    //           <div className="title-container">
+    //             <p>
+    //               {inputDetails?.potentialIncreaseData?.segmentDD?.description}
+    //             </p>
+    //           </div>
+    //         </div>
+    //         <Grid
+    //           container
+    //           sx={{ alignItems: "center", pb: 2 }}
+    //           xs={12}
+    //           md={12}
+    //         >
+    //           <Grid item xs={12} sx={{ paddingRight: "20px" }}>
+    //             {inputDetails != undefined ? (
+    //               <HsddInput
+    //                 question={inputDetails?.potentialIncreaseData?.segmentDD}
+    //                 onChange={(ddId: string) => handleDropDownChange(ddId)}
+    //               />
+    //             ) : (
+    //               ""
+    //             )}
+    //           </Grid>
+    //         </Grid>
+    //       </div>
+
+    //       <Box className="outputTable-container" sx={{ mb: 5 }}>
+    //         <div className="outputTable-container__inr">
+    //           <div className="outputTable-container__inr__header">
+    //             {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
+    //               return (
+    //                 <div className="table-col">
+    //                   <span>{el}</span>
+    //                 </div>
+    //               );
+    //             })}
+    //           </div>
+    //           <div className="outputTable-container__inr__body">
+    //             <div className="table-col">
+    //               {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
+    //                 (el: any) => {
+    //                   return (
+    //                     <div className="table-row">
+    //                       <span>{el}</span>
+    //                     </div>
+    //                   );
+    //                 }
+    //               )}
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </Box>
+    //       <div className="chart-container">
+    //         <div className="chart-container__waterfall">
+    //           <SegmentChart />
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <Footer>
+    //     <Divider />
+    //     <div className="button-container justi">
+    //       <div>
+    //         <CustomButton
+    //           className={"submitButton next-button"}
+    //           onClick={(e: any) => nextHandleClick(e)}
+    //         >
+    //           {getParsedData(
+    //             jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
+    //           )}
+    //         </CustomButton>
+    //       </div>
+    //     </div>
+    //   </Footer>
+    // </div>
   );
 };
 export default CustomizedIC;
