@@ -75,33 +75,20 @@ const GI = () => {
       }
     });
 
-    // options?.forEach((element: any) => {
-    //   if (element.ddId == selectedId) {
-    //     selectedDDName.push(element["ddName"]);
-    //   }
-    // });
-
-    // selectedIdArr.forEach((x: any, i: any) => {
-    //   let ind = options.indexOf((opt: any) => opt.ddId == selectedIdArr[i]);
-    //   selectedDDName.push(options[ind].ddName);
-    // });
-
-    // selectedDDName = ["A7_3", "A7_5"];
-
     console.log(selectedId);
 
     return selectedDDName;
   };
 
   const uncheckCheckboxes = (options: any[]) => {
-    // options.forEach((currObj: any) => {
-    //   let elemId = currObj.ddId;
-    //   let elem = document.getElementById(elemId);
-    //   if (elem) {
-    //     // @ts-ignore
-    //     elem.checked = false;
-    //   }
-    // });
+    options.forEach((currObj: any) => {
+      let elemId = currObj.ddId;
+      let elem = document.getElementById(elemId);
+      if (elem) {
+        // @ts-ignore
+        elem.checked = false;
+      }
+    });
   };
 
   const checkCheckboxes = (ddIdsArr: any[]) => {
@@ -113,7 +100,6 @@ const GI = () => {
         elem.checked = true;
       }
     });
-    console.log("ok");
   };
 
   const mapContainsId = (map: any, selectedId: any) => {
