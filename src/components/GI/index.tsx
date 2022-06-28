@@ -130,6 +130,14 @@ const GI = () => {
     return false;
   };
 
+  const getMapIds = (map:any) => {
+    let mapOptions = map.split("|");
+    let currIdOptions = mapOptions.split(":")[1];
+    let idsArr = currIdOptions.split("-");
+
+    return idsArr;
+  }
+
   const mapContainsId2 = (map: any, selectedId: any) => {
     var selectedIdNumArr: string[] = [];
     var selectedIdArr: string[] = selectedId.split(",");
@@ -941,6 +949,7 @@ const GI = () => {
                                         CV.selectedId3 = "";
                                         if (CV.questionId2 == genQues.questionId2) {
                                           let arr = genQues.selectedId2.split(",");
+                                          let validIdsArr = getMapIds(genQues.map);
                                           CV.options2.forEach((option: any) => {
                                             const ddSelectedIndex = 
                                               event.target.value.indexOf(
