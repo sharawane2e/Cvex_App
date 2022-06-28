@@ -12,7 +12,8 @@ const HeatmapPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerText)
     );
-    // console.log(jsonData.data.inputData.capabilities)
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
   }, []);
 
   const handleForwardClick = () => {
@@ -139,7 +140,7 @@ const HeatmapPage = () => {
             <div className="button-inr-btn">
               <CustomButton
                 className="submitButton"
-                onClick={handleForwardClick()}
+                onClick={() => handleForwardClick()}
               >
                 {jsonData.data?.footerData?.forwardTxt}
               </CustomButton>
