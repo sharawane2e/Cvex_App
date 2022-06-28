@@ -193,7 +193,12 @@ body {
         min-height: 77px;
         border-right: 2px solid #fff;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        padding-top: 10px;
+        .headingSerialNo {
+            margin-right: 5px;
+            // align-self: baseline;
+        }
     }
     .checkbox{
         padding-left: 20px;

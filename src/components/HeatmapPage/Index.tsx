@@ -8,7 +8,7 @@ const HeatmapPage = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById("jsonData")?.innerText)
     );
     // console.log(jsonData.data.inputData.capabilities)
   }, []);
@@ -65,8 +65,25 @@ const HeatmapPage = () => {
             {jsonData?.data?.inputData?.capabilities?.map(
               (cap: any, i: any) => (
                 <div key={i} className="custom-row">
-                  <div className="custom-col-head" id="headOne">
-                    {cap.capability}
+                  <div className="custom-col-head" id={
+                        i + 1 == 1 
+                          ? "headOne"
+                          : (i + 1) == 2
+                          ? "headTwo"
+                          : (i + 1) == 3
+                          ? "headThree"
+                          : (i + 1) == 4
+                          ? "headFour"
+                          : (i + 1) == 5
+                          ? "headFive"
+                          : (i + 1) == 6
+                          ? "headSix"
+                          : (i + 1) == 7
+                          ? "headSeven"
+                          : "headEight"
+                      }>
+                    <span className="headingSerialNo">{i + 1 + "."}</span>
+                    <p>{cap.capability}</p>
                   </div>
                   {cap.skills.map((skill: any) => (
                     <div

@@ -25,20 +25,15 @@
   <title>CVEX EPR2.0</title>
 </head>
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <span id="jsonData" style="display: none;">
-    {
-	"pageCode": {
-		"page": 13
-	},
-	"data": {
-		"headerData": {
-			"title": "CVEx - Customer Value Execution - Impact Calculator - Contact Centre",
-			"logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
-			"banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <span id="jsonData" style="display: none;">
+	{
+		"pageCode": {
+			"page": 11
 		},
+<<<<<<< HEAD
 		"inputData": {
 			"heading": "Breakdown of baseline and proposed baseline by segment",
 			"currencySymbol": "€",
@@ -68,10 +63,49 @@
 						"iconDetails": ["", "", "", "", "", ""],
 						"colorArray":["#B3B3B3","#027AB1"],
 						"chartDetails":[]
+=======
+		"data": {
+			"headerData": {
+				"title": "Customer Value Execution",
+				"logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
+				"banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
+			},
+			"inputData": {
+				"title": "1.Output template Capability Heatmap",
+				"markers": ["Right set up to...", "...target customers...", "...and convert the lead!"],
+				"legends": [{
+					"legendText": "With improvement potential",
+					"colorCode": "#ddd",
+					"colorLabel": "1"
+				}, {
+					"legendText": "Improvement for further growth",
+					"colorCode": "#eee",
+					"colorLabel": "2"
+				}, {
+					"legendText": "Market leading",
+					"colorCode": "#fff",
+					"colorLabel": "3"
+				}],
+				"capabilities": [{
+					"capability": "Value strategy",
+					"skills": [{
+						"skillName": "Sales and service strategy",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S1.svg",
+						"colorLabel": "2"
+>>>>>>> 21769e2195165dea283b14a73ab3db204c92279e
 					}, {
-						"tbodyDetails": ["Potential increase", 36285, 2256, "Not selected", "Not selected", "Not selected", 38541],
-						"iconDetails": ["", "up", "up", "", "", ""]
+						"skillName": "Service and customer segment strategy",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S2.svg",
+						"colorLabel": "3"
+					}]
+				}, {
+					"capability": "Customer touchpoint design",
+					"skills": [{
+						"skillName": "Sales and service journey design",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S3.svg",
+						"colorLabel": "1"
 					}, {
+<<<<<<< HEAD
 						"tbodyDetails": ["Possible future baseline", 1850668, 115227, "Not selected", "Not selected", "Not selected", 1965895],
 						"iconDetails": ["", "", "", "", "", ""],
 						"colorArray":["#B3B3B3","#027AB1"],
@@ -85,110 +119,105 @@
 					"rowDetails": [{
 						"tbodyDetails": ["Baseline", 21772600, 1355650, "Not selected", "Not selected", "Not selected", 23128250],
 						"iconDetails": ["", "", "", "", "", ""]
-					}, {
-						"tbodyDetails": ["Potential increase", 435418, 27074, "Not selected", "Not selected", "Not selected", 462492],
-						"iconDetails": ["", "up", "up", "", "", ""]
-					}, {
-						"tbodyDetails": ["Possible future baseline", 22208018, 1382724, "Not selected", "Not selected", "Not selected", 23590742],
-						"iconDetails": ["", "", "", "", "", ""]
+=======
+						"skillName": "Omnichannel integration",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S4.svg",
+						"colorLabel": "2"
 					}]
-				}
-			},
-			"potentialIncreaseData": {
-				"heading": "Breakdown of potential increase by segment and its components",
-				"segmentDD": {
-					"optionName": "Select a period to view",
-					"type": "dd",
-					"error_id": "Hidsegment",
-					"placeholder": "Please select",
-					"description": "Choose segment to view in detail",
-					"questionId": "Hidsegment",
-					"selectedId": "Hidsegment_1_label",
-					"options": [{
-						"ddName": "Inbound Sales",
-						"ddId": "Hidsegment_1_label"
+				}, {
+					"capability": "Governance &amp; Steering",
+					"skills": [{
+						"skillName": "KPIs and reporting",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S5.svg",
+						"colorLabel": "1"
+>>>>>>> 21769e2195165dea283b14a73ab3db204c92279e
 					}, {
-						"ddName": "Outbound Sales",
-						"ddId": "Hidsegment_2_label"
+						"skillName": "Cross-functional collaboration",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S6.svg",
+						"colorLabel": "1"
 					}, {
-						"ddName": "Service to Sales",
-						"ddId": "Hidsegment_3_label"
-					}, {
-						"ddName": "Retention",
-						"ddId": "Hidsegment_4_label"
-					}, {
-						"ddName": "Winback",
-						"ddId": "Hidsegment_5_label"
+						"skillName": "Agile win-room",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S7.svg",
+						"colorLabel": "1"
 					}]
-				},
-				"segmentTableChartData": {
-					"HidMonth_1_label-Hidsegment_1_label": {
-						"headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [81786, 78515, 70663, 68543, 41126, 37013],
-						"chartDetails": [81786, -3271, -7851, -2120, -27417, -4113, -37013]
-					},
-					"HidMonth_1_label-Hidsegment_2_label": {
-						"headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [119000, 91630, 74220, 51212, 2561, 2305],
-						"chartDetails": [119000, -27370, -17410, -23008, -48651, -256, -2305]
-					},
-					"HidMonth_1_label-Hidsegment_3_label": {
-						"headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [0, 0, 0, 0, 0, 0],
-						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
-					},
-					"HidMonth_1_label-Hidsegment_4_label": {
-						"headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [0, 0, 0, 0, 0, 0],
-						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
-					},
-					"HidMonth_1_label-Hidsegment_5_label": {
-						"headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [0, 0, 0, 0, 0, 0],
-						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
-					},
-					"HidMonth_2_label-Hidsegment_1_label": {
-						"headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [981433, 942175, 847958, 822519, 493512, 444160],
-						"chartDetails": [981433, -39257, -94218, -25439, -329008, -49351, -444160]
-					},
-					"HidMonth_2_label-Hidsegment_2_label": {
-						"headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [1428000, 1099560, 890644, 614544, 30727, 27654],
-						"chartDetails": [1428000, -328440, -208916, -276100, -583817, -3073, -27654]
-					},
-					"HidMonth_2_label-Hidsegment_3_label": {
-						"headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [0, 0, 0, 0, 0, 0],
-						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
-					},
-					"HidMonth_2_label-Hidsegment_4_label": {
-						"headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [0, 0, 0, 0, 0, 0],
-						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
-					},
-					"HidMonth_2_label-Hidsegment_5_label": {
-						"headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-						"tbodyDetails": [0, 0, 0, 0, 0, 0],
-						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
-					}
-				}
+				}, {
+					"capability": "Proposition and Campaigning",
+					"skills": [{
+						"skillName": "Proposition design",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S8.svg",
+						"colorLabel": "2"
+					}, {
+						"skillName": "Prescriptive NBA modelling",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S9.svg",
+						"colorLabel": "2"
+					}, {
+						"skillName": "Agile campaigning",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S10.svg",
+						"colorLabel": "2"
+					}]
+				}, {
+					"capability": "Contact management",
+					"skills": [{
+						"skillName": "Routing",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S11.svg",
+						"colorLabel": "2"
+					}, {
+						"skillName": "Workforce management and Multiskilling",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S12.svg",
+						"colorLabel": "2"
+					}]
+				}, {
+					"capability": "Frontline management",
+					"skills": [{
+						"skillName": "Performance management",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S13.svg",
+						"colorLabel": "3"
+					}, {
+						"skillName": "Role of teamleader and routines",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S14.svg",
+						"colorLabel": "3"
+					}, {
+						"skillName": "Quality management and customer experience",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S15.svg",
+						"colorLabel": "2"
+					}, {
+						"skillName": "Productivity focus and mindset",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S16.svg",
+						"colorLabel": "2"
+					}]
+				}, {
+					"capability": "Sales capabilities",
+					"skills": [{
+						"skillName": "Talent management",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S17.svg",
+						"colorLabel": "2"
+					}, {
+						"skillName": "Capability building",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S18.svg",
+						"colorLabel": "3"
+					}, {
+						"skillName": "Coaching",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S19.svg",
+						"colorLabel": "3"
+					}]
+				}, {
+					"capability": "Sales enablement",
+					"skills": [{
+						"skillName": "Scripts and sales applications",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S20.svg",
+						"colorLabel": "2"
+					}, {
+						"skillName": "Compensation and incentives",
+						"skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S21.svg",
+						"colorLabel": "3"
+					}]
+				}]
 			}
 		}
 	}
-}
-      
-    </span>
+
+
+  </span>
 
   <input type="radio" id="A5_1_label" />
   <input type="radio" id="A5_2_label" />
