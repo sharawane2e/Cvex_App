@@ -1,36 +1,33 @@
-import { Grid, Box, Divider } from '@mui/material';
-import { useState, useEffect } from 'react';
-import SecondaryHeader from '../Headers/SecondaryHeader';
-import BarChart from '../UI/BarChart';
-import { Footer } from '../Footer';
-import { getParsedData } from '../../utils/parserUtil';
-import CustomButton from '../UI/CustomButton';
-import BaselineChart from '../UI/BaselineChart';
-import PotentialChart from '../UI/PotentialChart';
-import SegmentChart from '../UI/SegmentChart';
-import HsddInput from '../ImpactCalculator/HsddInput';
+import { Grid, Box, Divider } from "@mui/material";
+import { useState, useEffect } from "react";
+import SecondaryHeader from "../Headers/SecondaryHeader";
+import BarChart from "../UI/BarChart";
+import { Footer } from "../Footer";
+import { getParsedData } from "../../utils/parserUtil";
+import CustomButton from "../UI/CustomButton";
+import BaselineChart from "../UI/BaselineChart";
+import PotentialChart from "../UI/PotentialChart";
+import SegmentChart from "../UI/SegmentChart";
+import HsddInput from "../ImpactCalculator/HsddInput";
 import {
   setDropDown,
   setSecDropDown,
-} from '../../redux/actions/HighChartDropDownAction';
-import store from '../../redux/store';
+} from "../../redux/actions/HighChartDropDownAction";
+import store from "../../redux/store";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
   setPotentialChartOptions,
   setSegmentChartOptions,
-} from '../../redux/actions/HighChartAction';
+} from "../../redux/actions/HighChartAction";
 import {
   getbaseLineChartOptions,
   getpotentialChartOptions,
-  getsegmentChartOptions,
-} from '../../utils/highchartOptionUtil';
-import { useSelector } from 'react-redux';
-import arrowDown from '../../assets/svg/angle-double-down.svg';
-import arrowUp from '../../assets/svg/angle-double-up.svg';
+} from "../../utils/highchartOptionUtil";
+import { useSelector } from "react-redux";
 
-const OutputContactCenter = () => {
-  const [jsonData, setJSONData] = useState<any>('');
+const CustomizedIC = () => {
+  const [jsonData, setJSONData] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
 
   const { dispatch } = store;
@@ -38,26 +35,26 @@ const OutputContactCenter = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
   }, []);
 
   useEffect(() => {
     handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
     handleDropDownChange(
-      jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId,
+      jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
     );
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
   const nextHandleClick = (event: any) => {
-    if (jsonData !== '') {
+    if (jsonData !== "") {
       // @ts-ignore
-      document.getElementById('navText').value =
+      document.getElementById("navText").value =
         jsonData.data?.footerData?.forwardBtn?.forwardInputId;
       // @ts-ignore
-      document.getElementById('forwardbutton').disabled = false;
+      document.getElementById("forwardbutton").disabled = false;
       // @ts-ignore
-      document.getElementById('forwardbutton').click();
+      document.getElementById("forwardbutton").click();
     }
   };
 
@@ -76,7 +73,7 @@ const OutputContactCenter = () => {
       keys.forEach(function (key: any) {
         if (key == ddId) {
           dispatch(
-            setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId]),
+            setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId])
           );
           const rowDetails =
             updatedJsonData.data.inputData.periodTableData[key].rowDetails;
@@ -89,24 +86,24 @@ const OutputContactCenter = () => {
 
           dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
           const getSeriesData = getbaseLineChartOptions(
-            updatedJsonData.data.inputData.periodTableData[key],
+            updatedJsonData.data.inputData.periodTableData[key]
           );
-          console.log(updatedJsonData.data.inputData.periodTableData[key]);
+
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],
               categories: getSeriesData[1],
-            }),
+            })
           );
           const getSeriesPotentialData = getpotentialChartOptions(
-            updatedJsonData.data.inputData.periodTableData[key],
+            updatedJsonData.data.inputData.periodTableData[key]
           );
 
           dispatch(
             setPotentialChartOptions({
               data: getSeriesPotentialData[0],
               categories: getSeriesPotentialData[1],
-            }),
+            })
           );
         }
       });
@@ -124,40 +121,30 @@ const OutputContactCenter = () => {
         updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options;
       options.map((option: any) => {
         const mergeKey =
-          updatedJsonData.data.inputData.periodDD.selectedId + '-' + ddId;
+          updatedJsonData.data.inputData.periodDD.selectedId + "-" + ddId;
         var keys = Object.keys(
           updatedJsonData.data.inputData.potentialIncreaseData
-            .segmentTableChartData,
+            .segmentTableChartData
         );
+
+        console.log(mergeKey);
 
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
             dispatch(
               setSecDropDown(
                 updatedJsonData.data.inputData.potentialIncreaseData
-                  .segmentTableChartData[mergeKey],
-              ),
+                  .segmentTableChartData[mergeKey]
+              )
             );
-
-            // dispatch(
-            //   setSegmentChartOptions({
-            //     data: updatedJsonData.data.inputData.potentialIncreaseData
-            //       .segmentTableChartData[mergeKey].chartDetails,
-            //     categories:
-            //       updatedJsonData.data.inputData.potentialIncreaseData
-            //         .segmentTableChartData[mergeKey].chartLabels,
-            //   })
-            // );
-            const getSeriesData = getsegmentChartOptions(
-              updatedJsonData.data.inputData.potentialIncreaseData
-                .segmentTableChartData[mergeKey],
-            );
-            console.log(getSeriesData);
             dispatch(
               setSegmentChartOptions({
-                data: getSeriesData[0],
-                categories: getSeriesData[1],
-              }),
+                data: updatedJsonData.data.inputData.potentialIncreaseData
+                  .segmentTableChartData[mergeKey].chartDetails,
+                categories:
+                  updatedJsonData.data.inputData.potentialIncreaseData
+                    .segmentTableChartData[mergeKey].chartLabels,
+              })
             );
           }
         });
@@ -173,18 +160,18 @@ const OutputContactCenter = () => {
           <div className="dropdown-container">
             <Grid
               container
-              sx={{ alignItems: 'center', pb: 2 }}
+              sx={{ alignItems: "center", pb: 2 }}
               xs={12}
               md={12}
             >
-              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
+              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.periodDD}
                     onChange={(ddId: string) => handleDDChange(ddId)}
                   />
                 ) : (
-                  ''
+                  ""
                 )}
               </Grid>
             </Grid>
@@ -194,7 +181,7 @@ const OutputContactCenter = () => {
               <p className="header-text">{inputDetails?.heading}</p>
             </div>
           </div>
-          <div className="chart-container bar-chart-update">
+          <div className="chart-container">
             <BarChart />
           </div>
           <Box className="outputTable-container" sx={{ mb: 5 }}>
@@ -204,7 +191,7 @@ const OutputContactCenter = () => {
                   return (
                     <div
                       className={
-                        heading == '' ? 'table-col__empty' : 'table-col'
+                        heading == "" ? "table-col__empty" : "table-col"
                       }
                     >
                       <span>{heading}</span>
@@ -219,43 +206,23 @@ const OutputContactCenter = () => {
                       inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
                     return (
                       <div className="table-col" key={rowIndex}>
-                        {rowDetail?.tbodyDetails.map(
-                          (tbodyDetail: any, i: any) => {
-                            return typeof tbodyDetail == 'number' ? (
-                              <div className="table-row">
-                                <div
-                                  className={
-                                    rowDetail.iconDetails[rowIndex] == 'up'
-                                      ? 'arrowUpicon'
-                                      : rowDetail.iconDetails[rowIndex] ==
-                                        'down'
-                                      ? 'arrowDownicon'
-                                      : 'emptyicon'
-                                  }
-                                ></div>
-                                <div>
-                                  <span>{tbodyDetail}</span>
-                                  <span className="currency-symbol">
-                                    {currencySymbol}
-                                  </span>
-                                </div>
-                              </div>
-                            ) : (
-                              <div
-                                className={
-                                  i > 0 && typeof tbodyDetail == 'string'
-                                    ? 'table-row bg-StringGray'
-                                    : 'table-row'
-                                }
-                              >
-                                <span>{tbodyDetail}</span>
-                              </div>
-                            );
-                          },
-                        )}
+                        {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
+                          return typeof tbodyDetail == "number" ? (
+                            <div className="table-row">
+                              <span>{tbodyDetail}</span>
+                              <span className="currency-symbol">
+                                {currencySymbol}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="table-row">
+                              <span>{tbodyDetail}</span>
+                            </div>
+                          );
+                        })}
                       </div>
                     );
-                  },
+                  }
                 )}
               </div>
             </div>
@@ -268,7 +235,7 @@ const OutputContactCenter = () => {
                         <p>{rowDetail?.tbodyDetails[0]}</p>
                       </>
                     );
-                  },
+                  }
                 )}
               </div>
             </div>
@@ -302,18 +269,18 @@ const OutputContactCenter = () => {
             </div>
             <Grid
               container
-              sx={{ alignItems: 'center', pb: 2 }}
+              sx={{ alignItems: "center", pb: 2 }}
               xs={12}
               md={12}
             >
-              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
+              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.potentialIncreaseData?.segmentDD}
                     onChange={(ddId: string) => handleDropDownChange(ddId)}
                   />
                 ) : (
-                  ''
+                  ""
                 )}
               </Grid>
             </Grid>
@@ -338,7 +305,7 @@ const OutputContactCenter = () => {
                           <span>{el}</span>
                         </div>
                       );
-                    },
+                    }
                   )}
                 </div>
               </div>
@@ -356,11 +323,11 @@ const OutputContactCenter = () => {
         <div className="button-container justi">
           <div>
             <CustomButton
-              className={'submitButton next-button'}
+              className={"submitButton next-button"}
               onClick={(e: any) => nextHandleClick(e)}
             >
               {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt,
+                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
               )}
             </CustomButton>
           </div>
@@ -369,4 +336,4 @@ const OutputContactCenter = () => {
     </div>
   );
 };
-export default OutputContactCenter;
+export default CustomizedIC;

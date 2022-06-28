@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import SecondaryHeader from '../Headers/SecondaryHeader/index';
-import { Inputbox } from '../UI/Input';
-import { Footer } from '../Footer';
-import { Grid } from '@mui/material';
-import HsddInput from './HsddInput';
-import { hideShowSections } from '../../services/impactCaluculator';
-import LinearProgressbar2 from '../LinearProgressbar2';
+import { useEffect, useState } from "react";
+import SecondaryHeader from "../Headers/SecondaryHeader/index";
+import { Inputbox } from "../UI/Input";
+import { Footer } from "../Footer";
+import { Grid } from "@mui/material";
+import HsddInput from "./HsddInput";
+import { hideShowSections } from "../../services/impactCaluculator";
+import LinearProgressbar2 from "../LinearProgressbar2";
 
 const ImpactCalculator = (props: any) => {
-  const [jsonData, setJSONData] = useState<any>('');
-  const [upJson, setupJson] = useState<any>('');
+  const [jsonData, setJSONData] = useState<any>("");
+  const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
   const [showError, setShowError] = useState(false);
@@ -56,13 +56,13 @@ const ImpactCalculator = (props: any) => {
     value: any,
     pattern: any,
     minRange: number,
-    maxRange: number,
+    maxRange: number
   ) => {
     const reg = pattern;
-    let res = '';
+    let res = "";
 
     for (let i = 0; i < value.length; i++) {
-      if (value[0] == ' ') return '';
+      if (value[0] == " ") return "";
 
       if (reg.test(value[i])) res += value[i];
     }
@@ -86,7 +86,7 @@ const ImpactCalculator = (props: any) => {
     inputDataIdx: number,
     subHeadingIdx: number,
     segmentDetailIdx: number,
-    questionDataIdx: number,
+    questionDataIdx: number
   ) => {
     const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
     updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[
@@ -131,7 +131,7 @@ const ImpactCalculator = (props: any) => {
     inputDataIdx: number,
     subHeadingIdx: number,
     segmentDetailIdx: number,
-    questionDataIdx: number,
+    questionDataIdx: number
   ) => {
     const updatedJsonData = JSON.parse(JSON.stringify(jsonData));
     const selectedId =
@@ -158,7 +158,7 @@ const ImpactCalculator = (props: any) => {
     inputDataIdx: number,
     subHeadingIdx: number,
     segmentDetailIdx: number,
-    questionDataIdx: number,
+    questionDataIdx: number
   ) => {
     let quesLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
       inputDataIdx
@@ -174,7 +174,7 @@ const ImpactCalculator = (props: any) => {
       questionDataIdx == quesLength - 1
     ) {
       scrollEffect(inputDataIdx);
-      console.log('last', inputDataIdx);
+      console.log("last", inputDataIdx);
     }
   };
 
@@ -192,7 +192,7 @@ const ImpactCalculator = (props: any) => {
           ques?.questions?.map((x: any) => {
             if (x.options) {
               len = ques.questions.filter(
-                (select: any) => select?.selectedId != '',
+                (select: any) => select?.selectedId != ""
               ).length;
               //console.log(len)
               if (len == quesCount) {
@@ -202,7 +202,7 @@ const ImpactCalculator = (props: any) => {
               }
             } else {
               len = ques?.questions?.filter(
-                (select: any) => select?.selectedText != '',
+                (select: any) => select?.selectedText != ""
               ).length;
               if (len == quesCount) {
                 obj[block?.headingText] = incCount;
@@ -224,14 +224,14 @@ const ImpactCalculator = (props: any) => {
     let obj: any = {};
 
     // @ts-ignore
-    let parentheight = document.getElementById('impactCalc')?.scrollHeight;
+    let parentheight = document.getElementById("impactCalc")?.scrollHeight;
 
     // @ts-ignore
-    let parentscrollpos = document.getElementById('impactCalc')?.scrollTop;
+    let parentscrollpos = document.getElementById("impactCalc")?.scrollTop;
 
     // @ts-ignore
     jsonData?.data?.inputData.forEach((y: any, i: any) => {
-      let idStr = 'scroll_' + (i + 1);
+      let idStr = "scroll_" + (i + 1);
       let height = 0;
       // @ts-ignore
       if (parentscrollpos > 0) {
@@ -248,12 +248,12 @@ const ImpactCalculator = (props: any) => {
 
     setBlockLocs(arr);
     console.log(arr);
-    console.log('sh ', parentscrollpos);
+    console.log("sh ", parentscrollpos);
   };
 
   const scrollEffect = (ind: any) => {
     // @ts-ignore
-    let container = document.getElementById('impactCalc');
+    let container = document.getElementById("impactCalc");
     let dataobj = JSON.parse(JSON.stringify(jsonData));
 
     if (ind < dataobj?.data?.inputData.length - 1) {
@@ -267,7 +267,7 @@ const ImpactCalculator = (props: any) => {
   const unAnsweredLocs = () => {
     let arr: any = [];
     let arr2: any = [];
-    let blockID = '';
+    let blockID = "";
     let len;
     // prettier-ignore
     jsonData?.data?.inputData?.map(
@@ -317,13 +317,13 @@ const ImpactCalculator = (props: any) => {
     // @ts-ignore
     arr = [...new Set(arr)];
     // @ts-ignore
-    console.log('qnames ', [...new Set(arr2)]);
+    console.log("qnames ", [...new Set(arr2)]);
     setUnAnsLocs(arr);
   };
 
   return (
     <div className="impact-calc-container">
-      <SecondaryHeader sidebar={true} />
+      <SecondaryHeader sidebar={false} />
       <div className="impact-calc-container__inr" id="impactCalc">
         <div className="impact-calc-container__inr--question">
           {inputData?.map((inputDetails: any, inputDataIdx: number) => {
@@ -336,10 +336,10 @@ const ImpactCalculator = (props: any) => {
                 inputDataIdx == 0 ? (
                   <div
                     className="single-dropdown-section"
-                    id={'scroll_' + (inputDataIdx + 1)}
+                    id={"scroll_" + (inputDataIdx + 1)}
                   >
                     {inputDetails?.isShow == true &&
-                    inputDetails?.headingText != '' ? (
+                    inputDetails?.headingText != "" ? (
                       <div className="single-dropdown-section__header">
                         <p className="header-text">
                           {inputDetails?.headingText}
@@ -353,9 +353,9 @@ const ImpactCalculator = (props: any) => {
                           <>
                             <div className="single-dropdown-section__body">
                               {subHeadingDetail.hasOwnProperty(
-                                'subHeadingText',
+                                "subHeadingText"
                               ) ? (
-                                subHeadingDetail?.subHeadingText != '' &&
+                                subHeadingDetail?.subHeadingText != "" &&
                                 subHeadingDetail?.isShow == true ? (
                                   <div className="title-container">
                                     <p>{subHeadingDetail?.subHeadingText}</p>
@@ -366,11 +366,11 @@ const ImpactCalculator = (props: any) => {
                               {subHeadingDetail?.segmentDetails?.map(
                                 (
                                   segmentDetail: any,
-                                  segmentDetailIdx: number,
+                                  segmentDetailIdx: number
                                 ) => {
                                   return segmentDetail?.isShow == true ? (
                                     <>
-                                      {segmentDetail?.segmentText != '' ? (
+                                      {segmentDetail?.segmentText != "" ? (
                                         <div className="segment-container">
                                           <p>{segmentDetail.segmentText}</p>
                                         </div>
@@ -384,7 +384,7 @@ const ImpactCalculator = (props: any) => {
                                         {segmentDetail?.questions?.map(
                                           (
                                             question: any,
-                                            questionDataIdx: number,
+                                            questionDataIdx: number
                                           ) => {
                                             // {
                                             //   (showSection(question?.questionId)===true)?
@@ -392,7 +392,7 @@ const ImpactCalculator = (props: any) => {
                                             //      <p>{segmentDetail?.segmentText}</p>
                                             //    </div>) : null
                                             //  }
-                                            if (question.type == 'dd') {
+                                            if (question.type == "dd") {
                                               return (
                                                 <>
                                                   <HsddInput
@@ -403,14 +403,14 @@ const ImpactCalculator = (props: any) => {
                                                         inputDataIdx,
                                                         subHeadingIdx,
                                                         segmentDetailIdx,
-                                                        questionDataIdx,
+                                                        questionDataIdx
                                                       )
                                                     }
                                                   />
                                                 </>
                                               );
                                             } else if (
-                                              question.type == 'num' &&
+                                              question.type == "num" &&
                                               question.isShow
                                             ) {
                                               return (
@@ -430,15 +430,15 @@ const ImpactCalculator = (props: any) => {
                                                       className="inputField cutom-input-field"
                                                       id={
                                                         question.questionId +
-                                                        '_html'
+                                                        "_html"
                                                       }
                                                       placeholder={
                                                         question.placeholder
                                                       }
                                                       type={
-                                                        question.type == 'text'
-                                                          ? 'text'
-                                                          : ''
+                                                        question.type == "text"
+                                                          ? "text"
+                                                          : ""
                                                       }
                                                       value={
                                                         question.selectedText
@@ -449,7 +449,7 @@ const ImpactCalculator = (props: any) => {
                                                             e.target.value,
                                                             /^[0-9]+$/,
                                                             question.minRange,
-                                                            question.maxRange,
+                                                            question.maxRange
                                                           );
 
                                                         handleNumChange(
@@ -457,13 +457,13 @@ const ImpactCalculator = (props: any) => {
                                                           inputDataIdx,
                                                           subHeadingIdx,
                                                           segmentDetailIdx,
-                                                          questionDataIdx,
+                                                          questionDataIdx
                                                         );
                                                       }}
                                                       error={
                                                         showError &&
                                                         question.selectedText ==
-                                                          '' &&
+                                                          "" &&
                                                         question.isRequired
                                                       }
                                                       onBlur={(e: any) => {
@@ -472,7 +472,7 @@ const ImpactCalculator = (props: any) => {
                                                           inputDataIdx,
                                                           subHeadingIdx,
                                                           segmentDetailIdx,
-                                                          questionDataIdx,
+                                                          questionDataIdx
                                                         );
                                                       }}
                                                     />
@@ -480,7 +480,7 @@ const ImpactCalculator = (props: any) => {
                                                 </>
                                               );
                                             } else if (
-                                              question.type == 'hsdd'
+                                              question.type == "hsdd"
                                             ) {
                                               return (
                                                 <HsddInput
@@ -492,28 +492,28 @@ const ImpactCalculator = (props: any) => {
                                                       inputDataIdx,
                                                       subHeadingIdx,
                                                       segmentDetailIdx,
-                                                      questionDataIdx,
+                                                      questionDataIdx
                                                     )
                                                   }
                                                   error={
                                                     showError &&
-                                                    question.selectedId == '' &&
+                                                    question.selectedId == "" &&
                                                     question.isRequired
                                                   }
                                                 />
                                               );
                                             }
-                                          },
+                                          }
                                         )}
                                       </Grid>
                                     </>
                                   ) : null;
-                                },
+                                }
                               )}
                             </div>
                           </>
                         ) : null;
-                      },
+                      }
                     )}
                   </div>
                 ) : null}

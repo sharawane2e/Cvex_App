@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import SecondaryHeader from '../Headers/SecondaryHeader';
-import Coaching from '../../assets/svg/heatmapSvg/Coaching.svg';
+import React, { useEffect, useState } from "react";
+import SecondaryHeader from "../Headers/SecondaryHeader";
+import Coaching from "../../assets/svg/heatmapSvg/Coaching.svg";
 
 const HeatmapPage = () => {
-  const [jsonData, setJSONData] = useState<any>('');
+  const [jsonData, setJSONData] = useState<any>("");
 
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
     // console.log(jsonData.data.inputData.capabilities)
   }, []);
 
   return (
     <div className="question-wrapper">
-      {/* <SecondaryHeader sidebar={false} /> */}
+      <SecondaryHeader sidebar={false} />
       <div className="heatmap-container">
         <div className="custom_middle_container">
           <div className="Illustrative_content">
@@ -72,29 +72,29 @@ const HeatmapPage = () => {
                     <div
                       className={
                         skill.colorLabel == 1
-                          ? 'custom-col bg-lightgray'
+                          ? "custom-col bg-lightgray"
                           : skill.colorLabel == 2
-                          ? 'custom-col bg-midgray'
-                          : 'custom-col bg-darkgray'
+                          ? "custom-col bg-midgray"
+                          : "custom-col bg-darkgray"
                       }
                     >
                       <div className="custom_image">
                         <img
                           className={
                             skill.colorLabel == 1
-                              ? 'color-darkgray'
+                              ? "color-darkgray"
                               : skill.colorLabel == 2
-                              ? 'color-midgray'
-                              : 'color-lightgray'
+                              ? "color-midgray"
+                              : "color-lightgray"
                           }
-                          src={require(`../../assets/svg/heatmapSvg/${skill.skillImageUrl}`)}
+                          src={`${skill.skillImageUrl}`}
                         />
                       </div>
                       <div className="context">{skill.skillName}</div>
                     </div>
                   ))}
                 </div>
-              ),
+              )
             )}
           </div>
         </div>

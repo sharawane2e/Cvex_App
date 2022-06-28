@@ -1,29 +1,30 @@
-import Login from '../components/Login';
-import { Introduction } from '../components/Introduction';
-import React, { useEffect, useState } from 'react';
-import { jsonData as jsonData1 } from '../mock/introData';
-import ThankYou from '../components/ThankYou';
-import QuestionPage from '../components/QuestionPage';
-import GI from '../components/GI';
-import PanelPage from '../components/PanelPage';
-import SubskillPage from '../components/SubskillPage';
-import ImpactCalculatorPage from '../components/ImpactCalculator';
-import OutputContactCenter from '../components/OutputContactCenter';
-import pageCode from '../enums/pageCode';
-import HeatmapPage from '../components/HeatmapPage/Index';
-import SkillPage from '../components/SkillPage';
+import Login from "../components/Login";
+import { Introduction } from "../components/Introduction";
+import React, { useEffect, useState } from "react";
+import { jsonData as jsonData1 } from "../mock/introData";
+import ThankYou from "../components/ThankYou";
+import QuestionPage from "../components/QuestionPage";
+import GI from "../components/GI";
+import PanelPage from "../components/PanelPage";
+import SubskillPage from "../components/SubskillPage";
+import ImpactCalculatorPage from "../components/ImpactCalculator";
+import OutputContactCenter from "../components/OutputContactCenter";
+import pageCode from "../enums/pageCode";
+import HeatmapPage from "../components/HeatmapPage/Index";
+import SkillPage from "../components/SkillPage";
+import CustomizedIC from "../components/CustomizedIC";
 
 const Pages = () => {
-  const [jsonData, setJSONData] = useState<any>('');
+  const [jsonData, setJSONData] = useState<any>("");
 
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
   }, []);
 
-  if (jsonData != '' || jsonData != undefined) {
+  if (jsonData != "" || jsonData != undefined) {
     if (jsonData?.pageCode?.page === pageCode.Login) {
       return <Login />;
     }
@@ -56,6 +57,9 @@ const Pages = () => {
     }
     if (jsonData?.pageCode?.page == pageCode.HeatmapPage) {
       return <HeatmapPage />;
+    }
+    if (jsonData?.pageCode?.page == pageCode.CustomizedIC) {
+      return <CustomizedIC />;
     }
   }
 };

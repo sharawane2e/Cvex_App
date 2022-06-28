@@ -52,6 +52,7 @@ const QuestionPage = () => {
   };
 
   const previousHandleClick = (event: any) => {
+    debugger;
     if (jsonData !== '') {
       // @ts-ignore
       document.getElementById('navText').value =

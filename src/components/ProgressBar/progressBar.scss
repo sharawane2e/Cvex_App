@@ -8,6 +8,9 @@
   align-items: center;
   padding-bottom: 15px;
   border-bottom: 2px solid $gray-color;
+  @include breakpoint(sm-mobileonly) {
+    display: block;
+  }
 }
 
 .saveBtn,
@@ -27,6 +30,9 @@
   .progressbar-container {
     .progressbar-innercontainer {
       justify-content: end;
+      @include breakpoint(sm-mobileonly) {
+        display:block;
+      }
     }
 
     .progressbar {
@@ -51,7 +57,7 @@
   .button-container {
     justify-content: end;
     @include breakpoint(sm-mobileonly) {
-      justify-content: center;
+      justify-content: right;
     }
 
     .previous-button {
@@ -111,6 +117,10 @@
   font-size: 13px;
   height: 37px !important;
   border: 1px solid $gray-color;
+  @include breakpoint(sm-mobileonly) {
+    width: 96% !important;
+    margin-left: 0px !important;
+  }
 }
 
 .submitactive {

@@ -1,10 +1,10 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
   setPotentialChartOptions,
   setSegmentChartOptions,
-} from "../actions/HighChartAction";
+} from '../actions/HighChartAction';
 
 export interface IChartState {
   barChartOptions: any;
@@ -15,11 +15,11 @@ export interface IChartState {
 
 export const defaultPlotOptions = {
   series: {
-    stacking: "normal",
+    stacking: 'normal',
   },
   dataLabels: {
     formatter: function (y: any) {
-      return Math.abs(y) + "€";
+      return Math.abs(y) + '€';
     },
   },
 };
@@ -33,7 +33,7 @@ export const defaultyAxis = {
   title: false,
   plotLines: [
     {
-      color: "#000000",
+      color: '#000000',
       value: 0,
       zIndex: 5,
     },
@@ -43,15 +43,15 @@ export const defaultyAxis = {
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
-      type: "bar",
+      type: 'bar',
     },
     title: {
-      text: "",
+      text: '',
     },
     xAxis: {
       tickLength: 0,
       gridLineWidth: 0,
-      categories: ["Baseline", "Possible future baseline"],
+      categories: ['Baseline', 'Possible future baseline'],
     },
     yAxis: {
       ...defaultyAxis,
@@ -68,11 +68,11 @@ const initialState: IChartState = {
         data: [],
         dataLabels: {
           enabled: true,
-          color: "black",
+          color: 'black',
           inside: false,
           x: 0,
-          align: "left",
-          format: "{point.y:,.2f}€",
+          align: 'left',
+          format: '{point.y:,.2f}€',
         },
         legendIndex: 0,
       },
@@ -80,20 +80,20 @@ const initialState: IChartState = {
   },
   baseLineChartOptions: {
     chart: {
-      type: "waterfall",
+      type: 'waterfall',
     },
     title: {
-      text: "BASELINE",
+      text: 'BASELINE',
       useHTML: true,
       style: {
-        color: "#fff",
-        "background-color": "#ccc",
-        fontWeight: "bold",
+        color: '#fff',
+        'background-color': '#ccc',
+        fontWeight: 'bold',
       },
     },
     xAxis: {
       tickLength: 0,
-      categories: "",
+      categories: '',
       gridLineWidth: 0,
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
@@ -105,38 +105,38 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: '<b>€{point.y:,.2f}</b>',
     },
     series: [
       {
         data: [],
         dataLabels: {
           enabled: true,
-          color: "black",
+          color: 'black',
           inside: false,
           y: -50,
-          align: "center",
-          format: "{point.y:1f}€",
+          align: 'center',
+          format: '{point.y:1f}€',
         },
       },
     ],
   },
   potentialChartOptions: {
     chart: {
-      type: "waterfall",
+      type: 'waterfall',
     },
     title: {
-      text: "POTENTIAL FUTURE BASELINE",
+      text: 'POTENTIAL FUTURE BASELINE',
       useHTML: true,
       style: {
-        color: "#fff",
-        "background-color": "#027AB1",
-        fontWeight: "bold",
+        color: '#fff',
+        'background-color': '#027AB1',
+        fontWeight: 'bold',
       },
     },
     xAxis: {
       tickLength: 0,
-      type: "category",
+      type: 'category',
       gridLineWidth: 0,
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
@@ -148,30 +148,30 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: '<b>€{point.y:,.2f}</b>',
     },
     series: [
       {
         data: [],
         dataLabels: {
           enabled: true,
-          color: "black",
+          color: 'black',
           inside: false,
           y: -50,
-          align: "center",
-          format: "{point.y:1f}€",
+          align: 'center',
+          format: '{point.y:1f}€',
         },
       },
     ],
   },
   segmentChartOptions: {
     chart: {
-      type: "waterfall",
+      type: 'waterfall',
     },
-    title: "",
+    title: '',
     xAxis: {
       tickLength: 0,
-      type: "category",
+      type: 'category',
       gridLineWidth: 0,
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
@@ -181,24 +181,24 @@ const initialState: IChartState = {
         enabled: false,
       },
       gridLineWidth: 0,
-      title: "",
+      title: '',
     },
     legend: {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>${point.y:,.2f}</b> USD",
+      pointFormat: '<b>€{point.y:1f}</b>',
     },
     series: [
       {
         data: [],
         dataLabels: {
           enabled: true,
-          color: "black",
+          color: 'black',
           inside: false,
           y: -50,
-          align: "center",
-          format: "{point.y:1f}€",
+          align: 'center',
+          format: '{point.y:1f}€',
         },
       },
     ],
