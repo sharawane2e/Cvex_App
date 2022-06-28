@@ -1,36 +1,80 @@
 export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
-  const baselineHedding = baseLineChartOptions.headings;
+  const baselineHeading = baseLineChartOptions.headings;
   const seriesName: any = [];
   const seriesY: any = [];
   const SeriesData: any = [];
   const categories: any = [];
-
-  for (let i = 1; i < baselineHedding.length; i++) {
-    seriesName.push(baselineHedding[i]);
+  const colorsArr:any=[];
+  
+  for (let i = 1; i < baselineHeading.length; i++) {
+    seriesName.push(baselineHeading[i]);
   }
   for (let i = 0; i < baseLineChartOptions.rowDetails.length; i++) {
     let newArrayData: any = [];
-    const baselinedata = baseLineChartOptions.rowDetails[i].tbodyDetails;
-    // console.log(baselinedata);
-    for (let j = 1; j < baselinedata.length; j++) {
-      if (typeof baselinedata[j] == "string") {
-        newArrayData.push(0);
-      } else {
-        newArrayData.push(baselinedata[j]);
+    let chartArrayData: any = [];
+    let colorDataData: any = [];
+    // const baselinedata = baseLineChartOptions.rowDetails[i].tbodyDetails;
+    const chartData=baseLineChartOptions.rowDetails[i].chartDetails;
+    const colorData=baseLineChartOptions.rowDetails[i].chartColorArray;
+    // for (let j = 1; j < baselinedata.length; j++) {
+    //   if (typeof baselinedata[j] == "string") {
+    //     newArrayData.push(0);
+    //   } else {
+    //     newArrayData.push(baselinedata[j]);
+    //   }
+    // }
+
+    if(baseLineChartOptions.rowDetails[i]?.chartColorArray!==undefined && baseLineChartOptions.rowDetails[i]?.chartDetails!==undefined){
+      for (let j = 0; j < chartData.length; j++) {
+        chartArrayData.push(chartData[j]);
+      }
+      for (let j = 0; j < colorData.length; j++) {
+        // console.log(colorData)
+        colorDataData.push(colorData[j]);
       }
     }
-    seriesY.push(newArrayData);
-  }
+    seriesY.push(chartArrayData);
+    colorsArr.push(colorDataData);
+    console.log(colorDataData)
+    // seriesY.splice(1,1)
+    // colorsArr.splice(1,1)
 
-  seriesY[0].forEach((el: any, index: any) => {
-    categories.push(seriesName[index]);
-    SeriesData.push({
-      name: seriesName[index],
-      y: el,
-      // color: "red",
-    });
-  });
-
+    for (let index = 0; index < baseLineChartOptions.rowDetails[i]?.chartDetails.length; index++) {
+    //   seriesY.forEach((el: any,i:number) => {
+    //     categories.push(seriesName[index]);
+    //     SeriesData.push({
+    //       name: seriesName[index],
+    //       y: el[i],
+    //       color: colorsArr[index],
+    //     });
+    //   });
+    // }
+  
+  }}
+  console.log(colorsArr)
+  // seriesY.forEach((el: any, index: any) => {
+  //   categories.push(seriesName[index]);
+  //   SeriesData.push({
+  //     name: seriesName[index],
+  //     y: el,
+  //     // color: "red",
+  //   });
+  // });
+  // var blankIndex = colorsArr.indexOf("");
+  // colorsArr.splice(blankIndex,1)
+  
+  // seriesY.forEach((el: any, index: any) => {
+  //   el?.forEach((element:any)=> {
+  //     console.log(el)
+  //   });
+    // categories.push(seriesName);
+    // SeriesData.push({
+    //   name: seriesName,
+    //   y: el,
+    //   color: colorsArr[index],
+    // });
+  // });
+// console.log(SeriesData)
   return [SeriesData, categories];
 };
 export const getpotentialChartOptions = (potentialChartOptions: any): any => {
@@ -46,7 +90,7 @@ export const getpotentialChartOptions = (potentialChartOptions: any): any => {
   for (let i = 0; i < potentialChartOptions.rowDetails.length; i++) {
     let newArrayData: any = [];
     const baselinedata = potentialChartOptions.rowDetails[i].tbodyDetails;
-    console.log(baselinedata);
+    // console.log(baselinedata);
     for (let j = 1; j < baselinedata.length; j++) {
       if (typeof baselinedata[j] == "string") {
         newArrayData.push(0);

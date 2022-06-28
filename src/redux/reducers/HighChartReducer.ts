@@ -1,4 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { getSymbolFormat } from "../../utils";
+
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
@@ -24,10 +26,13 @@ export const defaultPlotOptions = {
   },
 };
 
-export const defaultyAxis = {
+export const defaultXFontSize={style: { fontSize:"16px"}};
+export const defaultYFontSize={style: { fontSize:"16px",fontWeight:"bold"}};
+export const defaultYAxis = {
   tickLength: 0,
   labels: {
     enabled: false,
+    ...defaultYFontSize,
   },
   gridLineWidth: 0,
   title: false,
@@ -39,6 +44,29 @@ export const defaultyAxis = {
     },
   ],
 };
+export const defaultYDataLabels = {
+  enabled: true,
+          color: "black",
+          inside: false,
+          // y: 50,
+          align: "center",
+          // format: "{point.y:,.2f}",
+          formatter: function (this: any) {
+            return Math.abs(this.y) + "€";}
+};
+export const defaultXDataLabels = {
+  enabled: true,
+          color: "black",
+          inside: false,
+          x: 50,
+          align: "center",
+          // format: "{point.y:,.2f}",
+          formatter: function (this: any) {
+            return Math.abs(this.y) + "€";}
+};
+
+export const defaultMargin={marginTop: 40};
+
 
 const initialState: IChartState = {
   barChartOptions: {
@@ -52,9 +80,13 @@ const initialState: IChartState = {
       tickLength: 0,
       gridLineWidth: 0,
       categories: ["Baseline", "Possible future baseline"],
+      labels:{
+        ...defaultXFontSize
+      }
     },
     yAxis: {
-      ...defaultyAxis,
+      ...defaultYAxis,
+      ...defaultXFontSize
     },
 
     plotOptions: {
@@ -68,12 +100,7 @@ const initialState: IChartState = {
       {
         data: [],
         dataLabels: {
-          enabled: true,
-          color: "black",
-          inside: false,
-          x: 0,
-          align: "left",
-          format: "{point.y:,.2f}€",
+          ...defaultXDataLabels
         },
         legendIndex: 0,
       },
@@ -82,6 +109,7 @@ const initialState: IChartState = {
   baseLineChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMargin
     },
     title: {
       text: "BASELINE",
@@ -97,9 +125,12 @@ const initialState: IChartState = {
       categories: "",
       gridLineWidth: 0,
       // categories: ["asd", "asd"], gridLineWidth: 0
+      labels:{
+        ...defaultXFontSize
+      }
     },
     yAxis: {
-      ...defaultyAxis,
+      ...defaultYAxis,
     },
 
     legend: {
@@ -107,17 +138,13 @@ const initialState: IChartState = {
     },
     tooltip: {
       pointFormat: "<b>€{point.y:,.2f}</b>",
+
     },
     series: [
       {
         data: [],
         dataLabels: {
-          enabled: true,
-          color: "black",
-          inside: false,
-          y: -50,
-          align: "center",
-          format: "{point.y:,.2f}€",
+         ...defaultYDataLabels
         },
       },
     ],
@@ -125,6 +152,7 @@ const initialState: IChartState = {
   potentialChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMargin
     },
     title: {
       text: "POTENTIAL FUTURE BASELINE",
@@ -139,10 +167,13 @@ const initialState: IChartState = {
       tickLength: 0,
       type: "category",
       gridLineWidth: 0,
+      labels:{
+        ...defaultXFontSize
+      }
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
     yAxis: {
-      ...defaultyAxis,
+      ...defaultYAxis,
     },
 
     legend: {
@@ -155,12 +186,7 @@ const initialState: IChartState = {
       {
         data: [],
         dataLabels: {
-          enabled: true,
-          color: "black",
-          inside: false,
-          y: -50,
-          align: "center",
-          format: "{point.y:,.2f}€",
+         ...defaultYDataLabels
         },
       },
     ],
@@ -168,12 +194,16 @@ const initialState: IChartState = {
   segmentChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMargin
     },
     title: "",
     xAxis: {
       tickLength: 0,
       type: "category",
       gridLineWidth: 0,
+      labels:{
+        ...defaultXFontSize
+      }
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
     yAxis: {
@@ -188,21 +218,13 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.2f}</b>"
     },
     series: [
       {
         data: [],
         dataLabels: {
-          enabled: true,
-          color: "black",
-          inside: false,
-          y: 50,
-          align: "center",
-          // format: "{point.y:,.2f}",
-          formatter: function (this: any) {
-            return Math.abs(this.y) + "€";
-          },
+          ...defaultYDataLabels
         },
       },
     ],
