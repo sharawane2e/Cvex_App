@@ -26,10 +26,15 @@ export const defaultPlotOptions = {
   },
 };
 
-export const defaultyAxis = {
+export const defaultXFontSize = { style: { fontSize: '16px' } };
+export const defaultYFontSize = {
+  style: { fontSize: '16px', fontWeight: 'bold' },
+};
+export const defaultYAxis = {
   tickLength: 0,
   labels: {
     enabled: false,
+    ...defaultYFontSize,
   },
   gridLineWidth: 0,
   title: false,
@@ -41,6 +46,30 @@ export const defaultyAxis = {
     },
   ],
 };
+export const defaultYDataLabels = {
+  enabled: true,
+  color: 'black',
+  inside: false,
+  // y: 50,
+  align: 'center',
+  // format: "{point.y:,.2f}",
+  formatter: function (this: any) {
+    return Math.abs(this.y) + '€';
+  },
+};
+export const defaultXDataLabels = {
+  enabled: true,
+  color: 'black',
+  inside: false,
+  x: 50,
+  align: 'center',
+  // format: "{point.y:,.2f}",
+  formatter: function (this: any) {
+    return Math.abs(this.y) + '€';
+  },
+};
+
+export const defaultMargin = { marginTop: 40 };
 
 const initialState: IChartState = {
   barChartOptions: {
@@ -56,7 +85,8 @@ const initialState: IChartState = {
       categories: ['Baseline', 'Possible future baseline'],
     },
     yAxis: {
-      ...defaultyAxis,
+      ...defaultYAxis,
+      ...defaultXFontSize,
     },
 
     plotOptions: {
@@ -99,9 +129,12 @@ const initialState: IChartState = {
       categories: '',
       gridLineWidth: 0,
       // categories: ["asd", "asd"], gridLineWidth: 0
+      labels: {
+        ...defaultXFontSize,
+      },
     },
     yAxis: {
-      ...defaultyAxis,
+      ...defaultYAxis,
     },
 
     legend: {
@@ -141,10 +174,13 @@ const initialState: IChartState = {
       tickLength: 0,
       type: 'category',
       gridLineWidth: 0,
+      labels: {
+        ...defaultXFontSize,
+      },
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
     yAxis: {
-      ...defaultyAxis,
+      ...defaultYAxis,
     },
 
     legend: {
@@ -176,6 +212,9 @@ const initialState: IChartState = {
       tickLength: 0,
       type: 'category',
       gridLineWidth: 0,
+      labels: {
+        ...defaultXFontSize,
+      },
       // categories: ["asd", "asd"], gridLineWidth: 0
     },
     yAxis: {

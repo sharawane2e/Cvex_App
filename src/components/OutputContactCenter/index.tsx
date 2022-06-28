@@ -29,6 +29,7 @@ import {
 import { useSelector } from 'react-redux';
 import arrowDown from '../../assets/svg/angle-double-down.svg';
 import arrowUp from '../../assets/svg/angle-double-up.svg';
+import { getSymbolFormat } from '../../utils';
 
 const OutputContactCenter = () => {
   const [jsonData, setJSONData] = useState<any>('');
@@ -70,7 +71,6 @@ const OutputContactCenter = () => {
   const handleDDChange = (ddId: string) => {
     if (ddId != undefined) {
       const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
-      console.log(updatedJsonData.data.inputData.periodDD.selectedId);
       updatedJsonData.data.inputData.periodDD.selectedId = ddId;
 
       document.getElementById(ddId)?.click();
@@ -103,7 +103,7 @@ const OutputContactCenter = () => {
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key],
           );
-          // console.log(getSeriesData);
+
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],
@@ -178,7 +178,7 @@ const OutputContactCenter = () => {
       });
     }
   };
-
+  getSymbolFormat(jsonData?.data?.inputData?.currencySymbol);
   return (
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
@@ -229,8 +229,7 @@ const OutputContactCenter = () => {
               <div className="outputTable-container__inr__body">
                 {dropdown?.selectedData?.rowDetails?.map(
                   (rowDetail: any, rowIndex: number) => {
-                    const currencySymbol =
-                      inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
+                    const currencySymbol = inputDetails?.currencySymbol;
                     return (
                       <div className="table-col" key={rowIndex}>
                         {rowDetail?.tbodyDetails.map(
@@ -358,7 +357,7 @@ const OutputContactCenter = () => {
               </div>
             </div>
           </Box>
-          <div className="chart-container">
+          <div className="chart-container__full">
             <div className="chart-container__waterfall">
               <SegmentChart />
             </div>

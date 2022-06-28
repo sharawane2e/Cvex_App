@@ -174,7 +174,7 @@
       }
       .chart-container {
         padding: 20px 0px 20px 0px;
-       // width: 50%;
+        width: 70%;
         &__inr {
           display: flex;
           width: 100%;
@@ -185,6 +185,12 @@
           @include breakpoint(mobileonly) {
             display: block;
           }
+         
+        }
+        &.multiple-charts {
+          width: 100%;
+          border-bottom: 1px solid #ccc;
+          border-top: 1px solid #ccc;
           .chart-baseline {
             width: 49%;
             border: 1px solid #ccc;
@@ -195,6 +201,12 @@
             }
             @include breakpoint(mobileonly) {
               width: 100%;
+            }
+            .highcharts-title {
+              width: 100% !important;
+              text-align: center;
+              left: 0 !important;
+              top: 0 !important;
             }
           }
           .chart-futurebaseline {
@@ -207,20 +219,6 @@
             @include breakpoint(mobileonly) {
               width: 100%;
             }
-          }
-        }
-        &.multiple-charts {
-          border-bottom: 1px solid #ccc;
-          border-top: 1px solid #ccc;
-          .chart-baseline {
-            .highcharts-title {
-              width: 100% !important;
-              text-align: center;
-              left: 0 !important;
-              top: 0 !important;
-            }
-          }
-          .chart-futurebaseline {
             .highcharts-title {
               width: 100% !important;
               text-align: center;
@@ -238,6 +236,9 @@
             padding: 0px;
           }
           box-shadow: 0px 2px 10px #ccc;
+        }
+        &__full{
+          width: 100%;
         }
       }
     }
