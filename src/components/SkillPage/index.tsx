@@ -43,7 +43,7 @@ const PanelPage = (props: any) => {
     }
   };
 
-  console.log(jsonData)
+  console.log(jsonData);
   return (
     <div className="skill-container">
       <SecondaryHeader sidebar={false}/>
