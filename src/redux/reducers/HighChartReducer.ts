@@ -62,6 +62,7 @@ const initialState: IChartState = {
     },
     legend: {
       enabled: false,
+      // backgroundColor: "red",
     },
     series: [
       {
@@ -196,9 +197,12 @@ const initialState: IChartState = {
           enabled: true,
           color: "black",
           inside: false,
-          y: -50,
+          y: 50,
           align: "center",
-          format: "{point.y:,.2f}€",
+          // format: "{point.y:,.2f}",
+          formatter: function (this: any) {
+            return Math.abs(this.y) + "€";
+          },
         },
       },
     ],

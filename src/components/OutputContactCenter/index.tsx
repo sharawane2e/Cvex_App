@@ -80,18 +80,19 @@ const OutputContactCenter = () => {
           );
           const rowDetails =
             updatedJsonData.data.inputData.periodTableData[key].rowDetails;
+            const colorArray = updatedJsonData.data.inputData.periodTableData[key].colorArray;
           const seriesValue1 =
-            rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1];
+            {y:rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],color:colorArray[0]};
           const seriesValue2 =
-            rowDetails[rowDetails.length - 1].tbodyDetails[
+            {y:rowDetails[rowDetails.length - 1].tbodyDetails[
               rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
-            ];
+            ],color:colorArray[1]};
 
           dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key]
           );
-          console.log(updatedJsonData.data.inputData.periodTableData[key]);
+          // console.log(getSeriesData);
           dispatch(
             setBaseLineChartOptions({
               data: getSeriesData[0],

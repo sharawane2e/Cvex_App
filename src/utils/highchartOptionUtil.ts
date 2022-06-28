@@ -13,7 +13,7 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
     const baselinedata = baseLineChartOptions.rowDetails[i].tbodyDetails;
     // console.log(baselinedata);
     for (let j = 1; j < baselinedata.length; j++) {
-      if (typeof baselinedata[j] == 'string') {
+      if (typeof baselinedata[j] == "string") {
         newArrayData.push(0);
       } else {
         newArrayData.push(baselinedata[j]);
@@ -27,6 +27,7 @@ export const getbaseLineChartOptions = (baseLineChartOptions: any): any => {
     SeriesData.push({
       name: seriesName[index],
       y: el,
+      // color: "red",
     });
   });
 
@@ -47,7 +48,7 @@ export const getpotentialChartOptions = (potentialChartOptions: any): any => {
     const baselinedata = potentialChartOptions.rowDetails[i].tbodyDetails;
     console.log(baselinedata);
     for (let j = 1; j < baselinedata.length; j++) {
-      if (typeof baselinedata[j] == 'string') {
+      if (typeof baselinedata[j] == "string") {
         newArrayData.push(0);
       } else {
         newArrayData.push(baselinedata[j]);
@@ -61,6 +62,7 @@ export const getpotentialChartOptions = (potentialChartOptions: any): any => {
     SeriesData.push({
       name: seriesName[index],
       y: el,
+      // color: "red",
     });
   });
   return [SeriesData, categories];
@@ -74,24 +76,25 @@ export const getsegmentChartOptions = (segmentChartOptions: any): any => {
   for (let i = 0; i < segementHeading.length; i++) {
     seriesName.push(segementHeading[i]);
   }
-  
+
   for (let i = 0; i < segmentChartOptions.chartDetails.length; i++) {
     let newArrayData: any = [];
     const segmentData = segmentChartOptions.chartDetails[i];
-      if (typeof segmentData== 'string') {
-        newArrayData.push(0);
-      } else {
-        newArrayData.push(segmentData);
+    if (typeof segmentData == "string") {
+      newArrayData.push(0);
+    } else {
+      newArrayData.push(segmentData);
     }
     seriesY.push(newArrayData);
   }
-  
+
   seriesY.forEach((el: any, index: any) => {
     categories.push(seriesName[index]);
-      SeriesData.push({
-        name: seriesName[index],
-        y: el[0]
-      });
+    SeriesData.push({
+      name: seriesName[index],
+      y: el[0],
+      // color: "red",
+    });
   });
 
   return [SeriesData, categories];
