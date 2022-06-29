@@ -165,11 +165,17 @@
                   display: block;
                   border-right: 1px solid #2a2a2a;
                 }
-                span {
-                  display: inline-block;
+               
+                .currency-contaier{
+                  display: flex;
+                  width: 50%;
+                  justify-content: right;
+                  span {
+                    display: flex;
+                  }
                 }
                 .currency-symbol {
-                  padding-left: 5px;
+                  padding-left: 2px;
                 }
                 &:first-child {
                   text-align: left;
@@ -337,6 +343,7 @@
 .emptyicon {
   height: 20px;
   width: 16px;
+  position:absolute;
 }
 
 .bg-StringGray {
