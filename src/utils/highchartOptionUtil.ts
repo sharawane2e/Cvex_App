@@ -1,22 +1,24 @@
+import { getParsedData } from "./parserUtil";
+
 export const getbaseChart = (
   rowDetails: any,
   colorArray: any,
   currencySymbol: any
 ): any => {
-  const labelsFormate = {
+  const labelsFormat = {
     enabled: true,
     bold: false,
     color: "black",
     inside: false,
     x: 0,
     align: "left",
-    format: `{point.y:,.2f} ${currencySymbol}`,
+    format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
   };
   const seriesValue1 = {
     y: rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
     color: colorArray[0],
     dataLabels: {
-      ...labelsFormate,
+      ...labelsFormat,
     },
   };
   const seriesValue2 = {
@@ -25,7 +27,7 @@ export const getbaseChart = (
     ],
     color: colorArray[1],
     dataLabels: {
-      ...labelsFormate,
+      ...labelsFormat,
     },
   };
   return [seriesValue1, seriesValue2];
@@ -62,9 +64,9 @@ export const getbaseLineChartOptions = (
       enabled: true,
       color: "black",
       inside: false,
-      y: 50,
+      y: 0,
       align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
     },
   });
   return [series, categories];
@@ -101,9 +103,9 @@ export const getpotentialChartOptions = (
       enabled: true,
       color: "#000000",
       inside: false,
-      y: 50,
+      y: 0,
       align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
     },
   });
 
@@ -139,10 +141,9 @@ export const getsegmentChartOptions = (
       enabled: true,
       color: "black",
       inside: false,
-
-      y: 50,
+      y: -10,
       align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
     },
   });
 

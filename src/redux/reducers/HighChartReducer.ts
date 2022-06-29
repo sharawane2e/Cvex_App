@@ -19,17 +19,21 @@ export interface IChartState {
 export const defaultPlotOptions = {
   series: {
     stacking: "normal",
+    pointWidth: 40,
+    groupPadding: 0,
+    pointPadding: 0,
+    borderWidth: 0,
   },
-  dataLabels: {
-    formatter: function (y: any) {
-      return Math.abs(y) + "€";
-    },
-  },
+  // dataLabels: {
+  //   formatter: function (y: any) {
+  //     return Math.abs(y) + "€";
+  //   },
+  // },
 };
 
-export const defaultXFontSize = { style: { fontSize: "16px" } };
+export const defaultXFontSize = { style: { fontSize: "14px" } };
 export const defaultYFontSize = {
-  style: { fontSize: "16px", fontWeight: "bold" },
+  style: { fontSize: "14px", fontWeight: "bold" },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -54,18 +58,20 @@ export const defaultXDataLabels = {
   inside: false,
   x: 50,
   align: "center",
-  // format: "{point.y:,.2f}",
+  // format: "{point.y:,.0f}",
   formatter: function (this: any) {
     return Math.abs(this.y) + "€";
   },
 };
 
-export const defaultMargin = { marginTop: 40 };
+export const defaultMarginTop = { marginTop: 40 };
+export const defaultMarginRight = { marginRight: 100 };
 
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
       type: "bar",
+      ...defaultMarginRight,
     },
     title: {
       text: "",
@@ -75,6 +81,7 @@ const initialState: IChartState = {
       gridLineWidth: 0,
       categories: [],
       labels: {
+        y: -5,
         style: {
           color: "#2A2A2A",
           fontSize: "16px",
@@ -83,16 +90,18 @@ const initialState: IChartState = {
       },
     },
     yAxis: {
+      x: -10,
       visible: false,
       reversedStacks: false,
     },
-
+    tooltip: {
+      pointFormat: "<b>€{point.y:,.0f}</b>",
+    },
     plotOptions: {
-      defaultPlotOptions,
+      ...defaultPlotOptions,
     },
     legend: {
       enabled: false,
-      // backgroundColor: "red",
     },
     series: [
       {
@@ -104,6 +113,7 @@ const initialState: IChartState = {
   baseLineChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMarginTop,
     },
     title: {
       text: "",
@@ -126,12 +136,14 @@ const initialState: IChartState = {
     yAxis: {
       ...defaultYAxis,
     },
-
+    // plotOptions: {
+    //   ...defaultPlotOptions,
+    // },
     legend: {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
     series: [
       {
@@ -142,6 +154,7 @@ const initialState: IChartState = {
   potentialChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMarginTop,
     },
     title: {
       text: "",
@@ -169,7 +182,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
     series: [
       {
@@ -180,6 +193,7 @@ const initialState: IChartState = {
   segmentChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMarginTop,
     },
     title: "",
     xAxis: {
@@ -202,7 +216,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
     series: [
       {
@@ -217,9 +231,12 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     ...state,
     barChartOptions: {
       ...state.barChartOptions,
+      xAxis: {
+        ...action.payload,
+      },
       series: [
         {
-          data: [...action.payload],
+          ...action.payload,
         },
       ],
     },
@@ -290,8 +307,9 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     return {
       ...state,
       barChartOptions: {
+        ...state.barChartOptions,
         xAxis: {
-          categories: action.payload,
+          categories: [...action.payload],
         },
       },
     };
