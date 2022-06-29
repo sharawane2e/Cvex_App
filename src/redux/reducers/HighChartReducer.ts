@@ -88,7 +88,7 @@ const initialState: IChartState = {
       reversedStacks: false,
     },
     tooltip: {
-      pointFormat: '<b>{point.y:,.0f} €</b>',
+      pointFormat: '<b>{point.y:,.0f} HHHH</b>',
     },
     plotOptions: {
       ...defaultPlotOptions,
