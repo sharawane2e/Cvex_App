@@ -14,6 +14,11 @@ export const getbaseChart = (
     // x: -10,
     align: "center",
     // poistion: "right",
+    style: {
+      textShadow: false,
+      textOutline: false,
+      fontWeight: "normal",
+    },
     formatter: function (this: any) {
       return (
         Highcharts.numberFormat(Math.abs(this.y), 2) +
@@ -70,9 +75,17 @@ export const getbaseLineChartOptions = (
     dataLabels: {
       enabled: true,
       color: "black",
-      inside: false,
-      y: 0,
-      align: "center",
+      bold: false,
+      // inside: false,
+      // y: 0,
+      // align: "center",
+      verticalAlign: "top",
+      y: -20,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: "normal",
+      },
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       formatter: function (this: any) {
         return (
@@ -115,9 +128,17 @@ export const getpotentialChartOptions = (
     dataLabels: {
       enabled: true,
       color: "#000000",
-      inside: false,
-      y: 0,
-      align: "center",
+      bold: false,
+      // inside: false,
+      // y: 0,
+      // align: "center",
+      verticalAlign: "top",
+      y: -20,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: "normal",
+      },
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       formatter: function (this: any) {
         return (
@@ -159,10 +180,17 @@ export const getsegmentChartOptions = (
     dataLabels: {
       enabled: true,
       color: "black",
-      inside: false,
-      y: -10,
-      align: "center",
+      bold: false,
+      verticalAlign: "top",
+      // inside: false,
+      y: -20,
+      // align: "center",
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: "normal",
+      },
       formatter: function (this: any) {
         return (
           Highcharts.numberFormat(Math.abs(this.y), 2) +
