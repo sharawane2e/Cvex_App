@@ -19,12 +19,17 @@ export interface IChartState {
 export const defaultPlotOptions = {
   series: {
     stacking: "normal",
+    pointWidth:40,
+    groupPadding: 5,
+    //      pointPadding: 10,
+    //      borderWidth: 0
+
   },
-  dataLabels: {
-    formatter: function (y: any) {
-      return Math.abs(y) + "€";
-    },
-  },
+  // dataLabels: {
+  //   formatter: function (y: any) {
+  //     return Math.abs(y) + "€";
+  //   },
+  // },
 };
 
 export const defaultXFontSize = { style: { fontSize: "14px" } };
@@ -91,9 +96,9 @@ const initialState: IChartState = {
 tooltip: {
       pointFormat: "<b>€{point.y:,.0f}</b>",
     },
-    // plotOptions: {
-    //   defaultPlotOptions,
-    // },
+    plotOptions: {
+      ...defaultPlotOptions,
+    },
     legend: {
       enabled: false,
     },
@@ -130,7 +135,9 @@ tooltip: {
     yAxis: {
       ...defaultYAxis,
     },
-
+    // plotOptions: {
+    //   ...defaultPlotOptions,
+    // },
     legend: {
       enabled: false,
     },
