@@ -174,9 +174,18 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    // tooltip: {
-    //   pointFormat: '<b>€{point.y:,.0f}</b>',
-    // },
+    tooltip: {
+      // pointFormat: '<b>€{point.y:,.0f}</b>',
+      formatter: function (this: any) {
+        return (
+          "The value for <b>" +
+          this.x +
+          "</b> is <b>" +
+          Math.abs(this.y) +
+          "</b>"
+        );
+      },
+    },
     series: [
       {
         data: [],
