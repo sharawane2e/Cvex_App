@@ -1,4 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer } from '@reduxjs/toolkit';
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
@@ -7,7 +7,7 @@ import {
   setCharBasetTitle,
   setCharPotentialtTitle,
   setCharcategory,
-} from "../actions/HighChartAction";
+} from '../actions/HighChartAction';
 
 export interface IChartState {
   barChartOptions: any;
@@ -17,28 +17,24 @@ export interface IChartState {
 }
 
 export const defaultPlotOptions = {
-  series: {
-    stacking: "normal",
-    pointWidth: 40,
+  bar: {
     groupPadding: 0,
     pointPadding: 0,
-    borderWidth: 0,
-    // dataLabels: {
-    //   formatter: function (this) {
-    //     return "hello";
-    //   },
-    // },
+    pointWidth: 40,
+    dataLabels: {
+      enabled: true,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: 'normal',
+      },
+    },
   },
-  // dataLabels: {
-  //   formatter: function (y: any) {
-  //     return Math.abs(y) + "€";
-  //   },
-  // },
 };
 
-export const defaultXFontSize = { style: { fontSize: "14px" } };
+export const defaultXFontSize = { style: { fontSize: '14px' } };
 export const defaultYFontSize = {
-  style: { fontSize: "14px", fontWeight: "bold" },
+  style: { fontSize: '14px', fontWeight: 'bold' },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -50,24 +46,11 @@ export const defaultYAxis = {
   title: false,
   plotLines: [
     {
-      color: "#000000",
+      color: '#000000',
       value: 0,
       zIndex: 5,
     },
   ],
-};
-
-export const defaultXDataLabels = {
-  enabled: true,
-  color: "black",
-  inside: false,
-  x: 50,
-  align: "center",
-  // format: "{point.y:,.0f}",
-  // formatter: function (this: any) {
-  //   // return Math.abs(this.y) + "€";
-  //   return "Yo";
-  // },
 };
 
 export const defaultMarginTop = { marginTop: 40 };
@@ -76,32 +59,33 @@ export const defaultMarginRight = { marginRight: 100 };
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
-      type: "bar",
+      type: 'bar',
       ...defaultMarginRight,
+      height: 150,
     },
     title: {
-      text: "",
+      text: '',
     },
     xAxis: {
       tickLength: 0,
       gridLineWidth: 0,
       categories: [],
       labels: {
-        y: -5,
+        y: 0,
         style: {
-          color: "#2A2A2A",
-          fontSize: "16px",
-          fontWeight: "bold",
+          color: '#2A2A2A',
+          fontSize: '16px',
+          fontWeight: 'bold',
         },
       },
     },
     yAxis: {
-      x: -10,
+      x: 0,
       visible: false,
       reversedStacks: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.0f}</b>",
+      pointFormat: '<b>€{point.y:,.0f}</b>',
     },
     plotOptions: {
       ...defaultPlotOptions,
@@ -118,22 +102,22 @@ const initialState: IChartState = {
   },
   baseLineChartOptions: {
     chart: {
-      type: "waterfall",
+      type: 'waterfall',
       ...defaultMarginTop,
     },
     title: {
-      text: "",
+      text: '',
       useHTML: true,
       style: {
-        color: "#fff",
-        "background-color": "#ccc",
-        fontWeight: "bold",
-        "text-transform": "uppercase",
+        color: '#fff',
+        'background-color': '#ccc',
+        fontWeight: 'bold',
+        'text-transform': 'uppercase',
       },
     },
     xAxis: {
       tickLength: 0,
-      categories: "",
+      categories: '',
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -149,7 +133,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.0f}</b>",
+      pointFormat: '<b>€{point.y:,.0f}</b>',
     },
     series: [
       {
@@ -159,22 +143,22 @@ const initialState: IChartState = {
   },
   potentialChartOptions: {
     chart: {
-      type: "waterfall",
+      type: 'waterfall',
       ...defaultMarginTop,
     },
     title: {
-      text: "",
+      text: '',
       useHTML: true,
       style: {
-        color: "#fff",
-        "background-color": "#027AB1",
-        fontWeight: "bold",
-        "text-transform": "uppercase",
+        color: '#fff',
+        'background-color': '#027AB1',
+        fontWeight: 'bold',
+        'text-transform': 'uppercase',
       },
     },
     xAxis: {
       tickLength: 0,
-      type: "category",
+      type: 'category',
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -188,7 +172,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.0f}</b>",
+      pointFormat: '<b>€{point.y:,.0f}</b>',
     },
     series: [
       {
@@ -198,13 +182,13 @@ const initialState: IChartState = {
   },
   segmentChartOptions: {
     chart: {
-      type: "waterfall",
+      type: 'waterfall',
       ...defaultMarginTop,
     },
-    title: "",
+    title: '',
     xAxis: {
       tickLength: 0,
-      type: "category",
+      type: 'category',
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -216,13 +200,13 @@ const initialState: IChartState = {
         enabled: false,
       },
       gridLineWidth: 0,
-      title: "",
+      title: '',
     },
     legend: {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.0f}</b>",
+      pointFormat: '<b>€{point.y:,.0f}</b>',
     },
     series: [
       {
