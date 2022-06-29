@@ -281,31 +281,43 @@ const CustomizedIC = () => {
         <div className="table_section">
           <div>Inbound sales</div>
           <div>
-            <div className="table-col">
-              <div className="table-row">
+            <div className="t-row">
+              <div className="t-data">
                 <span>One</span>
               </div>
-              <div className="table-row">
+              <div className="t-data">
                 <span>One</span>
               </div>
-              <div className="table-row">
+              <div className="t-data">
                 <span>One</span>
               </div>
-              <div className="table-row">
+              <div className="t-data">
+                <span>One</span>
+              </div>
+              <div className="t-data">
+                <span>One</span>
+              </div>
+              <div className="t-data">
                 <span>One</span>
               </div>
             </div>
-            <div className="table-col">
-              <div className="table-row">
+            <div className="t-row">
+              <div className="t-data">
                 <span>One</span>
               </div>
-              <div className="table-row">
+              <div className="t-data">
                 <span>One</span>
               </div>
-              <div className="table-row">
+              <div className="t-data">
                 <span>One</span>
               </div>
-              <div className="table-row">
+              <div className="t-data">
+                <span>One</span>
+              </div>
+              <div className="t-data">
+                <span>One</span>
+              </div>
+              <div className="t-data">
                 <span>One</span>
               </div>
             </div>
