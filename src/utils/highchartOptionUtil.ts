@@ -76,9 +76,6 @@ export const getbaseLineChartOptions = (
       enabled: true,
       color: 'black',
       bold: false,
-      // inside: false,
-      // y: 0,
-      // align: "center",
       verticalAlign: 'top',
       y: -20,
       style: {
@@ -182,20 +179,14 @@ export const getsegmentChartOptions = (
       color: 'black',
       bold: false,
       verticalAlign: 'top',
-      // inside: false,
       y: -20,
-      // align: "center",
-      // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       style: {
         textShadow: false,
         textOutline: false,
         fontWeight: 'normal',
       },
       formatter: function (this: any) {
-        return (
-          Highcharts.numberFormat(Math.abs(this.y), 0) +
-          `${getParsedData(currencySymbol)}`
-        );
+        return Highcharts.numberFormat(Math.abs(this.y), 0);
       },
     },
   });
