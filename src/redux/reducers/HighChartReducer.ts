@@ -88,7 +88,7 @@ const initialState: IChartState = {
     },
 
     plotOptions: {
-      defaultPlotOptions,
+      ...defaultPlotOptions,
     },
     legend: {
       enabled: false,
@@ -217,9 +217,12 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     ...state,
     barChartOptions: {
       ...state.barChartOptions,
+      xAxis: {
+        ...action.payload,
+      },
       series: [
         {
-          data: [...action.payload],
+          ...action.payload,
         },
       ],
     },
@@ -290,8 +293,9 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     return {
       ...state,
       barChartOptions: {
+        ...state.barChartOptions,
         xAxis: {
-          categories: action.payload,
+          categories: [...action.payload],
         },
       },
     };

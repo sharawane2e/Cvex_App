@@ -100,13 +100,14 @@ const OutputContactCenter = () => {
             colorArray,
             currencySymbol
           );
-          dispatch(setCharcategory([firtsCatg, secsCatg]));
 
-          dispatch(setBarChartOptions(getchartBarSeries));
+          dispatch(setBarChartOptions({ data: getchartBarSeries }));
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key],
             currencySymbol
           );
+
+          dispatch(setCharcategory([firtsCatg, secsCatg]));
 
           const dataValue = getSeriesData[0][0];
 
