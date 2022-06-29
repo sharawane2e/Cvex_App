@@ -88,7 +88,13 @@ const initialState: IChartState = {
       reversedStacks: false,
     },
     tooltip: {
-      pointFormat: '<b>{point.y:,.0f} HHHH</b>',
+      //pointFormat: '<b>{point.y:,.0f} €</b>',
+      pointFormat: '<b>{point.y:,.0f} €</b>',
+      // formatter: function (this: any) {
+      //   return this.points.reduce(function (s: any, point: any) {
+      //     return s + '<br/>' + point.series.name + ': ' + point.y + 'm';
+      //   }, '<b>' + this.x + '</b>');
+      // },
     },
     plotOptions: {
       ...defaultPlotOptions,
@@ -135,9 +141,9 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    // tooltip: {
-    //   pointFormat: '<b>€{point.y:,.0f}</b>',
-    // },
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f} €</b>',
+    },
     series: [
       {
         data: [],
@@ -174,9 +180,9 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    // tooltip: {
-    //   pointFormat: '<b>€{point.y:,.0f}</b>',
-    // },
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f} €</b>',
+    },
     series: [
       {
         data: [],
@@ -208,9 +214,10 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    // tooltip: {
-    //   pointFormat: '<b>€{point.y:,.0f}</b>',
-    // },
+
+    tooltip: {
+      pointFormat: '<b>{point.y:,.0f} €</b>',
+    },
     series: [
       {
         data: [],
@@ -226,7 +233,9 @@ const HighChartReducer = createReducer(initialState, (builder) => {
       barChartOptions: {
         ...state.barChartOptions,
         tooltip: {
-          pointFormat: action.payload,
+          // pointFormat: ...state.barChartOptions.tooltip.pointFormat,
+          ...action.payload,
+          // ...state.barChartOptions.tooltip,
         },
       },
     };

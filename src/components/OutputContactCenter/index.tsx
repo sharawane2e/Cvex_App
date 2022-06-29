@@ -71,6 +71,7 @@ const OutputContactCenter = () => {
   const inputDetails = jsonData?.data?.inputData;
 
   const handleDDChange = (ddId: string) => {
+    console.log("dd called")
     if (ddId != undefined) {
       const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
       updatedJsonData.data.inputData.periodDD.selectedId = ddId;
@@ -102,7 +103,7 @@ const OutputContactCenter = () => {
             colorArray,
             currencySymbol,
           );
-          dispatch(setTooltip(`<b>{point.y:,.0f} €</b>`));
+          dispatch(setTooltip({pointFormat:`<b>{point.y:,.0f} €</b>`}));
 
           dispatch(setBarChartOptions({ data: getchartBarSeries }));
           const getSeriesData = getbaseLineChartOptions(
