@@ -21,7 +21,7 @@ export const getbaseChart = (
     },
     formatter: function (this: any) {
       return (
-        Highcharts.numberFormat(Math.abs(this.y), 2) +
+        Highcharts.numberFormat(Math.abs(this.y), 0) +
         `${getParsedData(currencySymbol)}`
       );
     },
@@ -89,7 +89,7 @@ export const getbaseLineChartOptions = (
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       formatter: function (this: any) {
         return (
-          Highcharts.numberFormat(Math.abs(this.y), 2) +
+          Highcharts.numberFormat(Math.abs(this.y), 0) +
           `${getParsedData(currencySymbol)}`
         );
       },
@@ -142,7 +142,7 @@ export const getpotentialChartOptions = (
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       formatter: function (this: any) {
         return (
-          Highcharts.numberFormat(Math.abs(this.y), 2) +
+          Highcharts.numberFormat(Math.abs(this.y), 0) +
           `${getParsedData(currencySymbol)}`
         );
       },
@@ -193,7 +193,7 @@ export const getsegmentChartOptions = (
       },
       formatter: function (this: any) {
         return (
-          Highcharts.numberFormat(Math.abs(this.y), 2) +
+          Highcharts.numberFormat(Math.abs(this.y), 0) +
           `${getParsedData(currencySymbol)}`
         );
       },
