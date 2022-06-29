@@ -12,22 +12,22 @@ const HeatmapPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerText)
     );
-       // @ts-ignore
+    // @ts-ignore
     document.getElementById("forwardbutton").disabled = true;
     // console.log(jsonData.data.inputData.capabilities)
   }, []);
 
   const handleForwardClick = () => {
     if (jsonData !== "") {
-        // @ts-ignore
-        document.getElementById("navText").value =
-          jsonData?.data?.footerData?.forwardInputId;
-        // @ts-ignore
-        document.getElementById("forwardbutton").disabled = false;
-        // @ts-ignore
-        document.getElementById("forwardbutton").click();
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData?.data?.footerData?.forwardInputId;
+      // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
     }
-  }
+  };
 
   return (
     <div className="heatmap-wrapper">
@@ -81,23 +81,26 @@ const HeatmapPage = () => {
             {jsonData?.data?.inputData?.capabilities?.map(
               (cap: any, i: any) => (
                 <div key={i} className="custom-row">
-                  <div className="custom-col-head" id={
-                        i + 1 == 1 
-                          ? "headOne"
-                          : (i + 1) == 2
-                          ? "headTwo"
-                          : (i + 1) == 3
-                          ? "headThree"
-                          : (i + 1) == 4
-                          ? "headFour"
-                          : (i + 1) == 5
-                          ? "headFive"
-                          : (i + 1) == 6
-                          ? "headSix"
-                          : (i + 1) == 7
-                          ? "headSeven"
-                          : "headEight"
-                      }>
+                  <div
+                    className="custom-col-head"
+                    id={
+                      i + 1 == 1
+                        ? "headOne"
+                        : i + 1 == 2
+                        ? "headTwo"
+                        : i + 1 == 3
+                        ? "headThree"
+                        : i + 1 == 4
+                        ? "headFour"
+                        : i + 1 == 5
+                        ? "headFive"
+                        : i + 1 == 6
+                        ? "headSix"
+                        : i + 1 == 7
+                        ? "headSeven"
+                        : "headEight"
+                    }
+                  >
                     <span className="headingSerialNo">{cap.serialNumber}</span>
                     <p>{cap.capability}</p>
                   </div>
@@ -136,7 +139,10 @@ const HeatmapPage = () => {
         <div className="button-container">
           <div className="button-container">
             <div className="button-inr-btn">
-              <CustomButton className="submitButton" onClick={handleForwardClick()}>
+              <CustomButton
+                className="submitButton"
+                onClick={() => handleForwardClick()}
+              >
                 {jsonData.data?.footerData?.forwardTxt}
               </CustomButton>
             </div>

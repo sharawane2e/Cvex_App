@@ -89,7 +89,7 @@ const GI = () => {
 
     // selectedDDName = ["A7_3", "A7_5"];
 
-    console.log(selectedIdArr)
+    console.log(selectedIdArr);
 
     return selectedDDName;
   };
@@ -186,6 +186,7 @@ const GI = () => {
           filteredData.push(...returnedObj);
         }
       });
+      console.log("filtered..", filteredData);
       return filteredData;
     } else {
       let selectIquestion = ddLabel.split("_")[1];
@@ -201,6 +202,7 @@ const GI = () => {
           optionsToRender.includes(el.ddId)
         );
       }
+      console.log("filtered..", filteredData);
       return filteredData;
     }
   };
@@ -939,19 +941,36 @@ const GI = () => {
                                     jsonData.data.rightData.questions.forEach(
                                       (CV: any, idx: number) => {
                                         CV.selectedId3 = "";
-                                        if (CV.questionId2 == genQues.questionId2) {
-                                          let arr = genQues.selectedId2.split(",");
+                                        if (
+                                          CV.questionId2 == genQues.questionId2
+                                        ) {
+                                          let arr =
+                                            genQues.selectedId2.split(",");
                                           CV.options2.forEach((option: any) => {
-                                            const ddSelectedIndex = 
-                                              event.target.value.indexOf(
-                                                option.ddName
+                                            const shownOptions =
+                                              getSddQ2Options(
+                                                genQues.selectedId,
+                                                genQues.map,
+                                                genQues.options2
                                               );
-                                            if (ddSelectedIndex != -1) {
-                                              dropdownIdsArr.push(option.ddId);
-                                            }
-                                            // if(arr.includes(option.ddId)){
+                                            const shownIds = shownOptions.map(
+                                              (x: any) => x.ddId
+                                            );
+                                            // const ddSelectedIndex =
+                                            //   event.target.value.indexOf(
+                                            //     option.ddName
+                                            //   );
+                                            // if (ddSelectedIndex != -1) {
                                             //   dropdownIdsArr.push(option.ddId);
                                             // }
+                                            if (
+                                              event.target.value.includes(
+                                                option.ddName
+                                              ) &&
+                                              shownIds.includes(option.ddId)
+                                            ) {
+                                              dropdownIdsArr.push(option.ddId);
+                                            }
                                           });
                                           checkCheckboxes(dropdownIdsArr);
                                         }
@@ -1153,7 +1172,6 @@ const GI = () => {
                       </Grid>
                     </>
                   );
-                          
               })}
             </Grid>
           </div>

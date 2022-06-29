@@ -16,3 +16,6 @@ export const saveScrollPosNew = (containerClass:string, inputFieldId:string) => 
   return scrollInput.value = scrollValue;
 }
 
+export const getSymbolFormat=(symbol:string)=>{
+  return symbol;
+}

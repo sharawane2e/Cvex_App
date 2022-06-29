@@ -10,3 +10,9 @@ export const setPotentialChartOptions = createAction<any>(
 export const setSegmentChartOptions = createAction<any>(
   "SET_SEGMENT_CHART_OPTIONS"
 );
+
+export const setCharcategory = createAction<any>("SET_BAR_CATEGORY");
+
+export const setCharBasetTitle = createAction<any>("SET_BASE_TITLE");
+
+export const setCharPotentialtTitle = createAction<any>("SET_POTENTIAL_TITLE");

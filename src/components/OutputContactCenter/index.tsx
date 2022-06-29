@@ -17,10 +17,14 @@ import store from "../../redux/store";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
+  setCharBasetTitle,
+  setCharcategory,
+  setCharPotentialtTitle,
   setPotentialChartOptions,
   setSegmentChartOptions,
 } from "../../redux/actions/HighChartAction";
 import {
+  getbaseChart,
   getbaseLineChartOptions,
   getpotentialChartOptions,
   getsegmentChartOptions,
@@ -28,6 +32,7 @@ import {
 import { useSelector } from "react-redux";
 import arrowDown from "../../assets/svg/angle-double-down.svg";
 import arrowUp from "../../assets/svg/angle-double-up.svg";
+import { getSymbolFormat } from "../../utils";
 
 const OutputContactCenter = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -47,6 +52,9 @@ const OutputContactCenter = () => {
     handleDropDownChange(
       jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
     );
+    //const symbolIcon = `{point.y:,.2f}%`;
+    // console.log('symbolIcon', jsonData?.data?.inputData?.currencySymbol);
+    // dispatch(setChartSymbol(symbolIcon));
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
   const nextHandleClick = (event: any) => {
@@ -66,7 +74,6 @@ const OutputContactCenter = () => {
   const handleDDChange = (ddId: string) => {
     if (ddId != undefined) {
       const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
-      console.log(updatedJsonData.data.inputData.periodDD.selectedId);
       updatedJsonData.data.inputData.periodDD.selectedId = ddId;
 
       document.getElementById(ddId)?.click();
@@ -75,37 +82,63 @@ const OutputContactCenter = () => {
       var keys = Object.keys(updatedJsonData.data.inputData.periodTableData);
       keys.forEach(function (key: any) {
         if (key == ddId) {
+          const currencySymbol = updatedJsonData.data.inputData.currencySymbol;
           dispatch(
             setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId])
           );
+
+          const firtsCatg =
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails[0]
+              .tbodyDetails[0];
+          const secsCatg =
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails[1]
+              .tbodyDetails[0];
           const rowDetails =
             updatedJsonData.data.inputData.periodTableData[key].rowDetails;
-            const colorArray = updatedJsonData.data.inputData.periodTableData[key].colorArray;
-          const seriesValue1 =
-            {y:rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],color:colorArray[0]};
-          const seriesValue2 =
-            {y:rowDetails[rowDetails.length - 1].tbodyDetails[
-              rowDetails[rowDetails.length - 1].tbodyDetails.length - 1
-            ],color:colorArray[1]};
+          const colorArray =
+            updatedJsonData.data.inputData.periodTableData[key].colorArray;
 
-          dispatch(setBarChartOptions([seriesValue1, seriesValue2]));
-          const getSeriesData = getbaseLineChartOptions(
-            updatedJsonData.data.inputData.periodTableData[key]
+          const getchartBarSeries = getbaseChart(
+            rowDetails,
+            colorArray,
+            currencySymbol
           );
-          // console.log(getSeriesData);
+          dispatch(setCharcategory([firtsCatg, secsCatg]));
+
+          dispatch(setBarChartOptions(getchartBarSeries));
+          const getSeriesData = getbaseLineChartOptions(
+            updatedJsonData.data.inputData.periodTableData[key],
+            currencySymbol
+          );
+
+          const dataValue = getSeriesData[0][0];
+
+          const baseLineTitle1 =
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails[0]
+              .tbodyDetails[0];
+          const baseLineTitle2 =
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails[2]
+              .tbodyDetails[0];
+          dispatch(setCharBasetTitle(baseLineTitle1));
+          dispatch(setCharPotentialtTitle(baseLineTitle2));
+
           dispatch(
             setBaseLineChartOptions({
-              data: getSeriesData[0],
+              data: dataValue.data,
+              dataLabels: dataValue.dataLabels,
               categories: getSeriesData[1],
             })
           );
           const getSeriesPotentialData = getpotentialChartOptions(
-            updatedJsonData.data.inputData.periodTableData[key]
+            updatedJsonData.data.inputData.periodTableData[key],
+            currencySymbol
           );
 
+          const barLineData = getSeriesPotentialData[0][0];
           dispatch(
             setPotentialChartOptions({
-              data: getSeriesPotentialData[0],
+              data: barLineData.data,
+              dataLabels: barLineData.dataLabels,
               categories: getSeriesPotentialData[1],
             })
           );
@@ -139,24 +172,17 @@ const OutputContactCenter = () => {
                   .segmentTableChartData[mergeKey]
               )
             );
-
-            // dispatch(
-            //   setSegmentChartOptions({
-            //     data: updatedJsonData.data.inputData.potentialIncreaseData
-            //       .segmentTableChartData[mergeKey].chartDetails,
-            //     categories:
-            //       updatedJsonData.data.inputData.potentialIncreaseData
-            //         .segmentTableChartData[mergeKey].chartLabels,
-            //   })
-            // );
             const getSeriesData = getsegmentChartOptions(
               updatedJsonData.data.inputData.potentialIncreaseData
-                .segmentTableChartData[mergeKey]
+                .segmentTableChartData[mergeKey],
+              updatedJsonData.data.inputData.currencySymbol
             );
-            console.log(getSeriesData);
+
+            const seriesGet = getSeriesData[0][0];
             dispatch(
               setSegmentChartOptions({
-                data: getSeriesData[0],
+                data: seriesGet.data,
+                dataLabels: seriesGet.dataLabels,
                 categories: getSeriesData[1],
               })
             );
@@ -165,7 +191,7 @@ const OutputContactCenter = () => {
       });
     }
   };
-
+  getSymbolFormat(jsonData?.data?.inputData?.currencySymbol);
   return (
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
@@ -195,7 +221,7 @@ const OutputContactCenter = () => {
               <p className="header-text">{inputDetails?.heading}</p>
             </div>
           </div>
-          <div className="chart-container">
+          <div className="chart-container bar-chart-update">
             <BarChart />
           </div>
           <Box className="outputTable-container" sx={{ mb: 5 }}>
@@ -216,14 +242,16 @@ const OutputContactCenter = () => {
               <div className="outputTable-container__inr__body">
                 {dropdown?.selectedData?.rowDetails?.map(
                   (rowDetail: any, rowIndex: number) => {
-                    const currencySymbol =
-                      inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
+                    const currencySymbol = inputDetails?.currencySymbol;
                     return (
                       <div className="table-col" key={rowIndex}>
                         {rowDetail?.tbodyDetails.map(
                           (tbodyDetail: any, i: any) => {
                             return typeof tbodyDetail == "number" ? (
                               <div className="table-row">
+                                <div className="output_mobile_head">
+                                  {dropdown?.selectedData?.headings[i]}
+                                </div>
                                 <div
                                   className={
                                     rowDetail.iconDetails[i] == "up"
@@ -249,6 +277,9 @@ const OutputContactCenter = () => {
                                     : "table-row"
                                 }
                               >
+                                <div className="output_mobile_head">
+                                  {dropdown?.selectedData?.headings[i]}
+                                </div>
                                 <span>{tbodyDetail}</span>
                               </div>
                             );
@@ -345,7 +376,7 @@ const OutputContactCenter = () => {
               </div>
             </div>
           </Box>
-          <div className="chart-container">
+          <div className="chart-container__full">
             <div className="chart-container__waterfall">
               <SegmentChart />
             </div>
