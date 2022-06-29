@@ -142,7 +142,10 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: '<b>{point.y:,.0f} €</b>',
+      formatter: function (this: any) {
+        return this.x + '<br/>' + `<b>${Math.abs(this.y)}</b>`;
+      },
+      //  pointFormat: '<b>{point.y:,.0f} €</b>',
     },
     series: [
       {
@@ -181,7 +184,10 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: '<b>{point.y:,.0f} €</b>',
+      // pointFormat: '<b>€{point.y:,.0f}</b>',
+      formatter: function (this: any) {
+        return this.x + '<br/>' + `<b>${Math.abs(this.y)}</b>`;
+      },
     },
     series: [
       {
@@ -216,7 +222,10 @@ const initialState: IChartState = {
     },
 
     tooltip: {
-      pointFormat: '<b>{point.y:,.0f} €</b>',
+      formatter: function (this: any) {
+        return this.x + '<br/>' + `<b>${Math.abs(this.y)}</b>`;
+      },
+      // pointFormat: '<b>{point.y:,.0f} €</b>',
     },
     series: [
       {
