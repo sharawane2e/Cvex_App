@@ -127,6 +127,14 @@ const GI = () => {
     return false;
   };
 
+  const getMapIds = (map: any) => {
+    let mapOptions = map.split("|");
+    let currIdOptions = mapOptions.split(":")[1];
+    let idsArr = currIdOptions.split("-");
+
+    return idsArr;
+  };
+
   const mapContainsId2 = (map: any, selectedId: any) => {
     var selectedIdNumArr: string[] = [];
     var selectedIdArr: string[] = selectedId.split(",");
@@ -183,6 +191,7 @@ const GI = () => {
           filteredData.push(...returnedObj);
         }
       });
+      console.log("filtered..", filteredData);
       return filteredData;
     } else {
       let selectIquestion = ddLabel.split("_")[1];
@@ -198,6 +207,7 @@ const GI = () => {
           optionsToRender.includes(el.ddId)
         );
       }
+      console.log("filtered..", filteredData);
       return filteredData;
     }
   };
@@ -953,7 +963,7 @@ const GI = () => {
                                             );
                                             // const ddSelectedIndex =
                                             //   event.target.value.indexOf(
-                                            //     optgit ion.ddName
+                                            //     option.ddName
                                             //   );
                                             // if (ddSelectedIndex != -1) {
                                             //   dropdownIdsArr.push(option.ddId);
@@ -971,6 +981,8 @@ const GI = () => {
                                         }
                                       }
                                     );
+
+                                    console.log(event.target);
 
                                     const updatedQuestionsArray: any[] = [];
                                     jsonData.data.rightData.questions.forEach(
@@ -1073,11 +1085,25 @@ const GI = () => {
                                           CV.questionId3 == genQues.questionId3
                                         ) {
                                           CV.options3.forEach((option: any) => {
+                                            const shownOptions =
+                                              getSddQ2Options(
+                                                genQues.selectedId2,
+                                                genQues.map2,
+                                                genQues.options3
+                                              );
+                                            const shownIds = shownOptions.map(
+                                              (x: any) => x.ddId
+                                            );
                                             const ddSelectedIndex =
                                               event.target.value.indexOf(
                                                 option.ddName
                                               );
-                                            if (ddSelectedIndex != -1) {
+                                            if (
+                                              event.target.value.includes(
+                                                option.ddName
+                                              ) &&
+                                              shownIds.includes(option.ddId)
+                                            ) {
                                               dropdownIdsArr.push(option.ddId);
 
                                               document

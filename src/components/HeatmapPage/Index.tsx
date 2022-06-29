@@ -14,6 +14,7 @@ const HeatmapPage = () => {
     );
     // @ts-ignore
     document.getElementById("forwardbutton").disabled = true;
+    // console.log(jsonData.data.inputData.capabilities)
   }, []);
 
   const handleForwardClick = () => {
@@ -29,7 +30,7 @@ const HeatmapPage = () => {
   };
 
   return (
-    <div className="question-wrapper">
+    <div className="heatmap-wrapper">
       <SecondaryHeader sidebar={false} />
       <div className="heatmap-container">
         <div className="custom_middle_container">
