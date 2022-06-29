@@ -22,6 +22,7 @@ import {
   setCharPotentialtTitle,
   setPotentialChartOptions,
   setSegmentChartOptions,
+  setTooltip,
 } from '../../redux/actions/HighChartAction';
 import {
   getbaseChart,
@@ -102,6 +103,7 @@ const OutputContactCenter = () => {
             colorArray,
             currencySymbol,
           );
+          dispatch(setTooltip(`<b>{point.y:,.0f} €</b>`));
 
           dispatch(setBarChartOptions({ data: getchartBarSeries }));
           const getSeriesData = getbaseLineChartOptions(

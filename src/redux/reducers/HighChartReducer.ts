@@ -7,6 +7,7 @@ import {
   setCharBasetTitle,
   setCharPotentialtTitle,
   setCharcategory,
+  setTooltip,
 } from '../actions/HighChartAction';
 
 export interface IChartState {
@@ -85,7 +86,7 @@ const initialState: IChartState = {
       reversedStacks: false,
     },
     tooltip: {
-      pointFormat: '<b>€{point.y:,.0f}</b>',
+      pointFormat: '<b>{point.y:,.0f} €</b>',
     },
     plotOptions: {
       ...defaultPlotOptions,
@@ -132,9 +133,9 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    tooltip: {
-      pointFormat: '<b>€{point.y:,.0f}</b>',
-    },
+    // tooltip: {
+    //   pointFormat: '<b>€{point.y:,.0f}</b>',
+    // },
     series: [
       {
         data: [],
@@ -171,9 +172,9 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    tooltip: {
-      pointFormat: '<b>€{point.y:,.0f}</b>',
-    },
+    // tooltip: {
+    //   pointFormat: '<b>€{point.y:,.0f}</b>',
+    // },
     series: [
       {
         data: [],
@@ -205,9 +206,9 @@ const initialState: IChartState = {
     legend: {
       enabled: false,
     },
-    tooltip: {
-      pointFormat: '<b>€{point.y:,.0f}</b>',
-    },
+    // tooltip: {
+    //   pointFormat: '<b>€{point.y:,.0f}</b>',
+    // },
     series: [
       {
         data: [],
@@ -217,6 +218,17 @@ const initialState: IChartState = {
 };
 
 const HighChartReducer = createReducer(initialState, (builder) => {
+  builder.addCase(setTooltip, (state, action) => {
+    return {
+      ...state,
+      barChartOptions: {
+        ...state.barChartOptions,
+        tooltip: {
+          pointFormat: action.payload,
+        },
+      },
+    };
+  });
   builder.addCase(setBarChartOptions, (state, action) => ({
     ...state,
     barChartOptions: {
@@ -277,6 +289,7 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     return {
       ...state,
       baseLineChartOptions: {
+        ...state.baseLineChartOptions,
         title: {
           text: action.payload,
         },
@@ -287,6 +300,7 @@ const HighChartReducer = createReducer(initialState, (builder) => {
     return {
       ...state,
       potentialChartOptions: {
+        ...state.potentialChartOptions,
         title: {
           text: action.payload,
         },
