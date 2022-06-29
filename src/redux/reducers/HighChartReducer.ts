@@ -23,6 +23,11 @@ export const defaultPlotOptions = {
     groupPadding: 0,
     pointPadding: 0,
     borderWidth: 0,
+    // dataLabels: {
+    //   formatter: function (this) {
+    //     return "hello";
+    //   },
+    // },
   },
   // dataLabels: {
   //   formatter: function (y: any) {
@@ -59,9 +64,10 @@ export const defaultXDataLabels = {
   x: 50,
   align: "center",
   // format: "{point.y:,.0f}",
-  formatter: function (this: any) {
-    return Math.abs(this.y) + "€";
-  },
+  // formatter: function (this: any) {
+  //   // return Math.abs(this.y) + "€";
+  //   return "Yo";
+  // },
 };
 
 export const defaultMarginTop = { marginTop: 40 };

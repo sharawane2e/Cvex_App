@@ -1,4 +1,5 @@
 import { getParsedData } from "./parserUtil";
+import Highcharts from "highcharts";
 
 export const getbaseChart = (
   rowDetails: any,
@@ -12,7 +13,13 @@ export const getbaseChart = (
     inside: false,
     x: 0,
     align: "left",
-    format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+    // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+    formatter: function (this: any) {
+      return (
+        Highcharts.numberFormat(Math.abs(this.y), 2) +
+        `${getParsedData(currencySymbol)}`
+      );
+    },
   };
   const seriesValue1 = {
     y: rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
@@ -66,7 +73,13 @@ export const getbaseLineChartOptions = (
       inside: false,
       y: 0,
       align: "center",
-      format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      formatter: function (this: any) {
+        return (
+          Highcharts.numberFormat(Math.abs(this.y), 2) +
+          `${getParsedData(currencySymbol)}`
+        );
+      },
     },
   });
   return [series, categories];
@@ -105,7 +118,13 @@ export const getpotentialChartOptions = (
       inside: false,
       y: 0,
       align: "center",
-      format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      formatter: function (this: any) {
+        return (
+          Highcharts.numberFormat(Math.abs(this.y), 2) +
+          `${getParsedData(currencySymbol)}`
+        );
+      },
     },
   });
 
@@ -143,7 +162,13 @@ export const getsegmentChartOptions = (
       inside: false,
       y: -10,
       align: "center",
-      format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      formatter: function (this: any) {
+        return (
+          Highcharts.numberFormat(Math.abs(this.y), 2) +
+          `${getParsedData(currencySymbol)}`
+        );
+      },
     },
   });
 
