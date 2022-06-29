@@ -141,7 +141,7 @@ export const getsegmentChartOptions = (
       enabled: true,
       color: "black",
       inside: false,
-      y: 0,
+      y: -10,
       align: "center",
       format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
     },
