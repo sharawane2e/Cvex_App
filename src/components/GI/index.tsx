@@ -10,6 +10,7 @@ import CustomButton from "../UI/CustomButton";
 import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
 import Tooltip from "@mui/material/Tooltip";
 import CustomPopup from "../UI/CustomPopup";
+// import DDD from "../UI/ddd";
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -40,7 +41,6 @@ const GI = () => {
     });
 
     console.log("unanswered : ", count);
-    console.log("jsonData : ", jsonData);
 
     if (count > 0) {
       return false;
@@ -70,12 +70,23 @@ const GI = () => {
     let selectedIdArr = selectedId.split(",");
 
     options.forEach(function (option: any) {
-      if (selectedIdArr.indexOf(option.ddId) != -1) {
+      if (selectedIdArr.includes(option.ddId)) {
         selectedDDName.push(option["ddName"]);
       }
     });
 
-    console.log(selectedId);
+    // options?.forEach((element: any) => {
+    //   if (element.ddId == selectedId) {
+    //     selectedDDName.push(element["ddName"]);
+    //   }
+    // });
+
+    // selectedIdArr.forEach((x: any, i: any) => {
+    //   let ind = options.indexOf((opt: any) => opt.ddId == selectedIdArr[i]);
+    //   selectedDDName.push(options[ind].ddName);
+    // });
+
+    // selectedDDName = ["A7_3", "A7_5"];
 
     return selectedDDName;
   };
@@ -905,6 +916,7 @@ const GI = () => {
                                   sx={{ mb: 1, borderRadius: 0 }}
                                   className="inputField"
                                   displayEmpty
+                                  // value={"A7_6"}
                                   value={getselectedDDNameMulti(
                                     genQues.options2,
                                     genQues.selectedId2
@@ -927,12 +939,31 @@ const GI = () => {
                                         if (
                                           CV.questionId2 == genQues.questionId2
                                         ) {
+                                          let arr =
+                                            genQues.selectedId2.split(",");
                                           CV.options2.forEach((option: any) => {
-                                            const ddSelectedIndex =
-                                              event.target.value.indexOf(
-                                                option.ddName
+                                            const shownOptions =
+                                              getSddQ2Options(
+                                                genQues.selectedId,
+                                                genQues.map,
+                                                genQues.options2
                                               );
-                                            if (ddSelectedIndex != -1) {
+                                            const shownIds = shownOptions.map(
+                                              (x: any) => x.ddId
+                                            );
+                                            // const ddSelectedIndex =
+                                            //   event.target.value.indexOf(
+                                            //     optgit ion.ddName
+                                            //   );
+                                            // if (ddSelectedIndex != -1) {
+                                            //   dropdownIdsArr.push(option.ddId);
+                                            // }
+                                            if (
+                                              event.target.value.includes(
+                                                option.ddName
+                                              ) &&
+                                              shownIds.includes(option.ddId)
+                                            ) {
                                               dropdownIdsArr.push(option.ddId);
                                             }
                                           });
