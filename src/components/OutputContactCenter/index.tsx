@@ -326,11 +326,11 @@ const OutputContactCenter = () => {
           </div>
           <div className="dropdown-container">
             <div className="single-dropdown-section__body">
-              <div className="title-container">
+              {/* <div className="title-container">
                 <p>
-                  {inputDetails?.potentialIncreaseData?.segmentDD?.description}
-                </p>
-              </div>
+                  {inputDetails?.potentialIncreaseData?.segmentDD?.optionName}
+                </p> */}
+              {/* </div> */}
             </div>
             <Grid
               container
@@ -398,7 +398,7 @@ const OutputContactCenter = () => {
           </div>
         </div>
       </Footer>
-    </div>
+    </div >
   );
 };
 export default OutputContactCenter;
