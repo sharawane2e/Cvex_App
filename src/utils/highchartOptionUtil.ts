@@ -76,9 +76,6 @@ export const getbaseLineChartOptions = (
       enabled: true,
       color: 'black',
       bold: false,
-      // inside: false,
-      // y: 0,
-      // align: "center",
       verticalAlign: 'top',
       y: -20,
       style: {

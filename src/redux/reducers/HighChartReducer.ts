@@ -33,9 +33,11 @@ export const defaultPlotOptions = {
   },
 };
 
-export const defaultXFontSize = { style: { fontSize: '14px' } };
+export const defaultXFontSize = {
+  style: { fontSize: '12px', fontWeight: 'normal', color: '#000000' },
+};
 export const defaultYFontSize = {
-  style: { fontSize: '14px', fontWeight: 'bold' },
+  style: { fontSize: '12px', fontWeight: 'normal' },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -127,9 +129,9 @@ const initialState: IChartState = {
     yAxis: {
       ...defaultYAxis,
     },
-    // plotOptions: {
-    //   ...defaultPlotOptions,
-    // },
+    plotOptions: {
+      ...defaultPlotOptions,
+    },
     legend: {
       enabled: false,
     },
