@@ -9,7 +9,8 @@ export const getbaseChart = (
     color: "black",
     inside: false,
     x: 0,
-    align: "left",
+    y: 0,
+    align: "right",
     format: `{point.y:,.2f} ${currencySymbol}`,
   };
   const seriesValue1 = {
