@@ -264,7 +264,7 @@ const OutputContactCenter = () => {
                                 <div>
                                   <span>{tbodyDetail}</span>
                                   <span className="currency-symbol">
-                                    {getParsedData(currencySymbol)}
+                                    {getParsedData(`${currencySymbol}`)}
                                   </span>
                                 </div>
                               </div>
