@@ -3,20 +3,20 @@ export const getbaseChart = (
   colorArray: any,
   currencySymbol: any
 ): any => {
-  const labelsFormate = {
+  const labelsFormat = {
     enabled: true,
     bold: false,
     color: "black",
     inside: false,
     x: 0,
     align: "left",
-    format: `{point.y:,.2f} ${currencySymbol}`,
+    format: `{point.y:,.0f} ${currencySymbol}`,
   };
   const seriesValue1 = {
     y: rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
     color: colorArray[0],
     dataLabels: {
-      ...labelsFormate,
+      ...labelsFormat,
     },
   };
   const seriesValue2 = {
@@ -25,7 +25,7 @@ export const getbaseChart = (
     ],
     color: colorArray[1],
     dataLabels: {
-      ...labelsFormate,
+      ...labelsFormat,
     },
   };
   return [seriesValue1, seriesValue2];
@@ -64,7 +64,7 @@ export const getbaseLineChartOptions = (
       inside: false,
       y: 50,
       align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      format: `{point.y:,.0f} ${currencySymbol}`,
     },
   });
   return [series, categories];
@@ -103,7 +103,7 @@ export const getpotentialChartOptions = (
       inside: false,
       y: 50,
       align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      format: `{point.y:,.0f} ${currencySymbol}`,
     },
   });
 
@@ -142,7 +142,7 @@ export const getsegmentChartOptions = (
 
       y: 50,
       align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      format: `{point.y:,.0f} ${currencySymbol}`,
     },
   });
 

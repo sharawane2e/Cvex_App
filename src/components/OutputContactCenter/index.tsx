@@ -45,6 +45,8 @@ const OutputContactCenter = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
   }, []);
 
   useEffect(() => {
@@ -208,8 +210,8 @@ const OutputContactCenter = () => {
                     onChange={(ddId: string) => handleDDChange(ddId)}
                   />
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </Grid>
             </Grid>
           </div>
@@ -254,8 +256,8 @@ const OutputContactCenter = () => {
                                     rowDetail.iconDetails[i] == "up"
                                       ? "arrowUpicon"
                                       : rowDetail.iconDetails[i] == "down"
-                                      ? "arrowDownicon"
-                                      : "emptyicon"
+                                        ? "arrowDownicon"
+                                        : "emptyicon"
                                   }
                                 ></div>
 
@@ -267,19 +269,19 @@ const OutputContactCenter = () => {
                                 </div>
                               </div>
                             ) : (
-                              <div
-                                className={
-                                  i > 0 && typeof tbodyDetail == "string"
-                                    ? "table-row bg-StringGray"
-                                    : "table-row"
-                                }
-                              >
-                                <div className="output_mobile_head">
-                                  {dropdown?.selectedData?.headings[i]}
+                                <div
+                                  className={
+                                    i > 0 && typeof tbodyDetail == "string"
+                                      ? "table-row bg-StringGray"
+                                      : "table-row"
+                                  }
+                                >
+                                  <div className="output_mobile_head">
+                                    {dropdown?.selectedData?.headings[i]}
+                                  </div>
+                                  <span>{tbodyDetail}</span>
                                 </div>
-                                <span>{tbodyDetail}</span>
-                              </div>
-                            );
+                              );
                           }
                         )}
                       </div>
@@ -342,8 +344,8 @@ const OutputContactCenter = () => {
                     onChange={(ddId: string) => handleDropDownChange(ddId)}
                   />
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </Grid>
             </Grid>
           </div>
@@ -389,7 +391,7 @@ const OutputContactCenter = () => {
               onClick={(e: any) => nextHandleClick(e)}
             >
               {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
+                jsonData?.data?.footerData?.forwardBtn?.forwardTxt
               )}
             </CustomButton>
           </div>

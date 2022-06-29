@@ -27,9 +27,9 @@ export const defaultPlotOptions = {
   },
 };
 
-export const defaultXFontSize = { style: { fontSize: "16px" } };
+export const defaultXFontSize = { style: { fontSize: "14px" } };
 export const defaultYFontSize = {
-  style: { fontSize: "16px", fontWeight: "bold" },
+  style: { fontSize: "14px", fontWeight: "bold" },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -54,18 +54,20 @@ export const defaultXDataLabels = {
   inside: false,
   x: 50,
   align: "center",
-  // format: "{point.y:,.2f}",
+  // format: "{point.y:,.0f}",
   formatter: function (this: any) {
     return Math.abs(this.y) + "€";
   },
 };
 
-export const defaultMargin = { marginTop: 40 };
+export const defaultMarginTop = { marginTop: 40 };
+export const defaultMarginRight = { marginRight: 100 };
 
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
       type: "bar",
+      ...defaultMarginRight
     },
     title: {
       text: "",
@@ -86,13 +88,14 @@ const initialState: IChartState = {
       visible: false,
       reversedStacks: false,
     },
-
-    plotOptions: {
-      defaultPlotOptions,
+tooltip: {
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
+    // plotOptions: {
+    //   defaultPlotOptions,
+    // },
     legend: {
       enabled: false,
-      // backgroundColor: "red",
     },
     series: [
       {
@@ -104,6 +107,7 @@ const initialState: IChartState = {
   baseLineChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMarginTop
     },
     title: {
       text: "",
@@ -131,7 +135,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
     series: [
       {
@@ -142,6 +146,7 @@ const initialState: IChartState = {
   potentialChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMarginTop
     },
     title: {
       text: "",
@@ -169,7 +174,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
     series: [
       {
@@ -180,6 +185,7 @@ const initialState: IChartState = {
   segmentChartOptions: {
     chart: {
       type: "waterfall",
+      ...defaultMarginTop
     },
     title: "",
     xAxis: {
@@ -202,7 +208,7 @@ const initialState: IChartState = {
       enabled: false,
     },
     tooltip: {
-      pointFormat: "<b>€{point.y:,.2f}</b>",
+      pointFormat: "<b>€{point.y:,.0f}</b>",
     },
     series: [
       {
