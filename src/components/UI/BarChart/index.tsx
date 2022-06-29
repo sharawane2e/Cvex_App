@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const BarChart = () => {
   HC_more(Highcharts);
   const { chart } = useSelector((state: any) => state);
+  console.log(chart.barChartOptions)
   Highcharts.setOptions({
     lang: {
       decimalPoint: '.',

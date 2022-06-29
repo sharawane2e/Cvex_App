@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from "@reduxjs/toolkit";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
@@ -8,7 +8,7 @@ import {
   setCharPotentialtTitle,
   setCharcategory,
   setTooltip,
-} from '../actions/HighChartAction';
+} from "../actions/HighChartAction";
 
 export interface IChartState {
   barChartOptions: any;
@@ -27,15 +27,15 @@ export const defaultPlotOptions = {
       style: {
         textShadow: false,
         textOutline: false,
-        fontWeight: 'normal',
+        fontWeight: "normal",
       },
     },
   },
 };
 
-export const defaultXFontSize = { style: { fontSize: '14px' } };
+export const defaultXFontSize = { style: { fontSize: "14px" } };
 export const defaultYFontSize = {
-  style: { fontSize: '14px', fontWeight: 'bold' },
+  style: { fontSize: "14px", fontWeight: "bold" },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -47,7 +47,7 @@ export const defaultYAxis = {
   title: false,
   plotLines: [
     {
-      color: '#000000',
+      color: "#000000",
       value: 0,
       zIndex: 5,
     },
@@ -60,12 +60,12 @@ export const defaultMarginRight = { marginRight: 100 };
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
-      type: 'bar',
+      type: "bar",
       ...defaultMarginRight,
       height: 150,
     },
     title: {
-      text: '',
+      text: "",
     },
     xAxis: {
       tickLength: 0,
@@ -74,9 +74,9 @@ const initialState: IChartState = {
       labels: {
         y: 0,
         style: {
-          color: '#2A2A2A',
-          fontSize: '16px',
-          fontWeight: 'bold',
+          color: "#2A2A2A",
+          fontSize: "16px",
+          fontWeight: "bold",
         },
       },
     },
@@ -85,9 +85,9 @@ const initialState: IChartState = {
       visible: false,
       reversedStacks: false,
     },
-    tooltip: {
-      pointFormat: '<b>{point.y:,.0f} €</b>',
-    },
+    // tooltip: {
+    //   pointFormat: "<b>{point.y:,.0f} €</b>",
+    // },
     plotOptions: {
       ...defaultPlotOptions,
     },
@@ -103,22 +103,22 @@ const initialState: IChartState = {
   },
   baseLineChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
       ...defaultMarginTop,
     },
     title: {
-      text: '',
+      text: "",
       useHTML: true,
       style: {
-        color: '#fff',
-        'background-color': '#ccc',
-        fontWeight: 'bold',
-        'text-transform': 'uppercase',
+        color: "#fff",
+        "background-color": "#ccc",
+        fontWeight: "bold",
+        "text-transform": "uppercase",
       },
     },
     xAxis: {
       tickLength: 0,
-      categories: '',
+      categories: "",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -144,22 +144,22 @@ const initialState: IChartState = {
   },
   potentialChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
       ...defaultMarginTop,
     },
     title: {
-      text: '',
+      text: "",
       useHTML: true,
       style: {
-        color: '#fff',
-        'background-color': '#027AB1',
-        fontWeight: 'bold',
-        'text-transform': 'uppercase',
+        color: "#fff",
+        "background-color": "#027AB1",
+        fontWeight: "bold",
+        "text-transform": "uppercase",
       },
     },
     xAxis: {
       tickLength: 0,
-      type: 'category',
+      type: "category",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -183,13 +183,13 @@ const initialState: IChartState = {
   },
   segmentChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
       ...defaultMarginTop,
     },
-    title: '',
+    title: "",
     xAxis: {
       tickLength: 0,
-      type: 'category',
+      type: "category",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -201,7 +201,7 @@ const initialState: IChartState = {
         enabled: false,
       },
       gridLineWidth: 0,
-      title: '',
+      title: "",
     },
     legend: {
       enabled: false,
@@ -224,7 +224,9 @@ const HighChartReducer = createReducer(initialState, (builder) => {
       barChartOptions: {
         ...state.barChartOptions,
         tooltip: {
-          pointFormat: action.payload,
+          // pointFormat: ...state.barChartOptions.tooltip.pointFormat,
+          ...action.payload,
+          // ...state.barChartOptions.tooltip,
         },
       },
     };
