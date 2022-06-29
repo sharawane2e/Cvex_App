@@ -1,5 +1,7 @@
-import { FormControl, Grid, MenuItem, Select } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import { FormControl, Grid, MenuItem, Select } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
 
 // interface InputProps {
 // 	question: any;
@@ -11,10 +13,11 @@ type HsddInputProps = {
   question: any;
   onChange: any;
   error?: boolean;
+  showtooltip?: boolean;
 };
 
 const getselectedDDName = (options: any, selectedId: string) => {
-  let selectedDDName = '';
+  let selectedDDName = "";
   options?.forEach((element: any) => {
     if (element.ddId == selectedId) {
       selectedDDName = element.ddName;
@@ -24,7 +27,7 @@ const getselectedDDName = (options: any, selectedId: string) => {
 };
 
 const HsddInput = (props: HsddInputProps) => {
-  const { error = false } = props;
+  const { error = false, showtooltip = false } = props;
 
   //console.log('props', props);
 
@@ -46,13 +49,20 @@ const HsddInput = (props: HsddInputProps) => {
     <>
       <Grid
         container
-        sx={{ alignItems: 'center' }}
+        sx={{ alignItems: "center" }}
         sm={4}
         md={4}
         className="input-form-control"
       >
         <Grid item xs={12} lg={12} md={12}>
-          <p className="label-heading">{optionName}</p>
+          <p className="label-heading">
+            <span>{optionName}</span>
+            {showtooltip && description.length > 0 && (
+              <Tooltip title={description} arrow>
+                <InfoIcon className="info-icon" />
+              </Tooltip>
+            )}
+          </p>
           <FormControl fullWidth>
             <Select
               sx={{ p: 0, borderRadius: 0, mb: 1 }}

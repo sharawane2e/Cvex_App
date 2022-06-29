@@ -25,6 +25,11 @@
       .label-heading {
         margin-bottom: 5px;
         font-size: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .label-heading > span {
+        margin-right: 6px;
       }
       .single-dropdown-section {
         margin-bottom: 15px;

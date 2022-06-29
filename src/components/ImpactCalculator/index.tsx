@@ -6,6 +6,8 @@ import { Grid } from "@mui/material";
 import HsddInput from "./HsddInput";
 import { hideShowSections } from "../../services/impactCaluculator";
 import LinearProgressbar2 from "../LinearProgressbar2";
+import Tooltip from "@mui/material/Tooltip";
+import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
 
 const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -397,6 +399,7 @@ const ImpactCalculator = (props: any) => {
                                                 <>
                                                   <HsddInput
                                                     question={question}
+                                                    showtooltip={true}
                                                     onChange={(ddId: string) =>
                                                       handleDDChange(
                                                         ddId,
@@ -424,7 +427,20 @@ const ImpactCalculator = (props: any) => {
                                                     className="input-form-control"
                                                   >
                                                     <p className="label-heading">
-                                                      {question?.optionName}
+                                                      <span>
+                                                        {question?.optionName}
+                                                      </span>
+                                                      {question?.description
+                                                        .length > 0 && (
+                                                        <Tooltip
+                                                          title={
+                                                            question?.description
+                                                          }
+                                                          arrow
+                                                        >
+                                                          <InfoIcon className="info-icon" />
+                                                        </Tooltip>
+                                                      )}
                                                     </p>
                                                     <Inputbox
                                                       className="inputField cutom-input-field"
@@ -485,6 +501,7 @@ const ImpactCalculator = (props: any) => {
                                               return (
                                                 <HsddInput
                                                   question={question}
+                                                  showtooltip={true}
                                                   // error={showwerror && x.selcetedid == "" && x.isrequired}
                                                   onChange={(ddId: string) =>
                                                     handleDDChange(
