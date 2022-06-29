@@ -30,8 +30,8 @@ import {
   getsegmentChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
-import arrowDown from "../../assets/svg/angle-double-down.svg";
-import arrowUp from "../../assets/svg/angle-double-up.svg";
+// import arrowDown from "../../assets/svg/angle-double-down.svg";
+// import arrowUp from "../../assets/svg/angle-double-up.svg";
 import { getSymbolFormat } from "../../utils";
 
 const OutputContactCenter = () => {
@@ -52,9 +52,6 @@ const OutputContactCenter = () => {
     handleDropDownChange(
       jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
     );
-    //const symbolIcon = `{point.y:,.2f}%`;
-    // console.log('symbolIcon', jsonData?.data?.inputData?.currencySymbol);
-    // dispatch(setChartSymbol(symbolIcon));
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
   const nextHandleClick = (event: any) => {

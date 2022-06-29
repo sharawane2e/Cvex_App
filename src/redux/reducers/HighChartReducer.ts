@@ -1,5 +1,4 @@
 import { createReducer } from "@reduxjs/toolkit";
-import Highcharts from "highcharts";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,

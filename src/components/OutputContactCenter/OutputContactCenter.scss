@@ -18,7 +18,9 @@
     overflow-y: auto;
     padding: 25px;
     &__section {
-      margin-top: 30px;
+      &:last-child {
+        margin-top: 30px;
+      }
       //padding-bottom: 25px;
       .label-heading {
         margin-bottom: 10px;
