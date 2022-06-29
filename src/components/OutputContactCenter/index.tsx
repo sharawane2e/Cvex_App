@@ -390,7 +390,7 @@ const OutputContactCenter = () => {
           {jsonData?.data?.footerData?.previousTxt != '' && (
             <div>
               <CustomButton
-                className={'submitButton mar-right'}
+                className={'submitButton mar-right common-width'}
                 onClick={(e: any) =>
                   nextHandleClick(jsonData?.data?.footerData?.previousInputId)
                 }
@@ -403,7 +403,7 @@ const OutputContactCenter = () => {
           {jsonData?.data?.footerData?.forwardTxt && (
             <div>
               <CustomButton
-                className={'submitButton next-button'}
+                className={'submitButton next-button common-width'}
                 onClick={(e: any) =>
                   nextHandleClick(jsonData?.data?.footerData?.forwardInputId)
                 }
