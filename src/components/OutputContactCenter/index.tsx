@@ -56,11 +56,11 @@ const OutputContactCenter = () => {
     );
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
-  const nextHandleClick = (event: any) => {
+  const nextHandleClick = (value:string) => {
     if (jsonData !== '') {
       // @ts-ignore
       document.getElementById('navText').value =
-        jsonData.data?.footerData?.forwardBtn?.forwardInputId;
+      value
       // @ts-ignore
       document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
@@ -386,16 +386,28 @@ const OutputContactCenter = () => {
       <Footer>
         <Divider />
         <div className="button-container justi">
-          <div>
+          {jsonData?.data?.footerData?.previousTxt != "" && <div>
             <CustomButton
-              className={'submitButton next-button'}
-              onClick={(e: any) => nextHandleClick(e)}
+              className={'submitButton mar-right'}
+              onClick={(e: any) => nextHandleClick(jsonData?.data?.footerData?.previousInputId)}
             >
               {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardTxt,
+                jsonData?.data?.footerData?.previousTxt,
               )}
             </CustomButton>
-          </div>
+            </div>}
+          
+          {jsonData?.data?.footerData?.forwardTxt && <div>
+            <CustomButton
+              className={'submitButton next-button'}
+              onClick={(e: any) => nextHandleClick(jsonData?.data?.footerData?.forwardInputId)}
+            >
+              {getParsedData(
+                jsonData?.data?.footerData?.forwardTxt,
+              )}
+            </CustomButton>
+          </div>}
+            
         </div>
       </Footer>
     </div>
