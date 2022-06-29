@@ -10,7 +10,7 @@ import CustomButton from "../UI/CustomButton";
 import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
 import Tooltip from "@mui/material/Tooltip";
 import CustomPopup from "../UI/CustomPopup";
-import DDD from "../UI/ddd";
+// import DDD from "../UI/ddd";
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -128,6 +128,14 @@ const GI = () => {
     }
 
     return false;
+  };
+
+  const getMapIds = (map: any) => {
+    let mapOptions = map.split("|");
+    let currIdOptions = mapOptions.split(":")[1];
+    let idsArr = currIdOptions.split("-");
+
+    return idsArr;
   };
 
   const mapContainsId2 = (map: any, selectedId: any) => {
@@ -946,6 +954,9 @@ const GI = () => {
                                         ) {
                                           let arr =
                                             genQues.selectedId2.split(",");
+                                          let validIdsArr = getMapIds(
+                                            genQues.map
+                                          );
                                           CV.options2.forEach((option: any) => {
                                             const shownOptions =
                                               getSddQ2Options(
