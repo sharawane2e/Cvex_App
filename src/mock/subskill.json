@@ -13,10 +13,12 @@
         [
             {
                 "capabilityText": "Value strategy",
+                "serialNumber": "1.",
                 "skillDetails": 
                 [
                     {
                         "skillText": "Sales and service strategy",
+                        "serialNumber": "1.",
                         "skillIcon": "URL",
                         "subSkillDetails": ["Channel value strategy", "Operating model", "Network strategy"],
                         "observationTxt": "Hello Ji!",
@@ -24,6 +26,7 @@
                     },
                     {
                         "skillText": "Customer segment and channel startegy",
+                        "serialNumber": "2.",
                         "skillIcon": "URL",
                         "subSkillDetails": ["Customer segmentation and target groups​", "Channel mix​", "Sales and service segment strategy​"],
                         "observationTxt": "observationsText2",
@@ -53,7 +56,14 @@
             }
            
         ]
-    }
+    },
+    "footerData": {
+        "forwardTxt": "Next",
+        "forwardInputId": "Indu",
+        "currentInputId":"",
+        "previousTxt":"Previous",
+        "previousInputId":"qIntro"
+        }
     }
   }
   

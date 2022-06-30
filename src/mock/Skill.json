@@ -1,97 +1,194 @@
 {
     "pageCode": {
-        "page": 6
+      "page": 12
     },
     "data": {
-        "headerData": {
-            "title": "Customer Value Execution",
-            "logo": "src",
-            "banner": "src"
-        },
-        "panelDetails": {
-            "panelHeading": [
-                "Capability",
-                "Skill",
-                "Sub-skill",
-                "Observations",
-                "0-100"
-            ],
-            "panelBody": [
-                {
-                    "capabilityText": "Value strategy",
-                    "skillDetails": [
-                        {
-                            "skillText": "Sales and service strategy",
-                            "skillIcon": "URL",
-                            "subSkillDetails": [
-                                {
-                                    "subSkillText": "Channel value strategy",
-                                    "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
-                                    "sliderValue": 10
-                                },
-                                {
-                                    "subSkillText": "Operating model",
-                                    "observationtext": "Operating model is aligned across some functions, not fully exhaustive for all functions ​​",
-                                    "sliderValue": 10
-                                },
-                                {
-                                    "subSkillText": "Network strategy",
-                                    "observationtext": "Contact center has the network and location strategy defining services and activities only for top 3 locations",
-                                    "sliderValue": 10
-                                }
-                            ]
-                        },
-                        {
-                            "skillText": "Customer segment and channel startegy",
-                            "skillIcon": "URL",
-                            "subSkillDetails": [
-                                {
-                                    "subSkillText": "Customer segmentation and target groups​",
-                                    "observationtext": "All customer segments and target groups are clearly defined and detailed out ​​",
-                                    "sliderValue": 10
-                                },
-                                {
-                                    "subSkillText": "Channel mix​",
-                                    "observationtext": "The channel mix is fully designed and aligned across all channels​ ​​",
-                                    "sliderValue": 10
-                                },
-                                {
-                                    "subSkillText": "Sales and service segment strategy​",
-                                    "observationtext": "The service strategy to define the target groups and segments are detailed out for the main segments​",
-                                    "sliderValue": 10
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "capabilityText": "Customer touchpoint design",
-                    "skillDetails": [
-                        {
-                            "skillText": "Sales & Service journey design​",
-                            "skillIcon": "URL",
-                            "subSkillDetails": [
-                                {
-                                    "subSkillText": "Channel value strategy",
-                                    "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
-                                    "sliderValue": 10
-                                }
-                            ]
-                        },
-                        {
-                            "skillText": "Omnichannel integration​",
-                            "skillIcon": "URL",
-                            "subSkillDetails": [
-                                {
-                                    "subSkillText": "Channel value strategy",
-                                    "observationtext": "Contact center has a value strategy in place that defines the overall purpose as a cost center with no description on the role of sales across the functions​",
-                                    "sliderValue": 10
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
+      "headerData": {
+        "title": "2. Output template Skills",
+        "logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
+        "banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
+      },
+      "panelDetails": {
+        "panelHeading": ["Capability", "Skill", "Sub-skill", "Observations", "0-100"],
+        "panelBody": [{
+          "capabilityText": "Value strategy",
+          "skillDetails": [{
+            "skillText": "Sales and service strategy",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Sales_and_Service-dark.png",
+            "subSkillDetails": ["Channel value strategy (what)", "Operating model (how)", "Network strategy (where)"],
+            "observationTxt": "VS1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Service and customer segment strategy",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Customer_segment-dark.png",
+            "subSkillDetails": ["Customer segmentation and target groups", "Channel mix", "Sales and service segment strategy"],
+            "observationTxt": "VS2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Customer touchpoint design",
+          "skillDetails": [{
+            "skillText": "Sales and service journey design",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Sales_and_Service-dark.png",
+            "subSkillDetails": ["Sales and service (omnichannel) journeys", "Touchpoint design"],
+            "observationTxt": "CTD1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Omnichannel integration",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Omnichannel_design-dark.png",
+            "subSkillDetails": ["Omnichannel-integrated data layer", "Cross-channel collaboration"],
+            "observationTxt": "CTD2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Governance & Steering",
+          "skillDetails": [{
+            "skillText": "KPIs and reporting",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/KPIs-dark.png",
+            "subSkillDetails": ["Sales and service target setting", "Value driver tree", "KPI structure and definitions", "KPI dashboard and reporting"],
+            "observationTxt": "GS1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Cross-functional collaboration",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Cross_functional-dark.png",
+            "subSkillDetails": ["Cross-functional collaboration "],
+            "observationTxt": "GS2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Agile win-room",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Win_room-dark.png",
+            "subSkillDetails": ["Agile win-room"],
+            "observationTxt": "GS3_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Proposition and Campaigning",
+          "skillDetails": [{
+            "skillText": "Proposition design",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Proposition_design-dark.png",
+            "subSkillDetails": ["Customer data management ", "Personalized offers & bundles"],
+            "observationTxt": "PC1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Prescriptive NBA modelling",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Prespective_NBA-dark.png",
+            "subSkillDetails": ["Propensity models", "Next-best offer analytics engine"],
+            "observationTxt": "PC2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Agile campaigning",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Agile_campaigning-dark.png",
+            "subSkillDetails": ["Campaign strategy", "Campaign mechanism"],
+            "observationTxt": "PC3_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Contact management",
+          "skillDetails": [{
+            "skillText": "Routing",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Routing-dark.png",
+            "subSkillDetails": ["Customer identification, intent clarification and customer authentication ", "Routing and workflow"],
+            "observationTxt": "CM1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Workforce management and Multiskilling",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Workforce_management-dark.png",
+            "subSkillDetails": ["Demand forecasting and management", "Analytical workforce planning", "Workforce scheduling", "Multiskilling"],
+            "observationTxt": "CM2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Frontline management",
+          "skillDetails": [{
+            "skillText": "Performance management",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Performance_management-dark.png",
+            "subSkillDetails": ["Vendor management", "Performance cascade", "Visual management", "Translation to insights and action"],
+            "observationTxt": "FM1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Role of teamleader and routines",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Role_of_team_leader-dark.png",
+            "subSkillDetails": ["Shopfloor routines", "Time management of leaders"],
+            "observationTxt": "FM2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Quality management and customer experience",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Quality_management-dark.png",
+            "subSkillDetails": ["Standards, quality, and compliance", "Customer experience management"],
+            "observationTxt": "FM3_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Productivity focus and mindset",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Productivity_focus-dark.png",
+            "subSkillDetails": ["Root-cause problem solving mechanism", "Reflection process and mechanism"],
+            "observationTxt": "FM4_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Sales capabilities",
+          "skillDetails": [{
+            "skillText": "Talent management",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Talent_management-dark.png",
+            "subSkillDetails": ["Talent profiles & skills", "Recruitment strategy", "Talent-base management", "Learning journey of teamleader"],
+            "observationTxt": "SC1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Capability building",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Capability_building-dark.png",
+            "subSkillDetails": ["Agent onboarding journey", "Ongoing capability building"],
+            "observationTxt": "SC2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }, {
+            "skillText": "Coaching",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Coaching-dark.png",
+            "subSkillDetails": ["Teamleader coaching", "Sales skills coaching"],
+            "observationTxt": "SC3_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 50
+          }]
+        }, {
+          "capabilityText": "Sales enablement",
+          "skillDetails": [{
+            "skillText": "Routing",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Routing-dark.png",
+            "subSkillDetails": [],
+            "observationTxt": "CM1_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 0
+          }, {
+            "skillText": "Workforce management and Multiskilling",
+            "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Workforce_management-dark.png",
+            "subSkillDetails": [],
+            "observationTxt": "CM2_OPEN",
+            "obsplaceholder": "Enter text...",
+            "sliderValue": 0
+          }]
+        }]
+      },
+      "footerData": {
+        "forwardTxt": "Forward",
+        "previousTxt": "",
+        "forwardInputId": "Result_info_2",
+        "currentInputId": "Result_info_1",
+        "previousInputId": ""
+      }
     }
-}
+  }
