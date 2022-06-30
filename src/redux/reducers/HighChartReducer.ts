@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer } from "@reduxjs/toolkit";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
@@ -8,7 +8,7 @@ import {
   setCharPotentialtTitle,
   setCharcategory,
   setTooltip,
-} from '../actions/HighChartAction';
+} from "../actions/HighChartAction";
 
 export interface IChartState {
   barChartOptions: any;
@@ -27,17 +27,17 @@ export const defaultPlotOptions = {
       style: {
         textShadow: false,
         textOutline: false,
-        fontWeight: 'normal',
+        fontWeight: "normal",
       },
     },
   },
 };
 
 export const defaultXFontSize = {
-  style: { fontSize: '12px', fontWeight: 'normal', color: '#000000' },
+  style: { fontSize: "12px", fontWeight: "normal", color: "#000000" },
 };
 export const defaultYFontSize = {
-  style: { fontSize: '12px', fontWeight: 'normal' },
+  style: { fontSize: "12px", fontWeight: "normal" },
 };
 export const defaultYAxis = {
   tickLength: 0,
@@ -49,7 +49,7 @@ export const defaultYAxis = {
   title: false,
   plotLines: [
     {
-      color: '#000000',
+      color: "#000000",
       value: 0,
       zIndex: 5,
     },
@@ -62,12 +62,12 @@ export const defaultMarginRight = { marginRight: 100 };
 const initialState: IChartState = {
   barChartOptions: {
     chart: {
-      type: 'bar',
+      type: "bar",
       ...defaultMarginRight,
       height: 150,
     },
     title: {
-      text: '',
+      text: "",
     },
     xAxis: {
       tickLength: 0,
@@ -76,9 +76,9 @@ const initialState: IChartState = {
       labels: {
         y: 0,
         style: {
-          color: '#2A2A2A',
-          fontSize: '16px',
-          fontWeight: 'bold',
+          color: "#2A2A2A",
+          fontSize: "16px",
+          fontWeight: "bold",
         },
       },
     },
@@ -89,7 +89,7 @@ const initialState: IChartState = {
     },
     tooltip: {
       //pointFormat: '<b>{point.y:,.0f} €</b>',
-      pointFormat: '<b>{point.y:,.0f} €</b>',
+      pointFormat: "<b>{point.y:,.0f} €</b>",
       // formatter: function (this: any) {
       //   return this.points.reduce(function (s: any, point: any) {
       //     return s + '<br/>' + point.series.name + ': ' + point.y + 'm';
@@ -111,22 +111,22 @@ const initialState: IChartState = {
   },
   baseLineChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
       ...defaultMarginTop,
     },
     title: {
-      text: '',
+      text: "",
       useHTML: true,
       style: {
-        color: '#fff',
-        'background-color': '#ccc',
-        fontWeight: 'bold',
-        'text-transform': 'uppercase',
+        color: "#fff",
+        "background-color": "#ccc",
+        fontWeight: "bold",
+        "text-transform": "uppercase",
       },
     },
     xAxis: {
       tickLength: 0,
-      categories: '',
+      categories: "",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -143,7 +143,11 @@ const initialState: IChartState = {
     },
     tooltip: {
       formatter: function (this: any) {
-        return this.x + '<br/>' + `<b>${Math.abs(this.y)} €</b>`;
+        return (
+          this.x +
+          "<br/>" +
+          `<b>${Intl.NumberFormat("en-US").format(Math.abs(this.y))} €</b>`
+        );
       },
       //  pointFormat: '<b>{point.y:,.0f} €</b>',
     },
@@ -155,22 +159,22 @@ const initialState: IChartState = {
   },
   potentialChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
       ...defaultMarginTop,
     },
     title: {
-      text: '',
+      text: "",
       useHTML: true,
       style: {
-        color: '#fff',
-        'background-color': '#027AB1',
-        fontWeight: 'bold',
-        'text-transform': 'uppercase',
+        color: "#fff",
+        "background-color": "#027AB1",
+        fontWeight: "bold",
+        "text-transform": "uppercase",
       },
     },
     xAxis: {
       tickLength: 0,
-      type: 'category',
+      type: "category",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -186,7 +190,11 @@ const initialState: IChartState = {
     tooltip: {
       // pointFormat: '<b>€{point.y:,.0f}</b>',
       formatter: function (this: any) {
-        return this.x + '<br/>' + `<b>${Math.abs(this.y)} €</b>`;
+        return (
+          this.x +
+          "<br/>" +
+          `<b>${Intl.NumberFormat("en-US").format(Math.abs(this.y))} €</b>`
+        );
       },
     },
     series: [
@@ -197,13 +205,13 @@ const initialState: IChartState = {
   },
   segmentChartOptions: {
     chart: {
-      type: 'waterfall',
+      type: "waterfall",
       ...defaultMarginTop,
     },
-    title: '',
+    title: "",
     xAxis: {
       tickLength: 0,
-      type: 'category',
+      type: "category",
       gridLineWidth: 0,
       labels: {
         ...defaultXFontSize,
@@ -215,7 +223,7 @@ const initialState: IChartState = {
         enabled: false,
       },
       gridLineWidth: 0,
-      title: '',
+      title: "",
     },
     legend: {
       enabled: false,
@@ -223,7 +231,11 @@ const initialState: IChartState = {
 
     tooltip: {
       formatter: function (this: any) {
-        return this.x + '<br/>' + `<b>${Math.abs(this.y)}</b>`;
+        return (
+          this.x +
+          "<br/>" +
+          `<b>${Intl.NumberFormat("en-US").format(Math.abs(this.y))}</b>`
+        );
       },
       // pointFormat: '<b>{point.y:,.0f} €</b>',
     },

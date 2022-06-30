@@ -1,23 +1,23 @@
-import { getParsedData } from './parserUtil';
-import Highcharts from 'highcharts';
+import { getParsedData } from "./parserUtil";
+import Highcharts from "highcharts";
 
 export const getbaseChart = (
   rowDetails: any,
   colorArray: any,
-  currencySymbol: any,
+  currencySymbol: any
 ): any => {
   const labelsFormat = {
     enabled: true,
     bold: false,
-    color: '#fff',
+    color: "#fff",
     inside: true,
     // x: -10,
-    align: 'center',
+    align: "center",
     // poistion: "right",
     style: {
       textShadow: false,
       textOutline: false,
-      fontWeight: 'normal',
+      fontWeight: "normal",
     },
     formatter: function (this: any) {
       return (
@@ -47,7 +47,7 @@ export const getbaseChart = (
 
 export const getbaseLineChartOptions = (
   baseLineChartOptions: any,
-  currencySymbol: any,
+  currencySymbol: any
 ): any => {
   const baselineHeading = baseLineChartOptions.headings;
   const categorieName: any = [];
@@ -74,14 +74,14 @@ export const getbaseLineChartOptions = (
     data,
     dataLabels: {
       enabled: true,
-      color: 'black',
+      color: "black",
       bold: false,
-      verticalAlign: 'top',
+      verticalAlign: "top",
       y: -20,
       style: {
         textShadow: false,
         textOutline: false,
-        fontWeight: 'normal',
+        fontWeight: "normal",
       },
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       formatter: function (this: any) {
@@ -96,7 +96,7 @@ export const getbaseLineChartOptions = (
 };
 export const getpotentialChartOptions = (
   potentialChartOptions: any,
-  currencySymbol: any,
+  currencySymbol: any
 ): any => {
   const baselineHedding = potentialChartOptions.headings;
   const categorieName: any = [];
@@ -124,17 +124,17 @@ export const getpotentialChartOptions = (
     data,
     dataLabels: {
       enabled: true,
-      color: '#000000',
+      color: "#000000",
       bold: false,
       // inside: false,
       // y: 0,
       // align: "center",
-      verticalAlign: 'top',
+      verticalAlign: "top",
       y: -20,
       style: {
         textShadow: false,
         textOutline: false,
-        fontWeight: 'normal',
+        fontWeight: "normal",
       },
       // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
       formatter: function (this: any) {
@@ -150,7 +150,7 @@ export const getpotentialChartOptions = (
 };
 export const getsegmentChartOptions = (
   segmentChartOptions: any,
-  currencySymbol: any,
+  currencySymbol: any
 ): any => {
   const segementHeading = segmentChartOptions.chartLabels;
   const seriesName: any = [];
@@ -176,14 +176,14 @@ export const getsegmentChartOptions = (
     data,
     dataLabels: {
       enabled: true,
-      color: 'black',
+      color: "black",
       bold: false,
-      verticalAlign: 'top',
+      verticalAlign: "top",
       y: -20,
       style: {
         textShadow: false,
         textOutline: false,
-        fontWeight: 'normal',
+        fontWeight: "normal",
       },
       formatter: function (this: any) {
         return Highcharts.numberFormat(Math.abs(this.y), 0);
