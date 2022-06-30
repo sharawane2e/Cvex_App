@@ -84,7 +84,7 @@ const QuestionPage = () => {
                 )}
               </h2>
             </div>
-            <p>
+            <p className="question_text">
               {getParsedData(jsonData?.data?.rightPanel?.questionsData?.insTxt)}
             </p>
             <div className="question-container">

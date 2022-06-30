@@ -9,12 +9,18 @@
       background-color: $dark-light-black;
       transition: 0.3s ease-out;
       @include breakpoint(Ipad) {
-        margin-left: -280px;
+         //margin-left: -280px;
         transition: 0s ease-out;
+        position:fixed;
+        height:100%;
+        z-index:3;
       }
       @include breakpoint(sm-mobileonly) {
         margin-left: -280px;
         transition: 0s ease-out;
+        position:fixed;
+        height:100%;
+          z-index:3;
       }
     }
 
@@ -35,18 +41,35 @@
         margin-bottom: 0;
         @include breakpoint(Ipad) {
           padding-left:0;
+          
         }
         @include breakpoint(sm-mobileonly) {
           padding-left:0;
+          padding-top:10px;
+          padding-bottom:10px;
         }
 
         h2 {
           font-size: 18px;
+          @include breakpoint(sm-mobileonly) {
+            font-size: 15px;
+          }
         }
       }
       &__inr {
         overflow-y: auto;
         height: calc(100vh - 280px);
+        @include breakpoint(landscape-mobileonly) {
+          height: calc(100vh - 231px)  !important;
+        }
+        @include breakpoint(sm-mobileonly) {
+          height:calc(100vh - 242px);
+        }
+        
+        .question_text{
+          font-size:13px;
+          padding:0 16px;
+        }
       }
 
       .footer {
@@ -67,12 +90,48 @@
       .submitButton {
         padding: 4px 0px !important;
         width: 100px;
+        @include breakpoint(sm-mobileonly) {
+          width: auto;
+          padding: 4px 10px !important;
+        }
       }
     }
   }
 }
 .question-wrapper {
   .hamburger-toggle-active {
+    .btn15 .icon:before {
+      @include breakpoint(Ipad) {
+        transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+      }
+      @include breakpoint(sm-mobileonly) {
+        transform:rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        width: 23px;
+        height: 2px;
+        top: -8px;
+      }
+    }
+    .btn15 .icon:after {
+      @include breakpoint(Ipad) {
+        transform:rotateZ(0deg) scaleX(1) translate(0px, 0px);
+      }
+      @include breakpoint(sm-mobileonly) {
+        transform:rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        top: 8px;
+        
+      }
+    }
+    .btn15 .icon {
+      @include breakpoint(Ipad) {
+        background: #fff;
+      }
+      @include breakpoint(sm-mobileonly) {
+        background: #fff;
+        width: 23px;
+        height: 2px;
+        
+      }
+    }
     & ~ .main-container {
       .right-panel {
         @include breakpoint(Ipad) {
@@ -84,18 +143,36 @@
       }
       .left-panel {
         @include breakpoint(Ipad) {
-          margin-left: 0px !important;
+          margin-left: -280px !important;
           position: fixed;
           height: 100%;
           z-index: 99;
         }
         @include breakpoint(sm-mobileonly) {
-          margin-left: 0px !important;
+          margin-left: -280px !important;
           position: fixed;
           height: 100%;
           z-index: 99;
         }
       }
+      
+    }
+  }
+}
+
+.question-wrapper {
+  .hamburger-toggle {
+    & ~ .main-container {
+      
+      .left-panel {
+        @include breakpoint(Ipad) {
+          margin-left: 0px !important;
+        }
+        @include breakpoint(sm-mobileonly) {
+          margin-left: 0px !important;
+        }
+      }
+     
     }
   }
 }
@@ -113,7 +190,7 @@
   }
   .leftPanel {
     width: 100% !important;
-    height: 45px;
+    height: 37px;
   }
   .css-eglki6-MuiLinearProgress-root {
     margin-left: 0 !important;
