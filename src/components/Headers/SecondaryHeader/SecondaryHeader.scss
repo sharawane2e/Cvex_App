@@ -37,6 +37,9 @@ $color: #b3e5fc;
     }
     img {
       width: 130px;
+      @include breakpoint(sm-mobileonly) {
+        width: 114px;
+      }
     }
   }
   .title {
@@ -112,6 +115,9 @@ $color: #b3e5fc;
       }
       @include breakpoint(sm-mobileonly) {
         transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
+        width: 23px;
+        height: 2px;
+        top: -12px;
       }
     }
     
@@ -122,7 +128,10 @@ $color: #b3e5fc;
         transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
       }
       @include breakpoint(sm-mobileonly) {
+        width: 23px;
+        height: 2px;
         transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
+        top: 8px;
       }
     }
   }
@@ -133,29 +142,29 @@ $color: #b3e5fc;
       background: transparent;
       color: #fff;
       @include breakpoint(Ipad) {
-        background: #fff;
+         //background: #fff;
       }
       @include breakpoint(sm-mobileonly) {
-        background: #fff;
+        // background: #fff;
       }
       
       &:before{
         transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
         @include breakpoint(Ipad) {
-          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+           //transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
         @include breakpoint(sm-mobileonly) {
-          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+          // transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
       }
 
       &:after{
         transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
         @include breakpoint(Ipad) {
-          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+           //transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
         @include breakpoint(sm-mobileonly) {
-          transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+          // transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
       }
     }

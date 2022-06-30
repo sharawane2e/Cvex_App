@@ -2,6 +2,9 @@
     .listitem-container{
         position: relative;
         padding: 20px;
+        @include breakpoint(sm-mobileonly) {
+            padding: 8px 17px;
+          }
         &.Mui-selected{
 
             .listItem{

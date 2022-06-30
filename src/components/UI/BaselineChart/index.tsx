@@ -7,6 +7,12 @@ import { useSelector } from "react-redux";
 const BaselineChart = () => {
     HC_more(Highcharts);
     const { chart } = useSelector((state: any) => state);
+    Highcharts.setOptions({
+        lang: {
+          decimalPoint: ".",
+          thousandsSep: ",",
+        },
+      });
     return (
         <HighchartsReact
             highcharts={Highcharts}
