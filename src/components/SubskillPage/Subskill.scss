@@ -23,6 +23,7 @@
      @include breakpoint(Ipad) {
       p.skill_text {
         font-size: 14px;
+        word-break: break-all;
       }
      }
     .mobile_heading span:first-child {

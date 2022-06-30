@@ -114,6 +114,7 @@
         display: block;
       }
       .skill_text {
+        word-break: break-all;
         @include breakpoint(sm-mobileonly) {
           display: inline-block;
         }
