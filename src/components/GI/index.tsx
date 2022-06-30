@@ -10,7 +10,8 @@ import CustomButton from "../UI/CustomButton";
 import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
 import Tooltip from "@mui/material/Tooltip";
 import CustomPopup from "../UI/CustomPopup";
-import DDD from "../UI/DDD";
+import DDD from "../UI/ddd";
+import HsddInput from "../ImpactCalculator/HsddInput";
 
 const GI = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -41,7 +42,6 @@ const GI = () => {
     });
 
     console.log("unanswered : ", count);
-    console.log("jsonData : ", jsonData);
 
     if (count > 0) {
       return false;
@@ -88,8 +88,6 @@ const GI = () => {
     // });
 
     // selectedDDName = ["A7_3", "A7_5"];
-
-    console.log(selectedIdArr);
 
     return selectedDDName;
   };

@@ -1,22 +1,36 @@
+import { getParsedData } from './parserUtil';
+import Highcharts from 'highcharts';
+
 export const getbaseChart = (
   rowDetails: any,
   colorArray: any,
-  currencySymbol: any
+  currencySymbol: any,
 ): any => {
-  const labelsFormate = {
+  const labelsFormat = {
     enabled: true,
     bold: false,
-    color: "black",
-    inside: false,
-    x: 0,
-    align: "left",
-    format: `{point.y:,.2f} ${currencySymbol}`,
+    color: '#fff',
+    inside: true,
+    // x: -10,
+    align: 'center',
+    // poistion: "right",
+    style: {
+      textShadow: false,
+      textOutline: false,
+      fontWeight: 'normal',
+    },
+    formatter: function (this: any) {
+      return (
+        Highcharts.numberFormat(Math.abs(this.y), 0) +
+        `${getParsedData(currencySymbol)}`
+      );
+    },
   };
   const seriesValue1 = {
     y: rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
     color: colorArray[0],
     dataLabels: {
-      ...labelsFormate,
+      ...labelsFormat,
     },
   };
   const seriesValue2 = {
@@ -25,7 +39,7 @@ export const getbaseChart = (
     ],
     color: colorArray[1],
     dataLabels: {
-      ...labelsFormate,
+      ...labelsFormat,
     },
   };
   return [seriesValue1, seriesValue2];
@@ -33,7 +47,7 @@ export const getbaseChart = (
 
 export const getbaseLineChartOptions = (
   baseLineChartOptions: any,
-  currencySymbol: any
+  currencySymbol: any,
 ): any => {
   const baselineHeading = baseLineChartOptions.headings;
   const categorieName: any = [];
@@ -60,18 +74,29 @@ export const getbaseLineChartOptions = (
     data,
     dataLabels: {
       enabled: true,
-      color: "black",
-      inside: false,
-      y: 50,
-      align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      color: 'black',
+      bold: false,
+      verticalAlign: 'top',
+      y: -20,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: 'normal',
+      },
+      // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      formatter: function (this: any) {
+        return (
+          Highcharts.numberFormat(Math.abs(this.y), 0) +
+          `${getParsedData(currencySymbol)}`
+        );
+      },
     },
   });
   return [series, categories];
 };
 export const getpotentialChartOptions = (
   potentialChartOptions: any,
-  currencySymbol: any
+  currencySymbol: any,
 ): any => {
   const baselineHedding = potentialChartOptions.headings;
   const categorieName: any = [];
@@ -99,11 +124,25 @@ export const getpotentialChartOptions = (
     data,
     dataLabels: {
       enabled: true,
-      color: "#000000",
-      inside: false,
-      y: 50,
-      align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      color: '#000000',
+      bold: false,
+      // inside: false,
+      // y: 0,
+      // align: "center",
+      verticalAlign: 'top',
+      y: -20,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: 'normal',
+      },
+      // format: `{point.y:,.0f} ${getParsedData(currencySymbol)}`,
+      formatter: function (this: any) {
+        return (
+          Highcharts.numberFormat(Math.abs(this.y), 0) +
+          `${getParsedData(currencySymbol)}`
+        );
+      },
     },
   });
 
@@ -111,7 +150,7 @@ export const getpotentialChartOptions = (
 };
 export const getsegmentChartOptions = (
   segmentChartOptions: any,
-  currencySymbol: any
+  currencySymbol: any,
 ): any => {
   const segementHeading = segmentChartOptions.chartLabels;
   const seriesName: any = [];
@@ -137,12 +176,18 @@ export const getsegmentChartOptions = (
     data,
     dataLabels: {
       enabled: true,
-      color: "black",
-      inside: false,
-
-      y: 50,
-      align: "center",
-      format: `{point.y:,.2f} ${currencySymbol}`,
+      color: 'black',
+      bold: false,
+      verticalAlign: 'top',
+      y: -20,
+      style: {
+        textShadow: false,
+        textOutline: false,
+        fontWeight: 'normal',
+      },
+      formatter: function (this: any) {
+        return Highcharts.numberFormat(Math.abs(this.y), 0);
+      },
     },
   });
 

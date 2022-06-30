@@ -1,19 +1,19 @@
-import { Grid, Box, Divider } from "@mui/material";
-import { useState, useEffect } from "react";
-import SecondaryHeader from "../Headers/SecondaryHeader";
-import BarChart from "../UI/BarChart";
-import { Footer } from "../Footer";
-import { getParsedData } from "../../utils/parserUtil";
-import CustomButton from "../UI/CustomButton";
-import BaselineChart from "../UI/BaselineChart";
-import PotentialChart from "../UI/PotentialChart";
-import SegmentChart from "../UI/SegmentChart";
-import HsddInput from "../ImpactCalculator/HsddInput";
+import { Grid, Box, Divider } from '@mui/material';
+import { useState, useEffect } from 'react';
+import SecondaryHeader from '../Headers/SecondaryHeader';
+import BarChart from '../UI/BarChart';
+import { Footer } from '../Footer';
+import { getParsedData } from '../../utils/parserUtil';
+import CustomButton from '../UI/CustomButton';
+import BaselineChart from '../UI/BaselineChart';
+import PotentialChart from '../UI/PotentialChart';
+import SegmentChart from '../UI/SegmentChart';
+import HsddInput from '../ImpactCalculator/HsddInput';
 import {
   setDropDown,
   setSecDropDown,
-} from "../../redux/actions/HighChartDropDownAction";
-import store from "../../redux/store";
+} from '../../redux/actions/HighChartDropDownAction';
+import store from '../../redux/store';
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
@@ -22,20 +22,21 @@ import {
   setCharPotentialtTitle,
   setPotentialChartOptions,
   setSegmentChartOptions,
-} from "../../redux/actions/HighChartAction";
+  setTooltip,
+} from '../../redux/actions/HighChartAction';
 import {
   getbaseChart,
   getbaseLineChartOptions,
   getpotentialChartOptions,
   getsegmentChartOptions,
-} from "../../utils/highchartOptionUtil";
-import { useSelector } from "react-redux";
-import arrowDown from "../../assets/svg/angle-double-down.svg";
-import arrowUp from "../../assets/svg/angle-double-up.svg";
-import { getSymbolFormat } from "../../utils";
+} from '../../utils/highchartOptionUtil';
+import { useSelector } from 'react-redux';
+// import arrowDown from "../../assets/svg/angle-double-down.svg";
+// import arrowUp from "../../assets/svg/angle-double-up.svg";
+import { getSymbolFormat } from '../../utils';
 
 const OutputContactCenter = () => {
-  const [jsonData, setJSONData] = useState<any>("");
+  const [jsonData, setJSONData] = useState<any>('');
   const { dropdown } = useSelector((state: any) => state);
 
   const { dispatch } = store;
@@ -43,35 +44,34 @@ const OutputContactCenter = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById('jsonData')?.innerText),
     );
+    // @ts-ignore
+    document.getElementById('forwardbutton').disabled = true;
   }, []);
 
   useEffect(() => {
     handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
     handleDropDownChange(
-      jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
+      jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId,
     );
-    //const symbolIcon = `{point.y:,.2f}%`;
-    // console.log('symbolIcon', jsonData?.data?.inputData?.currencySymbol);
-    // dispatch(setChartSymbol(symbolIcon));
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
-  const nextHandleClick = (event: any) => {
-    if (jsonData !== "") {
+  const nextHandleClick = (value: string) => {
+    if (jsonData !== '') {
       // @ts-ignore
-      document.getElementById("navText").value =
-        jsonData.data?.footerData?.forwardBtn?.forwardInputId;
+      document.getElementById('navText').value = value;
       // @ts-ignore
-      document.getElementById("forwardbutton").disabled = false;
+      document.getElementById('forwardbutton').disabled = false;
       // @ts-ignore
-      document.getElementById("forwardbutton").click();
+      document.getElementById('forwardbutton').click();
     }
   };
 
   const inputDetails = jsonData?.data?.inputData;
 
   const handleDDChange = (ddId: string) => {
+    console.log("dd called")
     if (ddId != undefined) {
       const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
       updatedJsonData.data.inputData.periodDD.selectedId = ddId;
@@ -84,7 +84,7 @@ const OutputContactCenter = () => {
         if (key == ddId) {
           const currencySymbol = updatedJsonData.data.inputData.currencySymbol;
           dispatch(
-            setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId])
+            setDropDown(updatedJsonData.data.inputData?.periodTableData[ddId]),
           );
 
           const firtsCatg =
@@ -101,15 +101,17 @@ const OutputContactCenter = () => {
           const getchartBarSeries = getbaseChart(
             rowDetails,
             colorArray,
-            currencySymbol
+            currencySymbol,
           );
-          dispatch(setCharcategory([firtsCatg, secsCatg]));
+          dispatch(setTooltip({pointFormat:`<b>{point.y:,.0f} €</b>`}));
 
-          dispatch(setBarChartOptions(getchartBarSeries));
+          dispatch(setBarChartOptions({ data: getchartBarSeries }));
           const getSeriesData = getbaseLineChartOptions(
             updatedJsonData.data.inputData.periodTableData[key],
-            currencySymbol
+            currencySymbol,
           );
+
+          dispatch(setCharcategory([firtsCatg, secsCatg]));
 
           const dataValue = getSeriesData[0][0];
 
@@ -127,11 +129,11 @@ const OutputContactCenter = () => {
               data: dataValue.data,
               dataLabels: dataValue.dataLabels,
               categories: getSeriesData[1],
-            })
+            }),
           );
           const getSeriesPotentialData = getpotentialChartOptions(
             updatedJsonData.data.inputData.periodTableData[key],
-            currencySymbol
+            currencySymbol,
           );
 
           const barLineData = getSeriesPotentialData[0][0];
@@ -140,7 +142,7 @@ const OutputContactCenter = () => {
               data: barLineData.data,
               dataLabels: barLineData.dataLabels,
               categories: getSeriesPotentialData[1],
-            })
+            }),
           );
         }
       });
@@ -158,10 +160,10 @@ const OutputContactCenter = () => {
         updatedJsonData.data.inputData.potentialIncreaseData.segmentDD.options;
       options.map((option: any) => {
         const mergeKey =
-          updatedJsonData.data.inputData.periodDD.selectedId + "-" + ddId;
+          updatedJsonData.data.inputData.periodDD.selectedId + '-' + ddId;
         var keys = Object.keys(
           updatedJsonData.data.inputData.potentialIncreaseData
-            .segmentTableChartData
+            .segmentTableChartData,
         );
 
         keys.forEach(function (key: any) {
@@ -169,13 +171,13 @@ const OutputContactCenter = () => {
             dispatch(
               setSecDropDown(
                 updatedJsonData.data.inputData.potentialIncreaseData
-                  .segmentTableChartData[mergeKey]
-              )
+                  .segmentTableChartData[mergeKey],
+              ),
             );
             const getSeriesData = getsegmentChartOptions(
               updatedJsonData.data.inputData.potentialIncreaseData
                 .segmentTableChartData[mergeKey],
-              updatedJsonData.data.inputData.currencySymbol
+              updatedJsonData.data.inputData.currencySymbol,
             );
 
             const seriesGet = getSeriesData[0][0];
@@ -184,7 +186,7 @@ const OutputContactCenter = () => {
                 data: seriesGet.data,
                 dataLabels: seriesGet.dataLabels,
                 categories: getSeriesData[1],
-              })
+              }),
             );
           }
         });
@@ -200,18 +202,18 @@ const OutputContactCenter = () => {
           <div className="dropdown-container">
             <Grid
               container
-              sx={{ alignItems: "center", pb: 2 }}
+              sx={{ alignItems: 'center', pb: 2 }}
               xs={12}
               md={12}
             >
-              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
+              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.periodDD}
                     onChange={(ddId: string) => handleDDChange(ddId)}
                   />
                 ) : (
-                  ""
+                  ''
                 )}
               </Grid>
             </Grid>
@@ -231,7 +233,7 @@ const OutputContactCenter = () => {
                   return (
                     <div
                       className={
-                        heading == "" ? "table-col__empty" : "table-col"
+                        heading == '' ? 'table-col__empty' : 'table-col'
                       }
                     >
                       <span>{heading}</span>
@@ -247,34 +249,34 @@ const OutputContactCenter = () => {
                       <div className="table-col" key={rowIndex}>
                         {rowDetail?.tbodyDetails.map(
                           (tbodyDetail: any, i: any) => {
-                            return typeof tbodyDetail == "number" ? (
+                            return typeof tbodyDetail == 'number' ? (
                               <div className="table-row">
                                 <div className="output_mobile_head">
                                   {dropdown?.selectedData?.headings[i]}
                                 </div>
                                 <div
                                   className={
-                                    rowDetail.iconDetails[i] == "up"
-                                      ? "arrowUpicon"
-                                      : rowDetail.iconDetails[i] == "down"
-                                      ? "arrowDownicon"
-                                      : "emptyicon"
+                                    rowDetail.iconDetails[i] == 'up'
+                                      ? 'arrowUpicon'
+                                      : rowDetail.iconDetails[i] == 'down'
+                                      ? 'arrowDownicon'
+                                      : 'emptyicon'
                                   }
                                 ></div>
 
-                                <div>
+                                <div className="currency-contaier">
                                   <span>{tbodyDetail}</span>
                                   <span className="currency-symbol">
-                                    {currencySymbol}
+                                    {`${getParsedData(currencySymbol)}`}
                                   </span>
                                 </div>
                               </div>
                             ) : (
                               <div
                                 className={
-                                  i > 0 && typeof tbodyDetail == "string"
-                                    ? "table-row bg-StringGray"
-                                    : "table-row"
+                                  i > 0 && typeof tbodyDetail == 'string'
+                                    ? 'table-row bg-StringGray'
+                                    : 'table-row'
                                 }
                               >
                                 <div className="output_mobile_head">
@@ -283,11 +285,11 @@ const OutputContactCenter = () => {
                                 <span>{tbodyDetail}</span>
                               </div>
                             );
-                          }
+                          },
                         )}
                       </div>
                     );
-                  }
+                  },
                 )}
               </div>
             </div>
@@ -300,7 +302,7 @@ const OutputContactCenter = () => {
                         <p>{rowDetail?.tbodyDetails[0]}</p>
                       </>
                     );
-                  }
+                  },
                 )}
               </div>
             </div>
@@ -326,26 +328,26 @@ const OutputContactCenter = () => {
           </div>
           <div className="dropdown-container">
             <div className="single-dropdown-section__body">
-              <div className="title-container">
+              {/* <div className="title-container">
                 <p>
-                  {inputDetails?.potentialIncreaseData?.segmentDD?.description}
-                </p>
-              </div>
+                  {inputDetails?.potentialIncreaseData?.segmentDD?.optionName}
+                </p> */}
+              {/* </div> */}
             </div>
             <Grid
               container
-              sx={{ alignItems: "center", pb: 2 }}
+              sx={{ alignItems: 'center', pb: 2 }}
               xs={12}
               md={12}
             >
-              <Grid item xs={12} sx={{ paddingRight: "20px" }}>
+              <Grid item xs={12} sx={{ paddingRight: '20px' }}>
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.potentialIncreaseData?.segmentDD}
                     onChange={(ddId: string) => handleDropDownChange(ddId)}
                   />
                 ) : (
-                  ""
+                  ''
                 )}
               </Grid>
             </Grid>
@@ -370,7 +372,7 @@ const OutputContactCenter = () => {
                           <span>{el}</span>
                         </div>
                       );
-                    }
+                    },
                   )}
                 </div>
               </div>
@@ -386,16 +388,31 @@ const OutputContactCenter = () => {
       <Footer>
         <Divider />
         <div className="button-container justi">
-          <div>
-            <CustomButton
-              className={"submitButton next-button"}
-              onClick={(e: any) => nextHandleClick(e)}
-            >
-              {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
-              )}
-            </CustomButton>
-          </div>
+          {jsonData?.data?.footerData?.previousTxt != '' && (
+            <div>
+              <CustomButton
+                className={'submitButton mar-right common-width'}
+                onClick={(e: any) =>
+                  nextHandleClick(jsonData?.data?.footerData?.previousInputId)
+                }
+              >
+                {getParsedData(jsonData?.data?.footerData?.previousTxt)}
+              </CustomButton>
+            </div>
+          )}
+
+          {jsonData?.data?.footerData?.forwardTxt && (
+            <div>
+              <CustomButton
+                className={'submitButton next-button common-width'}
+                onClick={(e: any) =>
+                  nextHandleClick(jsonData?.data?.footerData?.forwardInputId)
+                }
+              >
+                {getParsedData(jsonData?.data?.footerData?.forwardTxt)}
+              </CustomButton>
+            </div>
+          )}
         </div>
       </Footer>
     </div>

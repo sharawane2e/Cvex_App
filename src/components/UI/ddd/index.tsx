@@ -25,16 +25,13 @@ const DDD = (props: dddProps) => {
   const { genQues, showError, index } = props;
   const [jsonData, setJSONData] = useState<any>("");
   const [serviceOffer, setServicesOffer] = useState<any>([]);
-  //   const [showError, setShowError] = useState(false);
   const [open, setOpen] = useState(false);
-
   const [currQues, setCurrQues] = useState<any>("");
 
   useEffect(() => {
     // @ts-ignore
     let data = JSON.parse(document.getElementById("jsonData")?.innerHTML);
     setJSONData(data);
-    console.log(data?.data?.rightData?.questions[index]);
     setCurrQues(data?.data?.rightData?.questions[index]);
   }, []);
 
@@ -178,6 +175,127 @@ const DDD = (props: dddProps) => {
     }
   };
 
+  const DDChange1 = (event: any) => {
+    let dropdownId = "";
+    jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
+      if (CV?.type == currQues?.type) {
+        CV.selectedId2 = "";
+        CV.selectedId3 = "";
+        if (CV.questionId == currQues.questionId) {
+          CV.options.forEach((option: any) => {
+            if (option.ddName == event.target.value) {
+              dropdownId = option.ddId;
+
+              document.getElementById(option.ddId)?.click();
+              uncheckCheckboxes(currQues.options2);
+              uncheckCheckboxes(currQues.options3);
+            }
+          });
+        }
+      }
+    });
+
+    const updatedQuestionsArray: any[] = [];
+    jsonData.data.rightData.questions.forEach(function (CV: any) {
+      if (CV.questionId === currQues.questionId) {
+        CV.selectedId = dropdownId;
+      }
+      updatedQuestionsArray.push(CV);
+    });
+
+    setJSONData({
+      ...jsonData,
+      rightData: {
+        ...jsonData.rightData,
+        questions: [...updatedQuestionsArray],
+      },
+    });
+  };
+
+  const DDChange2 = (event: any) => {
+    uncheckCheckboxes(currQues.options2);
+    uncheckCheckboxes(currQues.options3);
+    let dropdownIdsArr: string[] = [];
+    jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
+      CV.selectedId3 = "";
+      if (CV.questionId2 == currQues.questionId2) {
+        let arr = currQues.selectedId2.split(",");
+        CV.options2.forEach((option: any) => {
+          const shownOptions = getSddQ2Options(
+            currQues.selectedId,
+            currQues.map,
+            currQues.options2
+          );
+          const shownIds = shownOptions.map((x: any) => x.ddId);
+          // const ddSelectedIndex =
+          //   event.target.value.indexOf(
+          //     option.ddName
+          //   );
+          // if (ddSelectedIndex != -1) {
+          //   dropdownIdsArr.push(option.ddId);
+          // }
+          if (
+            event.target.value.includes(option.ddName) &&
+            shownIds.includes(option.ddId)
+          ) {
+            dropdownIdsArr.push(option.ddId);
+          }
+        });
+        checkCheckboxes(dropdownIdsArr);
+      }
+    });
+
+    console.log(event.target);
+
+    const updatedQuestionsArray: any[] = [];
+    jsonData.data.rightData.questions.forEach(function (CV: any) {
+      if (CV.questionId2 === currQues.questionId2) {
+        CV.selectedId2 = dropdownIdsArr.join();
+      }
+      updatedQuestionsArray.push(CV);
+    });
+
+    setJSONData({
+      ...jsonData,
+      rightData: {
+        ...jsonData.rightData,
+        questions: [...updatedQuestionsArray],
+      },
+    });
+  };
+
+  const DDChange3 = (event: any) => {
+    uncheckCheckboxes(currQues.options3);
+    let dropdownIdsArr: string[] = [];
+    jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
+      if (CV.questionId3 == currQues.questionId3) {
+        CV.options3.forEach((option: any) => {
+          const ddSelectedIndex = event.target.value.indexOf(option.ddName);
+          if (ddSelectedIndex != -1) {
+            dropdownIdsArr.push(option.ddId);
+
+            document.getElementById(option.ddId)?.click();
+          }
+        });
+      }
+    });
+
+    const updatedQuestionsArray: any[] = [];
+    jsonData.data.rightData.questions.forEach(function (CV: any) {
+      if (CV.questionId3 === currQues.questionId3) {
+        CV.selectedId3 = dropdownIdsArr.join(",");
+      }
+    });
+
+    setJSONData({
+      ...jsonData,
+      rightData: {
+        ...jsonData.rightData,
+        questions: [...updatedQuestionsArray],
+      },
+    });
+  };
+
   return (
     <>
       <Grid
@@ -205,44 +323,7 @@ const DDD = (props: dddProps) => {
                   return selected;
                 }}
                 value={getselectedDDName(currQues.options, currQues.selectedId)}
-                onChange={(event) => {
-                  let dropdownId = "";
-                  jsonData.data.rightData.questions.forEach(
-                    (CV: any, idx: number) => {
-                      if (CV?.type == currQues?.type) {
-                        CV.selectedId2 = "";
-                        CV.selectedId3 = "";
-                        if (CV.questionId == currQues.questionId) {
-                          CV.options.forEach((option: any) => {
-                            if (option.ddName == event.target.value) {
-                              dropdownId = option.ddId;
-
-                              document.getElementById(option.ddId)?.click();
-                              uncheckCheckboxes(currQues.options2);
-                              uncheckCheckboxes(currQues.options3);
-                            }
-                          });
-                        }
-                      }
-                    }
-                  );
-
-                  const updatedQuestionsArray: any[] = [];
-                  jsonData.data.rightData.questions.forEach(function (CV: any) {
-                    if (CV.questionId === currQues.questionId) {
-                      CV.selectedId = dropdownId;
-                    }
-                    updatedQuestionsArray.push(CV);
-                  });
-
-                  setJSONData({
-                    ...jsonData,
-                    rightData: {
-                      ...jsonData.rightData,
-                      questions: [...updatedQuestionsArray],
-                    },
-                  });
-                }}
+                onChange={(event) => DDChange1(event)}
                 error={
                   showError && currQues.selectedId == "" && currQues.isRequired
                 }
@@ -286,63 +367,7 @@ const DDD = (props: dddProps) => {
                     return selected.join(",");
                     // return ["hello",",hello2"]
                   }}
-                  onChange={(event) => {
-                    uncheckCheckboxes(currQues.options2);
-                    uncheckCheckboxes(currQues.options3);
-                    let dropdownIdsArr: string[] = [];
-                    jsonData.data.rightData.questions.forEach(
-                      (CV: any, idx: number) => {
-                        CV.selectedId3 = "";
-                        if (CV.questionId2 == currQues.questionId2) {
-                          let arr = currQues.selectedId2.split(",");
-                          CV.options2.forEach((option: any) => {
-                            const shownOptions = getSddQ2Options(
-                              currQues.selectedId,
-                              currQues.map,
-                              currQues.options2
-                            );
-                            const shownIds = shownOptions.map(
-                              (x: any) => x.ddId
-                            );
-                            // const ddSelectedIndex =
-                            //   event.target.value.indexOf(
-                            //     option.ddName
-                            //   );
-                            // if (ddSelectedIndex != -1) {
-                            //   dropdownIdsArr.push(option.ddId);
-                            // }
-                            if (
-                              event.target.value.includes(option.ddName) &&
-                              shownIds.includes(option.ddId)
-                            ) {
-                              dropdownIdsArr.push(option.ddId);
-                            }
-                          });
-                          checkCheckboxes(dropdownIdsArr);
-                        }
-                      }
-                    );
-
-                    console.log(event.target);
-
-                    const updatedQuestionsArray: any[] = [];
-                    jsonData.data.rightData.questions.forEach(function (
-                      CV: any
-                    ) {
-                      if (CV.questionId2 === currQues.questionId2) {
-                        CV.selectedId2 = dropdownIdsArr.join();
-                      }
-                      updatedQuestionsArray.push(CV);
-                    });
-
-                    setJSONData({
-                      ...jsonData,
-                      rightData: {
-                        ...jsonData.rightData,
-                        questions: [...updatedQuestionsArray],
-                      },
-                    });
-                  }}
+                  onChange={(event) => DDChange2(event)}
                   error={
                     showError &&
                     currQues.selectedId == "" &&
@@ -408,43 +433,7 @@ const DDD = (props: dddProps) => {
                     currQues.selectedId3
                   )} // genQues.selectedId2.split(", ")
                   multiple
-                  onChange={(event) => {
-                    uncheckCheckboxes(currQues.options3);
-                    let dropdownIdsArr: string[] = [];
-                    jsonData.data.rightData.questions.forEach(
-                      (CV: any, idx: number) => {
-                        if (CV.questionId3 == currQues.questionId3) {
-                          CV.options3.forEach((option: any) => {
-                            const ddSelectedIndex = event.target.value.indexOf(
-                              option.ddName
-                            );
-                            if (ddSelectedIndex != -1) {
-                              dropdownIdsArr.push(option.ddId);
-
-                              document.getElementById(option.ddId)?.click();
-                            }
-                          });
-                        }
-                      }
-                    );
-
-                    const updatedQuestionsArray: any[] = [];
-                    jsonData.data.rightData.questions.forEach(function (
-                      CV: any
-                    ) {
-                      if (CV.questionId3 === currQues.questionId3) {
-                        CV.selectedId3 = dropdownIdsArr.join(",");
-                      }
-                    });
-
-                    setJSONData({
-                      ...jsonData,
-                      rightData: {
-                        ...jsonData.rightData,
-                        questions: [...updatedQuestionsArray],
-                      },
-                    });
-                  }}
+                  onChange={(event) => DDChange3(event)}
                   error={
                     showError &&
                     currQues.selectedId == "" &&
@@ -459,10 +448,7 @@ const DDD = (props: dddProps) => {
                     currQues.map2,
                     currQues.options3
                   ).map((element: any) => (
-                    <MenuItem
-                      value={element?.ddName}
-                      //  onClick={() => setServicesId(element?.ddId)}
-                    >
+                    <MenuItem value={element?.ddName}>
                       <Checkbox
                         value={element?.ddName}
                         sx={{
@@ -500,3 +486,20 @@ const DDD = (props: dddProps) => {
 DDD.defaultProps = defaultProps;
 
 export default DDD;
+
+// .table_section {
+//   width: -webkit-fill-available;
+//   display: inline-flex;
+// }
+
+// .table_section > div {
+//   display: inline-block;
+//   min-width: 25%;
+//   min-height: 300px;
+//   border: 1px solid gray;
+// }
+
+// .t-row > .t-data {
+//   display: inline-block;
+//   width: 16%;
+// }
