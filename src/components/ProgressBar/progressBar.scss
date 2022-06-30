@@ -10,6 +10,10 @@
   border-bottom: 2px solid $gray-color;
   @include breakpoint(sm-mobileonly) {
     display: block;
+    padding-bottom:5px;
+  }
+  @include breakpoint(landscape-mobileonly) {
+    padding-bottom:5px;
   }
 }
 
@@ -65,12 +69,18 @@
       background-color: $light-blue !important;
       color: $white-color !important;
       width: 120px;
+      @include breakpoint(sm-mobileonly) {
+        width: auto;
+      }
     }
     .next-button {
       width: 120px;
       border: 1px solid $gray-color !important;
       background: $gray-color !important;
       color: $dark-light-black !important;
+      @include breakpoint(sm-mobileonly) {
+        width: auto;
+      }
     }
   }
 }
