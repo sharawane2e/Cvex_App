@@ -19,6 +19,7 @@ const GI = () => {
   const [showError, setShowError] = useState(false);
   const [open, setOpen] = useState(false);
   const [dddanswered, setDDDAnswered] = useState(false);
+  const [unAnsCount, setUnAnsCount] = useState(0);
 
   useEffect(() => {
     setJSONData(
@@ -26,6 +27,14 @@ const GI = () => {
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
   }, []);
+
+  // useEffect(() => {
+  //   console.log(unAnsCount);
+  // }, [unAnsCount]);
+
+  useEffect(() => {
+    console.log(dddanswered);
+  }, [dddanswered]);
 
   const isReqAnswered = () => {
     let count = 0;
@@ -38,12 +47,14 @@ const GI = () => {
         ) {
           count = count + 1;
         }
-      } else if (ques.type == "ddd" && dddanswered == true) {
+      } else if (ques.type == "ddd" && dddanswered == false) {
         count = count + 1;
       }
     });
 
-    console.log("unanswered : ", count);
+    setUnAnsCount(count);
+
+    console.log("unanswered : ", unAnsCount);
 
     if (count > 0) {
       return false;
@@ -194,7 +205,6 @@ const GI = () => {
           filteredData.push(...returnedObj);
         }
       });
-      console.log("filtered..", filteredData);
       return filteredData;
     } else {
       let selectIquestion = ddLabel.split("_")[1];
@@ -210,7 +220,6 @@ const GI = () => {
           optionsToRender.includes(el.ddId)
         );
       }
-      console.log("filtered..", filteredData);
       return filteredData;
     }
   };

@@ -43,7 +43,6 @@ const DDD = (props: dddProps) => {
         selectedDDName = element.ddName;
       }
     });
-    console.log(jsonData?.data?.rightData?.questions[index].selectedId);
     return selectedDDName;
   };
 
@@ -93,9 +92,6 @@ const DDD = (props: dddProps) => {
         selectedDDName.push(option["ddName"]);
       }
     });
-
-    console.log(selectedId);
-
     return selectedDDName;
   };
 
