@@ -19,6 +19,11 @@
             font-size: 14px;
             font-weight: $font-bold;
             color: $dark-light-black;
+            display: flex;
+            align-items: center;
+          }
+          .header-text > span {
+            margin-right: 6px;
           }
         }
         &__body {
@@ -41,6 +46,11 @@
             //  padding: 15px 10px 8px 10px;
             background-color: $dark-white;
             // margin-top: 15px;
+            display: flex;
+            align-items: center;
+          }
+          .segment-container > span {
+            margin-right: 6px;
           }
           .single-dropdown-title {
             padding: 10px 0;

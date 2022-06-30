@@ -344,7 +344,12 @@ const ImpactCalculator = (props: any) => {
                     inputDetails?.headingText != "" ? (
                       <div className="single-dropdown-section__header">
                         <p className="header-text">
-                          {inputDetails?.headingText}
+                          <span>{inputDetails?.headingText}</span>
+                          {inputDetails?.description?.length > 0 && (
+                            <Tooltip title={inputDetails?.description} arrow>
+                              <InfoIcon className="info-icon" />
+                            </Tooltip>
+                          )}
                         </p>
                       </div>
                     ) : null}
@@ -373,10 +378,24 @@ const ImpactCalculator = (props: any) => {
                                   return segmentDetail?.isShow == true ? (
                                     <>
                                       {segmentDetail?.segmentText != "" ? (
-                                        <div className="segment-container">
-                                          <p>{segmentDetail.segmentText}</p>
-                                        </div>
-                                      ) : null}
+                                        // <div className="segment-container">
+                                        <p className="segment-container">
+                                          {segmentDetail.segmentText}
+                                          <span>
+                                            {segmentDetail?.headingText}
+                                          </span>
+                                          {segmentDetail?.description?.length >
+                                            0 && (
+                                            <Tooltip
+                                              title={segmentDetail?.description}
+                                              arrow
+                                            >
+                                              <InfoIcon className="info-icon" />
+                                            </Tooltip>
+                                          )}
+                                        </p>
+                                      ) : // </div>
+                                      null}
 
                                       <Grid
                                         container
