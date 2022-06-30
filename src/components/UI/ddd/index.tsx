@@ -13,6 +13,7 @@ interface dddProps {
   genQues: any;
   showError: boolean;
   index: number;
+  setDDDAnswered?: any;
 }
 
 const defaultProps: dddProps = {
@@ -22,7 +23,7 @@ const defaultProps: dddProps = {
 };
 
 const DDD = (props: dddProps) => {
-  const { genQues, showError, index } = props;
+  const { genQues, showError, index, setDDDAnswered } = props;
   const [jsonData, setJSONData] = useState<any>("");
   const [serviceOffer, setServicesOffer] = useState<any>([]);
   const [open, setOpen] = useState(false);
@@ -177,6 +178,9 @@ const DDD = (props: dddProps) => {
 
   const DDChange1 = (event: any) => {
     let dropdownId = "";
+    if (jsonData?.data?.rightData?.questions[index]?.selectedId?.length > 0) {
+      setDDDAnswered(true);
+    }
     jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
       if (CV?.type == currQues?.type) {
         CV.selectedId2 = "";

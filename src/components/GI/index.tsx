@@ -18,6 +18,7 @@ const GI = () => {
   const [serviceOffer, setServicesOffer] = useState<any>([]);
   const [showError, setShowError] = useState(false);
   const [open, setOpen] = useState(false);
+  const [dddanswered, setDDDAnswered] = useState(false);
 
   useEffect(() => {
     setJSONData(
@@ -29,14 +30,15 @@ const GI = () => {
   const isReqAnswered = () => {
     let count = 0;
     jsonData?.data?.rightData?.questions.map((ques: any) => {
-      if (
-        (ques.isRequired == true &&
-          (ques.selectedId == "" || ques.selectedText == "")) ||
-        (ques.isRequired2 == true &&
-          (ques.selectedId2 == "" || ques.selectedText2 == "")) ||
-        (ques.isRequired3 == true &&
-          (ques.selectedId3 == "" || ques.selectedText3 == ""))
-      ) {
+      if (ques.type != "ddd") {
+        // prettier-ignore
+        if ((ques.isRequired == true && (ques.selectedId == "" || ques.selectedText == "")) ||
+        (ques.isRequired2 == true && (ques.selectedId2 == "" || ques.selectedText2 == "")) ||
+        (ques.isRequired3 == true && (ques.selectedId3 == "" || ques.selectedText3 == ""))
+        ) {
+          count = count + 1;
+        }
+      } else if (ques.type == "ddd" && dddanswered == true) {
         count = count + 1;
       }
     });
@@ -799,6 +801,7 @@ const GI = () => {
                         genQues={genQues}
                         showError={showError}
                         index={index}
+                        setDDDAnswered={setDDDAnswered}
                       />
                       {/* <HsddInput
                         question={genQues}

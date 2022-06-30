@@ -8,52 +8,40 @@ import { hideShowSections } from "../../services/impactCaluculator";
 import LinearProgressbar2 from "../LinearProgressbar2";
 import Tooltip from "@mui/material/Tooltip";
 import { ReactComponent as InfoIcon } from "../../assets/svg/info-icon.svg";
-
 const ImpactCalculator = (props: any) => {
   const [jsonData, setJSONData] = useState<any>("");
   const [upJson, setupJson] = useState<any>("");
   const [allSHowNumQuestionIds, setAllSHowNumQuestionIds] = useState<any>([]);
   const [showNumQuestionIds, setShowNumQuestionIds] = useState<any>([]);
   const [showError, setShowError] = useState(false);
-
   const [progpercentage, setProgpercentage] = useState<any>(0);
   const [unAnsLocs, setUnAnsLocs] = useState([]);
-
   // @ts-ignore
   const scrollToElement = () => testRef.current.scrollIntoView();
-
   const [blockLocs, setBlockLocs] = useState([]);
-
   useEffect(() => {
     // prettier-ignore
     // @ts-ignore
     let updatedJsona: any = JSON.parse(document.getElementById("jsonData")?.innerText);
     setupJson(updatedJsona);
-
     // const updatedJsona = JSON.parse(
     //   document.getElementById("jsonData")?.innerText
     // );
-
     // @ts-ignore
-
     const updatedJson = hideShowSections(updatedJsona);
     setJSONData(updatedJson);
-
     getblockLocations(updatedJson);
     setTimeout(function () {
       // updateScrollPos(updatedJson?.data?.scrollPosition);
       getblockLocations(updatedJson);
-
       console.log(updatedJson);
     }, 0);
   }, []);
-
   useEffect(() => {
     progressUpdate();
     getblockLocations(jsonData);
     unAnsweredLocs();
   }, [jsonData]);
-
   const numInputValidate = (
     value: any,
     pattern: any,
@@ -62,27 +50,20 @@ const ImpactCalculator = (props: any) => {
   ) => {
     const reg = pattern;
     let res = "";
-
     for (let i = 0; i < value.length; i++) {
       if (value[0] == " ") return "";
-
       if (reg.test(value[i])) res += value[i];
     }
-
     var tempNum = Number(res);
     if (tempNum > maxRange) res = res.slice(0, -1);
-
     if (tempNum < minRange) {
       tempNum = minRange;
       res = tempNum.toString();
     }
     // progressUpdate();
-
     return res;
   };
-
   const inputData = jsonData?.data?.inputData;
-
   const handleDDChange = (
     ddId: string,
     inputDataIdx: number,
@@ -96,29 +77,23 @@ const ImpactCalculator = (props: any) => {
     ].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId =
       ddId;
     document.getElementById(ddId)?.click();
-
     const updatedJson = hideShowSections(updatedJsonData);
     //@ts-ignore
-
     setJSONData(updatedJson);
     setupJson(updatedJson);
     // console.log("Json Updated", updatedJson);
     // progressUpdate();
-
     let selectedId =
       updatedJsonData.data.inputData[inputDataIdx].subHeadingDetails[
         subHeadingIdx
       ].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedId;
-
     let quesLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
       inputDataIdx
     ].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx]
       .questions.length;
-
     let subHeadingLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
       inputDataIdx
     ].subHeadingDetails.length;
-
     if (
       subHeadingIdx == subHeadingLength - 1 &&
       questionDataIdx == quesLength - 1
@@ -127,7 +102,6 @@ const ImpactCalculator = (props: any) => {
     }
     getblockLocations(updatedJson);
   };
-
   const handleNumChange = (
     value: number,
     inputDataIdx: number,
@@ -144,17 +118,13 @@ const ImpactCalculator = (props: any) => {
       subHeadingIdx
     ].segmentDetails[segmentDetailIdx].questions[questionDataIdx].selectedText =
       value;
-
     const updatedJson = hideShowSections(updatedJsonData);
-
     //@ts-ignore
     document.getElementById(selectedId).value = value;
-
     setJSONData(updatedJson);
     setupJson(updatedJson);
     getblockLocations(updatedJson);
   };
-
   const numFocusOut = (
     value: number,
     inputDataIdx: number,
@@ -166,11 +136,9 @@ const ImpactCalculator = (props: any) => {
       inputDataIdx
     ].subHeadingDetails[subHeadingIdx].segmentDetails[segmentDetailIdx]
       .questions.length;
-
     let subHeadingLength = JSON.parse(JSON.stringify(jsonData)).data.inputData[
       inputDataIdx
     ].subHeadingDetails.length;
-
     if (
       subHeadingIdx == subHeadingLength - 1 &&
       questionDataIdx == quesLength - 1
@@ -179,18 +147,15 @@ const ImpactCalculator = (props: any) => {
       console.log("last", inputDataIdx);
     }
   };
-
   const progressUpdate = () => {
     var obj: any = {};
     var incCount = 100 / jsonData?.data?.inputData?.length;
-
     jsonData?.data?.inputData?.map((block: any) => {
       obj[block.headingText] = 0;
       block?.subHeadingDetails?.map((seg: any) => {
         seg?.segmentDetails?.map((ques: any) => {
           let quesCount = ques.questions.length;
           let len;
-
           ques?.questions?.map((x: any) => {
             if (x.options) {
               len = ques.questions.filter(
@@ -220,17 +185,13 @@ const ImpactCalculator = (props: any) => {
       setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
     }
   };
-
   const getblockLocations = (jsonData: any) => {
     let arr: any = [];
     let obj: any = {};
-
     // @ts-ignore
     let parentheight = document.getElementById("impactCalc")?.scrollHeight;
-
     // @ts-ignore
     let parentscrollpos = document.getElementById("impactCalc")?.scrollTop;
-
     // @ts-ignore
     jsonData?.data?.inputData.forEach((y: any, i: any) => {
       let idStr = "scroll_" + (i + 1);
@@ -247,17 +208,14 @@ const ImpactCalculator = (props: any) => {
       arr.push(height);
       obj[idStr] = height;
     });
-
     setBlockLocs(arr);
     console.log(arr);
     console.log("sh ", parentscrollpos);
   };
-
   const scrollEffect = (ind: any) => {
     // @ts-ignore
     let container = document.getElementById("impactCalc");
     let dataobj = JSON.parse(JSON.stringify(jsonData));
-
     if (ind < dataobj?.data?.inputData.length - 1) {
       let reqheight = blockLocs[ind + 1];
       // @ts-ignore
@@ -265,7 +223,6 @@ const ImpactCalculator = (props: any) => {
       console.log(reqheight);
     }
   };
-
   const unAnsweredLocs = () => {
     let arr: any = [];
     let arr2: any = [];
@@ -278,7 +235,6 @@ const ImpactCalculator = (props: any) => {
               seg.segmentDetails.map((ques: any, iq: any) => {
                 ques.questions.map((x: any, ix: any) => {
                   blockID = "subblock_" + (ib + 1) + "_" + (is + 1);
-
                  let newheight = 0;
                     if (x.options != undefined) {
                       // prettier-ignore
@@ -310,7 +266,6 @@ const ImpactCalculator = (props: any) => {
                         }
                       }
                     }
-                  
                 });
               });
             });
@@ -322,7 +277,6 @@ const ImpactCalculator = (props: any) => {
     console.log("qnames ", [...new Set(arr2)]);
     setUnAnsLocs(arr);
   };
-
   return (
     <div className="impact-calc-container">
       <SecondaryHeader sidebar={false} />
@@ -344,11 +298,15 @@ const ImpactCalculator = (props: any) => {
                     inputDetails?.headingText != "" ? (
                       <div className="single-dropdown-section__header">
                         <p className="header-text">
-                          {inputDetails?.headingText}
+                          <span>{inputDetails?.headingText}</span>
+                          {inputDetails?.description?.length > 0 && (
+                            <Tooltip title={inputDetails?.description} arrow>
+                              <InfoIcon className="info-icon" />
+                            </Tooltip>
+                          )}
                         </p>
                       </div>
                     ) : null}
-
                     {inputDetails?.subHeadingDetails?.map(
                       (subHeadingDetail: any, subHeadingIdx: number) => {
                         return subHeadingDetail?.isShow == true ? (
@@ -364,7 +322,6 @@ const ImpactCalculator = (props: any) => {
                                   </div>
                                 ) : null
                               ) : null}
-
                               {subHeadingDetail?.segmentDetails?.map(
                                 (
                                   segmentDetail: any,
@@ -373,11 +330,24 @@ const ImpactCalculator = (props: any) => {
                                   return segmentDetail?.isShow == true ? (
                                     <>
                                       {segmentDetail?.segmentText != "" ? (
-                                        <div className="segment-container">
-                                          <p>{segmentDetail.segmentText}</p>
-                                        </div>
-                                      ) : null}
-
+                                        // <div className="segment-container">
+                                        <p className="segment-container">
+                                          {segmentDetail.segmentText}
+                                          <span>
+                                            {segmentDetail?.headingText}
+                                          </span>
+                                          {segmentDetail?.description?.length >
+                                            0 && (
+                                            <Tooltip
+                                              title={segmentDetail?.description}
+                                              arrow
+                                            >
+                                              <InfoIcon className="info-icon" />
+                                            </Tooltip>
+                                          )}
+                                        </p>
+                                      ) : // </div>
+                                      null}
                                       <Grid
                                         container
                                         xs={12}
@@ -467,7 +437,6 @@ const ImpactCalculator = (props: any) => {
                                                             question.minRange,
                                                             question.maxRange
                                                           );
-
                                                         handleNumChange(
                                                           e.target.value,
                                                           inputDataIdx,
@@ -539,7 +508,6 @@ const ImpactCalculator = (props: any) => {
           })}
         </div>
       </div>
-
       <Footer>
         <div className="footer-impact-calc">
           <div className="left-sec">
@@ -556,5 +524,4 @@ const ImpactCalculator = (props: any) => {
     </div>
   );
 };
-
 export default ImpactCalculator;
