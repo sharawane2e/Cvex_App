@@ -210,25 +210,28 @@ export default function CustomAccordion(props: AccordionProps) {
                     );
                   },
                 )}
-                <TextareaAutosize
-                            aria-label="minimum height"
-                            className="custom-text-area"
-                            minRows={2}
-                            defaultValue={capabilityDetail.observationTxt}
-                            placeholder={capabilityDetail.obsplaceholder}
-                            onChange={(event) => {
-                              handleTextArea(
-                                event.target.value,
-                                capabilityDetail?.observationId,
-                              )
-                            }}
-                            style={{
-                              width: '100%',
-                              marginTop: 20,
-                              padding: 5,
-                              resize: 'none',
-                            }}
-                          />
+                {
+                  (capabilityDetail?.showObservation == true)?
+                  <TextareaAutosize
+                  aria-label="minimum height"
+                  className="custom-text-area"
+                  minRows={2}
+                  defaultValue={capabilityDetail.observationTxt}
+                  placeholder={capabilityDetail.obsplaceholder}
+                  onChange={(event) => {
+                    handleTextArea(
+                      event.target.value,
+                      capabilityDetail?.observationId,
+                    )
+                  }}
+                  style={{
+                    width: '100%',
+                    marginTop: 20,
+                    padding: 5,
+                    resize: 'none',
+                  }}
+                /> : null
+                }
               </Accordion>
             </>
           );
