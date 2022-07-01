@@ -23,6 +23,8 @@ const PanelPage = (props: any) => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
   }, []);
 
   const panelData = jsonData?.data?.panelDetails;
@@ -40,6 +42,30 @@ const PanelPage = (props: any) => {
       // document.getElementById('forwardbutton').disabled = false;
       // // @ts-ignore
       // document.getElementById('forwardbutton').click();
+    }
+  };
+  
+  const handleForwardClick = () => {
+    if (jsonData !== "") {
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData?.data?.footerData?.forwardInputId;
+      // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
+    }
+  };
+
+  const previousHandleClick = (event: any) => {
+    if (jsonData !== '') {
+      // @ts-ignore
+      document.getElementById('navText').value =
+        jsonData.data?.footerData?.previousInputId;
+      // @ts-ignore
+      document.getElementById('forwardbutton').disabled = false;
+      // @ts-ignore
+      document.getElementById('forwardbutton').click();
     }
   };
 
@@ -70,20 +96,24 @@ const PanelPage = (props: any) => {
                     <div className="single-capability">
                       <div className="single-capability__left">
                       <div className="mobile_heading">{panelData?.panelHeading[0]}</div>
+                        {/* <span className='skill_serialNum'>{elm.serialNumber}</span> */}
                         <p className="skill_text">{elm.capabilityText}</p>
                       </div>
                       <div className="single-capability__right">
                       {
-                        elm?.skillDetails?.map((skill:any) => {
+                        elm?.skillDetails?.map((skill:any, idx:number) => {
                           return(
                             <>
                               <div className="single-capability__right--cap-detail">
                                 <div className="skillCont">
-                                  <div className="capability">
-                                  <div className="mobile_heading">{panelData?.panelHeading[1]}</div>
-                                    <p className="skill_text">{skill?.skillText}</p>
+                                  <div className="skillCont-top">
+                                    <div className="capability">
+                                    <div className="mobile_heading">{panelData?.panelHeading[1]}</div>
+                                    {/* <span className='capability_serialNum'>{skill.serialNumber}</span> */}
+                                      <p className="skill_text">{skill?.skillText}</p>
+                                    </div>
                                   </div>
-                                  <div>
+                                  <div className="skillCont-bottom">
                                     <img src={skill?.skillIcon} alt="" />
                                   </div>  
                                 </div>
@@ -129,6 +159,29 @@ const PanelPage = (props: any) => {
           </Box>
         </div>
       </div>
+      <Footer>
+        <div className="button-container">
+          <div className="button-container">
+            <div className="button-inr-btn">
+              {(jsonData?.data?.footerData?.previousTxt)?
+                <CustomButton
+                className="submitButton  mar-right"
+                onClick={previousHandleClick}
+              >
+                {jsonData.data?.footerData?.previousTxt}
+              </CustomButton> : null
+            }
+
+            {
+              (jsonData?.data?.footerData?.forwardTxt)?
+              <CustomButton className="submitButton " onClick={handleForwardClick}>
+              {jsonData.data?.footerData?.forwardTxt}
+            </CustomButton> : null
+            }
+            </div>
+          </div>
+        </div>
+      </Footer>
     </div>
   );
 };

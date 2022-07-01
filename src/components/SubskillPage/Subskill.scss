@@ -11,7 +11,7 @@
     margin: 0;
     padding: 15px;
     width: 100%;
-    height: calc(100vh - 112px);
+    height: calc(100vh - 185px);
     overflow-y: auto;
     
      @include breakpoint(sm-mobileonly) {
@@ -23,6 +23,7 @@
      @include breakpoint(Ipad) {
       p.skill_text {
         font-size: 14px;
+        word-break: break-all;
       }
      }
     .mobile_heading span:first-child {
@@ -48,6 +49,10 @@
         }
     }
 
+  }
+  
+  .submitButton {
+    min-width: 135px;
   }
 
   .single-capability-header {
@@ -198,6 +203,8 @@
                         position: absolute;
                         height: 10px;
                         width: 10px;
+                        min-width: 10px;
+                        left: 5px;
                         top: 7px;
                         font-size: 14px;
                         transform: translateX(-90%);

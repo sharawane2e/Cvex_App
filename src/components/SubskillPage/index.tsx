@@ -21,6 +21,10 @@ const PanelPage = (props: any) => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+
+    // @ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
+     
   }, []);
 
   const panelData = jsonData?.data?.panelDetails;
@@ -38,6 +42,30 @@ const PanelPage = (props: any) => {
       // document.getElementById('forwardbutton').disabled = false;
       // // @ts-ignore
       // document.getElementById('forwardbutton').click();
+    }
+  };
+
+  const handleForwardClick = () => {
+    if (jsonData !== "") {
+      // @ts-ignore
+      document.getElementById("navText").value =
+        jsonData?.data?.footerData?.forwardInputId;
+      // @ts-ignore
+      document.getElementById("forwardbutton").disabled = false;
+      // @ts-ignore
+      document.getElementById("forwardbutton").click();
+    }
+  };
+
+  const previousHandleClick = (event: any) => {
+    if (jsonData !== '') {
+      // @ts-ignore
+      document.getElementById('navText').value =
+        jsonData.data?.footerData?.previousInputId;
+      // @ts-ignore
+      document.getElementById('forwardbutton').disabled = false;
+      // @ts-ignore
+      document.getElementById('forwardbutton').click();
     }
   };
 
@@ -134,6 +162,23 @@ const PanelPage = (props: any) => {
           </Box>
         </div>
       </div>
+      <Footer>
+        <div className="button-container">
+          <div className="button-container">
+            <div className="button-inr-btn">
+              <CustomButton
+                className="submitButton  mar-right"
+                onClick={previousHandleClick}
+              >
+                {jsonData.data?.footerData?.previousTxt}
+              </CustomButton>
+              <CustomButton className="submitButton " onClick={handleForwardClick}>
+                {jsonData.data?.footerData?.forwardTxt}
+              </CustomButton>
+            </div>
+          </div>
+        </div>
+      </Footer>
     </div>
   );
 };
