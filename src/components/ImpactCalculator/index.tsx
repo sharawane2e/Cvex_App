@@ -209,8 +209,8 @@ const ImpactCalculator = (props: any) => {
       obj[idStr] = height;
     });
     setBlockLocs(arr);
-    console.log(arr);
-    console.log("sh ", parentscrollpos);
+    // console.log(arr);
+    // console.log("sh ", parentscrollpos);
   };
   const scrollEffect = (ind: any) => {
     // @ts-ignore

@@ -201,7 +201,7 @@ const LinearProgressbar2 = ({
             ques.questions.map((x: any) => {
               if (x.options) {
                 len = ques.questions.filter(
-                  (select: any) => select.selectedId == "" && select.isRequired && select.isShow
+                  (select: any) => select.selectedId == "" && select.isRequired && ques.isShow
                 ).length;
                 if (len > 0) {
                   count = count + 1;
@@ -209,7 +209,7 @@ const LinearProgressbar2 = ({
               } else {
                 len = ques.questions.filter(
                   (select: any) =>
-                    select.selectedText == "" && select.isRequired && select.isShow
+                    select.selectedText == "" && select.isRequired && ques.isShow
                 ).length;
                 if (len > 0) {
                   count = count + 1;
@@ -220,6 +220,7 @@ const LinearProgressbar2 = ({
         });
       });
       console.log(count);
+      console.log(JSON.parse(upJson))
       if (count == 0) {
         // @ts-ignore
         document.getElementById("navText").value = saveId;
