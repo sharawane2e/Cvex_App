@@ -41,6 +41,15 @@
       width: 82% !important;
       margin-left: 15px !important;
     }
+    @include breakpoint(desktop150) {
+      width: 84% !important;
+      margin-left: 15px !important;
+    }
+    @include breakpoint(desktop) {
+      width: 82% !important;
+      // margin-left: 30px !important;
+    }
+    
   }
 }
 

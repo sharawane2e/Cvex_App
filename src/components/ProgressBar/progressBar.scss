@@ -129,6 +129,14 @@
     width: 96% !important;
     margin-left: 0px !important;
   }
+  @include breakpoint(desktop150) {
+    width: 82% !important;
+    margin-left: 30px !important;
+  }
+  @include breakpoint(desktop) {
+    width: 82% !important;
+    margin-left: 30px !important;
+  }
 }
 
 .submitactive {
