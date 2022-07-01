@@ -13,6 +13,7 @@ interface dddProps {
   genQues: any;
   showError: boolean;
   index: number;
+  setDDDAnswered?: any;
 }
 
 const defaultProps: dddProps = {
@@ -22,7 +23,7 @@ const defaultProps: dddProps = {
 };
 
 const DDD = (props: dddProps) => {
-  const { genQues, showError, index } = props;
+  const { genQues, showError, index, setDDDAnswered } = props;
   const [jsonData, setJSONData] = useState<any>("");
   const [serviceOffer, setServicesOffer] = useState<any>([]);
   const [open, setOpen] = useState(false);
@@ -42,7 +43,6 @@ const DDD = (props: dddProps) => {
         selectedDDName = element.ddName;
       }
     });
-    console.log(jsonData?.data?.rightData?.questions[index].selectedId);
     return selectedDDName;
   };
 
@@ -92,9 +92,6 @@ const DDD = (props: dddProps) => {
         selectedDDName.push(option["ddName"]);
       }
     });
-
-    console.log(selectedId);
-
     return selectedDDName;
   };
 
@@ -210,6 +207,9 @@ const DDD = (props: dddProps) => {
         questions: [...updatedQuestionsArray],
       },
     });
+    if (jsonData?.data?.rightData?.questions[index]?.selectedId?.length > 0) {
+      setDDDAnswered(true);
+    }
   };
 
   const DDChange2 = (event: any) => {
