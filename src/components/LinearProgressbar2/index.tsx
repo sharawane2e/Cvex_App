@@ -100,7 +100,9 @@ const LinearProgressbar2 = ({
   const handleSubmit = (saveId: string) => {
     isReqAnswered(saveId);
     showError(true);
-    scrollEvent();
+    if(isReqAnswered(saveId) == false){
+      scrollEvent();
+    }
     // unAnsweredLocs();
   };
 
@@ -141,8 +143,9 @@ const LinearProgressbar2 = ({
 
     console.log("firstloc ", firstLoc);
     console.log("unAnsLocs ", unAnsLocs);
+    console.log("loc ", height);
     // @ts-ignore
-    container.scrollTo(0, height - 110);
+    container.scrollTo(0, height-110);
 
     //block_1_1 = 0;
     //block_2_1 = 220;
@@ -198,7 +201,7 @@ const LinearProgressbar2 = ({
             ques.questions.map((x: any) => {
               if (x.options) {
                 len = ques.questions.filter(
-                  (select: any) => select.selectedId == "" && select.isRequired
+                  (select: any) => select.selectedId == "" && select.isRequired && select.isShow
                 ).length;
                 if (len > 0) {
                   count = count + 1;
@@ -206,7 +209,7 @@ const LinearProgressbar2 = ({
               } else {
                 len = ques.questions.filter(
                   (select: any) =>
-                    select.selectedText == "" && select.isRequired
+                    select.selectedText == "" && select.isRequired && select.isShow
                 ).length;
                 if (len > 0) {
                   count = count + 1;
