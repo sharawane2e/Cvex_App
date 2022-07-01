@@ -656,6 +656,20 @@
 
 			}]
 
+		},
+
+        "footerData": {
+
+			"forwardTxt": "Forward",
+
+			"previousTxt": "Previous",
+
+			"forwardInputId": "Result_info_2",
+
+			"currentInputId": "Result_info_1",
+
+			"previousInputId": ""
+
 		}
 
 	}

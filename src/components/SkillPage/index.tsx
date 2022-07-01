@@ -21,7 +21,7 @@ const PanelPage = (props: any) => {
     // document.getElementById('forwardbutton').disabled = true;
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById('jsonData')?.innerText),
     );
     // @ts-ignore
     document.getElementById("forwardbutton").disabled = true;

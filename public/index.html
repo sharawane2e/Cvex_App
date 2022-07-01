@@ -30,391 +30,157 @@
   <div id="root"></div>
   <span id="jsonData" style="display: none;">
     {
-
       "pageCode": {
-    
-        "page": 12
-    
+        "page": 11
       },
-    
       "data": {
-    
         "headerData": {
-    
-          "title": "2. Output template Skills",
-    
-          "logo": "https: //e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
-    
-          "banner": "https: //e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
-    
+          "title": "Customer Value Execution",
+          "logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
+          "banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
         },
-    
-        "panelDetails": {
-    
-          "panelHeading": ["Capability", "Skill", "Sub-skill", "Observations", "0-100"],
-    
-          "panelBody": [{
-    
-            "capabilityText": "Value strategy",
-    
-            "skillDetails": [{
-    
-              "skillText": "Sales and service strategy",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Sales_and_Service-dark.png",
-    
-              "subSkillDetails": ["Channel value strategy (what)", "Operating model (how)", "Network strategy (where)"],
-    
-              "observationTxt": "VS1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 25
-    
-            }, {
-    
-              "skillText": "Service and customer segment strategy",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Customer_segment-dark.png",
-    
-              "subSkillDetails": ["Customer segmentation and target groups", "Channel mix", "Sales and service segment strategy"],
-    
-              "observationTxt": "VS2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
-            }]
-    
+        "inputData": {
+          "title": "1.Output template Capability Heatmap",
+          "markers": ["Right set up to...", "...target customers...", "...and convert the lead!"],
+          "legends": [{
+            "legendText": "With improvement potential",
+            "colorCode": "#ddd",
+            "colorLabel": "1"
           }, {
-    
-            "capabilityText": "Customer touchpoint design",
-    
-            "skillDetails": [{
-    
-              "skillText": "Sales and service journey design",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Sales_and_Service-dark.png",
-    
-              "subSkillDetails": ["Sales and service (omnichannel) journeys", "Touchpoint design"],
-    
-              "observationTxt": "CTD1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 25
-    
-            }, {
-    
-              "skillText": "Omnichannel integration",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Omnichannel_design-dark.png",
-    
-              "subSkillDetails": ["Omnichannel-integrated data layer", "Cross-channel collaboration"],
-    
-              "observationTxt": "CTD2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
-            }]
-    
+            "legendText": "Improvement for further growth",
+            "colorCode": "#eee",
+            "colorLabel": "2"
           }, {
-    
-            "capabilityText": "Governance &amp; Steering",
-    
-            "skillDetails": [{
-    
-              "skillText": "KPIs and reporting",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/KPIs-dark.png",
-    
-              "subSkillDetails": ["Sales and service target setting", "Value driver tree", "KPI structure and definitions", "KPI dashboard and reporting"],
-    
-              "observationTxt": "GS1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 25
-    
+            "legendText": "Market leading",
+            "colorCode": "#fff",
+            "colorLabel": "3"
+          }],
+          "capabilities": [{
+            "capability": "Value strategy",
+            "serialNumber": "1.",
+            "skills": [{
+              "skillName": "Sales and service strategy",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S1.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Cross-functional collaboration",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Cross_functional-dark.png",
-    
-              "subSkillDetails": ["Cross-functional collaboration "],
-    
-              "observationTxt": "GS2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 25
-    
-            }, {
-    
-              "skillText": "Agile win-room",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Win_room-dark.png",
-    
-              "subSkillDetails": ["Agile win-room"],
-    
-              "observationTxt": "GS3_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 50
-    
+              "skillName": "Service and customer segment strategy",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S2.svg",
+              "colorLabel": "2"
             }]
-    
           }, {
-    
-            "capabilityText": "Proposition and Campaigning",
-    
-            "skillDetails": [{
-    
-              "skillText": "Proposition design",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Proposition_design-dark.png",
-    
-              "subSkillDetails": ["Customer data management ", "Personalized offers &amp; bundles"],
-    
-              "observationTxt": "PC1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 50
-    
+            "capability": "Customer touchpoint design",
+            "serialNumber": "2.",
+            "skills": [{
+              "skillName": "Sales and service journey design",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S3.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Prescriptive NBA modelling",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Prespective_NBA-dark.png",
-    
-              "subSkillDetails": ["Propensity models", "Next-best offer analytics engine"],
-    
-              "observationTxt": "PC2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
-            }, {
-    
-              "skillText": "Agile campaigning",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Agile_campaigning-dark.png",
-    
-              "subSkillDetails": ["Campaign strategy", "Campaign mechanism"],
-    
-              "observationTxt": "PC3_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
+              "skillName": "Omnichannel integration",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S4.svg",
+              "colorLabel": "2"
             }]
-    
           }, {
-    
-            "capabilityText": "Contact management",
-    
-            "skillDetails": [{
-    
-              "skillText": "Routing",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Routing-dark.png",
-    
-              "subSkillDetails": ["Customer identification, intent clarification and customer authentication ", "Routing and workflow"],
-    
-              "observationTxt": "CM1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 50
-    
+            "capability": "Governance & Steering",
+            "serialNumber": "3.",
+            "skills": [{
+              "skillName": "KPIs and reporting",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S5.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Workforce management and Multiskilling",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Workforce_management-dark.png",
-    
-              "subSkillDetails": ["Demand forecasting and management", "Analytical workforce planning", "Workforce scheduling", "Multiskilling"],
-    
-              "observationTxt": "CM2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
+              "skillName": "Cross-functional collaboration",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S6.svg",
+              "colorLabel": "2"
+            }, {
+              "skillName": "Agile win-room",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S7.svg",
+              "colorLabel": "2"
             }]
-    
           }, {
-    
-            "capabilityText": "Frontline management",
-    
-            "skillDetails": [{
-    
-              "skillText": "Performance management",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Performance_management-dark.png",
-    
-              "subSkillDetails": ["Vendor management", "Performance cascade", "Visual management", "Translation to insights and action"],
-    
-              "observationTxt": "FM1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 50
-    
+            "capability": "Proposition and Campaigning",
+            "serialNumber": "4.",
+            "skills": [{
+              "skillName": "Proposition design",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S8.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Role of teamleader and routines",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Role_of_team_leader-dark.png",
-    
-              "subSkillDetails": ["Shopfloor routines", "Time management of leaders"],
-    
-              "observationTxt": "FM2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
+              "skillName": "Prescriptive NBA modelling",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S9.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Quality management and customer experience",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Quality_management-dark.png",
-    
-              "subSkillDetails": ["Standards, quality, and compliance", "Customer experience management"],
-    
-              "observationTxt": "FM3_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
-            }, {
-    
-              "skillText": "Productivity focus and mindset",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Productivity_focus-dark.png",
-    
-              "subSkillDetails": ["Root-cause problem solving mechanism", "Reflection process and mechanism"],
-    
-              "observationTxt": "FM4_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 100
-    
+              "skillName": "Agile campaigning",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S10.svg",
+              "colorLabel": "2"
             }]
-    
           }, {
-    
-            "capabilityText": "Sales capabilities",
-    
-            "skillDetails": [{
-    
-              "skillText": "Talent management",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Talent_management-dark.png",
-    
-              "subSkillDetails": ["Talent profiles &amp; skills", "Recruitment strategy", "Talent-base management", "Learning journey of teamleader"],
-    
-              "observationTxt": "SC1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 50
-    
+            "capability": "Contact management",
+            "serialNumber": "5.",
+            "skills": [{
+              "skillName": "Routing",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S11.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Capability building",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Capability_building-dark.png",
-    
-              "subSkillDetails": ["Agent onboarding journey", "Ongoing capability building"],
-    
-              "observationTxt": "SC2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
-            }, {
-    
-              "skillText": "Coaching",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Coaching-dark.png",
-    
-              "subSkillDetails": ["Teamleader coaching", "Sales skills coaching"],
-    
-              "observationTxt": "SC3_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 75
-    
+              "skillName": "Workforce management and Multiskilling",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S12.svg",
+              "colorLabel": "2"
             }]
-    
           }, {
-    
-            "capabilityText": "Sales enablement",
-    
-            "skillDetails": [{
-    
-              "skillText": "Routing",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Routing-dark.png",
-    
-              "subSkillDetails": [],
-    
-              "observationTxt": "CM1_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 0
-    
+            "capability": "Frontline management",
+            "serialNumber": "6.",
+            "skills": [{
+              "skillName": "Performance management",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S13.svg",
+              "colorLabel": "2"
             }, {
-    
-              "skillText": "Workforce management and Multiskilling",
-    
-              "skillIcon": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/Workforce_management-dark.png",
-    
-              "subSkillDetails": [],
-    
-              "observationTxt": "CM2_OPEN",
-    
-              "obsplaceholder": "Enter text...",
-    
-              "sliderValue": 0
-    
+              "skillName": "Role of teamleader and routines",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S14.svg",
+              "colorLabel": "2"
+            }, {
+              "skillName": "Quality management and customer experience",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S15.svg",
+              "colorLabel": "2"
+            }, {
+              "skillName": "Productivity focus and mindset",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S16.svg",
+              "colorLabel": "2"
             }]
-    
+          }, {
+            "capability": "Sales capabilities",
+            "serialNumber": "7.",
+            "skills": [{
+              "skillName": "Talent management",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S17.svg",
+              "colorLabel": "2"
+            }, {
+              "skillName": "Capability building",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S18.svg",
+              "colorLabel": "2"
+            }, {
+              "skillName": "Coaching",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S19.svg",
+              "colorLabel": "2"
+            }]
+          }, {
+            "capability": "Sales enablement",
+            "serialNumber": "8.",
+            "skills": [{
+              "skillName": "Scripts and sales applications",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S20.svg",
+              "colorLabel": "2"
+            }, {
+              "skillName": "Compensation and incentives",
+              "skillImageUrl": "/isa/DVNOLDERHBIKJTBACYEDAXAAGTKDNVBY/EPR/S21.svg",
+              "colorLabel": "2"
+            }]
           }]
-    
         },
-    
         "footerData": {
-    
           "forwardTxt": "Forward",
-    
-          "previousTxt": "",
-    
+          "previousTxt": "Previous",
           "forwardInputId": "Result_info_2",
-    
           "currentInputId": "Result_info_1",
-    
           "previousInputId": ""
-    
         }
-    
       }
-    
     }
     
   </span>
