@@ -9,18 +9,18 @@
       background-color: $dark-light-black;
       transition: 0.3s ease-out;
       @include breakpoint(Ipad) {
-         //margin-left: -280px;
+        //margin-left: -280px;
         transition: 0s ease-out;
-        position:fixed;
-        height:100%;
-        z-index:3;
+        position: fixed;
+        height: 100%;
+        z-index: 3;
       }
       @include breakpoint(sm-mobileonly) {
         margin-left: -280px;
         transition: 0s ease-out;
-        position:fixed;
-        height:100%;
-          z-index:3;
+        position: fixed;
+        height: 100%;
+        z-index: 3;
       }
     }
 
@@ -40,13 +40,12 @@
         padding: 20px;
         margin-bottom: 0;
         @include breakpoint(Ipad) {
-          padding-left:0;
-          
+          padding-left: 0;
         }
         @include breakpoint(sm-mobileonly) {
-          padding-left:0;
-          padding-top:10px;
-          padding-bottom:10px;
+          padding-left: 0;
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
 
         h2 {
@@ -60,15 +59,15 @@
         overflow-y: auto;
         height: calc(100vh - 280px);
         @include breakpoint(landscape-mobileonly) {
-          height: calc(100vh - 231px)  !important;
+          height: calc(100vh - 231px) !important;
         }
         @include breakpoint(sm-mobileonly) {
-          height:calc(100vh - 242px);
+          height: calc(100vh - 242px);
         }
-        
-        .question_text{
-          font-size:13px;
-          padding:0 16px;
+
+        .question_text {
+          font-size: 13px;
+          padding: 0 16px;
         }
       }
 
@@ -105,7 +104,7 @@
         transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
       }
       @include breakpoint(sm-mobileonly) {
-        transform:rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         width: 23px;
         height: 2px;
         top: -8px;
@@ -113,12 +112,11 @@
     }
     .btn15 .icon:after {
       @include breakpoint(Ipad) {
-        transform:rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
       }
       @include breakpoint(sm-mobileonly) {
-        transform:rotateZ(0deg) scaleX(1) translate(0px, 0px);
+        transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         top: 8px;
-        
       }
     }
     .btn15 .icon {
@@ -129,7 +127,6 @@
         background: #fff;
         width: 23px;
         height: 2px;
-        
       }
     }
     & ~ .main-container {
@@ -138,7 +135,7 @@
           width: 100% !important;
         }
         @include breakpoint(sm-mobileonly) {
-          width:100% !important;
+          width: 100% !important;
         }
       }
       .left-panel {
@@ -155,7 +152,6 @@
           z-index: 99;
         }
       }
-      
     }
   }
 }
@@ -163,7 +159,6 @@
 .question-wrapper {
   .hamburger-toggle {
     & ~ .main-container {
-      
       .left-panel {
         @include breakpoint(Ipad) {
           margin-left: 0px !important;
@@ -172,7 +167,6 @@
           margin-left: 0px !important;
         }
       }
-     
     }
   }
 }
@@ -182,7 +176,7 @@
   }
   .leftPanel {
     width: 63% !important;
-}
+  }
 }
 @include breakpoint(sm-mobileonly) {
   .leftPanel .progressbar-container .progressbar {
@@ -200,11 +194,9 @@
     margin-top: 5px !important;
   }
   .css-15v22id-MuiAccordionDetails-root {
-    padding:15px 0px 10px !important;
+    padding: 15px 0px 10px !important;
   }
 }
-
-
 
 .justi {
   justify-content: end !important;
@@ -216,10 +208,26 @@
   margin-top: 10px !important;
   margin-bottom: 10px !important;
   @include breakpoint(sm-mobileonly) {
-    margin-bottom:0px !important;
+    margin-bottom: 0px !important;
     padding: 0 5px !important;
-}
+  }
 }
 .mar-right {
   margin-right: 5px !important;
+}
+
+@include breakpoint(desktop1280) {
+  .question-wrapper .main-container {
+    height: calc(100vh - 65px);
+  }
+  .question-wrapper .main-container .right-panel__inr {
+    height: calc(100vh - 231px);
+  }
+  .sidebar .listitem-container {
+    position: relative;
+    padding: 16px 18px !important;
+  }
+  .leftPanel .progressbar-container .progressbar {
+    width: 77% !important;
+  }
 }
