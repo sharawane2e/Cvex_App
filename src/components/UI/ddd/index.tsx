@@ -174,9 +174,6 @@ const DDD = (props: dddProps) => {
 
   const DDChange1 = (event: any) => {
     let dropdownId = "";
-    if (jsonData?.data?.rightData?.questions[index]?.selectedId?.length > 0) {
-      setDDDAnswered(true);
-    }
     jsonData.data.rightData.questions.forEach((CV: any, idx: number) => {
       if (CV?.type == currQues?.type) {
         CV.selectedId2 = "";
@@ -210,6 +207,9 @@ const DDD = (props: dddProps) => {
         questions: [...updatedQuestionsArray],
       },
     });
+    if (jsonData?.data?.rightData?.questions[index]?.selectedId?.length > 0) {
+      setDDDAnswered(true);
+    }
   };
 
   const DDChange2 = (event: any) => {

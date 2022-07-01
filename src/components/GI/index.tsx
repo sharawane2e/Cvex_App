@@ -42,8 +42,7 @@ const GI = () => {
       if (ques.type != "ddd") {
         // prettier-ignore
         if ((ques.isRequired == true && (ques.selectedId == "" || ques.selectedText == "")) ||
-        (ques.isRequired2 == true && (ques.selectedId2 == "" || ques.selectedText2 == "")) ||
-        (ques.isRequired3 == true && (ques.selectedId3 == "" || ques.selectedText3 == ""))
+        (ques.isRequired2 == true && (ques.selectedId2 == "" || ques.selectedText2 == ""))
         ) {
           count = count + 1;
         }
@@ -54,7 +53,7 @@ const GI = () => {
 
     setUnAnsCount(count);
 
-    console.log("unanswered : ", unAnsCount);
+    console.log("unanswered : ", count);
 
     if (count > 0) {
       return false;
@@ -812,6 +811,7 @@ const GI = () => {
                         index={index}
                         setDDDAnswered={setDDDAnswered}
                       />
+
                       {/* <HsddInput
                         question={genQues}
                         error={showError}
@@ -840,6 +840,7 @@ const GI = () => {
             </div>
           </div>
         </div>
+        <button onClick={() => console.log(dddanswered)}>Click</button>
       </Footer>
       <CustomPopup
         buttonText={jsonData?.data?.errorData?.btnText}
