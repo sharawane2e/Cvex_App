@@ -96,7 +96,7 @@ const PanelPage = (props: any) => {
                     <div className="single-capability">
                       <div className="single-capability__left">
                       <div className="mobile_heading">{panelData?.panelHeading[0]}</div>
-                        <span className='skill_serialNum'>{(idx+ 1) + "."}</span>
+                        {/* <span className='skill_serialNum'>{elm.serialNumber}</span> */}
                         <p className="skill_text">{elm.capabilityText}</p>
                       </div>
                       <div className="single-capability__right">
@@ -109,7 +109,7 @@ const PanelPage = (props: any) => {
                                   <div className="skillCont-top">
                                     <div className="capability">
                                     <div className="mobile_heading">{panelData?.panelHeading[1]}</div>
-                                    <span className='capability_serialNum'>{(idx + 1) + "."}</span>
+                                    {/* <span className='capability_serialNum'>{skill.serialNumber}</span> */}
                                       <p className="skill_text">{skill?.skillText}</p>
                                     </div>
                                   </div>
