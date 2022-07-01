@@ -311,7 +311,7 @@ const ImpactCalculator = (props: any) => {
                       (subHeadingDetail: any, subHeadingIdx: number) => {
                         return subHeadingDetail?.isShow == true ? (
                           <>
-                            <div className="single-dropdown-section__body">
+                            <div className="single-dropdown-section__body" id={"subblock_" + (inputDataIdx+1) + "_" + (subHeadingIdx+1) }>
                               {subHeadingDetail.hasOwnProperty(
                                 "subHeadingText"
                               ) ? (
@@ -446,7 +446,7 @@ const ImpactCalculator = (props: any) => {
                                                         );
                                                       }}
                                                       error={
-                                                        showError &&
+                                                        showError && question.isShow &&
                                                         question.selectedText ==
                                                           "" &&
                                                         question.isRequired
