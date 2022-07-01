@@ -154,6 +154,7 @@
               display: flex;
               border-bottom: 1px solid $gray-lighter;
               border-left: none;
+              min-height: 110px;
               @include breakpoint(sm-mobileonly) {
                 display:block;
                 border: 0;
@@ -202,7 +203,6 @@
                     content: "";
                         position: absolute;
                         height: 10px;
-                        width: 10px;
                         min-width: 10px;
                         left: 5px;
                         top: 7px;

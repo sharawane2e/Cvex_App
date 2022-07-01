@@ -17,6 +17,18 @@ const HeatmapPage = () => {
     // console.log(jsonData.data.inputData.capabilities)
   }, []);
 
+  const previousHandleClick = (event: any) => {
+    if (jsonData !== '') {
+      // @ts-ignore
+      document.getElementById('navText').value =
+        jsonData.data?.footerData?.previousInputId;
+      // @ts-ignore
+      document.getElementById('forwardbutton').disabled = false;
+      // @ts-ignore
+      document.getElementById('forwardbutton').click();
+    }
+  };
+
   const handleForwardClick = () => {
     if (jsonData !== "") {
       // @ts-ignore
@@ -135,20 +147,30 @@ const HeatmapPage = () => {
           </div>
         </div>
       </div>
+      
       <Footer>
         <div className="button-container">
           <div className="button-container">
             <div className="button-inr-btn">
-              <CustomButton
-                className="submitButton"
-                onClick={() => handleForwardClick()}
+              {(jsonData?.data?.footerData?.previousTxt)?
+                <CustomButton
+                className="submitButton  mar-right"
+                onClick={previousHandleClick}
               >
-                {jsonData.data?.footerData?.forwardTxt}
-              </CustomButton>
+                {jsonData.data?.footerData?.previousTxt}
+              </CustomButton> : null
+            }
+
+            {
+              (jsonData?.data?.footerData?.forwardTxt)?
+              <CustomButton className="submitButton " onClick={handleForwardClick}>
+              {jsonData.data?.footerData?.forwardTxt}
+            </CustomButton> : null
+            }
             </div>
           </div>
         </div>
-      </Footer>
+      </Footer> 
     </div>
   );
 };

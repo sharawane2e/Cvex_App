@@ -19,7 +19,7 @@ const PanelPage = (props: any) => {
     // document.getElementById('forwardbutton').disabled = true;
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById('jsonData')?.innerHTML),
+      JSON.parse(document.getElementById('jsonData')?.innerText),
     );
 
     // @ts-ignore
@@ -162,23 +162,30 @@ const PanelPage = (props: any) => {
           </Box>
         </div>
       </div>
-      <Footer>
+
+        <Footer>
         <div className="button-container">
           <div className="button-container">
             <div className="button-inr-btn">
-              <CustomButton
+              {(jsonData?.data?.footerData?.previousTxt)?
+                <CustomButton
                 className="submitButton  mar-right"
                 onClick={previousHandleClick}
               >
                 {jsonData.data?.footerData?.previousTxt}
-              </CustomButton>
+              </CustomButton> : null
+            }
+
+            {
+              (jsonData?.data?.footerData?.forwardTxt)?
               <CustomButton className="submitButton " onClick={handleForwardClick}>
-                {jsonData.data?.footerData?.forwardTxt}
-              </CustomButton>
+              {jsonData.data?.footerData?.forwardTxt}
+            </CustomButton> : null
+            }
             </div>
           </div>
         </div>
-      </Footer>
+      </Footer> 
     </div>
   );
 };
