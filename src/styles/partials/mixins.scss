@@ -32,7 +32,7 @@
       @content;
     }
   } @else if $point == desktop1280 {
-    @media (min-width: 1280px) and (max-width: 1536px) {
+    @media (min-width: 1280px) and (max-width: 1500px) {
       @content;
     }
   } @else if $point == sm-mobileonly {
