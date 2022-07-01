@@ -3,17 +3,17 @@
 }
 
 .topContainer {
-    display: flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 15px;
   border-bottom: 2px solid $gray-color;
   @include breakpoint(sm-mobileonly) {
     display: block;
-    padding-bottom:5px;
+    padding-bottom: 5px;
   }
   @include breakpoint(landscape-mobileonly) {
-    padding-bottom:5px;
+    padding-bottom: 5px;
   }
 }
 
@@ -35,7 +35,7 @@
     .progressbar-innercontainer {
       justify-content: end;
       @include breakpoint(sm-mobileonly) {
-        display:block;
+        display: block;
       }
     }
 
@@ -50,13 +50,11 @@
   width: 25%;
   @include breakpoint(sm-mobileonly) {
     width: 100%;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
   @include breakpoint(Ipad-pro) {
     width: 36%;
   }
-
- 
 
   .button-container {
     justify-content: end;
@@ -122,14 +120,22 @@
 .custom-text-area {
   resize: none;
   padding: 10px !important;
-  width: 78% !important;
-  margin-left: 18px !important;
+  width: 79% !important;
+  margin-left: 30px !important;
   font-size: 13px;
   height: 37px !important;
   border: 1px solid $gray-color;
   @include breakpoint(sm-mobileonly) {
     width: 96% !important;
     margin-left: 0px !important;
+  }
+  @include breakpoint(desktop150) {
+    width: 82% !important;
+    margin-left: 30px !important;
+  }
+  @include breakpoint(desktop) {
+    width: 82% !important;
+    margin-left: 30px !important;
   }
 }
 
@@ -138,7 +144,7 @@
   border: 1px solid $blue-color !important;
   background-color: $light-blue !important;
   color: #fff !important;
- }
+}
 
 .jc-start {
   justify-content: start !important;

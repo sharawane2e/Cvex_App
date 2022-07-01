@@ -1,41 +1,69 @@
 .accordBlock {
-    box-shadow: none !important;
-    @include breakpoint(sm-mobileonly) {
-        padding-bottom:0px;
+  box-shadow: none !important;
+  @include breakpoint(sm-mobileonly) {
+    padding-bottom: 0px;
+  }
+  // border-top: 1px solid #C4C4C4 !important;
+  padding-bottom: 10px;
+  &::after {
+    display: none;
+  }
+  &::before {
+    display: none;
+  }
+  p {
+    font-size: 13px;
+    // margin-bottom: 8px;
+    line-height: 1.2;
+    width: 98%;
+  }
+  .bestpractices-text {
+    p {
+      font-size: 13px;
     }
-    // border-top: 1px solid #C4C4C4 !important;
-    padding-bottom: 10px;
-    &::after{
-        display: none;
-    }
-    &::before{
-        display: none;
-    }
-    p{
-        font-size: 13px;
-       // margin-bottom: 8px;
-      line-height: 1.2;
-      width:98%;
-    }
-    .bestpractices-text{
-        p{
-            font-size: 13px;
-        }
-    }
+  }
 }
 
 .accordHead {
-    background-color: $dark-white !important;
-    box-shadow: none !important;
-    color: $black-color !important;
+  background-color: $dark-white !important;
+  box-shadow: none !important;
+  color: $black-color !important;
 }
 
 .accordDetail {
-    border-bottom: 1px solid $dark-white !important;
-}
-.dont-btn{
-    span{
-
-        font-size: 13px !important;
+  border-bottom: 1px solid $dark-white !important;
+  .custom-text-area {
+    @include breakpoint(sm-mobileonly) {
+      width: 96% !important;
+      margin-left: 0px !important;
     }
+    @include breakpoint(Ipad-pro) {
+      width: 82% !important;
+      margin-left: 15px !important;
+    }
+    @include breakpoint(desktop150) {
+      width: 84% !important;
+      margin-left: 15px !important;
+    }
+    @include breakpoint(desktop) {
+      width: 82% !important;
+      // margin-left: 30px !important;
+    }
+    
+  }
+}
+
+// @include breakpoint(Ipad-pro) {
+//   .MuiAccordion-region {
+//     .custom-text-area {
+//       width: 96% !important;
+//       margin-left: 0px !important;
+//     }
+//   }
+// }
+
+.dont-btn {
+  span {
+    font-size: 13px !important;
+  }
 }
