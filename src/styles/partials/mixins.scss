@@ -2,7 +2,6 @@
   border-radius: $r;
 }
 
-
 @mixin breakpoint($point) {
   @if $point == desktop {
     @media (min-width: 1366px) {
@@ -32,18 +31,19 @@
     @media (min-width: 1025px) and (max-width: 1365px) {
       @content;
     }
-  } 
-  @else if $point == sm-mobileonly {
+  } @else if $point == desktop1280 {
+    @media (min-width: 1280px) and (max-width: 1536px) {
+      @content;
+    }
+  } @else if $point == sm-mobileonly {
     @media (min-width: 320px) and (max-width: 767px) {
       @content;
     }
-  }
-  @else if $point == landscape-mobileonly {
+  } @else if $point == landscape-mobileonly {
     @media (min-width: 480px) and (max-width: 767px) {
       @content;
     }
   }
-  
 }
 
 @mixin space($type, $direction, $first, $second) {
@@ -118,7 +118,6 @@
 }
 
 /*End*/
-
 
 /*Border */
 @mixin border($direction, $width, $style, $color) {

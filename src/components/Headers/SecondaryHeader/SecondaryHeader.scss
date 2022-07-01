@@ -28,7 +28,7 @@ $color: #b3e5fc;
     align-items: center;
     justify-content: space-between;
     @include breakpoint(sm-mobileonly) {
-      padding-right:20px;
+      padding-right: 20px;
     }
     .hamburger-menu {
       svg {
@@ -53,6 +53,27 @@ $color: #b3e5fc;
         font-size: 12px;
       }
     }
+  }
+}
+
+@include breakpoint(desktop1280) {
+  .secondary-header {
+    height: 65px;
+    min-height: 65px;
+  }
+  .heatmap-container .table_container {
+    height: calc(100vh - 270px) !important;
+    padding-bottom: 1px;
+  }
+  .heatmap-container .custom-col-head p {
+    font-size: 12px !important;
+  }
+  .heatmap-container .custom-col-head {
+    font-size: 12px !important;
+    min-height: 55px !important;
+  }
+  .heatmap-container .custom-col {
+    font-size: 11px !important;
   }
 }
 
@@ -94,20 +115,20 @@ $color: #b3e5fc;
   top: $top;
 }
 
-.btn15{
+.btn15 {
   @include btn(120px, 400px);
-  
+
   .icon {
     @include icon(3px, 28px);
     border-radius: 4px;
     left: 15px;
     @include breakpoint(Ipad) {
-      background:transparent;
+      background: transparent;
     }
     @include breakpoint(sm-mobileonly) {
-      background:transparent;
+      background: transparent;
     }
-    &:before{
+    &:before {
       @include icon-before(3px, 28px, -10px);
       border-radius: 4px;
       @include breakpoint(Ipad) {
@@ -120,8 +141,8 @@ $color: #b3e5fc;
         top: -12px;
       }
     }
-    
-    &:after{
+
+    &:after {
       @include icon-after(3px, 28px, 10px);
       border-radius: 4px;
       @include breakpoint(Ipad) {
@@ -135,33 +156,33 @@ $color: #b3e5fc;
       }
     }
   }
-  
+
   &.open {
     .icon {
       transition-duration: 0.5s;
       background: transparent;
       color: #fff;
       @include breakpoint(Ipad) {
-         //background: #fff;
+        //background: #fff;
       }
       @include breakpoint(sm-mobileonly) {
         // background: #fff;
       }
-      
-      &:before{
+
+      &:before {
         transform: rotateZ(45deg) scaleX(1.25) translate(6.5px, 6.5px);
         @include breakpoint(Ipad) {
-           //transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+          //transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
         @include breakpoint(sm-mobileonly) {
           // transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
       }
 
-      &:after{
+      &:after {
         transform: rotateZ(-45deg) scaleX(1.25) translate(6px, -6px);
         @include breakpoint(Ipad) {
-           //transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
+          //transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
         }
         @include breakpoint(sm-mobileonly) {
           // transform: rotateZ(0deg) scaleX(1) translate(0px, 0px);
