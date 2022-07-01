@@ -840,7 +840,6 @@ const GI = () => {
             </div>
           </div>
         </div>
-        <button onClick={() => console.log(dddanswered)}>Click</button>
       </Footer>
       <CustomPopup
         buttonText={jsonData?.data?.errorData?.btnText}
