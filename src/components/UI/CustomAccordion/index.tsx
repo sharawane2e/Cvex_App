@@ -15,6 +15,8 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import store from '../../../redux/store';
 import { updateCapabilityDetails } from '../../../redux/actions/RightPanelActions';
 import { useSelector } from 'react-redux';
+import { getTrimedString } from '../../../utils/HelperFunctions';
+import { Inputbox } from '../../UI/Input/index';
 
 type AccordionProps = {};
 
@@ -185,16 +187,35 @@ export default function CustomAccordion(props: AccordionProps) {
                             capabilityDetailIndex={capabilityDetailIndex}
                             subTitleIndex={subTitleIndex}
                           />
-                          <TextareaAutosize
+                          <input
+                            type="text"
+                            className="custom-text-area"
+                            onChange={(event: any) =>
+                              {handleTextArea(
+                                event.target.value,
+                                subTitleDetail?.observationId,
+                              )
+                              }
+                            }
+                            placeholder={subTitleDetail?.obsplaceholder}
+                          />
+                          {/* <TextareaAutosize
                             aria-label="minimum height"
                             className="custom-text-area"
                             minRows={2}
                             defaultValue={subTitleDetail?.observationTxt}
                             onChange={(event: any) =>
-                              handleTextArea(
+                              {handleTextArea(
                                 event.target.value,
                                 subTitleDetail?.observationId,
                               )
+                              // event.target.value = getTrimedString(event.target.value);
+                              // event.target.value = event.target.value.replace(/\s+/g,' ').trim();
+                              // var reg = new RegExp("/^[ ]+$/g");
+                              // if(reg.test(event.target.value) == true){
+                              //   return false;
+                              // }
+                              }
                             }
                             placeholder={subTitleDetail?.obsplaceholder}
                             style={{
@@ -203,14 +224,17 @@ export default function CustomAccordion(props: AccordionProps) {
                               padding: 5,
                               resize: 'none',
                             }}
-                          />
+                            // onBlur={(event: any) => event.target.value = getTrimedString(event.target.value)}
+                            onKeyPress={(event: any) => event.target.value = event.target.value.replace(/\s+/g,' ')}
+                            
+                          /> */}
                         </AccordionDetails>
                         
                       </>
                     );
                   },
                 )}
-                {
+                {/* {
                   (capabilityDetail?.showObservation == true)?
                   <TextareaAutosize
                   aria-label="minimum height"
@@ -230,6 +254,22 @@ export default function CustomAccordion(props: AccordionProps) {
                     padding: 5,
                     resize: 'none',
                   }}
+                /> : null
+                } */}
+                {(capabilityDetail?.showObservation == true)
+                  ?
+                  <input
+                  type="text"
+                  className="custom-text-area"
+                  onChange={(event: any) =>
+                    {handleTextArea(
+                      event.target.value,
+                      capabilityDetail?.observationId,
+                    )
+                    }
+                  }
+                  placeholder={capabilityDetail.obsplaceholder}
+                  
                 /> : null
                 }
               </Accordion>

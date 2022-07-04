@@ -26,6 +26,7 @@ const GI = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
+    getYears(jsonData?.data?.rightData?.questions[7])
   }, []);
 
   // useEffect(() => {
@@ -293,6 +294,20 @@ const GI = () => {
     }
   };
 
+  const getYears = (ques:any) => {
+    let currOptions = ques?.options.map((year:any) => year.ddName);
+    let currYear = new Date().getFullYear();
+    let reqYears = [];
+    reqYears.push(currYear);
+
+    for(var i=1; i<(Number(ques?.incrementyear)+1); i++){
+      reqYears.push(currYear + i);
+      reqYears.push(currYear - i);
+    }
+    reqYears.sort();
+    return reqYears;
+  }
+
   return (
     <div className="gi-container-outer">
       <PrimaryHeader />
@@ -549,14 +564,24 @@ const GI = () => {
                               >
                                 <>{genQues.placeholder}</>
                               </MenuItem>
-                              {genQues?.options?.map((elemnt: any) => (
+                              {genQues.type == "year" ? (
+                                getYears(genQues).map((year:any) => (
+                                  <MenuItem
+                                    value={year}
+                                    className="selectItem"
+                                  >
+                                    {year}
+                                  </MenuItem>
+                                ))
+                                ) : (
+                              genQues?.options?.map((elemnt: any) => (
                                 <MenuItem
                                   value={elemnt?.ddName}
                                   className="selectItem"
                                 >
                                   {elemnt?.ddName}
                                 </MenuItem>
-                              ))}
+                              )))}
                             </Select>
                           </FormControl>
                         </Grid>

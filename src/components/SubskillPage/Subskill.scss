@@ -124,11 +124,14 @@
           .skillCont {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             width: 10%;
             padding: 10px;
-            word-break: break-all;
+            word-break: break-word;
             line-height: 1.2;
+            .capability{
+              margin-bottom: 20px;
+            }
             @include breakpoint(sm-mobileonly) {
               width: 100%;
               display: block;
