@@ -15,14 +15,14 @@ import FormControl from "@mui/material/FormControl";
 // };
 
 interface InputProps {
-  id: any;
-  placeholder: string;
-  type: string;
-  onChange: any;
-  className: string;
+  id?: any;
+  placeholder?: string;
+  type?: string;
+  onChange?: any;
+  className?: string;
   onKeyUp?: any;
   value?: string;
-  error: boolean;
+  error?: boolean;
   onBlur?: any;
 }
 

@@ -5,6 +5,7 @@ import {
   ListItemText,
   MenuItem,
   Select,
+  Tooltip,
 } from "@mui/material";
 import { ReactComponent as InfoIcon } from "../../../assets/svg/info-icon.svg";
 import React, { useState, useEffect } from "react";
@@ -310,7 +311,9 @@ const DDD = (props: dddProps) => {
             <p className="gen-info">{currQues.optionName} </p>
           </Grid>
           <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
-            <InfoIcon className="info-icon" />
+          {currQues?.description?.length>0 ? <Tooltip title={currQues?.description} arrow>
+                <InfoIcon className="info-icon" />
+              </Tooltip> : <span className="info-icon"></span>}
             <FormControl fullWidth>
               <Select
                 sx={{ mb: 1, borderRadius: 0 }}
@@ -344,11 +347,13 @@ const DDD = (props: dddProps) => {
         {currQues?.selectedId !== "" &&
         mapContainsId(currQues.map, currQues.selectedId) ? (
           <Grid container>
-            <Grid item xs={4}>
+            <Grid item xs={4} sx={{ display: "inline-flex", alignItems: "center" }}>
               <p className="gen-info">{currQues.optionName2}</p>
             </Grid>
             <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
-              <InfoIcon className="info-icon" />
+            {currQues?.description2?.length>0 ? <Tooltip title={currQues?.description2} arrow>
+                <InfoIcon className="info-icon" />
+              </Tooltip> : <span className="info-icon"></span>}
               <FormControl fullWidth>
                 <Select
                   sx={{ mb: 1, borderRadius: 0 }}
@@ -415,7 +420,9 @@ const DDD = (props: dddProps) => {
               <p className="gen-info">{currQues.optionName3}</p>
             </Grid>
             <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
-              <InfoIcon className="info-icon" />
+              {currQues?.description3?.length>0 ? <Tooltip title={currQues?.description3} arrow>
+                <InfoIcon className="info-icon" />
+              </Tooltip> : <span className="info-icon"></span>}
               <FormControl fullWidth>
                 <Select
                   sx={{ mb: 1, borderRadius: 0 }}
