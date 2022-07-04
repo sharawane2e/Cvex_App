@@ -67,10 +67,10 @@
     }
 
     &--heading:nth-child(1){
-      width: 10%;
+      width: 12%;
     }
     &--heading:nth-child(2){
-      width: 9%;
+      width: 20%;
     }
     &--heading:nth-child(3){
       width: 21%;
@@ -125,7 +125,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            width: 10%;
+            width: 20%;
             padding: 10px;
             word-break: break-word;
             line-height: 1.2;
@@ -149,7 +149,7 @@
             min-height: 70px;
           }
           .skill-details-cnrt {
-            width: 90%;
+            width: 80%;
             @include breakpoint(sm-mobileonly) {
               width: 100%;
             }

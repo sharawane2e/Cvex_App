@@ -305,7 +305,7 @@ const GI = () => {
       reqYears.push(currYear - i);
     }
     reqYears.sort();
-    return reqYears;
+    return reqYears.filter((x:any) => currOptions?.findIndex((y:any) => y == x) != -1);
   }
 
   return (
