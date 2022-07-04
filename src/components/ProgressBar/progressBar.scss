@@ -159,3 +159,8 @@
   margin: 0px 0px 5px 16px;
   font-size: 13px;
 }
+@include breakpoint(desktop1280) {
+  .ProgressText {
+    font-size: 11px;
+  }
+}

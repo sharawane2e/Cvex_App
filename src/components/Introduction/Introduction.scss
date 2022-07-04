@@ -28,3 +28,12 @@
       }
     }
   }
+  @include breakpoint(desktop1280) {
+    .introduction-container .introduction-main .introduction-heading {
+      font-size:12px;
+    }
+    .introduction-container .introduction-main .introduction-content {
+      font-size:11px;
+    }
+  }
+  

@@ -58,8 +58,28 @@ $color: #b3e5fc;
 
 @include breakpoint(desktop1280) {
   .secondary-header {
-    height: 65px;
-    min-height: 65px;
+    height: 60px;
+    min-height: 60px;
+  }
+  .secondary-header .title h2 {
+      font-size: 14px;
+  }
+  .impact-calc-container__inr--question .single-dropdown-section__header .header-text {
+    font-size:11px !important;
+  }
+  .css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+    width: 0.8em;
+    height: 0.8em;
+  }
+  .impact-calc-container__inr--question .single-dropdown-section__body .label-heading {
+    font-size: 10px !important;
+  }
+  .MuiSelect-select {
+    padding: 1px 7px !important;
+    font-size: 11px !important;
+  }
+  .secondary-header .logo img {
+      width: 100px;
   }
   .heatmap-container .table_container {
     height: calc(100vh - 270px) !important;
