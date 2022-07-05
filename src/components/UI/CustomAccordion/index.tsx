@@ -46,9 +46,7 @@ export default function CustomAccordion(props: AccordionProps) {
     updatedCapabilityDetails[capabilityDetailIndex].groupAll =
       !updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     //@ts-ignore
-    // document.getElementById(
-    //   updatedCapabilityDetails[capabilityDetailIndex].groupToggleId,
-    // ).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
+    document.getElementById(updatedCapabilityDetails[capabilityDetailIndex].groupToggleId).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     dispatch(updateCapabilityDetails(updatedCapabilityDetails));
   };
 
