@@ -835,6 +835,7 @@ const GI = () => {
                         showError={showError}
                         index={index}
                         setDDDAnswered={setDDDAnswered}
+                        // onchange={() => console.log("hi")}
                       />
 
                       {/* <HsddInput
