@@ -61,7 +61,7 @@ export const getbaseLineChartOptions = (
   const baseLineChart = baseLineChartOptions.rowDetails[0];
   const baseLineChartColor = baseLineChartOptions.rowDetails[0].chartColorArray;
 
-  baseLineChart?.chartDetails.forEach((detail: any, Index: any) => {
+  baseLineChart?.chartDetails?.forEach((detail: any, Index: any) => {
     categories.push(categorieName[Index]);
     data.push({
       name: categorieName[Index],

@@ -57,6 +57,23 @@ $color: #b3e5fc;
 }
 
 @include breakpoint(desktop1280) {
+  .hamburger-toggle .btn15 .icon:before {
+    top: -12px !important;
+  }
+  .btn15 .icon:before {
+    width: 20px !important;
+    height: 2px !important;
+    top: -8px !important;
+  }
+  .btn15 .icon:after {
+    width: 20px !important;
+    height: 2px !important;
+    top: 8px !important;
+  }
+  .btn15 .icon {
+    width: 20px !important;
+    height: 2px !important;
+  }
   .secondary-header {
     height: 60px;
     min-height: 60px;

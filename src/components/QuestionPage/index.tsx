@@ -30,6 +30,9 @@ const QuestionPage = () => {
     setTimeout(function () {
       updateScrollPos(jsonData?.data?.scrollPosition);
     }, 1000);
+
+    console.log("hiiiiiii")
+
   }, []);
 
   const { dispatch } = store;
