@@ -36,4 +36,20 @@
       font-size:11px;
     }
   }
+  @include breakpoint(sm-mobileonly) {
+    .introduction-container .introduction-main .introduction-heading {
+      font-size: 15px;
+    }
+    .introduction-container .introduction-main .introduction-content {
+        font-size: 14px;
+    }
+  }
+  @include breakpoint(landscape-mobileonly) {
+    .introduction-container .introduction-main {
+        margin-top:50px;
+        height: calc(100vh - 180px);
+    }
+    
+  }
+  
   
