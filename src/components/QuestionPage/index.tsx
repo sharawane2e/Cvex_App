@@ -27,7 +27,6 @@ const QuestionPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
-    console.log(document.querySelector('.right-panel__inr'));
     setTimeout(function () {
       updateScrollPos(jsonData?.data?.scrollPosition);
     }, 1000);

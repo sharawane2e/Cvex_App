@@ -35,7 +35,8 @@
   .custom-text-area {
     @include breakpoint(sm-mobileonly) {
       width: 96% !important;
-      margin-left: 0px !important;
+      // margin-left: 0px !important;
+      margin: 18px 0px 0px 0px;
     }
     @include breakpoint(Ipad-pro) {
       width: 82% !important;

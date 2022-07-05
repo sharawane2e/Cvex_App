@@ -31,11 +31,19 @@ const DDD = (props: dddProps) => {
   const [currQues, setCurrQues] = useState<any>("");
 
   useEffect(() => {
+
     // @ts-ignore
     let data = JSON.parse(document.getElementById("jsonData")?.innerHTML);
     setJSONData(data);
     setCurrQues(data?.data?.rightData?.questions[index]);
+
   }, []);
+
+  useEffect(() => {
+    if (jsonData?.data?.rightData?.questions[index]?.selectedId?.length > 0) {
+      setDDDAnswered(true);
+    }
+  },[jsonData])
 
   const getselectedDDName = (options: any, selectedId: string) => {
     let selectedDDName = "";
