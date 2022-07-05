@@ -13,6 +13,7 @@ export const isPasswordValid = (password: string) => {
 export const saveScrollPosNew = (containerClass:string, inputFieldId:string) => {
   var scrollValue = document.querySelector(`${containerClass}`)?.scrollTop;
   var scrollInput:any = document.querySelector(`${inputFieldId}`);
+  console.log(scrollValue)
   return scrollInput.value = scrollValue;
 }
 

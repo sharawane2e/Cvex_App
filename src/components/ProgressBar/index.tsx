@@ -84,7 +84,6 @@ export default function ProgressBar(props: ProgressBarProps) {
               <CustomButton
                 className={"submitButton previous-button"}
                 onClick={() => {
-                  console.log("saveee")
                   saveScrollPosNew(".right-panel__inr", "#scroll-value");
                   saveProgress(
                     jsonData?.data?.progressBarData?.saveBtn?.saveId

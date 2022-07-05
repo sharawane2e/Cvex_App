@@ -27,11 +27,12 @@ const QuestionPage = () => {
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerText),
     );
-    setTimeout(function () {
-      updateScrollPos(jsonData?.data?.scrollPosition);
-    }, 1000);
 
-    console.log("hiiiiiii")
+    setTimeout(() => {
+       // @ts-ignore
+      const partialJsonData = JSON.parse(document.getElementById('jsonData')?.innerText);
+    updateScrollPos(partialJsonData?.data?.rightPanel?.scrollPosition);
+    },0)
 
   }, []);
 
