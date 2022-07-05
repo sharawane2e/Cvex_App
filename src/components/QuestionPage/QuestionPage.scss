@@ -58,6 +58,18 @@
       &__inr {
         overflow-y: auto;
         height: calc(100vh - 280px);
+        .observationbox {
+          display: flex;
+          margin-top: 15px;
+        }
+      
+          .observation_left {
+              width: 80%;
+          }
+          
+          .observation_right {
+              width: 20%;
+          }
         @include breakpoint(landscape-mobileonly) {
           height: calc(100vh - 231px) !important;
         }

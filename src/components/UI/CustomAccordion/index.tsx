@@ -187,18 +187,25 @@ export default function CustomAccordion(props: AccordionProps) {
                             capabilityDetailIndex={capabilityDetailIndex}
                             subTitleIndex={subTitleIndex}
                           />
-                          <input
-                            type="text"
-                            className="custom-text-area"
-                            onChange={(event: any) =>
-                              {handleTextArea(
-                                event.target.value,
-                                subTitleDetail?.observationId,
-                              )
-                              }
-                            }
-                            placeholder={subTitleDetail?.obsplaceholder}
-                          />
+                          <div className='observationbox'>
+                            <div className='observation_left'>
+                              <input
+                                type="text"
+                                className="custom-text-area"
+                                onChange={(event: any) =>
+                                  {handleTextArea(
+                                    event.target.value,
+                                    subTitleDetail?.observationId,
+                                  )
+                                  }
+                                }
+                                placeholder={subTitleDetail?.obsplaceholder}
+                              />
+                            </div>
+                            <div className='observation_right'></div>
+                            
+                          </div>
+
                           {/* <TextareaAutosize
                             aria-label="minimum height"
                             className="custom-text-area"
@@ -258,6 +265,7 @@ export default function CustomAccordion(props: AccordionProps) {
                 } */}
                 {(capabilityDetail?.showObservation == true)
                   ?
+                  <div className='block_observation'>
                   <input
                   type="text"
                   className="custom-text-area"
@@ -269,8 +277,9 @@ export default function CustomAccordion(props: AccordionProps) {
                     }
                   }
                   placeholder={capabilityDetail.obsplaceholder}
-                  
-                /> : null
+                /> 
+                </div>
+                : null
                 }
               </Accordion>
             </>
