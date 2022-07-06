@@ -120,22 +120,21 @@
 .custom-text-area {
   resize: none;
   padding: 10px !important;
-  width: 79% !important;
-  margin-left: 30px !important;
+  width: 100% !important;
   font-size: 13px;
   height: 37px !important;
   border: 1px solid $gray-color;
   @include breakpoint(sm-mobileonly) {
-    width: 96% !important;
-    margin-left: 0px !important;
+    // width: 96% !important;
+    // margin-left: 0px !important;
   }
   @include breakpoint(desktop150) {
-    width: 82% !important;
-    margin-left: 30px !important;
+    // width: 82% !important;
+    // margin-left: 30px !important;
   }
   @include breakpoint(desktop) {
-    width: 82% !important;
-    margin-left: 30px !important;
+    // width: 82% !important;
+    // margin-left: 30px !important;
   }
 }
 

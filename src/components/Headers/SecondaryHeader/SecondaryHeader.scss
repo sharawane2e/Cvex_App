@@ -98,20 +98,8 @@ $color: #b3e5fc;
   .secondary-header .logo img {
       width: 100px;
   }
-  .heatmap-container .table_container {
-    height: calc(100vh - 270px) !important;
-    padding-bottom: 1px;
-  }
-  .heatmap-container .custom-col-head p {
-    font-size: 12px !important;
-  }
-  .heatmap-container .custom-col-head {
-    font-size: 12px !important;
-    min-height: 55px !important;
-  }
-  .heatmap-container .custom-col {
-    font-size: 11px !important;
-  }
+ 
+  
 }
 
 @mixin btn($left, $top) {
@@ -231,3 +219,7 @@ $color: #b3e5fc;
     cursor: pointer;
   }
 }
+
+
+
+

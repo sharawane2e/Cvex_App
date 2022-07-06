@@ -65,10 +65,16 @@
       
           .observation_left {
               width: 80%;
+              @include breakpoint(desktop150) {
+                width:85%;
+              }
           }
           
           .observation_right {
               width: 20%;
+              @include breakpoint(desktop150) {
+                width:15%;
+              }
           }
         @include breakpoint(landscape-mobileonly) {
           height: calc(100vh - 231px) !important;
@@ -189,8 +195,23 @@
   .leftPanel {
     width: 63% !important;
   }
+  .question-wrapper .main-container .right-panel__inr .observation_left {
+    width: 85%;
+  }
+  .question-wrapper .main-container .right-panel__inr .observation_right {
+    width: 15%;
+  }
 }
 @include breakpoint(sm-mobileonly) {
+  .accordBlock .block_observation {
+      padding:8px 0px 16px !important;
+  }
+  .question-wrapper .main-container .right-panel__inr .observation_left {
+    width: 100%;
+  }
+  .question-wrapper .main-container .right-panel__inr .observation_right {
+    width: 0;
+  }
   .leftPanel .progressbar-container .progressbar {
     width: 100% !important;
   }
@@ -290,13 +311,17 @@
       left: 1px !important;
     }
     .question-container input.custom-text-area {
-        width: 79% !important;
-        margin-left: 30px !important;
         font-size: 9px;
         height: 27px !important;
     }
     div.dont-btn span {
         font-size: 10px !important;
+    }
+    .question-wrapper .main-container .right-panel__inr .observation_left {
+        width: 85%;
+    }
+    .question-wrapper .main-container .right-panel__inr .observation_right {
+        width: 15%;
     }
     
 }

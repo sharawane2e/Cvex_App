@@ -2,8 +2,9 @@
     width: 100%;
     margin-top: 60px;
     text-align: center;
+    padding: 0 20px;
     @include breakpoint(sm-mobileonly) {
-        margin-top: 160px;
+        margin-top:0px;
         padding: 0 12px;
       }
 
@@ -13,6 +14,7 @@
 
     .title {
         text-align: center;
+        margin-bottom: 10px;
     }
 
     .content-area p {
@@ -58,4 +60,38 @@
 
 .thankyou-container svg {
     margin-bottom: 30px;
+}
+
+@include breakpoint(desktop1280) {
+    .thankyou-container .title {
+      font-size: 12px;
+    }
+    .thankyou-container .content-area p {
+        font-size: 10px;
+    }
+}
+@include breakpoint(sm-mobileonly) {
+    .main-container {
+        height: calc(100vh - 291px);
+        overflow-y: auto;
+        margin-top: 168px;
+    }
+    .thankyou-container .content-area p {
+        font-size: 11px;
+    }
+    .thankyou-container .title {
+        font-size: 14px;
+    }
+    .thankyou-container svg {
+        height: 141px;
+    }
+}
+@include breakpoint(landscape-mobileonly) {
+    .main-container {
+        height: calc(100vh - 161px);
+        margin-top: 39px;
+    }
+    .helpdesk {
+        margin-top: 14px;
+    }
 }

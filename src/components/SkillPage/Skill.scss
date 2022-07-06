@@ -15,28 +15,14 @@
     width: 100%;
     height: calc(100vh - 180px);
     overflow-y: auto;
+    padding-bottom: 0;
     @include breakpoint(sm-mobileonly) {
+        height: calc(100vh - 131px);
       .skill_text {
         color: #606060;
-        font-size: 14px;
+        font-size: 12px;
       }
      }
-    
-    // @include breakpoint(Ipad-pro)
-    // {
-    //   font-size: 12px;
-    //   padding: 5px;
-    // }
-    // @include breakpoint(mobileonly)
-    // {
-    //   padding: 5px;
-    //   font-size: 10px;
-    // }
-    // @include breakpoint(sm-mobileonly)
-    // {
-    //   padding: 5px;
-    //   font-size: 10px;
-    // }
     .mobile_heading span:first-child {
       float: left;
       display: block;
@@ -57,6 +43,7 @@
         display: none;
         @include breakpoint(sm-mobileonly) {
           display: block;
+          font-size:13px;
         }
     }
     
@@ -276,4 +263,43 @@
     min-width: 135px;
   }
 }
+@include breakpoint(desktop1280) {
+  .skill-container .single-capability-header--heading {
+    font-size: 12px !important;
+  }
+  .single-capability p {
+      font-size: 11px;
+  }
+  .skill-container .submitButton {
+      min-width: auto;
+  }
+  .skill-container .main-container {
+      height: calc(100vh - 130px);
+  }
+  .skill-container .single-capability__right--cap-detail .progressBarCont .skill-slider-cont .knob-container .slider-text {
+      font-size: 11px;
+  }
+}
+
+@include breakpoint(sm-mobileonly) {
+  .skill-container .submitButton {
+    min-width: auto;
+  }
+}
+@include breakpoint(Ipad) {
+  .skill-container .single-capability__left {
+      width: 15%;
+  }
+  .skill-container .single-capability__right--cap-detail .observationCont {
+      width: 30%;
+  }
+  .skill-container .single-capability__right--cap-detail .skillCont {
+      width: 24%;
+  }
+  .skill-container .single-capability__right--cap-detail .subSkillCont {
+      width: 26%;
+  }
+}
+
+
 
