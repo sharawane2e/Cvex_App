@@ -42,15 +42,30 @@ const ThankYou = (props: Props) => {
             {getParsedData(jsonData.data?.contentDetails?.content)}
           </div>
         </div>
+
+        {
+          jsonData?.data?.contentDetails?.contactDetails?.contactHeading.length == 0 && jsonData?.data?.contentDetails?.contactDetails?.contactTxt.length == 0 ?
+          null
+          :
+          <div className="helpdesk">
+            {getParsedData(
+              jsonData?.data?.contentDetails?.contactDetails?.contactHeading
+            )}
+            {getParsedData(
+              jsonData?.data?.contentDetails?.contactDetails?.contactTxt
+            )}
+
+          </div>
+        }
+
+        <div className="helpdesk">
+            <p>Details of the CVEx team</p>
+            <p><strong>LEADERSHIP :</strong> Konstantin Pell, Thomas, Ternai, and Arian Meyer</p><p><strong>For practical questions :</strong> Esther de Zeeuw</p>
+        </div>
+
+
       </div>
-      <div className="helpdesk">
-        {getParsedData(
-          jsonData?.data?.contentDetails?.contactDetails?.contactHeading,
-        )}
-        {getParsedData(
-          jsonData?.data?.contentDetails?.contactDetails?.contactTxt,
-        )}
-      </div>
+
       <Footer>
         {
           (jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)?
