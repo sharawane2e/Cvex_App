@@ -93,21 +93,27 @@
 									"text": "NS",
 									"type": "Select",
 									"selectedddName": "Upper quartile",
-									"Options": [{
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000
+											"ddValue": 70000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000
+											"ddValue": 80000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000
+											"ddValue": 50000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000
+											"ddValue": 20000,
+											"ddId": ""
 										}
 									]	
 								},
@@ -117,7 +123,13 @@
 								},
 								{
 									"selectedText": "",
-									"type": "Input"
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
 								}
 							]
 						},
@@ -139,21 +151,27 @@
 									"text": "NS",
 									"type": "Select",
 									"selectedddName": "Upper quartile",
-									"Options": [{
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000
+											"ddValue": 70000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000
+											"ddValue": 80000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000
+											"ddValue": 50000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000
+											"ddValue": 20000,
+											"ddId": ""
 										}
 									]	
 								},
@@ -163,7 +181,13 @@
 								},
 								{
 									"selectedText": "",
-									"type": "Input"
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
 								}
 							]
 						},
@@ -185,21 +209,27 @@
 									"text": "NS",
 									"type": "Select",
 									"selectedddName": "Upper quartile",
-									"Options": [{
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000
+											"ddValue": 70000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000
+											"ddValue": 80000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000
+											"ddValue": 50000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000
+											"ddValue": 20000,
+											"ddId": ""
 										}
 									]	
 								},
@@ -209,7 +239,13 @@
 								},
 								{
 									"selectedText": "",
-									"type": "Input"
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
 								}
 							]
 						},
@@ -230,22 +266,28 @@
 								{
 									"text": "NS",
 									"type": "Select",
-									"selectedddName": "Upper quartile",
-									"Options": [{
+									"selectedddId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000
+											"ddValue": 70000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000
+											"ddValue": 80000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000
+											"ddValue": 50000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000
+											"ddValue": 20000,
+											"ddId": ""
 										}
 									]	
 								},
@@ -255,7 +297,13 @@
 								},
 								{
 									"selectedText": "",
-									"type": "Input"
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
 								}
 							]
 						},
@@ -277,21 +325,27 @@
 									"text": "NS",
 									"type": "Select",
 									"selectedddName": "Upper quartile",
-									"Options": [{
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000
+											"ddValue": 70000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000
+											"ddValue": 80000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000
+											"ddValue": 50000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000
+											"ddValue": 20000,
+											"ddId": ""
 										}
 									]	
 								},
@@ -301,7 +355,13 @@
 								},
 								{
 									"selectedText": "",
-									"type": "Input"
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
 								}
 							]
 						},
@@ -323,21 +383,27 @@
 									"text": "NS",
 									"type": "Select",
 									"selectedddName": "Upper quartile",
-									"Options": [{
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000
+											"ddValue": 70000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000
+											"ddValue": 80000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000
+											"ddValue": 50000,
+											"ddId": ""
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000
+											"ddValue": 20000,
+											"ddId": ""
 										}
 									]	
 								},
@@ -347,7 +413,13 @@
 								},
 								{
 									"selectedText": "",
-									"type": "Input"
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
 								}
 							]
 						}
