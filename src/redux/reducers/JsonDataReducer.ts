@@ -22,9 +22,7 @@ const initialState = {
 // }
 
 const JsonDataReducer = createReducer(initialState, (builder) => {
-  builder.addCase(setNewData, (state, action) => ({
-    ...state,
-    ...action.payload,
-  }))});
+  builder.addCase(setNewData, (state, action) => ({...state, JsonData : action.payload}))
+});
 
 export default JsonDataReducer;

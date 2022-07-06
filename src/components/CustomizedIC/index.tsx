@@ -40,13 +40,13 @@ const CustomizedIC = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
-    // dispatch({setJsonData, {"a":1}})
-    newdisp();
+    dispatch(setNewData({"a":1}));
+    // newdisp();
   }, []);
 
   function newdisp(){
-    // dispatch(setNewData({"a":1}));
-    dispatch({type: setJsonData, payload: {"a":1}});
+    dispatch(setNewData({"a":20}));
+    // dispatch({type: setJsonData, payload: {"a":1}});
     console.log(ReduxJsonData);
   }
 
