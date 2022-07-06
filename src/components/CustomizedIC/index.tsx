@@ -26,7 +26,7 @@ import {
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
-import { setJsonData } from "../../redux/actions/JsonDataActions";
+import { setJsonData, setNewData } from "../../redux/actions/JsonDataActions";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -45,6 +45,7 @@ const CustomizedIC = () => {
   }, []);
 
   function newdisp(){
+    // dispatch(setNewData({"a":1}));
     dispatch({type: setJsonData, payload: {"a":1}});
     console.log(ReduxJsonData);
   }

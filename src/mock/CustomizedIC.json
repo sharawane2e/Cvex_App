@@ -56,259 +56,370 @@
 					}]
 				}
 			},
+
 			"SalesTables": {
+				"ARPU": 20000,
 				"theaders": [
 					{
-						"rowDetails" : []
+						"rowDetails": ["","","","","10000","10000"]
+					},
+					{
+						"rowDetails": ["","","","Client/Baseline","Custom Quartile and Benchmark","Customized Impact"]
+					},
+					{
+						"rowDetails": ["","","Original Baseline","Revised Baseline","Quartile to move","Quartile benchmark", "Custom Benchmark", "Impact factor", "Impact Value"]
 					}
 				],
-				"tbody": [
-					{
-						"theading" : "Inbound Sales",
-						"tbodyDetails" : [
-							{
-								"rowDetails": [
-									{
-										"text" : "Average Incoming Calls per month",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "Select",
-										"type" : "Array"
-									},
-									{
-										"text" : "641,459",
-										"type" : "Number"
-									},
-									{
-										"text" : "",
-										"type" : "String"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									}
-								]
-							},
-							{
-								"rowDetails": [
-									{
-										"text" : "Touchpoints (Contact rate)",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "Select",
-										"type" : "Array"
-									},
-									{
-										"text" : "641,459",
-										"type" : "Number"
-									},
-									{
-										"text" : "",
-										"type" : "String"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									}
-								]
-							},
-							{
-								"rowDetails": [
-									{
-										"text" : "Offer potential (Eligibility rate)",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "Select",
-										"type" : "Array"
-									},
-									{
-										"text" : "641,459",
-										"type" : "Number"
-									},
-									{
-										"text" : "",
-										"type" : "String"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									}
-								]
-							},
-							{
-								"rowDetails": [
-									{
-										"text" : "Offers (Attempt rate)",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "Select",
-										"type" : "Array"
-									},
-									{
-										"text" : "641,459",
-										"type" : "Number"
-									},
-									{
-										"text" : "",
-										"type" : "String"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									}
-								]
-							},
-							{
-								"rowDetails": [
-									{
-										"text" : "Sales / Retention (Conversion rate)",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "Select",
-										"type" : "Array"
-									},
-									{
-										"text" : "641,459",
-										"type" : "Number"
-									},
-									{
-										"text" : "",
-										"type" : "String"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									}
-								]
-							},
-							{
-								"rowDetails": [
-									{
-										"text" : "Eff. Sales (1- Cancelation rate)",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "NS",
-										"type" : "String"
-									},
-									{
-										"text" : "Select",
-										"type" : "Array"
-									},
-									{
-										"text" : "641,459",
-										"type" : "Number"
-									},
-									{
-										"text" : "",
-										"type" : "String"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									},
-									{
-										"text" : "",
-										"type" : "empty"
-									}
-								]
-							}
-						]
-					}
-				]
+				"tbody": [{
+					"theading": "Inbound Sales",
+					"Impactfactor": 1000,
+					"ImpactValue": 1000,
+					"disable": false,
+					"tbodyDetails": [
+						{
+							"rowDetails": [
+								{
+									"text": "Average Incoming Calls per month",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"type": "Select",
+									"selectedId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
+											"ddName": "Top quartile",
+											"ddValue": 70000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Upper quartile",
+											"ddValue": 80000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Median quartile",
+											"ddValue": 50000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Lower quartile",
+											"ddValue": 20000,
+											"ddId": ""
+										}
+									]	
+								},
+								{
+									"text": "641,459",
+									"type": "Number"
+								},
+								{
+									"selectedText": "",
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
+								}
+							]
+						},
+						{
+							"rowDetails": [
+								{
+									"text": "Touchpoints (Contact rate)",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"type": "Select",
+									"selectedId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
+											"ddName": "Top quartile",
+											"ddValue": 70000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Upper quartile",
+											"ddValue": 80000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Median quartile",
+											"ddValue": 50000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Lower quartile",
+											"ddValue": 20000,
+											"ddId": ""
+										}
+									]	
+								},
+								{
+									"text": "641,459",
+									"type": "Number"
+								},
+								{
+									"selectedText": "",
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
+								}
+							]
+						},
+						{
+							"rowDetails": [
+								{
+									"text": "Offer potential (Eligibility rate)",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"type": "Select",
+									"selectedId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
+											"ddName": "Top quartile",
+											"ddValue": 70000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Upper quartile",
+											"ddValue": 80000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Median quartile",
+											"ddValue": 50000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Lower quartile",
+											"ddValue": 20000,
+											"ddId": ""
+										}
+									]	
+								},
+								{
+									"text": "641,459",
+									"type": "Number"
+								},
+								{
+									"selectedText": "",
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
+								}
+							]
+						},
+						{
+							"rowDetails": [
+								{
+									"text": "Offers (Attempt rate)",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"type": "Select",
+									"selectedId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
+											"ddName": "Top quartile",
+											"ddValue": 70000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Upper quartile",
+											"ddValue": 80000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Median quartile",
+											"ddValue": 50000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Lower quartile",
+											"ddValue": 20000,
+											"ddId": ""
+										}
+									]	
+								},
+								{
+									"text": "641,459",
+									"type": "Number"
+								},
+								{
+									"selectedText": "",
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
+								}
+							]
+						},
+						{
+							"rowDetails": [
+								{
+									"text": "Sales / Retention (Conversion rate)",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"type": "Select",
+									"selectedId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
+											"ddName": "Top quartile",
+											"ddValue": 70000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Upper quartile",
+											"ddValue": 80000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Median quartile",
+											"ddValue": 50000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Lower quartile",
+											"ddValue": 20000,
+											"ddId": ""
+										}
+									]	
+								},
+								{
+									"text": "641,459",
+									"type": "Number"
+								},
+								{
+									"selectedText": "",
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
+								}
+							]
+						},
+						{
+							"rowDetails": [
+								{
+									"text": "Eff. Sales (1- Cancelation rate)",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"text": "NS",
+									"type": "String"
+								},
+								{
+									"type": "Select",
+									"selectedId": "Upper quartile",
+									"disable": false,
+									"placeholder": "Please select",
+									"options": [{
+											"ddName": "Top quartile",
+											"ddValue": 70000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Upper quartile",
+											"ddValue": 80000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Median quartile",
+											"ddValue": 50000,
+											"ddId": ""
+										},
+										{
+											"ddName": "Lower quartile",
+											"ddValue": 20000,
+											"ddId": ""
+										}
+									]	
+								},
+								{
+									"text": "641,459",
+									"type": "Number"
+								},
+								{
+									"selectedText": "",
+									"type": "Input",
+									"placeholder": "#",
+									"afterText": "",
+									"maxLength": 9,
+									"maxRange": 100,
+									"minRange": 0,
+									"decimalPlaces": 0
+								}
+							]
+						}
+					]
+				}]
 			},
 
 
@@ -360,7 +471,7 @@
 					},
 					"HidMonth_1_label-Hidsegment_4_label": {
 						"headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-						"chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
+						"chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", [], "Offers not accepted", "Cancellations", "Total"],
 						"tbodyDetails": [0, 0, 0, 0, 0, 0],
 						"chartDetails": [0, 0, 0, 0, 0, 0, 0]
 					},
