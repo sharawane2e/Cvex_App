@@ -69,12 +69,18 @@
     .thankyou-container .content-area p {
         font-size: 10px;
     }
+    .helpdesk p {
+        font-size: 11px !important;
+    }
 }
 @include breakpoint(sm-mobileonly) {
     .main-container {
-        height: calc(100vh - 291px);
+        height: calc(100vh - 208px);
         overflow-y: auto;
-        margin-top: 168px;
+        margin-top: 130px;
+    }
+    .helpdesk p {
+        font-size: 12px !important;
     }
     .thankyou-container .content-area p {
         font-size: 11px;
@@ -88,7 +94,7 @@
 }
 @include breakpoint(landscape-mobileonly) {
     .main-container {
-        height: calc(100vh - 161px);
+        height:calc(100vh - 117px);
         margin-top: 39px;
     }
     .helpdesk {
