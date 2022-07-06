@@ -266,7 +266,17 @@ const CustomizedIC = () => {
                       <div className="table-col" key={ri}>
                         {row.rowDetails.map((detail: any) => (
                           <div className="table-row">
-                            <span>{detail.text}</span>
+                            {(detail.type == "String" || detail.type == "Number") ? (
+                              <span>{detail.text}</span>
+                            )
+                          :
+                          detail.type == "Select" ? 
+                          (
+                            <HsddInput
+                            question={detail}
+                            onChange={(ddId: string) => handleDDChange(ddId)}
+                            />
+                          ) : ""}
                           </div>
                         ))}
                       </div>
