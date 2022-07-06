@@ -26,10 +26,12 @@ import {
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
+import { setJsonData } from "../../redux/actions/JsonDataActions";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
+  const { ReduxJsonData } = useSelector((state: any) => state);
 
   const { dispatch } = store;
 
@@ -38,7 +40,14 @@ const CustomizedIC = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
+    // dispatch({setJsonData, {"a":1}})
+    newdisp();
   }, []);
+
+  function newdisp(){
+    dispatch({type: setJsonData, payload: {"a":1}});
+    console.log(ReduxJsonData);
+  }
 
   useEffect(() => {
     handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
@@ -64,7 +73,6 @@ const CustomizedIC = () => {
   const handleDDChange = (ddId: string) => {
     if (ddId != undefined) {
       const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
-      console.log(updatedJsonData.data.inputData.periodDD.selectedId);
       updatedJsonData.data.inputData.periodDD.selectedId = ddId;
 
       document.getElementById(ddId)?.click();
@@ -129,8 +137,6 @@ const CustomizedIC = () => {
             .segmentTableChartData
         );
 
-        console.log(mergeKey);
-
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
             dispatch(
@@ -157,6 +163,8 @@ const CustomizedIC = () => {
   return (
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
+    
+      <button onClick={() => newdisp()}>CLICK</button>
       <div className="contactpage-container__inr">
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">

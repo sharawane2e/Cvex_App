@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setJsonData } from '../actions/JsonDataActions';
+import { setJsonData, setNewData } from '../actions/JsonDataActions';
 
 const initialState = {
   JsonData: {},
@@ -12,13 +12,19 @@ const initialState = {
 //   });
 // });
 
-function JsonDataReducer(state = initialState, action:any) {
-  switch(action.type) {
-    case 'setJsonData':
-      return {...state, JsonData: action.payload};
-    default:
-      return state;
-  }
-}
+// function JsonDataReducer(state = initialState, action:any) {
+//   switch(action.type) {
+//     case 'setJsonData':
+//       return {...state, JsonData: action.payload};
+//     default:
+//       return state;
+//   }
+// }
+
+const JsonDataReducer = createReducer(initialState, (builder) => {
+  builder.addCase(setNewData, (state, action) => ({
+    ...state,
+    ...action.payload,
+  }))});
 
 export default JsonDataReducer;
