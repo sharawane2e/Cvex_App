@@ -1,4 +1,4 @@
-import { Grid, Box, Divider } from "@mui/material";
+import { Grid, Box, Divider, Select, MenuItem } from "@mui/material";
 import { useState, useEffect } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader";
 import BarChart from "../UI/BarChart";
@@ -26,12 +26,10 @@ import {
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
-import { setJsonData, setNewData } from "../../redux/actions/JsonDataActions";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
-  const { ReduxJsonData } = useSelector((state: any) => state);
 
   const { dispatch } = store;
 
@@ -40,15 +38,7 @@ const CustomizedIC = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
-    dispatch(setNewData({"a":1}));
-    // newdisp();
   }, []);
-
-  function newdisp(){
-    dispatch(setNewData({"a":20}));
-    // dispatch({type: setJsonData, payload: {"a":1}});
-    console.log(ReduxJsonData);
-  }
 
   useEffect(() => {
     handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
@@ -74,6 +64,7 @@ const CustomizedIC = () => {
   const handleDDChange = (ddId: string) => {
     if (ddId != undefined) {
       const updatedJsonData: any = JSON.parse(JSON.stringify(jsonData));
+      console.log(updatedJsonData.data.inputData.periodDD.selectedId);
       updatedJsonData.data.inputData.periodDD.selectedId = ddId;
 
       document.getElementById(ddId)?.click();
@@ -138,6 +129,8 @@ const CustomizedIC = () => {
             .segmentTableChartData
         );
 
+        console.log(mergeKey);
+
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
             dispatch(
@@ -164,8 +157,6 @@ const CustomizedIC = () => {
   return (
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
-    
-      <button onClick={() => newdisp()}>CLICK</button>
       <div className="contactpage-container__inr">
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
@@ -275,7 +266,30 @@ const CustomizedIC = () => {
                       <div className="table-col" key={ri}>
                         {row.rowDetails.map((detail: any) => (
                           <div className="table-row">
-                            <span>{detail.text}</span>
+                            {(detail.type == "String" || detail.type == "Number") ? (
+                              <span>{detail.text}</span>
+                            )
+                          :
+                          detail.type == "Select" ? 
+                          (
+                            <Select
+                              sx={{ p: 0, borderRadius: 0, mb: 1 }}
+                              className="inputField cutom-input-field"
+                              defaultValue="none"
+                              displayEmpty
+                              value={detail.selectedId}
+                              error={false}
+                            >
+                              <MenuItem disabled value="none" className="selectItem">
+                                <>{detail.placeholder}</>
+                              </MenuItem>
+                              {detail?.options?.map((option: any) => (
+                                <MenuItem value={option?.ddId} className="selectItem">
+                                  {"option?.ddName"}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          ) : ""}
                           </div>
                         ))}
                       </div>
