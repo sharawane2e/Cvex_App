@@ -26,6 +26,7 @@ import {
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
+import { setNewData } from "../../redux/actions/JsonDataActions";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -45,7 +46,12 @@ const CustomizedIC = () => {
     handleDropDownChange(
       jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
     );
+    newJson()
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
+
+  function newJson(){
+    dispatch(setNewData(jsonData));
+  }
 
   const nextHandleClick = (event: any) => {
     if (jsonData !== "") {
