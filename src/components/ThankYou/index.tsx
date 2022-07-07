@@ -31,7 +31,7 @@ const ThankYou = (props: Props) => {
   return (
     <div>
       <PrimaryHeader />
-      <div className="main-container">
+      <div className="main-container thank-you-page">
         <div className="thankyou-container">
           <ThankyouImage />
 

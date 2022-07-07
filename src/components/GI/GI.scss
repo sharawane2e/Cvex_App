@@ -5,6 +5,9 @@
     @include breakpoint(sm-mobileonly) {
       margin-top: 135px;
     }
+    @include breakpoint(landscape-smalldevice) {
+      margin-top: 70px;
+    }
     &__inr{
       width: 85%;
       padding-right: 8px;
@@ -15,6 +18,9 @@
     @include breakpoint(sm-mobileonly) {
       height:calc(100vh - 268px);
       width: 93%;
+    }
+    @include breakpoint(landscape-smalldevice) {
+      height: calc(100vh - 305px);
     }
     
     }
@@ -56,7 +62,7 @@
   .submitButton {
     min-width: 135px;
     @include breakpoint(sm-mobileonly) {
-      min-width:auto;
+      min-width: 100px;
     }
   }
 }

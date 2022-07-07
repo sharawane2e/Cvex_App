@@ -283,7 +283,7 @@
 
 @include breakpoint(sm-mobileonly) {
   .skill-container .submitButton {
-    min-width: auto;
+    min-width: 100px;
   }
 }
 @include breakpoint(Ipad) {

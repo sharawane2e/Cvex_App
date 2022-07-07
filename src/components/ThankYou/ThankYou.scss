@@ -7,6 +7,13 @@
         margin-top:0px;
         padding: 0 12px;
       }
+      @include breakpoint(landscape-smalldevice) {
+            height: calc(100vh - 225px);
+            overflow-y: auto;
+        .helpdesk {
+            margin-top: 14px;
+        }
+    }
 
     svg {
         height: 185px;
@@ -74,7 +81,7 @@
     }
 }
 @include breakpoint(sm-mobileonly) {
-    .main-container {
+    .thank-you-page {
         height: calc(100vh - 208px);
         overflow-y: auto;
         margin-top: 130px;
@@ -93,11 +100,12 @@
     }
 }
 @include breakpoint(landscape-mobileonly) {
-    .main-container {
-        height:calc(100vh - 117px);
-        margin-top: 39px;
+    .thank-you-page {
+        min-height: calc(100vh - 135px);
+        margin-top: 50px;
     }
     .helpdesk {
         margin-top: 14px;
     }
 }
+

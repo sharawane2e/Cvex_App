@@ -80,7 +80,7 @@
           height: calc(100vh - 231px) !important;
         }
         @include breakpoint(sm-mobileonly) {
-          height: calc(100vh - 242px);
+          height: calc(100vh - 220px);
         }
 
         .question_text {

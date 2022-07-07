@@ -9,6 +9,10 @@
       margin-top:170px !important;
       height: calc(100vh - 300px);
     }
+    @include breakpoint(landscape-smalldevice) {
+      height: calc(100vh - 275px);
+      margin-top: 50px  !important;
+    }
     overflow-y:auto;
     .title {
       text-align: left;
@@ -24,6 +28,9 @@
     .content-area {
       @include breakpoint(sm-mobileonly) {
         padding-top:0px !important;
+      }
+      @include breakpoint(landscape-smalldevice) {
+        padding-top: 20px !important;
       }
       p {
         text-align: left;
