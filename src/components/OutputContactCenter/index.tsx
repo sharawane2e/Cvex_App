@@ -91,7 +91,7 @@ const OutputContactCenter = () => {
             updatedJsonData.data.inputData.periodTableData[key].rowDetails[0]
               .tbodyDetails[0];
           const secsCatg =
-            updatedJsonData.data.inputData.periodTableData[key].rowDetails[1]
+            updatedJsonData.data.inputData.periodTableData[key].rowDetails[2]
               .tbodyDetails[0];
           const rowDetails =
             updatedJsonData.data.inputData.periodTableData[key].rowDetails;
@@ -111,6 +111,8 @@ const OutputContactCenter = () => {
             currencySymbol
           );
 
+          console.log("secsCatg",secsCatg)
+
           dispatch(setCharcategory([firtsCatg, secsCatg]));
 
           const dataValue = getSeriesData[0][0];
@@ -123,6 +125,8 @@ const OutputContactCenter = () => {
               .tbodyDetails[0];
           dispatch(setCharBasetTitle(baseLineTitle1));
           dispatch(setCharPotentialtTitle(baseLineTitle2));
+
+            console.log("baseLineTitle1", baseLineTitle2)
 
           dispatch(
             setBaseLineChartOptions({

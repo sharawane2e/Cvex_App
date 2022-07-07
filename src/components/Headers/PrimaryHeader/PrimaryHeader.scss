@@ -22,8 +22,8 @@
   transform: translateX(-50%);
   width: 300px;
   @include breakpoint(sm-mobileonly) {
-    bottom: -155px;
-    width: 255px;
+    bottom: -118px;
+    width: 186px;
   }
   @include breakpoint(Ipad) {
     width: 255px;
@@ -75,7 +75,7 @@
     font-size: 16px;
   }
   @include breakpoint(sm-mobileonly) {
-    font-size: 15px;
+    font-size: 12px;
   }
 }
 

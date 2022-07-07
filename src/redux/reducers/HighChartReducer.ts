@@ -65,6 +65,7 @@ const initialState: IChartState = {
       type: "bar",
       ...defaultMarginRight,
       height: 150,
+      margin: [20,20,20,350]
     },
     title: {
       text: "",

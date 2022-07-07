@@ -1,5 +1,8 @@
 .accordBlock {
   box-shadow: none !important;
+  .block_observation {
+      padding: 8px 16px 16px;
+  }
   @include breakpoint(sm-mobileonly) {
     padding-bottom: 0px;
   }
@@ -34,20 +37,20 @@
   border-bottom: 1px solid $dark-white !important;
   .custom-text-area {
     @include breakpoint(sm-mobileonly) {
-      width: 96% !important;
+      width: 100% !important;
       // margin-left: 0px !important;
       margin: 18px 0px 0px 0px;
     }
     @include breakpoint(Ipad-pro) {
-      width: 82% !important;
-      margin-left: 15px !important;
+      // width: 82% !important;
+      // margin-left: 15px !important;
     }
     @include breakpoint(desktop150) {
-      width: 84% !important;
-      margin-left: 15px !important;
+      // width: 84% !important;
+      // margin-left: 15px !important;
     }
     @include breakpoint(desktop) {
-      width: 82% !important;
+      // width: 82% !important;
       // margin-left: 30px !important;
     }
     

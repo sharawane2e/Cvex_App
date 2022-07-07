@@ -234,7 +234,7 @@
       }
       .chart-container {
         padding: 20px 0px 20px 0px;
-        width: 70%;
+        width: 75%;
         margin: 0 auto;
         &__inr {
           display: flex;
@@ -267,6 +267,7 @@
               text-align: center;
               left: 0 !important;
               top: 0 !important;
+              padding: 5px;
             }
           }
           .chart-futurebaseline {
@@ -284,6 +285,7 @@
               text-align: center;
               left: 0 !important;
               top: 0 !important;
+              padding: 5px;
             }
           }
         }
@@ -354,3 +356,59 @@
 .bg-white {
   background-color: #fff !important;
 }
+@include breakpoint(desktop1280){
+  .contactpage-container__inr__section .label-heading {
+    font-size: 11px;
+  }
+  .contactpage-container__inr__section .single-dropdown-section__header .header-text {
+      font-size: 11px;
+  }
+  .contactpage-container__inr__section .single-dropdown-section__header {
+      padding: 7px 10px;
+  }
+  .chart-container.bar-chart-update svg text{
+      font-size:10px !important;
+  }
+  .outputTable-container__inr * {
+      font-size: 11px;
+  }
+  .arrowUpicon {
+      height: 8px;
+      width: 8px;
+  }
+  .chart-container__inr span.highcharts-title {
+      font-size: 11px !important;
+  }
+  .contactpage-container__inr {
+      height: calc(100vh - 137px);
+  }
+}
+@include breakpoint(sm-mobileonly){
+  .chart-container.bar-chart-update svg text{
+    font-size:10px !important;
+}
+  .contactpage-container__inr {
+      height:calc(100vh - 141px);
+      padding: 10px;
+  }
+  .chart-container__inr span.highcharts-title {
+      font-size: 11px !important;
+  }
+  .contactpage-container__inr__section .label-heading {
+    font-size: 14px;
+  }
+  .contactpage-container__inr__section .single-dropdown-section__header .header-text {
+      font-size: 11px;
+  }
+  .contactpage-container__inr__section .chart-container {
+    width: 100%;
+  }
+  .contactpage-container__inr__section .MuiGrid-item {
+      padding: 0;
+  }
+  .contactpage-container .footer .button-container {
+      padding-top: 10px;
+  }
+}
+
+

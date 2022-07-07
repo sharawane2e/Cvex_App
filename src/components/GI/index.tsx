@@ -302,10 +302,17 @@ const GI = () => {
 
     for(var i=1; i<(Number(ques?.incrementyear)+1); i++){
       reqYears.push(currYear + i);
+    }
+
+    for(var i=1; i<(Number(ques?.decreamentyear)+1); i++){
       reqYears.push(currYear - i);
     }
+    
     reqYears.sort();
-    return reqYears.filter((x:any) => currOptions?.findIndex((y:any) => y == x) != -1);
+    let arr = reqYears.filter((x:any) => currOptions?.findIndex((y:any) => y == x) != -1);
+    // @ts-ignore
+    let finalyears = [...new Set(arr)]
+    return finalyears;
   }
 
   return (

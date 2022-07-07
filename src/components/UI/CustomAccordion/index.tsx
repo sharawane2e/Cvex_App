@@ -188,6 +188,7 @@ export default function CustomAccordion(props: AccordionProps) {
                           <input
                             type="text"
                             className="custom-text-area"
+                            defaultValue={subTitleDetail?.observationTxt}
                             onChange={(event: any) =>
                               {handleTextArea(
                                 event.target.value,
@@ -259,6 +260,7 @@ export default function CustomAccordion(props: AccordionProps) {
                   <input
                   type="text"
                   className="custom-text-area"
+                  defaultValue={capabilityDetail.observationTxt}
                   onChange={(event: any) =>
                     {handleTextArea(
                       event.target.value,

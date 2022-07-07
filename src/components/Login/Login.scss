@@ -2,7 +2,6 @@
   .main-container {
     margin: 0 auto;
     margin-top: 100px;
-    // margin-top: 100px;
     width: 80%;
     height: calc(100vh - 228px);
     @include breakpoint(sm-mobileonly) {
@@ -47,14 +46,12 @@
     }
   }
 }
-
 .input-error {
   display: inline-block;
   color: $red-color;
   font-size: 14px;
   padding-top: 4px;
 }
-
 .welcome-helpdesk {
   margin-top: 60px;
   text-align: left;
@@ -63,7 +60,6 @@
   @include breakpoint(sm-mobileonly) {
     margin-top: 20px;
   }
-
   a {
     display: block;
     padding-top: 4px;
@@ -71,20 +67,11 @@
     color: $blue-color;
   }
 }
-
 .button-container {
   display: inline-block;
   width: 100%;
   text-align: center;
 }
-
-
-// .welcome-link {
-//   color: white;
-//   text-decoration: none;
-//   pointer-events: auto;
-// }
-
 .cursor-block {
   cursor: not-allowed;
   display: inline-block;
@@ -94,6 +81,8 @@
 .submit-block {
   pointer-events: none;
 }
+
+
 
 
 
