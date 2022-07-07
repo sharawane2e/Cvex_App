@@ -24,7 +24,7 @@ const GI = () => {
   useEffect(() => {
     setJSONData(
       // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
+      JSON.parse(document.getElementById("jsonData")?.innerText)
     );
     getYears(jsonData?.data?.rightData?.questions[7])
   }, []);
