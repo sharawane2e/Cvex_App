@@ -26,7 +26,7 @@ import {
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
-import { setNewData } from "../../redux/actions/JsonDataActions";
+import { setPageJson } from "../../redux/actions/JsonDataActions";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -50,7 +50,7 @@ const CustomizedIC = () => {
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
   function newJson(){
-    dispatch(setNewData(jsonData));
+    dispatch(setPageJson(jsonData));
   }
 
   const nextHandleClick = (event: any) => {
@@ -287,11 +287,11 @@ const CustomizedIC = () => {
                               error={false}
                             >
                               <MenuItem disabled value="none" className="selectItem">
-                                <>{detail.placeholder}</>
+                                <>{detail?.placeholder}</>
                               </MenuItem>
-                              {detail?.options?.map((option: any) => (
+                              {detail?.Options?.map((option: any) => (
                                 <MenuItem value={option?.ddId} className="selectItem">
-                                  {"option?.ddName"}
+                                  {option?.ddName}
                                 </MenuItem>
                               ))}
                             </Select>

@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setJsonData, setNewData } from '../actions/JsonDataActions';
+import { setPageJson } from '../actions/JsonDataActions';
 
 const initialState = {
   JsonData: {},
@@ -22,7 +22,7 @@ const initialState = {
 // }
 
 const JsonDataReducer = createReducer(initialState, (builder) => {
-  builder.addCase(setNewData, (state, action) => ({...state, JsonData : action.payload}))
+  builder.addCase(setPageJson, (state, action) => ({...state, JsonData : action.payload}))
 });
 
 export default JsonDataReducer;

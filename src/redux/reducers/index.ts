@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   rightPanel: RightPanelReducer,
   chart: HighChartReducer,
   dropdown: HighChartDropDownReducer,
-  ReduxJsonData: JsonDataReducer
+  ReduxPageJson: JsonDataReducer
 });
 
 export default rootReducer;
