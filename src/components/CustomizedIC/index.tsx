@@ -279,15 +279,22 @@ const CustomizedIC = () => {
                           detail.type == "Select" ? 
                           (
                             <Select
-                              sx={{ p: 0, borderRadius: 0, mb: 1 }}
+                              sx={{ p: 0, borderRadius: 0, mb: 1 ,width:"100%"}}
                               className="inputField cutom-input-field"
-                              defaultValue="none"
+                              defaultValue={detail.selectedId}
                               displayEmpty
+                              renderValue={(selected) => {
+                                if (selected?.length === 0) {
+                                  return <>{"Select"}</>;
+                                }
+                
+                                return selected;
+                              }}
                               value={detail.selectedId}
                               error={false}
                             >
                               <MenuItem disabled value="none" className="selectItem">
-                                <>{detail?.placeholder}</>
+                                <>{"Select"}</>
                               </MenuItem>
                               {detail?.Options?.map((option: any) => (
                                 <MenuItem value={option?.ddId} className="selectItem">
