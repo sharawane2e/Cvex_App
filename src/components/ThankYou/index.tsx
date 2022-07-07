@@ -58,10 +58,10 @@ const ThankYou = (props: Props) => {
           </div>
         }
 
-        <div className="helpdesk">
+        {/* <div className="helpdesk">
             <p>Details of the CVEx team</p>
             <p><strong>LEADERSHIP :</strong> Konstantin Pell, Thomas, Ternai, and Arian Meyer</p><p><strong>For practical questions :</strong> Esther de Zeeuw</p>
-        </div>
+        </div> */}
 
 
       </div>
