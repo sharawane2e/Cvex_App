@@ -28,6 +28,7 @@ import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
 import { setPageJson } from "../../redux/actions/JsonDataActions";
 import { Inputbox } from "../UI/Input";
+import DynamicTable from "../UI/DynamicTable";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
@@ -53,7 +54,7 @@ const CustomizedIC = () => {
   useEffect(() => {
     getImpactFactor(0);
     newJson()
-    onLoadUpdates();
+    // onLoadUpdates();
   },[jsonData])
 
   function newJson(){
@@ -180,7 +181,8 @@ const CustomizedIC = () => {
   };
 
   const saleDDChange = (e:any, tableIndex:any, ri:any, detailIndex:any, options:any) => {
-    let data = {...jsonData};
+    let data = JSON.parse(JSON.stringify(jsonData));
+    console.log(data)
     //@ts-ignore
     data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[detailIndex].selectedId = e.target.value;
     data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[4].text = options.filter((x:any) => x.ddId == e.target.value)[0].ddValue
@@ -188,10 +190,11 @@ const CustomizedIC = () => {
   }
 
   const updateText = (e:any, tableIndex:any, ri:any, detailIndex:any) => {
-    let data = {...jsonData};
+    let data = JSON.parse(JSON.stringify(jsonData));
     //@ts-ignore
     data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[detailIndex].selectedText = e.target.value;
     setJSONData(data);
+    getImpactFactor(tableIndex);
   }
 
   const getImpactFactor = (tableIndex:any) =>{
@@ -204,19 +207,13 @@ const CustomizedIC = () => {
     //   }
     // })
     jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
-      allQuartiles?.push(row?.rowDetails[4].text);
+      if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
+        allQuartiles?.push((row?.rowDetails[5]?.selectedText)/100);
+      }
+      else{
+        allQuartiles?.push(row?.rowDetails[4]?.text);
+      }
     })
-    // allQuartiles.forEach((element:any, index:any) => {
-    //   if(index>0){
-    //     element = (Number(element))/100;
-    //   }
-    // });
-
-    // for(var i=0; i<allQuartiles.length; i++){
-    //   if(i>0){
-    //     allQuartiles[i] = (Number(allQuartiles[i]))/100;
-    //   }
-    // }
 
     let calValue:any = 0; 
 
@@ -471,6 +468,8 @@ const CustomizedIC = () => {
           <div>Three</div>
           <div>Four</div>
         </div> */}
+
+        <DynamicTable />
 
         <div className="contactpage-container__inr__section">
           <div className="single-dropdown-section">
