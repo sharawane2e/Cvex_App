@@ -14,6 +14,8 @@
         position: fixed;
         height: 100%;
         z-index: 3;
+        overflow-y: auto !important;
+        height: calc(100vh - 75px) !important;
       }
       @include breakpoint(sm-mobileonly) {
         margin-left: -280px;
@@ -21,6 +23,16 @@
         position: fixed;
         height: 100%;
         z-index: 3;
+        overflow-y: auto !important;
+        height: calc(100vh - 75px) !important;
+      }
+      @include breakpoint(landscape-mobileonly) {
+        overflow-y: auto !important;
+        height: calc(100vh - 75px) !important;
+      }
+      @include breakpoint(landscape-smalldevice) {
+        overflow-y: auto !important;
+        height: calc(100vh - 100px) !important;
       }
     }
 
@@ -79,9 +91,19 @@
         @include breakpoint(landscape-mobileonly) {
           height: calc(100vh - 231px) !important;
         }
+        @include breakpoint(landscape-smalldevice) {
+          height: calc(100vh - 240px) !important;
+        }
         @include breakpoint(sm-mobileonly) {
           height: calc(100vh - 220px);
         }
+        @include breakpoint(Ipad) {
+          height: calc(100vh - 245px) !important;
+        }
+        @include breakpoint(landscape-mediumdevice) {
+          height: calc(100vh - 245px) !important;
+        }
+        
 
         .question_text {
           font-size: 13px;

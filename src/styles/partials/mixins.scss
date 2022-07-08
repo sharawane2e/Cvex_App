@@ -49,6 +49,11 @@
       @content;
     }
   }
+  @else if $point == landscape-mediumdevice {
+    @media (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
+      @content;
+    }
+  }
 }
 
 @mixin space($type, $direction, $first, $second) {

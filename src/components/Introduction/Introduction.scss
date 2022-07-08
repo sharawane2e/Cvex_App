@@ -4,7 +4,7 @@
       margin-top: 100px;
       width: 80%;
       height: calc(100vh - 320px);
-       overflow-y: auto;
+      overflow-y: auto;
       
       @include breakpoint(sm-mobileonly) {
         // font-size: 15px;
@@ -12,6 +12,11 @@
         font-size: 15px;
         margin-top: 140px;
         height: calc(100vh - 270px);
+      }
+
+      @include breakpoint(landscape-smalldevice) {
+        margin-top: 60px;
+        height: calc(100vh - 285px);
       }
   
       .introduction-heading {
