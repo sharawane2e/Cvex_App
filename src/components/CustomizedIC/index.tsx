@@ -55,34 +55,44 @@ const CustomizedIC = () => {
     getImpactFactor(0);
     newJson()
     // onLoadUpdates();
+    onLoadUpdates();
   },[jsonData])
 
   function newJson(){
     dispatch(setPageJson(jsonData));
-    console.log("ReduxPageJson", ReduxPageJson.JsonData.data)
+    // console.log("ReduxPageJson", ReduxPageJson.JsonData.data)
   }
 
   const CalculatePI = (num1:any, num2:any) => {
     let result = Number(num1) - Number(num2);
-    console.log(num1,num2,result)
+    // console.log(num1,num2,result)
     return result;
   }
 
-  const PIvalues = (num:any) => {
+  const PIvalues = (num:any, isLastVal:any) => {
     let selectedId = jsonData?.data?.inputData?.periodDD?.selectedId;
     let selectObj = jsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
     let result:any = 0;
-    if(selectObj?.ddName == "Monthly"){
+    if(selectObj?.ddName == "Monthly" && isLastVal==false){
       result = (Number(num)/12);
+      // if(String(result)?.split(".").length>1){
+      //   result = Math.round(result);
+      // }
+      // else{
+      //   result = Math.round(result);
+      // }
     }
     else{
       result = Number(num);
+      // if(String(result)?.split(".").length>1){
+      //   result = Math.round(result);
+      // }
     }
     let final:any = 0;
-    if(String(result)?.split(".").length>1){
-      final = Math.round(result * 100);
-    }
-    return final;
+    // if(String(result)?.split(".").length>1){
+    //   final = Math.round(result * 100);
+    // }
+    return Math.round(result);
   }
 
   const getselectedDDName = (options: any, selectedId: string) => {
@@ -178,8 +188,6 @@ const CustomizedIC = () => {
             .segmentTableChartData
         );
 
-        console.log(mergeKey);
-
         keys.forEach(function (key: any) {
           if (key == mergeKey) {
             dispatch(
@@ -200,10 +208,19 @@ const CustomizedIC = () => {
           }
         });
       });
+      updateSegTable(ddId)
     }
+    console.log(ddId)
   };
 
-  const saleDDChange = (e:any, tableIndex:any, ri:any, detailIndex:any, options:any) => {
+  const updateSegTable = (ddId:any) => {
+    let selectedSale = jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == ddId)[0].ddName;
+    let data = JSON.parse(JSON.stringify(jsonData));
+    data.data.inputData.potentialIncreaseData.segmentTableChartData[ddId].tbodyDetails = getAllQuartiles(selectedSale);
+    setJSONData(data);
+  }
+
+  const timeDDChange = (e:any, tableIndex:any, ri:any, detailIndex:any, options:any) => {
     let data = JSON.parse(JSON.stringify(jsonData));
     console.log(data)
     //@ts-ignore
@@ -211,6 +228,14 @@ const CustomizedIC = () => {
     data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[4].text = options.filter((x:any) => x.ddId == e.target.value)[0].ddValue
     setJSONData(data);
   }
+
+  // const saleDDChange = (e:any) => {
+  //   let data = JSON.parse(JSON.stringify(jsonData));
+  //   console.log(data)
+  //   //@ts-ignore
+  //   data.data.inputData.potentialIncreaseData?.segmentDD?.selectedId = e.target.value;
+  //   setJSONData(data);
+  // }
 
   const updateText = (e:any, tableIndex:any, ri:any, detailIndex:any) => {
     let data = JSON.parse(JSON.stringify(jsonData));
@@ -220,45 +245,59 @@ const CustomizedIC = () => {
     getImpactFactor(tableIndex);
   }
 
-  const getImpactFactor = (tableIndex:any) =>{
+  const getImpactFactor = (saleName:any) =>{
     let allQuartiles:any = [];
+
     // jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
-    //   if(row?.rowDetails?.type == "Select"){
-    //     row?.rowDetails?.options?.map((opt:any) => {
-    //       allQuartiles?.push(opt.ddValue);
-    //     })
+    //   if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
+    //     allQuartiles?.push((row?.rowDetails[5]?.selectedText)/100);
+    //   }
+    //   else{
+    //     allQuartiles?.push(row?.rowDetails[4]?.text);
     //   }
     // })
-    jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
-      if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
-        allQuartiles?.push((row?.rowDetails[5]?.selectedText)/100);
-      }
-      else{
-        allQuartiles?.push(row?.rowDetails[4]?.text);
-      }
-    })
+
+    allQuartiles = getAllQuartiles(saleName)
 
     let calValue:any = 0; 
-
     if(allQuartiles.length > 0){
-      // console.log(allQuartiles?.reduce((a:any,b:any) => a*b));
       calValue = allQuartiles?.reduce((a:any,b:any) => a*b);
-      console.log(allQuartiles);
     }
-
     return Math.round(calValue);
   }
 
-  const onLoadUpdates = () => {
-    let data = {...jsonData};
-    data?.data?.inputData?.SalesTables?.tbody?.map((table:any, ti:any) => {
-      table?.tbodyDetails?.map((row:any, ri:any) => {
-        if(row[4] != undefined){
-          row[4].text = row[3]?.options.filter()
-        }
-      })
+  const getAllQuartiles = (saleName:any) => {
+    let arr:any = [];
+    let tableIndex = jsonData?.data?.inputData?.SalesTables?.tbody.findIndex((x:any) => x.theading == saleName);
+    jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
+      if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
+        arr?.push((row?.rowDetails[5]?.selectedText)/100);
+      }
+      else{
+        arr?.push(row?.rowDetails[4]?.text);
+      }
     })
-    console.log(data)
+    return arr;
+  }
+
+  const onLoadUpdates = () => {
+    let data = JSON.parse(JSON.stringify(jsonData));
+    // data?.data?.inputData?.SalesTables?.tbody?.map((table:any, ti:any) => {
+    //   table?.tbodyDetails?.map((row:any, ri:any) => {
+    //     if(row[4] != undefined){
+    //       row[4].text = row[3]?.options.filter()
+    //     }
+    //   })
+    // })
+    let selectedsale = data?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
+    // data?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.map((segment:any) => {
+    //   console.log(Object.keys(segment))
+    // })
+    // if(data != undefined && data != null){
+    //   let saleIds = Object.keys(inputDetails?.potentialIncreaseData?.segmentTableChartData)
+    //   console.log(saleIds)
+    // }
+
     // setJSONData(data);
   }
 
@@ -266,6 +305,7 @@ const CustomizedIC = () => {
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
       <div className="contactpage-container__inr">
+        <button onClick={() => console.log(jsonData)}>Console JsonData</button>
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
             <Grid
@@ -319,12 +359,15 @@ const CustomizedIC = () => {
                         {rowDetail?.tbodyDetails.map((tbodyDetail: any, tdIndex:any) => {
                           return typeof tbodyDetail == "number" ? (
                             <div className="table-row">
-                              {rowIndex == 1 ? <span>{CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex])}</span> 
+
+                              {rowIndex == 1 ? 
+                              <span>{((rowDetail?.tbodyDetails.length-1) == tdIndex) ? PIvalues(CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex]), true) : PIvalues(CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex]), false)}</span> 
                               : 
-                              <span>{PIvalues(tbodyDetail)}</span>}
-                              <span className="currency-symbol">
+                              <span>{((rowDetail?.tbodyDetails.length-1) == tdIndex) ? PIvalues(tbodyDetail,true) : PIvalues(tbodyDetail,false)}</span>}
+
+                              {/* <span className="currency-symbol">
                                 {currencySymbol}
-                              </span>
+                              </span> */}
                             </div>
                           ) : (
                             <div className="table-row">
@@ -370,8 +413,8 @@ const CustomizedIC = () => {
               <Box className="outputTable-container" sx={{ mb: 5 }}>
                 <div className="outputTable-container__inr">
                   <div>{table.theading}</div>
-                  <div>{"Impact factor : " + getImpactFactor(tableIndex)}</div>
-                  <div>{"Impact Value : " + (getImpactFactor(tableIndex) * jsonData?.data?.inputData?.SalesTables?.ARPU)}</div>
+                  <div>{"Impact factor : " + getImpactFactor(table.theading)}</div>
+                  <div>{"Impact Value : " + (getImpactFactor(table.theading) * jsonData?.data?.inputData?.SalesTables?.ARPU)}</div>
                   <div>{Math.round(0.729 * 100)}</div>
 
                   <div className="outputTable-container__inr__body">
@@ -397,7 +440,7 @@ const CustomizedIC = () => {
                                 return selected;
                               }}
                               value={detail.options.filter((x:any) => x.ddId == detail?.selectedId)[0]?.ddName}
-                              onChange={(e) => saleDDChange(e, tableIndex, ri, detailIndex, detail.options)}
+                              onChange={(e) => timeDDChange(e, tableIndex, ri, detailIndex, detail.options)}
                               error={false}
                             >
                               <MenuItem disabled value="none" className="selectItem">
@@ -446,54 +489,6 @@ const CustomizedIC = () => {
           ))}
         </div>
 
-        {/* <div className="table_section">
-          <div>Inbound sales</div>
-          <div>
-            <div className="t-row">
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-            </div>
-            <div className="t-row">
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-              <div className="t-data">
-                <span>One</span>
-              </div>
-            </div>
-          </div>
-          <div>Three</div>
-          <div>Four</div>
-        </div> */}
-
         <DynamicTable />
 
         <div className="contactpage-container__inr__section">
@@ -534,7 +529,7 @@ const CustomizedIC = () => {
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">
-                {dropdown?.selectSecondDropDown?.headings?.map((el: any) => {
+                {jsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.Hidsegment_1_label?.headings?.map((el: any) => {
                   return (
                     <div className="table-col">
                       <span>{el}</span>
@@ -544,7 +539,7 @@ const CustomizedIC = () => {
               </div>
               <div className="outputTable-container__inr__body">
                 <div className="table-col">
-                  {dropdown?.selectSecondDropDown?.tbodyDetails?.map(
+                  {jsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.Hidsegment_1_label?.tbodyDetails?.map(
                     (el: any) => {
                       return (
                         <div className="table-row">

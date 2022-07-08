@@ -31,13 +31,13 @@
 					"headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback", "Sales Fieldforce", "Shops", "Total Impact"],
 					"currencySymbol": "?",
 					"rowDetails": [{
-						"tbodyDetails": ["Baseline", 1814383, 112968, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1927347],
+						"tbodyDetails": ["Baseline", 21772555.32816, 1355611.95, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1927347.273],
 						"iconDetails": ["", "", "", "", "", ""]
 					}, {
-						"tbodyDetails": ["Potential", 1486272, 28145, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1514417],
+						"tbodyDetails": ["Potential", 1486, 28145, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1817],
 						"iconDetails": ["", "up", "", "up", "", ""]
 					}, {
-						"tbodyDetails": ["Possible future baseline", 328108, 84823, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 412931],
+						"tbodyDetails": ["Possible future baseline", 3937295.83494084, 1017870.9156, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 412930.5625],
 						"iconDetails": ["", "", "", "", "", ""]
 					}]
 				
@@ -408,8 +408,6 @@
 					]
 				}]
 			},
-
-
 			"potentialIncreaseData": {
 				"heading": "Breakdown of potential increase by segment and its components",
 				"segmentDD": {
