@@ -62,6 +62,29 @@ const CustomizedIC = () => {
     console.log("ReduxPageJson", ReduxPageJson.JsonData.data)
   }
 
+  const CalculatePI = (num1:any, num2:any) => {
+    let result = Number(num1) - Number(num2);
+    console.log(num1,num2,result)
+    return result;
+  }
+
+  const PIvalues = (num:any) => {
+    let selectedId = jsonData?.data?.inputData?.periodDD?.selectedId;
+    let selectObj = jsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
+    let result:any = 0;
+    if(selectObj?.ddName == "Monthly"){
+      result = (Number(num)/12);
+    }
+    else{
+      result = Number(num);
+    }
+    let final:any = 0;
+    if(String(result)?.split(".").length>1){
+      final = Math.round(result * 100);
+    }
+    return final;
+  }
+
   const getselectedDDName = (options: any, selectedId: string) => {
     let selectedDDName = "";
     options.forEach((element: any) => {
@@ -274,7 +297,7 @@ const CustomizedIC = () => {
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">
-                {dropdown?.selectedData?.headings?.map((heading: any) => {
+                {jsonData?.data?.inputData?.periodTableData?.headings?.map((heading: any) => {
                   return (
                     <div
                       className={
@@ -287,16 +310,18 @@ const CustomizedIC = () => {
                 })}
               </div>
               <div className="outputTable-container__inr__body">
-                {dropdown?.selectedData?.rowDetails?.map(
+                {jsonData?.data?.inputData?.periodTableData?.rowDetails?.map(
                   (rowDetail: any, rowIndex: number) => {
                     const currencySymbol =
                       inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
                     return (
                       <div className="table-col" key={rowIndex}>
-                        {rowDetail?.tbodyDetails.map((tbodyDetail: any) => {
+                        {rowDetail?.tbodyDetails.map((tbodyDetail: any, tdIndex:any) => {
                           return typeof tbodyDetail == "number" ? (
                             <div className="table-row">
-                              <span>{tbodyDetail}</span>
+                              {rowIndex == 1 ? <span>{CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex])}</span> 
+                              : 
+                              <span>{PIvalues(tbodyDetail)}</span>}
                               <span className="currency-symbol">
                                 {currencySymbol}
                               </span>
