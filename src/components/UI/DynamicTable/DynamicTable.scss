@@ -1,0 +1,95 @@
+.customized_impact_calculator_table {
+        width:100%;
+        margin: auto;
+        overflow-x: auto;
+    table.table.repeat_table table td {
+        border-left: 0;
+        border-top: 0;
+    }
+    
+    table.table.repeat_table table tr td:last-child {
+        border-right: 0;
+    }
+    
+    .repeat_table table tr:last-child td {
+        border-bottom: 0;
+    }
+    
+    table.table.table_head thead tr:last-child th {
+        border-bottom: 0;
+    }
+    table.table.repeat_table select {
+        border: 0;
+        width: 100%;
+        outline:none;
+        background: #E6A0C8;
+    }
+    .dropdown_select {
+        background-color:#E6A0C8;
+    }
+    .pouring_Copper_color {
+        background-color:#FAA082;
+    }
+    .gray_color {
+        background-color: #D0D0D0;
+    }
+    .blue_color {
+        background-color:#39BDF3;
+    }
+    .colspan2 {
+        width: 22.22%;
+        min-width: 220px;
+    }
+    .colspan3 {
+        width: 33.33%;
+    }
+    .colspan6 {
+        width: 66.66%;
+    }
+    .colspan7 {
+        width: 77.77%;
+        min-width: 770px;
+    }
+    .border_0 {
+        border:0;
+    }
+    .padding_0 {
+        padding:0;
+    }
+    .repeat_table {
+        margin-bottom:25px;
+    }
+    .align_left {
+        text-align: left;
+    }
+    .align_center {
+        text-align: left;
+    }
+    table {
+        border-collapse: collapse;
+        width:100%;
+        td {
+            border:solid 1px #000;
+            width:11.11%;
+            min-width:110.5px;
+            font-size:12px;
+            padding: 10px;
+            font-weight:bold;
+            text-align:center;
+        }
+        th {
+            border:solid 1px #000;
+            width:11.11%;
+            min-width:110.5px;
+            font-size:12px;
+            padding: 10px;
+        }
+    }
+    
+
+
+}
+
+
+
+
