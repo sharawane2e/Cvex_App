@@ -274,7 +274,7 @@ const CustomizedIC = () => {
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">
-                {dropdown?.selectedData?.headings?.map((heading: any) => {
+                {jsonData?.data?.inputData?.periodTableData?.headings?.map((heading: any) => {
                   return (
                     <div
                       className={
@@ -287,7 +287,7 @@ const CustomizedIC = () => {
                 })}
               </div>
               <div className="outputTable-container__inr__body">
-                {dropdown?.selectedData?.rowDetails?.map(
+                {jsonData?.data?.inputData?.periodTableData?.rowDetails?.map(
                   (rowDetail: any, rowIndex: number) => {
                     const currencySymbol =
                       inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
