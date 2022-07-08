@@ -46,7 +46,7 @@
             "optionName": "Select a period to view",
             "type": "dd",
             "error_id": "HidMonth",
-            "placeholder": "",
+            "placeholder": "",	
             "description": "",
             "questionId": "HidMonth",
             "selectedId": "HidMonth_1_label",
@@ -59,7 +59,7 @@
             }]
           },
           "periodTableData": {
-            "HidMonth_1_label": {
+            
               "headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback"],
               "currencySymbol": "?",
               "rowDetails": [{
@@ -72,29 +72,27 @@
                 "tbodyDetails": ["Possible future baseline", 1850668, "Not selected", "Not selected", "Not selected", "Not selected"],
                 "iconDetails": ["", "", "", "", "", ""]
               }]
-            },
-            "HidMonth_2_label": {
-              "headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback"],
-              "currencySymbol": "?",
-              "rowDetails": [{
-                "tbodyDetails": ["Baseline", 21772600, "Not selected", "Not selected", "Not selected", "Not selected"],
-                "iconDetails": ["", "", "", "", "", ""]
-              }, {
-                "tbodyDetails": ["Potential", 435418, "Not selected", "Not selected", "Not selected", "Not selected"],
-                "iconDetails": ["", "up", "", "", "", ""]
-              }, {
-                "tbodyDetails": ["Possible future baseline", 22208018, "Not selected", "Not selected", "Not selected", "Not selected"],
-                "iconDetails": ["", "", "", "", "", ""]
-              }]
-            }
+            
           },
     
           "SalesTables": {
-            "theaders": [{
-              "rowDetails": []
-            }],
+            "ARPU": 200,
+            "theaders": [
+              {
+                "rowDetails": ["","","","","10000","10000"]
+              },
+              {
+                "rowDetails": ["","","","Client/Baseline","Custom Quartile and Benchmark","Customized Impact"]
+              },
+              {
+                "rowDetails": ["","","Original Baseline","Revised Baseline","Quartile to move","Quartile benchmark", "Custom Benchmark", "Impact factor", "Impact Value"]
+              }
+            ],
             "tbody": [{
               "theading": "Inbound Sales",
+              "Impactfactor": 1000,
+              "ImpactValue": 1000,
+              "disable": false,
               "tbodyDetails": [
                 {
                   "rowDetails": [
@@ -111,34 +109,46 @@
                       "type": "String"
                     },
                     {
-                      "text": "NS",
                       "type": "Select",
-                      "selectedddName": "Upper quartile",
-                      "Options": [{
+                      "selectedId": "a",
+                      "disable": false,
+                      "placeholder": "Please select",
+                      "options": [{
                           "ddName": "Top quartile",
-                          "ddValue": 70000
+                          "ddValue": 962189,
+                          "afterText": "%",
+                          "ddId": "a"
                         },
                         {
                           "ddName": "Upper quartile",
-                          "ddValue": 80000
+                          "ddValue": 769751,
+                          "ddId": "b"
                         },
                         {
                           "ddName": "Median quartile",
-                          "ddValue": 50000
+                          "ddValue": 641459,
+                          "ddId": "c"
                         },
                         {
                           "ddName": "Lower quartile",
-                          "ddValue": 20000
+                          "ddValue": 320730,
+                          "ddId": "d"
                         }
                       ]	
                     },
                     {
-                      "text": "641,459",
+                      "text": 641459,
                       "type": "Number"
                     },
                     {
                       "selectedText": "",
-                      "type": "Input"
+                      "type": "Input",
+                      "placeholder": "#",
+                      "afterText": "",
+                      "maxLength": 9,
+                      "maxRange": 100,
+                      "minRange": 0,
+                      "decimalPlaces": 0
                     }
                   ]
                 },
@@ -157,34 +167,45 @@
                       "type": "String"
                     },
                     {
-                      "text": "NS",
                       "type": "Select",
-                      "selectedddName": "Upper quartile",
-                      "Options": [{
+                      "selectedId": "a",
+                      "disable": false,
+                      "placeholder": "Please select",
+                      "options": [{
                           "ddName": "Top quartile",
-                          "ddValue": 70000
+                          "ddValue": 0.96,
+                          "ddId": "a"
                         },
                         {
                           "ddName": "Upper quartile",
-                          "ddValue": 80000
+                          "ddValue": 0.90,
+                          "ddId": "b"
                         },
                         {
                           "ddName": "Median quartile",
-                          "ddValue": 50000
+                          "ddValue": 0.81,
+                          "ddId": "c"
                         },
                         {
                           "ddName": "Lower quartile",
-                          "ddValue": 20000
+                          "ddValue": 0.729,
+                          "ddId": "d"
                         }
                       ]	
                     },
                     {
-                      "text": "641,459",
+                      "text": 92,
                       "type": "Number"
                     },
                     {
                       "selectedText": "",
-                      "type": "Input"
+                      "type": "Input",
+                      "placeholder": "#",
+                      "afterText": "",
+                      "maxLength": 9,
+                      "maxRange": 100,
+                      "minRange": 0,
+                      "decimalPlaces": 0
                     }
                   ]
                 },
@@ -203,34 +224,45 @@
                       "type": "String"
                     },
                     {
-                      "text": "NS",
                       "type": "Select",
-                      "selectedddName": "Upper quartile",
-                      "Options": [{
+                      "selectedId": "d",
+                      "disable": false,
+                      "placeholder": "Please select",
+                      "options": [{
                           "ddName": "Top quartile",
-                          "ddValue": 70000
+                          "ddValue": 0.90,
+                          "ddId": "a"
                         },
                         {
                           "ddName": "Upper quartile",
-                          "ddValue": 80000
+                          "ddValue": 0.80,
+                          "ddId": "b"
                         },
                         {
                           "ddName": "Median quartile",
-                          "ddValue": 50000
+                          "ddValue": 0.69,
+                          "ddId": "c"
                         },
                         {
                           "ddName": "Lower quartile",
-                          "ddValue": 20000
+                          "ddValue": 0.49,
+                          "ddId": "d"
                         }
                       ]	
                     },
                     {
-                      "text": "641,459",
+                      "text": 92,
                       "type": "Number"
                     },
                     {
                       "selectedText": "",
-                      "type": "Input"
+                      "type": "Input",
+                      "placeholder": "#",
+                      "afterText": "",
+                      "maxLength": 9,
+                      "maxRange": 100,
+                      "minRange": 0,
+                      "decimalPlaces": 0
                     }
                   ]
                 },
@@ -249,34 +281,45 @@
                       "type": "String"
                     },
                     {
-                      "text": "NS",
                       "type": "Select",
-                      "selectedddName": "Upper quartile",
-                      "Options": [{
+                      "selectedId": "b",
+                      "disable": false,
+                      "placeholder": "Please select",
+                      "options": [{
                           "ddName": "Top quartile",
-                          "ddValue": 70000
+                          "ddValue": 0.97,
+                          "ddId": "a"
                         },
                         {
                           "ddName": "Upper quartile",
-                          "ddValue": 80000
+                          "ddValue": 0.89,
+                          "ddId": "b"
                         },
                         {
                           "ddName": "Median quartile",
-                          "ddValue": 50000
+                          "ddValue": 0.74,
+                          "ddId": "c"
                         },
                         {
                           "ddName": "Lower quartile",
-                          "ddValue": 20000
+                          "ddValue": 0.63,
+                          "ddId": "d"
                         }
                       ]	
                     },
                     {
-                      "text": "641,459",
+                      "text": 92,
                       "type": "Number"
                     },
                     {
                       "selectedText": "",
-                      "type": "Input"
+                      "type": "Input",
+                      "placeholder": "#",
+                      "afterText": "",
+                      "maxLength": 9,
+                      "maxRange": 100,
+                      "minRange": 0,
+                      "decimalPlaces": 0
                     }
                   ]
                 },
@@ -295,34 +338,45 @@
                       "type": "String"
                     },
                     {
-                      "text": "NS",
                       "type": "Select",
-                      "selectedddName": "Upper quartile",
-                      "Options": [{
+                      "selectedId": "a",
+                      "disable": false,
+                      "placeholder": "Please select",
+                      "options": [{
                           "ddName": "Top quartile",
-                          "ddValue": 70000
+                          "ddValue": 0.60,
+                          "ddId": "a"
                         },
                         {
                           "ddName": "Upper quartile",
-                          "ddValue": 80000
+                          "ddValue": 0.54,
+                          "ddId": "b"
                         },
                         {
                           "ddName": "Median quartile",
-                          "ddValue": 50000
+                          "ddValue": 0.45,
+                          "ddId": "c"
                         },
                         {
                           "ddName": "Lower quartile",
-                          "ddValue": 20000
+                          "ddValue": 0.39,
+                          "ddId": "d"
                         }
                       ]	
                     },
                     {
-                      "text": "641,459",
+                      "text": 92,
                       "type": "Number"
                     },
                     {
                       "selectedText": "",
-                      "type": "Input"
+                      "type": "Input",
+                      "placeholder": "#",
+                      "afterText": "",
+                      "maxLength": 9,
+                      "maxRange": 100,
+                      "minRange": 0,
+                      "decimalPlaces": 0
                     }
                   ]
                 },
@@ -341,34 +395,45 @@
                       "type": "String"
                     },
                     {
-                      "text": "NS",
                       "type": "Select",
-                      "selectedddName": "Upper quartile",
-                      "Options": [{
+                      "selectedId": "a",
+                      "disable": false,
+                      "placeholder": "Please select",
+                      "options": [{
                           "ddName": "Top quartile",
-                          "ddValue": 70000
+                          "ddValue": 0.90,
+                          "ddId": "a"
                         },
                         {
                           "ddName": "Upper quartile",
-                          "ddValue": 80000
+                          "ddValue": 0.81,
+                          "ddId": "b"
                         },
                         {
                           "ddName": "Median quartile",
-                          "ddValue": 50000
+                          "ddValue": 0.73,
+                          "ddId": "c"
                         },
                         {
                           "ddName": "Lower quartile",
-                          "ddValue": 20000
+                          "ddValue": 0.6561,
+                          "ddId": "d"
                         }
                       ]	
                     },
                     {
-                      "text": "641,459",
+                      "text": 92,
                       "type": "Number"
                     },
                     {
                       "selectedText": "",
-                      "type": "Input"
+                      "type": "Input",
+                      "placeholder": "#",
+                      "afterText": "",
+                      "maxLength": 9,
+                      "maxRange": 100,
+                      "minRange": 0,
+                      "decimalPlaces": 0
                     }
                   ]
                 }
@@ -405,66 +470,37 @@
               }]
             },
             "segmentTableChartData": {
-              "HidMonth_1_label-Hidsegment_1_label": {
+              "Hidsegment_1_label": {
                 "headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
                 "chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [81786, 78515, 70663, 68543, 41126, 37013],
-                "chartDetails": [81786.07, 3271.44, 7851.46, 2119.89, 27417.31, 4112.6, 37013.36]
+                "tbodyDetails": [],
+                "chartDetails": []
               },
-              "HidMonth_1_label-Hidsegment_2_label": {
+              "Hidsegment_2_label": {
                 "headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
                 "chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                "tbodyDetails": [],
+                "chartDetails": []
               },
-              "HidMonth_1_label-Hidsegment_3_label": {
+              "-Hidsegment_3_label": {
                 "headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
                 "chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                "tbodyDetails": [],
+                "chartDetails": []
               },
-              "HidMonth_1_label-Hidsegment_4_label": {
+              "Hidsegment_4_label": {
                 "headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
                 "chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", [], "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                "tbodyDetails": [],
+                "chartDetails": []
               },
-              "HidMonth_1_label-Hidsegment_5_label": {
+              "Hidsegment_5_label": {
                 "headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
                 "chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
-              },
-              "HidMonth_2_label-Hidsegment_1_label": {
-                "headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [981432.78, 942175.47, 847957.92, 822519.18, 493511.51, 444160.36],
-                "chartDetails": [981432.78, 39257.31, 94217.55, 25438.74, 329007.67, 49351.15, 444160.36]
-              },
-              "HidMonth_2_label-Hidsegment_2_label": {
-                "headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
-              },
-              "HidMonth_2_label-Hidsegment_3_label": {
-                "headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
-              },
-              "HidMonth_2_label-Hidsegment_4_label": {
-                "headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
-              },
-              "HidMonth_2_label-Hidsegment_5_label": {
-                "headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [0, 0, 0, 0, 0, 0],
-                "chartDetails": [0, 0, 0, 0, 0, 0, 0]
+                "tbodyDetails": [],
+                "chartDetails": []
               }
+              
             }
           }
         }

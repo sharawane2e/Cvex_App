@@ -14,7 +14,7 @@
 				"optionName": "Select a period to view",
 				"type": "dd",
 				"error_id": "HidMonth",
-				"placeholder": "",
+				"placeholder": "",	
 				"description": "",
 				"questionId": "HidMonth",
 				"selectedId": "HidMonth_1_label",
@@ -44,7 +44,7 @@
 			},
 
 			"SalesTables": {
-				"ARPU": 20000,
+				"ARPU": 200,
 				"theaders": [
 					{
 						"rowDetails": ["","","","","10000","10000"]
@@ -83,28 +83,29 @@
 									"placeholder": "Please select",
 									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000,
+											"ddValue": 962189,
+											"afterText": "%",
 											"ddId": "a"
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000,
+											"ddValue": 769751,
 											"ddId": "b"
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000,
+											"ddValue": 641459,
 											"ddId": "c"
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000,
+											"ddValue": 320730,
 											"ddId": "d"
 										}
 									]	
 								},
 								{
-									"text": "641,459",
+									"text": 641459,
 									"type": "Number"
 								},
 								{
@@ -135,33 +136,33 @@
 								},
 								{
 									"type": "Select",
-									"selectedId": "Upper quartile",
+									"selectedId": "a",
 									"disable": false,
 									"placeholder": "Please select",
 									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000,
-											"ddId": ""
+											"ddValue": 0.96,
+											"ddId": "a"
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000,
-											"ddId": ""
+											"ddValue": 0.90,
+											"ddId": "b"
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000,
-											"ddId": ""
+											"ddValue": 0.81,
+											"ddId": "c"
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000,
-											"ddId": ""
+											"ddValue": 0.729,
+											"ddId": "d"
 										}
 									]	
 								},
 								{
-									"text": "641,459",
+									"text": 0.81,
 									"type": "Number"
 								},
 								{
@@ -192,33 +193,33 @@
 								},
 								{
 									"type": "Select",
-									"selectedId": "Upper quartile",
+									"selectedId": "d",
 									"disable": false,
 									"placeholder": "Please select",
 									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000,
-											"ddId": ""
+											"ddValue": 0.90,
+											"ddId": "a"
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000,
-											"ddId": ""
+											"ddValue": 0.80,
+											"ddId": "b"
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000,
-											"ddId": ""
+											"ddValue": 0.69,
+											"ddId": "c"
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000,
-											"ddId": ""
+											"ddValue": 0.49,
+											"ddId": "d"
 										}
 									]	
 								},
 								{
-									"text": "641,459",
+									"text": 92,
 									"type": "Number"
 								},
 								{
@@ -249,33 +250,33 @@
 								},
 								{
 									"type": "Select",
-									"selectedId": "Upper quartile",
+									"selectedId": "b",
 									"disable": false,
 									"placeholder": "Please select",
 									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000,
-											"ddId": ""
+											"ddValue": 0.97,
+											"ddId": "a"
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000,
-											"ddId": ""
+											"ddValue": 0.89,
+											"ddId": "b"
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000,
-											"ddId": ""
+											"ddValue": 0.74,
+											"ddId": "c"
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000,
-											"ddId": ""
+											"ddValue": 0.63,
+											"ddId": "d"
 										}
 									]	
 								},
 								{
-									"text": "641,459",
+									"text": 92,
 									"type": "Number"
 								},
 								{
@@ -306,33 +307,33 @@
 								},
 								{
 									"type": "Select",
-									"selectedId": "Upper quartile",
+									"selectedId": "a",
 									"disable": false,
 									"placeholder": "Please select",
 									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000,
-											"ddId": ""
+											"ddValue": 0.60,
+											"ddId": "a"
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000,
-											"ddId": ""
+											"ddValue": 0.54,
+											"ddId": "b"
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000,
-											"ddId": ""
+											"ddValue": 0.45,
+											"ddId": "c"
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000,
-											"ddId": ""
+											"ddValue": 0.39,
+											"ddId": "d"
 										}
 									]	
 								},
 								{
-									"text": "641,459",
+									"text": 92,
 									"type": "Number"
 								},
 								{
@@ -363,33 +364,33 @@
 								},
 								{
 									"type": "Select",
-									"selectedId": "Upper quartile",
+									"selectedId": "a",
 									"disable": false,
 									"placeholder": "Please select",
 									"options": [{
 											"ddName": "Top quartile",
-											"ddValue": 70000,
-											"ddId": ""
+											"ddValue": 0.90,
+											"ddId": "a"
 										},
 										{
 											"ddName": "Upper quartile",
-											"ddValue": 80000,
-											"ddId": ""
+											"ddValue": 0.81,
+											"ddId": "b"
 										},
 										{
 											"ddName": "Median quartile",
-											"ddValue": 50000,
-											"ddId": ""
+											"ddValue": 0.73,
+											"ddId": "c"
 										},
 										{
 											"ddName": "Lower quartile",
-											"ddValue": 20000,
-											"ddId": ""
+											"ddValue": 0.6561,
+											"ddId": "d"
 										}
 									]	
 								},
 								{
-									"text": "641,459",
+									"text": 92,
 									"type": "Number"
 								},
 								{

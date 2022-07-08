@@ -27,10 +27,12 @@ import {
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
 import { setPageJson } from "../../redux/actions/JsonDataActions";
+import { Inputbox } from "../UI/Input";
 
 const CustomizedIC = () => {
   const [jsonData, setJSONData] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
+  const { ReduxPageJson } = useSelector((state: any) => state);
 
   const { dispatch } = store;
 
@@ -46,12 +48,29 @@ const CustomizedIC = () => {
     handleDropDownChange(
       jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
     );
-    newJson()
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
+
+  useEffect(() => {
+    getImpactFactor(0);
+    newJson()
+    onLoadUpdates();
+  },[jsonData])
 
   function newJson(){
     dispatch(setPageJson(jsonData));
+    console.log("ReduxPageJson", ReduxPageJson.JsonData.data)
   }
+
+  const getselectedDDName = (options: any, selectedId: string) => {
+    let selectedDDName = "";
+    options.forEach((element: any) => {
+      if (element.ddId == selectedId) {
+        selectedDDName = element.ddName;
+      }
+    });
+    console.log(selectedDDName)
+    return selectedDDName;
+  };
 
   const nextHandleClick = (event: any) => {
     if (jsonData !== "") {
@@ -160,6 +179,69 @@ const CustomizedIC = () => {
     }
   };
 
+  const saleDDChange = (e:any, tableIndex:any, ri:any, detailIndex:any, options:any) => {
+    let data = {...jsonData};
+    //@ts-ignore
+    data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[detailIndex].selectedId = e.target.value;
+    data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[4].text = options.filter((x:any) => x.ddId == e.target.value)[0].ddValue
+    setJSONData(data);
+  }
+
+  const updateText = (e:any, tableIndex:any, ri:any, detailIndex:any) => {
+    let data = {...jsonData};
+    //@ts-ignore
+    data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[detailIndex].selectedText = e.target.value;
+    setJSONData(data);
+  }
+
+  const getImpactFactor = (tableIndex:any) =>{
+    let allQuartiles:any = [];
+    // jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
+    //   if(row?.rowDetails?.type == "Select"){
+    //     row?.rowDetails?.options?.map((opt:any) => {
+    //       allQuartiles?.push(opt.ddValue);
+    //     })
+    //   }
+    // })
+    jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
+      allQuartiles?.push(row?.rowDetails[4].text);
+    })
+    // allQuartiles.forEach((element:any, index:any) => {
+    //   if(index>0){
+    //     element = (Number(element))/100;
+    //   }
+    // });
+
+    // for(var i=0; i<allQuartiles.length; i++){
+    //   if(i>0){
+    //     allQuartiles[i] = (Number(allQuartiles[i]))/100;
+    //   }
+    // }
+
+    let calValue:any = 0; 
+
+    if(allQuartiles.length > 0){
+      // console.log(allQuartiles?.reduce((a:any,b:any) => a*b));
+      calValue = allQuartiles?.reduce((a:any,b:any) => a*b);
+      console.log(allQuartiles);
+    }
+
+    return Math.round(calValue);
+  }
+
+  const onLoadUpdates = () => {
+    let data = {...jsonData};
+    data?.data?.inputData?.SalesTables?.tbody?.map((table:any, ti:any) => {
+      table?.tbodyDetails?.map((row:any, ri:any) => {
+        if(row[4] != undefined){
+          row[4].text = row[3]?.options.filter()
+        }
+      })
+    })
+    console.log(data)
+    // setJSONData(data);
+  }
+
   return (
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
@@ -261,18 +343,21 @@ const CustomizedIC = () => {
         </div>
 
         <div className="contactpage-container__inr__section">
-          {jsonData?.data?.inputData?.SalesTables?.tbody?.map((table: any) => (
+          {jsonData?.data?.inputData?.SalesTables?.tbody?.map((table: any, tableIndex: any) => (
             <>
               <Box className="outputTable-container" sx={{ mb: 5 }}>
                 <div className="outputTable-container__inr">
                   <div>{table.theading}</div>
+                  <div>{"Impact factor : " + getImpactFactor(tableIndex)}</div>
+                  <div>{"Impact Value : " + (getImpactFactor(tableIndex) * jsonData?.data?.inputData?.SalesTables?.ARPU)}</div>
+                  <div>{Math.round(0.729 * 100)}</div>
 
                   <div className="outputTable-container__inr__body">
                     {table.tbodyDetails?.map((row: any, ri: any) => (
                       <div className="table-col" key={ri}>
-                        {row.rowDetails.map((detail: any) => (
+                        {row.rowDetails.map((detail: any, detailIndex: any) => (
                           <div className="table-row">
-                            {(detail.type == "String" || detail.type == "Number") ? (
+                            {(detail.type == "String") ? (
                               <span>{detail.text}</span>
                             )
                           :
@@ -287,22 +372,47 @@ const CustomizedIC = () => {
                                 if (selected?.length === 0) {
                                   return <>{"Select"}</>;
                                 }
-                
                                 return selected;
                               }}
-                              value={detail.selectedId}
+                              value={detail.options.filter((x:any) => x.ddId == detail?.selectedId)[0]?.ddName}
+                              onChange={(e) => saleDDChange(e, tableIndex, ri, detailIndex, detail.options)}
                               error={false}
                             >
                               <MenuItem disabled value="none" className="selectItem">
                                 <>{"Select"}</>
                               </MenuItem>
-                              {detail?.Options?.map((option: any) => (
+                              {detail?.options?.map((option: any) => (
                                 <MenuItem value={option?.ddId} className="selectItem">
                                   {option?.ddName}
                                 </MenuItem>
                               ))}
                             </Select>
-                          ) : ""}
+                          )
+                          :
+                          detail.type == "Input" ?
+                          (<>
+                            {/* <Inputbox
+                              value={detail?.selectedText}
+                              onChange={(e:any) => updateText(e, tableIndex, ri, detailIndex)}
+                            /> */}
+                            <input value={detail?.selectedText}
+                            onChange={(e:any) => updateText(e, tableIndex, ri, detailIndex)}
+                            />
+                          </>)
+                          :
+                          detail.type == "Number" ?
+                          (
+                            <>
+                              {(String(detail.text)).split(".").length > 1 ? 
+                                <span>{Math.round(detail.text * 100) + "%"}</span>
+                                :
+                                <span>{detail.text}</span>
+                            }
+                            </>
+                          )
+                          :
+                          ""
+                          }
                           </div>
                         ))}
                       </div>
@@ -314,7 +424,7 @@ const CustomizedIC = () => {
           ))}
         </div>
 
-        <div className="table_section">
+        {/* <div className="table_section">
           <div>Inbound sales</div>
           <div>
             <div className="t-row">
@@ -360,7 +470,7 @@ const CustomizedIC = () => {
           </div>
           <div>Three</div>
           <div>Four</div>
-        </div>
+        </div> */}
 
         <div className="contactpage-container__inr__section">
           <div className="single-dropdown-section">
