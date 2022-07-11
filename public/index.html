@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
@@ -63,20 +63,20 @@
               "headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback", "Sales Fieldforce", "Shops", "Total Impact"],
               "currencySymbol": "?",
               "rowDetails": [{
-                "tbodyDetails": ["Baseline", 21772555, 1355612, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1927347],
+                "tbodyDetails": ["Baseline", 21772555.32816, 1355611.95, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1927347.273],
                 "iconDetails": ["", "", "", "", "", ""]
               }, {
-                "tbodyDetails": ["Potential", 1486272, 28145, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1514417],
+                "tbodyDetails": ["Potential"],
                 "iconDetails": ["", "up", "", "up", "", ""]
               }, {
-                "tbodyDetails": ["Possible future baseline", 3937296, 1017871, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 412931],
+                "tbodyDetails": ["Possible future baseline"],
                 "iconDetails": ["", "", "", "", "", ""]
               }]
             
           },
     
           "SalesTables": {
-            "ARPU": 200,
+            "ARPU": 5,
             "theaders": [
               {
                 "rowDetails": ["","","","","10000","10000"]
@@ -438,10 +438,9 @@
                   ]
                 }
               ]
-            }]
+            }
+            ]
           },
-    
-    
           "potentialIncreaseData": {
             "heading": "Breakdown of potential increase by segment and its components",
             "segmentDD": {
@@ -467,6 +466,14 @@
               }, {
                 "ddName": "Winback",
                 "ddId": "Hidsegment_5_label"
+              },
+              {
+                "ddName": "Sales Fieldforce",
+                "ddId": "Hidsegment_6_label"
+              },
+              {
+                "ddName": "Shops",
+                "ddId": "Hidsegment_7_label"
               }]
             },
             "segmentTableChartData": {
@@ -506,10 +513,9 @@
         }
       }
     }
-    
-    
-    
-  </span>
+
+    </span>
+
   
 
   <input type="radio" id="A5_1_label" style="display: none" />
