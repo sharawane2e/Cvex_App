@@ -31,9 +31,11 @@ import { Inputbox } from "../UI/Input";
 import DynamicTable from "../UI/DynamicTable";
 
 const CustomizedIC = () => {
-  const [jsonData, setJSONData] = useState<any>("");
+  const [ jsonData, setJSONData ] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
   const { ReduxPageJson } = useSelector((state: any) => state);
+
+  const [ selectedSegment, setSelectedSegment ] = useState<any>("Hidsegment_1_label");
 
   const { dispatch } = store;
 
@@ -42,25 +44,37 @@ const CustomizedIC = () => {
       // @ts-ignore
       JSON.parse(document.getElementById("jsonData")?.innerHTML)
     );
+    // onLoadUpdates();
   }, []);
 
   useEffect(() => {
-    handleDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
+    // timeDDChange(jsonData?.data?.inputData?.periodDD?.selectedId);
     handleDropDownChange(
       jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId
     );
   }, [jsonData?.data?.inputData?.periodDD?.selectedId]);
 
+  // useEffect(() => {
+  //   updateSegTable();
+  // },[jsonData?.data?.inputData?.SalesTables?.tbody])
+
   useEffect(() => {
-    getImpactFactor(0);
-    newJson()
-    // onLoadUpdates();
     onLoadUpdates();
-  },[jsonData])
+  },[jsonData]);
+
+  useEffect(() => {
+    let segmentId = ReduxPageJson?.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
+    setSelectedSegment(segmentId);
+    // updateSegTable();
+  }, [ReduxPageJson])
 
   function newJson(){
     dispatch(setPageJson(jsonData));
     // console.log("ReduxPageJson", ReduxPageJson.JsonData.data)
+  }
+
+  const updateReduxJson = (json:any) => {
+    dispatch(setPageJson(json));
   }
 
   const CalculatePI = (num1:any, num2:any) => {
@@ -69,11 +83,17 @@ const CustomizedIC = () => {
     return result;
   }
 
-  const PIvalues = (num:any, isLastVal:any) => {
+  const CalculatePFB = (num1:any, arpu:any) => {
+    let result = Number(num1) * Number(arpu);
+    // console.log(num1,num2,result)
+    return result;
+  }
+
+  const PIvalues = (num:any) => {
     let selectedId = jsonData?.data?.inputData?.periodDD?.selectedId;
     let selectObj = jsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
     let result:any = 0;
-    if(selectObj?.ddName == "Monthly" && isLastVal==false){
+    if(selectObj?.ddName == "Monthly"){
       result = (Number(num)/12);
       // if(String(result)?.split(".").length>1){
       //   result = Math.round(result);
@@ -118,7 +138,7 @@ const CustomizedIC = () => {
     }
   };
 
-  const inputDetails = jsonData?.data?.inputData;
+  const inputDetails = ReduxPageJson.JsonData?.data?.inputData;
 
   const handleDDChange = (ddId: string) => {
     if (ddId != undefined) {
@@ -208,68 +228,50 @@ const CustomizedIC = () => {
           }
         });
       });
-      updateSegTable(ddId)
+      // updateSegTable();
     }
-    console.log(ddId)
+    // console.log(ddId)
   };
 
-  const updateSegTable = (ddId:any) => {
-    let selectedSale = jsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == ddId)[0].ddName;
-    let data = JSON.parse(JSON.stringify(jsonData));
-    data.data.inputData.potentialIncreaseData.segmentTableChartData[ddId].tbodyDetails = getAllQuartiles(selectedSale);
-    setJSONData(data);
-  }
-
-  const timeDDChange = (e:any, tableIndex:any, ri:any, detailIndex:any, options:any) => {
-    let data = JSON.parse(JSON.stringify(jsonData));
-    console.log(data)
-    //@ts-ignore
-    data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[detailIndex].selectedId = e.target.value;
-    data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[4].text = options.filter((x:any) => x.ddId == e.target.value)[0].ddValue
-    setJSONData(data);
-  }
-
-  // const saleDDChange = (e:any) => {
-  //   let data = JSON.parse(JSON.stringify(jsonData));
-  //   console.log(data)
-  //   //@ts-ignore
-  //   data.data.inputData.potentialIncreaseData?.segmentDD?.selectedId = e.target.value;
-  //   setJSONData(data);
-  // }
-
-  const updateText = (e:any, tableIndex:any, ri:any, detailIndex:any) => {
-    let data = JSON.parse(JSON.stringify(jsonData));
-    //@ts-ignore
-    data.data.inputData.SalesTables.tbody[tableIndex].tbodyDetails[ri].rowDetails[detailIndex].selectedText = e.target.value;
-    setJSONData(data);
-    getImpactFactor(tableIndex);
-  }
-
-  const getImpactFactor = (saleName:any) =>{
-    let allQuartiles:any = [];
-
-    // jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
-    //   if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
-    //     allQuartiles?.push((row?.rowDetails[5]?.selectedText)/100);
-    //   }
-    //   else{
-    //     allQuartiles?.push(row?.rowDetails[4]?.text);
-    //   }
-    // })
-
-    allQuartiles = getAllQuartiles(saleName)
-
-    let calValue:any = 0; 
-    if(allQuartiles.length > 0){
-      calValue = allQuartiles?.reduce((a:any,b:any) => a*b);
+  const timeDDChange = (ddId: string) => {
+    let data:any = {};
+    data = JSON.parse(JSON.stringify(ReduxPageJson.JsonData));
+    if(data != undefined && data != "" && data != {}){
+      data.data.inputData.periodDD.selectedId = ddId;
+      updateReduxJson(data);
     }
-    return Math.round(calValue);
+    document.getElementById(ddId)?.click();
+
+    // console.log(data)
+  }
+
+  const segmentDDChange = (ddId: string) => {
+    let data:any = {};
+    data = JSON.parse(JSON.stringify(ReduxPageJson.JsonData));
+    data.data.inputData.potentialIncreaseData.segmentDD.selectedId = ddId;
+
+    let name = data.data.inputData.potentialIncreaseData.segmentDD.options.filter((x:any) => x.ddId == ddId)[0].ddName;
+    console.log("getAllQuartiles", getAllQuartiles(name));
+    let preValues = getAllQuartiles(name);
+
+    if(preValues.length > 0){
+      for(var i=0; i<preValues.length; i++){
+        if(i>0){
+          preValues[i] = (preValues[i-1]) * (preValues[i]);
+          preValues[i] = Math.round(preValues[i])
+        }
+      }
+      data.data.inputData.potentialIncreaseData.segmentTableChartData[ddId].tbodyDetails = preValues;
+    }
+
+    updateReduxJson(data);
+    console.log(data)
   }
 
   const getAllQuartiles = (saleName:any) => {
     let arr:any = [];
-    let tableIndex = jsonData?.data?.inputData?.SalesTables?.tbody.findIndex((x:any) => x.theading == saleName);
-    jsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
+    let tableIndex = ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody.findIndex((x:any) => x.theading == saleName);
+    ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
       if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
         arr?.push((row?.rowDetails[5]?.selectedText)/100);
       }
@@ -280,8 +282,44 @@ const CustomizedIC = () => {
     return arr;
   }
 
+  const updateSegTable = (num:any) => {
+    let data:any = {};
+    data = JSON.parse(JSON.stringify(ReduxPageJson.JsonData));
+    let selectedId = data.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
+    let selectedSaleName = data.data?.inputData?.potentialIncreaseData?.segmentDD?.options?.filter((x:any) => x.ddId == selectedId)[0].ddName;
+    let preValues = getAllQuartiles(selectedSaleName);
+    // console.log(selectedSaleName);
+    
+    if(preValues.length > 0){
+      for(var i=0; i<preValues.length; i++){
+        if(i>0){
+          preValues[i] = (preValues[i-1]) * (preValues[i]);
+          preValues[i] = Math.round(preValues[i])
+        }
+      }
+  
+      if(data != undefined){
+        data.data.inputData.potentialIncreaseData.segmentTableChartData[selectedId].tbodyDetails = preValues;
+      }
+      return preValues[num];
+    }
+    else{
+      return 0;
+    }
+
+  }
+
+  // const saleDDChange = (e:any) => {
+  //   let data = JSON.parse(JSON.stringify(jsonData));
+  //   console.log(data)
+  //   //@ts-ignore
+  //   data.data.inputData.potentialIncreaseData?.segmentDD?.selectedId = e.target.value;
+  //   setJSONData(data);
+  // }
+
   const onLoadUpdates = () => {
-    let data = JSON.parse(JSON.stringify(jsonData));
+    let data:any = {};
+    data = JSON.parse(JSON.stringify(jsonData));
     // data?.data?.inputData?.SalesTables?.tbody?.map((table:any, ti:any) => {
     //   table?.tbodyDetails?.map((row:any, ri:any) => {
     //     if(row[4] != undefined){
@@ -298,6 +336,29 @@ const CustomizedIC = () => {
     //   console.log(saleIds)
     // }
 
+    let pfbArr:any = [];
+    let potentialArr:any = [];
+    data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails.map((ele:any, ind:any) => {
+      if(ind>0){
+        if(typeof ele == "number"){
+          let potentialVal =  (ele * data?.data?.inputData?.SalesTables?.ARPU) - ele;
+          potentialArr.push(Math.round(potentialVal))
+          pfbArr.push(Math.round(ele * data?.data?.inputData?.SalesTables?.ARPU));
+        }
+        else{
+          potentialArr.push(ele);
+          pfbArr.push(ele);
+        }
+      }
+    });
+
+    if(data != undefined && data != ""){
+        let prePOTArr = data.data.inputData.periodTableData.rowDetails[1].tbodyDetails;
+        let prePFBArr = data.data.inputData.periodTableData.rowDetails[2].tbodyDetails;
+        data.data.inputData.periodTableData.rowDetails[1].tbodyDetails = prePOTArr.concat(potentialArr);
+        data.data.inputData.periodTableData.rowDetails[2].tbodyDetails = prePFBArr.concat(pfbArr);
+        updateReduxJson(data);
+    }
     // setJSONData(data);
   }
 
@@ -305,7 +366,7 @@ const CustomizedIC = () => {
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
       <div className="contactpage-container__inr">
-        <button onClick={() => console.log(jsonData)}>Console JsonData</button>
+        <button onClick={() => {console.log(ReduxPageJson.JsonData);}}>Console JsonData</button>
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
             <Grid
@@ -318,7 +379,7 @@ const CustomizedIC = () => {
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.periodDD}
-                    onChange={(ddId: string) => handleDDChange(ddId)}
+                    onChange={(ddId: string) => timeDDChange(ddId)}
                   />
                 ) : (
                   ""
@@ -337,7 +398,7 @@ const CustomizedIC = () => {
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">
-                {jsonData?.data?.inputData?.periodTableData?.headings?.map((heading: any) => {
+                {ReduxPageJson.JsonData?.data?.inputData?.periodTableData?.headings?.map((heading: any) => {
                   return (
                     <div
                       className={
@@ -350,7 +411,7 @@ const CustomizedIC = () => {
                 })}
               </div>
               <div className="outputTable-container__inr__body">
-                {jsonData?.data?.inputData?.periodTableData?.rowDetails?.map(
+                {ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails?.map(
                   (rowDetail: any, rowIndex: number) => {
                     const currencySymbol =
                       inputDetails?.periodTableData?.A5_1_label?.currencySymbol;
@@ -360,14 +421,19 @@ const CustomizedIC = () => {
                           return typeof tbodyDetail == "number" ? (
                             <div className="table-row">
 
-                              {rowIndex == 1 ? 
-                              <span>{((rowDetail?.tbodyDetails.length-1) == tdIndex) ? PIvalues(CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex]), true) : PIvalues(CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex]), false)}</span> 
+                              {/* {rowIndex == 0 ? 
+                              <span>{PIvalues(tbodyDetail)}</span>
+                              :
+                              rowIndex == 1 ?
+                              <span>{PIvalues(CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex]))}</span> 
                               : 
-                              <span>{((rowDetail?.tbodyDetails.length-1) == tdIndex) ? PIvalues(tbodyDetail,true) : PIvalues(tbodyDetail,false)}</span>}
-
+                              <span>{PIvalues(CalculatePFB(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.SalesTables?.ARPU))}</span>
+                              } */}
+                              
                               {/* <span className="currency-symbol">
                                 {currencySymbol}
                               </span> */}
+                              <span>{PIvalues(tbodyDetail)}</span>
                             </div>
                           ) : (
                             <div className="table-row">
@@ -407,88 +473,6 @@ const CustomizedIC = () => {
           </div>
         </div>
 
-        <div className="contactpage-container__inr__section">
-          {jsonData?.data?.inputData?.SalesTables?.tbody?.map((table: any, tableIndex: any) => (
-            <>
-              <Box className="outputTable-container" sx={{ mb: 5 }}>
-                <div className="outputTable-container__inr">
-                  <div>{table.theading}</div>
-                  <div>{"Impact factor : " + getImpactFactor(table.theading)}</div>
-                  <div>{"Impact Value : " + (getImpactFactor(table.theading) * jsonData?.data?.inputData?.SalesTables?.ARPU)}</div>
-                  <div>{Math.round(0.729 * 100)}</div>
-
-                  <div className="outputTable-container__inr__body">
-                    {table.tbodyDetails?.map((row: any, ri: any) => (
-                      <div className="table-col" key={ri}>
-                        {row.rowDetails.map((detail: any, detailIndex: any) => (
-                          <div className="table-row">
-                            {(detail.type == "String") ? (
-                              <span>{detail.text}</span>
-                            )
-                          :
-                          detail.type == "Select" ? 
-                          (
-                            <Select
-                              sx={{ p: 0, borderRadius: 0, mb: 1 ,width:"100%"}}
-                              className="inputField cutom-input-field"
-                              defaultValue={detail.selectedId}
-                              displayEmpty
-                              renderValue={(selected) => {
-                                if (selected?.length === 0) {
-                                  return <>{"Select"}</>;
-                                }
-                                return selected;
-                              }}
-                              value={detail.options.filter((x:any) => x.ddId == detail?.selectedId)[0]?.ddName}
-                              onChange={(e) => timeDDChange(e, tableIndex, ri, detailIndex, detail.options)}
-                              error={false}
-                            >
-                              <MenuItem disabled value="none" className="selectItem">
-                                <>{"Select"}</>
-                              </MenuItem>
-                              {detail?.options?.map((option: any) => (
-                                <MenuItem value={option?.ddId} className="selectItem">
-                                  {option?.ddName}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          )
-                          :
-                          detail.type == "Input" ?
-                          (<>
-                            {/* <Inputbox
-                              value={detail?.selectedText}
-                              onChange={(e:any) => updateText(e, tableIndex, ri, detailIndex)}
-                            /> */}
-                            <input value={detail?.selectedText}
-                            onChange={(e:any) => updateText(e, tableIndex, ri, detailIndex)}
-                            />
-                          </>)
-                          :
-                          detail.type == "Number" ?
-                          (
-                            <>
-                              {(String(detail.text)).split(".").length > 1 ? 
-                                <span>{Math.round(detail.text * 100) + "%"}</span>
-                                :
-                                <span>{detail.text}</span>
-                            }
-                            </>
-                          )
-                          :
-                          ""
-                          }
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Box>
-            </>
-          ))}
-        </div>
-
         <DynamicTable />
 
         <div className="contactpage-container__inr__section">
@@ -517,7 +501,7 @@ const CustomizedIC = () => {
                 {inputDetails != undefined ? (
                   <HsddInput
                     question={inputDetails?.potentialIncreaseData?.segmentDD}
-                    onChange={(ddId: string) => handleDropDownChange(ddId)}
+                    onChange={(ddId: string) => segmentDDChange(ddId)}
                   />
                 ) : (
                   ""
@@ -529,7 +513,7 @@ const CustomizedIC = () => {
           <Box className="outputTable-container" sx={{ mb: 5 }}>
             <div className="outputTable-container__inr">
               <div className="outputTable-container__inr__header">
-                {jsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.Hidsegment_1_label?.headings?.map((el: any) => {
+                {ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.[selectedSegment]?.headings?.map((el: any) => {
                   return (
                     <div className="table-col">
                       <span>{el}</span>
@@ -539,11 +523,11 @@ const CustomizedIC = () => {
               </div>
               <div className="outputTable-container__inr__body">
                 <div className="table-col">
-                  {jsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.Hidsegment_1_label?.tbodyDetails?.map(
-                    (el: any) => {
+                  {ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.[selectedSegment]?.tbodyDetails?.map(
+                    (el: any, i:any) => {
                       return (
                         <div className="table-row">
-                          <span>{el}</span>
+                          <span>{updateSegTable(i)}</span>
                         </div>
                       );
                     }
