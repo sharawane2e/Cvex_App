@@ -9,6 +9,10 @@
       margin-top:170px !important;
       height: calc(100vh - 300px);
     }
+    @include breakpoint(landscape-smalldevice) {
+      height: calc(100vh - 275px);
+      margin-top: 50px  !important;
+    }
     overflow-y:auto;
     .title {
       text-align: left;
@@ -24,6 +28,9 @@
     .content-area {
       @include breakpoint(sm-mobileonly) {
         padding-top:0px !important;
+      }
+      @include breakpoint(landscape-smalldevice) {
+        padding-top: 20px !important;
       }
       p {
         text-align: left;
@@ -45,42 +52,47 @@
       }
     }
   }
-}
-.input-error {
-  display: inline-block;
-  color: $red-color;
-  font-size: 14px;
-  padding-top: 4px;
-}
-.welcome-helpdesk {
-  margin-top: 60px;
-  text-align: left;
-  letter-spacing: 0px;
-  font-size: 14px;
-  @include breakpoint(sm-mobileonly) {
-    margin-top: 20px;
-  }
-  a {
-    display: block;
+
+
+
+  .input-error {
+    display: inline-block;
+    color: $red-color;
+    font-size: 14px;
     padding-top: 4px;
-    font-size: 12px;
-    color: $blue-color;
   }
-}
-.button-container {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-}
-.cursor-block {
-  cursor: not-allowed;
-  display: inline-block;
-  text-align: center;
+  .welcome-helpdesk {
+    margin-top: 60px;
+    text-align: left;
+    letter-spacing: 0px;
+    font-size: 14px;
+    @include breakpoint(sm-mobileonly) {
+      margin-top: 20px;
+    }
+    a {
+      display: block;
+      padding-top: 4px;
+      font-size: 12px;
+      color: $blue-color;
+    }
+  }
+  .button-container {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+  .cursor-block {
+    cursor: not-allowed;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .submit-block {
+    pointer-events: none;
+  }
+
 }
 
-.submit-block {
-  pointer-events: none;
-}
 
 
 

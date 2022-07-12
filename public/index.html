@@ -29,494 +29,56 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <span id="jsonData" style="display: none;">
-    
     {
+
       "pageCode": {
-        "page": 15
+
+        "page": 5
+
       },
+
       "data": {
+
         "headerData": {
-          "title": "CVEx - Customer Value Execution - Impact Calculator - Contact Centre",
+
+          "title": "Customer Value Execution",
+
           "logo": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/mck-logo.svg",
+
           "banner": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png"
+
         },
-        "inputData": {
-          "heading": "Breakdown of baseline and proposed baseline by segmenmt",
-          "periodDD": {
-            "optionName": "Select a period to view",
-            "type": "dd",
-            "error_id": "HidMonth",
-            "placeholder": "",	
-            "description": "",
-            "questionId": "HidMonth",
-            "selectedId": "HidMonth_1_label",
-            "options": [{
-              "ddName": "Monthly",
-              "ddId": "HidMonth_1_label"
-            }, {
-              "ddName": "Yearly",
-              "ddId": "HidMonth_2_label"
-            }]
+
+        "contentDetails": {
+
+          "contentImg": "https://e2eresearch.com/swteam/McKinsey/CVEx_Epr/asmt/intro-banner.png",
+
+          "headingTxt": "Thanks",
+
+          "content": "&lt;p&gt;Thank you for filling out the Customer Value Execution (CVEx) diagnostic.&lt;/p&gt;&lt;p&gt; The CVEx team will set up a meeting with you to discuss the results and recommended next steps. For questions, please reach out to &lt;a href=mailto:konstantin_pell@mckinsey.com&gt;Konstantin Pell&lt;/a&gt;,&lt;a href=mailto:thomas_ternai@mckinsey.com&gt;Thomas Ternai&lt;/a&gt; and &lt;a href=mailto:arian_meyer@mckinsey.com&gt;Arian Meyer&lt;/a&gt; &lt;/p&gt;",
+
+          "contactDetails": {
+
+            "contactHeading": "",
+
+            "contactTxt": ""
+
           },
-          "periodTableData": {
-            
-              "headings": ["", "Inbound sales", "Outbound Sales", "Service to Sales", "Retention", "Winback", "Sales Fieldforce", "Shops", "Total Impact"],
-              "currencySymbol": "?",
-              "rowDetails": [{
-                "tbodyDetails": ["Baseline", 21772555.32816, 1355611.95, "Not selected", "Not selected", "Not selected", "Not selected", "Not selected", 1927347.273],
-                "iconDetails": ["", "", "", "", "", ""]
-              }, {
-                "tbodyDetails": ["Potential"],
-                "iconDetails": ["", "up", "", "up", "", ""]
-              }, {
-                "tbodyDetails": ["Possible future baseline"],
-                "iconDetails": ["", "", "", "", "", ""]
-              }]
-            
-          },
-    
-          "SalesTables": {
-            "ARPU": 5,
-            "theaders": [
-              {
-                "rowDetails": ["","","","","10000","10000"]
-              },
-              {
-                "rowDetails": ["","","","Client/Baseline","Custom Quartile and Benchmark","Customized Impact"]
-              },
-              {
-                "rowDetails": ["","","Original Baseline","Revised Baseline","Quartile to move","Quartile benchmark", "Custom Benchmark", "Impact factor", "Impact Value"]
-              }
-            ],
-            "tbody": [{
-              "theading": "Inbound Sales",
-              "Impactfactor": 1000,
-              "ImpactValue": 1000,
-              "disable": false,
-              "tbodyDetails": [
-                {
-                  "rowDetails": [
-                    {
-                      "text": "Average Incoming Calls per month",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "type": "Select",
-                      "selectedId": "a",
-                      "disable": false,
-                      "placeholder": "Please select",
-                      "options": [{
-                          "ddName": "Top quartile",
-                          "ddValue": 962189,
-                          "afterText": "%",
-                          "ddId": "a"
-                        },
-                        {
-                          "ddName": "Upper quartile",
-                          "ddValue": 769751,
-                          "ddId": "b"
-                        },
-                        {
-                          "ddName": "Median quartile",
-                          "ddValue": 641459,
-                          "ddId": "c"
-                        },
-                        {
-                          "ddName": "Lower quartile",
-                          "ddValue": 320730,
-                          "ddId": "d"
-                        }
-                      ]	
-                    },
-                    {
-                      "text": 641459,
-                      "type": "Number"
-                    },
-                    {
-                      "selectedText": "",
-                      "type": "Input",
-                      "placeholder": "#",
-                      "afterText": "",
-                      "maxLength": 9,
-                      "maxRange": 100,
-                      "minRange": 0,
-                      "decimalPlaces": 0
-                    }
-                  ]
-                },
-                {
-                  "rowDetails": [
-                    {
-                      "text": "Touchpoints (Contact rate)",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "type": "Select",
-                      "selectedId": "a",
-                      "disable": false,
-                      "placeholder": "Please select",
-                      "options": [{
-                          "ddName": "Top quartile",
-                          "ddValue": 0.96,
-                          "ddId": "a"
-                        },
-                        {
-                          "ddName": "Upper quartile",
-                          "ddValue": 0.90,
-                          "ddId": "b"
-                        },
-                        {
-                          "ddName": "Median quartile",
-                          "ddValue": 0.81,
-                          "ddId": "c"
-                        },
-                        {
-                          "ddName": "Lower quartile",
-                          "ddValue": 0.729,
-                          "ddId": "d"
-                        }
-                      ]	
-                    },
-                    {
-                      "text": 0.81,
-                      "type": "Number"
-                    },
-                    {
-                      "selectedText": "",
-                      "type": "Input",
-                      "placeholder": "#",
-                      "afterText": "",
-                      "maxLength": 9,
-                      "maxRange": 100,
-                      "minRange": 0,
-                      "decimalPlaces": 0
-                    }
-                  ]
-                },
-                {
-                  "rowDetails": [
-                    {
-                      "text": "Offer potential (Eligibility rate)",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "type": "Select",
-                      "selectedId": "d",
-                      "disable": false,
-                      "placeholder": "Please select",
-                      "options": [{
-                          "ddName": "Top quartile",
-                          "ddValue": 0.90,
-                          "ddId": "a"
-                        },
-                        {
-                          "ddName": "Upper quartile",
-                          "ddValue": 0.80,
-                          "ddId": "b"
-                        },
-                        {
-                          "ddName": "Median quartile",
-                          "ddValue": 0.69,
-                          "ddId": "c"
-                        },
-                        {
-                          "ddName": "Lower quartile",
-                          "ddValue": 0.49,
-                          "ddId": "d"
-                        }
-                      ]	
-                    },
-                    {
-                      "text": 0.92,
-                      "type": "Number"
-                    },
-                    {
-                      "selectedText": "",
-                      "type": "Input",
-                      "placeholder": "#",
-                      "afterText": "",
-                      "maxLength": 9,
-                      "maxRange": 100,
-                      "minRange": 0,
-                      "decimalPlaces": 0
-                    }
-                  ]
-                },
-                {
-                  "rowDetails": [
-                    {
-                      "text": "Offers (Attempt rate)",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "type": "Select",
-                      "selectedId": "b",
-                      "disable": false,
-                      "placeholder": "Please select",
-                      "options": [{
-                          "ddName": "Top quartile",
-                          "ddValue": 0.97,
-                          "ddId": "a"
-                        },
-                        {
-                          "ddName": "Upper quartile",
-                          "ddValue": 0.89,
-                          "ddId": "b"
-                        },
-                        {
-                          "ddName": "Median quartile",
-                          "ddValue": 0.74,
-                          "ddId": "c"
-                        },
-                        {
-                          "ddName": "Lower quartile",
-                          "ddValue": 0.63,
-                          "ddId": "d"
-                        }
-                      ]	
-                    },
-                    {
-                      "text": 0.63,
-                      "type": "Number"
-                    },
-                    {
-                      "selectedText": "",
-                      "type": "Input",
-                      "placeholder": "#",
-                      "afterText": "",
-                      "maxLength": 9,
-                      "maxRange": 100,
-                      "minRange": 0,
-                      "decimalPlaces": 0
-                    }
-                  ]
-                },
-                {
-                  "rowDetails": [
-                    {
-                      "text": "Sales / Retention (Conversion rate)",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "type": "Select",
-                      "selectedId": "a",
-                      "disable": false,
-                      "placeholder": "Please select",
-                      "options": [{
-                          "ddName": "Top quartile",
-                          "ddValue": 0.60,
-                          "ddId": "a"
-                        },
-                        {
-                          "ddName": "Upper quartile",
-                          "ddValue": 0.54,
-                          "ddId": "b"
-                        },
-                        {
-                          "ddName": "Median quartile",
-                          "ddValue": 0.45,
-                          "ddId": "c"
-                        },
-                        {
-                          "ddName": "Lower quartile",
-                          "ddValue": 0.39,
-                          "ddId": "d"
-                        }
-                      ]	
-                    },
-                    {
-                      "text": 0.54,
-                      "type": "Number"
-                    },
-                    {
-                      "selectedText": "",
-                      "type": "Input",
-                      "placeholder": "#",
-                      "afterText": "",
-                      "maxLength": 9,
-                      "maxRange": 100,
-                      "minRange": 0,
-                      "decimalPlaces": 0
-                    }
-                  ]
-                },
-                {
-                  "rowDetails": [
-                    {
-                      "text": "Eff. Sales (1- Cancelation rate)",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "text": "NS",
-                      "type": "String"
-                    },
-                    {
-                      "type": "Select",
-                      "selectedId": "a",
-                      "disable": false,
-                      "placeholder": "Please select",
-                      "options": [{
-                          "ddName": "Top quartile",
-                          "ddValue": 0.90,
-                          "ddId": "a"
-                        },
-                        {
-                          "ddName": "Upper quartile",
-                          "ddValue": 0.81,
-                          "ddId": "b"
-                        },
-                        {
-                          "ddName": "Median quartile",
-                          "ddValue": 0.73,
-                          "ddId": "c"
-                        },
-                        {
-                          "ddName": "Lower quartile",
-                          "ddValue": 0.6561,
-                          "ddId": "d"
-                        }
-                      ]	
-                    },
-                    {
-                      "text": 0.6561,
-                      "type": "Number"
-                    },
-                    {
-                      "selectedText": "",
-                      "type": "Input",
-                      "placeholder": "#",
-                      "afterText": "",
-                      "maxLength": 9,
-                      "maxRange": 100,
-                      "minRange": 0,
-                      "decimalPlaces": 0
-                    }
-                  ]
-                }
-              ]
-            }
-            ]
-          },
-          "potentialIncreaseData": {
-            "heading": "Breakdown of potential increase by segment and its components",
-            "segmentDD": {
-              "optionName": "Select a period to view",
-              "type": "dd",
-              "error_id": "Hidsegment",
-              "placeholder": "Please select",
-              "description": "Choose segment to view in detail",
-              "questionId": "Hidsegment",
-              "selectedId": "Hidsegment_1_label",
-              "options": [{
-                "ddName": "Inbound Sales",
-                "ddId": "Hidsegment_1_label"
-              }, {
-                "ddName": "Outbound Sales",
-                "ddId": "Hidsegment_2_label"
-              }, {
-                "ddName": "Service to Sales",
-                "ddId": "Hidsegment_3_label"
-              }, {
-                "ddName": "Retention",
-                "ddId": "Hidsegment_4_label"
-              }, {
-                "ddName": "Winback",
-                "ddId": "Hidsegment_5_label"
-              },
-              {
-                "ddName": "Sales Fieldforce",
-                "ddId": "Hidsegment_6_label"
-              },
-              {
-                "ddName": "Shops",
-                "ddId": "Hidsegment_7_label"
-              }]
-            },
-            "segmentTableChartData": {
-              "Hidsegment_1_label": {
-                "headings": ["Average Incoming calls per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Incoming calls", "Lost calls", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [],
-                "chartDetails": []
-              },
-              "Hidsegment_2_label": {
-                "headings": ["Leads per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Leads", "No contact made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [],
-                "chartDetails": []
-              },
-              "-Hidsegment_3_label": {
-                "headings": ["Average Incoming S2S requests per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Incoming S2S requests", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [],
-                "chartDetails": []
-              },
-              "Hidsegment_4_label": {
-                "headings": ["Retention per year", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Retention", "No touchpoint made", "No offer potential", "Offers not extended", [], "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [],
-                "chartDetails": []
-              },
-              "Hidsegment_5_label": {
-                "headings": ["Winback leads", "Touchpoints (Contact rate)", "Offer potential (Eligibility rate)", "Offers (Attempt rate)", "Sales / Retention (Conversion rate)", "Eff. Sales (1- Cancelation rate)"],
-                "chartLabels": ["Winback leads", "No touchpoint made", "No offer potential", "Offers not extended", "Offers not accepted", "Cancellations", "Total"],
-                "tbodyDetails": [],
-                "chartDetails": []
-              }
-              
-            }
+
+          "resultBTnDetails": {
+
+            "resultBTnTxt": "",
+
+            "forwardInputId": ""
+
           }
+
         }
+
       }
+
     }
-
-    </span>
-
-  
+  </span>
 
   <input type="radio" id="A5_1_label" style="display: none" />
   <input type="radio" id="A5_2_label" style="display: none" />

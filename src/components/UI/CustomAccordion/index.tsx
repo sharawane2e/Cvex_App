@@ -46,7 +46,7 @@ export default function CustomAccordion(props: AccordionProps) {
     updatedCapabilityDetails[capabilityDetailIndex].groupAll =
       !updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     //@ts-ignore
-    document.getElementById(updatedCapabilityDetails[capabilityDetailIndex].groupToggleId).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
+    // document.getElementById(updatedCapabilityDetails[capabilityDetailIndex].groupToggleId).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     dispatch(updateCapabilityDetails(updatedCapabilityDetails));
   };
 
@@ -185,6 +185,8 @@ export default function CustomAccordion(props: AccordionProps) {
                             capabilityDetailIndex={capabilityDetailIndex}
                             subTitleIndex={subTitleIndex}
                           />
+                          <div className='observationbox'>
+                            <div className='observation_left'>
                           <input
                             type="text"
                             className="custom-text-area"
@@ -198,6 +200,10 @@ export default function CustomAccordion(props: AccordionProps) {
                             }
                             placeholder={subTitleDetail?.obsplaceholder}
                           />
+                          </div>
+                            <div className='observation_right'></div>
+                            
+                          </div>
                           {/* <TextareaAutosize
                             aria-label="minimum height"
                             className="custom-text-area"
@@ -257,6 +263,7 @@ export default function CustomAccordion(props: AccordionProps) {
                 } */}
                 {(capabilityDetail?.showObservation == true)
                   ?
+                  <div className='block_observation'>
                   <input
                   type="text"
                   className="custom-text-area"
@@ -269,8 +276,9 @@ export default function CustomAccordion(props: AccordionProps) {
                     }
                   }
                   placeholder={capabilityDetail.obsplaceholder}
-                  
-                /> : null
+                /> 
+                </div>
+                : null
                 }
               </Accordion>
             </>

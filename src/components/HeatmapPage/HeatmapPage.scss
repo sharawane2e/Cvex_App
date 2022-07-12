@@ -1,6 +1,9 @@
 
 .heatmap-container {
   padding: 20px 50px;
+  @include breakpoint(sm-mobileonly) {
+    padding:3px 10px;
+  }
   .table_container {
     height: calc(100vh - 308px);
     overflow-y: auto;
@@ -19,19 +22,15 @@
     padding: 20px 15px !important;
 }
 
-
-
-}
-
 .bg-dark {
   background-color: #051d2e !important;
 }
 
-.heatmap-container {
-  padding: 20px 50px;
-  @include breakpoint(sm-mobileonly) {
-    padding:3px 10px;
-  }
+
+
+
+
+  
   .bg-darkblue {
     background-color: #1d3fe7 !important;
   }
@@ -634,59 +633,59 @@
   }
 
   /*=============== END Ipad Device ==============*/
-}
+
 
 @include breakpoint(desktop1280) {
-  .heatmap-container .custom-table {
+  .custom-table {
     margin-top: 0;
   }
-  .heatmap-container .table_container {
+  .table_container {
     height:calc(100vh - 251px) !important;
     padding-bottom: 1px;
   }
-  .heatmap-container .custom-col-head p {
+  .custom-col-head p {
     font-size: 11px !important;
   }
-  .heatmap-container .custom-col-head .headingSerialNo {
+  .custom-col-head .headingSerialNo {
       font-size: 11px;
   }
-  .heatmap-container .custom-col .context {
+  .custom-col .context {
       font-size: 10px;
   }
-  .heatmap-container .custom-col-head {
+  .custom-col-head {
     font-size: 12px !important;
     min-height: 55px !important;
   }
-  .heatmap-container .custom-col {
+  .custom-col {
     font-size: 11px !important;
   }
-  .heatmap-container .checkbox {
+  .checkbox {
       font-size: 9px;
   }
-  .heatmap-container .checkbox-box {
+  .checkbox-box {
       width: 10px;
       height: 10px;
   }
-  .heatmap-container .markers div b {
+  .markers div b {
       font-size: 10px;
   }
-  .heatmap-container .track {
+  .track {
       height: 2px;
   }
-  .heatmap-container .marker-ball {
+  .marker-ball {
         height: 15px;
         width: 15px;
         top: -6.5px;
   }
-  .heatmap-container .track:after {
+ .track:after {
       border-top: 5px solid white;
       border-bottom: 4px solid white;
       border-left: 7px solid black;
       top: -3.5px;
   }
-  .heatmap-container .Illustrative {
+  .Illustrative {
       font-size: 10px;
   }
 }
 
-
+}

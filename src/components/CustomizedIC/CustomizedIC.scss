@@ -1,3 +1,4 @@
+
 .table_section {
   width: -webkit-fill-available;
   display: inline-flex;
@@ -13,4 +14,8 @@
 .t-row > .t-data {
   display: inline-block;
   width: 16%;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }

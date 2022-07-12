@@ -336,7 +336,7 @@ const GI = () => {
                       xs={12}
                       md={6}
                       className="inputCont"
-                      sx={{ borderBottom: "1px solid #c4c4c4" }}
+                      sx={{ borderBottom: "1px solid #c4c4c4", pb: 1}}
                     >
                       <Grid container>
                         <Grid

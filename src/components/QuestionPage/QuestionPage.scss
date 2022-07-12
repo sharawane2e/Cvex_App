@@ -14,6 +14,8 @@
         position: fixed;
         height: 100%;
         z-index: 3;
+        overflow-y: auto !important;
+        height: calc(100vh - 75px) !important;
       }
       @include breakpoint(sm-mobileonly) {
         margin-left: -280px;
@@ -21,6 +23,16 @@
         position: fixed;
         height: 100%;
         z-index: 3;
+        overflow-y: auto !important;
+        height: calc(100vh - 75px) !important;
+      }
+      @include breakpoint(landscape-mobileonly) {
+        overflow-y: auto !important;
+        height: calc(100vh - 75px) !important;
+      }
+      @include breakpoint(landscape-smalldevice) {
+        overflow-y: auto !important;
+        height: calc(100vh - 100px) !important;
       }
     }
 
@@ -79,10 +91,18 @@
         @include breakpoint(landscape-mobileonly) {
           height: calc(100vh - 231px) !important;
         }
-        @include breakpoint(sm-mobileonly) {
-          height: calc(100vh - 242px);
+        @include breakpoint(landscape-smalldevice) {
+          height: calc(100vh - 240px) !important;
         }
-
+        @include breakpoint(sm-mobileonly) {
+          height: calc(100vh - 220px);
+        }
+        @include breakpoint(Ipad) {
+          height: calc(100vh - 245px) !important;
+        }
+        @include breakpoint(landscape-mediumdevice) {
+          height: calc(100vh - 245px) !important;
+        }
         .question_text {
           font-size: 13px;
           padding: 0 16px;
@@ -113,6 +133,29 @@
         }
       }
     }
+  }
+
+
+
+
+
+  .justi {
+    justify-content: end !important;
+    -webkit-justify-content: end !important;
+  }
+  
+  .Mui-expanded,
+  .accordHead {
+    min-height: 20px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    @include breakpoint(sm-mobileonly) {
+      margin-bottom: 0px !important;
+      padding: 0 5px !important;
+    }
+  }
+  .mar-right {
+    margin-right: 5px !important;
   }
 }
 .question-wrapper {
@@ -189,139 +232,142 @@
   }
 }
 @include breakpoint(Ipad) {
-  .leftPanel .progressbar-container .progressbar {
-    width: 71% !important;
+  .question-wrapper {
+    .leftPanel .progressbar-container .progressbar {
+      width: 65% !important;
+    }
+    .leftPanel {
+      width: 63% !important;
+    }
+    .rightPanel {
+        width:37%;
+    }
+    .main-container .right-panel__inr .observation_left {
+      width: 85%;
+    }
+    .main-container .right-panel__inr .observation_right {
+      width: 15%;
+    }
+    .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-markLabel {
+      width:109px !important;
+    }
+    .justi {
+        text-align: right;
+    }
+    .leftPanel .progressbar-container .progressbar-innercontainer {
+      align-items: right;
+    }
   }
-  .leftPanel {
-    width: 63% !important;
-  }
-  .question-wrapper .main-container .right-panel__inr .observation_left {
-    width: 85%;
-  }
-  .question-wrapper .main-container .right-panel__inr .observation_right {
-    width: 15%;
-  }
+  
 }
 @include breakpoint(sm-mobileonly) {
-  .accordBlock .block_observation {
-      padding:8px 0px 16px !important;
-  }
-  .question-wrapper .main-container .right-panel__inr .observation_left {
-    width: 100%;
-  }
-  .question-wrapper .main-container .right-panel__inr .observation_right {
-    width: 0;
-  }
-  .leftPanel .progressbar-container .progressbar {
-    width: 100% !important;
-  }
-  .leftPanel {
-    width: 100% !important;
-    height: 37px;
-  }
-  .css-eglki6-MuiLinearProgress-root {
-    margin-left: 0 !important;
-  }
-  .progressbar-text.css-pazuet {
-    left: 20px !important;
-    margin-top: 5px !important;
-  }
-  .css-15v22id-MuiAccordionDetails-root {
-    padding: 15px 0px 10px !important;
+  .question-wrapper {
+    .accordBlock .block_observation {
+        padding:8px 0px 16px !important;
+    }
+    .main-container .right-panel__inr .observation_left {
+      width: 100%;
+    }
+    .main-container .right-panel__inr .observation_right {
+      width: 0;
+    }
+    .leftPanel .progressbar-container .progressbar {
+      width: 100% !important;
+    }
+    .leftPanel {
+      width: 100% !important;
+      height: 37px;
+    }
+    .css-eglki6-MuiLinearProgress-root {
+      margin-left: 0 !important;
+    }
+    .progressbar-text.css-pazuet {
+      left: 20px !important;
+      margin-top: 5px !important;
+    }
+    .css-15v22id-MuiAccordionDetails-root {
+      padding: 15px 0px 10px !important;
+    }
   }
 }
 
-.justi {
-  justify-content: end !important;
-}
 
-.Mui-expanded,
-.accordHead {
-  min-height: 20px !important;
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
-  @include breakpoint(sm-mobileonly) {
-    margin-bottom: 0px !important;
-    padding: 0 5px !important;
-  }
-}
-.mar-right {
-  margin-right: 5px !important;
-}
 
 @include breakpoint(desktop1280) {
-  .question-wrapper .main-container {
-    height: calc(100vh - 60px);
-  }
-  .question-wrapper .main-container .right-panel__inr {
-    height: calc(100vh - 197px);
-  }
-  .sidebar .listitem-container {
-    position: relative;
-    padding:10px 15px !important;
-  }
-  .leftPanel .progressbar-container .progressbar {
-    width: 77% !important;
-  }
-  div.sidebar span {
-      font-size: 10px !important;
-  }
-  .progressbar-text.css-pazuet p {
-    font-size:10px;
-  }
-  .progressbar-text.css-pazuet {
-      width: 125px !important;
-  }
-  .question-wrapper .main-container .right-panel .title h2 {
-      font-size: 13px;
-  }
-  .question-wrapper .main-container .right-panel__inr .question_text {
-      font-size: 11px;
-      margin-bottom: 13px;
-  }
-  .Mui-expanded, .accordHead {
-      min-height: 12px !important;
-      margin-top: 10px !important;
-      margin-bottom: 5px !important;
-  }
-  .accordBlock p {
-      font-size: 10px !important;
-  }
-  .rightPanel .button-container .previous-button, .rightPanel .button-container .next-button {
-      padding: 4px 20px !important;
-  }
-  .Mui-expanded {
-      margin: 0px 0 0 0 !important;
-  }
-  .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-markLabel {
-      height: 31px !important;
-      font-size: 10px !important;
-  }
-    .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-colorPrimary span::after {
-        left: -10px !important;
-        height: 20px !important;
-        width: 20px !important;
-        font-size: 12px ;
-        line-height:22px !important;
+  .question-wrapper {
+    .main-container {
+      height: calc(100vh - 60px);
     }
-    .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-colorPrimary span::before {
-      top: -23px !important;
-      height: 22px !important;
-      width: 0.8px !important;
-      left: 1px !important;
+    .main-container .right-panel__inr {
+      height: calc(100vh - 197px);
     }
-    .question-container input.custom-text-area {
-        font-size: 9px;
-        height: 27px !important;
+    .sidebar .listitem-container {
+      position: relative;
+      padding:10px 15px !important;
     }
-    div.dont-btn span {
+    .leftPanel .progressbar-container .progressbar {
+      width: 77% !important;
+    }
+    div.sidebar span {
         font-size: 10px !important;
     }
-    .question-wrapper .main-container .right-panel__inr .observation_left {
-        width: 85%;
+    .progressbar-text.css-pazuet p {
+      font-size:10px;
     }
-    .question-wrapper .main-container .right-panel__inr .observation_right {
-        width: 15%;
+    .progressbar-text.css-pazuet {
+        width: 125px !important;
     }
+    .main-container .right-panel .title h2 {
+        font-size: 13px;
+    }
+    .main-container .right-panel__inr .question_text {
+        font-size: 11px;
+        margin-bottom: 13px;
+    }
+    .Mui-expanded, .accordHead {
+        min-height: 12px !important;
+        margin-top: 10px !important;
+        margin-bottom: 5px !important;
+    }
+    .accordBlock p {
+        font-size: 10px !important;
+    }
+    .rightPanel .button-container .previous-button, .rightPanel .button-container .next-button {
+        padding: 4px 20px !important;
+    }
+    .Mui-expanded {
+        margin: 0px 0 0 0 !important;
+    }
+    .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-markLabel {
+        height: 31px !important;
+        font-size: 10px !important;
+    }
+      .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-colorPrimary span::after {
+          left: -10px !important;
+          height: 20px !important;
+          width: 20px !important;
+          font-size: 12px ;
+          line-height:22px !important;
+      }
+      .slider-container .slider-container-inner .sliderOuter .slider .MuiSlider-colorPrimary span::before {
+        top: -23px !important;
+        height: 22px !important;
+        width: 0.8px !important;
+        left: 1px !important;
+      }
+      .question-container input.custom-text-area {
+          font-size: 9px;
+          height: 27px !important;
+      }
+      div.dont-btn span {
+          font-size: 10px !important;
+      }
+      .main-container .right-panel__inr .observation_left {
+          width: 85%;
+      }
+      .main-container .right-panel__inr .observation_right {
+          width: 15%;
+      }
+  }
     
 }

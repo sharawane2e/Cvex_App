@@ -256,37 +256,45 @@
         }
     }
   }
+
+  .button-inr-btn {
+      display: flex;
+      column-gap: 15px;
+  }
+
+  @include breakpoint(desktop1280) {
+    .submitButton {
+      padding: 6px 35px !important;
+      font-size: 12px !important;
+    }
+    .single-capability-header {
+        font-size: 11px;
+    }
+    .single-capability {
+        font-size: 10px;
+    }
+    .single-capability__right--cap-detail .skill-details-cnrt__skill-details .skill-slider-cont .knob-container .slider-text {
+        font-size: 10px;
+    }
+    .main-container {
+        height: calc(100vh - 128px);
+    }
+    .single-capability__right--cap-detail .skill-details-cnrt__skill-details {
+        min-height: 90px;
+    }
+   }
+   @include breakpoint(sm-mobileonly) {
+   .main-container {
+      height: calc(100vh - 134px);
+    }
+    .single-capability__right--cap-detail .skill-details-cnrt__skill-details .skill-slider-cont .knob-container .slider-text {
+        font-size: 12px;
+    }
+   }
+
+
+
 }
 
-@include breakpoint(desktop1280) {
-  .subskill-container .submitButton {
-    min-width: auto;
-  }
-  .subskill-container .single-capability-header {
-      font-size: 11px;
-  }
-  .subskill-container .single-capability {
-      font-size: 10px;
-  }
-  .subskill-container .single-capability__right--cap-detail .skill-details-cnrt__skill-details .skill-slider-cont .knob-container .slider-text {
-      font-size: 10px;
-  }
-  .subskill-container .main-container {
-      height: calc(100vh - 128px);
-  }
-  .subskill-container .single-capability__right--cap-detail .skill-details-cnrt__skill-details {
-      min-height: 90px;
-  }
- }
- @include breakpoint(sm-mobileonly) {
- .subskill-container .main-container {
-    height: calc(100vh - 134px);
-  }
-  .subskill-container .single-capability__right--cap-detail .skill-details-cnrt__skill-details .skill-slider-cont .knob-container .slider-text {
-      font-size: 12px;
-  }
-  .subskill-container .submitButton {
-      min-width: auto;
-  }
- }
+
 

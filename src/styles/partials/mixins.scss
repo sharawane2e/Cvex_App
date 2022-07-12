@@ -32,7 +32,7 @@
       @content;
     }
   } @else if $point == desktop1280 {
-    @media (min-width: 1280px) and (max-width: 1500px) {
+    @media (min-width: 1280px) and (max-width: 1365px) {
       @content;
     }
   } @else if $point == sm-mobileonly {
@@ -40,7 +40,17 @@
       @content;
     }
   } @else if $point == landscape-mobileonly {
-    @media (min-width: 480px) and (max-width: 767px) {
+    @media (min-width: 480px) and (max-width: 767px) and (orientation: landscape){
+      @content;
+    }
+  }
+  @else if $point == landscape-smalldevice {
+    @media (min-width: 767px) and (max-width: 1023px) and (orientation: landscape) {
+      @content;
+    }
+  }
+  @else if $point == landscape-mediumdevice {
+    @media (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
       @content;
     }
   }
