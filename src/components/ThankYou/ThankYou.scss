@@ -48,29 +48,7 @@
         }
 
 
-    .helpdesk {
-        width: 100%;
-        background-color: $dark-white;
-        text-align: center;
-        padding: 15px;
-        margin-top: 15px;
-        p {
-            &:first-child {
-                font-weight: $font-normal;
-                margin-bottom: 8px;
-                font-size: 16px;
-            }
-
-            &:nth-child(2) {
-                font-size: 13px;
-                margin-bottom: 5px;
-            }
-
-            &:last-child {
-                font-size: 13px;
-            }
-        }
-    }
+   
 
     .show-btn {
         button {
@@ -121,5 +99,31 @@ svg {
     }
 }
 
+    .helpdesk {
+        width: 100%;
+        background-color: $dark-white;
+        text-align: center;
+        padding: 15px;
+        margin-top: 15px;
+        p {
+            &:first-child {
+                font-weight: $font-normal;
+                margin-bottom: 8px;
+                font-size: 16px;
+            }
 
+            &:nth-child(2) {
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+
+            &:last-child {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .helpdesk {
+        margin-top: 20px;
+    }
 }
