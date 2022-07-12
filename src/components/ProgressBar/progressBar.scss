@@ -58,6 +58,7 @@
 
   .button-container {
     justify-content: end;
+    -webkit-justify-content:end;
     @include breakpoint(sm-mobileonly) {
       justify-content: right;
     }
