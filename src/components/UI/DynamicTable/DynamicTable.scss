@@ -99,6 +99,11 @@
    }
 }
 
+.disabled{
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 
 // .customized_impact_calculator_table {
 //         width:100%;

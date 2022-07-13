@@ -135,6 +135,7 @@ const OutputContactCenter = () => {
               categories: getSeriesData[1],
             })
           );
+          console.log(dataValue);
           const getSeriesPotentialData = getpotentialChartOptions(
             updatedJsonData.data.inputData.periodTableData[key],
             currencySymbol

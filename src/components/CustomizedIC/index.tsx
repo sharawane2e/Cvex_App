@@ -17,10 +17,14 @@ import store from "../../redux/store";
 import {
   setBarChartOptions,
   setBaseLineChartOptions,
+  setCharBasetTitle,
+  setCharcategory,
+  setCharPotentialtTitle,
   setPotentialChartOptions,
   setSegmentChartOptions,
 } from "../../redux/actions/HighChartAction";
 import {
+  getbaseChart,
   getbaseLineChartOptions,
   getpotentialChartOptions,
 } from "../../utils/highchartOptionUtil";
@@ -29,22 +33,29 @@ import "../CustomizedIC/CustomizedIC.scss";
 import { setPageJson } from "../../redux/actions/JsonDataActions";
 import { Inputbox } from "../UI/Input";
 import DynamicTable from "../UI/DynamicTable";
+import { numberWithCommas } from "../../utils/HelperFunctions";
 
 const CustomizedIC = () => {
   const [ jsonData, setJSONData ] = useState<any>("");
   const { dropdown } = useSelector((state: any) => state);
   const { ReduxPageJson } = useSelector((state: any) => state);
+  const { chart } = useSelector((state: any) => state);
+  const [ periodTable, setPeriodTable ] = useState<any>({});
+  const [ totalIF, setTotalIf ] = useState<any>(0);
+  const [ time, setTime ] = useState<any>("Monthly");
 
   const [ selectedSegment, setSelectedSegment ] = useState<any>("Hidsegment_1_label");
 
   const { dispatch } = store;
 
   useEffect(() => {
-    setJSONData(
-      // @ts-ignore
-      JSON.parse(document.getElementById("jsonData")?.innerHTML)
-    );
+    //@ts-ignore
+    let htmldata = JSON.parse(document.getElementById("jsonData")?.innerHTML);
+    setJSONData(htmldata);
+    updateReduxJson(htmldata);
     // onLoadUpdates();
+    // console.log("chart", chart.barChartOptions)
+    updateBaseChart(htmldata, htmldata?.data?.inputData?.periodDD?.selectedId);
   }, []);
 
   useEffect(() => {
@@ -59,14 +70,29 @@ const CustomizedIC = () => {
   // },[jsonData?.data?.inputData?.SalesTables?.tbody])
 
   useEffect(() => {
-    onLoadUpdates();
+    // onLoadUpdates();
+    let data:any = {};
+    data = JSON.parse(JSON.stringify(ReduxPageJson?.JsonData));
+    // updateReduxJson(data);
+    // updateBaseChart(data)
   },[jsonData]);
 
   useEffect(() => {
+    let data:any = {};
+    data = JSON.parse(JSON.stringify(ReduxPageJson?.JsonData));
     let segmentId = ReduxPageJson?.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
     setSelectedSegment(segmentId);
+    getTotalIV();
+    // updateBaselinechart(ReduxPageJson?.JsonData);  
+    // updateSegTable2(data);
     // updateSegTable();
   }, [ReduxPageJson])
+
+  // useEffect(() => {
+  //   let data:any = {};
+  //   data = JSON.parse(JSON.stringify(ReduxPageJson?.JsonData));
+  //   updateSegTable2(data);
+  // }, [ReduxPageJson?.JsonData?.data?.inputData?.SalesTables])
 
   function newJson(){
     dispatch(setPageJson(jsonData));
@@ -77,21 +103,283 @@ const CustomizedIC = () => {
     dispatch(setPageJson(json));
   }
 
-  const CalculatePI = (num1:any, num2:any) => {
-    let result = Number(num1) - Number(num2);
-    // console.log(num1,num2,result)
-    return result;
+  const updateBaseChart = (data:any, ddId:any) => {
+    // let barData:any = {};
+    // barData = JSON.parse(JSON.stringify(chart.barChartOptions));
+    // barData.series[0].data = 
+    let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == ddId)[0];
+    let temp:any = [{
+      y: 5000,
+      color: "#A6A6A6",
+      dataLabels: {
+        enabled : true,
+        bold: false,
+        inside: true,
+        align: "centre",
+        style: {
+          textShadow: false,
+          textOutline: false,
+          fontWeight: "normal"
+        }
+      }
+    },
+    {
+      y: 5000,
+      color: "#A6A6A6",
+      dataLabels: {
+        enabled : true,
+        bold: false,
+        inside: true,
+        align: "centre",
+        style: {
+          textShadow: false,
+          textOutline: false,
+          fontWeight: "normal"
+        }
+      }
+    }];
+
+    let details = JSON.parse(JSON.stringify(data?.data?.inputData?.periodTableData?.rowDetails));
+
+    for(var i=0; i<details[2].tbodyDetails.length; i++){
+      details[2].tbodyDetails[i] = CalculatePFB(i,"display");
+      if(selectObj?.ddName == "Monthly"){
+        details[0].tbodyDetails[i] = (details[0].tbodyDetails[i])/12;
+      }
+      else{
+        details[0].tbodyDetails[i] = (details[0].tbodyDetails[i]);
+      }
+    }
+
+    if(selectObj?.ddName == "Monthly"){
+      details[2].tbodyDetails[details[2].tbodyDetails.length - 1] = (getTotalIV())/12;
+    }
+    else{
+      details[2].tbodyDetails[details[2].tbodyDetails.length - 1] = getTotalIV();
+    }
+    console.log("details", details);
+
+    // const rowDetails = data?.data?.inputData?.periodTableData?.rowDetails;
+    const rowDetails = details;
+    const colorArray = data?.data?.inputData?.periodTableData?.colorArray;
+    const firtsCatg = data?.data?.inputData.periodTableData.rowDetails[0].tbodyDetails[0];
+    const secsCatg = data?.data?.inputData.periodTableData.rowDetails[2].tbodyDetails[0];
+    const getchartBarSeries = getbaseChart(
+      rowDetails,
+      colorArray,
+      "R"
+    );
+    console.log(getchartBarSeries);
+    dispatch(setBarChartOptions({data : getchartBarSeries}));
+    dispatch(setCharcategory([firtsCatg, secsCatg]));
+    updateBaselinechart(data, ddId)
   }
 
-  const CalculatePFB = (num1:any, arpu:any) => {
-    let result = Number(num1) * Number(arpu);
+  const updateBaselinechart = (data:any, ddId:any) => {
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == ddId)[0];
+
+    const baseLineTitle1 = data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[0];
+    const baseLineTitle2 = data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[0];
+    dispatch(setCharBasetTitle(baseLineTitle1));
+    dispatch(setCharPotentialtTitle(baseLineTitle2));
+
+    let baselineData = {"data": [], "dataLabels": []};
+
+    let a = {
+      "data": [
+          {
+              "name": "Inbound Sales",
+              "y": 785000,
+              "color": "#8FAADC"
+          },
+          {
+              "name": "Outbound Sales",
+              "y": 10600,
+              "color": "#8FAADC"
+          },
+          {
+              "name": "Service to Sales",
+              "y": 1672000,
+              "color": "#8FAADC"
+          },
+          {
+              "name": "Retention",
+              "y": 1804000,
+              "color": "#8FAADC"
+          },
+          {
+              "name": "Winback",
+              "y": 4315000,
+              "color": "#8FAADC"
+          },
+          {
+              "name": "Total",
+              "y": 8682000,
+              "color": "#A6A6A6"
+          }
+      ],
+      "dataLabels": {
+          "enabled": true,
+          "color": "black",
+          "bold": false,
+          "verticalAlign": "top",
+          "y": -20,
+          "style": {
+              "textShadow": false,
+              "textOutline": false,
+              "fontWeight": "normal"
+          }
+      }
+  }
+
+    let allSales:any = [];
+    const blData: any = [];
+    const blDataLabels: any = a.dataLabels;
+
+    const pfbData: any = [];
+    const pfbDataLabels: any = a.dataLabels;
+
+    data?.data?.inputData?.periodTableData?.headings.map((x:any, xi:any) => {
+      if(xi>0 && data?.data?.inputData?.periodTableData?.headings.length-1){
+        if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && selectObj?.ddName == "Monthly"){
+          blData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xi],
+            y: (Math.round((data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi])/12)),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
+          })
+        }
+        else if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && selectObj?.ddName == "Yearly"){
+          blData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xi],
+            y: data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi],
+            color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
+          })
+        }
+        else{
+          blData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xi],
+            y: 0,
+            color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
+          })
+        }
+      }
+    })
+
+    data?.data?.inputData?.periodTableData?.headings.map((x:any, xind:any) => {
+      if(xind>0 && data?.data?.inputData?.periodTableData?.headings.length-1){
+        if(typeof CalculatePFB(xind, "actual") == "number" && selectObj?.ddName == "Monthly"){
+          pfbData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xind],
+            // y: data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[xind],
+            y: (Math.round((CalculatePFB(xind, "actual"))/12)),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
+          })
+        }
+        else if(typeof CalculatePFB(xind, "actual") == "number" && selectObj?.ddName == "Yearly"){
+          pfbData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xind],
+            y: CalculatePFB(xind, "actual"),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
+          })
+        }
+        else{
+          pfbData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xind],
+            y: 0,
+            color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
+          })
+        }
+      }
+    });
+
+    console.log("allSales", pfbData);
+
+    const getSeriesData = getbaseLineChartOptions(data?.data?.inputData?.periodTableData, "R");
+    const dataValue = getSeriesData[0][0];
+    console.log("baseline", dataValue)
+    dispatch(
+      setBaseLineChartOptions({
+        data: blData,
+        dataLabels: blDataLabels,
+        categories: getSeriesData[1],
+      })
+    );
+    dispatch(
+      setPotentialChartOptions({
+        data: pfbData,
+        dataLabels: pfbDataLabels,
+        categories: getSeriesData[1],
+      })
+    );
+    console.log(getSeriesData[1])
+  }
+
+  function updateee(){
+    updateBaselinechart(ReduxPageJson?.JsonData, "");
+  }
+
+  const CalculateBL = (value:any) => {
+    let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
+    let result:any = 0;
+    return selectObj?.ddName == "Monthly" && typeof result == "number" ? Math.round((value/12)) : value;
+  }
+
+  const CalculatePI = (tdIndex:any) => {
+    let baselineVal = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[tdIndex];
+    let totalPFB = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b);
+    let lastIndex = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[1]?.tbodyDetails?.length - 1;
+    let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
+    let result:any = 0;
+
+    if(typeof baselineVal == "number"){
+      if(tdIndex == lastIndex){
+        result = baselineVal - totalPFB;
+      }
+      else{
+        result = baselineVal - CalculatePFB(tdIndex, "actual");
+      }
+    }
+    else{
+      result = baselineVal
+    }
+
+    // let result = Number(num1) - Number(num2);
     // console.log(num1,num2,result)
-    return result;
+    // return result;
+    return selectObj?.ddName == "Monthly" && typeof result == "number" ? Math.round((result/12)) : result;
+  }
+
+  const CalculatePFB = (tdIndex:any, type:any) => {
+    let lastIndex = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails?.length;
+    let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
+    let result:any = 0;
+    if(tdIndex == lastIndex){
+      result = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)
+    }
+    else{
+      // result = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.[tdIndex-1]?.ImpactValue;
+      let tableId = "table_"+(tdIndex);
+      let tableObj = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.filter((table:any) => table.tableId == tableId)[0]
+      if(tableObj?.disable == false){
+        result = getIF("table_"+(tdIndex) , "iv");
+      }
+      else{
+        result = "Not Selected";
+      }
+      // console.log(result)
+      // console.log("table_"+(tdIndex))
+    }
+    // console.log(result)
+    return typeof result == "number" ? selectObj?.ddName == "Monthly" ? Math.round((result/12)) : Math.round(result) : result;
   }
 
   const PIvalues = (num:any) => {
-    let selectedId = jsonData?.data?.inputData?.periodDD?.selectedId;
-    let selectObj = jsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
+    let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
     let result:any = 0;
     if(selectObj?.ddName == "Monthly"){
       result = (Number(num)/12);
@@ -235,14 +523,37 @@ const CustomizedIC = () => {
 
   const timeDDChange = (ddId: string) => {
     let data:any = {};
-    data = JSON.parse(JSON.stringify(ReduxPageJson.JsonData));
-    if(data != undefined && data != "" && data != {}){
-      data.data.inputData.periodDD.selectedId = ddId;
-      updateReduxJson(data);
+    data = JSON.parse(JSON.stringify(ReduxPageJson?.JsonData));
+    data.data.inputData.periodDD.selectedId = ddId;
+    let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == ddId)[0];
+    if(selectObj.ddName == "Monthly"){
+      setTime("Monthly");
     }
+    else{
+      setTime("Yearly");
+    }
+    console.log(data);
+    updateReduxJson(data);
+    updateBaseChart(data,ddId);
     document.getElementById(ddId)?.click();
-
-    // console.log(data)
+    // let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
+    // let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == ddId)[0];
+    // let result:any = 0;
+    // data.data.inputData.periodTableData.rowDetails.map((row:any, ri:any) => {
+    //   row.tbodyDetails.map((x:any, i:any) => {
+    //     if(selectObj.ddName == "Monthly"){
+    //       if(typeof row.tbodyDetails[i] == "number"){
+    //         row.tbodyDetails[i] = Math.round(Number(row.tbodyDetails[i])/12);
+    //       }
+    //     }
+    //     else{
+    //       if(typeof row.tbodyDetails[i] == "number"){
+    //         row.tbodyDetails[i] = Math.round(Number(periodTable.rowDetails[ri].tbodyDetails[i]));
+    //       }
+    //       console.log(jsonData.data.inputData.periodTableData)
+    //     }
+    //   })
+    // })
   }
 
   const segmentDDChange = (ddId: string) => {
@@ -250,12 +561,82 @@ const CustomizedIC = () => {
     data = JSON.parse(JSON.stringify(ReduxPageJson.JsonData));
     data.data.inputData.potentialIncreaseData.segmentDD.selectedId = ddId;
 
-    let name = data.data.inputData.potentialIncreaseData.segmentDD.options.filter((x:any) => x.ddId == ddId)[0].ddName;
-    console.log("getAllQuartiles", getAllQuartiles(name));
-    let preValues = getAllQuartiles(name);
+    // let tableId = data.data.inputData.potentialIncreaseData.segmentDD.options.filter((x:any) => x.ddId == ddId)[0].tableId;
+    // // console.log("getAllQuartiles", getAllQuartiles(name));
+    // let table = data.data.inputData.SalesTables.tbody.filter((x:any) => x.tableId == tableId)[0];
+    // let preValues = table.tbodyDetails.map((y:any) => y.rowDetails[4].text);
 
-    if(preValues.length > 0){
-      for(var i=0; i<preValues.length; i++){
+    // if(preValues.length > 0){
+    //   for(var i=0; i<preValues.length; i++){
+    //     if(i>0){
+    //       preValues[i] = (preValues[i-1]) * (preValues[i]);
+    //       preValues[i] = Math.round(preValues[i])
+    //     }
+    //   }
+    //   data.data.inputData.potentialIncreaseData.segmentTableChartData[ddId].tbodyDetails = preValues;
+    // }
+    // console.log(preValues);
+    updateSegTable2(data);
+    updateReduxJson(data);
+    // console.log(data);
+  }
+
+  // const getAllQuartiles = (saleName:any) => {
+  //   let arr:any = [];
+  //   let tableIndex = ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody.findIndex((x:any) => x.theading == saleName);
+  //   ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
+  //     if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
+  //       arr?.push((row?.rowDetails[5]?.selectedText)/100);
+  //     }
+  //     else{
+  //       arr?.push(row?.rowDetails[4]?.text);
+  //     }
+  //   })
+  //   return arr;
+  // }
+
+  const getAllQuartiles = (tableId:any) => {
+    let tableobj:any = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody.filter((X:any) => X.tableId == tableId)[0];
+    let arr:any = [];
+    if(tableobj?.qbValue != null){
+      arr.push(tableobj?.qbValue);
+    }
+    tableobj?.tbodyDetails.map((row:any) => {
+      let selectedOpt = row.rowDetails[3].selectedId;
+      let optObj = row.rowDetails[3].options.filter((x:any) => x.ddId == selectedOpt)[0];
+      let val = optObj.ddValue;
+      let inputVal = row.rowDetails[5].selectedText;
+      // debugger
+
+      if(optObj.afterText == "%"){
+        if(inputVal?.length > 0 && ((Number(inputVal)/100) > val)){
+          arr.push((Number(inputVal) / 100));
+        }
+        else{
+          arr.push(val);
+        }
+      }
+      else{
+        if(inputVal?.length > 0 && (Number(inputVal) > val)){
+          arr.push(Number(inputVal));
+        }
+        else{
+          arr.push(val);
+        }
+      }
+    });
+    return arr;
+  }
+
+  const updateSegTable2 = (data:any) => {
+    let ddId = data?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
+    let tableId = data?.data?.inputData?.potentialIncreaseData?.segmentDD?.options?.filter((x:any) => x.ddId == ddId)[0].tableId;
+    // console.log("getAllQuartiles", getAllQuartiles(name));
+    let table = data?.data?.inputData.SalesTables.tbody.filter((x:any) => x.tableId == tableId)[0];
+    let preValues = table?.tbodyDetails.map((y:any) => y.rowDetails[4].text);
+
+    if(preValues?.length > 0){
+      for(var i=0; i<preValues?.length; i++){
         if(i>0){
           preValues[i] = (preValues[i-1]) * (preValues[i]);
           preValues[i] = Math.round(preValues[i])
@@ -263,31 +644,29 @@ const CustomizedIC = () => {
       }
       data.data.inputData.potentialIncreaseData.segmentTableChartData[ddId].tbodyDetails = preValues;
     }
-
+    console.log(preValues);
     updateReduxJson(data);
-    console.log(data)
   }
 
-  const getAllQuartiles = (saleName:any) => {
-    let arr:any = [];
-    let tableIndex = ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody.findIndex((x:any) => x.theading == saleName);
-    ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody[tableIndex]?.tbodyDetails?.map((row:any) => {
-      if(row?.rowDetails[5].selectedText?.length>0 && (((row?.rowDetails[5]?.selectedText)/100) > row?.rowDetails[4]?.text)){
-        arr?.push((row?.rowDetails[5]?.selectedText)/100);
+  const getIF = (tableId:any, type:any) => {
+
+    let tableQuartiles = getAllQuartiles(tableId);
+    if(tableQuartiles.length > 0){
+      if(type == "if"){
+        return Math.round(tableQuartiles.reduce((a:any, b:any) => a*b));
       }
       else{
-        arr?.push(row?.rowDetails[4]?.text);
+        return Math.round((tableQuartiles.reduce((a:any, b:any) => a*b))*ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.ARPU);
       }
-    })
-    return arr;
+    }
   }
 
   const updateSegTable = (num:any) => {
     let data:any = {};
     data = JSON.parse(JSON.stringify(ReduxPageJson.JsonData));
     let selectedId = data.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
-    let selectedSaleName = data.data?.inputData?.potentialIncreaseData?.segmentDD?.options?.filter((x:any) => x.ddId == selectedId)[0].ddName;
-    let preValues = getAllQuartiles(selectedSaleName);
+    let selectedtableId = data.data?.inputData?.potentialIncreaseData?.segmentDD?.options?.filter((x:any) => x.ddId == selectedId)[0].tableId;
+    let preValues = getAllQuartiles(selectedtableId);
     // console.log(selectedSaleName);
     
     if(preValues.length > 0){
@@ -297,7 +676,6 @@ const CustomizedIC = () => {
           preValues[i] = Math.round(preValues[i])
         }
       }
-  
       if(data != undefined){
         data.data.inputData.potentialIncreaseData.segmentTableChartData[selectedId].tbodyDetails = preValues;
       }
@@ -319,7 +697,7 @@ const CustomizedIC = () => {
 
   const onLoadUpdates = () => {
     let data:any = {};
-    data = JSON.parse(JSON.stringify(jsonData));
+    data = JSON.parse(JSON.stringify(ReduxPageJson?.JsonData));
     // data?.data?.inputData?.SalesTables?.tbody?.map((table:any, ti:any) => {
     //   table?.tbodyDetails?.map((row:any, ri:any) => {
     //     if(row[4] != undefined){
@@ -336,37 +714,88 @@ const CustomizedIC = () => {
     //   console.log(saleIds)
     // }
 
-    let pfbArr:any = [];
-    let potentialArr:any = [];
-    data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails.map((ele:any, ind:any) => {
-      if(ind>0){
-        if(typeof ele == "number"){
-          let potentialVal =  (ele * data?.data?.inputData?.SalesTables?.ARPU) - ele;
-          potentialArr.push(Math.round(potentialVal))
-          pfbArr.push(Math.round(ele * data?.data?.inputData?.SalesTables?.ARPU));
-        }
-        else{
-          potentialArr.push(ele);
-          pfbArr.push(ele);
-        }
-      }
-    });
 
-    if(data != undefined && data != ""){
-        let prePOTArr = data.data.inputData.periodTableData.rowDetails[1].tbodyDetails;
-        let prePFBArr = data.data.inputData.periodTableData.rowDetails[2].tbodyDetails;
+
+
+      let pfbArr:any = [];
+      let potentialArr:any = [];
+      let prePOTArr = data?.data?.inputData?.periodTableData?.rowDetails[1]?.tbodyDetails;
+      let prePFBArr = data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails;
+      prePOTArr?.splice(1,prePOTArr?.length-1);
+      prePFBArr?.splice(1,prePFBArr?.length-1);
+      data?.data?.inputData?.SalesTables?.tbody.map((x:any) => prePFBArr?.push(x.ImpactValue));
+      prePFBArr?.push(getTotalIV());
+      console.log(prePFBArr)
+  
+      data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails?.map((ele:any, ind:any) => {
+        if(ind>0){
+          if(typeof ele == "number"){
+            let potentialVal =  data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[ind] - ele;
+            potentialArr?.push(Math.round(potentialVal))
+            pfbArr?.push(Math.round(ele * data?.data?.inputData?.SalesTables?.ARPU));
+          }
+          else{
+            potentialArr.push(ele);
+            pfbArr.push(ele);
+          }
+        }
+      });
+
+    if(data != undefined && data != "" && Object.keys(data).length>0){
+
+      
         data.data.inputData.periodTableData.rowDetails[1].tbodyDetails = prePOTArr.concat(potentialArr);
-        data.data.inputData.periodTableData.rowDetails[2].tbodyDetails = prePFBArr.concat(pfbArr);
+        data.data.inputData.periodTableData.rowDetails[2].tbodyDetails = prePFBArr
+        // setJSONData(data);
+        setPeriodTable(data.data.inputData.periodTableData);
         updateReduxJson(data);
     }
     // setJSONData(data);
+  }
+
+  const getTotalIV = () => {
+    let arr:any = [];
+    // arr = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue);
+    ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any,i:any) => {
+      if(x.disable == false){
+        arr.push(getIF("table_"+(i+1),"iv"))
+      }
+    });
+    let result:any = 0;
+    if(arr.length > 0){
+      result = arr?.reduce((a:any,b:any) => Number(a) + Number(b));
+      setTotalIf(result);
+    }
+    return result; 
+  }
+
+  const ReturnSGTData = (tableId:any, index:any) => {
+    let tableObj = ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody?.filter((x:any) => x.tableId == tableId)[0];
+    // tableObj?.tbodyDetails.map((obj:any) => {
+    //   obj.rowDetails[]
+    // })
+    let preValues = getAllQuartiles(tableId);
+    if(preValues.length > 0){
+      for(var i=0; i<preValues.length; i++){
+        if(i>0){
+          preValues[i] = (preValues[i-1]) * (preValues[i]);
+          preValues[i] = Math.round(preValues[i])
+        }
+      }
+      return preValues[index];
+    }
+    else{
+      return 0;
+    }
+    // console.log(quartiles[index+1])
+    // return quartiles[index];
   }
 
   return (
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
       <div className="contactpage-container__inr">
-        <button onClick={() => {console.log(ReduxPageJson.JsonData);}}>Console JsonData</button>
+        <button onClick={() => {console.log(ReduxPageJson.JsonData); updateee();}}>Console JsonData</button>
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
             <Grid
@@ -420,20 +849,25 @@ const CustomizedIC = () => {
                         {rowDetail?.tbodyDetails.map((tbodyDetail: any, tdIndex:any) => {
                           return typeof tbodyDetail == "number" ? (
                             <div className="table-row">
-
-                              {/* {rowIndex == 0 ? 
-                              <span>{PIvalues(tbodyDetail)}</span>
-                              :
-                              rowIndex == 1 ?
-                              <span>{PIvalues(CalculatePI(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[tdIndex]))}</span> 
-                              : 
-                              <span>{PIvalues(CalculatePFB(jsonData?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[tdIndex], jsonData?.data?.inputData?.SalesTables?.ARPU))}</span>
-                              } */}
+                              {
+                                rowIndex == 1
+                                ?
+                                // <span>{totalIF}</span>
+                                <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(CalculatePI(tdIndex)) : CalculatePI(tdIndex)}</span>
+                                :
+                                rowIndex == 2 
+                                ? 
+                                tdIndex == (rowDetail?.tbodyDetails.length-1)
+                                ?
+                                // <span>{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</span>
+                                // <span>{time == "Monthly" ? ((ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b))/12) : ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</span>
+                                <span>{time == "Monthly" ? numberWithCommas(Math.round(totalIF/12)) : numberWithCommas(totalIF)}</span>
+                                :
+                                <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(CalculatePFB(tdIndex, "display")) : CalculatePFB(tdIndex, "display")}</span>
+                                :
+                                <span>{numberWithCommas(Math.round(CalculateBL(tbodyDetail)))}</span>
+                              }
                               
-                              {/* <span className="currency-symbol">
-                                {currencySymbol}
-                              </span> */}
-                              <span>{PIvalues(tbodyDetail)}</span>
                             </div>
                           ) : (
                             <div className="table-row">
@@ -523,11 +957,11 @@ const CustomizedIC = () => {
               </div>
               <div className="outputTable-container__inr__body">
                 <div className="table-col">
-                  {ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.[selectedSegment]?.tbodyDetails?.map(
-                    (el: any, i:any) => {
+                  {ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentTableChartData?.[selectedSegment]?.headings?.map(
+                    (el: any, eleIndex:any) => {
                       return (
                         <div className="table-row">
-                          <span>{updateSegTable(i)}</span>
+                          <span>{ReturnSGTData(ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId, eleIndex)}</span>
                         </div>
                       );
                     }
