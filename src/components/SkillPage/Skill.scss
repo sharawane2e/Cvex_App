@@ -262,44 +262,53 @@
   .submitButton {
     min-width: 135px;
   }
-}
-@include breakpoint(desktop1280) {
-  .skill-container .single-capability-header--heading {
-    font-size: 12px !important;
+  .button-inr-btn {
+      column-gap: 15px;
+      display: flex;
   }
-  .single-capability p {
-      font-size: 11px;
+
+
+  @include breakpoint(desktop1280) {
+    .single-capability-header--heading {
+      font-size: 12px !important;
+    }
+    .single-capability p {
+        font-size: 11px;
+    }
+    .submitButton {
+        min-width: auto;
+    }
+    .main-container {
+        height: calc(100vh - 130px);
+    }
+    .single-capability__right--cap-detail .progressBarCont .skill-slider-cont .knob-container .slider-text {
+        font-size: 11px;
+    }
   }
-  .skill-container .submitButton {
-      min-width: auto;
+  
+  @include breakpoint(sm-mobileonly) {
+   .submitButton {
+      min-width: 100px;
+    }
   }
-  .skill-container .main-container {
-      height: calc(100vh - 130px);
+  @include breakpoint(Ipad) {
+    .single-capability__left {
+        width: 15%;
+    }
+    .single-capability__right--cap-detail .observationCont {
+        width: 30%;
+    }
+    .single-capability__right--cap-detail .skillCont {
+        width: 24%;
+    }
+    .single-capability__right--cap-detail .subSkillCont {
+        width: 26%;
+    }
   }
-  .skill-container .single-capability__right--cap-detail .progressBarCont .skill-slider-cont .knob-container .slider-text {
-      font-size: 11px;
-  }
+
 }
 
-@include breakpoint(sm-mobileonly) {
-  .skill-container .submitButton {
-    min-width: auto;
-  }
-}
-@include breakpoint(Ipad) {
-  .skill-container .single-capability__left {
-      width: 15%;
-  }
-  .skill-container .single-capability__right--cap-detail .observationCont {
-      width: 30%;
-  }
-  .skill-container .single-capability__right--cap-detail .skillCont {
-      width: 24%;
-  }
-  .skill-container .single-capability__right--cap-detail .subSkillCont {
-      width: 26%;
-  }
-}
+
 
 
 

@@ -100,6 +100,13 @@
             display: block;
           }
           .rightPanel {
+            width: 20%;
+            @include breakpoint(Ipad) {
+              width: 45%;
+            }
+            @include breakpoint(Ipad-pro) {
+              width: 40%;
+            }
             .previous-button {
               background-color: $dark-white !important;
               border: 1px solid $dark-light-black !important;
@@ -118,8 +125,11 @@
               background: #fff;
               padding-top: 5px;
             }
+            @include breakpoint(Ipad) {
+              width: 55%;
+            }
             @include breakpoint(Ipad-pro) {
-              width: 64%;
+              width: 60%;
             }
           }
           .ProgressText {
@@ -135,48 +145,54 @@
       }
     }
   }
-}
-.dark-background {
-  background-color: $dark-white;
+
+  .dark-background {
+    background-color: $dark-white;
+  }
+
+  @include breakpoint(desktop1280) {
+    .impact-calc-container__inr--question .single-dropdown-section__header {
+        padding: 7px 7px;
+    }
+    .impact-calc-container__inr--question .single-dropdown-section__body .segment-container {
+        font-size: 12px;
+    }
+    .cutom-input-field input {
+        padding: 5px 7px !important;
+        font-size: 11px !important;
+    }
+    .impact-calc-container__inr {
+        height: calc(100vh - 131px)  !important;
+        padding-bottom: 5px;
+    }
+    .submitButton {
+        padding: 5px 20px !important;
+        font-size: 11px !important;
+        width: auto!important;
+    }
+    .selectItem {
+        font-size: 11px !important;
+    }
+  }
+  @include breakpoint(sm-mobileonly) {
+    .submitButton {
+        padding: 4px 15px !important;
+        width: auto !important;
+    }
+    .rightPanel {
+      margin-bottom:0px;
+    }
+  }
+  @include breakpoint(desktop150) {
+    .footer .footer-impact-calc .left-sec .topContainer .leftPanel {
+        width: 71%;
+        margin-right: 3%;
+    }
+  }
+  
+
+
 }
 
-@include breakpoint(desktop1280) {
-  .impact-calc-container__inr--question .single-dropdown-section__header {
-      padding: 7px 7px;
-  }
-  .impact-calc-container__inr--question .single-dropdown-section__body .segment-container {
-      font-size: 12px;
-  }
-  .cutom-input-field input {
-      padding: 5px 7px !important;
-      font-size: 11px !important;
-  }
-  .impact-calc-container__inr {
-      height: calc(100vh - 131px)  !important;
-      padding-bottom: 5px;
-  }
-  .submitButton {
-      padding: 5px 20px !important;
-      font-size: 11px !important;
-      width: auto!important;
-  }
-  .selectItem {
-      font-size: 11px !important;
-  }
-}
-@include breakpoint(sm-mobileonly) {
-  .submitButton {
-      padding: 4px 15px !important;
-      width: auto !important;
-  }
-  .rightPanel {
-    margin-bottom:0px;
-  }
-}
-@include breakpoint(desktop150) {
-  .impact-calc-container .footer .footer-impact-calc .left-sec .topContainer .leftPanel {
-      width: 71%;
-      margin-right: 3%;
-  }
-}
+
 
