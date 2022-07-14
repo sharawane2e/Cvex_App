@@ -156,16 +156,16 @@
             }
             @include breakpoint(Ipad) {
               // width: 55%;
-              width: 60% !important;
+              width: 55% !important;
               float: left;
             }
             @include breakpoint(Ipad-pro) {
-              width: 60%;
+              width: 55%;
               float: left;
             }
             @include breakpoint(landscape-mediumdevice) {
               // margin-left: 250px;
-              width: 65% !important;
+              width: 60% !important;
               float: left;
             }
           }

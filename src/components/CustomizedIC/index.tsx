@@ -1063,18 +1063,21 @@ const CustomizedIC = () => {
                             <div className="table-row">
                                 <div
                                   className={
-                                    rowDetail.iconDetails[tdIndex] == "up"
+                                    CalculatePFB(tdIndex, "display") > CalculateBL(tbodyDetail) && rowIndex == 1
                                       ? "arrowUpicon"
-                                      : rowDetail.iconDetails[tdIndex] == "down"
+                                      : 
+                                      CalculatePFB(tdIndex, "display") < CalculateBL(tbodyDetail) && rowIndex == 1
                                       ? "arrowDownicon"
                                       : "emptyicon"
                                   }
-                                ></div>
+                                >
+
+                                </div>
                               {
                                 rowIndex == 1
                                 ?
                                 // <span>{totalIF}</span>
-                                <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(CalculatePI(tdIndex)) : CalculatePI(tdIndex)}</span>
+                                <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(Math.abs(CalculatePI(tdIndex))) : CalculatePI(tdIndex)}</span>
                                 :
                                 rowIndex == 2 
                                 ? 
@@ -1082,7 +1085,7 @@ const CustomizedIC = () => {
                                 ?
                                 // <span>{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</span>
                                 // <span>{time == "Monthly" ? ((ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b))/12) : ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</span>
-                                <span>{time == "Monthly" ? numberWithCommas(Math.round(totalIF/12)) : numberWithCommas(totalIF)}</span>
+                                <span>{time == "Monthly" ? numberWithCommas(Math.abs(Math.round(totalIF/12))) : numberWithCommas(Math.abs(totalIF))}</span>
                                 :
                                 <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(CalculatePFB(tdIndex, "display")) : CalculatePFB(tdIndex, "display")}</span>
                                 :
