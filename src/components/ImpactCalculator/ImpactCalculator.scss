@@ -94,19 +94,47 @@
       .left-sec {
         .topContainer {
           // justify-content: center;
+          display: flex;
+          -webkit-justify-content: space-between;
+          justify-content: space-between;
+          
+
           border-bottom: 0;
           padding-bottom: 0;
           @include breakpoint(sm-mobileonly) {
             display: block;
           }
+          @include breakpoint(Ipad) {
+            display: block;
+          }
+          @include breakpoint(Ipad-pro) {
+            display: block;
+          }
+          @include breakpoint(landscape-mediumdevice) {
+            // margin-left: 250px;
+            display: block;
+          }
           .rightPanel {
             width: 20%;
+            @include breakpoint(sm-mobileonly) {
+              width: 100%;
+            }
             @include breakpoint(Ipad) {
-              width: 45%;
+              // width: 45%;
+              // margin-left: 155px;
+              width: 35% !important;
+              float: right;
             }
             @include breakpoint(Ipad-pro) {
-              width: 40%;
+              width: 35%;
+              float: right;
             }
+            @include breakpoint(landscape-mediumdevice) {
+              // margin-left: 250px;
+              width: 25% !important;
+              float: right;
+            }
+
             .previous-button {
               background-color: $dark-white !important;
               border: 1px solid $dark-light-black !important;
@@ -126,10 +154,18 @@
               padding-top: 5px;
             }
             @include breakpoint(Ipad) {
-              width: 55%;
+              // width: 55%;
+              width: 60% !important;
+              float: left;
             }
             @include breakpoint(Ipad-pro) {
               width: 60%;
+              float: left;
+            }
+            @include breakpoint(landscape-mediumdevice) {
+              // margin-left: 250px;
+              width: 65% !important;
+              float: left;
             }
           }
           .ProgressText {
