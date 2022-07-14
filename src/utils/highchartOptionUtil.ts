@@ -27,7 +27,7 @@ export const getbaseChart = (
     },
   };
   const seriesValue1 = {
-    y: rowDetails[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
+    y: rowDetails?.[0].tbodyDetails[rowDetails[0].tbodyDetails.length - 1],
     color: colorArray[0],
     dataLabels: {
       ...labelsFormat,
@@ -49,17 +49,17 @@ export const getbaseLineChartOptions = (
   baseLineChartOptions: any,
   currencySymbol: any
 ): any => {
-  const baselineHeading = baseLineChartOptions.headings;
+  const baselineHeading = baseLineChartOptions?.headings;
   const categorieName: any = [];
   const data: any = [];
   const categories: any = [];
   const series: any = [];
 
-  for (let i = 1; i < baselineHeading.length; i++) {
+  for (let i = 1; i < baselineHeading?.length; i++) {
     categorieName.push(baselineHeading[i]);
   }
-  const baseLineChart = baseLineChartOptions.rowDetails[0];
-  const baseLineChartColor = baseLineChartOptions.rowDetails[0].chartColorArray;
+  const baseLineChart = baseLineChartOptions?.rowDetails[0];
+  const baseLineChartColor = baseLineChartOptions?.rowDetails[0].chartColorArray;
 
   baseLineChart?.chartDetails?.forEach((detail: any, Index: any) => {
     categories.push(categorieName[Index]);
