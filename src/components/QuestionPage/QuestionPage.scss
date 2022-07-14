@@ -271,7 +271,7 @@
   
 }
 @include breakpoint(landscape-mediumdevice) {
-  .leftPanel {
+  .question-wrapper .leftPanel {
     width: 63% !important;
     margin-left: 150px;
   }
