@@ -8,6 +8,7 @@
       width: 280px;
       background-color: $dark-light-black;
       transition: 0.3s ease-out;
+      z-index: 10;
       @include breakpoint(Ipad) {
         //margin-left: -280px;
         transition: 0s ease-out;
@@ -109,16 +110,18 @@
         }
       }
 
-      .footer {
-        .button-container {
-          justify-content: end;
-          padding: 0px 20px;
+      
+    }
+    .footer {
+      background-color: $white-color;
+      .button-container {
+        justify-content: end;
+        padding: 0px 20px;
 
-          .previous-button {
-            border: 1px solid $blue-color;
-            background-color: $white-color !important;
-            color: $blue-color !important;
-          }
+        .previous-button {
+          border: 1px solid $blue-color;
+          background-color: $white-color !important;
+          color: $blue-color !important;
         }
       }
     }
@@ -243,10 +246,12 @@
 @include breakpoint(Ipad) {
   .question-wrapper {
     .leftPanel .progressbar-container .progressbar {
-      width: 65% !important;
+      width: 100% !important;
+
     }
     .leftPanel {
-      width: 63% !important;
+      // width: 63% !important;
+      width: 40% !important;
       margin-left: 150px;
     }
     .rightPanel {
