@@ -430,11 +430,23 @@ const DynamicTable = () => {
                                   //     <span>{Math.round(detail.text)}</span>
                                   //   }
                                   // </div>
+                                  // <div className="table_col">
+                                  //   {detail?.afterText?.length > 0 ?
+                                  //     String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText).length > 0 ? 
+                                  //     (Number(detail.text) == 1 ? <span>{"100%"}</span> : <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>)
+                                  //     :
+                                  //     <span>{Math.round(detail.text)}</span>
+                                  //     :
+                                  //     <span>{Math.round(detail.text * 100)}</span>
+                                  //   }
+                                  // </div>
                                   <div className="table_col">
-                                    {String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText).length > 0 ? 
-                                      (Number(detail.text) == 1 ? <span>{"100%"}</span> : <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>)
+                                    {detail?.afterText?.length > 0 ?
+                                      Number(detail?.text) == 1 ? <span>{"100%"}</span>
+                                      : 
+                                      (detailIndex > 3 && detail?.afterText.length > 0 ? <span>{Math.round(detail?.text * 100) + detail?.afterText}</span> : <span>{detail?.text + detail?.afterText}</span>)
                                       :
-                                      <span>{Math.round(detail.text)}</span>
+                                      (detailIndex > 3 ? <span>{Math.round(detail?.text)}</span> : <span>{detail?.text}</span>)
                                     }
                                   </div>
                                 )

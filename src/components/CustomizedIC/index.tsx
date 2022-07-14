@@ -679,7 +679,7 @@ const CustomizedIC = () => {
       seriesName.push(segementHeading[i]);
     }
 
-    chartDetails?.push("total")
+    // chartDetails?.push("total")
     // const getSeriesData = getsegmentChartOptions(
     //   ReduxPageJson.JsonData.data.inputData.potentialIncreaseData.segmentTableChartData[ddId],
     //   ReduxPageJson.JsonData.data.inputData.currencySymbol
@@ -1207,16 +1207,31 @@ const CustomizedIC = () => {
       <Footer>
         <Divider />
         <div className="button-container justi">
-          <div>
-            <CustomButton
-              className={"submitButton next-button"}
-              onClick={(e: any) => nextHandleClick(e)}
-            >
-              {getParsedData(
-                jsonData?.data?.footerData?.forwardBtn?.forwardBtntxt
-              )}
-            </CustomButton>
-          </div>
+          {jsonData?.data?.footerData?.previousTxt != "" && (
+            <div>
+              <CustomButton
+                className={"submitButton mar-right common-width"}
+                onClick={(e: any) =>
+                  nextHandleClick(jsonData?.data?.footerData?.previousInputId)
+                }
+              >
+                {getParsedData(jsonData?.data?.footerData?.previousTxt)}
+              </CustomButton>
+            </div>
+          )}
+
+          {jsonData?.data?.footerData?.forwardTxt && (
+            <div>
+              <CustomButton
+                className={"submitButton next-button common-width"}
+                onClick={(e: any) =>
+                  nextHandleClick(jsonData?.data?.footerData?.forwardInputId)
+                }
+              >
+                {getParsedData(jsonData?.data?.footerData?.forwardTxt)}
+              </CustomButton>
+            </div>
+          )}
         </div>
       </Footer>
     </div>
