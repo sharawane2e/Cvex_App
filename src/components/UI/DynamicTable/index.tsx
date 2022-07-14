@@ -33,7 +33,10 @@ const DynamicTable = () => {
 
   useEffect(() => {
     updateImpFactor(jsonData);
-    console.log("check", getAllQuartiles("table_4"))
+    console.log("check", getAllQuartiles("table_4"));
+
+
+
   },[])
 
   const updateReduxJson = (json:any) => {
@@ -86,7 +89,6 @@ const DynamicTable = () => {
     data?.data?.inputData?.SalesTables?.tbody?.map((table:any) => {
 
       let allQuartiles = getAllQuartiles(table.tableId);
-      console.log(allQuartiles)
       let calValue:any = 0; 
       if(allQuartiles.length > 0){
         calValue = allQuartiles?.reduce((a:any,b:any) => a*b);
@@ -101,7 +103,6 @@ const DynamicTable = () => {
       })
     });
     // console.log(data);
-    console.log("dataa", data);
     // updateReduxJson(data);
   }
 
@@ -135,6 +136,7 @@ const DynamicTable = () => {
         }
       }
     });
+    // console.log(arr)
     return arr;
   }
 
@@ -161,7 +163,6 @@ const DynamicTable = () => {
       allTableQ.push(sum);
     })
     total = allTableQ.reduce((a:any, b:any) => a+b);
-
     if(type == "if"){
       return Math.round(total);
     }
@@ -249,16 +250,27 @@ const DynamicTable = () => {
     <>
         <div className="calculate_table_container">
           <div className="calculate_table_head">
-            <button onClick={() => getIF("table_1", "iv")}>Click</button>
             {ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.theaders?.map((head:any, hi:any) => (
               <div className="table_row">
                 {head.rowDetails.map((detail:any, di:any) => {
                   // (
                   //   <div className="table_col">{detail}</div>
                   // )
-                  if(detail == ""){
+                  // if(detail == ""){
+                  //   return (
+                  //     <div className="table_col"></div>
+                  //   )
+                  // }
+                  if(hi == 0 && di == 8){
                     return (
-                      <div className="table_col border_0"></div>
+                      <div className="table_col">{numberWithCommas(getTotalIF("if"))}</div>
+                      // <div className="table_col">{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.Impactfactor)?.reduce((a:any,b:any) => a+b)}</div>
+                    )
+                  }
+                  else if(hi == 0 && di == 9){
+                    return (
+                      <div className="table_col">{numberWithCommas(getTotalIF("iv"))}</div>
+                      // <div className="table_col">{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</div>
                     )
                   }
                   else if(hi == 1 && di == 3){
@@ -276,16 +288,9 @@ const DynamicTable = () => {
                       <div className="table_col blue_color">{detail}</div>
                     )
                   }
-                  else if(hi == 0 && di == 8){
+                  else if(detail == ""){
                     return (
-                      // <div className="table_col">{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.Impactfactor)?.reduce((a:any,b:any) => a+b)}</div>
-                      <div className="table_col">{numberWithCommas(getTotalIF("if"))}</div>
-                    )
-                  }
-                  else if(hi == 0 && di == 9){
-                    return (
-                      // <div className="table_col">{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</div>
-                      <div className="table_col">{numberWithCommas(getTotalIF("iv"))}</div>
+                      <div className="table_col border_0"></div>
                     )
                   }
                   else{
@@ -376,12 +381,25 @@ const DynamicTable = () => {
                                 detail.type == "Number" ?
                                 (
                                   <div className="table_col">
-                                    {(String(detail.text)).split(".").length > 1 ? 
+                                    {(String(detail.text)).split(".").length > 1 && detailIndex > 3 ? 
                                       <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>
                                       :
-                                      <span>{detail.text}</span>
-                                  }
+                                      Number(detail.text) == 1 && detailIndex > 3 ? 
+                                      <span>{"100%"}</span>
+                                      :
+                                      <span>{Math.round(detail.text)}</span>
+                                    }
                                   </div>
+                                  // <div className="table_col">
+                                  //   {String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText).length > 0 ? 
+                                  //     <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>
+                                  //     :
+                                  //     Number(detail.text) == 1 && detailIndex > 3 ? 
+                                  //     <span>{"100%"}</span>
+                                  //     :
+                                  //     <span>{Math.round(detail.text)}</span>
+                                  //   }
+                                  // </div>
                                 )
                                 :
                                 ""

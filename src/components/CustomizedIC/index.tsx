@@ -9,6 +9,7 @@ import BaselineChart from "../UI/BaselineChart";
 import PotentialChart from "../UI/PotentialChart";
 import SegmentChart from "../UI/SegmentChart";
 import HsddInput from "../ImpactCalculator/HsddInput";
+import Highcharts from "highcharts";
 import {
   setDropDown,
   setSecDropDown,
@@ -27,6 +28,7 @@ import {
   getbaseChart,
   getbaseLineChartOptions,
   getpotentialChartOptions,
+  getsegmentChartOptions,
 } from "../../utils/highchartOptionUtil";
 import { useSelector } from "react-redux";
 import "../CustomizedIC/CustomizedIC.scss";
@@ -56,6 +58,9 @@ const CustomizedIC = () => {
     // onLoadUpdates();
     // console.log("chart", chart.barChartOptions)
     updateBaseChart(htmldata, htmldata?.data?.inputData?.periodDD?.selectedId);
+    // let harsh = [1,2,3,4,5];
+    // harsh.push(200);
+    // console.log("harsh ", harsh);
   }, []);
 
   useEffect(() => {
@@ -81,8 +86,12 @@ const CustomizedIC = () => {
     let data:any = {};
     data = JSON.parse(JSON.stringify(ReduxPageJson?.JsonData));
     let segmentId = ReduxPageJson?.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.selectedId;
+    let segTableId = ReduxPageJson?.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == segmentId)[0].tableId;
     setSelectedSegment(segmentId);
     getTotalIV();
+    updateBaseChart(ReduxPageJson?.JsonData, ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId)
+    updateBaselinechart(ReduxPageJson?.JsonData, ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId);
+    updateSegmentChart(segmentId, segTableId);
     // updateBaselinechart(ReduxPageJson?.JsonData);  
     // updateSegTable2(data);
     // updateSegTable();
@@ -140,9 +149,11 @@ const CustomizedIC = () => {
       }
     }];
 
-    let details = JSON.parse(JSON.stringify(data?.data?.inputData?.periodTableData?.rowDetails));
+    let basedata:any = JSON.parse(JSON.stringify(data));
 
-    for(var i=0; i<details[2].tbodyDetails.length; i++){
+    let details:any = basedata?.data?.inputData?.periodTableData?.rowDetails;
+
+    for(var i=0; i<details?.[2]?.tbodyDetails?.length; i++){
       details[2].tbodyDetails[i] = CalculatePFB(i,"display");
       if(selectObj?.ddName == "Monthly"){
         details[0].tbodyDetails[i] = (details[0].tbodyDetails[i])/12;
@@ -152,28 +163,31 @@ const CustomizedIC = () => {
       }
     }
 
-    if(selectObj?.ddName == "Monthly"){
-      details[2].tbodyDetails[details[2].tbodyDetails.length - 1] = (getTotalIV())/12;
+    if(details?.length > 0){
+      if(selectObj?.ddName == "Monthly"){
+        details[2].tbodyDetails[details?.[2]?.tbodyDetails?.length - 1] = (getTotalIV())/12;
+      }
+      else{
+        details[2].tbodyDetails[details?.[2]?.tbodyDetails?.length - 1] = getTotalIV();
+      }
     }
-    else{
-      details[2].tbodyDetails[details[2].tbodyDetails.length - 1] = getTotalIV();
-    }
-    console.log("details", details);
+
 
     // const rowDetails = data?.data?.inputData?.periodTableData?.rowDetails;
     const rowDetails = details;
     const colorArray = data?.data?.inputData?.periodTableData?.colorArray;
     const firtsCatg = data?.data?.inputData.periodTableData.rowDetails[0].tbodyDetails[0];
     const secsCatg = data?.data?.inputData.periodTableData.rowDetails[2].tbodyDetails[0];
-    const getchartBarSeries = getbaseChart(
-      rowDetails,
-      colorArray,
-      "R"
-    );
-    console.log(getchartBarSeries);
-    dispatch(setBarChartOptions({data : getchartBarSeries}));
-    dispatch(setCharcategory([firtsCatg, secsCatg]));
-    updateBaselinechart(data, ddId)
+    if(rowDetails != undefined && colorArray != undefined){
+      const getchartBarSeries = getbaseChart(
+        rowDetails,
+        colorArray,
+        "R"
+      );
+      dispatch(setBarChartOptions({data : getchartBarSeries}));
+      dispatch(setCharcategory([firtsCatg, secsCatg]));
+      updateBaselinechart(data, ddId)
+    }
   }
 
   const updateBaselinechart = (data:any, ddId:any) => {
@@ -250,14 +264,14 @@ const CustomizedIC = () => {
           })
         }
         else if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && selectObj?.ddName == "Yearly"){
-          blData.push({
+          blData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xi],
             y: data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi],
             color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
           })
         }
         else{
-          blData.push({
+          blData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xi],
             y: 0,
             color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
@@ -269,7 +283,7 @@ const CustomizedIC = () => {
     data?.data?.inputData?.periodTableData?.headings.map((x:any, xind:any) => {
       if(xind>0 && data?.data?.inputData?.periodTableData?.headings.length-1){
         if(typeof CalculatePFB(xind, "actual") == "number" && selectObj?.ddName == "Monthly"){
-          pfbData.push({
+          pfbData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xind],
             // y: data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[xind],
             y: (Math.round((CalculatePFB(xind, "actual"))/12)),
@@ -277,14 +291,14 @@ const CustomizedIC = () => {
           })
         }
         else if(typeof CalculatePFB(xind, "actual") == "number" && selectObj?.ddName == "Yearly"){
-          pfbData.push({
+          pfbData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xind],
             y: CalculatePFB(xind, "actual"),
             color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
           })
         }
         else{
-          pfbData.push({
+          pfbData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xind],
             y: 0,
             color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
@@ -293,26 +307,26 @@ const CustomizedIC = () => {
       }
     });
 
-    console.log("allSales", pfbData);
 
     const getSeriesData = getbaseLineChartOptions(data?.data?.inputData?.periodTableData, "R");
     const dataValue = getSeriesData[0][0];
-    console.log("baseline", dataValue)
-    dispatch(
-      setBaseLineChartOptions({
-        data: blData,
-        dataLabels: blDataLabels,
-        categories: getSeriesData[1],
-      })
-    );
-    dispatch(
-      setPotentialChartOptions({
-        data: pfbData,
-        dataLabels: pfbDataLabels,
-        categories: getSeriesData[1],
-      })
-    );
-    console.log(getSeriesData[1])
+    if(data != undefined && data != "" && data != {}){
+      dispatch(
+        setBaseLineChartOptions({
+          data: blData,
+          dataLabels: blDataLabels,
+          categories: getSeriesData[1],
+        })
+      );
+      dispatch(
+        setPotentialChartOptions({
+          data: pfbData,
+          dataLabels: pfbDataLabels,
+          categories: getSeriesData[1],
+        })
+      );
+    }
+
   }
 
   function updateee(){
@@ -334,22 +348,39 @@ const CustomizedIC = () => {
     let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
     let result:any = 0;
 
-    if(typeof baselineVal == "number"){
-      if(tdIndex == lastIndex){
-        result = baselineVal - totalPFB;
+    if(selectObj?.ddName == "Monthly"){
+      if(typeof baselineVal == "number"){
+        if(tdIndex == lastIndex){
+          let val = (baselineVal/12) - (totalPFB)
+          result = Math.round(val);
+        }
+        else{
+          let val = (baselineVal/12) - (CalculatePFB(tdIndex, "actual"))
+          result = Math.round(val);
+        }
       }
       else{
-        result = baselineVal - CalculatePFB(tdIndex, "actual");
+        result = baselineVal
       }
+      // console.log("hh",ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[3], CalculatePFB(3, "actual"))
     }
     else{
-      result = baselineVal
+      if(typeof baselineVal == "number"){
+        if(tdIndex == lastIndex){
+          result = Math.round(baselineVal - totalPFB);
+        }
+        else{
+          result = Math.round(baselineVal - CalculatePFB(tdIndex, "actual"));
+        }
+      }
+      else{
+        result = baselineVal
+      }
     }
 
     // let result = Number(num1) - Number(num2);
-    // console.log(num1,num2,result)
     // return result;
-    return selectObj?.ddName == "Monthly" && typeof result == "number" ? Math.round((result/12)) : result;
+    return result;
   }
 
   const CalculatePFB = (tdIndex:any, type:any) => {
@@ -576,9 +607,98 @@ const CustomizedIC = () => {
     //   data.data.inputData.potentialIncreaseData.segmentTableChartData[ddId].tbodyDetails = preValues;
     // }
     // console.log(preValues);
+
+    let tableId = ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == ddId)[0].tableId;
+
     updateSegTable2(data);
     updateReduxJson(data);
+    updateSegmentChart(ddId, tableId);
     // console.log(data);
+  }
+
+  const updateSegmentChart = (ddId:any, tableId:any) => {
+
+    const chartDetails = ReduxPageJson?.JsonData?.data?.inputData.potentialIncreaseData.segmentTableChartData[ddId].chartDetails;
+    const chartColor = ReduxPageJson?.JsonData?.data?.inputData.potentialIncreaseData.segmentTableChartData[ddId].chartColorArray;
+
+    const segementHeading = ReduxPageJson?.JsonData?.data?.inputData?.potentialIncreaseData.segmentTableChartData[ddId].chartLabels;
+    let series: any = [];
+    const seriesName: any = [];
+    const categories: any = [];
+    const tempdata: any = [];
+
+
+    for (let i = 0; i < segementHeading?.length; i++) {
+      seriesName.push(segementHeading[i]);
+    }
+
+    // const getSeriesData = getsegmentChartOptions(
+    //   ReduxPageJson.JsonData.data.inputData.potentialIncreaseData.segmentTableChartData[ddId],
+    //   ReduxPageJson.JsonData.data.inputData.currencySymbol
+    // );
+
+    // let newArr:any = [];
+
+    // for(var i=0; i<chartDetails?.length; i++){
+    //   let ele = ReturnSGTData(tableId, i);
+    //   newArr.push(ele);
+    //   if(i > 0){
+    //     newArr[i] = newArr[i] - 2*(newArr[i]);
+    //   }
+    //   else{
+    //     // newArr[0] = newArr[0] - 5* (newArr[newArr.length-1]);
+    //     newArr[0] = newArr[0] + 990000;
+    //   }
+    // }
+    // console.log("new check", newArr);
+
+    // chartDetails?.forEach((detail: any, Index: number) => {
+    //   categories.push(seriesName[Index]);
+    //   tempdata.push({
+    //     // y: detail,
+    //     y: newArr[Index],
+    //     name: seriesName[Index],
+    //     color: chartColor[Index],
+    //   });
+    // });
+
+    // Original Code
+    chartDetails?.forEach((detail: any, Index: number) => {
+      categories.push(seriesName[Index]);
+      tempdata.push({
+        // y: detail,
+        y: ReturnSGTData(tableId, Index),
+        name: seriesName[Index],
+        color: chartColor[Index],
+      });
+    });
+
+    series = {
+      tempdata,
+      dataLabels: {
+        enabled: true,
+        color: "black",
+        bold: false,
+        verticalAlign: "bottom",
+        y: 0,
+        style: {
+          textShadow: false,
+          textOutline: false,
+          fontWeight: "normal",
+        },
+        formatter: function (this: any) {
+          return Highcharts.numberFormat(Math.abs(this.y), 0);
+        },
+      },
+    };
+
+    dispatch(
+      setSegmentChartOptions({
+        data: series.tempdata,
+        dataLabels: series.dataLabels,
+        categories: categories,
+      })
+    );
   }
 
   // const getAllQuartiles = (saleName:any) => {
@@ -795,7 +915,6 @@ const CustomizedIC = () => {
     <div className="contactpage-container">
       <SecondaryHeader sidebar={false} />
       <div className="contactpage-container__inr">
-        <button onClick={() => {console.log(ReduxPageJson.JsonData); updateee();}}>Console JsonData</button>
         <div className="contactpage-container__inr__section">
           <div className="dropdown-container">
             <Grid
