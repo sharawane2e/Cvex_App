@@ -267,6 +267,10 @@
       display: flex;
   }
 
+  .footer {
+    background-color: $white-color;
+  }
+
 
   @include breakpoint(desktop1280) {
     .single-capability-header--heading {

@@ -262,6 +262,10 @@
       column-gap: 15px;
   }
 
+  .footer {
+    background-color: $white-color;
+  }
+
   @include breakpoint(desktop1280) {
     .submitButton {
       padding: 6px 35px !important;
