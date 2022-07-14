@@ -45,6 +45,7 @@
         .content-area p {
             text-align: center;
             font-size: 13px;
+            margin-bottom: 10px;
         }
 
 
@@ -59,52 +60,12 @@
         margin-bottom: 30px;
     }
    
-    
-
-}
-@include breakpoint(desktop1280) {
-    .title {
-    font-size: 12px;
-    }
-    .content-area p {
-        font-size: 10px !important;
-    }
-    .helpdesk p {
-        font-size: 11px !important;
-    }
-    .footer p {
-        font-size: 10px !important;
-    }
-}
-@include breakpoint(sm-mobileonly) {
-    .footer p {
-        font-size: 12px;
-    }
-    .helpdesk p {
-        font-size: 12px !important;
-    }
-    .content-area p {
-        font-size: 12px;
-    }
-.title {
-        font-size: 16px;
-    }
-svg {
-        height: 141px;
-    }
-}
-@include breakpoint(landscape-mobileonly) {
-    .helpdesk {
-        margin-top: 14px;
-    }
-}
-
     .helpdesk {
         width: 100%;
         background-color: $dark-white;
         text-align: center;
         padding: 15px;
-        margin-top: 15px;
+        margin-top: 20px;
         p {
             &:first-child {
                 font-weight: $font-normal;
@@ -123,7 +84,46 @@ svg {
         }
     }
 
-    .helpdesk {
-        margin-top: 20px;
+
+    @include breakpoint(sm-mobileonly) {
+        .footer p {
+            font-size: 12px;
+        }
+        .helpdesk p {
+            font-size: 12px !important;
+        }
+        .content-area p {
+            font-size: 12px;
+        }
+        .title {
+            font-size: 16px;
+        }
+        svg {
+            height: 141px;
+        }
     }
+
+    @include breakpoint(desktop1280) {
+        .title {
+        font-size: 12px;
+        }
+        .content-area p {
+            font-size: 10px !important;
+        }
+        .helpdesk p {
+            font-size: 11px !important;
+        }
+        .footer p {
+            font-size: 10px !important;
+        }
+    }
+
+    @include breakpoint(landscape-mobileonly) {
+        .helpdesk {
+            margin-top: 14px;
+        }
+    }
+
+}
+
 }
