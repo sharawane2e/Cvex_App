@@ -1,4 +1,4 @@
-import { Grid, Box, Divider, Select, MenuItem } from "@mui/material";
+import { Grid, Box, Divider, Select, MenuItem, TableCell } from "@mui/material";
 import { useState, useEffect } from "react";
 import SecondaryHeader from "../Headers/SecondaryHeader";
 import BarChart from "../UI/BarChart";
@@ -95,6 +95,7 @@ const CustomizedIC = () => {
     // updateBaselinechart(ReduxPageJson?.JsonData);  
     // updateSegTable2(data);
     // updateSegTable();
+    console.log("tt", totalIF)
   }, [ReduxPageJson])
 
   // useEffect(() => {
@@ -243,6 +244,11 @@ const CustomizedIC = () => {
               "textShadow": false,
               "textOutline": false,
               "fontWeight": "normal"
+          },
+          formatter: function (this: any) {
+            return (
+              Highcharts.numberFormat(Math.abs(this.y), 0)
+            );
           }
       }
   }
@@ -255,8 +261,22 @@ const CustomizedIC = () => {
     const pfbDataLabels: any = a.dataLabels;
 
     data?.data?.inputData?.periodTableData?.headings.map((x:any, xi:any) => {
-      if(xi>0 && data?.data?.inputData?.periodTableData?.headings.length-1){
-        if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && selectObj?.ddName == "Monthly"){
+      if(xi>0){
+        if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && xi == data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails.length -1 && selectObj?.ddName == "Monthly"){
+          blData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xi],
+            y: (Math.round((data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] - 2 * data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi])/12)),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
+          })
+        }
+        else if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && xi == data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails.length -1 && selectObj?.ddName == "Yearly"){
+          blData.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xi],
+            y: (Math.round((data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] - 2 * data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi]))),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[0]?.chartColorArray[xi]
+          })
+        }
+        else if(typeof data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi] == "number" && selectObj?.ddName == "Monthly"){
           blData.push({
             name: data?.data?.inputData?.periodTableData?.headings[xi],
             y: (Math.round((data?.data?.inputData?.periodTableData?.rowDetails[0]?.tbodyDetails[xi])/12)),
@@ -281,12 +301,28 @@ const CustomizedIC = () => {
     })
 
     data?.data?.inputData?.periodTableData?.headings.map((x:any, xind:any) => {
-      if(xind>0 && data?.data?.inputData?.periodTableData?.headings.length-1){
-        if(typeof CalculatePFB(xind, "actual") == "number" && selectObj?.ddName == "Monthly"){
+      if(xind>0){
+        if(xind == (data?.data?.inputData?.periodTableData?.headings.length - 1) && selectObj?.ddName == "Monthly"){
           pfbData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xind],
             // y: data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[xind],
-            y: (Math.round((CalculatePFB(xind, "actual"))/12)),
+            y: Math.round((getTotalIV() - 2 * getTotalIV()) / 12),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
+          })
+        }
+        else if(xind == (data?.data?.inputData?.periodTableData?.headings.length - 1) && selectObj?.ddName == "Yearly"){
+          pfbData?.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xind],
+            // y: data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[xind],
+            y: Math.round((getTotalIV() - 2 * getTotalIV())),
+            color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
+          })
+        }
+        else if(typeof CalculatePFB(xind, "actual") == "number" && selectObj?.ddName == "Monthly"){
+          pfbData?.push({
+            name: data?.data?.inputData?.periodTableData?.headings[xind],
+            // y: data?.data?.inputData?.periodTableData?.rowDetails[2]?.tbodyDetails[xind],
+            y: CalculatePFB(xind, "actual"),
             color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
           })
         }
@@ -297,7 +333,7 @@ const CustomizedIC = () => {
             color: data?.data?.inputData?.periodTableData?.rowDetails[2]?.chartColorArray[xind]
           })
         }
-        else{
+        else {
           pfbData?.push({
             name: data?.data?.inputData?.periodTableData?.headings[xind],
             y: 0,
@@ -308,6 +344,13 @@ const CustomizedIC = () => {
     });
 
 
+    const categories: any = [];
+    data?.data?.inputData?.periodTableData?.headings?.forEach((detail: any, Index: number) => {
+      if(Index > 0){
+        categories.push(detail);
+      }
+    });
+
     const getSeriesData = getbaseLineChartOptions(data?.data?.inputData?.periodTableData, "R");
     const dataValue = getSeriesData[0][0];
     if(data != undefined && data != "" && data != {}){
@@ -315,14 +358,14 @@ const CustomizedIC = () => {
         setBaseLineChartOptions({
           data: blData,
           dataLabels: blDataLabels,
-          categories: getSeriesData[1],
+          categories: categories,
         })
       );
       dispatch(
         setPotentialChartOptions({
           data: pfbData,
           dataLabels: pfbDataLabels,
-          categories: getSeriesData[1],
+          categories: categories,
         })
       );
     }
@@ -351,11 +394,11 @@ const CustomizedIC = () => {
     if(selectObj?.ddName == "Monthly"){
       if(typeof baselineVal == "number"){
         if(tdIndex == lastIndex){
-          let val = (baselineVal/12) - (totalPFB)
+          let val = (totalPFB) - (baselineVal/12)
           result = Math.round(val);
         }
         else{
-          let val = (baselineVal/12) - (CalculatePFB(tdIndex, "actual"))
+          let val = (CalculatePFB(tdIndex, "actual")) - (baselineVal/12)
           result = Math.round(val);
         }
       }
@@ -367,10 +410,10 @@ const CustomizedIC = () => {
     else{
       if(typeof baselineVal == "number"){
         if(tdIndex == lastIndex){
-          result = Math.round(baselineVal - totalPFB);
+          result = Math.round(totalPFB - baselineVal);
         }
         else{
-          result = Math.round(baselineVal - CalculatePFB(tdIndex, "actual"));
+          result = Math.round(CalculatePFB(tdIndex, "actual") - baselineVal);
         }
       }
       else{
@@ -618,10 +661,14 @@ const CustomizedIC = () => {
 
   const updateSegmentChart = (ddId:any, tableId:any) => {
 
-    const chartDetails = ReduxPageJson?.JsonData?.data?.inputData.potentialIncreaseData.segmentTableChartData[ddId].chartDetails;
+    let chartDetails = ReduxPageJson?.JsonData?.data?.inputData.potentialIncreaseData.segmentTableChartData[ddId].chartDetails.slice();
+
     const chartColor = ReduxPageJson?.JsonData?.data?.inputData.potentialIncreaseData.segmentTableChartData[ddId].chartColorArray;
 
     const segementHeading = ReduxPageJson?.JsonData?.data?.inputData?.potentialIncreaseData.segmentTableChartData[ddId].chartLabels;
+    
+    let tableObj = ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody?.filter((x:any) => x.tableId == tableId)[0];
+    
     let series: any = [];
     const seriesName: any = [];
     const categories: any = [];
@@ -632,46 +679,89 @@ const CustomizedIC = () => {
       seriesName.push(segementHeading[i]);
     }
 
+    chartDetails?.push("total")
     // const getSeriesData = getsegmentChartOptions(
     //   ReduxPageJson.JsonData.data.inputData.potentialIncreaseData.segmentTableChartData[ddId],
     //   ReduxPageJson.JsonData.data.inputData.currencySymbol
     // );
 
-    // let newArr:any = [];
-
+    let newArr:any = [];
+    // ReturnSGTData(tableId, 0);
     // for(var i=0; i<chartDetails?.length; i++){
     //   let ele = ReturnSGTData(tableId, i);
-    //   newArr.push(ele);
-    //   if(i > 0){
-    //     newArr[i] = newArr[i] - 2*(newArr[i]);
+    //   if(i<chartDetails?.length-1){
+    //     // newArr[i] = newArr[i+1] - newArr[i];
+    //     // console.log(ReturnSGTData(tableId, i+1))
+    //     let newVal = ReturnSGTData(tableId, i+1) - ReturnSGTData(tableId, i);
+    //     newArr.push(newVal);
+    //     // newArr[i] = newArr[i] - 2*(newArr[i]);
+    //   }
+    //   else if(i == chartDetails?.length-1){
+    //     let newVal = ReturnSGTData(tableId, i) - 2*(ReturnSGTData(tableId, i));
+    //     newArr.push(newVal);
     //   }
     //   else{
-    //     // newArr[0] = newArr[0] - 5* (newArr[newArr.length-1]);
-    //     newArr[0] = newArr[0] + 990000;
+    //     newArr.push(ele)
     //   }
+    //   // else if(i == 0){
+    //   //   // newArr[0] = newArr[0] - 5* (newArr[newArr.length-1]);
+    //   //   newArr[0] = newArr[0] - 2*newArr[0];
+    //   // }
     // }
-    // console.log("new check", newArr);
 
-    // chartDetails?.forEach((detail: any, Index: number) => {
-    //   categories.push(seriesName[Index]);
-    //   tempdata.push({
-    //     // y: detail,
-    //     y: newArr[Index],
-    //     name: seriesName[Index],
-    //     color: chartColor[Index],
-    //   });
-    // });
+    if(tableObj?.qbValue == null){
+      for(var i=0; i<chartDetails?.length-1; i++){
+        newArr.push(ReturnSGTData(tableId, i))
+      }
+    }
+    else{
+      for(var i=1; i<chartDetails?.length; i++){
+        newArr.push(ReturnSGTData(tableId, i))
+      }
+    }
 
-    // Original Code
+
+    // for(var k=1; k<chartDetails?.length; k++){
+    //   newArr[k] = -Math.abs(Math.abs(newArr[k]) - (Math.abs(newArr[k-1])));
+
+    // }
+
+    newArr.splice(0,0,newArr[0])
+    for(var i=1; i<newArr.length; i++){
+      if(i > 0 && i != newArr.length-1){
+        newArr[i] = -Math.abs(newArr[i] - newArr[i+1])
+      }
+      else if(i == newArr.length-1){
+        newArr[i] = -Math.abs(newArr[i])
+      }
+    }
+
+    //0
+    //1 - 0
+    //2 - 1
+
+    console.log(newArr,)
+
     chartDetails?.forEach((detail: any, Index: number) => {
       categories.push(seriesName[Index]);
       tempdata.push({
         // y: detail,
-        y: ReturnSGTData(tableId, Index),
+        y: newArr[Index],
         name: seriesName[Index],
         color: chartColor[Index],
       });
     });
+
+    // Original Code
+    // chartDetails?.forEach((detail: any, Index: number) => {
+    //   categories.push(seriesName[Index]);
+    //   tempdata.push({
+    //     // y: detail,
+    //     y: ReturnSGTData(tableId, Index),
+    //     name: seriesName[Index],
+    //     color: chartColor[Index],
+    //   });
+    // });
 
     series = {
       tempdata,
@@ -745,6 +835,9 @@ const CustomizedIC = () => {
         }
       }
     });
+    // if(tableobj?.qbValue != null){
+    //   arr.push(tableobj?.qbValue);
+    // }
     return arr;
   }
 
@@ -902,7 +995,7 @@ const CustomizedIC = () => {
           preValues[i] = Math.round(preValues[i])
         }
       }
-      return preValues[index];
+      return time == "Monthly" ? Math.round(preValues[index]/12) : preValues[index];
     }
     else{
       return 0;
@@ -968,6 +1061,15 @@ const CustomizedIC = () => {
                         {rowDetail?.tbodyDetails.map((tbodyDetail: any, tdIndex:any) => {
                           return typeof tbodyDetail == "number" ? (
                             <div className="table-row">
+                                <div
+                                  className={
+                                    rowDetail.iconDetails[tdIndex] == "up"
+                                      ? "arrowUpicon"
+                                      : rowDetail.iconDetails[tdIndex] == "down"
+                                      ? "arrowDownicon"
+                                      : "emptyicon"
+                                  }
+                                ></div>
                               {
                                 rowIndex == 1
                                 ?
@@ -1080,6 +1182,12 @@ const CustomizedIC = () => {
                     (el: any, eleIndex:any) => {
                       return (
                         <div className="table-row">
+                          {/* {ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody?.filter((y:any) => y.tableId == ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId)[0].qbValue != null ? 
+                          <span>{ReturnSGTData(ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId, (eleIndex+1))}</span>
+                          :
+                          <span>{ReturnSGTData(ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId, eleIndex)}</span>
+                          } */}
+                          {/* <span>{time == "Monthly" ? Math.round(ReturnSGTData(ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId, eleIndex)/12) : ReturnSGTData(ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId, eleIndex)}</span> */}
                           <span>{ReturnSGTData(ReduxPageJson.JsonData?.data?.inputData?.potentialIncreaseData?.segmentDD?.options.filter((x:any) => x.ddId == selectedSegment)[0].tableId, eleIndex)}</span>
                         </div>
                       );

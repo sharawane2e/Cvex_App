@@ -246,6 +246,41 @@ const DynamicTable = () => {
     return qVal;
   }
 
+  const inputValidate = (value: any, pattern: any) => {
+    const reg = pattern;
+    let res = "";
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[0] == " ") return "";
+
+      if (reg.test(value[i])) res += value[i];
+    }
+
+    return res;
+  };
+
+  const numInputValidate = (
+    value: any,
+    pattern: any,
+    minRange: number,
+    maxRange: number
+  ) => {
+    const reg = pattern;
+    let res = "";
+    for (let i = 0; i < value.length; i++) {
+      if (value[0] == " ") return "";
+      if (reg.test(value[i])) res += value[i];
+    }
+    var tempNum = Number(res);
+    if (tempNum > maxRange) res = res.slice(0, -1);
+    if (tempNum < minRange) {
+      tempNum = minRange;
+      res = tempNum.toString();
+    }
+    // progressUpdate();
+    return res;
+  };
+
   return (
     <>
         <div className="calculate_table_container">
@@ -307,7 +342,7 @@ const DynamicTable = () => {
 
           {ReduxPageJson.JsonData?.data?.inputData?.SalesTables?.tbody?.map((table: any, tableIndex: any) => (
 
-            <div className="repeat_table">
+            <div key={tableIndex} className="repeat_table">
               <div className={table.disable ? "calculate_table_body disabled" : "calculate_table_body gray_color"}>
                   {/*--- Row */ }
                   <div className="table_row">
@@ -373,25 +408,20 @@ const DynamicTable = () => {
                                 :
                                 detail.type == "Input" ?
                                 (<div className="table_col">
-                                  <input className="quartile_input" value={detail?.selectedText}
-                                  onChange={(e:any) => updateText(e, tableIndex, ri, detailIndex)}
+                                  <input className="quartile_input" 
+                                  value={detail?.selectedText}
+                                  placeholder={detail?.placeholder}
+                                  onChange={(e:any) => {
+                                    e.target.value = numInputValidate(e.target.value.trim(), /^[0-9]+$/, detail?.minRange, detail?.maxRange)
+                                    updateText(e, tableIndex, ri, detailIndex)
+                                  }}
                                   />
                                 </div>)
                                 :
                                 detail.type == "Number" ?
                                 (
-                                  <div className="table_col">
-                                    {(String(detail.text)).split(".").length > 1 && detailIndex > 3 ? 
-                                      <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>
-                                      :
-                                      Number(detail.text) == 1 && detailIndex > 3 ? 
-                                      <span>{"100%"}</span>
-                                      :
-                                      <span>{Math.round(detail.text)}</span>
-                                    }
-                                  </div>
                                   // <div className="table_col">
-                                  //   {String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText).length > 0 ? 
+                                  //   {(String(detail.text)).split(".").length > 1 && detailIndex > 3 ? 
                                   //     <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>
                                   //     :
                                   //     Number(detail.text) == 1 && detailIndex > 3 ? 
@@ -400,6 +430,13 @@ const DynamicTable = () => {
                                   //     <span>{Math.round(detail.text)}</span>
                                   //   }
                                   // </div>
+                                  <div className="table_col">
+                                    {String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText).length > 0 ? 
+                                      (Number(detail.text) == 1 ? <span>{"100%"}</span> : <span>{Math.round(detail.text * 100) + String(row?.rowDetails[3]?.options?.filter((x:any) => x.ddId == row?.rowDetails[3]?.selectedId)[0]?.afterText)}</span>)
+                                      :
+                                      <span>{Math.round(detail.text)}</span>
+                                    }
+                                  </div>
                                 )
                                 :
                                 ""
@@ -412,8 +449,8 @@ const DynamicTable = () => {
                     </div>
                     {/* <div className="table_col eight"> {table.Impactfactor} </div>
                     <div className="table_col nine"> {table.ImpactValue} </div> */}
-                    <div className="table_col eight"> {numberWithCommas(getIF(table.tableId, "if"))} </div>
-                    <div className="table_col nine"> {numberWithCommas(getIF(table.tableId, "iv"))} </div>
+                    <div className="table_col eight"> {table.disable == false ? (numberWithCommas(getIF(table.tableId, "if"))) : ""} </div>
+                    <div className="table_col nine"> {table.disable == false ? (numberWithCommas(getIF(table.tableId, "iv"))) : ""} </div>
                   </div>
                   {/*---END Row */ }
               </div>
