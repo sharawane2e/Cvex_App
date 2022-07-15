@@ -386,7 +386,8 @@ const CustomizedIC = () => {
   const CalculatePI = (tdIndex:any) => {
     let totalPFB = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b);
     let lastIndex = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[1]?.tbodyDetails?.length - 1;
-    let baselineVal = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[lastIndex];
+    let baselineVal = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[tdIndex];
+    let lastBaseline = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[lastIndex];
     let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
     let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
     let result:any = 0;
@@ -404,6 +405,7 @@ const CustomizedIC = () => {
       else{
         result = baselineVal
       }
+      console.log(Math.round(totalIF/12), baselineVal/12, (CalculatePFB(tdIndex, "actual")), result)
     }
     else{
       if(typeof baselineVal == "number"){
