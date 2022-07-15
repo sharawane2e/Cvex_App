@@ -53,6 +53,10 @@
     }
     
   }
+
+  .footer {
+    background-color: $white-color;
+  }
   .css-10mzr36-MuiGrid-root>.MuiGrid-item {
     @include breakpoint(sm-mobileonly) {
       padding-bottom:8px;
