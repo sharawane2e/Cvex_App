@@ -201,8 +201,11 @@
   }
   @include breakpoint(desktop150) {
     .footer .footer-impact-calc .left-sec .topContainer .leftPanel {
-        flex: 0 0 70%;
+        flex: 0 0 75%;
     }
+    .footer .footer-impact-calc .left-sec .topContainer .rightPanel {
+      flex: 0 0 25%;
+  }
   }
   
 
