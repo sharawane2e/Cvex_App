@@ -183,7 +183,7 @@ const CustomizedIC = () => {
       const getchartBarSeries = getbaseChart(
         rowDetails,
         colorArray,
-        "R"
+        "€"
       );
       dispatch(setBarChartOptions({data : getchartBarSeries}));
       dispatch(setCharcategory([firtsCatg, secsCatg]));
@@ -384,9 +384,9 @@ const CustomizedIC = () => {
   }
 
   const CalculatePI = (tdIndex:any) => {
-    let baselineVal = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[tdIndex];
     let totalPFB = ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b);
     let lastIndex = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[1]?.tbodyDetails?.length - 1;
+    let baselineVal = ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[lastIndex];
     let selectedId = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.selectedId;
     let selectObj = ReduxPageJson?.JsonData?.data?.inputData?.periodDD?.options?.filter((opt:any) => opt.ddId == selectedId)[0];
     let result:any = 0;
@@ -394,8 +394,7 @@ const CustomizedIC = () => {
     if(selectObj?.ddName == "Monthly"){
       if(typeof baselineVal == "number"){
         if(tdIndex == lastIndex){
-          let val = (totalPFB) - (baselineVal/12)
-          result = Math.round(val);
+          result = Math.round(totalIF/12 - Math.abs(baselineVal/12));
         }
         else{
           let val = (CalculatePFB(tdIndex, "actual")) - (baselineVal/12)
@@ -405,12 +404,11 @@ const CustomizedIC = () => {
       else{
         result = baselineVal
       }
-      // console.log("hh",ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[3], CalculatePFB(3, "actual"))
     }
     else{
       if(typeof baselineVal == "number"){
         if(tdIndex == lastIndex){
-          result = Math.round(totalPFB - baselineVal);
+          result = Math.round(totalIF - Math.abs(baselineVal));
         }
         else{
           result = Math.round(CalculatePFB(tdIndex, "actual") - baselineVal);
@@ -419,8 +417,10 @@ const CustomizedIC = () => {
       else{
         result = baselineVal
       }
+      // console.log()
     }
 
+    // console.log("hh",ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails)
     // let result = Number(num1) - Number(num2);
     // return result;
     return result;
@@ -1064,14 +1064,24 @@ const CustomizedIC = () => {
                                 <div
                                   className={
                                     CalculatePFB(tdIndex, "display") > CalculateBL(tbodyDetail) && rowIndex == 1
-                                      ? "arrowUpicon"
+                                      ? 
+                                        "arrowUpicon"
                                       : 
-                                      CalculatePFB(tdIndex, "display") < CalculateBL(tbodyDetail) && rowIndex == 1
-                                      ? "arrowDownicon"
-                                      : "emptyicon"
+                                        CalculatePFB(tdIndex, "display") < CalculateBL(tbodyDetail) && rowIndex == 1
+                                        ? 
+                                          "arrowDownicon" 
+                                        :
+                                          totalIF < ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[rowDetail?.tbodyDetails.length - 1] && rowIndex == 1 && tdIndex == rowDetail?.tbodyDetails.length - 1
+                                          ? 
+                                          "arrowDownicon"
+                                          :
+                                          totalIF > ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails[rowDetail?.tbodyDetails.length - 1] && rowIndex == 1 && tdIndex == rowDetail?.tbodyDetails.length - 1
+                                          ?
+                                          "arrowUpicon"
+                                          :
+                                          "emptyicon"
                                   }
                                 >
-
                                 </div>
                               {
                                 rowIndex == 1
