@@ -52,15 +52,14 @@ const CustomizedIC = () => {
 
   useEffect(() => {
     //@ts-ignore
-    let htmldata = JSON.parse(document.getElementById("jsonData")?.innerHTML);
+    let abcd = JSON.parse(document.getElementById("jsonData")?.innerText);
+    //@ts-ignore
+    let htmldata = JSON.parse(JSON.stringify(abcd));
     setJSONData(htmldata);
     updateReduxJson(htmldata);
-    // onLoadUpdates();
-    // console.log("chart", chart.barChartOptions)
     updateBaseChart(htmldata, htmldata?.data?.inputData?.periodDD?.selectedId);
-    // let harsh = [1,2,3,4,5];
-    // harsh.push(200);
-    // console.log("harsh ", harsh);
+    //@ts-ignore
+    document.getElementById("forwardbutton").disabled = true;
   }, []);
 
   useEffect(() => {
@@ -395,33 +394,31 @@ const CustomizedIC = () => {
     if(selectObj?.ddName == "Monthly"){
       if(typeof baselineVal == "number"){
         if(tdIndex == lastIndex){
-          result = Math.round(totalIF/12 - Math.abs(baselineVal/12));
+          result = numberWithCommas(Math.abs(Math.round(totalIF/12 - Math.abs(baselineVal/12))));
         }
         else{
           let val = (CalculatePFB(tdIndex, "actual")) - (baselineVal/12)
-          result = Math.round(val);
+          result = numberWithCommas(Math.abs(Math.round(val)));
         }
       }
       else{
         result = baselineVal
       }
-      console.log(Math.round(totalIF/12), baselineVal/12, (CalculatePFB(tdIndex, "actual")), result)
+      // console.log(Math.round(totalIF/12), baselineVal/12, (CalculatePFB(tdIndex, "actual")), result)
     }
     else{
       if(typeof baselineVal == "number"){
         if(tdIndex == lastIndex){
-          result = Math.round(totalIF - Math.abs(baselineVal));
+          result = numberWithCommas(Math.abs(Math.round(totalIF - Math.abs(baselineVal))));
         }
         else{
-          result = Math.round(CalculatePFB(tdIndex, "actual") - baselineVal);
+          result = numberWithCommas(Math.abs(Math.round(CalculatePFB(tdIndex, "actual") - baselineVal)));
         }
       }
       else{
         result = baselineVal
       }
-      // console.log()
     }
-
     // console.log("hh",ReduxPageJson?.JsonData?.data?.inputData?.periodTableData.rowDetails[0].tbodyDetails)
     // let result = Number(num1) - Number(num2);
     // return result;
@@ -1061,7 +1058,7 @@ const CustomizedIC = () => {
                     return (
                       <div className="table-col" key={rowIndex}>
                         {rowDetail?.tbodyDetails.map((tbodyDetail: any, tdIndex:any) => {
-                          return typeof tbodyDetail == "number" ? (
+                          return typeof ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[0].tbodyDetails[tdIndex] == "number" ? (
                             <div className="table-row">
                                 <div
                                   className={
@@ -1088,25 +1085,27 @@ const CustomizedIC = () => {
                               {
                                 rowIndex == 1
                                 ?
-                                // <span>{totalIF}</span>
-                                <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(Math.abs(CalculatePI(tdIndex))) : CalculatePI(tdIndex)}</span>
-                                :
-                                rowIndex == 2 
-                                ? 
-                                tdIndex == (rowDetail?.tbodyDetails.length-1)
-                                ?
-                                // <span>{ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</span>
-                                // <span>{time == "Monthly" ? ((ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b))/12) : ReduxPageJson?.JsonData?.data?.inputData?.SalesTables?.tbody?.map((x:any) => x.ImpactValue)?.reduce((a:any,b:any) => a+b)}</span>
-                                <span>{time == "Monthly" ? numberWithCommas(Math.abs(Math.round(totalIF/12))) : numberWithCommas(Math.abs(totalIF))}</span>
-                                :
-                                <span>{typeof CalculatePI(tdIndex) == "number" ? numberWithCommas(CalculatePFB(tdIndex, "display")) : CalculatePFB(tdIndex, "display")}</span>
-                                :
-                                <span>{numberWithCommas(Math.round(CalculateBL(tbodyDetail)))}</span>
+                                  <span>{typeof CalculatePI(tdIndex) == "number" ? Math.abs(CalculatePI(tdIndex)) : CalculatePI(tdIndex)}</span>
+                                  :
+                                  rowIndex == 2 
+                                  ? 
+                                    tdIndex == (rowDetail?.tbodyDetails.length-1)
+                                    ?
+                                      <span>{time == "Monthly" ? numberWithCommas(Math.abs(Math.round(totalIF/12))) : numberWithCommas(Math.abs(totalIF))}</span>
+                                    :
+                                    <span>{typeof ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[0].tbodyDetails[tdIndex] == "number" ? Math.abs(CalculatePFB(tdIndex, "display")) : typeof ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[0].tbodyDetails[tdIndex]}</span>
+                                  :
+                                <span>{numberWithCommas(Math.round(Math.abs(CalculateBL(tbodyDetail))))}</span>
                               }
                               
                             </div>
                           ) : (
-                            <div className="table-row">
+                            tdIndex > 0 && typeof ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[0].tbodyDetails[tdIndex] == "string" ? 
+                            <div className={"table-row bg-StringGray"}>
+                              <span>{ReduxPageJson?.JsonData?.data?.inputData?.periodTableData?.rowDetails[0].tbodyDetails[tdIndex]}</span>
+                            </div>
+                            :
+                            <div className={"table-row"}>
                               <span>{tbodyDetail}</span>
                             </div>
                           );
