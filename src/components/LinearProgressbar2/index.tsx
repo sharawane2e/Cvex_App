@@ -209,7 +209,7 @@ const LinearProgressbar2 = ({
               } else {
                 len = ques.questions.filter(
                   (select: any) =>
-                    select.selectedText == "" && select.isRequired && ques.isShow
+                    (select.selectedText == "" || select.selectedText == "-") && select.isRequired && ques.isShow
                 ).length;
                 if (len > 0) {
                   count = count + 1;
