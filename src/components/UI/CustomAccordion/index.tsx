@@ -46,9 +46,7 @@ export default function CustomAccordion(props: AccordionProps) {
     updatedCapabilityDetails[capabilityDetailIndex].groupAll =
       !updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     //@ts-ignore
-    // document.getElementById(
-    //   updatedCapabilityDetails[capabilityDetailIndex].groupToggleId,
-    // ).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
+    // document.getElementById(updatedCapabilityDetails[capabilityDetailIndex].groupToggleId).value = updatedCapabilityDetails[capabilityDetailIndex].groupAll;
     dispatch(updateCapabilityDetails(updatedCapabilityDetails));
   };
 
@@ -189,24 +187,23 @@ export default function CustomAccordion(props: AccordionProps) {
                           />
                           <div className='observationbox'>
                             <div className='observation_left'>
-                              <input
-                                type="text"
-                                className="custom-text-area"
-                                defaultValue={subTitleDetail?.observationTxt}
-                                onChange={(event: any) =>
-                                  {handleTextArea(
-                                    event.target.value,
-                                    subTitleDetail?.observationId,
-                                  )
-                                  }
-                                }
-                                placeholder={subTitleDetail?.obsplaceholder}
-                              />
-                            </div>
+                          <input
+                            type="text"
+                            className="custom-text-area"
+                            defaultValue={subTitleDetail?.observationTxt}
+                            onChange={(event: any) =>
+                              {handleTextArea(
+                                event.target.value,
+                                subTitleDetail?.observationId,
+                              )
+                              }
+                            }
+                            placeholder={subTitleDetail?.obsplaceholder}
+                          />
+                          </div>
                             <div className='observation_right'></div>
                             
                           </div>
-
                           {/* <TextareaAutosize
                             aria-label="minimum height"
                             className="custom-text-area"

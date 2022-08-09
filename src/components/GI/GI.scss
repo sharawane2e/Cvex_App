@@ -22,7 +22,6 @@
     @include breakpoint(landscape-smalldevice) {
       height: calc(100vh - 305px);
     }
-    
     }
     .gi-heading{
       font-size: 18px;
@@ -54,6 +53,10 @@
     }
     
   }
+
+  .footer {
+    background-color: $white-color;
+  }
   .css-10mzr36-MuiGrid-root>.MuiGrid-item {
     @include breakpoint(sm-mobileonly) {
       padding-bottom:8px;
@@ -65,60 +68,62 @@
       min-width: 100px;
     }
   }
-}
-.cutom-checkbox {
-  svg {
-    width: 1rem;
-    height: 1rem;
+
+  .cutom-checkbox {
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
   }
-}
-.list-item {
-  span {
+  .list-item {
+    span {
+      font-size: 14px !important;
+    }
+  }
+  .selectItem {
     font-size: 14px !important;
+    @include breakpoint(sm-mobileonly) {
+      font-size: 12px !important;
+    }
   }
-}
-.selectItem {
-  font-size: 14px !important;
-  @include breakpoint(sm-mobileonly) {
-    font-size: 12px !important;
+  .mar-right{
+   margin-right: 5px !important;
   }
-}
-.mar-right{
- margin-right: 5px !important;
-}
-@include breakpoint(Ipad) {
-  .gi-container-outer .gi-container__inr {
-    width: 92%;
-    padding-right: 0;
+  @include breakpoint(Ipad) {
+    .gi-container__inr {
+      width: 92%;
+      padding-right: 0;
+    }
   }
-}
-@include breakpoint(desktop1280) {
-  .gi-container-outer .gi-container .gi-heading {
-      font-size: 12px;
+  @include breakpoint(desktop1280) {
+    .gi-container .gi-heading {
+        font-size: 12px;
+    }
+    .gi-container .gen-info {
+        font-size: 11px;
+    }
+    .gi-container .MuiSelect-select {
+        padding: 2px 7px !important;
+        font-size: 11px !important;
+    }
+    .submitButton {
+        min-width: auto;
+    }
+    .gi-container .cutom-input-field input {
+        padding: 5px 7px !important;
+        font-size: 11px !important;
+    }
+    .gi-container__inr {
+      height: calc(100vh - 314px);
   }
-  .gi-container-outer .gi-container .gen-info {
-      font-size: 11px;
   }
-  .gi-container-outer .gi-container .MuiSelect-select {
-      padding: 2px 7px !important;
-      font-size: 11px !important;
+  @include breakpoint(landscape-mobileonly) {
+    .gi-container {
+        margin-top:44px;
+    }
+    .gi-container__inr {
+        height: calc(100vh - 180px);
+    }
   }
-  .gi-container-outer .submitButton {
-      min-width: auto;
-  }
-  .gi-container-outer .gi-container .cutom-input-field input {
-      padding: 5px 7px !important;
-      font-size: 11px !important;
-  }
-  .gi-container-outer .gi-container__inr {
-    height: calc(100vh - 314px);
-}
-}
-@include breakpoint(landscape-mobileonly) {
-  .gi-container-outer .gi-container {
-      margin-top:44px;
-  }
-  .gi-container-outer .gi-container__inr {
-      height: calc(100vh - 180px);
-  }
+  
 }

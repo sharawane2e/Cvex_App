@@ -37,11 +37,13 @@ const ImpactCalculator = (props: any) => {
       console.log(updatedJson);
     }, 0);
   }, []);
+
   useEffect(() => {
     progressUpdate();
     getblockLocations(jsonData);
     unAnsweredLocs();
   }, [jsonData]);
+
   const numInputValidate = (
     value: any,
     pattern: any,
@@ -63,6 +65,39 @@ const ImpactCalculator = (props: any) => {
     // progressUpdate();
     return res;
   };
+
+  const CustomNumInputValidate = (value:any , pattern:any, minRange:number, maxRange:number) => {
+    const reg = pattern;
+    let res = "";
+    for (let i = 0; i < value.length; i++) {
+      if (value[0] == " ") return "";
+      if (reg.test(value[i])) res += value[i];
+    }
+    var tempNum = Number(res);
+    if (tempNum > maxRange) res = res.slice(0, -1);
+    if (tempNum < minRange) {
+      tempNum = minRange;
+      res = tempNum.toString();
+    }
+
+    let resSplit = res.split("");
+    let minusCount = resSplit.filter(x => x == "-").length;
+
+    console.log(resSplit, res)
+
+    if(minusCount > 1){
+      return res.split('').slice(0, -1).join('');
+    }
+    if(minusCount > 0 && resSplit[0] != "-"){
+      console.log("h", resSplit.slice(0, -1).join(''))
+      return res.split('').slice(0, -1).join('')
+    }
+    else{
+      return res;
+    }
+    // progressUpdate();
+  };
+
   const inputData = jsonData?.data?.inputData;
   const handleDDChange = (
     ddId: string,
@@ -274,7 +309,6 @@ const ImpactCalculator = (props: any) => {
     // @ts-ignore
     arr = [...new Set(arr)];
     // @ts-ignore
-    console.log("qnames ", [...new Set(arr2)]);
     setUnAnsLocs(arr);
   };
   return (
@@ -431,9 +465,9 @@ const ImpactCalculator = (props: any) => {
                                                       }
                                                       onChange={(e: any) => {
                                                         e.target.value =
-                                                          numInputValidate(
+                                                        CustomNumInputValidate(
                                                             e.target.value,
-                                                            /^[0-9]+$/,
+                                                            /^[-]?\d*$/,
                                                             question.minRange,
                                                             question.maxRange
                                                           );
@@ -447,8 +481,7 @@ const ImpactCalculator = (props: any) => {
                                                       }}
                                                       error={
                                                         showError && question.isShow &&
-                                                        question.selectedText ==
-                                                          "" &&
+                                                        (question.selectedText == "" || question.selectedText == "-") &&
                                                         question.isRequired
                                                       }
                                                       onBlur={(e: any) => {

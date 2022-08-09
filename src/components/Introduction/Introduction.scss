@@ -4,12 +4,13 @@
       margin-top: 100px;
       width: 80%;
       height: calc(100vh - 320px);
-      overflow-y: auto;
+       overflow-y: auto;
       
       @include breakpoint(sm-mobileonly) {
         // font-size: 15px;
         // @include space("margin", "top", 190px, 0px);
         font-size: 15px;
+        // @include space("margin", "top", 190px, 0px);
         margin-top: 140px;
         height: calc(100vh - 270px);
       }
@@ -35,29 +36,31 @@
         line-height: 21px;
       }
     }
-  }
-  @include breakpoint(desktop1280) {
-    .introduction-container .introduction-main .introduction-heading {
-      font-size:12px;
+
+    @include breakpoint(desktop1280) {
+      .introduction-main .introduction-heading {
+        font-size:12px;
+      }
+      .introduction-main .introduction-content {
+        font-size:11px;
+      }
     }
-    .introduction-container .introduction-main .introduction-content {
-      font-size:11px;
+    @include breakpoint(sm-mobileonly) {
+      .introduction-main .introduction-heading {
+        font-size: 15px;
+      }
+      .introduction-main .introduction-content {
+          font-size: 14px;
+      }
     }
-  }
-  @include breakpoint(sm-mobileonly) {
-    .introduction-container .introduction-main .introduction-heading {
-      font-size: 15px;
-    }
-    .introduction-container .introduction-main .introduction-content {
-        font-size: 14px;
-    }
-  }
-  @include breakpoint(landscape-mobileonly) {
-    .introduction-container .introduction-main {
-        margin-top:50px;
-        height: calc(100vh - 180px);
+    @include breakpoint(landscape-mobileonly) {
+      .introduction-main {
+          margin-top:50px;
+          height: calc(100vh - 180px);
+      }
+      
     }
     
   }
-  
+
   

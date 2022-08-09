@@ -3,12 +3,17 @@
     bottom: 0;
     margin: 0 auto;
     width: 100%;
-    // display: inline-block;
-    // height: 100px;
     padding: 20px;
     text-align: center;
-    // background: #fff;
     @include breakpoint(sm-mobileonly) {
         padding: 10px;
+        background-color:#fff;
+    }
+}
+@include breakpoint(sm-mobileonly) {
+    .submitButton {
+        padding: 5px 35px !important;
+        font-size: 12px !important;
+        min-width: 100px !important;
     }
 }

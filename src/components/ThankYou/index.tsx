@@ -63,9 +63,6 @@ const ThankYou = (props: Props) => {
             <p><strong>LEADERSHIP :</strong> Konstantin Pell, Thomas, Ternai, and Arian Meyer</p><p><strong>For practical questions :</strong> Esther de Zeeuw</p>
         </div> */}
 
-
-      </div>
-
       <Footer>
         {
           (jsonData?.data?.contentDetails?.resultBTnDetails?.resultBTnTxt)?
@@ -81,6 +78,9 @@ const ThankYou = (props: Props) => {
         }
         
       </Footer>
+      </div>
+
+     
     </div>
   );
 };

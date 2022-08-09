@@ -4,6 +4,7 @@
 
 .topContainer {
   display: flex;
+  -webkit-justify-content: space-between;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 15px;
@@ -15,6 +16,7 @@
   @include breakpoint(landscape-mobileonly) {
     padding-bottom: 5px;
   }
+ 
 }
 
 .saveBtn,
@@ -23,7 +25,7 @@
 }
 
 .leftPanel {
-  width: 70%;
+  // width: 70%;
 
   .MuiBox-root .css-70qvj9 {
     position: relative;
@@ -33,10 +35,14 @@
 
   .progressbar-container {
     .progressbar-innercontainer {
-      justify-content: end;
+      // justify-content: end;
       @include breakpoint(sm-mobileonly) {
         display: block;
+        
       }
+      // @include breakpoint(landscape-smalldevice) {
+      //   width: 735px;
+      // }
     }
 
     .progressbar {
@@ -47,7 +53,7 @@
 }
 
 .rightPanel {
-  width: 25%;
+  // width: 25%;
   @include breakpoint(sm-mobileonly) {
     width: 100%;
     margin-bottom: 10px;
@@ -56,11 +62,17 @@
     width: 36%;
   }
 
+  
+
+
   .button-container {
-    justify-content: end;
+    // justify-content: end;
+    // -webkit-justify-content:end;
+    justify-content: flex-end;
     @include breakpoint(sm-mobileonly) {
       justify-content: right;
     }
+    
 
     .previous-button {
       border: 1px solid $light-blue;
