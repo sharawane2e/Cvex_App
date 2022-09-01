@@ -97,7 +97,9 @@ const LinearProgressbar2 = ({
     // @ts-ignore
     document.getElementById("forwardbutton").click();
   };
+
   const handleSubmit = (saveId: string) => {
+    console.log(JSON.parse(upJson))
     isReqAnswered(saveId);
     showError(true);
     if(isReqAnswered(saveId) == false){
@@ -115,6 +117,7 @@ const LinearProgressbar2 = ({
     //   // document.getElementById('').click();
     // }
   };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -200,17 +203,13 @@ const LinearProgressbar2 = ({
             let len;
             ques.questions.map((x: any) => {
               if (x.options) {
-                len = ques.questions.filter(
-                  (select: any) => select.selectedId == "" && select.isRequired && ques.isShow
-                ).length;
+                len = ques.questions.filter((select: any) => select.selectedId == "" && select.isRequired && ques.isShow).length;
                 if (len > 0) {
                   count = count + 1;
                 }
-              } else {
-                len = ques.questions.filter(
-                  (select: any) =>
-                    (select.selectedText == "" || select.selectedText == "-") && select.isRequired && ques.isShow
-                ).length;
+              } 
+              else {
+                len = ques.questions.filter((select: any) => (select.selectedText == "" || select.selectedText == "-") && select.isRequired && ques.isShow).length;
                 if (len > 0) {
                   count = count + 1;
                 }
@@ -219,8 +218,8 @@ const LinearProgressbar2 = ({
           });
         });
       });
-      console.log(count);
-      console.log(JSON.parse(upJson))
+      console.log("count", count);
+      // console.log(JSON.parse(upJson))
       if (count == 0) {
         // @ts-ignore
         document.getElementById("navText").value = saveId;

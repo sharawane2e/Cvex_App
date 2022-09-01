@@ -23,7 +23,6 @@ const ImpactCalculator = (props: any) => {
     // prettier-ignore
     // @ts-ignore
     let updatedJsona: any = JSON.parse(document.getElementById("jsonData")?.innerText);
-    setupJson(updatedJsona);
     // const updatedJsona = JSON.parse(
     //   document.getElementById("jsonData")?.innerText
     // );
@@ -34,7 +33,8 @@ const ImpactCalculator = (props: any) => {
     setTimeout(function () {
       // updateScrollPos(updatedJson?.data?.scrollPosition);
       getblockLocations(updatedJson);
-      console.log(updatedJson);
+      setupJson(updatedJson);
+      console.log("updatedJson");
     }, 0);
   }, []);
 
@@ -99,6 +99,7 @@ const ImpactCalculator = (props: any) => {
   };
 
   const inputData = jsonData?.data?.inputData;
+
   const handleDDChange = (
     ddId: string,
     inputDataIdx: number,
@@ -137,6 +138,7 @@ const ImpactCalculator = (props: any) => {
     }
     getblockLocations(updatedJson);
   };
+
   const handleNumChange = (
     value: number,
     inputDataIdx: number,
@@ -160,6 +162,7 @@ const ImpactCalculator = (props: any) => {
     setupJson(updatedJson);
     getblockLocations(updatedJson);
   };
+
   const numFocusOut = (
     value: number,
     inputDataIdx: number,
@@ -182,6 +185,7 @@ const ImpactCalculator = (props: any) => {
       console.log("last", inputDataIdx);
     }
   };
+
   const progressUpdate = () => {
     var obj: any = {};
     var incCount = 100 / jsonData?.data?.inputData?.length;
@@ -220,6 +224,7 @@ const ImpactCalculator = (props: any) => {
       setProgpercentage(Object.values(obj).reduce((a: any, b: any) => a + b));
     }
   };
+
   const getblockLocations = (jsonData: any) => {
     let arr: any = [];
     let obj: any = {};
@@ -247,6 +252,7 @@ const ImpactCalculator = (props: any) => {
     // console.log(arr);
     // console.log("sh ", parentscrollpos);
   };
+
   const scrollEffect = (ind: any) => {
     // @ts-ignore
     let container = document.getElementById("impactCalc");
@@ -258,6 +264,7 @@ const ImpactCalculator = (props: any) => {
       console.log(reqheight);
     }
   };
+
   const unAnsweredLocs = () => {
     let arr: any = [];
     let arr2: any = [];
@@ -311,6 +318,7 @@ const ImpactCalculator = (props: any) => {
     // @ts-ignore
     setUnAnsLocs(arr);
   };
+
   return (
     <div className="impact-calc-container">
       <SecondaryHeader sidebar={false} />

@@ -97,6 +97,7 @@
           -webkit-justify-content: space-between;
           justify-content: space-between;
           width: 100%;
+          column-gap: 2%;
           position: relative;
           
 
@@ -131,7 +132,7 @@
             }
           }
           .leftPanel {
-            flex: 0 0 80%;
+            flex: 0 0 78%;
             @include breakpoint(sm-mobileonly) {
               width: 100%;
               margin-bottom: 10px;

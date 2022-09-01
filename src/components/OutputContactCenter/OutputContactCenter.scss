@@ -69,7 +69,7 @@
         }
       }
       .outputTable-container {
-        width: 84%;
+        width: 100%;
         margin: 20px auto;
         @include breakpoint(Ipad) {
           width: 100%;
@@ -157,6 +157,7 @@
                 border-left: 1px solid #2a2a2a;
                 display: flex;
                 justify-content: center;
+                align-items: center;
                 flex: 22% 0;
                 text-align: center;
                 padding: 10px 5px 10px 5px;
@@ -168,7 +169,7 @@
                
                 .currency-contaier{
                   display: flex;
-                  width: 50%;
+                  // width: 50%;
                   justify-content: right;
                   span {
                     display: flex;
@@ -323,8 +324,11 @@
     width: 15px;
     background-size: contain;
     background-repeat: no-repeat;
+    // position: absolute;
+    // left: 10px;
     position: absolute;
-      left: 10px;
+    left: 4px;
+
     @include breakpoint(sm-mobileonly) {
       margin: auto;
       margin-bottom: 10px;
@@ -378,7 +382,7 @@
     .outputTable-container__inr * {
         font-size: 11px;
     }
-    .arrowUpicon {
+    .arrowUpicon, .arrowDownicon {
         height: 8px;
         width: 8px;
     }
