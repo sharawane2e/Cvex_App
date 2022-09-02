@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLeftPanelOpenClose } from '../../../redux/actions/LeftPanelActions';
 import { useState, useEffect } from 'react';
 import store from '../../../redux/store';
+import DownloadIcon from '@mui/icons-material/Download';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import ArticleIcon from '@mui/icons-material/Article';
+import { Tooltip } from '@mui/material';
+import axios from 'axios';
+import { ByteToPdfConvert, ByteToPPTConvert } from '../../../utils/HelperFunctions';
 
 type headerProps = {
   sidebar?: boolean;
@@ -14,16 +20,17 @@ const defaultProps: headerProps = {
 
 const SecondaryHeader = (props: headerProps) => {
   const [jsonData, setJSONData] = useState<any>('');
+  const { leftPanel } = useSelector((state: any) => state);
+  const { dispatch } = store;
 
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
-    // console.log(document.getElementById('jsonData')?.innerHTML)
+    //@ts-ignore
+    // console.log("_outputTemplateSubskills", _outputTemplateSubskills);
   }, []);
-  const { leftPanel } = useSelector((state: any) => state);
-  const { dispatch } = store;
 
   const toggleLeftPanel = () => {
     const updateToggle = leftPanel?.leftPanelOpen;
@@ -32,6 +39,28 @@ const SecondaryHeader = (props: headerProps) => {
     // document.getElementById(jsonData?.data?.leftPanel?.isNavPanelOpen).value = updateToggle;
     console.log(jsonData?.data?.leftPanel);
   };
+
+  var postData = {
+    //@ts-ignore
+    heatmap: _heatmap,
+    //@ts-ignore
+    outputTemplateSkills: _outputTemplateSkills,
+    //@ts-ignore
+    outputTemplateSubskills: _outputTemplateSubskills
+  };
+
+  const downloadAPI = (type:any) => {
+    console.log(postData, type);
+    axios.post("https://cvex.ads.mckinsey.com/api/Download/" + type , postData)
+    .then((x:any) => {
+        if(type == "ppt"){
+          ByteToPPTConvert("Benchmarking.pptx", x.data);
+        }
+        else{
+          ByteToPdfConvert("Benchmarking.pdf", x.data);
+        }
+    })
+  }
 
   return (
     <>
@@ -74,6 +103,25 @@ const SecondaryHeader = (props: headerProps) => {
         </div>
         <div className="title">
           <h2>{jsonData?.data?.headerData?.title}</h2>
+
+          {jsonData?.pageCode?.page == 11 ? 
+          <div className='download_btns_container'>
+
+            <Tooltip title="Download PDF">
+              <button onClick={() => downloadAPI("pdf")}>
+                <PictureAsPdfIcon/>
+              </button>
+            </Tooltip>
+
+            <Tooltip title="Download PPT">
+              <button className='ml-10' onClick={() => downloadAPI("ppt")}>
+                <ArticleIcon/>
+              </button>
+            </Tooltip>
+
+          </div>
+          : null}
+
         </div>
       </div>
     </>
