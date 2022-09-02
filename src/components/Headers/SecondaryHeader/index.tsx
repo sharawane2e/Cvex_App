@@ -9,6 +9,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import { Tooltip } from '@mui/material';
 import axios from 'axios';
 import { ByteToPdfConvert, ByteToPPTConvert } from '../../../utils/HelperFunctions';
+import CustomLoader from '../../CustomLoader';
 
 type headerProps = {
   sidebar?: boolean;
@@ -20,6 +21,7 @@ const defaultProps: headerProps = {
 
 const SecondaryHeader = (props: headerProps) => {
   const [jsonData, setJSONData] = useState<any>('');
+  const [ showLoader, setShowLoader] = useState(false);
   const { leftPanel } = useSelector((state: any) => state);
   const { dispatch } = store;
 
@@ -50,16 +52,19 @@ const SecondaryHeader = (props: headerProps) => {
   };
 
   const downloadAPI = (type:any) => {
+    setShowLoader(true);
     console.log(postData, type);
     axios.post("https://cvex.ads.mckinsey.com/api/Download/" + type , postData)
     .then((x:any) => {
         if(type == "ppt"){
           ByteToPPTConvert("Benchmarking.pptx", x.data);
+          setShowLoader(false);
         }
         else{
           ByteToPdfConvert("Benchmarking.pdf", x.data);
+          setShowLoader(false);
         }
-    })
+    });
   }
 
   return (
@@ -124,6 +129,7 @@ const SecondaryHeader = (props: headerProps) => {
 
         </div>
       </div>
+      <CustomLoader isShow={showLoader}/>
     </>
   );
 };

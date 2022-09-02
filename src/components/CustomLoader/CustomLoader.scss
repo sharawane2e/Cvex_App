@@ -1,0 +1,30 @@
+.tempp{
+    background-color: aqua;
+    width: 500px;
+    height: 500px;
+}
+
+.backdrop{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 990;
+}
+
+.loader_container{
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    top:50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%, 0);
+    position: absolute;
+    z-index: 999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
