@@ -4,7 +4,9 @@ export const numberWithCommas = (num: any) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-export const ByteToPPTConvert = (filename:any, data:any) => {                
+export const ByteToPPTConvert = (filename:any, data:any) => {    
+    //@ts-ignore
+    document.getElementById("forwardbutton").disabled = true;            
     var byteCharacters = atob(data);
     var byteNumbers = new Array(byteCharacters.length);
     for (var i = 0; i < byteCharacters.length; i++) {
@@ -23,7 +25,9 @@ export const ByteToPPTConvert = (filename:any, data:any) => {
     a.click();
 }
 
-export const ByteToPdfConvert = (filename:any, data:any) => {                
+export const ByteToPdfConvert = (filename:any, data:any) => {   
+    //@ts-ignore
+    document.getElementById("forwardbutton").disabled = true;              
     var byteCharacters = atob(data);
     var byteNumbers = new Array(byteCharacters.length);
     for (var i = 0; i < byteCharacters.length; i++) {

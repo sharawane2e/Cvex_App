@@ -53,6 +53,11 @@ $color: #b3e5fc;
     width: 80%;
     padding: 0px 20px;
     color: $white-color;
+
+    @include breakpoint(sm-mobileonly) {
+      padding: 0px 10px;
+    }
+
     h2 {
       font-size: 18px;
       @include breakpoint(sm-mobileonly) {
@@ -62,12 +67,19 @@ $color: #b3e5fc;
 
     .download_btns_container{
       button{
-        padding: 7px 9px;
+        padding: 5px 6px;
         cursor: pointer;
         background-color: #1f66f6;
         color: $white-color;
         outline: 0;
         border: none;
+        @include breakpoint(sm-mobileonly) {
+          font-size: 12px;
+        }
+      }
+      @include breakpoint(sm-mobileonly) {
+        display: flex;
+        justify-content: space-between;
       }
     }
 

@@ -21,17 +21,37 @@ const defaultProps: headerProps = {
 
 const SecondaryHeader = (props: headerProps) => {
   const [jsonData, setJSONData] = useState<any>('');
+  const [downloadJson, setDownloadJson] = useState<any>('');
   const [ showLoader, setShowLoader] = useState(false);
+  const [ showLoadError, setShowLoadError] = useState(false);
   const { leftPanel } = useSelector((state: any) => state);
   const { dispatch } = store;
+
+  let postData:any = {
+    heatmap: {},
+    outputTemplateSkills: {},
+    outputTemplateSubskills: {}
+  };
 
   useEffect(() => {
     setJSONData(
       // @ts-ignore
       JSON.parse(document.getElementById('jsonData')?.innerHTML),
     );
+    try{
+      setDownloadJson(
+        // @ts-ignore
+        JSON.parse(document.getElementById('downloadjson')?.innerHTML),
+      );
+    }
+    catch{
+      console.log("cat")
+    }
+
+
     //@ts-ignore
-    // console.log("_outputTemplateSubskills", _outputTemplateSubskills);
+    document.getElementById("forwardbutton").disabled = true;
+
   }, []);
 
   const toggleLeftPanel = () => {
@@ -42,20 +62,24 @@ const SecondaryHeader = (props: headerProps) => {
     console.log(jsonData?.data?.leftPanel);
   };
 
-  var postData = {
+  const downloadAPI = (e:any,type:any) => {
+    e.preventDefault();
     //@ts-ignore
-    heatmap: _heatmap,
-    //@ts-ignore
-    outputTemplateSkills: _outputTemplateSkills,
-    //@ts-ignore
-    outputTemplateSubskills: _outputTemplateSubskills
-  };
-
-  const downloadAPI = (type:any) => {
+    document.getElementById("forwardbutton").disabled = true;
+    setShowLoadError(false);
     setShowLoader(true);
+    try{
+      postData['heatmap'] = downloadJson?.heatmap;
+      postData['outputTemplateSkills'] = downloadJson?.outputTemplateSkills;
+      postData['outputTemplateSubskills'] = downloadJson?.outputTemplateSubskills;
+    }
+    catch(err){
+      console.log("no !", err);
+    }
     console.log(postData, type);
     axios.post("https://cvex.ads.mckinsey.com/api/Download/" + type , postData)
     .then((x:any) => {
+      console.log("x", x)
         if(type == "ppt"){
           ByteToPPTConvert("Benchmarking.pptx", x.data);
           setShowLoader(false);
@@ -64,7 +88,18 @@ const SecondaryHeader = (props: headerProps) => {
           ByteToPdfConvert("Benchmarking.pdf", x.data);
           setShowLoader(false);
         }
-    });
+    })
+    .catch((error:any) => {
+      if (error.response) {
+        console.log(error.response.status);
+        setShowLoadError(true);
+      }
+    })
+  }
+
+  const loaderCloseReset = () => {
+    setShowLoader(false);
+    setShowLoadError(false);
   }
 
   return (
@@ -109,17 +144,17 @@ const SecondaryHeader = (props: headerProps) => {
         <div className="title">
           <h2>{jsonData?.data?.headerData?.title}</h2>
 
-          {jsonData?.pageCode?.page == 11 ? 
+          {(jsonData?.pageCode?.page == 11 || jsonData?.pageCode?.page == 12 || jsonData?.pageCode?.page == 6 )? 
           <div className='download_btns_container'>
 
             <Tooltip title="Download PDF">
-              <button onClick={() => downloadAPI("pdf")}>
+              <button onClick={(e:any) => downloadAPI(e,"pdf")}>
                 <PictureAsPdfIcon/>
               </button>
             </Tooltip>
 
             <Tooltip title="Download PPT">
-              <button className='ml-10' onClick={() => downloadAPI("ppt")}>
+              <button className='ml-10' onClick={(e:any) => downloadAPI(e,"ppt")}>
                 <ArticleIcon/>
               </button>
             </Tooltip>
@@ -129,7 +164,13 @@ const SecondaryHeader = (props: headerProps) => {
 
         </div>
       </div>
-      <CustomLoader isShow={showLoader}/>
+
+      <CustomLoader 
+        isShow={showLoader} 
+        isError={showLoadError} 
+        loaderCloseReset={loaderCloseReset}
+      />
+
     </>
   );
 };
